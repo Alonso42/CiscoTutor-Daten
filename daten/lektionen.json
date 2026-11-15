@@ -1,0 +1,1276 @@
+[
+ {
+  "id": "routing",
+  "titel": "Wie funktioniert Routing? – von Grund auf",
+  "topics": [
+   "CCNA2-3.1",
+   "CCNA2-3.2",
+   "ENARSI-1.1"
+  ],
+  "seiten": [
+   {
+    "text": "Ein Netzwerk (Subnetz) ist wie eine Straße: Alle Geräte darin erreichen sich direkt. Will ein PC ein Gerät in einem ANDEREN Netz erreichen, braucht er einen Router – das Default Gateway. Der PC prüft mit seiner Subnetzmaske: Liegt das Ziel in meinem Netz? Wenn nein, schickt er das Paket ans Gateway.",
+    "diagramm": {
+     "typ": "topologie",
+     "knoten": [
+      {
+       "id": "pc1",
+       "label": "PC 10.1.1.10",
+       "x": "0.1",
+       "y": "0.5",
+       "art": "pc"
+      },
+      {
+       "id": "r1",
+       "label": "R1 GW .1",
+       "x": "0.4",
+       "y": "0.5",
+       "art": "router"
+      },
+      {
+       "id": "r2",
+       "label": "R2",
+       "x": "0.7",
+       "y": "0.5",
+       "art": "router"
+      },
+      {
+       "id": "srv",
+       "label": "Server 10.2.2.20",
+       "x": "0.92",
+       "y": "0.5",
+       "art": "server"
+      }
+     ],
+     "kanten": [
+      {
+       "von": "pc1",
+       "nach": "r1",
+       "label": "10.1.1.0/24",
+       "farbe": "39c86a"
+      },
+      {
+       "von": "r1",
+       "nach": "r2",
+       "label": "10.0.0.0/30",
+       "farbe": "4a9cff"
+      },
+      {
+       "von": "r2",
+       "nach": "srv",
+       "label": "10.2.2.0/24",
+       "farbe": "b08aff"
+      }
+     ],
+     "schritte": [
+      {
+       "von": "pc1",
+       "nach": "r1",
+       "farbe": "ffd23f",
+       "text": "PC: Ziel nicht im eigenen Netz → ans Gateway"
+      },
+      {
+       "von": "r1",
+       "nach": "r2",
+       "farbe": "ffd23f",
+       "text": "R1 schaut in die Routingtabelle: 10.2.2.0/24 via R2"
+      },
+      {
+       "von": "r2",
+       "nach": "srv",
+       "farbe": "ffd23f",
+       "text": "R2: Netz direkt angeschlossen → zustellen"
+      }
+     ]
+    }
+   },
+   {
+    "text": "Jeder Router hat eine Routingtabelle: Liste von Zielnetzen mit Next Hop oder Ausgangsinterface. Einträge kommen aus drei Quellen: direkt angeschlossen (C), statisch konfiguriert (S) oder per Routingprotokoll gelernt (O = OSPF, D = EIGRP, B = BGP).",
+    "diagramm": {
+     "typ": "tabelle",
+     "kopf": [
+      "Code",
+      "Netz",
+      "AD/Metrik",
+      "Next Hop"
+     ],
+     "zeilen": [
+      [
+       "C",
+       "10.1.1.0/24",
+       "0/0",
+       "Gi0/0"
+      ],
+      [
+       "S",
+       "10.2.2.0/24",
+       "1/0",
+       "10.0.0.2"
+      ],
+      [
+       "O",
+       "10.3.0.0/16",
+       "110/20",
+       "10.0.0.2"
+      ],
+      [
+       "S*",
+       "0.0.0.0/0",
+       "1/0",
+       "203.0.113.1"
+      ]
+     ]
+    }
+   },
+   {
+    "text": "Welche Route gewinnt? Regel 1: Longest Prefix Match – das genaueste passende Netz gewinnt IMMER (ein /24 schlägt ein /16). Regel 2: Gibt es dasselbe Präfix aus mehreren Quellen, gewinnt die niedrigere Administrative Distance (Vertrauen der Quelle). Regel 3: Innerhalb eines Protokolls gewinnt die niedrigste Metrik.",
+    "diagramm": {
+     "typ": "tabelle",
+     "kopf": [
+      "Quelle",
+      "AD"
+     ],
+     "zeilen": [
+      [
+       "Connected",
+       "0"
+      ],
+      [
+       "Static",
+       "1"
+      ],
+      [
+       "eBGP",
+       "20"
+      ],
+      [
+       "EIGRP intern",
+       "90"
+      ],
+      [
+       "OSPF",
+       "110"
+      ],
+      [
+       "RIP",
+       "120"
+      ],
+      [
+       "iBGP",
+       "200"
+      ]
+     ]
+    }
+   },
+   {
+    "text": "Die Default-Route 0.0.0.0/0 passt auf jedes Ziel, ist aber das ungenaueste Präfix – sie greift nur, wenn nichts Besseres existiert (‚Gateway of last resort‘). Eine Floating Static Route ist eine Backup-Route mit absichtlich hoher AD: Sie erscheint erst, wenn die bessere Route verschwindet. Merke: Jeder Router entscheidet nur für den nächsten Hop – und die Rückroute muss auch existieren!"
+   }
+  ]
+ },
+ {
+  "id": "vlan",
+  "titel": "VLANs und Trunks – von Grund auf",
+  "topics": [
+   "CCNA2-2.1",
+   "CCNA2-2.2",
+   "ENCOR-3.1.a"
+  ],
+  "seiten": [
+   {
+    "text": "Ein Switch leitet Frames anhand von MAC-Adressen weiter. Alle Ports bilden zunächst EINE Broadcast-Domäne: Ein Broadcast (z. B. ARP) erreicht jeden. Ein VLAN teilt den Switch logisch in mehrere getrennte Switches. Geräte in VLAN 10 sehen Broadcasts aus VLAN 20 nicht – sie brauchen einen Router (oder L3-Switch), um sich zu erreichen.",
+    "diagramm": {
+     "typ": "topologie",
+     "knoten": [
+      {
+       "id": "a",
+       "label": "PC A VLAN10",
+       "x": "0.12",
+       "y": "0.2",
+       "art": "pc"
+      },
+      {
+       "id": "b",
+       "label": "PC B VLAN10",
+       "x": "0.12",
+       "y": "0.8",
+       "art": "pc"
+      },
+      {
+       "id": "sw",
+       "label": "SW1",
+       "x": "0.5",
+       "y": "0.5",
+       "art": "switch"
+      },
+      {
+       "id": "c",
+       "label": "PC C VLAN20",
+       "x": "0.88",
+       "y": "0.2",
+       "art": "pc"
+      },
+      {
+       "id": "d",
+       "label": "PC D VLAN20",
+       "x": "0.88",
+       "y": "0.8",
+       "art": "pc"
+      }
+     ],
+     "kanten": [
+      {
+       "von": "a",
+       "nach": "sw",
+       "label": "Access 10",
+       "farbe": "4a9cff"
+      },
+      {
+       "von": "b",
+       "nach": "sw",
+       "label": "Access 10",
+       "farbe": "4a9cff"
+      },
+      {
+       "von": "c",
+       "nach": "sw",
+       "label": "Access 20",
+       "farbe": "ff6a4a"
+      },
+      {
+       "von": "d",
+       "nach": "sw",
+       "label": "Access 20",
+       "farbe": "ff6a4a"
+      }
+     ],
+     "schritte": [
+      {
+       "von": "a",
+       "nach": "sw",
+       "farbe": "4a9cff",
+       "text": "Broadcast von A in VLAN 10"
+      },
+      {
+       "von": "sw",
+       "nach": "b",
+       "farbe": "4a9cff",
+       "text": "…erreicht nur B (gleiches VLAN), nicht C und D"
+      }
+     ]
+    }
+   },
+   {
+    "text": "Ein Access-Port gehört genau einem VLAN, das Endgerät merkt davon nichts. Sollen mehrere VLANs über EIN Kabel zwischen Switches laufen, nutzt man einen Trunk. Dabei bekommt jeder Frame einen 4-Byte-802.1Q-Tag mit der VLAN-ID (12 Bit → 1–4094). Das Native VLAN wird untagged übertragen und muss auf beiden Seiten gleich sein.",
+    "diagramm": {
+     "typ": "topologie",
+     "knoten": [
+      {
+       "id": "a",
+       "label": "PC VLAN10",
+       "x": "0.08",
+       "y": "0.25",
+       "art": "pc"
+      },
+      {
+       "id": "c",
+       "label": "PC VLAN20",
+       "x": "0.08",
+       "y": "0.75",
+       "art": "pc"
+      },
+      {
+       "id": "sw1",
+       "label": "SW1",
+       "x": "0.35",
+       "y": "0.5",
+       "art": "switch"
+      },
+      {
+       "id": "sw2",
+       "label": "SW2",
+       "x": "0.68",
+       "y": "0.5",
+       "art": "switch"
+      },
+      {
+       "id": "b",
+       "label": "PC VLAN10",
+       "x": "0.92",
+       "y": "0.25",
+       "art": "pc"
+      },
+      {
+       "id": "d",
+       "label": "PC VLAN20",
+       "x": "0.92",
+       "y": "0.75",
+       "art": "pc"
+      }
+     ],
+     "kanten": [
+      {
+       "von": "a",
+       "nach": "sw1",
+       "label": "",
+       "farbe": "4a9cff"
+      },
+      {
+       "von": "c",
+       "nach": "sw1",
+       "label": "",
+       "farbe": "ff6a4a"
+      },
+      {
+       "von": "sw1",
+       "nach": "sw2",
+       "label": "Trunk 802.1Q",
+       "farbe": "ffd23f"
+      },
+      {
+       "von": "sw2",
+       "nach": "b",
+       "label": "",
+       "farbe": "4a9cff"
+      },
+      {
+       "von": "sw2",
+       "nach": "d",
+       "label": "",
+       "farbe": "ff6a4a"
+      }
+     ],
+     "schritte": [
+      {
+       "von": "a",
+       "nach": "sw1",
+       "farbe": "4a9cff",
+       "text": "Frame ohne Tag kommt am Access-Port an"
+      },
+      {
+       "von": "sw1",
+       "nach": "sw2",
+       "farbe": "4a9cff",
+       "text": "Auf dem Trunk: Tag VLAN 10 wird eingefügt"
+      },
+      {
+       "von": "sw2",
+       "nach": "b",
+       "farbe": "4a9cff",
+       "text": "SW2 entfernt den Tag und liefert in VLAN 10 aus"
+      }
+     ]
+    }
+   },
+   {
+    "text": "Konfiguration: Access: ‚switchport mode access‘ + ‚switchport access vlan 10‘. Trunk: ‚switchport mode trunk‘, Liste mit ‚switchport trunk allowed vlan 10,20‘ – Achtung: zum Ergänzen immer ‚allowed vlan add 30‘, sonst wird die Liste ersetzt! DTP: auto + auto ergibt KEINEN Trunk. Best Practice: Trunk fest einstellen und ‚switchport nonegotiate‘."
+   },
+   {
+    "text": "Routing zwischen VLANs: Router-on-a-Stick (ein Router-Interface mit Subinterfaces ‚encapsulation dot1Q 10‘) oder ein Layer-3-Switch mit SVIs (‚interface vlan 10‘ + IP + ‚ip routing‘). Die SVI ist nur up, wenn das VLAN existiert und mindestens ein Port darin aktiv ist.",
+    "diagramm": {
+     "typ": "topologie",
+     "knoten": [
+      {
+       "id": "a",
+       "label": "PC VLAN10",
+       "x": "0.15",
+       "y": "0.3",
+       "art": "pc"
+      },
+      {
+       "id": "c",
+       "label": "PC VLAN20",
+       "x": "0.15",
+       "y": "0.8",
+       "art": "pc"
+      },
+      {
+       "id": "l3",
+       "label": "L3-Switch SVI10/SVI20",
+       "x": "0.6",
+       "y": "0.55",
+       "art": "switch"
+      }
+     ],
+     "kanten": [
+      {
+       "von": "a",
+       "nach": "l3",
+       "label": "VLAN 10",
+       "farbe": "4a9cff"
+      },
+      {
+       "von": "c",
+       "nach": "l3",
+       "label": "VLAN 20",
+       "farbe": "ff6a4a"
+      }
+     ],
+     "schritte": [
+      {
+       "von": "a",
+       "nach": "l3",
+       "farbe": "4a9cff",
+       "text": "Ziel in anderem Netz → an SVI 10 (Gateway)"
+      },
+      {
+       "von": "l3",
+       "nach": "c",
+       "farbe": "ff6a4a",
+       "text": "L3-Switch routet und sendet in VLAN 20 aus"
+      }
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "stp",
+  "titel": "Spanning Tree – warum Schleifen tödlich sind",
+  "topics": [
+   "CCNA2-2.5",
+   "ENCOR-3.1.c"
+  ],
+  "seiten": [
+   {
+    "text": "Redundante Switch-Verbindungen sind gut für Ausfallsicherheit – aber Ethernet-Frames haben keine TTL. Ein Broadcast würde in einer Schleife ewig kreisen und sich vervielfachen: Broadcast-Sturm, MAC-Tabellen springen, das Netz steht. STP (802.1D) und Rapid PVST+ blockieren deshalb gezielt Ports, sodass ein schleifenfreier Baum entsteht.",
+    "diagramm": {
+     "typ": "topologie",
+     "knoten": [
+      {
+       "id": "s1",
+       "label": "SW1 Root",
+       "x": "0.5",
+       "y": "0.15",
+       "art": "switch"
+      },
+      {
+       "id": "s2",
+       "label": "SW2",
+       "x": "0.2",
+       "y": "0.8",
+       "art": "switch"
+      },
+      {
+       "id": "s3",
+       "label": "SW3",
+       "x": "0.8",
+       "y": "0.8",
+       "art": "switch"
+      }
+     ],
+     "kanten": [
+      {
+       "von": "s1",
+       "nach": "s2",
+       "label": "",
+       "farbe": "39c86a"
+      },
+      {
+       "von": "s1",
+       "nach": "s3",
+       "label": "",
+       "farbe": "39c86a"
+      },
+      {
+       "von": "s2",
+       "nach": "s3",
+       "label": "blockiert",
+       "farbe": "ff6a4a"
+      }
+     ],
+     "schritte": [
+      {
+       "von": "s2",
+       "nach": "s3",
+       "farbe": "ff6a4a",
+       "text": "Ohne STP: Frame kreist SW2→SW3→SW1→SW2 …"
+      },
+      {
+       "von": "s1",
+       "nach": "s2",
+       "farbe": "39c86a",
+       "text": "Mit STP: ein Port auf SW3 blockiert → keine Schleife"
+      }
+     ]
+    }
+   },
+   {
+    "text": "Ablauf: 1. Root Bridge wählen – niedrigste Bridge-ID (Priorität, Standard 32768 + VLAN-ID, dann MAC). 2. Jeder andere Switch wählt seinen Root Port – geringste Pfadkosten zum Root. 3. Pro Segment ein Designated Port. 4. Alle übrigen Ports blockieren (RSTP: Rolle Alternate/Backup, Zustand Discarding).",
+    "diagramm": {
+     "typ": "ablauf",
+     "stufen": [
+      "Root Bridge",
+      "Root Ports",
+      "Designated Ports",
+      "Rest blockiert"
+     ]
+    }
+   },
+   {
+    "text": "Pfadkosten (kurz): 10 Mbit/s = 100, 100 Mbit/s = 19, 1 Gbit/s = 4, 10 Gbit/s = 2. Root bestimmen Sie selbst: ‚spanning-tree vlan 10 root primary‘ oder ‚priority 4096‘ (Vielfache von 4096). RSTP konvergiert in Sekunden statt 30–50 s.",
+    "diagramm": {
+     "typ": "tabelle",
+     "kopf": [
+      "Rolle (RSTP)",
+      "Bedeutung"
+     ],
+     "zeilen": [
+      [
+       "Root",
+       "Bester Weg zum Root"
+      ],
+      [
+       "Designated",
+       "Sendet auf dem Segment"
+      ],
+      [
+       "Alternate",
+       "Ersatz für Root Port"
+      ],
+      [
+       "Backup",
+       "Ersatz für Designated (gleiches Segment)"
+      ]
+     ]
+    }
+   },
+   {
+    "text": "Schutzfunktionen: PortFast – Endgeräte-Ports sofort Forwarding. BPDU Guard – kommt eine BPDU auf einem PortFast-Port an, geht der Port err-disabled (jemand hat einen Switch angesteckt!). Root Guard – verhindert, dass ein fremder Switch Root wird (Port wird root-inconsistent). Loop Guard – bleiben BPDUs aus, wird nicht einfach weitergeleitet (Schutz vor Einweg-Links)."
+   }
+  ]
+ },
+ {
+  "id": "ospf",
+  "titel": "OSPF – von Grund auf",
+  "topics": [
+   "CCNA2-3.3",
+   "ENCOR-3.2.b",
+   "ENARSI-1.10"
+  ],
+  "seiten": [
+   {
+    "text": "OSPF ist ein Link-State-Protokoll: Jeder Router lernt die komplette Landkarte seiner Area (LSDB) und berechnet mit Dijkstra (SPF) selbst die kürzesten Wege. Kosten = Referenzbandbreite (100 Mbit/s) / Bandbreite – darum besser ‚auto-cost reference-bandwidth‘ erhöhen, sonst kosten 1G und 10G beide 1.",
+    "diagramm": {
+     "typ": "topologie",
+     "knoten": [
+      {
+       "id": "r1",
+       "label": "R1",
+       "x": "0.15",
+       "y": "0.3",
+       "art": "router"
+      },
+      {
+       "id": "r2",
+       "label": "R2",
+       "x": "0.5",
+       "y": "0.15",
+       "art": "router"
+      },
+      {
+       "id": "r3",
+       "label": "R3",
+       "x": "0.85",
+       "y": "0.3",
+       "art": "router"
+      },
+      {
+       "id": "r4",
+       "label": "R4",
+       "x": "0.5",
+       "y": "0.8",
+       "art": "router"
+      }
+     ],
+     "kanten": [
+      {
+       "von": "r1",
+       "nach": "r2",
+       "label": "Kosten 1",
+       "farbe": "4a9cff"
+      },
+      {
+       "von": "r2",
+       "nach": "r3",
+       "label": "Kosten 1",
+       "farbe": "4a9cff"
+      },
+      {
+       "von": "r1",
+       "nach": "r4",
+       "label": "Kosten 10",
+       "farbe": "8090a0"
+      },
+      {
+       "von": "r4",
+       "nach": "r3",
+       "label": "Kosten 10",
+       "farbe": "8090a0"
+      }
+     ],
+     "schritte": [
+      {
+       "von": "r1",
+       "nach": "r2",
+       "farbe": "ffd23f",
+       "text": "SPF: R1→R2→R3 kostet 2"
+      },
+      {
+       "von": "r2",
+       "nach": "r3",
+       "farbe": "ffd23f",
+       "text": "…günstiger als über R4 (20) → gewählt"
+      }
+     ]
+    }
+   },
+   {
+    "text": "Nachbarschaft: Router senden Hellos (Multicast 224.0.0.5, alle 10 s, Dead 40 s auf Ethernet). Passen Area, Subnetz/Maske, Timer, Authentifizierung, Stub-Flag und MTU, durchlaufen sie die Zustände bis Full. Zwischen zwei DROther-Routern bleibt es normal bei 2-Way.",
+    "diagramm": {
+     "typ": "ablauf",
+     "stufen": [
+      "Down",
+      "Init",
+      "2-Way",
+      "ExStart",
+      "Exchange",
+      "Loading",
+      "Full"
+     ]
+    }
+   },
+   {
+    "text": "Auf Broadcast-Netzen (Ethernet) wählen die Router einen DR und BDR, damit nicht jeder mit jedem die Datenbank tauscht: höchste Interface-Priorität (Standard 1, 0 = nie DR), dann höchste Router-ID. Die Wahl ist nicht präemptiv! Router-ID: manuell > höchste Loopback > höchste aktive IP. Point-to-Point-Links haben keinen DR.",
+    "diagramm": {
+     "typ": "topologie",
+     "knoten": [
+      {
+       "id": "dr",
+       "label": "R1 DR",
+       "x": "0.5",
+       "y": "0.2",
+       "art": "router"
+      },
+      {
+       "id": "sw",
+       "label": "Switch",
+       "x": "0.5",
+       "y": "0.55",
+       "art": "switch"
+      },
+      {
+       "id": "a",
+       "label": "R2 BDR",
+       "x": "0.15",
+       "y": "0.85",
+       "art": "router"
+      },
+      {
+       "id": "b",
+       "label": "R3 DROther",
+       "x": "0.5",
+       "y": "0.9",
+       "art": "router"
+      },
+      {
+       "id": "c",
+       "label": "R4 DROther",
+       "x": "0.85",
+       "y": "0.85",
+       "art": "router"
+      }
+     ],
+     "kanten": [
+      {
+       "von": "dr",
+       "nach": "sw",
+       "label": "",
+       "farbe": "39c86a"
+      },
+      {
+       "von": "a",
+       "nach": "sw",
+       "label": "",
+       "farbe": "39c86a"
+      },
+      {
+       "von": "b",
+       "nach": "sw",
+       "label": "",
+       "farbe": "39c86a"
+      },
+      {
+       "von": "c",
+       "nach": "sw",
+       "label": "",
+       "farbe": "39c86a"
+      }
+     ],
+     "schritte": [
+      {
+       "von": "b",
+       "nach": "dr",
+       "farbe": "ffd23f",
+       "text": "DROther senden Updates an DR/BDR (224.0.0.6)"
+      },
+      {
+       "von": "dr",
+       "nach": "c",
+       "farbe": "ffd23f",
+       "text": "DR verteilt an alle (224.0.0.5)"
+      }
+     ]
+    }
+   },
+   {
+    "text": "Areas begrenzen die LSA-Flut: Area 0 ist das Backbone, alle Areas hängen daran (sonst Virtual Link). ABRs verbinden Areas, ASBRs bringen externe Routen. Stub-Areas blocken Typ-5-LSAs, Totally Stubby zusätzlich Typ 3/4, NSSA erlaubt einen ASBR mit Typ 7. Routenpräferenz: intra-area (O) > inter-area (O IA) > E1 > E2.",
+    "diagramm": {
+     "typ": "tabelle",
+     "kopf": [
+      "LSA",
+      "Name",
+      "Von"
+     ],
+     "zeilen": [
+      [
+       "1",
+       "Router",
+       "jedem Router"
+      ],
+      [
+       "2",
+       "Network",
+       "DR"
+      ],
+      [
+       "3",
+       "Summary",
+       "ABR"
+      ],
+      [
+       "4",
+       "ASBR-Summary",
+       "ABR"
+      ],
+      [
+       "5",
+       "External",
+       "ASBR"
+      ],
+      [
+       "7",
+       "NSSA External",
+       "ASBR in NSSA"
+      ]
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bgp",
+  "titel": "BGP – das Routing des Internets",
+  "topics": [
+   "ENCOR-3.2.c",
+   "ENARSI-1.11"
+  ],
+  "seiten": [
+   {
+    "text": "BGP verbindet autonome Systeme (AS) – z. B. dein Unternehmen mit Providern. Es ist ein Path-Vector-Protokoll: Statt Kosten zählt der Weg durch AS-Nummern (AS_PATH) und viele Attribute. BGP-Nachbarn werden manuell konfiguriert und sprechen über TCP 179. eBGP = zwischen verschiedenen AS, iBGP = innerhalb eines AS.",
+    "diagramm": {
+     "typ": "topologie",
+     "knoten": [
+      {
+       "id": "a",
+       "label": "R1 AS 65001",
+       "x": "0.15",
+       "y": "0.5",
+       "art": "router"
+      },
+      {
+       "id": "isp",
+       "label": "ISP AS 64500",
+       "x": "0.5",
+       "y": "0.2",
+       "art": "cloud"
+      },
+      {
+       "id": "b",
+       "label": "R2 AS 65002",
+       "x": "0.85",
+       "y": "0.5",
+       "art": "router"
+      }
+     ],
+     "kanten": [
+      {
+       "von": "a",
+       "nach": "isp",
+       "label": "eBGP",
+       "farbe": "ffd23f"
+      },
+      {
+       "von": "isp",
+       "nach": "b",
+       "label": "eBGP",
+       "farbe": "ffd23f"
+      }
+     ],
+     "schritte": [
+      {
+       "von": "a",
+       "nach": "isp",
+       "farbe": "ffd23f",
+       "text": "R1 kündigt 198.51.100.0/24 an, AS_PATH 65001"
+      },
+      {
+       "von": "isp",
+       "nach": "b",
+       "farbe": "ffd23f",
+       "text": "ISP gibt weiter, AS_PATH 64500 65001"
+      }
+     ]
+    }
+   },
+   {
+    "text": "Zustände einer Sitzung: Idle → Connect → Active → OpenSent → OpenConfirm → Established. ‚Active‘ klingt gut, bedeutet aber: Die TCP-Verbindung klappt NICHT (falsche IP, falsche AS, Erreichbarkeit, ACL). eBGP nutzt standardmäßig TTL 1 – mit Loopbacks braucht es ‚ebgp-multihop‘ und ‚update-source‘.",
+    "diagramm": {
+     "typ": "ablauf",
+     "stufen": [
+      "Idle",
+      "Connect",
+      "Active",
+      "OpenSent",
+      "OpenConfirm",
+      "Established"
+     ]
+    }
+   },
+   {
+    "text": "Best-Path-Auswahl (Cisco, Kurzform): 1. höchste Weight (lokal), 2. höchste Local Preference (im AS), 3. lokal erzeugt, 4. kürzester AS_PATH, 5. niedrigster Origin (IGP < EGP < ?), 6. niedrigste MED, 7. eBGP vor iBGP, 8. nächster IGP-Next-Hop … zuletzt niedrigste Router-ID. Merksatz: ‚We Love Oranges AS Oranges Mean Pure Refreshment‘.",
+    "diagramm": {
+     "typ": "tabelle",
+     "kopf": [
+      "#",
+      "Attribut",
+      "Besser"
+     ],
+     "zeilen": [
+      [
+       "1",
+       "Weight",
+       "höher"
+      ],
+      [
+       "2",
+       "Local Pref",
+       "höher"
+      ],
+      [
+       "3",
+       "Locally originated",
+       "ja"
+      ],
+      [
+       "4",
+       "AS_PATH",
+       "kürzer"
+      ],
+      [
+       "5",
+       "Origin",
+       "IGP"
+      ],
+      [
+       "6",
+       "MED",
+       "niedriger"
+      ],
+      [
+       "7",
+       "eBGP vs iBGP",
+       "eBGP"
+      ]
+     ]
+    }
+   },
+   {
+    "text": "iBGP-Regeln: Routen von einem iBGP-Nachbarn werden nicht an andere iBGP-Nachbarn weitergegeben (Split Horizon) – deshalb Full Mesh oder Route Reflector. Der Next Hop externer Routen bleibt beim Weitergeben erhalten: Ist er intern unbekannt, hilft ‚next-hop-self‘ auf dem Edge-Router."
+   }
+  ]
+ },
+ {
+  "id": "fhrp",
+  "titel": "HSRP & VRRP – ein Gateway, das nie ausfällt",
+  "topics": [
+   "CCNA2-3.4",
+   "ENCOR-3.3.c"
+  ],
+  "seiten": [
+   {
+    "text": "PCs kennen nur EIN Default Gateway. Fällt dieser Router aus, ist das Netz offline – obwohl ein zweiter Router da wäre. FHRPs (HSRP, VRRP, GLBP) lassen zwei Router eine gemeinsame virtuelle IP und virtuelle MAC teilen. Einer ist aktiv, der andere springt bei Ausfall ein.",
+    "diagramm": {
+     "typ": "topologie",
+     "knoten": [
+      {
+       "id": "pc",
+       "label": "PC GW .254",
+       "x": "0.15",
+       "y": "0.5",
+       "art": "pc"
+      },
+      {
+       "id": "sw",
+       "label": "Switch",
+       "x": "0.42",
+       "y": "0.5",
+       "art": "switch"
+      },
+      {
+       "id": "r1",
+       "label": "R1 Active",
+       "x": "0.75",
+       "y": "0.2",
+       "art": "router"
+      },
+      {
+       "id": "r2",
+       "label": "R2 Standby",
+       "x": "0.75",
+       "y": "0.8",
+       "art": "router"
+      }
+     ],
+     "kanten": [
+      {
+       "von": "pc",
+       "nach": "sw",
+       "label": "",
+       "farbe": "39c86a"
+      },
+      {
+       "von": "sw",
+       "nach": "r1",
+       "label": "",
+       "farbe": "39c86a"
+      },
+      {
+       "von": "sw",
+       "nach": "r2",
+       "label": "",
+       "farbe": "8090a0"
+      }
+     ],
+     "schritte": [
+      {
+       "von": "pc",
+       "nach": "r1",
+       "farbe": "ffd23f",
+       "text": "Pakete an virtuelle IP .254 → R1 (Active)"
+      },
+      {
+       "von": "pc",
+       "nach": "r2",
+       "farbe": "ff6a4a",
+       "text": "R1 fällt aus → R2 übernimmt nach Holdtime"
+      }
+     ]
+    }
+   },
+   {
+    "text": "HSRP (Cisco): Rollen Active/Standby, Priorität Standard 100, höher gewinnt; Preempt standardmäßig AUS. Virtuelle MAC v1: 0000.0C07.ACxx, v2: 0000.0C9F.Fxxx. VRRP (Standard): Master/Backup, Preempt standardmäßig AN, MAC 0000.5E00.01xx, die echte Interface-IP darf virtuelle IP sein (Owner, Priorität 255).",
+    "diagramm": {
+     "typ": "tabelle",
+     "kopf": [
+      "",
+      "HSRP",
+      "VRRP"
+     ],
+     "zeilen": [
+      [
+       "Standard",
+       "Cisco",
+       "IETF"
+      ],
+      [
+       "Rollen",
+       "Active/Standby",
+       "Master/Backup"
+      ],
+      [
+       "Preempt",
+       "aus",
+       "an"
+      ],
+      [
+       "Multicast",
+       "224.0.0.2/.102",
+       "224.0.0.18"
+      ]
+     ]
+    }
+   },
+   {
+    "text": "show standby brief zeigt Gruppe, Priorität, P (Preempt), Zustand, Active- und Standby-Router und die virtuelle IP. Typische Fehler: unterschiedliche Gruppen/Versionen → zwei Active-Router; ohne ‚preempt‘ bekommt der wichtigere Router die Rolle nach einem Neustart nicht zurück; PCs müssen die VIRTUELLE IP als Gateway nutzen."
+   }
+  ]
+ },
+ {
+  "id": "nat",
+  "titel": "NAT & PAT – viele Geräte, eine Adresse",
+  "topics": [
+   "CCNA2-4.3",
+   "ENCOR-3.3.b"
+  ],
+  "seiten": [
+   {
+    "text": "Private Adressen (10/8, 172.16/12, 192.168/16) werden im Internet nicht geroutet. NAT übersetzt sie am Rand in öffentliche Adressen. PAT (NAT Overload) lässt viele Hosts eine einzige öffentliche IP teilen – unterschieden werden sie über die Quellports.",
+    "diagramm": {
+     "typ": "topologie",
+     "knoten": [
+      {
+       "id": "a",
+       "label": "PC 192.168.1.10",
+       "x": "0.1",
+       "y": "0.25",
+       "art": "pc"
+      },
+      {
+       "id": "b",
+       "label": "PC 192.168.1.11",
+       "x": "0.1",
+       "y": "0.75",
+       "art": "pc"
+      },
+      {
+       "id": "r",
+       "label": "R1 NAT",
+       "x": "0.45",
+       "y": "0.5",
+       "art": "router"
+      },
+      {
+       "id": "net",
+       "label": "Internet",
+       "x": "0.85",
+       "y": "0.5",
+       "art": "cloud"
+      }
+     ],
+     "kanten": [
+      {
+       "von": "a",
+       "nach": "r",
+       "label": "inside",
+       "farbe": "39c86a"
+      },
+      {
+       "von": "b",
+       "nach": "r",
+       "label": "inside",
+       "farbe": "39c86a"
+      },
+      {
+       "von": "r",
+       "nach": "net",
+       "label": "outside 203.0.113.5",
+       "farbe": "ffd23f"
+      }
+     ],
+     "schritte": [
+      {
+       "von": "a",
+       "nach": "r",
+       "farbe": "4a9cff",
+       "text": "192.168.1.10:51000 → Webserver"
+      },
+      {
+       "von": "r",
+       "nach": "net",
+       "farbe": "4a9cff",
+       "text": "wird zu 203.0.113.5:1025"
+      },
+      {
+       "von": "b",
+       "nach": "r",
+       "farbe": "b08aff",
+       "text": "192.168.1.11:51000"
+      },
+      {
+       "von": "r",
+       "nach": "net",
+       "farbe": "b08aff",
+       "text": "wird zu 203.0.113.5:1026 – Port unterscheidet"
+      }
+     ]
+    }
+   },
+   {
+    "text": "Begriffe: Inside Local = private Adresse des Hosts, Inside Global = öffentliche Darstellung, Outside Global = echtes Ziel. Konfiguration: Interfaces mit ‚ip nat inside‘ / ‚ip nat outside‘ markieren, ACL für die Quellnetze, dann ‚ip nat inside source list 1 interface Gi0/1 overload‘. Prüfen mit ‚show ip nat translations‘.",
+    "diagramm": {
+     "typ": "tabelle",
+     "kopf": [
+      "Inside Local",
+      "Inside Global",
+      "Outside Global"
+     ],
+     "zeilen": [
+      [
+       "192.168.1.10:51000",
+       "203.0.113.5:1025",
+       "93.184.216.34:443"
+      ],
+      [
+       "192.168.1.11:51000",
+       "203.0.113.5:1026",
+       "93.184.216.34:443"
+      ]
+     ]
+    }
+   },
+   {
+    "text": "Häufige Fehler: inside/outside vertauscht oder vergessen, ACL erfasst das Netz nicht, Pool ohne ‚overload‘ erschöpft, Default-Route nach außen fehlt. Statisches NAT (‚ip nat inside source static‘) macht interne Server von außen erreichbar."
+   }
+  ]
+ },
+ {
+  "id": "sdwan",
+  "titel": "Catalyst SD-WAN – das WAN als Software",
+  "topics": [
+   "ENCOR-1.2"
+  ],
+  "seiten": [
+   {
+    "text": "Klassisches WAN: teure MPLS-Leitungen, jeder Router einzeln konfiguriert. SD-WAN baut ein verschlüsseltes Overlay über beliebige Transporte (Internet, MPLS, LTE) und steuert alles zentral. Anwendungen bekommen anhand von SLAs (Latenz, Verlust, Jitter) automatisch den besten Pfad.",
+    "diagramm": {
+     "typ": "topologie",
+     "knoten": [
+      {
+       "id": "m",
+       "label": "Manager",
+       "x": "0.5",
+       "y": "0.1",
+       "art": "server"
+      },
+      {
+       "id": "c",
+       "label": "Controller",
+       "x": "0.25",
+       "y": "0.35",
+       "art": "server"
+      },
+      {
+       "id": "v",
+       "label": "Validator",
+       "x": "0.75",
+       "y": "0.35",
+       "art": "server"
+      },
+      {
+       "id": "e1",
+       "label": "Edge Filiale",
+       "x": "0.15",
+       "y": "0.85",
+       "art": "router"
+      },
+      {
+       "id": "e2",
+       "label": "Edge Zentrale",
+       "x": "0.85",
+       "y": "0.85",
+       "art": "router"
+      }
+     ],
+     "kanten": [
+      {
+       "von": "m",
+       "nach": "c",
+       "label": "",
+       "farbe": "b08aff"
+      },
+      {
+       "von": "m",
+       "nach": "v",
+       "label": "",
+       "farbe": "b08aff"
+      },
+      {
+       "von": "c",
+       "nach": "e1",
+       "label": "OMP",
+       "farbe": "4a9cff"
+      },
+      {
+       "von": "c",
+       "nach": "e2",
+       "label": "OMP",
+       "farbe": "4a9cff"
+      },
+      {
+       "von": "e1",
+       "nach": "e2",
+       "label": "IPsec Daten",
+       "farbe": "ffd23f"
+      }
+     ],
+     "schritte": [
+      {
+       "von": "e1",
+       "nach": "v",
+       "farbe": "ff6a4a",
+       "text": "1. Edge meldet sich beim Validator (Authentifizierung)"
+      },
+      {
+       "von": "e1",
+       "nach": "c",
+       "farbe": "4a9cff",
+       "text": "2. Control-Verbindung zum Controller, OMP-Routen"
+      },
+      {
+       "von": "e1",
+       "nach": "e2",
+       "farbe": "ffd23f",
+       "text": "3. Daten direkt per IPsec zwischen den Edges"
+      }
+     ]
+    }
+   },
+   {
+    "text": "Die vier Ebenen: Management Plane = SD-WAN Manager (vManage, GUI/API, Templates). Control Plane = SD-WAN Controller (vSmart, verteilt Routen/Policies per OMP). Orchestration = SD-WAN Validator (vBond, Authentifizierung, NAT-Traversal). Data Plane = WAN Edge (vEdge/cEdge, leitet die Daten weiter).",
+    "diagramm": {
+     "typ": "tabelle",
+     "kopf": [
+      "Ebene",
+      "Komponente",
+      "Aufgabe"
+     ],
+     "zeilen": [
+      [
+       "Management",
+       "Manager",
+       "GUI, Templates, Monitoring"
+      ],
+      [
+       "Control",
+       "Controller",
+       "OMP, Policies"
+      ],
+      [
+       "Orchestration",
+       "Validator",
+       "Onboarding, NAT"
+      ],
+      [
+       "Data",
+       "WAN Edge",
+       "Weiterleitung, IPsec"
+      ]
+     ]
+    }
+   },
+   {
+    "text": "Vorteile: Transportunabhängigkeit, zentrales Management, Zero-Touch-Provisioning, Application-Aware Routing, integrierte Security. Grenzen: Abhängigkeit von Controllern, Lizenzen/Komplexität, Internet-Transporte ohne garantierte SLAs."
+   }
+  ]
+ }
+]
