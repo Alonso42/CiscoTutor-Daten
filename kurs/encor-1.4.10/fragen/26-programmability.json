@@ -1,0 +1,2512 @@
+[
+    {
+        "id":  "slg-pg-001",
+        "topic":  "ENCOR-6.7",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An engineer must automate the configuration of 300 routers and switches. Company policy forbids installing any additional software on the network devices, and no proxy servers are available. Which tool fits these constraints?",
+        "optionen":  [
+                         "Puppet",
+                         "Chef",
+                         "SaltStack with a minion on every device",
+                         "Ansible"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ansible ist agentless und nutzt vorhandene Schnittstellen wie SSH/CLI, NETCONF oder REST-APIs. Puppet und Chef brauchen auf jedem verwalteten System einen Agenten, ebenso Salt im Minion-Modus."
+    },
+    {
+        "id":  "slg-pg-002",
+        "topic":  "ENCOR-6.7",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How is an Ansible playbook structured?",
+        "optionen":  [
+                         "One or more cookbooks, each made up of recipes",
+                         "One or more plays, each made up of individual tasks",
+                         "One or more minions, each made up of states",
+                         "One or more manifests, each made up of classes"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein Ansible-Playbook besteht aus einem oder mehreren Plays, jedes Play aus einzelnen Tasks, die Module aufrufen. Cookbooks/Recipes gehören zu Chef, Manifests zu Puppet, Minions zu Salt."
+    },
+    {
+        "id":  "slg-pg-003",
+        "topic":  "ENCOR-6.7",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two configuration management tools are agent-based in their standard architecture? (Choose two.)",
+        "optionen":  [
+                         "Puppet",
+                         "cURL",
+                         "Postman",
+                         "Chef",
+                         "Ansible"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Puppet und Chef setzen einen Agenten auf jedem verwalteten Gerät voraus. Ansible ist agentless; Postman und cURL sind REST-Clients, keine Konfigurationsmanagement-Tools."
+    },
+    {
+        "id":  "slg-pg-004",
+        "topic":  "ENCOR-6.7",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Puppet is described as managing systems in a declarative manner. What does that mean?",
+        "optionen":  [
+                         "You define RPCs, and the tool sends them one by one via NETCONF",
+                         "You define a Python script, and the tool runs it on each device",
+                         "You define every command, and the tool runs them in strict order",
+                         "You define the target state, and the tool decides how to reach it"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Deklarativ heißt: Man beschreibt den gewünschten Zielzustand, nicht den Weg dorthin. Eine feste Schrittfolge entspricht dem prozeduralen Ansatz, den der Kurs Chef (Recipes) zuschreibt."
+    },
+    {
+        "id":  "slg-pg-005",
+        "topic":  "ENCOR-6.7",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Both Ansible and SaltStack are written in the programming language ___.",
+        "optionen":  [
+                         "Python",
+                         "Erlang",
+                         "Go",
+                         "Ruby"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ansible und Salt sind in Python geschrieben. Puppet und Chef basieren auf Ruby (Chef-Server teils Erlang)."
+    },
+    {
+        "id":  "slg-pg-006",
+        "topic":  "ENCOR-6.7",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is it harder to introduce Puppet or Chef for network automation than Ansible?",
+        "optionen":  [
+                         "Agents need SNMPv3 write access and a writable MIB on every device",
+                         "Agents must be licensed per interface on every managed device",
+                         "Agents often cannot be installed on routers and switches, so proxies are needed",
+                         "Agents only exchange JSON, while network devices only accept XML"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Agent-basierte Tools brauchen Software auf jedem Zielsystem. Auf vielen Netzwerkgeräten ist das nicht möglich, daher sind Proxy-Geräte nötig – eine höhere Einstiegshürde als beim agentlosen Ansible."
+    },
+    {
+        "id":  "slg-pg-007",
+        "topic":  "ENCOR-6.7",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedem Tool sein Format für Automatisierungsanweisungen zu.",
+        "paare":  [
+                      [
+                          "Puppet",
+                          "Manifests"
+                      ],
+                      [
+                          "Chef",
+                          "Recipes in Cookbooks"
+                      ],
+                      [
+                          "Ansible",
+                          "Playbooks mit Plays und Tasks"
+                      ],
+                      [
+                          "SaltStack",
+                          "Module, eventgesteuert"
+                      ]
+                  ],
+        "erklaerung":  "Puppet nutzt Manifests, Chef Recipes, die in Cookbooks gebündelt werden, Ansible YAML-Playbooks (Plays → Tasks). Salt ist modular aufgebaut und eventgesteuert."
+    },
+    {
+        "id":  "slg-pg-008",
+        "topic":  "ENCOR-6.7",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which benefit do tools such as Ansible, Puppet and Chef bring to recurring network changes like adding a VLAN everywhere?",
+        "optionen":  [
+                         "Changes no longer require a data model on the device",
+                         "Changes are sent exclusively as SNMP set-requests",
+                         "Changes no longer need any authentication on the devices",
+                         "Changes become repeatable, testable and version-controlled"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Tools automatisieren definierte manuelle Abläufe und bringen Software-Praktiken wie Versionskontrolle, Tests und Design Patterns ins Netzwerk. Das macht Änderungen schneller und vorhersehbarer."
+    },
+    {
+        "id":  "slg-pg-009",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which SNMP operation does a manager use to change the value of a writable MIB variable on a device?",
+        "optionen":  [
+                         "trap",
+                         "get-next-request",
+                         "set-request",
+                         "get-request"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Mit set-request schreibt der Manager eine MIB-Variable, mit get-request liest er sie. Ein Trap ist eine unaufgeforderte Meldung des Agenten."
+    },
+    {
+        "id":  "slg-pg-010",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three are weaknesses of SNMP when it is used for configuration management? (Choose three.)",
+        "optionen":  [
+                         "It cannot report interface up/down status",
+                         "It requires NETCONF as its transport",
+                         "SNMPv1 and v2c have no encryption",
+                         "Configurations are hard to replay or roll back",
+                         "Only a few MIBs are writable"
+                     ],
+        "richtig":  [
+                        2,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "SNMP hat wenige beschreibbare MIBs, kein einfaches Rollback und in v1/v2c nur unverschlüsselte Community-Strings. Für Up/Down-Monitoring ist SNMP dagegen bis heute gut geeignet."
+    },
+    {
+        "id":  "slg-pg-011",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is the traditional CLI a poor interface for machine-to-machine automation?",
+        "optionen":  [
+                         "Its output is binary ASN.1 data that scripts cannot decode",
+                         "It only allows read-only operations on modern devices",
+                         "Its output is unstructured text without a common data model",
+                         "It can only be reached through SNMP set-requests"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die CLI wurde für Menschen gebaut: Ausgaben sind freier Text, der je nach Plattform anders aussieht. Skripte brauchen dafür Expect und eigene Parser, was fehleranfällig ist."
+    },
+    {
+        "id":  "slg-pg-012",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three requirements should a next-generation device management interface meet? (Choose three.)",
+        "optionen":  [
+                         "Changes applied as transactions with backup and restore",
+                         "Client-side validation of data against a model",
+                         "Community strings as the only authentication method",
+                         "Screen-scraping of show output with Expect scripts",
+                         "Separation of configuration data and operational data"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Moderne APIs trennen Konfiguration und Betriebszustand, erlauben Validierung schon beim Client und wenden Änderungen transaktional an. Screen-Scraping und Community-Strings sind gerade die Schwächen der alten Methoden."
+    },
+    {
+        "id":  "slg-pg-013",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In the context of SNMP, what is a MIB?",
+        "optionen":  [
+                         "A Cisco parser that converts show output to text",
+                         "A message type used by agents to send alerts",
+                         "A hierarchical data model of manageable variables",
+                         "An encrypted transport introduced with SNMPv3"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Eine MIB ist ein hierarchisch organisiertes Datenmodell der verwaltbaren Variablen. YANG-Module spielen für NETCONF/RESTCONF dieselbe Rolle wie MIBs für SNMP."
+    },
+    {
+        "id":  "slg-pg-014",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which data format is shown?\n\n---\nuser:\n  name: john\n  roles:\n    - admin\n    - user",
+        "optionen":  [
+                         "XML",
+                         "CSV",
+                         "YAML",
+                         "JSON"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Einrückung als Struktur, key: value ohne Anführungszeichen und Bindestriche für Listenelemente sind typisch für YAML. JSON nutzt Klammern, XML Tags."
+    },
+    {
+        "id":  "slg-pg-015",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A YAML file fails to load. The engineer notices that the nested lines under \u0027location:\u0027 are indented with a tab character. Why does this cause the error?",
+        "optionen":  [
+                         "YAML only accepts exactly four spaces per level",
+                         "Tabs are not allowed for indentation in YAML",
+                         "YAML requires all nested values to be quoted",
+                         "YAML requires a comma at the end of each line"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "In YAML definiert die Einrückung die Struktur, und Tabs sind dafür verboten, weil Tools sie unterschiedlich interpretieren. Die Anzahl der Leerzeichen ist frei wählbar, muss aber pro Ebene konsistent sein."
+    },
+    {
+        "id":  "slg-pg-016",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In YAML, each element of a block-style list starts with a ___ followed by a space.",
+        "optionen":  [
+                         "dash (-)",
+                         "comma (,)",
+                         "colon (:)",
+                         "asterisk (*)"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "YAML kennzeichnet Listenelemente mit \u0027- \u0027 auf gleicher Einrückung. Der Doppelpunkt trennt Key und Value."
+    },
+    {
+        "id":  "slg-pg-017",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An XML document contains the line \u003cHostname\u003eR1\u003c/hostname\u003e. Which statement is correct?",
+        "optionen":  [
+                         "It is not valid because XML values must be quoted",
+                         "It is valid if the prolog declares UTF-8 encoding",
+                         "It is valid because XML ignores the letter case of tags",
+                         "It is not well-formed because tag names are case-sensitive"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Start- und End-Tag müssen in XML exakt übereinstimmen, inklusive Groß-/Kleinschreibung. \u003cHostname\u003e und \u003chostname\u003e wären zwei verschiedene Elemente."
+    },
+    {
+        "id":  "slg-pg-018",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "How does XML typically represent a user with the two roles admin and user?",
+        "optionen":  [
+                         "Both values are placed in square brackets inside \u003croles\u003e",
+                         "Both values are separated by dashes inside \u003croles\u003e",
+                         "The \u003croles\u003e element is repeated once per value",
+                         "Both values are written as an attribute roles=[...]"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "XML kennt keine Array-Syntax; Listen entstehen durch wiederholte Elemente (\u003croles\u003eadmin\u003c/roles\u003e\u003croles\u003euser\u003c/roles\u003e). Eckige Klammern sind JSON, Bindestriche YAML."
+    },
+    {
+        "id":  "slg-pg-019",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Two applications exchange XML documents that both use a \u003ctable\u003e element: one for an HTML table, one for a piece of furniture. How is the naming conflict avoided?",
+        "optionen":  [
+                         "Add a version attribute with a different value to each \u003ctable\u003e",
+                         "Convert one of the documents to YAML before it is parsed",
+                         "Bind each element to a prefix with a unique namespace URI via xmlns",
+                         "Add an XML prolog with a different encoding to each document"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "XML-Namespaces (xmlns:prefix=\"URI\") machen gleichnamige Elemente eindeutig, z. B. \u003ch:table\u003e und \u003cf:table\u003e. Version- oder Encoding-Angaben lösen keinen Namenskonflikt."
+    },
+    {
+        "id":  "slg-pg-020",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A namespace is declared as xmlns:f=\"http://example.com/furniture\". What must be true about this URI?",
+        "optionen":  [
+                         "It must be unique; it does not have to be reachable",
+                         "It must use HTTPS with a valid server certificate",
+                         "It must resolve to a web page that holds the schema",
+                         "It must point to a YANG module stored on the device"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Namespace-URI dient nur als eindeutiger Name. Sie darf wie eine URL aussehen, muss aber nicht abrufbar sein."
+    },
+    {
+        "id":  "slg-pg-021",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In XML, a namespace prefix is declared with the attribute ___ in the start tag of an element.",
+        "optionen":  [
+                         "prefix",
+                         "ns",
+                         "xmlns",
+                         "xsd"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Syntax lautet xmlns:prefix=\"URI\"; ohne Präfix (xmlns=\"URI\") wird ein Default-Namespace gesetzt. NETCONF nutzt z. B. xmlns=\"urn:ietf:params:xml:ns:netconf:base:1.0\"."
+    },
+    {
+        "id":  "slg-pg-022",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which pair of JSON documents is NOT equivalent in content?",
+        "optionen":  [
+                         "{\"name\": \"john\"} and {\"name\":\"john\"}",
+                         "{\"name\": \"john\"} and {\n  \"name\": \"john\"\n}",
+                         "{\"name\": \"john\"} and {\"name\": \"j o h n\"}",
+                         "{\"a\": 1, \"b\": 2} and {\"b\": 2, \"a\": 1}"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Whitespace außerhalb von Strings und die Reihenfolge der Members eines Objekts ändern den Inhalt nicht. Leerzeichen innerhalb eines String-Werts sind dagegen Teil der Daten."
+    },
+    {
+        "id":  "slg-pg-023",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "JSON is (practically) a subset of which other data format, so that its parser can usually read JSON documents directly?",
+        "optionen":  [
+                         "YAML",
+                         "HTML",
+                         "XML",
+                         "CSV"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "JSON ist weitgehend eine Teilmenge von YAML (ab YAML 1.2), daher kann ein YAML-Parser JSON einlesen. XML und HTML sind Markup-Sprachen mit Tags."
+    },
+    {
+        "id":  "slg-pg-024",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedem Encoding sein typisches Merkmal zu.",
+        "paare":  [
+                      [
+                          "YAML",
+                          "Einrückung bildet die Struktur, \u0027- \u0027 für Listen"
+                      ],
+                      [
+                          "JSON",
+                          "{} für Objekte, [] für Arrays"
+                      ],
+                      [
+                          "XML",
+                          "Start-/End-Tags, Namespaces über xmlns"
+                      ],
+                      [
+                          "Protocol Buffers",
+                          "binäres Encoding, z. B. für gRPC"
+                      ]
+                  ],
+        "erklaerung":  "YAML ist einrückungsbasiert, JSON klammerbasiert und XML tagbasiert. Protocol Buffers sind ein kompaktes Binärformat, das gRPC/gNMI verwendet."
+    },
+    {
+        "id":  "slg-pg-025",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A REST call to a Nexus switch fails with a parsing error. The body is:\n\n{\"l1PhysIf\": {\"attributes\": {\"id\": \"eth2/5\", \"mtu\": \"default\" \"speed\": \"auto\" \"adminSt\": \"down\"}}}\n\nWhat is wrong?",
+        "optionen":  [
+                         "The value down must be written as a boolean",
+                         "Keys must not contain uppercase letters",
+                         "Commas are missing between the name-value pairs",
+                         "Objects must not be nested more than two levels"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Members eines JSON-Objekts müssen durch Kommas getrennt sein; nach \"default\" und \"auto\" fehlen sie. Groß-/Kleinschreibung in Keys und Verschachtelungstiefe sind kein Problem."
+    },
+    {
+        "id":  "slg-pg-026",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which JSON object correctly states that an interface has no description?",
+        "optionen":  [
+                         "{\"description\": NULL}",
+                         "{\"description\": }",
+                         "{\"description\": null}",
+                         "{\"description\": None}"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "JSON kennt den Wert null, immer klein geschrieben. None ist Python-Syntax, NULL ist ungültig und ein fehlender Wert ebenfalls."
+    },
+    {
+        "id":  "slg-pg-027",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two of the following are complete, valid JSON texts? (Choose two.)",
+        "optionen":  [
+                         "{\u0027vlan\u0027: 10}",
+                         "{\"vlan\": 10,}",
+                         "{\"vlan\": 010}",
+                         "\"Gi1/0/1\"",
+                         "[10, 20, 30]"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Ein JSON-Text darf auch ein Array oder ein einzelner Wert sein, ein String aber nur in doppelten Anführungszeichen. Einfache Anführungszeichen, führende Nullen und ein abschließendes Komma sind ungültig."
+    },
+    {
+        "id":  "slg-pg-028",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which line is valid inside a JSON object?",
+        "optionen":  [
+                         "\"mtu\": 01500",
+                         "\"mtu\": 1500",
+                         "// \"mtu\": 1500",
+                         "\"mtu\": 0x5DC"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "JSON-Zahlen sind dezimal ohne führende Nullen; Hex-Schreibweise und Kommentare gibt es in JSON nicht. Python json.loads meldet bei 010 oder 0x1F einen JSONDecodeError."
+    },
+    {
+        "id":  "slg-pg-029",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which of the following is a complete, valid JSON text?",
+        "optionen":  [
+                         "Hello World!",
+                         "\u0027Hello World!\u0027",
+                         "{Hello World!}",
+                         "\"Hello World!\""
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein einzelner Wert ist ein gültiger JSON-Text, ein String muss aber in doppelten Anführungszeichen stehen. Der Kurs nennt Hello World! ohne Anführungszeichen als gültig – das ist falsch (RFC 8259)."
+    },
+    {
+        "id":  "slg-pg-030",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A JSON Schema for a VLAN object defines: id is a number with minimum 1 and maximum 4094, state is a string with enum [\"up\", \"down\"], and required is [\"id\"]. Which instance passes validation?",
+        "optionen":  [
+                         "{\"id\": 20, \"state\": \"enabled\"}",
+                         "{\"name\": \"VOICE\", \"state\": \"up\"}",
+                         "{\"id\": \"20\", \"state\": \"down\"}",
+                         "{\"id\": 20, \"state\": \"up\"}"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Nur {\"id\": 20, \"state\": \"up\"} erfüllt alles. \"enabled\" liegt außerhalb der enum, dem VOICE-Objekt fehlt das Pflichtfeld id, und \"20\" ist ein String statt einer Zahl."
+    },
+    {
+        "id":  "slg-pg-031",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the main purpose of a JSON Schema in a network automation workflow?",
+        "optionen":  [
+                         "Compress JSON documents to reduce the transfer size",
+                         "Encrypt JSON payloads that are sent over plain HTTP",
+                         "Translate JSON documents into CLI commands on the device",
+                         "Validate input data on the client before it is sent"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein JSON Schema beschreibt Typen, Grenzen, Aufzählungen und Pflichtfelder eines Objekts. So lassen sich Eingaben schon beim Client prüfen, bevor fehlerhafte Daten das Gerät erreichen."
+    },
+    {
+        "id":  "slg-pg-032",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How many JSON objects (including the outermost one) does this document contain?\n\n{\"interfaces\": [{\"name\": \"Gi1\", \"ip\": {\"address\": \"10.1.1.1\"}}, {\"name\": \"Gi2\"}]}",
+        "optionen":  [
+                         "5",
+                         "4",
+                         "2",
+                         "3"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Objekte stehen in geschweiften Klammern: das äußere Objekt, das Objekt für Gi1, darin das ip-Objekt und das Objekt für Gi2 – also vier. Die eckigen Klammern bilden ein Array, kein Objekt."
+    },
+    {
+        "id":  "slg-pg-033",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is \u0027show vlan brief | json\u0027 on a Nexus switch more useful for a script than the normal \u0027show vlan brief\u0027 output?",
+        "optionen":  [
+                         "The output is shorter because all column headers are removed",
+                         "Every value comes with a descriptive key, so no screen scraping is needed",
+                         "The output is converted to a YANG module that the script can load",
+                         "The output is encrypted, so it can be sent safely over plain HTTP"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die JSON-Ausgabe liefert zu jedem Wert einen Key, der sich direkt auf ein Python-Dictionary abbilden lässt. Die normale Tabellenausgabe müsste ein Skript erst mühsam parsen."
+    },
+    {
+        "id":  "slg-pg-034",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "A script must send this body but the API rejects it:\n\n{\u0027hostname\u0027: \u0027R1\u0027, \u0027enabled\u0027: True,}\n\nWhich three changes are required to make it valid JSON? (Choose three.)",
+        "optionen":  [
+                         "Remove the comma after the last pair",
+                         "Wrap the document in square brackets",
+                         "Use double quotes around keys and string values",
+                         "Replace the colons with equal signs",
+                         "Write the boolean as lowercase true"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Gültiges JSON verlangt doppelte Anführungszeichen, true/false in Kleinbuchstaben und kein Komma nach dem letzten Element. Das Ergebnis wäre {\"hostname\": \"R1\", \"enabled\": true}."
+    },
+    {
+        "id":  "slg-pg-035",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the output of this Python 3 code?\n\nimport json\nprint(json.dumps({\u0027a\u0027: None, \u0027b\u0027: False}))",
+        "optionen":  [
+                         "{\"a\": \"None\", \"b\": \"False\"}",
+                         "{\"a\": null, \"b\": false}",
+                         "{\"a\": None, \"b\": False}",
+                         "{\u0027a\u0027: null, \u0027b\u0027: false}"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "json.dumps übersetzt None in null und False in false und setzt doppelte Anführungszeichen. Das Ergebnis ist ein gültiger JSON-String."
+    },
+    {
+        "id":  "slg-pg-036",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the output of this Python 3 code?\n\nimport json\nd = json.loads(\u0027{\"vlan\": 10, \"up\": true}\u0027)\nprint(d)",
+        "optionen":  [
+                         "{\u0027vlan\u0027: \u002710\u0027, \u0027up\u0027: \u0027true\u0027}",
+                         "{\u0027vlan\u0027: 10, \u0027up\u0027: \u0027True\u0027}",
+                         "{\u0027vlan\u0027: 10, \u0027up\u0027: True}",
+                         "{\"vlan\": 10, \"up\": true}"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "json.loads erzeugt ein Python-Dictionary: die Zahl bleibt int, true wird zu True. print() zeigt Dictionaries in Python-Schreibweise mit einfachen Anführungszeichen."
+    },
+    {
+        "id":  "slg-pg-037",
+        "topic":  "ENCOR-6.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A script simulates an API response. What happens when it runs?\n\nfacts = \u0027{\"hostname\": \"nxosv\", \"os\": \"7.3\"}\u0027\nprint(facts[\u0027os\u0027])",
+        "optionen":  [
+                         "TypeError: string indices must be integers, not \u0027str\u0027",
+                         "It prints 7.3, the value stored under the key os",
+                         "AttributeError: \u0027str\u0027 object has no attribute \u0027os\u0027",
+                         "KeyError: \u0027os\u0027 (the key does not exist in facts)"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "facts ist ein String, der nur wie ein Dictionary aussieht; Strings lassen sich nur mit Zahlen indizieren. Erst json.loads(facts) liefert ein Dictionary, aus dem man \u0027os\u0027 lesen kann."
+    },
+    {
+        "id":  "slg-pg-038",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What happens when this Python 3 code runs?\n\nimport json\ncfg = json.loads(\u0027{\"enabled\": True}\u0027)",
+        "optionen":  [
+                         "cfg becomes {\u0027enabled\u0027: \u0027True\u0027}",
+                         "cfg becomes {\u0027enabled\u0027: True}",
+                         "NameError: name \u0027True\u0027 is not defined",
+                         "json.decoder.JSONDecodeError: Expecting value"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Im JSON-Text heißt der Boolean true; True ist dort kein gültiger Wert, daher meldet der Parser \u0027Expecting value\u0027. Python-Namen spielen beim Parsen eines Strings keine Rolle."
+    },
+    {
+        "id":  "slg-pg-039",
+        "topic":  "ENCOR-6.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What happens when this Python 3 code runs?\n\nimport json\ntext = \u0027{\"mtu\": \"1500\"}\u0027\nprint(json.loads(text)[\u0027mtu\u0027] + 1)",
+        "optionen":  [
+                         "It prints 15001 (the 1 is appended to the string)",
+                         "ValueError: invalid literal for int() with base 10",
+                         "It prints 1501 (the string is converted automatically)",
+                         "TypeError: can only concatenate str (not \"int\") to str"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Wert steht im JSON in Anführungszeichen und ist daher ein String. String + int ist in Python ein TypeError; nötig wäre int(...) oder eine Zahl ohne Anführungszeichen im JSON."
+    },
+    {
+        "id":  "slg-pg-155",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedem JSON-Element den Python-Typ bzw. -Wert zu, den json.loads() daraus erzeugt.",
+        "paare":  [
+                      [
+                          "{ } (object)",
+                          "dict"
+                      ],
+                      [
+                          "[ ] (array)",
+                          "list"
+                      ],
+                      [
+                          "true",
+                          "True"
+                      ],
+                      [
+                          "null",
+                          "None"
+                      ]
+                  ],
+        "erklaerung":  "json.loads bildet JSON-Strukturen auf native Python-Typen ab; json.dumps macht es umgekehrt (dabei wird auch ein Tupel zu einem Array). Deshalb darf im JSON-Text nie True oder None stehen."
+    },
+    {
+        "id":  "slg-pg-041",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What is the output of this Python 3 code?\n\nimport json\nprint(json.dumps({1: \u0027x\u0027, \u0027tags\u0027: (1, 2)}))",
+        "optionen":  [
+                         "{\"1\": \"x\", \"tags\": \"(1, 2)\"}",
+                         "TypeError: keys must be str",
+                         "{\"1\": \"x\", \"tags\": [1, 2]}",
+                         "{1: \"x\", \"tags\": (1, 2)}"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "JSON-Keys sind immer Strings, daher wird der int-Key 1 zu \"1\". Ein Tupel wird als JSON-Array ausgegeben."
+    },
+    {
+        "id":  "slg-pg-042",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "d holds the parsed RESTCONF reply\n\n{\"Cisco-IOS-XE-native:GigabitEthernet\": {\"name\": \"3\", \"ip\": {\"address\": {\"primary\": {\"address\": \"10.13.0.1\", \"mask\": \"255.255.255.0\"}}}}}\n\nWhich expression returns \u002710.13.0.1\u0027?",
+        "optionen":  [
+                         "d[\u0027Cisco-IOS-XE-native:GigabitEthernet\u0027][\u0027ip\u0027][\u0027address\u0027][\u0027primary\u0027][\u0027address\u0027]",
+                         "d[\u0027GigabitEthernet\u0027][\u0027ip\u0027][\u0027address\u0027][\u0027primary\u0027][\u0027address\u0027]",
+                         "d[\u0027Cisco-IOS-XE-native:GigabitEthernet\u0027][\u0027ip\u0027][\u0027address\u0027][\u0027address\u0027]",
+                         "d[\u0027Cisco-IOS-XE-native:GigabitEthernet\u0027][0][\u0027ip\u0027][\u0027address\u0027][\u0027primary\u0027]"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Top-Level-Key enthält das Modulpräfix, danach folgt man der Verschachtelung ip → address → primary → address. Ohne Präfix gibt es einen KeyError, und GigabitEthernet ist hier ein Objekt, keine Liste."
+    },
+    {
+        "id":  "slg-pg-043",
+        "topic":  "ENCOR-6.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What happens when this Python 3 code runs?\n\nimport json\nd = json.loads(\u0027{\"interfaces\": {\"interface\": [{\"name\": \"Gi1\"}, {\"name\": \"Gi2\"}]}}\u0027)\nprint(d[\u0027interfaces\u0027][\u0027interface\u0027][\u0027name\u0027])",
+        "optionen":  [
+                         "It prints Gi1, the name of the first list entry",
+                         "It prints [\u0027Gi1\u0027, \u0027Gi2\u0027], the names of all entries",
+                         "KeyError: \u0027name\u0027 because the list has no such key",
+                         "TypeError: list indices must be integers or slices, not str"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "d[\u0027interfaces\u0027][\u0027interface\u0027] ist eine Liste und braucht einen Index, z. B. [0][\u0027name\u0027]. Ein String als Listenindex löst einen TypeError aus."
+    },
+    {
+        "id":  "slg-pg-044",
+        "topic":  "ENCOR-6.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the output of this Python 3 code?\n\nimport json\nd = json.loads(\u0027{\"interfaces\": {\"interface\": [{\"name\": \"Gi1\", \"enabled\": true}, {\"name\": \"Gi2\", \"enabled\": false}]}}\u0027)\nprint([i[\u0027name\u0027] for i in d[\u0027interfaces\u0027][\u0027interface\u0027] if not i[\u0027enabled\u0027]])",
+        "optionen":  [
+                         "[\u0027Gi1\u0027]",
+                         "[False]",
+                         "[\u0027Gi2\u0027]",
+                         "[\u0027Gi1\u0027, \u0027Gi2\u0027]"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die List Comprehension sammelt die Namen aller Einträge, deren enabled False ist (true/false wurden zu True/False). Das trifft nur auf Gi2 zu."
+    },
+    {
+        "id":  "slg-pg-045",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How many lines does this Python 3 code print?\n\nimport json\nn = {\u0027hostname\u0027: \u0027Rtr-1\u0027, \u0027os\u0027: \u0027ios-xe\u0027, \u0027model\u0027: \u0027CSR1000v\u0027}\nprint(json.dumps(n, indent=4))",
+        "optionen":  [
+                         "4",
+                         "3",
+                         "5",
+                         "7"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Mit indent=4 steht jede der drei Key-Value-Zeilen auf einer eigenen Zeile, dazu kommen die Zeilen mit { und }. Ohne indent wäre es eine einzige Zeile."
+    },
+    {
+        "id":  "slg-pg-047",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A script must send the dictionary cfg as the body of a RESTCONF PATCH request. Which call produces a correct body?",
+        "optionen":  [
+                         "json.loads(cfg)",
+                         "json.load(cfg)",
+                         "json.dumps(cfg)",
+                         "str(cfg)"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "json.dumps wandelt das Dictionary in einen JSON-String um. str(cfg) liefert die Python-Darstellung mit einfachen Anführungszeichen und True/None – das ist kein gültiges JSON."
+    },
+    {
+        "id":  "slg-pg-050",
+        "topic":  "ENCOR-6.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the output of this Python 3 code?\n\nimport json\nx = json.loads(\u0027{\"vlans\": [10, 20, 30]}\u0027)\nprint(x[\u0027vlans\u0027][-1])",
+        "optionen":  [
+                         "10",
+                         "[30]",
+                         "30",
+                         "IndexError: list index out of range"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "x[\u0027vlans\u0027] ist eine Python-Liste; Index -1 liefert das letzte Element. Das ist die Zahl 30, keine Liste."
+    },
+    {
+        "id":  "slg-pg-051",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Complete the code so that the API response text becomes a Python dictionary:\n\ndata = json.___(response.text)",
+        "optionen":  [
+                         "dump",
+                         "load",
+                         "dumps",
+                         "loads"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "loads (load string) parst einen JSON-String. load erwartet ein Dateiobjekt, dumps/dump gehen in die Gegenrichtung (Python → JSON)."
+    },
+    {
+        "id":  "slg-pg-052",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Python (json ist importiert): Die Variable text enthält einen JSON-String. Gib den Wert des Keys hostname aus.",
+        "bausteine":  [
+                          "print(",
+                          "json.loads(",
+                          "text",
+                          ")",
+                          "[\u0027hostname\u0027]",
+                          ")",
+                          "json.dumps(",
+                          ".hostname",
+                          "text["
+                      ],
+        "loesung":  [
+                        "print(",
+                        "json.loads(",
+                        "text",
+                        ")",
+                        "[\u0027hostname\u0027]",
+                        ")"
+                    ],
+        "erklaerung":  "json.loads(text) erzeugt ein Dictionary, auf das man mit [\u0027hostname\u0027] zugreift. Attributzugriff (.hostname) funktioniert bei Dictionaries nicht."
+    },
+    {
+        "id":  "slg-pg-053",
+        "topic":  "ENCOR-6.2",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Python (json ist importiert): Erzeuge aus dem Dictionary cfg einen JSON-String mit 2 Leerzeichen Einrückung und alphabetisch sortierten Keys (Argumente in der Reihenfolge Objekt, Einrückung, Sortierung).",
+        "bausteine":  [
+                          "json.dumps(",
+                          "cfg,",
+                          "indent=2,",
+                          "sort_keys=True",
+                          ")",
+                          "json.loads(",
+                          "indent=\u00272\u0027,",
+                          "sort=True"
+                      ],
+        "loesung":  [
+                        "json.dumps(",
+                        "cfg,",
+                        "indent=2,",
+                        "sort_keys=True",
+                        ")"
+                    ],
+        "erklaerung":  "json.dumps nimmt das Objekt plus Optionen: indent als Zahl für die Einrückung und sort_keys=True für sortierte Keys. Einen Parameter sort gibt es nicht."
+    },
+    {
+        "id":  "slg-pg-054",
+        "topic":  "ENCOR-6.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On Python 3.7 or later, in which order does json.dumps(n) list the keys of n = {\u0027hostname\u0027: \u0027Rtr-1\u0027, \u0027os\u0027: \u0027ios-xe\u0027, \u0027model\u0027: \u0027CSR1000v\u0027}?",
+        "optionen":  [
+                         "In reverse insertion order: model, os, hostname",
+                         "In a random order that changes on each run",
+                         "In insertion order: hostname, os, model",
+                         "Alphabetically: hostname, model, os"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Seit Python 3.7 behalten Dictionaries die Einfügereihenfolge, und json.dumps übernimmt sie. Die abweichende Reihenfolge im Kurs stammt aus Python 2.7, wo Dictionaries ungeordnet waren."
+    },
+    {
+        "id":  "slg-pg-055",
+        "topic":  "ENCOR-6.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the Guest Shell on Cisco IOS XE?",
+        "optionen":  [
+                         "A web interface for RESTCONF that listens on TCP port 443",
+                         "A NETCONF client built into IOS XE for local testing",
+                         "A Linux container on the device for running Python scripts and apps",
+                         "A restricted IOS EXEC mode that only allows show commands"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Guest Shell ist eine virtualisierte, vom Host-OS getrennte Linux-Umgebung, in der Python-Skripte und Linux-Anwendungen laufen, z. B. für Day-0-Provisionierung."
+    },
+    {
+        "id":  "slg-pg-056",
+        "topic":  "ENCOR-6.1",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privilegierter EXEC-Modus: Starte direkt den interaktiven Python-3-Interpreter in der Guest Shell.",
+        "bausteine":  [
+                          "guestshell",
+                          "run",
+                          "python3",
+                          "enable",
+                          "app-hosting",
+                          "start"
+                      ],
+        "loesung":  [
+                        "guestshell",
+                        "run",
+                        "python3"
+                    ],
+        "erklaerung":  "guestshell run \u003cbefehl\u003e führt einen Befehl im Container aus; mit python3 landet man direkt im Interpreter (\u003e\u003e\u003e). Der Container muss vorher mit guestshell enable gestartet worden sein."
+    },
+    {
+        "id":  "slg-pg-057",
+        "topic":  "ENCOR-6.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An engineer types \u0027guestshell run python\u0027 on a router and receives an error that the Guest Shell is not running. Which command starts it?",
+        "optionen":  [
+                         "guestshell start python",
+                         "guestshell enable",
+                         "service python-shell",
+                         "python-shell enable"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "guestshell enable aktiviert und startet den Container (im Kurs über die Management-VRF). Erst danach funktionieren guestshell bzw. guestshell run."
+    },
+    {
+        "id":  "slg-pg-058",
+        "topic":  "ENCOR-6.1",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Python in der Guest Shell (import cli ist erfolgt): Führe \u0027show version\u0027 aus und speichere die Ausgabe als String in der Variablen output.",
+        "bausteine":  [
+                          "output",
+                          "=",
+                          "cli.cli(",
+                          "\u0027show version\u0027",
+                          ")",
+                          "cli.configure(",
+                          "print(",
+                          "cli.json("
+                      ],
+        "loesung":  [
+                        "output",
+                        "=",
+                        "cli.cli(",
+                        "\u0027show version\u0027",
+                        ")"
+                    ],
+        "erklaerung":  "cli.cli() führt einen IOS-Befehl aus und gibt die Ausgabe als String zurück; cli.clip() würde sie direkt drucken. cli.configure() ist für Konfigurationsbefehle gedacht."
+    },
+    {
+        "id":  "slg-pg-059",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeder Schicht des Model-Driven-Programmability-Stacks passende Beispiele zu.",
+        "paare":  [
+                      [
+                          "Protokolle",
+                          "NETCONF, RESTCONF, gRPC"
+                      ],
+                      [
+                          "Encoding",
+                          "XML, JSON, Protocol Buffers"
+                      ],
+                      [
+                          "Transport",
+                          "SSH, TLS, HTTP(S)"
+                      ],
+                      [
+                          "Modelle",
+                          "YANG-Module"
+                      ]
+                  ],
+        "erklaerung":  "Unten liegen die YANG-Modelle, darüber Transport, Encoding und Protokolle; Anwendungen nutzen Bindings/SDKs. Die Schichten lassen sich kombinieren, weil alle auf demselben Modell aufsetzen."
+    },
+    {
+        "id":  "slg-pg-060",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about data models in model-driven programmability is correct?",
+        "optionen":  [
+                         "The model is sent with each request so that the device can parse it",
+                         "The model replaces the encoding, so XML and JSON are no longer needed",
+                         "The model is not exchanged; protocols carry documents that conform to it",
+                         "The model is a transport protocol that runs over SSH or HTTPS"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein verbreiteter Irrtum: Modelle werden nicht übertragen. NETCONF oder RESTCONF senden XML-/JSON-Dokumente, deren Struktur und Werte das YANG-Modell vorgibt."
+    },
+    {
+        "id":  "slg-pg-061",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which encoding does gRPC-based telemetry and gNMI typically use on the wire?",
+        "optionen":  [
+                         "XML (text-based)",
+                         "YAML (text-based)",
+                         "ASN.1 BER (binary)",
+                         "Protocol Buffers (binary)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "gRPC nutzt Google Protocol Buffers als kompaktes Binärformat über HTTP/2. ASN.1 BER ist das Encoding von SNMP, XML das von NETCONF."
+    },
+    {
+        "id":  "slg-pg-063",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which three are core protocols of the model-driven programmability stack? (Choose three.)",
+        "optionen":  [
+                         "gRPC",
+                         "YANG",
+                         "JSON",
+                         "RESTCONF",
+                         "NETCONF"
+                     ],
+        "richtig":  [
+                        0,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "NETCONF, RESTCONF und gRPC/gNMI transportieren modellbasierte Daten. YANG ist die Modellierungssprache, JSON ein Encoding."
+    },
+    {
+        "id":  "slg-pg-064",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Why can an application that uses a model-driven SDK switch from NETCONF to RESTCONF with little change to its logic?",
+        "optionen":  [
+                         "Both protocols use the same YANG model, and the application works on the model",
+                         "Both protocols use the same transport, so only the port number changes",
+                         "Both protocols use XML only, so the same parser can be reused",
+                         "Both protocols are stateful, so the session handling stays the same"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Anwendung arbeitet nur mit den Modellen; Protokoll, Encoding und Transport sind darunter austauschbar. Tatsächlich unterscheiden sich Transport (SSH vs. HTTPS), Encoding und Zustandsbehaftung."
+    },
+    {
+        "id":  "slg-pg-065",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeder Schnittstelle ihre Schemasprache zu.",
+        "paare":  [
+                      [
+                          "SNMP",
+                          "SMIv2 (MIBs)"
+                      ],
+                      [
+                          "NETCONF/RESTCONF",
+                          "YANG"
+                      ],
+                      [
+                          "gRPC",
+                          "Protocol Buffers (.proto)"
+                      ],
+                      [
+                          "REST (allgemein)",
+                          "XML-/JSON-Schema"
+                      ]
+                  ],
+        "erklaerung":  "Jede API-Familie hat eine eigene Beschreibungssprache für ihre Daten. Für NETCONF und RESTCONF ist das YANG, für SNMP-MIBs SMIv2."
+    },
+    {
+        "id":  "slg-pg-066",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "YANG 1.1 is defined in RFC ___.",
+        "optionen":  [
+                         "8040",
+                         "7950",
+                         "6020",
+                         "6241"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "YANG 1.1 ist RFC 7950 (2016); YANG 1.0 war RFC 6020. RFC 6241 definiert NETCONF, RFC 8040 RESTCONF."
+    },
+    {
+        "id":  "slg-pg-067",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A colleague says: \u0027We cannot use YANG models because our devices are managed with RESTCONF, not NETCONF.\u0027 Is this correct?",
+        "optionen":  [
+                         "No – but RESTCONF first has to convert YANG models into MIBs",
+                         "Yes – YANG data can only be carried inside NETCONF RPC messages",
+                         "Yes – RESTCONF uses SNMP MIBs instead of YANG data models",
+                         "No – YANG is protocol-independent and also used by RESTCONF and gNMI"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "YANG wurde für NETCONF entworfen, definiert aber keinen Transport. RESTCONF greift über HTTPS auf genau dieselben YANG-modellierten Daten zu."
+    },
+    {
+        "id":  "slg-pg-068",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A YANG module contains:\n\nleaf-list vlans {\n  type uint16;\n}\n\nWhich JSON fragment matches this definition?",
+        "optionen":  [
+                         "\"vlans\": \"10,20,30\"",
+                         "\"vlans\": {\"10\": 20}",
+                         "\"vlans\": [10, 20, 30]",
+                         "\"vlans\": [{\"id\": 10}, {\"id\": 20}]"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Eine leaf-list ist eine Folge einfacher Werte gleichen Typs und wird in JSON als Array von Werten dargestellt. Ein Array von Objekten entspräche einer list."
+    },
+    {
+        "id":  "slg-pg-069",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A YANG module contains:\n\nlist vlan {\n  key \"id\";\n  leaf id { type uint16; }\n  leaf name { type string; }\n}\n\nWhich JSON fragment matches this definition?",
+        "optionen":  [
+                         "\"vlan\": {\"id\": [10, 20], \"name\": [\"USERS\", \"VOICE\"]}",
+                         "\"vlan\": [10, \"USERS\", 20, \"VOICE\"]",
+                         "\"vlan\": [{\"id\": 10, \"name\": \"USERS\"}, {\"id\": 20, \"name\": \"VOICE\"}]",
+                         "\"vlan\": {\"10\": \"USERS\", \"20\": \"VOICE\"}"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Eine YANG-list wird in JSON zu einem Array von Objekten; jedes Objekt ist ein Eintrag mit seinen Leaves, der über den Key id identifiziert wird."
+    },
+    {
+        "id":  "slg-pg-070",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A YANG list vlan uses key \"id\". A client sends configuration data that contains two vlan entries, both with id 10. What is the result?",
+        "optionen":  [
+                         "Both entries are kept and addressed by their position",
+                         "The data is invalid because key values must be unique",
+                         "The second entry is renumbered to id 11 automatically",
+                         "The two entries are merged into a single leaf-list"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Key identifiziert jeden Listeneintrag eindeutig. Doppelte Key-Werte verletzen das Modell, weil ein Eintrag sonst nicht mehr eindeutig adressierbar wäre."
+    },
+    {
+        "id":  "slg-pg-071",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "According to RFC 7950, for which YANG list is the key statement mandatory?",
+        "optionen":  [
+                         "Every list, including read-only state lists",
+                         "Only a list that is defined inside a grouping",
+                         "A list that represents configuration data",
+                         "Only a list that is nested inside a container"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der key MUSS vorhanden sein, wenn die Liste Konfiguration darstellt (config true), und DARF bei reinen Zustandslisten fehlen (RFC 7950, Abschnitt 7.8.2)."
+    },
+    {
+        "id":  "slg-pg-072",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A YANG leaf is defined with \u0027config false\u0027. What does this mean?",
+        "optionen":  [
+                         "It can only be written through the candidate datastore",
+                         "It is disabled and ignored by the device until it is enabled",
+                         "It is optional and may be omitted in an edit-config request",
+                         "It holds read-only state data that clients cannot configure"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "config false kennzeichnet Zustands-/Betriebsdaten wie Zähler oder oper-status. Sie lassen sich mit \u003cget\u003e lesen, aber nicht konfigurieren; im Tree erscheinen sie als +--ro."
+    },
+    {
+        "id":  "slg-pg-073",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What does the \u0027presence\u0027 statement add to a YANG container such as container snmp { presence \"Enables SNMP\"; }?",
+        "optionen":  [
+                         "It hides the container from NETCONF get replies",
+                         "Its mere existence carries meaning, e.g. enabling SNMP",
+                         "It turns the container into a list keyed by its name",
+                         "It must exist on every device that loads the module"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein normaler Container dient nur der Gruppierung. Ein Presence-Container hat dagegen eine eigene Bedeutung: Allein sein Vorhandensein in der Konfiguration aktiviert z. B. eine Funktion."
+    },
+    {
+        "id":  "slg-pg-074",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In an IETF JSON reply, the member \"ietf-ip:ipv4\" appears inside \"ietf-interfaces:interface\". Why does ipv4 carry a different module prefix?",
+        "optionen":  [
+                         "ipv4 is state data, and state data is always prefixed",
+                         "ipv4 is added to the interface by another module through augment",
+                         "ipv4 is a typedef, and typedefs are always prefixed",
+                         "ipv4 is a list key, and keys always carry a module prefix"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Das Modul ietf-ip erweitert ietf-interfaces per augment um den Container ipv4. Nach RFC 7951 wird ein Membername immer dann mit dem Modulnamen qualifiziert, wenn das Modul gegenüber dem Elternknoten wechselt."
+    },
+    {
+        "id":  "slg-pg-075",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which YANG snippet correctly restricts a VLAN ID leaf to the values 1 through 4094?",
+        "optionen":  [
+                         "leaf id { type int; range 1..4094; }",
+                         "leaf id { type uint16 { range \"1..4094\"; } }",
+                         "leaf id { type uint16; length \"1..4094\"; }",
+                         "leaf id { range \"1..4094\"; type uint16; }"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "range ist ein Unterstatement von type und gilt für Zahlentypen; length gilt für Strings. Einen Typ int gibt es in YANG nicht – das Kursbeispiel \u0027type int; range 1..4094;\u0027 ist daher fehlerhaft."
+    },
+    {
+        "id":  "slg-pg-076",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedem YANG-Statement seinen Zweck zu.",
+        "paare":  [
+                      [
+                          "typedef",
+                          "definiert einen wiederverwendbaren abgeleiteten Datentyp"
+                      ],
+                      [
+                          "grouping",
+                          "definiert eine Knotengruppe, eingebunden mit uses"
+                      ],
+                      [
+                          "augment",
+                          "fügt Knoten in den Baum eines anderen Moduls ein"
+                      ],
+                      [
+                          "import",
+                          "nutzt Definitionen eines anderen Moduls über ein Präfix"
+                      ]
+                  ],
+        "erklaerung":  "typedef und grouping sorgen für Wiederverwendung von Typen bzw. Knoten, augment erweitert fremde Modelle, import macht Definitionen anderer Module verfügbar."
+    },
+    {
+        "id":  "slg-pg-077",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "pyang shows this tree:\n\n+--rw interfaces\n   +--rw interface* [name]\n      +--rw name           string\n      +--rw enabled?       boolean\n      +--ro oper-status    enumeration\n\nWhich statement is correct?",
+        "optionen":  [
+                         "interface is a container; name is an optional leaf",
+                         "interface is a leaf-list; enabled is a mandatory leaf",
+                         "interface is a list keyed by enabled; oper-status is writable",
+                         "interface is a list keyed by name; oper-status is read-only state"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Stern markiert eine Liste, [name] ihren Key; +--ro steht für Zustandsdaten (config false). Das Fragezeichen hinter enabled bedeutet optional, nicht mandatory."
+    },
+    {
+        "id":  "slg-pg-078",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three are characteristics of the YANG language? (Choose three.)",
+        "optionen":  [
+                         "Encodes data in binary form on the wire",
+                         "Extensibility through augmentation",
+                         "Defines the transport protocol and port",
+                         "Reusable types and groupings",
+                         "Hierarchical, tree-structured data"
+                     ],
+        "richtig":  [
+                        1,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "YANG modelliert hierarchisch, erlaubt Wiederverwendung (typedef, grouping) und Erweiterung (augment). Transport und Encoding legt YANG bewusst nicht fest."
+    },
+    {
+        "id":  "slg-pg-079",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer enters \u0027speed 1000\u0027 under interface Loopback100 and gets \u0027% Unrecognized command\u0027. How is this explained in model-driven terms?",
+        "optionen":  [
+                         "The speed leaf is config false and therefore read-only",
+                         "Speed on logical interfaces is set only via RESTCONF",
+                         "The model for logical interfaces has no speed node",
+                         "The Loopback model is loaded only after netconf-yang"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Fehler in CLI oder API sind Verstöße gegen das zugrunde liegende Modell. Logische Interfaces haben keine physischen Attribute wie speed oder duplex, also existiert dieser Knoten dort nicht."
+    },
+    {
+        "id":  "slg-pg-080",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which Cisco tool replaces the deprecated YANG Explorer for browsing YANG models and building NETCONF, RESTCONF and gNMI requests?",
+        "optionen":  [
+                         "Cisco Prime Infrastructure",
+                         "Cisco Packet Tracer",
+                         "Cisco Modeling Labs",
+                         "Cisco YANG Suite"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Cisco YANG Suite ist der Nachfolger des Flash-basierten YANG Explorer. Damit lassen sich Modelle laden, durchsuchen und Requests testen."
+    },
+    {
+        "id":  "slg-pg-081",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "In a pyang tree diagram, nodes marked +--___ are read-only state data.",
+        "optionen":  [
+                         "op",
+                         "st",
+                         "rw",
+                         "ro"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "+--rw steht für konfigurierbare Knoten (config true), +--ro für Zustandsdaten (config false). Weitere Marker: * für Listen, ? für optionale Leaves."
+    },
+    {
+        "id":  "slg-pg-082",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which YANG model gives access to Cisco-specific features such as CDP, MOP and EIGRP on an IOS XE router?",
+        "optionen":  [
+                         "ietf-yang-library",
+                         "ietf-interfaces",
+                         "openconfig-interfaces",
+                         "Cisco-IOS-XE-native"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Das native Modell bildet jede CLI-Zeile der Plattform ab und deckt damit auch herstellerspezifische Funktionen ab. IETF- und OpenConfig-Modelle enthalten nur herstellerneutrale Basisdaten."
+    },
+    {
+        "id":  "slg-pg-083",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In the OpenConfig interface model, where is the IPv4 address of GigabitEthernet3 found?",
+        "optionen":  [
+                         "Under an ietf-ip:ipv4 container of the interface",
+                         "Under subinterfaces, even without a real subinterface",
+                         "Under config, next to the enabled leaf of the interface",
+                         "Under state, next to the counters of the interface"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "OpenConfig legt IP-Adressen grundsätzlich unter subinterfaces/subinterface ab (Index 0 für das Hauptinterface). Das unterscheidet es deutlich vom IETF- und vom nativen Modell."
+    },
+    {
+        "id":  "slg-pg-084",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about OpenConfig are correct? (Choose two.)",
+        "optionen":  [
+                         "Its models hold config and state data in the same model",
+                         "It is a formal standards body supervised by the IAB",
+                         "It uses SMIv2 as its schema language",
+                         "It was started by Google as an informal group of network operators",
+                         "It is a Cisco-specific model family for IOS XE"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "OpenConfig ist eine informelle Betreibergruppe ohne formale Governance; ihre Modelle enthalten config- und state-Container nebeneinander. Das IAB beaufsichtigt die IETF, nicht OpenConfig."
+    },
+    {
+        "id":  "slg-pg-085",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An OpenConfig JSON reply shows \"in-octets\": \"407081366\" with quotes around the number. Why?",
+        "optionen":  [
+                         "64-bit integers are encoded as JSON strings per RFC 7951",
+                         "The device sends counters as text to save bandwidth",
+                         "Counters are config data, and config is always a string",
+                         "OpenConfig does not allow numbers in any JSON value"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "RFC 7951 (JSON-Kodierung von YANG) stellt int64, uint64 und decimal64 als JSON-Strings dar, weil viele JSON-Parser so große Zahlen nicht exakt verarbeiten. Zähler sind außerdem Zustandsdaten, keine Konfiguration."
+    },
+    {
+        "id":  "slg-pg-086",
+        "topic":  "ENCOR-6.3",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeder YANG-Modellfamilie ihre Eigenschaft zu.",
+        "paare":  [
+                      [
+                          "Cisco native",
+                          "bildet jede CLI-Zeile einer Plattform ab"
+                      ],
+                      [
+                          "IETF",
+                          "Standardmodelle mit herstellerneutralen Basisdaten"
+                      ],
+                      [
+                          "OpenConfig",
+                          "Betreibermodelle mit config- und state-Containern"
+                      ]
+                  ],
+        "erklaerung":  "Native Modelle bieten volle Feature-Abdeckung einer Plattform, IETF-Modelle einen standardisierten Grundumfang und OpenConfig betreibergetriebene Modelle inklusive Betriebsdaten."
+    },
+    {
+        "id":  "slg-pg-087",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A script must read the configured description of an interface and its current packet counters in one NETCONF request. Which operation is required?",
+        "optionen":  [
+                         "\u003cget\u003e",
+                         "\u003ccopy-config\u003e",
+                         "\u003cget-config\u003e",
+                         "\u003cedit-config\u003e"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u003cget\u003e liefert Konfiguration und Zustandsdaten aus running. \u003cget-config\u003e liefert nur Konfigurationsdaten aus dem angegebenen Datastore, also keine Zähler."
+    },
+    {
+        "id":  "slg-pg-088",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "NETCONF-RPC (innerhalb von \u003crpc\u003e): Lies die komplette Konfiguration aus dem running-Datastore.",
+        "bausteine":  [
+                          "\u003cget-config\u003e",
+                          "\u003csource\u003e",
+                          "\u003crunning/\u003e",
+                          "\u003c/source\u003e",
+                          "\u003c/get-config\u003e",
+                          "\u003ctarget\u003e",
+                          "\u003cget\u003e",
+                          "\u003ccandidate/\u003e"
+                      ],
+        "loesung":  [
+                        "\u003cget-config\u003e",
+                        "\u003csource\u003e",
+                        "\u003crunning/\u003e",
+                        "\u003c/source\u003e",
+                        "\u003c/get-config\u003e"
+                    ],
+        "erklaerung":  "\u003cget-config\u003e verlangt ein \u003csource\u003e-Element mit dem Datastore. \u003ctarget\u003e wird bei schreibenden Operationen wie \u003cedit-config\u003e oder \u003ccopy-config\u003e verwendet."
+    },
+    {
+        "id":  "slg-pg-089",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A client sends \u003cedit-config\u003e with operation=\"create\" for interface Loopback1, which already exists in the target datastore. What is the result?",
+        "optionen":  [
+                         "Loopback1 is deleted first and then created again",
+                         "The data is merged into Loopback1 and \u003cok/\u003e is returned",
+                         "An rpc-error (data-exists); the existing configuration is unchanged",
+                         "Loopback1 is replaced by the data in the request"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "create legt einen Knoten nur an, wenn er noch nicht existiert; sonst gibt es den Fehler data-exists. Für Überschreiben ist replace, für Zusammenführen merge gedacht."
+    },
+    {
+        "id":  "slg-pg-090",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which \u003cedit-config\u003e operation deletes a configuration node but does not return an error if the node does not exist?",
+        "optionen":  [
+                         "remove",
+                         "replace",
+                         "delete",
+                         "merge"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "delete liefert data-missing, wenn der Knoten fehlt; remove löscht ihn stillschweigend, falls vorhanden. Das macht remove für idempotente Automatisierung praktisch."
+    },
+    {
+        "id":  "slg-pg-091",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "If an \u003cedit-config\u003e request contains neither an operation attribute nor a \u003cdefault-operation\u003e element, NETCONF applies the operation ___.",
+        "optionen":  [
+                         "merge",
+                         "none",
+                         "create",
+                         "replace"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Default von \u003cdefault-operation\u003e ist merge: Die gesendeten Daten werden mit der bestehenden Konfiguration zusammengeführt. RESTCONF PATCH entspricht genau diesem Verhalten."
+    },
+    {
+        "id":  "slg-pg-092",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedem operation-Attribut von \u003cedit-config\u003e sein Verhalten zu.",
+        "paare":  [
+                      [
+                          "merge",
+                          "führt die Daten mit der bestehenden Konfiguration zusammen"
+                      ],
+                      [
+                          "replace",
+                          "ersetzt den Zielknoten durch die gesendeten Daten"
+                      ],
+                      [
+                          "create",
+                          "legt den Knoten an, Fehler wenn er schon existiert"
+                      ],
+                      [
+                          "delete",
+                          "löscht den Knoten, Fehler wenn er nicht existiert"
+                      ]
+                  ],
+        "erklaerung":  "Diese Attribute steuern auf Knotenebene, wie die Konfigurationsdaten angewendet werden. Zusätzlich gibt es remove (löschen ohne Fehler, falls nicht vorhanden)."
+    },
+    {
+        "id":  "slg-pg-093",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A script applies changes with \u003cedit-config\u003e targeting \u003crunning/\u003e on a router that also has a startup datastore. After a reload, the changes are gone. Why?",
+        "optionen":  [
+                         "Changes are discarded if the datastore was not locked first",
+                         "NETCONF stores its changes only in the session memory",
+                         "Changes to running are not copied to startup automatically",
+                         "edit-config always writes to candidate instead of running"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der startup-Datastore wird beim Booten geladen und nicht automatisch aktualisiert. Nötig ist ein \u003ccopy-config\u003e von running nach startup (vergleichbar mit copy run start)."
+    },
+    {
+        "id":  "slg-pg-094",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "NETCONF-RPC (innerhalb von \u003crpc\u003e): Kopiere die running-Konfiguration in den startup-Datastore.",
+        "bausteine":  [
+                          "\u003ccopy-config\u003e",
+                          "\u003ctarget\u003e\u003cstartup/\u003e\u003c/target\u003e",
+                          "\u003csource\u003e\u003crunning/\u003e\u003c/source\u003e",
+                          "\u003c/copy-config\u003e",
+                          "\u003cedit-config\u003e",
+                          "\u003ctarget\u003e\u003crunning/\u003e\u003c/target\u003e",
+                          "\u003csource\u003e\u003cstartup/\u003e\u003c/source\u003e"
+                      ],
+        "loesung":  [
+                        "\u003ccopy-config\u003e",
+                        "\u003ctarget\u003e\u003cstartup/\u003e\u003c/target\u003e",
+                        "\u003csource\u003e\u003crunning/\u003e\u003c/source\u003e",
+                        "\u003c/copy-config\u003e"
+                    ],
+        "erklaerung":  "\u003ccopy-config\u003e ersetzt den Ziel-Datastore komplett durch die Quelle; laut RFC 6241 steht \u003ctarget\u003e vor \u003csource\u003e. So wird die aktive Konfiguration bootfest gespeichert."
+    },
+    {
+        "id":  "slg-pg-095",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A device advertises the :candidate capability. An engineer has edited the candidate datastore. Which operation makes these changes active?",
+        "optionen":  [
+                         "\u003ccopy-config\u003e to candidate",
+                         "\u003cvalidate\u003e",
+                         "\u003ccommit\u003e",
+                         "\u003cunlock\u003e on running"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u003ccommit\u003e setzt die running-Konfiguration auf den Inhalt des candidate-Datastores, als eine Transaktion. \u003cvalidate\u003e prüft nur, \u003cunlock\u003e hebt eine Sperre auf."
+    },
+    {
+        "id":  "slg-pg-097",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer sends \u003cdelete-config\u003e\u003ctarget\u003e\u003crunning/\u003e\u003c/target\u003e\u003c/delete-config\u003e. What is the result?",
+        "optionen":  [
+                         "Only the interface section of running is removed",
+                         "The running configuration is erased and the device reloads",
+                         "running is replaced by the content of startup",
+                         "An rpc-error, because running cannot be deleted"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u003cdelete-config\u003e löscht einen Datastore wie startup oder candidate, aber nie running – laut RFC 6241 muss der Server dies ablehnen."
+    },
+    {
+        "id":  "slg-pg-098",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two automation systems may change the same router at the same time. Which NETCONF mechanism prevents one system from interfering with the other\u0027s changes?",
+        "optionen":  [
+                         "\u003clock\u003e on the target datastore",
+                         "\u003ckill-session\u003e on every other session",
+                         "A unique message-id per request",
+                         "\u003cclose-session\u003e after each request"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u003clock\u003e sperrt den gesamten Datastore exklusiv – gegen andere NETCONF-Clients, aber auch gegen CLI- oder SNMP-Änderungen. Danach gibt \u003cunlock\u003e ihn wieder frei; Locks sollen kurzlebig sein."
+    },
+    {
+        "id":  "slg-pg-156",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeder NETCONF-Operation ihre Wirkung zu.",
+        "paare":  [
+                      [
+                          "\u003clock\u003e",
+                          "sperrt einen Datastore exklusiv für diese Sitzung"
+                      ],
+                      [
+                          "\u003ckill-session\u003e",
+                          "beendet eine fremde Sitzung erzwungen"
+                      ],
+                      [
+                          "\u003cdiscard-changes\u003e",
+                          "verwirft uncommittete Änderungen im candidate"
+                      ],
+                      [
+                          "\u003cclose-session\u003e",
+                          "beendet die eigene Sitzung geordnet"
+                      ]
+                  ],
+        "erklaerung":  "\u003clock\u003e/\u003cunlock\u003e schützen vor parallelen Änderungen, \u003cdiscard-changes\u003e setzt candidate auf running zurück. \u003cclose-session\u003e beendet die eigene, \u003ckill-session\u003e eine andere Sitzung (z. B. mit hängendem Lock)."
+    },
+    {
+        "id":  "slg-pg-100",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about NETCONF configuration datastores are correct? (Choose two.)",
+        "optionen":  [
+                         "running can be removed with delete-config",
+                         "Every NETCONF device supports a candidate datastore",
+                         "running is the only mandatory datastore",
+                         "startup is updated automatically after each edit-config",
+                         "Support for candidate is advertised as a capability"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Nur running muss existieren; candidate und startup sind optional und werden über Capabilities angekündigt. Änderungen an running landen nicht automatisch in startup."
+    },
+    {
+        "id":  "slg-pg-101",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which element appears in the server\u0027s NETCONF \u003chello\u003e but must NOT be sent by the client?",
+        "optionen":  [
+                         "\u003ccapabilities\u003e",
+                         "\u003ccapability\u003e",
+                         "\u003csession-id\u003e",
+                         "xmlns"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Beide Seiten senden ihre Capabilities; nur der Server vergibt die session-id. Enthält das Client-Hello eine session-id, bricht der Server die Sitzung ab (RFC 6241, 8.1)."
+    },
+    {
+        "id":  "slg-pg-102",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A client sends \u003crpc message-id=\"105\" ...\u003e. Which statement about the server\u0027s reply is correct?",
+        "optionen":  [
+                         "\u003crpc-reply\u003e carries the next message-id 106",
+                         "\u003crpc-reply\u003e carries a session-id instead",
+                         "\u003crpc-reply\u003e carries no attributes at all",
+                         "\u003crpc-reply\u003e carries the same message-id 105"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Server übernimmt das message-id-Attribut unverändert in die \u003crpc-reply\u003e. So kann der Client Antworten den Anfragen zuordnen."
+    },
+    {
+        "id":  "slg-pg-103",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Both NETCONF peers advertised urn:ietf:params:netconf:base:1.1. A hand-written client still ends its messages with ]]\u003e]]\u003e. What happens?",
+        "optionen":  [
+                         "The server expects chunked framing and cannot parse the message",
+                         "The server switches the session to base:1.0 automatically",
+                         "The server accepts it because ]]\u003e]]\u003e is always mandatory",
+                         "The server ignores the framing and waits for the TCP FIN"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Kündigen beide Seiten base:1.1 an, gilt chunked framing (\\n#Länge\\n…\\n##\\n). Die End-of-Message-Sequenz ]]\u003e]]\u003e gilt nur für base:1.0 – die Kursaussage, sie sei immer nötig, ist ungenau."
+    },
+    {
+        "id":  "slg-pg-104",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "With NETCONF base:1.0 framing over SSH, every message ends with the character sequence ___.",
+        "optionen":  [
+                         "\\n##\\n",
+                         "EOF",
+                         "\u003c/rpc\u003e",
+                         "]]\u003e]]\u003e"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "]]\u003e]]\u003e markiert bei base:1.0 das Nachrichtenende, auch beim Client-Hello. \\n##\\n beendet eine Nachricht beim chunked framing von base:1.1."
+    },
+    {
+        "id":  "slg-pg-105",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Linux-Shell: Verbinde dich als Benutzer cisco direkt mit dem NETCONF-SSH-Subsystem des Routers 10.10.10.5 (Reihenfolge: Port-Option, Ziel, Subsystem-Option).",
+        "bausteine":  [
+                          "ssh",
+                          "-p",
+                          "830",
+                          "cisco@10.10.10.5",
+                          "-s",
+                          "netconf",
+                          "22",
+                          "restconf",
+                          "443"
+                      ],
+        "loesung":  [
+                        "ssh",
+                        "-p",
+                        "830",
+                        "cisco@10.10.10.5",
+                        "-s",
+                        "netconf"
+                    ],
+        "erklaerung":  "NETCONF läuft über SSH auf TCP 830; -s ruft das SSH-Subsystem netconf auf. Der Server antwortet sofort mit seinem \u003chello\u003e und allen Capabilities."
+    },
+    {
+        "id":  "slg-pg-106",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The NETCONF filter type that is always available, without an additional capability, is \u003cfilter type=\"___\"\u003e.",
+        "optionen":  [
+                         "xpath",
+                         "subtree",
+                         "jsonpath",
+                         "regex"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Subtree-Filter gehören zur NETCONF-Basis. XPath-Filter sind nur nutzbar, wenn der Server die :xpath-Capability ankündigt."
+    },
+    {
+        "id":  "slg-pg-107",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A client sends \u003cfilter type=\"xpath\" select=\"/native/hostname\"/\u003e and receives an rpc-error. The server hello lists only base:1.0, base:1.1 and writable-running. What is the cause?",
+        "optionen":  [
+                         "The server does not advertise the :xpath capability",
+                         "XPath filters are allowed only with \u003cedit-config\u003e",
+                         "XPath filters work only on the candidate datastore",
+                         "XPath expressions must be encoded as JSON"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "XPath-Filter setzen die Capability urn:ietf:params:netconf:capability:xpath:1.0 voraus. Ohne sie bleibt nur der Subtree-Filter."
+    },
+    {
+        "id":  "slg-pg-108",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The server hello contains \u003ccapability\u003eurn:ietf:params:netconf:capability:writable-running:1.0\u003c/capability\u003e. What does this tell the client?",
+        "optionen":  [
+                         "The device supports a candidate datastore with commit",
+                         "The running datastore is read-only for NETCONF clients",
+                         "The device rolls back all changes if one edit fails",
+                         "edit-config may target the running datastore directly"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "writable-running erlaubt schreibende Operationen direkt auf running. candidate und rollback-on-error werden über eigene Capabilities angekündigt."
+    },
+    {
+        "id":  "slg-pg-109",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which capability string in a server hello indicates a Cisco-specific YANG module?",
+        "optionen":  [
+                         "urn:ietf:params:xml:ns:yang:ietf-interfaces?module=ietf-interfaces",
+                         "urn:ietf:params:netconf:base:1.1",
+                         "http://cisco.com/ns/yang/Cisco-IOS-XE-native?module=Cisco-IOS-XE-native",
+                         "urn:ietf:params:netconf:capability:candidate:1.0"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Herstellerspezifische Module erkennt man an Namespaces wie http://cisco.com/ns/yang/ oder urn:cisco:params:xml:ns:yang. urn:ietf:params-Einträge sind IETF-Standards bzw. Protokoll-Capabilities."
+    },
+    {
+        "id":  "slg-pg-110",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two statements about NETCONF and RESTCONF are correct? (Choose two.)",
+        "optionen":  [
+                         "RESTCONF keeps a persistent SSH session",
+                         "RESTCONF is stateless, like other REST APIs",
+                         "NETCONF is session-oriented and stateful",
+                         "NETCONF opens a new connection per request",
+                         "Both protocols use TCP port 830"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "NETCONF baut eine SSH-Sitzung mit Hello-Austausch auf und hält Zustand (z. B. Locks). RESTCONF ist wie REST zustandslos: Jede HTTP-Anfrage steht für sich."
+    },
+    {
+        "id":  "slg-pg-111",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeder NETCONF-Schicht ein passendes Beispiel zu.",
+        "paare":  [
+                      [
+                          "Content",
+                          "XML-Daten nach YANG-Modell"
+                      ],
+                      [
+                          "Operations",
+                          "\u003cget-config\u003e, \u003cedit-config\u003e"
+                      ],
+                      [
+                          "Messages",
+                          "\u003crpc\u003e, \u003crpc-reply\u003e"
+                      ],
+                      [
+                          "Secure Transport",
+                          "SSH, TLS"
+                      ]
+                  ],
+        "erklaerung":  "NETCONF ist in vier Schichten aufgebaut: Transport, Messages (RPC-Rahmen), Operations und Content. Der Content folgt dem jeweiligen YANG-Modell."
+    },
+    {
+        "id":  "slg-pg-112",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus (IOS XE, NETCONF ist aktiv): Aktiviere zusätzlich den candidate-Datastore für NETCONF.",
+        "bausteine":  [
+                          "netconf-yang",
+                          "feature",
+                          "candidate-datastore",
+                          "restconf",
+                          "enable",
+                          "candidate"
+                      ],
+        "loesung":  [
+                        "netconf-yang",
+                        "feature",
+                        "candidate-datastore"
+                    ],
+        "erklaerung":  "IOS XE arbeitet standardmäßig direkt auf running. Mit netconf-yang feature candidate-datastore wird der candidate-Datastore samt \u003ccommit\u003e verfügbar."
+    },
+    {
+        "id":  "slg-pg-113",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which IOS XE command lists the currently active NETCONF sessions?",
+        "optionen":  [
+                         "show restconf sessions",
+                         "show netconf-yang sessions",
+                         "show yang-management sessions",
+                         "show ssh netconf sessions"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "show netconf-yang sessions zeigt Session-ID, Transport, Benutzer und Quell-Host der NETCONF-Sitzungen. show netconf-yang status zeigt, ob der Dienst aktiv ist und welchen SSH-Port er nutzt."
+    },
+    {
+        "id":  "slg-pg-114",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two configuration items are required on IOS XE before a NETCONF client can log in and change the configuration? (Choose two.)",
+        "optionen":  [
+                         "restconf",
+                         "snmp-server community private RW",
+                         "ip http secure-server",
+                         "netconf-yang",
+                         "A user with privilege level 15"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Laut Cisco braucht NETCONF den Dienst netconf-yang und einen Benutzer mit Privilege 15. aaa new-model ist optional (dann zusätzlich aaa authentication login/authorization exec default local); restconf und ip http secure-server betreffen nur RESTCONF."
+    },
+    {
+        "id":  "slg-pg-115",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Python (ncclient, bestehende Verbindung m): Lies die Konfiguration aus dem running-Datastore und speichere sie in reply.",
+        "bausteine":  [
+                          "reply",
+                          "=",
+                          "m.get_config(",
+                          "source=\u0027running\u0027",
+                          ")",
+                          "m.get(",
+                          "target=\u0027running\u0027",
+                          "source=\u0027startup\u0027"
+                      ],
+        "loesung":  [
+                        "reply",
+                        "=",
+                        "m.get_config(",
+                        "source=\u0027running\u0027",
+                        ")"
+                    ],
+        "erklaerung":  "Die ncclient-Methoden entsprechen den NETCONF-Operationen: get_config(source=...) für \u003cget-config\u003e, edit_config(target=...) für \u003cedit-config\u003e. Ein Filter kann zusätzlich als (\u0027subtree\u0027, xml) übergeben werden."
+    },
+    {
+        "id":  "slg-pg-117",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What does a NETCONF server return after a successful \u003cedit-config\u003e operation?",
+        "optionen":  [
+                         "\u003crpc-reply\u003e containing \u003cok/\u003e",
+                         "\u003crpc-reply\u003e containing \u003cdata\u003e",
+                         "HTTP 204 No Content",
+                         "A new \u003chello\u003e message"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Erfolgreiche Operationen ohne Rückgabedaten werden mit \u003cok/\u003e in der \u003crpc-reply\u003e quittiert; Fehler mit \u003crpc-error\u003e. \u003cdata\u003e enthält Ergebnisse von \u003cget\u003e/\u003cget-config\u003e."
+    },
+    {
+        "id":  "slg-pg-118",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A hand-written client hello contains \u003ccapability\u003eurn:ietf:params:xml:ns:netconf:base:1.0\u003c/capability\u003e. What is wrong with it?",
+        "optionen":  [
+                         "It must list base:1.1 only, because base:1.0 is deprecated",
+                         "It must also list every YANG module the client wants to use",
+                         "It must be sent inside an \u003crpc\u003e element with a message-id",
+                         "It uses the XML namespace instead of the base capability URN"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "urn:ietf:params:xml:ns:netconf:base:1.0 ist der XML-Namespace der NETCONF-Elemente; die Base-Capability lautet urn:ietf:params:netconf:base:1.0. Das Kursbeispiel verwechselt beides."
+    },
+    {
+        "id":  "slg-pg-119",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "NETCONF over SSH uses TCP port 830 and the SSH subsystem named ___.",
+        "optionen":  [
+                         "yang",
+                         "sftp",
+                         "ncssh",
+                         "netconf"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Client fordert das Subsystem netconf an (ssh -s netconf). Danach tauschen beide Seiten ihre \u003chello\u003e-Nachrichten aus."
+    },
+    {
+        "id":  "slg-pg-120",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "REST is described as stateless. What does this mean for a client?",
+        "optionen":  [
+                         "The server keeps a session context between the requests",
+                         "The server pushes every state change to the client",
+                         "The client must open a persistent SSH session first",
+                         "Each request must carry everything needed, such as credentials"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Server merkt sich zwischen zwei Anfragen nichts; jede Anfrage enthält URL, Methode, Header und Authentifizierung. Deshalb sendet z. B. jede RESTCONF-Anfrage erneut die Credentials."
+    },
+    {
+        "id":  "slg-pg-121",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeder CRUD-Operation die typische HTTP-Methode zu.",
+        "paare":  [
+                      [
+                          "Create",
+                          "POST"
+                      ],
+                      [
+                          "Read",
+                          "GET"
+                      ],
+                      [
+                          "Update (teilweise)",
+                          "PATCH"
+                      ],
+                      [
+                          "Delete",
+                          "DELETE"
+                      ]
+                  ],
+        "erklaerung":  "REST bildet CRUD auf HTTP-Verben ab. Für Updates gibt es PUT (ganze Ressource ersetzen) und PATCH (nur Änderungen senden)."
+    },
+    {
+        "id":  "slg-pg-122",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which HTTP request header tells the server in which format the client wants to receive the response?",
+        "optionen":  [
+                         "Authorization",
+                         "User-Agent",
+                         "Content-Type",
+                         "Accept"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Accept gibt das gewünschte Antwortformat an, Content-Type beschreibt das Format des mitgesendeten Bodys. Bei RESTCONF z. B. Accept: application/yang-data+json."
+    },
+    {
+        "id":  "slg-pg-123",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A Python script sends GET requests to IOS XE RESTCONF and receives XML, but it needs JSON. Which header must be added?",
+        "optionen":  [
+                         "Content-Type: application/json",
+                         "Content-Type: application/yang-data+json",
+                         "Accept: application/yang-data+json",
+                         "Accept: text/json-yang"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das Antwortformat steuert der Accept-Header; ohne ihn liefert IOS XE XML. Content-Type beschreibt nur einen mitgesendeten Body, den ein GET nicht hat."
+    },
+    {
+        "id":  "slg-pg-124",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The HTTP method ___ is considered \"safe\" because it only reads a resource and does not change it.",
+        "optionen":  [
+                         "POST",
+                         "GET",
+                         "PUT",
+                         "DELETE"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "GET liest nur und verändert keine Daten, daher gilt es als safe. POST, PUT und DELETE ändern Ressourcen."
+    },
+    {
+        "id":  "slg-pg-125",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which three HTTP methods are idempotent, so that sending the same request twice leaves the resource in the same state as sending it once? (Choose three.)",
+        "optionen":  [
+                         "GET",
+                         "PUT",
+                         "DELETE",
+                         "POST",
+                         "PATCH"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "GET, PUT und DELETE sind per HTTP-Definition idempotent. Ein wiederholtes POST erzeugt ggf. eine weitere Ressource bzw. scheitert; PATCH ist nicht garantiert idempotent."
+    },
+    {
+        "id":  "slg-pg-126",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A RESTCONF DELETE for interface Loopback1 on an IOS XE router returned 204. The script accidentally sends the same DELETE again. Which status code does the router return?",
+        "optionen":  [
+                         "500 Internal Server Error",
+                         "201 Created",
+                         "404 Not Found",
+                         "204 No Content"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Beim ersten Mal wird Loopback1 gelöscht (204). Beim zweiten Mal existiert die Ressource nicht mehr, daher 404 – genau so zeigt es auch das Kurs-Lab. 201 gäbe es nur bei einer Neuanlage, 5xx bei einem Serverfehler."
+    },
+    {
+        "id":  "slg-pg-127",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A RESTCONF PATCH returns \u0027400 Bad Request\u0027 with an error about an unexpected character in the body. What is the most likely cause?",
+        "optionen":  [
+                         "The URI points to a resource that does not exist",
+                         "The JSON body is malformed, e.g. a missing comma",
+                         "The username or password is wrong or missing",
+                         "The RESTCONF server process is not running"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "400 bedeutet, dass die Anfrage selbst fehlerhaft ist, etwa durch ungültiges JSON. Falsche Credentials ergäben 401, eine unbekannte Ressource 404, ein Serverproblem 5xx."
+    },
+    {
+        "id":  "slg-pg-128",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two HTTP status codes indicate a server-side error? (Choose two.)",
+        "optionen":  [
+                         "401",
+                         "404",
+                         "204",
+                         "500",
+                         "501"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "5xx-Codes melden Fehler auf dem Server (500 Internal Server Error, 501 Not Implemented). 4xx sind Client-Fehler, 2xx Erfolg."
+    },
+    {
+        "id":  "slg-pg-129",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeder RESTCONF-Situation den typischen Statuscode zu.",
+        "paare":  [
+                      [
+                          "GET auf ein konfiguriertes Interface",
+                          "200 OK"
+                      ],
+                      [
+                          "POST legt eine neue Loopback an",
+                          "201 Created"
+                      ],
+                      [
+                          "PATCH ändert eine Beschreibung",
+                          "204 No Content"
+                      ],
+                      [
+                          "Falsches Passwort bei Basic Auth",
+                          "401 Unauthorized"
+                      ]
+                  ],
+        "erklaerung":  "GET liefert Daten mit 200, Neuanlage per POST ergibt 201, PATCH antwortet ohne Body mit 204. Fehlende oder falsche Authentifizierung führt zu 401."
+    },
+    {
+        "id":  "slg-pg-130",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which tool is a command-line utility for sending HTTP requests, for example from a shell script?",
+        "optionen":  [
+                         "ncclient",
+                         "Postman",
+                         "pyang",
+                         "cURL"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "cURL überträgt Daten mit URL-Syntax direkt von der Kommandozeile. Postman ist eine GUI, ncclient eine Python-NETCONF-Bibliothek, pyang ein YANG-Werkzeug."
+    },
+    {
+        "id":  "slg-pg-131",
+        "topic":  "ENCOR-5.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How is the Authorization header for HTTP Basic authentication built?",
+        "optionen":  [
+                         "Basic, then base64 of username:password",
+                         "Basic, then AES-encrypted username:password",
+                         "Basic, then a SHA-256 hash of the password",
+                         "Bearer, then username:password in clear text"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Basic Auth kodiert username:password nur mit Base64 – das ist keine Verschlüsselung. Deshalb gehört Basic Auth immer über HTTPS, wie bei RESTCONF."
+    },
+    {
+        "id":  "slg-pg-132",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Loopback1 has a primary IP address and a description. A client sends a RESTCONF PUT to the Loopback1 resource whose body contains only a new description. If the device accepts it, what is the result?",
+        "optionen":  [
+                         "The description is ignored because PUT only reads",
+                         "The request fails with 409 because Loopback1 exists",
+                         "Only the description changes; the IP address stays",
+                         "Loopback1 is replaced, so its IP address is removed"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "PUT ersetzt die gesamte Zielressource durch den Body; alles, was fehlt, geht verloren. Für das Ändern einzelner Attribute ist PATCH (merge) gedacht – im Lab scheitert PUT sogar, weil die Primäradresse fehlt."
+    },
+    {
+        "id":  "slg-pg-133",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In the Python requests library, what does response.json() return for a reply with a JSON body?",
+        "optionen":  [
+                         "The HTTP status code of the reply as an integer",
+                         "The body parsed into Python objects, e.g. a dict",
+                         "The raw body as a string with JSON formatting",
+                         "The response headers as a Python dictionary"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "response.json() entspricht json.loads(response.text). Der Statuscode steht in response.status_code, die Header in response.headers."
+    },
+    {
+        "id":  "slg-pg-134",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Python (requests ist importiert; url, headers, user, pw sind gesetzt): Sende einen GET an die RESTCONF-URL und ignoriere dabei das Self-Signed-Zertifikat des Routers (Argumente in der Reihenfolge url, auth, headers, verify).",
+        "bausteine":  [
+                          "resp",
+                          "=",
+                          "requests.get(",
+                          "url,",
+                          "auth=(user, pw),",
+                          "headers=headers,",
+                          "verify=False",
+                          ")",
+                          "requests.post(",
+                          "verify=True",
+                          "port=830,"
+                      ],
+        "loesung":  [
+                        "resp",
+                        "=",
+                        "requests.get(",
+                        "url,",
+                        "auth=(user, pw),",
+                        "headers=headers,",
+                        "verify=False",
+                        ")"
+                    ],
+        "erklaerung":  "requests.get sendet die Anfrage, auth=(user, pw) erzeugt Basic Auth, verify=False schaltet die Zertifikatsprüfung ab (nur im Lab sinnvoll). Ein Port 830 gehört zu NETCONF, nicht zu RESTCONF."
+    },
+    {
+        "id":  "slg-pg-135",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "In RESTCONF, YANG data encoded in JSON uses the media type application/___.",
+        "optionen":  [
+                         "yang-data+json",
+                         "yang.api+json",
+                         "json",
+                         "x-yang-json"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "RFC 8040 definiert application/yang-data+json und application/yang-data+xml. Die im Kurs genannten yang.api+json/yang.data+json stammen aus frühen Drafts."
+    },
+    {
+        "id":  "slg-pg-136",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which RESTCONF URI retrieves the configured hostname using the IOS XE native model?",
+        "optionen":  [
+                         "/restconf/operations/Cisco-IOS-XE-native:hostname",
+                         "/restconf/Cisco-IOS-XE-native/native:hostname",
+                         "/restconf/data/native/hostname",
+                         "/restconf/data/Cisco-IOS-XE-native:native/hostname"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Datenressourcen liegen unter /restconf/data; der erste Knoten wird als modul:knoten angegeben, danach folgt der Pfad im Modell. /operations ist für RPCs gedacht."
+    },
+    {
+        "id":  "slg-pg-137",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which path selects interface GigabitEthernet1/0/1 below /restconf/data/ietf-interfaces:interfaces?",
+        "optionen":  [
+                         "…/interface=GigabitEthernet1%2F0%2F1",
+                         "…/interface/GigabitEthernet1/0/1",
+                         "…/interface=GigabitEthernet1/0/1",
+                         "…/interface[name=GigabitEthernet1/0/1]"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Listeneinträge werden mit =key adressiert. Ein / im Key-Wert würde als Pfadtrenner gelesen und muss deshalb als %2F kodiert werden (RFC 8040, 3.5.3)."
+    },
+    {
+        "id":  "slg-pg-138",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the IOS XE lab, which RESTCONF path addresses interface GigabitEthernet1 in the native model?",
+        "optionen":  [
+                         "…/Cisco-IOS-XE-native:native/interface=GigabitEthernet1",
+                         "…/Cisco-IOS-XE-native:native/interface/GigabitEthernet=1",
+                         "…/Cisco-IOS-XE-native:native/interface/GigabitEthernet1",
+                         "…/Cisco-IOS-XE-native:native/GigabitEthernet/1"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Im nativen Modell ist GigabitEthernet eine Liste unter interface mit dem Key name (der Nummer). Daher lautet der Pfad interface/GigabitEthernet=1, anders als im IETF-Modell (interface=GigabitEthernet1)."
+    },
+    {
+        "id":  "slg-pg-140",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three NETCONF capabilities are NOT available through RESTCONF? (Choose three.)",
+        "optionen":  [
+                         "Locking a datastore",
+                         "Confirmed commit",
+                         "Reading data with GET",
+                         "Invoking YANG RPCs",
+                         "Candidate datastore with commit"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        4
+                    ],
+        "erklaerung":  "RESTCONF bildet nur einen Teil von NETCONF ab: Locks, candidate/commit, confirmed commit, validate und der startup-Datastore fehlen. Daten lesen und RPCs aufrufen sind möglich."
+    },
+    {
+        "id":  "slg-pg-141",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeder RESTCONF-Methode die entsprechende NETCONF-Operation zu.",
+        "paare":  [
+                      [
+                          "GET",
+                          "\u003cget\u003e / \u003cget-config\u003e"
+                      ],
+                      [
+                          "PATCH",
+                          "\u003cedit-config\u003e mit merge"
+                      ],
+                      [
+                          "PUT",
+                          "\u003cedit-config\u003e mit replace"
+                      ],
+                      [
+                          "DELETE",
+                          "\u003cedit-config\u003e mit delete"
+                      ]
+                  ],
+        "erklaerung":  "RESTCONF übersetzt HTTP-Methoden in NETCONF-Semantik. POST entspricht create bzw. dem Aufruf einer RPC-Operation."
+    },
+    {
+        "id":  "slg-pg-142",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does a RESTCONF client invoke a YANG RPC named reset in module acme-module?",
+        "optionen":  [
+                         "PATCH /restconf/operations/acme-module:reset",
+                         "GET /restconf/operations/acme-module:reset",
+                         "POST /restconf/operations/acme-module:reset",
+                         "POST /restconf/data/acme-module:reset"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "RPCs liegen unter {+restconf}/operations und werden per POST aufgerufen; der Name setzt sich aus modul:rpc zusammen."
+    },
+    {
+        "id":  "slg-pg-143",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A RESTCONF RPC that has no output section is invoked successfully. Which response does the server send?",
+        "optionen":  [
+                         "204 No Content without a message body",
+                         "200 OK with an empty JSON object",
+                         "202 Accepted with a job identifier",
+                         "201 Created with a Location header"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ohne Output-Daten darf die Antwort keinen Body haben; der Server sendet 204 No Content. Bei Fehlern kommt stattdessen ein errors-Body."
+    },
+    {
+        "id":  "slg-pg-144",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What is the effect of GET /restconf/data/ietf-interfaces:interfaces?depth=1?",
+        "optionen":  [
+                         "Only the target node is returned, without its children",
+                         "Only configuration data is returned, no state data",
+                         "The reply is paginated with one entry per page",
+                         "Only the first entry of the interface list is returned"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "depth begrenzt die Tiefe der zurückgegebenen Unterbäume (1..65535 oder unbounded, Default unbounded). Der Zielknoten hat Tiefe 1, jedes Kind eine Ebene mehr; tiefere Knoten werden weggelassen (RFC 8040, 4.8.2)."
+    },
+    {
+        "id":  "slg-pg-145",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which RESTCONF query parameter limits a GET on {+restconf}/data to configuration data only?",
+        "optionen":  [
+                         "?with-defaults=config",
+                         "?fields=config",
+                         "?depth=config",
+                         "?content=config"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Parameter content kennt die Werte config, nonconfig und all (Default). Ohne ihn liefert /data Konfigurations- und Zustandsdaten kombiniert."
+    },
+    {
+        "id":  "slg-pg-146",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "How can a client discover the RESTCONF root path of a server according to RFC 8040?",
+        "optionen":  [
+                         "OPTIONS / with Accept: yang",
+                         "GET /api/v1/discovery",
+                         "GET /.well-known/host-meta",
+                         "GET /restconf/root-path"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Server liefert unter /.well-known/host-meta einen Link mit rel=\u0027restconf\u0027 auf seine API-Wurzel, meist /restconf. Alle weiteren URIs bauen darauf auf."
+    },
+    {
+        "id":  "slg-pg-147",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus (IOS XE): Aktiviere den HTTPS-Server, den RESTCONF benötigt.",
+        "bausteine":  [
+                          "ip",
+                          "http",
+                          "secure-server",
+                          "server",
+                          "https",
+                          "restconf"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "http",
+                        "secure-server"
+                    ],
+        "erklaerung":  "ip http secure-server startet den HTTPS-Dienst auf TCP 443; zusätzlich braucht man restconf und AAA. ip http server würde nur unverschlüsseltes HTTP aktivieren."
+    },
+    {
+        "id":  "slg-pg-148",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Baue die RESTCONF-URL, die nur die Beschreibung von GigabitEthernet1 im IETF-Interface-Modell auf Router r1 liest.",
+        "bausteine":  [
+                          "https://r1",
+                          "/restconf",
+                          "/data",
+                          "/ietf-interfaces:interfaces",
+                          "/interface=GigabitEthernet1",
+                          "/description",
+                          "/operations",
+                          "/ietf-interfaces:interface",
+                          "/interface/GigabitEthernet1"
+                      ],
+        "loesung":  [
+                        "https://r1",
+                        "/restconf",
+                        "/data",
+                        "/ietf-interfaces:interfaces",
+                        "/interface=GigabitEthernet1",
+                        "/description"
+                    ],
+        "erklaerung":  "Aufbau: Root /restconf, Datastore-Ressource /data, Top-Container mit Modulpräfix, Listeneintrag über =Key und schließlich der Leaf. So liefert der GET nur den gewünschten Wert."
+    },
+    {
+        "id":  "slg-pg-149",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "RESTCONF is standardized in RFC ___ (published 2017).",
+        "optionen":  [
+                         "6241",
+                         "7950",
+                         "8040",
+                         "6242"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "RESTCONF ist seit Januar 2017 als RFC 8040 standardisiert; die Kursaussage, es sei noch kein RFC, ist veraltet. RFC 6241 ist NETCONF, RFC 6242 NETCONF über SSH, RFC 7950 YANG 1.1."
+    },
+    {
+        "id":  "slg-pg-150",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A Python script calls requests.get() against https://csr1kv/restconf/data/... and fails with \u0027SSLError: certificate verify failed\u0027. What is the cause?",
+        "optionen":  [
+                         "RESTCONF is disabled, so TCP port 443 on the router is closed",
+                         "The configured user does not have privilege level 15",
+                         "The router presents a self-signed certificate that cannot be verified",
+                         "The Accept header requests an unsupported media type"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "requests prüft Zertifikate standardmäßig; ein Self-Signed-Zertifikat des Routers schlägt fehl. Im Lab hilft verify=False, in Produktion ein vertrauenswürdiges Zertifikat."
+    },
+    {
+        "id":  "slg-pg-151",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about RESTCONF POST is correct?",
+        "optionen":  [
+                         "It retrieves data and metadata of the target resource",
+                         "It merges the body into the existing target resource",
+                         "It creates a new child resource and returns 409 if it already exists",
+                         "It replaces the target resource completely with the request body"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "POST legt nur neu an; existiert die Ressource schon, antwortet der Server mit 409 Conflict. Ersetzen ist PUT, Zusammenführen PATCH, Lesen GET."
+    },
+    {
+        "id":  "slg-pg-152",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which RESTCONF resource lets a client determine the revision of the ietf-yang-library module that the server implements?",
+        "optionen":  [
+                         "/.well-known/host-meta",
+                         "{+restconf}/data/capabilities",
+                         "{+restconf}/yang-library-version",
+                         "{+restconf}/operations"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "yang-library-version ist ein Pflicht-Leaf der RESTCONF-API-Ressource. Darüber findet der Client heraus, wie er die unterstützten Module abfragen kann."
+    },
+    {
+        "id":  "slg-pg-153",
+        "topic":  "ENCOR-4.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which IOS XE command shows whether processes such as confd, nginx and ncsshd, which NETCONF and RESTCONF depend on, are running?",
+        "optionen":  [
+                         "show platform software yang-management process",
+                         "show running-config | section netconf-yang",
+                         "show processes cpu | include yang",
+                         "show netconf-yang sessions detail"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "show platform software yang-management process listet die Programmability-Prozesse mit ihrem Status. nginx muss für RESTCONF laufen, ncsshd für NETCONF über SSH."
+    }
+]

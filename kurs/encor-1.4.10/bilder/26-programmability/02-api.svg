@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Vergleich der Management-Schnittstellen</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="32" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Von CLI und SNMP zu modellgetriebenen APIs</text>
+<g font-size="15" fill="#222">
+<rect x="20" y="52" width="760" height="36" fill="#4a9cff" opacity="0.25"/>
+<text x="30" y="76" font-weight="bold">Ebene</text>
+<text x="175" y="76" font-weight="bold" text-anchor="middle">CLI</text>
+<text x="305" y="76" font-weight="bold" text-anchor="middle">SNMP</text>
+<text x="435" y="76" font-weight="bold" text-anchor="middle">REST</text>
+<text x="565" y="76" font-weight="bold" text-anchor="middle">NETCONF/RESTCONF</text>
+<text x="705" y="76" font-weight="bold" text-anchor="middle">gRPC</text>
+<text x="30" y="122" font-weight="bold">Schema</text>
+<text x="175" y="122" text-anchor="middle">keins</text><text x="305" y="122" text-anchor="middle">SMIv2</text><text x="435" y="122" text-anchor="middle">XML-/JSON-Schema</text><text x="565" y="122" text-anchor="middle" fill="#1a7f3c" font-weight="bold">YANG</text><text x="705" y="122" text-anchor="middle">Protobuf (.proto)</text>
+<text x="30" y="168" font-weight="bold">Inhalt</text>
+<text x="175" y="168" text-anchor="middle">proprietär</text><text x="305" y="168" text-anchor="middle">MIBs</text><text x="435" y="168" text-anchor="middle">XSD / JSD</text><text x="565" y="168" text-anchor="middle">YANG-Module</text><text x="705" y="168" text-anchor="middle">Services, Messages</text>
+<text x="30" y="214" font-weight="bold">Payload</text>
+<text x="175" y="214" text-anchor="middle">Text</text><text x="305" y="214" text-anchor="middle">ASN.1 BER</text><text x="435" y="214" text-anchor="middle">XML / JSON</text><text x="565" y="214" text-anchor="middle">XML / JSON</text><text x="705" y="214" text-anchor="middle">binär</text>
+<text x="30" y="260" font-weight="bold">Protokoll</text>
+<text x="175" y="260" text-anchor="middle">Telnet / SSH</text><text x="305" y="260" text-anchor="middle">SNMP (UDP)</text><text x="435" y="260" text-anchor="middle">HTTP(S)</text><text x="565" y="260" text-anchor="middle">SSH 830 / HTTPS 443</text><text x="705" y="260" text-anchor="middle">HTTP/2</text>
+</g>
+<g stroke="#ccc"><line x1="20" y1="134" x2="780" y2="134"/><line x1="20" y1="180" x2="780" y2="180"/><line x1="20" y1="226" x2="780" y2="226"/><line x1="20" y1="272" x2="780" y2="272"/>
+<line x1="110" y1="52" x2="110" y2="272"/><line x1="240" y1="52" x2="240" y2="272"/><line x1="370" y1="52" x2="370" y2="272"/><line x1="500" y1="52" x2="500" y2="272"/><line x1="630" y1="52" x2="630" y2="272"/></g>
+<rect x="20" y="290" width="370" height="146" rx="8" fill="#ff6b6b" opacity="0.18"/>
+<g font-size="14" fill="#222">
+<text x="35" y="314" font-weight="bold">Schwächen von SNMP und CLI</text>
+<text x="35" y="338">• SNMPv1/v2c: Community, unverschlüsselt</text>
+<text x="35" y="360">• wenige beschreibbare MIBs, kein Rollback</text>
+<text x="35" y="382">• viele herstellerspezifische MIBs</text>
+<text x="35" y="404">• CLI: für Menschen, unstrukturierter Text</text>
+<text x="35" y="426">• Automatisierung nur mit Expect + Parsern</text>
+</g>
+<rect x="410" y="290" width="370" height="146" rx="8" fill="#39c86a" opacity="0.2"/>
+<g font-size="14" fill="#222">
+<text x="425" y="314" font-weight="bold">Anforderungen moderner APIs</text>
+<text x="425" y="338">• Konfig- und Betriebsdaten getrennt</text>
+<text x="425" y="360">• client-seitige Validierung (Modell)</text>
+<text x="425" y="382">• Transaktionen, Backup/Restore</text>
+<text x="425" y="404">• menschen- und maschinenlesbar</text>
+<text x="425" y="426">• mehrere Transporte und Encodings</text>
+</g>
+</svg>

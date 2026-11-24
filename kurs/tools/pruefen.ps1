@@ -75,5 +75,9 @@ foreach ($x in $q) {
   }
 }
 if ($lang.Count) { $err.Add("Laengen-Bias (richtige Option >30% laenger als jeder Distraktor): " + ($lang -join ', ')) }
+
+# Warnung: Erklaerung verweist auf Optionsposition (stimmt nach dem Mischen nicht mehr)
+$pos = @($q | Where-Object { $_.erklaerung -match '(?i)\b(erste|zweite|dritte|vierte|letzte|obere|untere)n? (Option|Antwort)|\bOption [A-D1-4]\b|\b(first|second|third|fourth|last) option\b' } | ForEach-Object { $_.id })
+if ($pos.Count) { $err.Add("Erklaerung verweist auf Optionsposition: " + ($pos -join ', ')) }
 "Fragen: $($q.Count)  |  " + (($q | Group-Object typ | ForEach-Object { "$($_.Name)=$($_.Count)" }) -join ' ') + "  |  Schwierigkeit " + (($q | Group-Object schwierigkeit | Sort-Object Name | ForEach-Object { "$($_.Name):$($_.Count)" }) -join ' ')
 if ($err.Count) { "FEHLER:"; $err } else { "OK – keine Formatfehler" }

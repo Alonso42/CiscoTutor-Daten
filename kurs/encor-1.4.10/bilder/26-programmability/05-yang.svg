@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif" xml:space="preserve">
+<title>YANG-Bausteine und ihr JSON-Abbild</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">YANG-Bausteine → JSON-Daten</text>
+<rect x="15" y="46" width="390" height="290" rx="8" fill="#4a9cff" opacity="0.13"/>
+<text x="30" y="68" font-size="15" font-weight="bold" fill="#222">YANG-Modell (Schema)</text>
+<g font-size="13" font-family="monospace" fill="#222">
+<text x="30" y="94">module demo-vlan {</text>
+<text x="30" y="112">  namespace "urn:demo:vlan"; prefix dv;</text>
+<text x="30" y="132" fill="#7a4fd6">  container vlans {</text>
+<text x="30" y="152" fill="#1a7f3c">    list vlan {</text>
+<text x="30" y="170" fill="#1a7f3c">      key "id";</text>
+<text x="30" y="190" fill="#c0392b">      leaf id {</text>
+<text x="30" y="208" fill="#c0392b">        type uint16 { range "1..4094"; }</text>
+<text x="30" y="226" fill="#c0392b">      }</text>
+<text x="30" y="246" fill="#c0392b">      leaf name { type string; }</text>
+<text x="30" y="266" fill="#a07800">      leaf-list ports { type string; }</text>
+<text x="30" y="286" fill="#c0392b">      leaf oper { type string; config false; }</text>
+<text x="30" y="306">    }</text>
+<text x="30" y="324">  } }</text>
+</g>
+<rect x="420" y="46" width="365" height="290" rx="8" fill="#39c86a" opacity="0.15"/>
+<text x="435" y="68" font-size="15" font-weight="bold" fill="#222">Daten (JSON, RFC 7951)</text>
+<g font-size="13" font-family="monospace" fill="#222">
+<text x="435" y="94">{</text>
+<text x="435" y="114" fill="#7a4fd6"> "demo-vlan:vlans": {</text>
+<text x="435" y="134" fill="#1a7f3c">  "vlan": [</text>
+<text x="435" y="154">   { "id": 10,</text>
+<text x="435" y="174">     "name": "USERS",</text>
+<text x="435" y="194" fill="#a07800">     "ports": ["Gi1/0/1", "Gi1/0/2"],</text>
+<text x="435" y="214">     "oper": "active" },</text>
+<text x="435" y="234">   { "id": 20, "name": "VOICE" }</text>
+<text x="435" y="254" fill="#1a7f3c">  ]</text>
+<text x="435" y="274" fill="#7a4fd6"> }</text>
+<text x="435" y="294">}</text>
+</g>
+<g font-size="13" fill="#222">
+<rect x="15" y="348" width="770" height="92" rx="8" fill="#ffd23f" opacity="0.3"/>
+<text x="30" y="370"><tspan fill="#7a4fd6" font-weight="bold">container</tspan> = Gruppe ohne eigenen Wert → JSON-Objekt   <tspan fill="#1a7f3c" font-weight="bold">list</tspan> = Einträge mit key (eindeutig) → Array von Objekten</text>
+<text x="30" y="392"><tspan fill="#c0392b" font-weight="bold">leaf</tspan> = genau ein Wert mit type   <tspan fill="#a07800" font-weight="bold">leaf-list</tspan> = mehrere Werte gleichen Typs → Array von Werten</text>
+<text x="30" y="414">config false = Zustandsdaten (read-only, Tree: +--ro) · key Pflicht bei Konfig-Listen · kein Typ "int" → uint16 …</text>
+<text x="30" y="434">Wiederverwendung: typedef (Typ) · grouping/uses (Knotengruppe) · augment (in fremdes Modul einhängen)</text>
+</g>
+</svg>

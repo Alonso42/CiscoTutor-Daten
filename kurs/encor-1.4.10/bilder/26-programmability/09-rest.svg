@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>CRUD, HTTP-Methoden und Statuscodes</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">CRUD ↔ HTTP ↔ NETCONF und Antwortcodes</text>
+<g font-size="14" fill="#222">
+<rect x="20" y="46" width="760" height="32" fill="#4a9cff" opacity="0.3"/>
+<text x="32" y="68" font-weight="bold">CRUD</text><text x="150" y="68" font-weight="bold">HTTP / RESTCONF</text><text x="330" y="68" font-weight="bold">NETCONF-Entsprechung</text><text x="580" y="68" font-weight="bold">typischer Erfolg</text>
+<text x="32" y="102">Create</text><text x="150" y="102" font-family="monospace">POST</text><text x="330" y="102">edit-config create / RPC</text><text x="580" y="102">201 Created (409 wenn da)</text>
+<text x="32" y="132">Read</text><text x="150" y="132" font-family="monospace">GET</text><text x="330" y="132">get / get-config</text><text x="580" y="132">200 OK</text>
+<text x="32" y="162">Update</text><text x="150" y="162" font-family="monospace">PUT</text><text x="330" y="162">edit-config replace</text><text x="580" y="162">201 neu / 204 ersetzt</text>
+<text x="32" y="192">Update</text><text x="150" y="192" font-family="monospace">PATCH</text><text x="330" y="192">edit-config merge</text><text x="580" y="192">204 No Content</text>
+<text x="32" y="222">Delete</text><text x="150" y="222" font-family="monospace">DELETE</text><text x="330" y="222">edit-config delete</text><text x="580" y="222">204 (404 wenn fehlt)</text>
+</g>
+<g stroke="#ddd"><line x1="20" y1="112" x2="780" y2="112"/><line x1="20" y1="142" x2="780" y2="142"/><line x1="20" y1="172" x2="780" y2="172"/><line x1="20" y1="202" x2="780" y2="202"/><line x1="20" y1="232" x2="780" y2="232"/></g>
+<rect x="20" y="246" width="245" height="190" rx="8" fill="#39c86a" opacity="0.2"/>
+<rect x="278" y="246" width="245" height="190" rx="8" fill="#ffd23f" opacity="0.35"/>
+<rect x="536" y="246" width="244" height="190" rx="8" fill="#ff6b6b" opacity="0.2"/>
+<g font-size="14" fill="#222">
+<text x="35" y="270" font-weight="bold">2xx Erfolg</text>
+<text x="35" y="296">200 OK (mit Body)</text>
+<text x="35" y="320">201 Created</text>
+<text x="35" y="344">202 Accepted (asynchron)</text>
+<text x="35" y="368">204 No Content</text>
+<text x="293" y="270" font-weight="bold">4xx Client-Fehler</text>
+<text x="293" y="296">400 Bad Request (Syntax)</text>
+<text x="293" y="320">401 Unauthorized (Login)</text>
+<text x="293" y="344">403 Forbidden (Rechte)</text>
+<text x="293" y="368">404 Not Found (URI)</text>
+<text x="293" y="392">405 Method Not Allowed</text>
+<text x="293" y="416">409 Conflict · 415 Media Type</text>
+<text x="551" y="270" font-weight="bold">5xx Server-Fehler</text>
+<text x="551" y="296">500 Internal Server Error</text>
+<text x="551" y="320">501 Not Implemented</text>
+<text x="551" y="356" font-size="13">Header:</text>
+<text x="551" y="378" font-size="13">Content-Type = Format des Bodys</text>
+<text x="551" y="400" font-size="13">Accept = gewünschte Antwort</text>
+<text x="551" y="422" font-size="13">REST ist stateless</text>
+</g>
+</svg>

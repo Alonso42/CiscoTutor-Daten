@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif" xml:space="preserve">
+<title>YAML, JSON und XML im Vergleich</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Dieselben Daten in YAML, JSON und XML</text>
+<rect x="15" y="48" width="245" height="262" rx="8" fill="#39c86a" opacity="0.15"/>
+<rect x="275" y="48" width="245" height="262" rx="8" fill="#4a9cff" opacity="0.15"/>
+<rect x="535" y="48" width="250" height="262" rx="8" fill="#b08aff" opacity="0.15"/>
+<g font-size="16" font-weight="bold" fill="#222"><text x="30" y="72">YAML</text><text x="290" y="72">JSON</text><text x="550" y="72">XML</text></g>
+<g font-size="13" font-family="monospace" fill="#222">
+<text x="30" y="98">---</text>
+<text x="30" y="118">user:</text>
+<text x="30" y="138">  name: john</text>
+<text x="30" y="158">  location:</text>
+<text x="30" y="178">    city: Austin</text>
+<text x="30" y="198">    state: TX</text>
+<text x="30" y="218">  roles:</text>
+<text x="30" y="238">    - admin</text>
+<text x="30" y="258">    - user</text>
+<text x="290" y="98">{</text>
+<text x="290" y="118"> "user": {</text>
+<text x="290" y="138">  "name": "john",</text>
+<text x="290" y="158">  "location": {</text>
+<text x="290" y="178">   "city": "Austin",</text>
+<text x="290" y="198">   "state": "TX"</text>
+<text x="290" y="218">  },</text>
+<text x="290" y="238">  "roles": ["admin", "user"]</text>
+<text x="290" y="258"> }</text>
+<text x="290" y="278">}</text>
+<text x="550" y="98">&lt;user&gt;</text>
+<text x="550" y="118"> &lt;name&gt;john&lt;/name&gt;</text>
+<text x="550" y="138"> &lt;location&gt;</text>
+<text x="550" y="158">  &lt;city&gt;Austin&lt;/city&gt;</text>
+<text x="550" y="178">  &lt;state&gt;TX&lt;/state&gt;</text>
+<text x="550" y="198"> &lt;/location&gt;</text>
+<text x="550" y="218"> &lt;roles&gt;admin&lt;/roles&gt;</text>
+<text x="550" y="238"> &lt;roles&gt;user&lt;/roles&gt;</text>
+<text x="550" y="258">&lt;/user&gt;</text>
+</g>
+<g font-size="13" fill="#222">
+<text x="20" y="335" font-weight="bold">YAML</text>
+<text x="20" y="355">• Einrückung = Struktur</text>
+<text x="20" y="375">• keine Tabs erlaubt</text>
+<text x="20" y="395">• "- " = Listenelement</text>
+<text x="20" y="415">• keine Quotes/Kommas nötig</text>
+<text x="20" y="435">• Ansible-Playbooks</text>
+<text x="280" y="335" font-weight="bold">JSON</text>
+<text x="280" y="355">• {} Objekt, [] Array</text>
+<text x="280" y="375">• Keys + Strings in "doppelten"</text>
+<text x="280" y="395">• Komma zwischen, nicht nach letztem</text>
+<text x="280" y="415">• true / false / null klein</text>
+<text x="280" y="435">• Whitespace egal (außer in Strings)</text>
+<text x="540" y="335" font-weight="bold">XML</text>
+<text x="540" y="355">• Start-/End-Tag exakt gleich</text>
+<text x="540" y="375">• case-sensitive</text>
+<text x="540" y="395">• Liste = wiederholtes Element</text>
+<text x="540" y="415">• Namespace: xmlns:pfx="URI"</text>
+<text x="540" y="435">• NETCONF-Payload</text>
+</g>
+</svg>

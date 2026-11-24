@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>JSON und Python: loads und dumps</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">JSON-Text ↔ Python-Objekt</text>
+<rect x="20" y="50" width="300" height="150" rx="10" fill="#4a9cff" opacity="0.18"/>
+<text x="170" y="74" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">JSON-String (von der API)</text>
+<g font-size="13" font-family="monospace" fill="#222">
+<text x="35" y="102">'{"name": "Gi1",</text>
+<text x="35" y="122">  "enabled": true,</text>
+<text x="35" y="142">  "desc": null,</text>
+<text x="35" y="162">  "vlans": [10, 20]}'</text>
+<text x="35" y="188" font-family="sans-serif">type() → &lt;class 'str'&gt;</text>
+</g>
+<rect x="480" y="50" width="300" height="150" rx="10" fill="#39c86a" opacity="0.2"/>
+<text x="630" y="74" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Python-Dictionary</text>
+<g font-size="13" font-family="monospace" fill="#222">
+<text x="495" y="102">{'name': 'Gi1',</text>
+<text x="495" y="122"> 'enabled': True,</text>
+<text x="495" y="142"> 'desc': None,</text>
+<text x="495" y="162"> 'vlans': [10, 20]}</text>
+<text x="495" y="188" font-family="sans-serif">type() → &lt;class 'dict'&gt;</text>
+</g>
+<g stroke="#222" stroke-width="2" fill="#222">
+<line x1="325" y1="100" x2="470" y2="100"/><polygon points="470,94 480,100 470,106"/>
+<line x1="335" y1="160" x2="480" y2="160"/><polygon points="335,154 325,160 335,166"/>
+</g>
+<g font-size="14" font-family="monospace" fill="#222">
+<text x="400" y="90" text-anchor="middle">json.loads(text)</text>
+<text x="400" y="185" text-anchor="middle">json.dumps(obj, indent=4)</text>
+</g>
+<g font-size="14" fill="#222">
+<rect x="20" y="220" width="760" height="30" fill="#b08aff" opacity="0.25"/>
+<text x="35" y="241" font-weight="bold">JSON</text><text x="200" y="241" font-weight="bold">Python</text><text x="400" y="241" font-weight="bold">Typischer Fehler</text>
+<text x="35" y="272">object {}</text><text x="200" y="272">dict</text><text x="400" y="272">Keys in 'einfachen' Quotes → JSONDecodeError</text>
+<text x="35" y="298">array []</text><text x="200" y="298">list (tuple → array)</text><text x="400" y="298">liste['name'] → TypeError (Index nötig)</text>
+<text x="35" y="324">"string"</text><text x="200" y="324">str</text><text x="400" y="324">"1500" ist String: "1500" + 1 → TypeError</text>
+<text x="35" y="350">true / false</text><text x="200" y="350">True / False</text><text x="400" y="350">True im JSON-Text → JSONDecodeError</text>
+<text x="35" y="376">null</text><text x="200" y="376">None</text><text x="400" y="376">Komma nach letztem Element → Fehler</text>
+<text x="35" y="402">10 / 1.5</text><text x="200" y="402">int / float</text><text x="400" y="402">string['os'] → TypeError: string indices…</text>
+</g>
+<g stroke="#ddd"><line x1="20" y1="282" x2="780" y2="282"/><line x1="20" y1="308" x2="780" y2="308"/><line x1="20" y1="334" x2="780" y2="334"/><line x1="20" y1="360" x2="780" y2="360"/><line x1="20" y1="386" x2="780" y2="386"/></g>
+<rect x="20" y="414" width="760" height="28" rx="6" fill="#ffd23f" opacity="0.4"/>
+<text x="35" y="433" font-size="14" fill="#222">Merke: API liefert Text → loads · Request-Body bauen → dumps · requests: response.json() = json.loads(response.text)</text>
+</svg>
