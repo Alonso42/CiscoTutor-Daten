@@ -1,0 +1,2077 @@
+[
+    {
+        "id":  "slg-nt-001",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "PC 192.168.1.10 browses to web server 203.0.113.80. Edge router R1 rewrites the source to 198.51.100.5. In R1\u0027s NAT table, which address type is 198.51.100.5?",
+        "optionen":  [
+                         "Outside local",
+                         "Inside local",
+                         "Outside global",
+                         "Inside global"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "198.51.100.5 ist die Adresse, unter der der interne PC von außen erscheint – also Inside Global. 192.168.1.10 wäre Inside Local, 203.0.113.80 die Outside-Adresse des Servers."
+    },
+    {
+        "id":  "slg-nt-002",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "PC 192.168.1.10 reaches web server 203.0.113.80 through R1, which only performs inside source PAT to 198.51.100.5. Which two NAT address types have the value 203.0.113.80 in this flow? (Choose two.)",
+        "optionen":  [
+                         "Inside local",
+                         "Inside global",
+                         "Outside global",
+                         "Outside local",
+                         "None of them"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Ohne Übersetzung der Außenseite sieht das Innennetz den Server unter seiner echten Adresse. Outside Local und Outside Global sind daher identisch (203.0.113.80)."
+    },
+    {
+        "id":  "slg-nt-003",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "PC 192.168.1.10 is translated to 198.51.100.5 by R1. The web server\u0027s reply leaves R1 on its LAN interface toward the PC. What is the destination IP address of that packet?",
+        "optionen":  [
+                         "192.168.1.1",
+                         "198.51.100.5",
+                         "203.0.113.80",
+                         "192.168.1.10"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Auf dem Rückweg ersetzt R1 die Inside-Global-Zieladresse 198.51.100.5 durch die Inside-Local-Adresse 192.168.1.10, bevor das Paket ins LAN geht."
+    },
+    {
+        "id":  "slg-nt-004",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Companies A and B merged and both use 10.1.1.0/24. Host A1 (10.1.1.10) is translated to 198.51.100.10. Server B1 really uses 10.1.1.20, but hosts in A reach it as 172.16.2.20. Match each address to its NAT type from the perspective of A\u0027s NAT router.",
+        "paare":  [
+                      [
+                          "10.1.1.10",
+                          "Inside local"
+                      ],
+                      [
+                          "198.51.100.10",
+                          "Inside global"
+                      ],
+                      [
+                          "172.16.2.20",
+                          "Outside local"
+                      ],
+                      [
+                          "10.1.1.20",
+                          "Outside global"
+                      ]
+                  ],
+        "erklaerung":  "A1 ist der Inside-Host: echte Adresse = Inside Local, übersetzte = Inside Global. Server B1 liegt außen: seine echte Adresse ist Outside Global, die für A sichtbare Ersatzadresse 172.16.2.20 ist Outside Local."
+    },
+    {
+        "id":  "slg-nt-005",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After a merger, both companies use 10.1.1.0/24. Hosts in company A must reach server 10.1.1.20 in company B. Which address do A\u0027s hosts use as the destination?",
+        "optionen":  [
+                         "The inside local address of the A host",
+                         "The outside local address assigned to the server",
+                         "The outside global address 10.1.1.20",
+                         "The inside global address of the A router"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die echte Adresse 10.1.1.20 kollidiert mit A\u0027s eigenem Netz. Deshalb wird der Server über eine überschneidungsfreie Outside-Local-Adresse angesprochen, die NAT in die echte Outside-Global-Adresse übersetzt."
+    },
+    {
+        "id":  "slg-nt-006",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Host 10.20.1.15 is translated by PAT on R1 to 209.165.200.226 and opens a session to 203.0.113.30. A packet capture is taken on the ISP router. Which source IP address appears in the capture?",
+        "optionen":  [
+                         "10.20.1.15",
+                         "209.165.200.226",
+                         "203.0.113.30",
+                         "10.20.1.1"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Außerhalb des NAT-Routers ist nur die Inside-Global-Adresse sichtbar. Die private Inside-Local-Adresse 10.20.1.15 verlässt das Unternehmen nicht."
+    },
+    {
+        "id":  "slg-nt-007",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 shows this entry:\n\nPro Inside global        Inside local        Outside local      Outside global\ntcp 209.165.200.226:1050 10.1.1.20:1050      203.0.113.40:22    203.0.113.40:22\n\nWhich statement is correct?",
+        "optionen":  [
+                         "Host 209.165.200.226 is an inside server on port 22",
+                         "Host 10.1.1.20 has an SSH session to 203.0.113.40",
+                         "Host 203.0.113.40 has an SSH session to 10.1.1.20",
+                         "Host 10.1.1.20 runs an SSH server on port 1050"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Inside Local 10.1.1.20 mit Quellport 1050 spricht Port 22 (SSH) auf dem Outside-Host 203.0.113.40 an. 209.165.200.226 ist die übersetzte Inside-Global-Adresse, kein eigener Host."
+    },
+    {
+        "id":  "slg-nt-008",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In Cisco NAT terminology, a \u0027local\u0027 address is the address of a host as it appears ___.",
+        "optionen":  [
+                         "on the outside network",
+                         "in the ARP cache",
+                         "on the inside network",
+                         "in the routing table"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Local = so, wie das Innennetz die Adresse sieht; Global = so, wie sie von außen sichtbar ist. Inside/Outside sagt dagegen, wo der Host physisch steht."
+    },
+    {
+        "id":  "slg-nt-009",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Match each NAT address type to its meaning.",
+        "paare":  [
+                      [
+                          "Inside local",
+                          "Inside host as seen from the inside network"
+                      ],
+                      [
+                          "Inside global",
+                          "Inside host as seen from the outside network"
+                      ],
+                      [
+                          "Outside local",
+                          "Outside host as seen from the inside network"
+                      ],
+                      [
+                          "Outside global",
+                          "Outside host as seen from the outside network"
+                      ]
+                  ],
+        "erklaerung":  "Inside/Outside beschreibt, wo der Host steht; Local/Global, aus welcher Sicht die Adresse betrachtet wird."
+    },
+    {
+        "id":  "slg-nt-010",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which command makes inside hosts reach outside server 10.1.1.20 under the address 172.16.2.20?",
+        "optionen":  [
+                         "ip nat inside destination static 172.16.2.20 10.1.1.20",
+                         "ip nat outside source static 172.16.2.20 10.1.1.20",
+                         "ip nat outside source static 10.1.1.20 172.16.2.20",
+                         "ip nat inside source static 10.1.1.20 172.16.2.20"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "ip nat outside source static übersetzt Adressen von Outside-Hosts. Erst steht die echte Outside-Global-Adresse, dann die Outside-Local-Adresse, unter der das Innennetz den Host sieht."
+    },
+    {
+        "id":  "slg-nt-011",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "In the command \u0027ip nat outside source static A B\u0027, address A is the ___ address.",
+        "optionen":  [
+                         "outside local",
+                         "outside global",
+                         "inside local",
+                         "inside global"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei outside source static folgt auf die echte Adresse des externen Hosts (Outside Global) die Adresse, die innen verwendet wird (Outside Local) – analog zu inside source static (erst local, dann global aus Sicht des jeweiligen Netzes)."
+    },
+    {
+        "id":  "slg-nt-012",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In a typical internet edge design with only inside source PAT, how does the outside local address of an internet server compare to its outside global address?",
+        "optionen":  [
+                         "It equals the inside global address",
+                         "It is always an RFC 1918 address",
+                         "It is identical to the outside global address",
+                         "It is assigned from the NAT pool"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Solange keine Outside-NAT konfiguriert ist, wird die Zieladresse nicht verändert. Das Innennetz sieht den Server also unter seiner echten Adresse – Outside Local = Outside Global."
+    },
+    {
+        "id":  "slg-nt-013",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Übersetze den internen Mailserver 192.168.20.10 fest (1:1) auf die öffentliche Adresse 198.51.100.10.",
+        "bausteine":  [
+                          "ip",
+                          "nat",
+                          "inside",
+                          "source",
+                          "static",
+                          "192.168.20.10",
+                          "198.51.100.10",
+                          "outside",
+                          "list",
+                          "overload"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "nat",
+                        "inside",
+                        "source",
+                        "static",
+                        "192.168.20.10",
+                        "198.51.100.10"
+                    ],
+        "erklaerung":  "Statisches NAT: ip nat inside source static \u003cinside-local\u003e \u003cinside-global\u003e. Die lokale (private) Adresse steht zuerst."
+    },
+    {
+        "id":  "slg-nt-014",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer wants server 192.168.20.10 reachable as 198.51.100.10 but enters \u0027ip nat inside source static 198.51.100.10 192.168.20.10\u0027. What is the result?",
+        "optionen":  [
+                         "The router swaps the order automatically",
+                         "The mapping is reversed and the server is not reachable",
+                         "The command is rejected because of the order",
+                         "Internet users can reach the server as intended"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "IOS interpretiert die erste Adresse als Inside Local und die zweite als Inside Global. Die Zuordnung ist damit vertauscht, Pakete an 198.51.100.10 werden nicht zum Server übersetzt."
+    },
+    {
+        "id":  "slg-nt-015",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Right after \u0027ip nat inside source static 10.10.2.20 198.51.100.20\u0027 is configured, and before any traffic flows, what does \u0027show ip nat translations\u0027 display?",
+        "optionen":  [
+                         "One entry with protocol --- and the two addresses",
+                         "One tcp entry with ports 0 for both addresses",
+                         "An entry only after \u0027clear ip nat translation *\u0027",
+                         "Nothing until the first packet is translated"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Statische Übersetzungen stehen dauerhaft als einfacher Eintrag (Protokoll ---, nur Inside Global/Local) in der Tabelle – unabhängig davon, ob sie benutzt werden."
+    },
+    {
+        "id":  "slg-nt-016",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Server 10.10.2.20 is statically mapped to 198.51.100.20. While an outside host Telnets to it, the table shows:\n\ntcp 198.51.100.20:23  10.10.2.20:23  203.0.113.30:40112  203.0.113.30:40112\n---  198.51.100.20     10.10.2.20     ---                 ---\n\nWhat is the first line?",
+        "optionen":  [
+                         "A dynamic pool entry assigned to the outside host 203.0.113.30",
+                         "A PAT entry that replaces the static mapping during the session",
+                         "An extended entry for the session, created from the static mapping",
+                         "A second static entry the administrator added for Telnet"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Für die laufende Sitzung legt der Router einen Extended Entry mit Protokoll und Ports an. Die Zeile mit --- ist der dauerhafte Simple Entry der statischen Zuordnung."
+    },
+    {
+        "id":  "slg-nt-017",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why is a public web server usually published with static NAT rather than relying on PAT on the outside interface?",
+        "optionen":  [
+                         "Static NAT encrypts the traffic to the server",
+                         "PAT cannot translate TCP port 80 or 443",
+                         "Static NAT lets outside clients start connections to it",
+                         "PAT requires a separate pool for every server"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Eine statische Zuordnung existiert dauerhaft, deshalb kann ein Client im Internet die Verbindung von außen aufbauen. Bei PAT entsteht ein Eintrag erst durch Verkehr von innen."
+    },
+    {
+        "id":  "slg-nt-018",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Leite nur HTTP (TCP 80) von der öffentlichen Adresse 198.51.100.10 an den internen Webserver 192.168.20.10, Port 80 weiter (statisches PAT).",
+        "bausteine":  [
+                          "ip",
+                          "nat",
+                          "inside",
+                          "source",
+                          "static",
+                          "tcp",
+                          "192.168.20.10",
+                          "80",
+                          "198.51.100.10",
+                          "udp",
+                          "overload",
+                          "list"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "nat",
+                        "inside",
+                        "source",
+                        "static",
+                        "tcp",
+                        "192.168.20.10",
+                        "80",
+                        "198.51.100.10",
+                        "80"
+                    ],
+        "erklaerung":  "Statisches PAT/Port-Forwarding: ip nat inside source static tcp \u003clocal-ip\u003e \u003clocal-port\u003e \u003cglobal-ip\u003e \u003cglobal-port\u003e. Nur dieser Port wird weitergeleitet, die globale Adresse bleibt für andere Zwecke nutzbar."
+    },
+    {
+        "id":  "slg-nt-019",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Internet users must reach a web server 192.168.20.10 (listening on TCP 80) at 198.51.100.10 port 8080. Which command achieves this?",
+        "optionen":  [
+                         "ip nat inside source static tcp 198.51.100.10 8080 192.168.20.10 80",
+                         "ip nat inside source static tcp 192.168.20.10 80 198.51.100.10 8080",
+                         "ip nat outside source static tcp 198.51.100.10 8080 192.168.20.10 80",
+                         "ip nat inside source static tcp 192.168.20.10 8080 198.51.100.10 80"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Zuerst kommt die Inside-Local-Seite (Server-IP und tatsächlicher Port 80), dann die Inside-Global-Seite (öffentliche IP und extern sichtbarer Port 8080)."
+    },
+    {
+        "id":  "slg-nt-020",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Die öffentliche Adresse von GigabitEthernet0/0/1 wird per DHCP bezogen. Leite HTTPS (TCP 443) auf dieser Interface-Adresse an den internen Server 192.168.20.10, Port 443 weiter.",
+        "bausteine":  [
+                          "ip",
+                          "nat",
+                          "inside",
+                          "source",
+                          "static",
+                          "tcp",
+                          "192.168.20.10",
+                          "443",
+                          "interface",
+                          "GigabitEthernet0/0/1",
+                          "pool",
+                          "overload"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "nat",
+                        "inside",
+                        "source",
+                        "static",
+                        "tcp",
+                        "192.168.20.10",
+                        "443",
+                        "interface",
+                        "GigabitEthernet0/0/1",
+                        "443"
+                    ],
+        "erklaerung":  "Statt einer festen globalen IP kann beim statischen PAT das Schlüsselwort interface stehen. Die Weiterleitung folgt dann automatisch der aktuellen (z. B. per DHCP bezogenen) Interface-Adresse."
+    },
+    {
+        "id":  "slg-nt-021",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which is a limitation of plain static NAT compared with PAT?",
+        "optionen":  [
+                         "It does not save any public IPv4 addresses",
+                         "It only works with UDP-based applications",
+                         "It needs an access list for every host",
+                         "It cannot be used for inbound connections"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Statisches NAT bildet jede interne Adresse auf genau eine öffentliche ab (1:1). Es spart deshalb keine öffentlichen Adressen – das leistet erst PAT."
+    },
+    {
+        "id":  "slg-nt-022",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 is configured with \u0027ip nat inside source static network 10.1.1.0 198.51.100.0 /24\u0027. Which inside global address does host 10.1.1.25 use?",
+        "optionen":  [
+                         "198.51.100.0 with a unique source port",
+                         "198.51.100.1",
+                         "A free address chosen from 198.51.100.0/24",
+                         "198.51.100.25"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Static Network NAT übersetzt nur den Netzanteil und lässt den Hostanteil gleich. 10.1.1.25 wird daher fest zu 198.51.100.25."
+    },
+    {
+        "id":  "slg-nt-023",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege den NAT-Pool PUB mit den Adressen 203.0.113.33 bis 203.0.113.46 und der Maske 255.255.255.240 an.",
+        "bausteine":  [
+                          "ip",
+                          "nat",
+                          "pool",
+                          "PUB",
+                          "203.0.113.33",
+                          "203.0.113.46",
+                          "netmask",
+                          "255.255.255.240",
+                          "0.0.0.15",
+                          "inside",
+                          "prefix"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "nat",
+                        "pool",
+                        "PUB",
+                        "203.0.113.33",
+                        "203.0.113.46",
+                        "netmask",
+                        "255.255.255.240"
+                    ],
+        "erklaerung":  "Syntax: ip nat pool \u003cname\u003e \u003cstart-ip\u003e \u003cend-ip\u003e {netmask \u003cmaske\u003e | prefix-length \u003clänge\u003e}. Hier wird eine Subnetzmaske erwartet, keine Wildcard."
+    },
+    {
+        "id":  "slg-nt-024",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A NAT pool is defined with \u0027ip nat pool P 203.0.113.65 203.0.113.94 netmask 255.255.255.224\u0027. How many inside hosts can be translated at the same time with dynamic NAT and no overload?",
+        "optionen":  [
+                         "30",
+                         "62",
+                         "32",
+                         "29"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Pool umfasst .65 bis .94, also 30 Adressen. Ohne overload bekommt jeder Host eine eigene Adresse, daher maximal 30 gleichzeitige Hosts."
+    },
+    {
+        "id":  "slg-nt-026",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Übersetze die von ACL 10 erlaubten Quelladressen dynamisch mit Adressen aus dem Pool PUB (ohne PAT).",
+        "bausteine":  [
+                          "ip",
+                          "nat",
+                          "inside",
+                          "source",
+                          "list",
+                          "10",
+                          "pool",
+                          "PUB",
+                          "overload",
+                          "interface",
+                          "static"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "nat",
+                        "inside",
+                        "source",
+                        "list",
+                        "10",
+                        "pool",
+                        "PUB"
+                    ],
+        "erklaerung":  "Dynamisches NAT verknüpft die ACL (welche Quellen) mit dem Pool (welche globalen Adressen). Ohne overload erhält jeder Host eine eigene Pool-Adresse."
+    },
+    {
+        "id":  "slg-nt-027",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Users report that only some of them reach the internet. \u0027show ip nat statistics\u0027 contains:\n\npool PUB: netmask 255.255.255.240\n start 203.0.113.33 end 203.0.113.46\n type generic, total addresses 14, allocated 14 (100%), misses 23\n\nWhat is the most likely cause?",
+        "optionen":  [
+                         "The pool netmask does not match the outside interface",
+                         "The outside interface lacks the ip nat outside command",
+                         "The ACL bound to the pool does not match the users",
+                         "The pool is exhausted because overload is not configured"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Alle 14 Adressen sind vergeben, und der Pool-Zähler misses zeigt fehlgeschlagene Zuweisungen. Ohne overload bekommt jeder Host eine eigene Adresse; weitere Hosts bleiben ohne Übersetzung."
+    },
+    {
+        "id":  "slg-nt-028",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In the \u0027Hits: 389  Misses: 12\u0027 line of \u0027show ip nat statistics\u0027, what does the Misses counter represent?",
+        "optionen":  [
+                         "Lookups with no entry, so a new translation was needed",
+                         "Packets that did not match the NAT access list",
+                         "Translations that expired because of the timeout",
+                         "Packets dropped because the NAT pool was empty"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Hits zählt Lookups mit vorhandenem Eintrag, Misses Lookups ohne Eintrag, bei denen der Router eine neue Übersetzung anlegen muss. Ein Miss ist also nicht automatisch ein Fehler – Pool-Erschöpfung zeigt der misses-Zähler in der Pool-Zeile."
+    },
+    {
+        "id":  "slg-nt-029",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "By default, a simple dynamic NAT entry (address-only, no ports) is removed after ___ of inactivity.",
+        "optionen":  [
+                         "5 minutes",
+                         "24 hours",
+                         "1 hour",
+                         "60 seconds"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Standard-Timeout für einfache dynamische Übersetzungen beträgt 86 400 s (24 h). Kurzlebige Einträge wie ICMP- oder UDP-Sessions laufen deutlich schneller ab."
+    },
+    {
+        "id":  "slg-nt-030",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Setze den Inaktivitäts-Timeout für einfache dynamische NAT-Übersetzungen auf 3600 Sekunden.",
+        "bausteine":  [
+                          "ip",
+                          "nat",
+                          "translation",
+                          "timeout",
+                          "3600",
+                          "udp-timeout",
+                          "inside",
+                          "hold-time"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "nat",
+                        "translation",
+                        "timeout",
+                        "3600"
+                    ],
+        "erklaerung":  "ip nat translation timeout \u003csekunden\u003e ändert den Timeout für dynamische Übersetzungen ohne Ports (Default 86 400 s). Für einzelne Protokolle gibt es eigene Befehle wie udp-timeout."
+    },
+    {
+        "id":  "slg-nt-031",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What is the default timeout for a UDP extended NAT translation on Cisco IOS?",
+        "optionen":  [
+                         "86400 seconds",
+                         "3600 seconds",
+                         "60 seconds",
+                         "300 seconds"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "UDP-Einträge laufen standardmäßig nach 300 s (ip nat translation udp-timeout) ab. 86 400 s gilt für einfache Einträge und TCP-Sessions, 60 s u. a. für DNS und ICMP."
+    },
+    {
+        "id":  "slg-nt-032",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 uses dynamic NAT with pool PUB (no static entries). An internet host sends a packet to a pool address that is currently not assigned to any inside host. What happens?",
+        "optionen":  [
+                         "R1 translates it to the inside interface address",
+                         "R1 assigns the address to a random inside host",
+                         "R1 forwards it to the first host in the ACL",
+                         "No translation exists, so it is not forwarded inside"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bei dynamischem NAT entsteht eine Zuordnung erst durch Verkehr von innen. Ohne Eintrag weiß der Router nicht, welcher Inside-Local-Adresse das Paket gehört."
+    },
+    {
+        "id":  "slg-nt-033",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Host 10.10.1.10 received pool address 198.51.100.100 yesterday. Its simple dynamic entry has since timed out. What can happen at its next connection?",
+        "optionen":  [
+                         "It is blocked until the entry is cleared manually",
+                         "It always receives 198.51.100.100 again",
+                         "It is translated to the outside interface address",
+                         "It may receive a different address from the pool"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Dynamisches NAT reserviert keine feste Adresse pro Host. Nach Ablauf des Eintrags wird beim nächsten Fluss eine freie Pool-Adresse vergeben, das kann eine andere sein."
+    },
+    {
+        "id":  "slg-nt-034",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Die ISP-Adressen im Pool PUB reichen nicht für alle Hosts. Übersetze die Quellen aus ACL 20 mit PAT über diesen Pool.",
+        "bausteine":  [
+                          "ip",
+                          "nat",
+                          "inside",
+                          "source",
+                          "list",
+                          "20",
+                          "pool",
+                          "PUB",
+                          "overload",
+                          "interface",
+                          "extendable"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "nat",
+                        "inside",
+                        "source",
+                        "list",
+                        "20",
+                        "pool",
+                        "PUB",
+                        "overload"
+                    ],
+        "erklaerung":  "overload am Ende aktiviert PAT. Viele Hosts teilen sich dann die Pool-Adressen und werden über Ports unterschieden; sind die Ports einer Adresse belegt, nutzt PAT die nächste."
+    },
+    {
+        "id":  "slg-nt-035",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 runs PAT on 198.51.100.2 and shows:\n\ntcp 198.51.100.2:41002  10.10.3.10:41002  203.0.113.30:23  203.0.113.30:23\ntcp 198.51.100.2:52817  10.10.3.20:52817  203.0.113.30:23  203.0.113.30:23\n\nA packet arrives from 203.0.113.30:23 to 198.51.100.2:52817. Where does R1 send it?",
+        "optionen":  [
+                         "To 10.10.3.20 on port 52817",
+                         "To R1 itself, since it owns 198.51.100.2",
+                         "To both inside hosts",
+                         "To 10.10.3.10 on port 41002"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beide Sessions nutzen dieselbe Inside-Global-Adresse. Der Zielport 52817 identifiziert eindeutig den Eintrag von 10.10.3.20."
+    },
+    {
+        "id":  "slg-nt-036",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "When creating a PAT translation, Cisco IOS first tries to ___.",
+        "optionen":  [
+                         "use a random port from 49152 to 65535",
+                         "use the destination port as source port",
+                         "use the lowest free port above 1024",
+                         "keep the original source port"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "PAT behält nach Möglichkeit den ursprünglichen Quellport bei. Erst wenn dieser auf der Inside-Global-Adresse schon belegt ist, sucht es einen anderen freien Port."
+    },
+    {
+        "id":  "slg-nt-037",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "With PAT on a single address, host B opens a session from source port 700, but port 700 is already used by host A\u0027s translation. In which range does IOS look for a replacement port?",
+        "optionen":  [
+                         "1024 to 65535",
+                         "0 to 511",
+                         "512 to 1023",
+                         "49152 to 65535"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "PAT sucht den ersten freien Port in der Portgruppe des Originalports: 0–511, 512–1023 oder 1024–65535. Port 700 gehört zur Gruppe 512–1023."
+    },
+    {
+        "id":  "slg-nt-038",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "PAT must replace a source port that is already in use. Match the original source port to the port group IOS searches first.",
+        "paare":  [
+                      [
+                          "Port 123",
+                          "0 to 511"
+                      ],
+                      [
+                          "Port 993",
+                          "512 to 1023"
+                      ],
+                      [
+                          "Port 50000",
+                          "1024 to 65535"
+                      ]
+                  ],
+        "erklaerung":  "IOS bleibt bei der Ersatzsuche in derselben Portgruppe wie der Originalport. So bleiben z. B. privilegierte Ports in ihrem Bereich."
+    },
+    {
+        "id":  "slg-nt-039",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "PAT uses a pool with two addresses. On the first address, no port in the needed port group is free. What does IOS do next?",
+        "optionen":  [
+                         "It switches to dynamic one-to-one translation",
+                         "It drops the packet and increments the misses counter",
+                         "It reuses a port by sharing it between two hosts",
+                         "It moves to the next address and tries the original port"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Findet PAT keinen freien Port, wechselt es zur nächsten Pool-Adresse und versucht dort wieder den Originalport. Das geht weiter, bis Ports und Adressen erschöpft sind."
+    },
+    {
+        "id":  "slg-nt-040",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which kind of translation entry does PAT create, and why?",
+        "optionen":  [
+                         "Outside entries, because the destination is rewritten",
+                         "Simple entries, because only addresses are rewritten",
+                         "Extended entries, because protocol and ports are stored",
+                         "Static entries, because the interface address is fixed"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "PAT unterscheidet die Hosts über Ports. Dafür speichert es Protokoll, Adressen und Ports in einem Extended Entry. Ein Simple Entry enthält nur die Adresszuordnung."
+    },
+    {
+        "id":  "slg-nt-041",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A branch with 200 users receives exactly one public IPv4 address from its ISP. Which NAT method lets all users access the internet at the same time?",
+        "optionen":  [
+                         "PAT (NAT overload)",
+                         "Dynamic NAT with a pool",
+                         "Static NAT",
+                         "Outside source NAT"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Nur PAT bildet viele interne Adressen über unterschiedliche Ports auf eine einzige öffentliche Adresse ab. Statisches und dynamisches NAT brauchen je Host eine eigene Adresse."
+    },
+    {
+        "id":  "slg-nt-042",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An internet host sends an unsolicited TCP SYN to the PAT address of R1 on port 3389. No static mapping exists. What is the result?",
+        "optionen":  [
+                         "No entry matches, so it is not translated to any inside host",
+                         "R1 forwards it to the host that used port 3389 last",
+                         "R1 creates a new extended entry for the session",
+                         "R1 forwards it to the first address in the NAT ACL"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ohne statische Zuordnung entstehen PAT-Einträge nur durch Verkehr von innen. Eine unaufgeforderte Verbindung von außen findet keinen Eintrag und erreicht kein internes Gerät."
+    },
+    {
+        "id":  "slg-nt-043",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is the number of simultaneous PAT sessions per inside global address limited to roughly 65,000?",
+        "optionen":  [
+                         "Each host is limited to 255 sessions",
+                         "The TCP and UDP port fields are 16 bits long",
+                         "IOS reserves ports below 1024 for the router",
+                         "The NAT table can hold only 65,536 entries"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "PAT unterscheidet Sessions über die Portnummer. Das Portfeld ist 16 Bit breit, daher gibt es theoretisch rund 65 536 Werte pro Adresse und Protokoll."
+    },
+    {
+        "id":  "slg-nt-044",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The ISP assigns the R1 WAN interface its address by DHCP, and the address changes from time to time. Which PAT configuration keeps working without changes?",
+        "optionen":  [
+                         "ip nat inside source list 1 pool WAN overload",
+                         "ip nat inside source list 1 interface Gi0/0/1 overload",
+                         "ip nat inside source static 10.1.1.0 interface Gi0/0/1",
+                         "ip nat pool WAN dhcp prefix-length 30 overload"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit dem Schlüsselwort interface verwendet PAT immer die aktuelle Adresse des Interfaces. Ein Pool mit festen Adressen müsste bei jeder Änderung angepasst werden."
+    },
+    {
+        "id":  "slg-nt-045",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "When is PAT with a pool (\u0027pool ... overload\u0027) preferred over PAT on the interface address?",
+        "optionen":  [
+                         "When there are so many sessions that one address runs short of ports",
+                         "When the router must also run static NAT for a server",
+                         "When inside hosts need inbound connections from the internet",
+                         "When the WAN address is learned via DHCP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mehrere Adressen im Pool vervielfachen die verfügbaren Ports. Reicht eine einzige Adresse bei sehr vielen Sessions nicht, verteilt PAT die Übersetzungen auf weitere Pool-Adressen."
+    },
+    {
+        "id":  "slg-nt-046",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Hosts in 10.10.1.0/24 are not translated. The NAT ACL is \u0027access-list 10 permit 10.10.1.0 255.255.255.0\u0027. What is the problem?",
+        "optionen":  [
+                         "Standard ACLs cannot be used for NAT",
+                         "It matches all addresses except the 10.10.1.0/24 range",
+                         "The ACL needs an explicit \u0027permit any\u0027 at the end",
+                         "It matches only addresses ending in .0, not the subnet"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "ACLs nutzen Wildcard-Masken. 255.255.255.0 ignoriert die ersten drei Oktette und verlangt im letzten Oktett exakt 0. Richtig wäre 0.0.0.255."
+    },
+    {
+        "id":  "slg-nt-047",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A new VLAN 10.10.4.0/24 was added to R1. Its hosts cannot reach the internet, while 10.10.1.0/24 works. The NAT ACL has only \u0027permit 10.10.1.0 0.0.0.255\u0027. What happens to the new VLAN\u0027s traffic?",
+        "optionen":  [
+                         "It is translated with the inside interface address",
+                         "R1 drops it because the NAT ACL denies it",
+                         "It is translated but the replies are dropped",
+                         "It is sent untranslated and dropped upstream"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Was die NAT-ACL nicht erlaubt, wird nicht übersetzt – aber trotzdem normal geroutet. Das Paket verlässt R1 mit privater Quelle, und das Internet kann nicht antworten."
+    },
+    {
+        "id":  "slg-nt-048",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does a \u0027deny\u0027 entry in an ACL that is referenced by \u0027ip nat inside source list\u0027 mean for matching packets?",
+        "optionen":  [
+                         "The packet is translated with the interface address",
+                         "The packet is translated only for return traffic",
+                         "The packet is dropped on the inside interface",
+                         "The packet is not translated, but is still routed"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die NAT-ACL wählt nur aus, welcher Verkehr übersetzt wird. Sie filtert nicht: Abgelehnter Verkehr wird ohne Übersetzung weitergeleitet."
+    },
+    {
+        "id":  "slg-nt-049",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Why does Cisco advise against \u0027access-list 1 permit any\u0027 as the NAT source ACL?",
+        "optionen":  [
+                         "IOS rejects \u0027any\u0027 in NAT access lists",
+                         "It can make NAT consume excessive router resources",
+                         "It prevents static NAT entries from working",
+                         "It disables CEF switching on the outside interface"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit permit any würde jeder Verkehr, der vom Inside- zum Outside-Interface läuft, Übersetzungen anlegen. Das kann unnötig viel Speicher und CPU kosten, deshalb sollten die Quellnetze genau angegeben werden."
+    },
+    {
+        "id":  "slg-nt-050",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 translates 10.10.0.0/16 with PAT, but traffic to a site-to-site VPN peer network 10.20.0.0/16 must not be translated. Which NAT ACL achieves this?",
+        "optionen":  [
+                         "permit ip 10.10.0.0 0.0.255.255 any, then deny ip 10.10.0.0 0.0.255.255 10.20.0.0 0.0.255.255",
+                         "deny ip 10.10.0.0 0.0.255.255 10.20.0.0 0.0.255.255, then permit ip 10.10.0.0 0.0.255.255 any",
+                         "deny ip 10.20.0.0 0.0.255.255 10.10.0.0 0.0.255.255, then permit ip any 10.10.0.0 0.0.255.255",
+                         "permit ip 10.10.0.0 0.0.255.255 10.20.0.0 0.0.255.255, then deny ip any any"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "ACLs werden von oben nach unten geprüft. Zuerst muss der VPN-Verkehr per deny von der Übersetzung ausgenommen werden, danach erlaubt ein permit den restlichen Verkehr des Quellnetzes."
+    },
+    {
+        "id":  "slg-nt-051",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Erstelle die Standard-ACL 10, die das Netz 10.10.1.0/24 für NAT erfasst.",
+        "bausteine":  [
+                          "access-list",
+                          "10",
+                          "permit",
+                          "10.10.1.0",
+                          "0.0.0.255",
+                          "255.255.255.0",
+                          "deny",
+                          "any"
+                      ],
+        "loesung":  [
+                        "access-list",
+                        "10",
+                        "permit",
+                        "10.10.1.0",
+                        "0.0.0.255"
+                    ],
+        "erklaerung":  "Die NAT-ACL nutzt eine Wildcard-Maske: 0.0.0.255 für ein /24. Eine Subnetzmaske wie 255.255.255.0 würde ganz andere Adressen erfassen."
+    },
+    {
+        "id":  "slg-nt-052",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 has inside LANs on e0/0, e0/1 and e0/2 and its WAN on e0/3. The PAT ACL includes 10.10.3.0/24 (on e0/2), but these hosts are not translated, while the others are. \u0027show ip nat statistics\u0027 lists \u0027Inside interfaces: Ethernet0/0, Ethernet0/1\u0027. What is the fix?",
+        "optionen":  [
+                         "Add \u0027ip nat inside\u0027 on Ethernet0/2",
+                         "Add \u0027ip nat outside\u0027 on Ethernet0/2",
+                         "Add \u0027overload\u0027 to the static NAT rule",
+                         "Add a default route via Ethernet0/2"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Inside-Source-NAT greift nur für Pakete, die auf einem ip-nat-inside-Interface eingehen und über ein Outside-Interface hinausgehen. Ethernet0/2 fehlt in der Liste der Inside-Interfaces."
+    },
+    {
+        "id":  "slg-nt-053",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ip nat statistics\u0027 on R1 shows \u0027Outside interfaces: GigabitEthernet0/0/0\u0027 and \u0027Inside interfaces: GigabitEthernet0/0/1\u0027. Gi0/0/0 connects to the LAN and Gi0/0/1 to the ISP. What is the effect on \u0027ip nat inside source list 1 interface Gi0/0/1 overload\u0027?",
+        "optionen":  [
+                         "LAN traffic is translated normally",
+                         "LAN traffic is not translated, since roles are swapped",
+                         "Only return traffic from the ISP is translated",
+                         "Translation works, but only for TCP sessions"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Rollen sind vertauscht: Die LAN-Pakete kommen auf einem Outside-Interface an. Inside-Source-NAT übersetzt nur Pakete von Inside nach Outside, also entsteht keine Übersetzung."
+    },
+    {
+        "id":  "slg-nt-054",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On a classic (non-NVI) NAT router, what happens to a packet arriving on the outside interface and destined for an inside global address?",
+        "optionen":  [
+                         "It is routed, translated, and routed again",
+                         "It is translated only after the output ACL check",
+                         "It is translated first, then routed",
+                         "It is routed first, then translated"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Von außen nach innen übersetzt der Router zuerst die Inside-Global-Zieladresse in die Inside-Local-Adresse und routet dann anhand dieser Adresse."
+    },
+    {
+        "id":  "slg-nt-055",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Return traffic to pool address 198.51.100.100 reaches R1. R1 itself has no specific route for 198.51.100.100, yet the packet reaches inside host 10.10.1.10. Why?",
+        "optionen":  [
+                         "Return packets are always process-switched",
+                         "The NAT pool installs a static host route",
+                         "NAT translates first, so R1 routes on 10.10.1.10",
+                         "R1 uses the default route for every inside host"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei outside→inside erfolgt erst die Übersetzung, dann das Routing. Die Routing-Entscheidung basiert also auf der Inside-Local-Adresse, für die R1 eine direkt verbundene Route hat."
+    },
+    {
+        "id":  "slg-nt-056",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "PAT is correctly configured on R1, but \u0027show ip nat translations\u0027 stays empty while users try to browse. R1 has no default route and no route to the internet destinations. Why?",
+        "optionen":  [
+                         "PAT only starts after the first static entry",
+                         "The NAT ACL needs a route-map for the internet",
+                         "The outside interface rejects untranslated packets",
+                         "Routing fails before translation, so packets are dropped"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Von innen nach außen routet der Router zuerst. Ohne Route wird das Paket verworfen, bevor es übersetzt werden könnte – es entsteht kein Eintrag."
+    },
+    {
+        "id":  "slg-nt-057",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An inbound ACL on R1\u0027s NAT inside interface should block host 10.10.1.10 (translated to 198.51.100.100). Which address must the ACL reference?",
+        "optionen":  [
+                         "Both addresses in two separate entries",
+                         "198.51.100.100, the inside global address",
+                         "The outside local address of the destination",
+                         "10.10.1.10, the inside local address"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Eine eingehende ACL am Inside-Interface wird vor der Übersetzung geprüft. Das Paket trägt zu diesem Zeitpunkt noch die Inside-Local-Adresse 10.10.1.10."
+    },
+    {
+        "id":  "slg-nt-058",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An outbound ACL is applied on R1\u0027s NAT outside interface. For traffic going from inside to outside, which source address does that ACL see?",
+        "optionen":  [
+                         "The inside global address",
+                         "The outside local address",
+                         "The inside interface address",
+                         "The inside local address"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Inside→outside: Routing, dann NAT, danach die ausgehende ACL. Wenn die Outbound-ACL geprüft wird, ist die Quelle schon die Inside-Global-Adresse."
+    },
+    {
+        "id":  "slg-nt-059",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Server 10.10.2.20 is published as 198.51.100.20. An inbound ACL on the NAT outside interface should permit only HTTPS to this server. Which destination must the ACL match?",
+        "optionen":  [
+                         "10.10.2.0 0.0.0.255 eq 443",
+                         "Either address, NAT rewrites the ACL",
+                         "10.10.2.20 eq 443",
+                         "198.51.100.20 eq 443"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die eingehende ACL am Outside-Interface wird vor der Übersetzung geprüft. Das Paket ist dann noch an die Inside-Global-Adresse 198.51.100.20 adressiert."
+    },
+    {
+        "id":  "slg-nt-060",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Match the traffic direction or NAT mode to its order of operations.",
+        "paare":  [
+                      [
+                          "Classic NAT, inside to outside",
+                          "Routing first, then translation"
+                      ],
+                      [
+                          "Classic NAT, outside to inside",
+                          "Translation first, then routing"
+                      ],
+                      [
+                          "NAT Virtual Interface",
+                          "Routing, translation, then routing again"
+                      ]
+                  ],
+        "erklaerung":  "Klassisches NAT ist asymmetrisch: nach außen erst Routing, nach innen erst Übersetzung. NVI routet vor und nach der Übersetzung und ist damit symmetrisch."
+    },
+    {
+        "id":  "slg-nt-061",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "For a packet going from a NAT inside interface to a NAT outside interface on classic IOS NAT, which two operations occur before the address translation? (Choose two.)",
+        "optionen":  [
+                         "Routing decision",
+                         "Rewriting of the Layer 2 header for the next hop",
+                         "Outbound ACL check on the outside interface",
+                         "Inbound ACL check on the inside interface",
+                         "IPsec encryption for a crypto map on the outside interface"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Reihenfolge inside→outside: Eingangs-ACL, Routing, dann NAT. Erst danach folgen Verschlüsselung, Ausgangs-ACL und das Bauen des neuen Layer-2-Headers."
+    },
+    {
+        "id":  "slg-nt-062",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus Ethernet0/0 (classic IOS, nicht IOS XE): Aktiviere NAT für dieses Interface im NVI-Modus.",
+        "bausteine":  [
+                          "ip",
+                          "nat",
+                          "enable",
+                          "inside",
+                          "outside",
+                          "virtual"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "nat",
+                        "enable"
+                    ],
+        "erklaerung":  "NVI nutzt ip nat enable auf allen beteiligten Interfaces. Eine Rolle inside oder outside wird nicht vergeben."
+    },
+    {
+        "id":  "slg-nt-063",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus (NVI, classic IOS): Übersetze die Quellen aus ACL 10 per PAT auf die Adresse von Ethernet0/1.",
+        "bausteine":  [
+                          "ip",
+                          "nat",
+                          "source",
+                          "list",
+                          "10",
+                          "interface",
+                          "Ethernet0/1",
+                          "overload",
+                          "inside",
+                          "outside"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "nat",
+                        "source",
+                        "list",
+                        "10",
+                        "interface",
+                        "Ethernet0/1",
+                        "overload"
+                    ],
+        "erklaerung":  "Bei NVI entfällt im globalen Befehl das Schlüsselwort inside: ip nat source list ... Die Rollenverteilung inside/outside gibt es dort nicht."
+    },
+    {
+        "id":  "slg-nt-064",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "With NAT Virtual Interface, the router performs routing, then translation, and then ___.",
+        "optionen":  [
+                         "CEF punting to the CPU",
+                         "the output ACL check only",
+                         "a second translation",
+                         "routing again"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "NVI routet vor und nach der Übersetzung. Durch die zweite Routing-Entscheidung auf Basis der übersetzten Adresse sind auch Flüsse zwischen klassisch inneren Interfaces möglich."
+    },
+    {
+        "id":  "slg-nt-065",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Internal users try to reach the company web server by its public static NAT address 198.51.100.20, while the server sits on another inside interface of the same classic NAT router. The connection fails. Which feature solves this without DNS changes?",
+        "optionen":  [
+                         "Configuring \u0027ip nat outside\u0027 on the server LAN",
+                         "A second static NAT for the client subnet",
+                         "Adding \u0027overload\u0027 to the static NAT entry",
+                         "NAT Virtual Interface with \u0027ip nat enable\u0027"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Klassisches NAT übersetzt nicht zwischen zwei Inside-Interfaces (Hairpinning). NVI routet nach der Übersetzung erneut und unterstützt solche inside-zu-inside-Flüsse."
+    },
+    {
+        "id":  "slg-nt-066",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer wants to use \u0027ip nat enable\u0027 on a Cisco ISR 4000 router running IOS XE. According to Cisco, what applies?",
+        "optionen":  [
+                         "NVI is the only NAT mode, so inside/outside is ignored",
+                         "NVI works only for static NAT, not for PAT rules",
+                         "NVI is not supported, so classic inside/outside NAT is used",
+                         "NVI needs a separate security license on IOS XE"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "NAT Virtual Interface wird unter IOS XE nicht unterstützt. Dort wird NAT klassisch mit ip nat inside und ip nat outside konfiguriert."
+    },
+    {
+        "id":  "slg-nt-067",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On a classic IOS router, the first \u0027ip nat inside\u0027 command produces \u0027%LINEPROTO-5-UPDOWN: Line protocol on Interface NVI0, changed state to up\u0027. What does this mean?",
+        "optionen":  [
+                         "A virtual tunnel to the ISP was established",
+                         "The NAT inside interface is now in a VRF",
+                         "IOS created an internal NVI interface to support NAT",
+                         "The router switched all interfaces to NVI mode"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "IOS legt intern ein NVI0-Interface an, um NAT abzuwickeln. Die klassische inside/outside-Konfiguration bleibt davon unberührt."
+    },
+    {
+        "id":  "slg-nt-068",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "To view translations created by NAT Virtual Interface rules, use the command ___.",
+        "optionen":  [
+                         "show nat virtual-interface",
+                         "show ip nat nvi translations",
+                         "show ip nvi table",
+                         "show ip nat translations nvi"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "NVI-Übersetzungen werden mit show ip nat nvi translations angezeigt; passend dazu gibt es show ip nat nvi statistics."
+    },
+    {
+        "id":  "slg-nt-069",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three statements describe NAT Virtual Interface? (Choose three.)",
+        "optionen":  [
+                         "It is the recommended NAT mode on IOS XE",
+                         "Interfaces do not need an inside or outside role",
+                         "Interfaces are enabled with \u0027ip nat enable\u0027",
+                         "Routing is performed before and after translation",
+                         "LAN interfaces still need \u0027ip nat inside\u0027"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "NVI arbeitet ohne inside/outside-Rollen, aktiviert NAT per ip nat enable und routet zweimal. Unter IOS XE wird NVI nicht unterstützt."
+    },
+    {
+        "id":  "slg-nt-070",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Match each command to its NAT mode and role.",
+        "paare":  [
+                      [
+                          "ip nat enable",
+                          "NVI: enables NAT on an interface"
+                      ],
+                      [
+                          "ip nat inside",
+                          "Classic NAT: marks an inside interface"
+                      ],
+                      [
+                          "ip nat source list 1 interface e0/1 overload",
+                          "NVI: PAT rule"
+                      ],
+                      [
+                          "ip nat inside source list 1 interface e0/1 overload",
+                          "Classic NAT: PAT rule"
+                      ]
+                  ],
+        "erklaerung":  "Klassisches NAT arbeitet mit Rollen (inside/outside) und dem Schlüsselwort inside im globalen Befehl. Bei NVI fehlt beides, stattdessen ip nat enable."
+    },
+    {
+        "id":  "slg-nt-071",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An administrator runs \u0027clear ip nat translation *\u0027. The router has one static NAT mapping and several PAT sessions. What remains in the table?",
+        "optionen":  [
+                         "Only the static NAT entry",
+                         "All entries, the command only resets counters",
+                         "Nothing, the table is empty",
+                         "Only the active PAT sessions"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "clear ip nat translation * löscht alle dynamischen Übersetzungen. Statische Zuordnungen sind Teil der Konfiguration und bleiben stehen."
+    },
+    {
+        "id":  "slg-nt-072",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC: Lösche alle dynamischen NAT-Übersetzungen.",
+        "bausteine":  [
+                          "clear",
+                          "ip",
+                          "nat",
+                          "translation",
+                          "*",
+                          "all",
+                          "statistics",
+                          "show"
+                      ],
+        "loesung":  [
+                        "clear",
+                        "ip",
+                        "nat",
+                        "translation",
+                        "*"
+                    ],
+        "erklaerung":  "clear ip nat translation * entfernt alle dynamischen Einträge; statische Zuordnungen bleiben erhalten."
+    },
+    {
+        "id":  "slg-nt-073",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Dynamic NAT hosts still use addresses from the old pool after the engineer bound the ACL to a new pool. What should be done so they get addresses from the new pool?",
+        "optionen":  [
+                         "Reload the router",
+                         "Restart the DHCP service",
+                         "Clear the dynamic translations",
+                         "Remove the ip nat outside command"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bestehende dynamische Einträge bleiben bis zum Timeout bestehen (bei Simple Entries bis zu 24 h). Erst nach clear ip nat translation werden neue Übersetzungen aus dem neuen Pool erzeugt."
+    },
+    {
+        "id":  "slg-nt-074",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Match each command to what it does.",
+        "paare":  [
+                      [
+                          "show ip nat translations",
+                          "Lists the current translation entries"
+                      ],
+                      [
+                          "show ip nat statistics",
+                          "Shows counters, NAT interfaces, and pool usage"
+                      ],
+                      [
+                          "clear ip nat translation *",
+                          "Removes all dynamic translation entries"
+                      ],
+                      [
+                          "debug ip nat",
+                          "Displays each translation as it happens"
+                      ]
+                  ],
+        "erklaerung":  "Die Tabelle zeigt einzelne Einträge, statistics liefert Zähler und Konfigurationsüberblick, clear löscht dynamische Einträge, debug zeigt Übersetzungen live."
+    },
+    {
+        "id":  "slg-nt-075",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer needs to see, for each NAT entry, when it was created, when it was last used, and when it will time out. Which command provides this?",
+        "optionen":  [
+                         "show ip nat translations verbose",
+                         "show ip nat pool detail",
+                         "show ip route nat",
+                         "show ip nat statistics"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit dem Zusatz verbose zeigt show ip nat translations pro Eintrag u. a. Erstellungszeit, letzte Nutzung und Timeout an."
+    },
+    {
+        "id":  "slg-nt-076",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two pieces of information does \u0027show ip nat statistics\u0027 provide? (Choose two.)",
+        "optionen":  [
+                         "The routes used to reach the outside networks",
+                         "The interfaces configured as NAT inside and outside",
+                         "Pool details such as total and allocated addresses",
+                         "The CPU load caused by NAT",
+                         "The MAC addresses of the translated hosts"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Die Statistik listet aktive Übersetzungen, Inside-/Outside-Interfaces, Hits/Misses und Pool-Belegung. Routen, MAC-Adressen und CPU-Last zeigt sie nicht."
+    },
+    {
+        "id":  "slg-nt-077",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show ip nat statistics\u0027 shows \u0027[Id: 2] access-list 20 interface Ethernet0/3 refcount 2\u0027. What does \u0027refcount 2\u0027 indicate?",
+        "optionen":  [
+                         "The ACL contains two permit statements",
+                         "Two translations currently use this mapping",
+                         "The interface has two secondary addresses",
+                         "The mapping was configured twice"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "refcount zählt die aktiven Übersetzungen, die auf dieser dynamischen Zuordnung beruhen. Mit zwei PAT-Sessions über diese Regel steht dort 2."
+    },
+    {
+        "id":  "slg-nt-078",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Dynamic NAT (no overload) shows after a ping:\n\nicmp 198.51.100.100:4  10.10.1.10:4  203.0.113.30:4  203.0.113.30:4\n---  198.51.100.100     10.10.1.10    ---             ---\n\nWhich entry keeps the pool address bound to 10.10.1.10 after the ping ends?",
+        "optionen":  [
+                         "The --- entry, until its inactivity timeout expires",
+                         "Both, they are deleted together after 60 seconds",
+                         "The icmp entry, it is kept for 24 hours",
+                         "Neither, the binding ends with the last echo reply"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der ICMP-Eintrag ist kurzlebig und läuft schnell ab. Die Adressbindung hält der einfache Eintrag (---), der erst nach seinem Inaktivitäts-Timeout (Standard 24 h) entfernt wird."
+    },
+    {
+        "id":  "slg-nt-079",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In the entry \u0027icmp 198.51.100.2:1033  10.10.3.10:7  203.0.113.30:7  203.0.113.30:7\u0027, what do the numbers after the colons represent?",
+        "optionen":  [
+                         "The ICMP type and code of the echo",
+                         "The number of echoes sent in the session",
+                         "The TTL values before and after translation",
+                         "The ICMP query identifier, used like a port"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "ICMP hat keine Ports. Für Echo-Pakete nutzt NAT den ICMP-Identifier wie einen Port und kann ihn bei PAT auch ändern, um Sessions zu unterscheiden."
+    },
+    {
+        "id":  "slg-nt-080",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Match each \u0027show ip nat translations\u0027 line to its meaning.",
+        "paare":  [
+                      [
+                          "---  198.51.100.20  10.10.2.20  ---  ---",
+                          "Static or dynamic one-to-one address mapping"
+                      ],
+                      [
+                          "tcp 198.51.100.2:41002  10.10.3.10:41002  203.0.113.30:23  203.0.113.30:23",
+                          "PAT session of an inside host to a Telnet server"
+                      ],
+                      [
+                          "tcp 198.51.100.20:80  10.10.2.20:80  ---  ---",
+                          "Static port forwarding for a web server"
+                      ]
+                  ],
+        "erklaerung":  "Einträge mit --- als Protokoll sind einfache Adresszuordnungen. Ein Eintrag mit Protokoll und vollständigem Outside-Teil ist eine Session; ein Eintrag mit Ports ohne Outside-Teil ist eine statische Portweiterleitung."
+    },
+    {
+        "id":  "slg-nt-081",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Server 10.10.2.20 has a static NAT mapping to 198.51.100.20. The server itself opens a connection to an update server on the internet. Which source address appears on the internet?",
+        "optionen":  [
+                         "198.51.100.20",
+                         "The outside interface address via PAT",
+                         "10.10.2.20",
+                         "A free address from the dynamic pool"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Statisches NAT gilt in beide Richtungen. Auch Verbindungen, die der Server selbst aufbaut, werden mit seiner festen Inside-Global-Adresse übersetzt."
+    },
+    {
+        "id":  "slg-nt-082",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Before NAT is configured, R1 can ping internet server 203.0.113.30, but inside server 10.10.2.20 cannot. Why?",
+        "optionen":  [
+                         "The server\u0027s default gateway points to the wrong router",
+                         "The server\u0027s private source address is not routed back",
+                         "ICMP echo from inside hosts is blocked by default on R1",
+                         "The ISP router has no route toward 203.0.113.0/24"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Pings von R1 tragen die öffentliche WAN-Adresse als Quelle, darauf kann geantwortet werden. Pakete mit RFC-1918-Quelle werden im Internet verworfen bzw. nicht zurückgeroutet."
+    },
+    {
+        "id":  "slg-nt-083",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "PAT works for inside hosts. The engineer then pings an internet host from R1 itself without specifying a source. Is this ping translated by the inside source rule?",
+        "optionen":  [
+                         "No, ICMP is never translated by PAT",
+                         "Yes, but only if the ACL contains the WAN address",
+                         "Yes, all traffic leaving the outside interface is translated",
+                         "No, it does not enter on an inside interface"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Inside-Source-NAT übersetzt Pakete, die auf einem Inside-Interface eingehen und über ein Outside-Interface hinausgehen. Vom Router selbst erzeugte Pakete kommen nicht über ein Inside-Interface und tragen ohnehin die WAN-Adresse."
+    },
+    {
+        "id":  "slg-nt-084",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An outside host sends a packet to static NAT address 198.51.100.20. Which value does R1 use as the key for its NAT table lookup?",
+        "optionen":  [
+                         "The source address of the outside host",
+                         "The inside global destination address",
+                         "The MAC address of the outside interface",
+                         "The inside local address of the server"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Für eingehende Pakete sucht der Router mit der Inside-Global-Zieladresse in der NAT-Tabelle und ersetzt sie dann durch die zugehörige Inside-Local-Adresse."
+    },
+    {
+        "id":  "slg-nt-085",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1\u0027s WAN link to the ISP is 198.51.100.0/30. The ISP also provides 192.0.2.0/28 for a PAT pool on R1. Outbound packets are translated to 192.0.2.x, but replies never arrive. What is missing?",
+        "optionen":  [
+                         "An inbound ACL on R1 permitting 192.0.2.0/28",
+                         "A second default route on R1 via the LAN",
+                         "A route on the ISP for 192.0.2.0/28 via R1",
+                         "An \u0027ip nat outside\u0027 on the inside LAN"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Pool-Adressen liegen nicht im Transfernetz. Damit Antworten an 192.0.2.x zu R1 kommen, muss der ISP dieses Netz zu R1 routen."
+    },
+    {
+        "id":  "slg-nt-086",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Match each NAT symptom to its most likely cause.",
+        "paare":  [
+                      [
+                          "Only the first inside host reaches the internet; the pool has one address",
+                          "Missing overload keyword"
+                      ],
+                      [
+                          "Hosts of one new VLAN leave untranslated; others work",
+                          "NAT ACL does not include the new subnet"
+                      ],
+                      [
+                          "Translations are created, but replies never return",
+                          "Upstream has no route to the pool addresses"
+                      ],
+                      [
+                          "No translations at all; LAN and WAN roles appear reversed",
+                          "Swapped ip nat inside and ip nat outside"
+                      ]
+                  ],
+        "erklaerung":  "Ohne overload braucht jeder Host eine eigene Adresse. Fehlt das Netz in der ACL, wird nicht übersetzt. Ohne Rückroute zum Pool kommen Antworten nicht an. Vertauschte Rollen verhindern jede Inside-Source-Übersetzung."
+    },
+    {
+        "id":  "slg-nt-087",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Users in 10.10.5.0/24 behind R1 cannot reach the internet. Relevant config:\n\naccess-list 1 permit 10.10.1.0 0.0.0.255\nip nat inside source list 1 interface Gi0/0/1 overload\ninterface Gi0/0/0\n ip address 10.10.1.1 255.255.255.0\n ip nat inside\ninterface Gi0/0/2\n ip address 10.10.5.1 255.255.255.0\ninterface Gi0/0/1\n ip nat outside\n\nWhich two changes are required? (Choose two.)",
+        "optionen":  [
+                         "Add \u0027ip nat inside\u0027 on Gi0/0/2",
+                         "Add \u0027ip nat enable\u0027 on Gi0/0/1",
+                         "Replace \u0027overload\u0027 with a NAT pool",
+                         "Add \u0027ip nat outside\u0027 on Gi0/0/2",
+                         "Add \u0027access-list 1 permit 10.10.5.0 0.0.0.255\u0027"
+                     ],
+        "richtig":  [
+                        0,
+                        4
+                    ],
+        "erklaerung":  "Das Netz 10.10.5.0/24 fehlt in der ACL, und Gi0/0/2 ist nicht als Inside-Interface markiert. Beides ist nötig, damit dessen Verkehr übersetzt wird."
+    },
+    {
+        "id":  "slg-nt-088",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three elements are required for dynamic inside source NAT with a pool on classic IOS? (Choose three.)",
+        "optionen":  [
+                         "An ip nat pool with the global addresses",
+                         "A route-map that matches the outside interface",
+                         "The overload keyword on the NAT rule",
+                         "An ACL that identifies the inside local addresses",
+                         "ip nat inside and ip nat outside on the interfaces"
+                     ],
+        "richtig":  [
+                        0,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Dynamisches NAT braucht Pool, Quell-ACL und die Interface-Rollen. overload ist nur für PAT nötig, eine Route-Map optional."
+    },
+    {
+        "id":  "slg-nt-089",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two NAT configurations allow an internet client to start a connection to an inside server without prior traffic from the inside? (Choose two.)",
+        "optionen":  [
+                         "PAT on the outside interface address",
+                         "Static NAT for the server\u0027s address",
+                         "Static PAT for the server\u0027s service port",
+                         "Dynamic NAT with a pool",
+                         "PAT with a pool and overload"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Nur statische Zuordnungen existieren dauerhaft. Dynamische Einträge (Pool oder PAT) entstehen erst durch Verkehr von innen."
+    },
+    {
+        "id":  "slg-nt-090",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "When PAT translates a reply from the internet back to the correct inside host, which two values does it use from the incoming packet? (Choose two.)",
+        "optionen":  [
+                         "DSCP marking",
+                         "IP TTL value",
+                         "Source MAC address",
+                         "Destination IP address (inside global)",
+                         "Destination port"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Rückwärts sucht PAT über Inside-Global-Adresse und -Port (zusammen mit der Outside-Adresse und dem Port) den passenden Eintrag. MAC, TTL und DSCP spielen keine Rolle."
+    },
+    {
+        "id":  "slg-nt-091",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two ACL statements match host 10.10.3.20 as a NAT source? (Choose two.)",
+        "optionen":  [
+                         "access-list 5 permit 10.10.0.0 0.0.255.255",
+                         "access-list 5 permit 10.10.3.0 0.0.0.15",
+                         "access-list 5 permit 10.10.3.0 0.0.0.255",
+                         "access-list 5 permit host 10.10.3.21",
+                         "access-list 5 permit 10.10.3.16 0.0.0.3"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "10.10.3.0 0.0.0.255 und 10.10.0.0 0.0.255.255 enthalten .20. 10.10.3.0 0.0.0.15 deckt .0–.15 ab, 10.10.3.16 0.0.0.3 nur .16–.19."
+    },
+    {
+        "id":  "slg-nt-092",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two statements about static NAT entries are true? (Choose two.)",
+        "optionen":  [
+                         "They are only created when traffic flows",
+                         "They expire after 24 hours without traffic",
+                         "They are not removed by \u0027clear ip nat translation *\u0027",
+                         "They always contain protocol and port numbers",
+                         "They are always present in the translation table"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Statische Zuordnungen stammen aus der Konfiguration, stehen dauerhaft in der Tabelle und überstehen clear. Ports enthalten sie nur bei statischem PAT."
+    },
+    {
+        "id":  "slg-nt-093",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two are advantages of PAT over dynamic NAT with a pool? (Choose two.)",
+        "optionen":  [
+                         "No access list is needed",
+                         "More hosts can be online simultaneously with the same addresses",
+                         "Inside hosts become reachable from the internet",
+                         "End-to-end addressing is preserved",
+                         "Many hosts can share very few public addresses"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "PAT multiplext viele Sessions über Ports auf wenige Adressen. Erreichbarkeit von außen, Ende-zu-Ende-Adressierung oder der Verzicht auf eine ACL gehören nicht dazu."
+    },
+    {
+        "id":  "slg-nt-094",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Companies A and B both use 10.1.1.0/24. A single router between them must let A\u0027s hosts reach B\u0027s server. Which two translations are required on that router? (Choose two.)",
+        "optionen":  [
+                         "Translate the MAC addresses of B\u0027s hosts",
+                         "Redistribute B\u0027s 10.1.1.0/24 into A\u0027s IGP",
+                         "Translate A\u0027s host addresses (inside source NAT)",
+                         "Translate B\u0027s server to a non-overlapping outside local address",
+                         "Change the TTL of packets crossing the router"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Bei vollständig überlappenden Netzen müssen beide Seiten übersetzt werden: A\u0027s Quelle, damit B antworten kann, und B\u0027s Server auf eine Outside-Local-Adresse, die A erreichen kann."
+    },
+    {
+        "id":  "slg-nt-095",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three are disadvantages of NAT? (Choose three.)",
+        "optionen":  [
+                         "Tunnel protocols such as IPsec AH fail their integrity checks",
+                         "Fewer public IPv4 addresses are needed",
+                         "Applications that embed or rely on IP addresses can break",
+                         "Internal addressing is hidden from the outside",
+                         "End-to-end traceability of packets is lost"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "NAT verändert Header, damit brechen Anwendungen mit eingebetteten Adressen, Rückverfolgbarkeit und Integritätsprüfungen. Versteckte Adressen und eingesparte IPv4-Adressen sind Vorteile."
+    },
+    {
+        "id":  "slg-nt-096",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three address ranges are private addresses defined in RFC 1918? (Choose three.)",
+        "optionen":  [
+                         "192.168.0.0/16",
+                         "169.254.0.0/16",
+                         "172.16.0.0/12",
+                         "10.0.0.0/8",
+                         "100.64.0.0/10"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "RFC 1918 definiert 10/8, 172.16/12 und 192.168/16. 100.64.0.0/10 ist Shared Address Space für Carrier-Grade NAT (RFC 6598), 169.254/16 Link-Local."
+    },
+    {
+        "id":  "slg-nt-097",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which inside host address will be dropped on the internet if it is NOT translated, because it is an RFC 1918 address?",
+        "optionen":  [
+                         "172.31.10.5",
+                         "192.169.10.5",
+                         "11.10.10.5",
+                         "172.32.10.5"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "172.16.0.0/12 umfasst 172.16.0.0 bis 172.31.255.255. 172.32.x, 192.169.x und 11.x sind keine privaten Adressen."
+    },
+    {
+        "id":  "slg-nt-098",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An application signs each message, and the signature covers the sender\u0027s IP address. Behind NAT, verification at the receiver fails. Which NAT drawback is this?",
+        "optionen":  [
+                         "Increased switching delay",
+                         "Loss of end-to-end addressing",
+                         "Port group limitations",
+                         "Pool exhaustion"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "NAT ändert die Quelladresse unterwegs. Alles, was die Originaladresse prüft oder enthält, bricht, weil Ende-zu-Ende-Adressierung nicht mehr gilt."
+    },
+    {
+        "id":  "slg-nt-099",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An application tells its peer to connect back to a literal IP address carried in the payload. Behind NAT, the callback fails. Why?",
+        "optionen":  [
+                         "The payload still carries the unreachable inside local address",
+                         "The payload is rewritten to the peer\u0027s own outside global address",
+                         "NAT drops packets that carry IP addresses in the payload",
+                         "NAT encrypts the payload, so the peer cannot read the address"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "NAT ändert nur die Header, nicht automatisch die Nutzdaten. Die Anwendung meldet ihre private Adresse, die von außen nicht erreichbar ist."
+    },
+    {
+        "id":  "slg-nt-100",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why is troubleshooting harder in networks with several layers of NAT?",
+        "optionen":  [
+                         "NAT disables syslog on edge routers",
+                         "The original addresses are hidden along the path",
+                         "Ping and traceroute stop working completely",
+                         "Routing protocols cannot run across NAT routers"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit jeder Übersetzung ändern sich die Adressen. Ein Paket lässt sich daher nur schwer bis zu seiner ursprünglichen Quelle oder seinem Ziel zurückverfolgen."
+    },
+    {
+        "id":  "slg-nt-101",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about NAT and security is correct?",
+        "optionen":  [
+                         "NAT replaces a stateful firewall at the internet edge",
+                         "NAT encrypts the original addresses of inside hosts",
+                         "NAT blocks all traffic that uses static mappings",
+                         "NAT hides internal addresses, but is no full firewall"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "NAT verbirgt die interne Adressierung und Topologie, was ein Nebeneffekt für die Sicherheit ist. Eine Zugriffs- oder Inspektionsrichtlinie wie bei einer Firewall ersetzt es nicht."
+    },
+    {
+        "id":  "slg-nt-102",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does NAT add processing delay on a router?",
+        "optionen":  [
+                         "It sends every packet to the ISP for validation",
+                         "It rewrites IP (and possibly TCP/UDP) headers per packet",
+                         "It waits for an ACK before forwarding",
+                         "It must rebuild the routing table for each flow"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Router muss jedes Paket prüfen, Adressen und ggf. Ports ändern und die Prüfsummen anpassen. Das kostet zusätzliche Verarbeitungszeit."
+    },
+    {
+        "id":  "slg-nt-103",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A company with 500 hosts using 10.0.0.0/16 gets internet access. Which NAT benefit avoids changing all host addresses?",
+        "optionen":  [
+                         "NAT replaces the hosts\u0027 default gateways",
+                         "NAT assigns public addresses to hosts via DHCP",
+                         "NAT translates at the edge, so hosts keep their addresses",
+                         "NAT moves all hosts into a single VLAN"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Übersetzung passiert nur am Edge-Router. Die internen Hosts behalten ihre privaten Adressen, ein Readressieren entfällt."
+    },
+    {
+        "id":  "slg-nt-104",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two companies that both use 192.168.0.0/16 merge. Renumbering will take months. How can NAT help meanwhile?",
+        "optionen":  [
+                         "NAT merges both networks into one broadcast domain",
+                         "NAT removes duplicate addresses with DHCP",
+                         "NAT is only for internet access and cannot help",
+                         "NAT can translate between the networks internally"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Was übersetzt wird, legt die Konfiguration fest – nicht ob eine Adresse privat oder öffentlich ist. NAT kann deshalb auch intern zwischen überlappenden Netzen eingesetzt werden."
+    },
+    {
+        "id":  "slg-nt-105",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After a merger, A\u0027s hosts reach B\u0027s server via outside local address 172.16.2.20. What must be true about 172.16.2.20 inside company A?",
+        "optionen":  [
+                         "It must be a public, registered address",
+                         "It must be routable inside A toward the NAT router",
+                         "It must be part of A\u0027s DHCP scope",
+                         "It must equal the server\u0027s outside global address"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Outside-Local-Adresse muss nicht öffentlich sein, aber im Innennetz zum NAT-Router geroutet werden, damit der Verkehr dort übersetzt werden kann."
+    },
+    {
+        "id":  "slg-nt-106",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Match each NAT method to its mapping.",
+        "paare":  [
+                      [
+                          "Static NAT",
+                          "One inside address to one fixed global address"
+                      ],
+                      [
+                          "Dynamic NAT",
+                          "Inside addresses to free addresses of a pool"
+                      ],
+                      [
+                          "PAT",
+                          "Many inside addresses to one address using ports"
+                      ]
+                  ],
+        "erklaerung":  "Statisch = fest 1:1, dynamisch = aus einem Pool nach Bedarf, PAT = viele zu eins mit Unterscheidung über Ports."
+    },
+    {
+        "id":  "slg-nt-107",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Match each configuration command to its purpose.",
+        "paare":  [
+                      [
+                          "ip nat inside source static 10.1.1.5 198.51.100.5",
+                          "Permanent one-to-one mapping"
+                      ],
+                      [
+                          "ip nat pool PUB 198.51.100.10 198.51.100.20 prefix-length 24",
+                          "Defines the global address range"
+                      ],
+                      [
+                          "ip nat inside source list 1 pool PUB overload",
+                          "PAT across several pool addresses"
+                      ],
+                      [
+                          "ip nat inside source list 1 pool PUB",
+                          "One pool address per host"
+                      ]
+                  ],
+        "erklaerung":  "static legt eine feste Zuordnung fest, ip nat pool nur den Adressbereich. Ob der Pool mit PAT (overload) oder 1:1-dynamisch genutzt wird, entscheidet die list-Regel."
+    },
+    {
+        "id":  "slg-nt-108",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Complete the static PAT command: ip nat inside source static ___ 192.168.20.10 25 198.51.100.10 25",
+        "optionen":  [
+                         "extended",
+                         "port",
+                         "tcp",
+                         "smtp"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Beim statischen PAT wird das Transportprotokoll (tcp oder udp) angegeben, gefolgt von IP und Port der lokalen und der globalen Seite. SMTP läuft auf TCP 25."
+    },
+    {
+        "id":  "slg-nt-109",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Complete the dynamic PAT command: ip nat inside source list 5 ___ PUB overload",
+        "optionen":  [
+                         "static",
+                         "pool",
+                         "interface",
+                         "range"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit pool \u003cname\u003e nutzt die Regel die Adressen eines definierten NAT-Pools. interface würde die Adresse eines Interfaces verwenden."
+    },
+    {
+        "id":  "slg-nt-110",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Complete the pool definition using a prefix instead of a mask: ip nat pool P 203.0.113.65 203.0.113.94 ___ 27",
+        "optionen":  [
+                         "mask-length",
+                         "prefix-length",
+                         "prefix",
+                         "cidr"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "ip nat pool akzeptiert entweder netmask \u003cmaske\u003e oder prefix-length \u003clänge\u003e. 27 entspricht 255.255.255.224."
+    },
+    {
+        "id":  "slg-nt-111",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Where is NAT for internet access typically configured in an enterprise network?",
+        "optionen":  [
+                         "On the access switches",
+                         "On the edge router toward the ISP",
+                         "On the distribution layer switches",
+                         "On every host\u0027s network adapter"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Übersetzung privat ↔ öffentlich erfolgt dort, wo das Unternehmensnetz ans Internet angebunden ist – am Edge-Router bzw. der Edge-Firewall."
+    },
+    {
+        "id":  "slg-nt-112",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ip nat statistics\u0027 shows \u0027Expired translations: 7\u0027. What does this counter mean?",
+        "optionen":  [
+                         "Seven packets did not match the NAT access list",
+                         "Seven dynamic entries were removed after timing out",
+                         "Seven translations failed due to pool exhaustion",
+                         "Seven static mappings were deleted from the config"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Zähler zeigt, wie viele dynamische Übersetzungen seit dem letzten Zurücksetzen durch Timeout entfernt wurden. Pool-Fehler stehen im misses-Zähler der Pool-Zeile."
+    },
+    {
+        "id":  "slg-nt-113",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 runs \u0027ip nat inside source list 1 pool PUB\u0027 (no overload) with a one-address pool. Host A has an active entry. Host B starts browsing. What do \u0027show ip nat statistics\u0027 and the users observe?",
+        "optionen":  [
+                         "Host B is translated to the outside interface address",
+                         "Host B fails, and the pool line shows an increasing misses counter",
+                         "Host B is translated with a new port on the same address",
+                         "Host A loses its entry and Host B takes over the address"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ohne overload kann eine Pool-Adresse nur einem Host gehören. Host B bekommt keine Adresse; die fehlgeschlagenen Zuweisungen erhöhen den misses-Zähler des Pools."
+    },
+    {
+        "id":  "slg-nt-114",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer adds \u0027ip nat outside\u0027 to the LAN interface of R1 instead of \u0027ip nat inside\u0027. The WAN interface also has \u0027ip nat outside\u0027. What happens to traffic from the LAN?",
+        "optionen":  [
+                         "It is dropped by the NAT process",
+                         "It is translated with the LAN interface address",
+                         "It is not translated, because no inside interface exists",
+                         "It is translated twice"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Inside-Source-NAT braucht einen Fluss von einem Inside- zu einem Outside-Interface. Gibt es kein Inside-Interface, wird nichts übersetzt; die Pakete gehen mit privater Quelle hinaus."
+    },
+    {
+        "id":  "slg-nt-115",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Hosts im Innennetz sollen den Server der Partnerfirma, der echt 10.1.1.20 hat, unter 172.16.2.20 erreichen.",
+        "bausteine":  [
+                          "ip",
+                          "nat",
+                          "outside",
+                          "source",
+                          "static",
+                          "10.1.1.20",
+                          "172.16.2.20",
+                          "inside",
+                          "destination"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "nat",
+                        "outside",
+                        "source",
+                        "static",
+                        "10.1.1.20",
+                        "172.16.2.20"
+                    ],
+        "erklaerung":  "ip nat outside source static \u003coutside-global\u003e \u003coutside-local\u003e übersetzt die Adresse eines externen Hosts in die Adresse, unter der ihn das Innennetz sieht."
+    },
+    {
+        "id":  "slg-nt-116",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Dynamic NAT hosts must be moved to a new pool, but \u0027no ip nat inside source list 10 pool OLD\u0027 cannot be removed while many entries exist. What is the usual approach?",
+        "optionen":  [
+                         "Delete ACL 10 first, which removes the rule",
+                         "Reload the router to remove the rule",
+                         "Shut down the outside interface permanently",
+                         "Clear the dynamic translations, then remove the rule"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Solange dynamische Übersetzungen die Zuordnung nutzen, ist die Regel in Gebrauch. Nach clear ip nat translation * lässt sie sich entfernen und durch die neue ersetzen."
+    },
+    {
+        "id":  "slg-nt-117",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show ip nat statistics\u0027 shows:\n\nTotal active translations: 1 (1 static, 0 dynamic; 0 extended)\nOutside interfaces:\n  Ethernet0/3\nInside interfaces:\n  Ethernet0/0, Ethernet0/1\nDynamic mappings:\n\nUsers in Ethernet0/0\u0027s subnet cannot reach the internet. What is the most likely reason?",
+        "optionen":  [
+                         "The pool is exhausted",
+                         "No dynamic NAT or PAT rule is configured",
+                         "The static entry blocks dynamic translations",
+                         "The outside interface is missing"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Unter Dynamic mappings steht nichts: Es gibt keine ip nat inside source list-Regel. Nur die statische Zuordnung existiert, Clients werden daher nicht übersetzt."
+    },
+    {
+        "id":  "slg-nt-118",
+        "topic":  "ENCOR-3.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about Cisco PAT and outside connections is correct?",
+        "optionen":  [
+                         "PAT translates only the destination of outbound packets",
+                         "Each inside host gets its own public IP during a session",
+                         "The reply\u0027s destination port identifies the inside host",
+                         "Outside hosts must know the inside local address"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Alle Hosts teilen sich die Inside-Global-Adresse. Erst der Port (bei der Antwort der Zielport) bestimmt, zu welchem internen Host der Router das Paket übersetzt."
+    }
+]

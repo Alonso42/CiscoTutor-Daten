@@ -1,0 +1,561 @@
+[
+    {
+        "id":  "slg-sw-001",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What does a Layer 2 switch record in its CAM table when a frame arrives?",
+        "optionen":  [
+                         "Source IP, ingress port",
+                         "Source MAC, ingress port, VLAN",
+                         "Destination IP, next hop",
+                         "Destination MAC, egress port, VLAN"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Switch lernt aus der Quell-MAC: MAC + Eingangsport + VLAN landen in der CAM-/MAC-Tabelle."
+    },
+    {
+        "id":  "slg-sw-002",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A switch receives a unicast frame whose destination MAC is not in its CAM table. What does it do?",
+        "optionen":  [
+                         "Drops the frame because the destination is unknown",
+                         "Sends an ARP request to learn the missing destination MAC",
+                         "Forwards it only out of the default gateway port",
+                         "Floods it out all ports in the VLAN except the ingress port"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Unknown Unicast Flooding: unbekannte Ziel-MAC → Flooding in alle Ports des VLANs außer dem Eingangsport."
+    },
+    {
+        "id":  "slg-sw-003",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which statement about collision domains on a switch is correct?",
+        "optionen":  [
+                         "All ports share one collision domain",
+                         "Each VLAN is one collision domain",
+                         "Collision domains only exist on trunks",
+                         "Each switch port is its own collision domain"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Jeder Switchport ist eine eigene Kollisionsdomäne – daher ist Full-Duplex ohne CSMA/CD möglich."
+    },
+    {
+        "id":  "slg-sw-004",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Where does a Catalyst multilayer switch store ACL and QoS entries for hardware lookups?",
+        "optionen":  [
+                         "Adjacency table",
+                         "TCAM",
+                         "NVRAM",
+                         "CAM"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "TCAM hält ACL-, QoS- und L3-Einträge; CAM nur exakte MAC→Port-Zuordnungen."
+    },
+    {
+        "id":  "slg-sw-005",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the key difference between CAM and TCAM lookups?",
+        "optionen":  [
+                         "CAM is implemented in software, TCAM in dedicated hardware",
+                         "CAM matches on 0/1 only (exact match); TCAM also supports \u0027don\u0027t care\u0027 bits",
+                         "CAM supports longest-prefix match; TCAM supports only exact match",
+                         "TCAM is used only for MAC addresses; CAM handles routes and ACLs"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "CAM = binär, exakter Treffer. TCAM = ternär (0, 1, X) – damit gehen Masken, Prefixe und ACLs in einem Lookup."
+    },
+    {
+        "id":  "slg-sw-006",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Tabelle ihrem Inhalt zu.",
+        "paare":  [
+                      [
+                          "CAM",
+                          "MAC-Adresse → Port + VLAN"
+                      ],
+                      [
+                          "TCAM",
+                          "ACL- und QoS-Einträge"
+                      ],
+                      [
+                          "FIB",
+                          "Zielprefix → Next Hop (aus der RIB)"
+                      ],
+                      [
+                          "Adjacency Table",
+                          "Vorberechneter L2-Header für den Next Hop"
+                      ]
+                  ],
+        "erklaerung":  "CAM für L2-Forwarding, TCAM für Policies/Prefixe, FIB aus der Routingtabelle, Adjacency aus ARP."
+    },
+    {
+        "id":  "slg-sw-007",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How many TCAM lookups does a switch need to decide whether an ACL permits a frame?",
+        "optionen":  [
+                         "Two (permit and deny)",
+                         "One per ACE",
+                         "One",
+                         "Depends on ACL length"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "TCAM vergleicht alle Einträge parallel – egal wie lang die ACL ist, es bleibt ein Lookup."
+    },
+    {
+        "id":  "slg-sw-008",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After CAM and TCAM lookups, what determines which egress queue a frame is placed in?",
+        "optionen":  [
+                         "The VLAN ID",
+                         "The QoS classification",
+                         "The CAM aging timer",
+                         "The source MAC"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die QoS-Entscheidung (ebenfalls per TCAM) legt die Egress-Queue fest; wichtiger Verkehr wird zuerst gesendet."
+    },
+    {
+        "id":  "slg-sw-009",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Zeige die MAC-Adresstabelle des Switches an.",
+        "bausteine":  [
+                          "show",
+                          "mac",
+                          "address-table",
+                          "ip",
+                          "cam",
+                          "route"
+                      ],
+        "loesung":  [
+                        "show",
+                        "mac",
+                        "address-table"
+                    ],
+        "erklaerung":  "show mac address-table zeigt MAC, VLAN, Typ (dynamic/static) und Port."
+    },
+    {
+        "id":  "slg-sw-010",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Dynamisch gelernte MAC-Einträge verfallen auf Catalyst-Switches standardmäßig nach ___ Sekunden.",
+        "optionen":  [
+                         "60",
+                         "3600",
+                         "300",
+                         "120"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Default Aging Time: 300 s. Anpassen mit mac address-table aging-time."
+    },
+    {
+        "id":  "slg-sw-011",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In which plane do routing protocols exchange routing information?",
+        "optionen":  [
+                         "Management plane",
+                         "Data plane",
+                         "Control plane",
+                         "Forwarding plane"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Control Plane baut Routing- und Forwarding-Infos auf; die Data Plane leitet Pakete weiter."
+    },
+    {
+        "id":  "slg-sw-012",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which tasks belong to the control plane of a router?",
+        "optionen":  [
+                         "Building the FIB and adjacency tables",
+                         "Rewriting the L2 header of transit packets in hardware",
+                         "Calculating recursive routes",
+                         "Running OSPF and building the RIB"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Control Plane: Routingprotokolle, RIB, FIB/Adjacency aufbauen, rekursive Routen auflösen. Das eigentliche Weiterleiten ist Data Plane."
+    },
+    {
+        "id":  "slg-sw-013",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which Cisco switching mechanism sends every packet to the CPU?",
+        "optionen":  [
+                         "dCEF",
+                         "CEF",
+                         "Fast switching",
+                         "Process switching"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Process Switching: jedes Paket über die CPU – langsamste Methode, nur noch als Fallback/Troubleshooting."
+    },
+    {
+        "id":  "slg-sw-014",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "With fast switching, which packets to a given destination are handled by the CPU?",
+        "optionen":  [
+                         "None",
+                         "All packets",
+                         "Every tenth packet",
+                         "Only the first packet"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Fast Switching (Route Caching): das erste Paket zu einem Ziel wird process-switched und erzeugt den Cache-Eintrag; folgende Pakete zu diesem Ziel nutzen den Cache. Heute historisch – Standard ist CEF."
+    },
+    {
+        "id":  "slg-sw-015",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is CEF called topology-based rather than demand-based (flow-based) switching?",
+        "optionen":  [
+                         "It only works with link-state protocols that know the full topology",
+                         "It caches the first packet of each flow and switches the rest in hardware",
+                         "It requires a topology table like EIGRP to build its forwarding entries",
+                         "FIB and adjacency tables are built from the routing and ARP tables before traffic arrives"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "CEF baut FIB und Adjacency vorab aus RIB und ARP/ND – es gibt keinen Cache, der erst durch Traffic entsteht. Auch das erste Paket wird per CEF geschaltet (auf Switches in Hardware)."
+    },
+    {
+        "id":  "slg-sw-016",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the default switching mechanism on current Cisco IOS routers and switches?",
+        "optionen":  [
+                         "Fast switching",
+                         "Process switching",
+                         "Optimum switching",
+                         "CEF"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "CEF ist Standard und schneller sowie CPU-schonender als Fast oder Process Switching."
+    },
+    {
+        "id":  "slg-sw-017",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Switching-Verfahren seiner Eigenschaft zu.",
+        "paare":  [
+                      [
+                          "Process Switching",
+                          "Jedes Paket über die CPU"
+                      ],
+                      [
+                          "Fast Switching",
+                          "Erstes Paket über CPU, danach Cache"
+                      ],
+                      [
+                          "CEF",
+                          "FIB + Adjacency vorab, kein Cache"
+                      ]
+                  ],
+        "erklaerung":  "Von langsam nach schnell: Process → Fast (Route Cache, historisch) → CEF (topologiebasiert). Nur Ausnahmepakete gehen bei CEF noch an die CPU."
+    },
+    {
+        "id":  "slg-sw-018",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The CEF FIB is derived from which table?",
+        "optionen":  [
+                         "ARP table",
+                         "CAM table",
+                         "Topology table",
+                         "IP routing table (RIB)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "FIB ← Routingtabelle (RIB). Adjacency ← ARP-Tabelle."
+    },
+    {
+        "id":  "slg-sw-019",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The CEF adjacency table is derived from which table?",
+        "optionen":  [
+                         "ARP table",
+                         "IP routing table",
+                         "LSDB",
+                         "MAC address table"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Adjacency-Einträge entstehen bei IPv4 aus ARP (bei IPv6 aus Neighbor Discovery) und enthalten den vorberechneten L2-Rewrite-Header für den Next Hop."
+    },
+    {
+        "id":  "slg-sw-020",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does an adjacency table entry contain?",
+        "optionen":  [
+                         "The administrative distance of the route",
+                         "The OSPF cost toward the next hop",
+                         "The VLAN-to-port mapping of the egress port",
+                         "A precomputed Layer 2 header for the next hop"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Für jeden Next Hop liegt der fertige L2-Header (Quell-/Ziel-MAC) bereit – das Umschreiben geht dadurch in Hardware."
+    },
+    {
+        "id":  "slg-sw-021",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "OSPF and EIGRP both offer a route to 10.5.0.0/16. What decides which one is installed in the RIB and thus the FIB?",
+        "optionen":  [
+                         "Lower metric of the two routes",
+                         "Higher router ID of the source",
+                         "Newer route",
+                         "Lower administrative distance"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Zwischen verschiedenen Protokollen entscheidet die AD (EIGRP 90 \u003c OSPF 110). Die Metrik zählt nur innerhalb eines Protokolls."
+    },
+    {
+        "id":  "slg-sw-022",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "How are CEF prefixes ordered in TCAM so that a single lookup returns the longest match?",
+        "optionen":  [
+                         "From most specific to least specific",
+                         "By arrival time",
+                         "By administrative distance",
+                         "Alphabetically by next hop"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die spezifischsten Prefixe stehen vorne – der erste TCAM-Treffer ist automatisch der Longest Match."
+    },
+    {
+        "id":  "slg-sw-023",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What happens when the CEF TCAM is full and a packet has no hardware entry?",
+        "optionen":  [
+                         "The packet is dropped without notification",
+                         "The packet is flooded out of all ports in the VLAN",
+                         "A wildcard entry punts it to the Layer 3 engine (software)",
+                         "The switch reboots to rebuild the TCAM"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Volle TCAM: Ein Wildcard-Eintrag leitet an die L3-Engine/CPU weiter – das funktioniert, ist aber langsam."
+    },
+    {
+        "id":  "slg-sw-024",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which packets typically cannot be CEF-switched in hardware and are punted to the CPU?",
+        "optionen":  [
+                         "Ordinary unicast packets with a FIB match",
+                         "Packets that must be fragmented due to MTU",
+                         "Packets with IP header options",
+                         "Packets whose TTL expires"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Ausnahmepakete: IP-Optionen, ablaufende TTL, Fragmentierung, nicht unterstützte Encapsulation, teils Tunnel."
+    },
+    {
+        "id":  "slg-sw-025",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A traceroute through a CEF router shows high CPU on that router. Why?",
+        "optionen":  [
+                         "Expiring TTL packets must be handled by the CPU to send ICMP Time Exceeded",
+                         "The FIB is rebuilt from the RIB for every traceroute probe",
+                         "Traceroute uses process-switched multicast that CEF cannot handle",
+                         "Traceroute disables CEF on the router for its duration"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "TTL-Ablauf ist ein Ausnahmefall: die CPU erzeugt das ICMP Time Exceeded."
+    },
+    {
+        "id":  "slg-sw-026",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In distributed CEF (dCEF), where are the FIB and adjacency tables kept?",
+        "optionen":  [
+                         "Only in the ARP cache",
+                         "Only on the route processor",
+                         "On an external controller",
+                         "Identical copies on each line card"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "dCEF: Jede Linecard hat eine Kopie von FIB und Adjacency und forwardet selbst; der RP wird entlastet."
+    },
+    {
+        "id":  "slg-sw-027",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What keeps the FIB copies on the route processor and the line cards synchronized in dCEF?",
+        "optionen":  [
+                         "Cisco Discovery Protocol (CDP)",
+                         "SNMP traps from the line cards",
+                         "Spanning Tree",
+                         "Interprocess communication (IPC)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "dCEF nutzt IPC, damit FIB und Adjacency auf RP und Linecards gleich bleiben."
+    },
+    {
+        "id":  "slg-sw-028",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A new line card is inserted into a dCEF chassis. Where does it get its forwarding tables?",
+        "optionen":  [
+                         "It builds them by process-switching traffic",
+                         "It runs its own routing protocols",
+                         "The route processor downloads its FIB copy",
+                         "From a neighbor router"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der RP hält eine Kopie jeder Linecard-FIB und lädt sie auf die neue Karte, sobald sie aktiv ist."
+    },
+    {
+        "id":  "slg-sw-029",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which known CEF issue can cause uneven load across equal-cost Layer 3 paths in a hierarchical network?",
+        "optionen":  [
+                         "FIB starvation",
+                         "CEF polarization",
+                         "Adjacency loops",
+                         "CEF flapping"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "CEF Polarization: alle Router hashen gleich, daher bleiben Pfade ungenutzt. Abhilfe: unterschiedlicher Hash bzw. Universal-ID."
+    },
+    {
+        "id":  "slg-sw-030",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "When should central CEF be used instead of distributed CEF?",
+        "optionen":  [
+                         "Only for IPv6, because dCEF supports IPv4 only",
+                         "When the RIB has more than 1000 routes and line cards run out of memory",
+                         "Always on chassis switches, because they have a single forwarding engine",
+                         "When line cards cannot do CEF or a needed feature is not supported by dCEF"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Central CEF: FIB und Adjacency nur auf dem RP – nötig, wenn Linecards dCEF nicht können oder Features fehlen."
+    },
+    {
+        "id":  "slg-sw-031",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Zeige den CEF-Eintrag (FIB) für das Ziel 10.2.2.0/24.",
+        "bausteine":  [
+                          "show",
+                          "ip",
+                          "cef",
+                          "10.2.2.0",
+                          "255.255.255.0",
+                          "route",
+                          "arp",
+                          "adjacency"
+                      ],
+        "loesung":  [
+                        "show",
+                        "ip",
+                        "cef",
+                        "10.2.2.0",
+                        "255.255.255.0"
+                    ],
+        "erklaerung":  "show ip cef \u003cprefix\u003e \u003cmask\u003e zeigt Next Hop und Ausgangsinterface aus der FIB."
+    },
+    {
+        "id":  "slg-sw-032",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Zeige die CEF-Adjacency-Tabelle mit Details an.",
+        "bausteine":  [
+                          "show",
+                          "adjacency",
+                          "detail",
+                          "ip",
+                          "cef",
+                          "arp",
+                          "summary"
+                      ],
+        "loesung":  [
+                        "show",
+                        "adjacency",
+                        "detail"
+                    ],
+        "erklaerung":  "show adjacency detail zeigt pro Next Hop den vorberechneten L2-Header."
+    },
+    {
+        "id":  "slg-sw-033",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An EIGRP route is learned and the first packet arrives on a fast-switching router. What happens to that first packet?",
+        "optionen":  [
+                         "It is CEF-switched using the precomputed FIB entry",
+                         "It is queued until the next EIGRP update fills the fast-switching cache",
+                         "It is process-switched, then a fast-switching cache entry is created",
+                         "It is flooded out of all interfaces in the same area"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Kein Cache-Eintrag → Process Switching mit rekursivem Lookup (ggf. ARP), danach Cache-Eintrag. Folgepakete werden fast-switched."
+    },
+    {
+        "id":  "slg-sw-034",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How is the CEF FIB updated when a route changes?",
+        "optionen":  [
+                         "Only after clear ip cef",
+                         "Immediately, mirroring every change in the RIB",
+                         "Every 30 seconds",
+                         "Only when the next packet for that prefix arrives"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die FIB spiegelt die RIB sofort: Jede Änderung der Routingtabelle wird direkt in die FIB übernommen – ohne Cache, der erst durch Traffic entsteht."
+    }
+]

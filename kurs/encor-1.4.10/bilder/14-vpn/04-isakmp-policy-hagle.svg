@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>ISAKMP-Policy: die fünf Parameter (HAGLE)</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="40" font-size="20" font-weight="bold" fill="#222" text-anchor="middle">crypto isakmp policy 10 – beide Peers brauchen eine passende Policy</text>
+<g font-size="15" fill="#222">
+<rect x="40" y="70" width="720" height="60" rx="8" fill="#4a9cff" opacity="0.25"/>
+<text x="60" y="108" font-size="34" font-weight="bold" fill="#4a9cff">H</text>
+<text x="110" y="95" font-weight="bold">Hash (HMAC) – hash sha</text>
+<text x="110" y="117" font-size="13">Integrität und Absender: SHA-1, SHA-256/384/512 · MD5 meiden</text>
+<rect x="40" y="140" width="720" height="60" rx="8" fill="#39c86a" opacity="0.25"/>
+<text x="60" y="178" font-size="34" font-weight="bold" fill="#39c86a">A</text>
+<text x="110" y="165" font-weight="bold">Authentication – authentication pre-share</text>
+<text x="110" y="187" font-size="13">Wer ist der Peer? PSK · RSA-Signaturen (Zertifikate) · RSA-encrypted nonces</text>
+<rect x="40" y="210" width="720" height="60" rx="8" fill="#b08aff" opacity="0.25"/>
+<text x="60" y="248" font-size="34" font-weight="bold" fill="#b08aff">G</text>
+<text x="110" y="235" font-weight="bold">Group (Diffie-Hellman) – group 14</text>
+<text x="110" y="257" font-size="13">Stärke des Schlüsselaustauschs: 14 = 2048 Bit · 1, 2 (und 5) meiden · höher = mehr CPU beim Aufbau</text>
+<rect x="40" y="280" width="720" height="60" rx="8" fill="#ffd23f" opacity="0.35"/>
+<text x="60" y="318" font-size="34" font-weight="bold" fill="#c9a000">L</text>
+<text x="110" y="305" font-weight="bold">Lifetime – lifetime 3600</text>
+<text x="110" y="327" font-size="13">Wie lange der Schlüssel gilt · muss nicht gleich sein: der kürzere Wert gewinnt</text>
+<rect x="40" y="350" width="720" height="60" rx="8" fill="#ff6b6b" opacity="0.25"/>
+<text x="60" y="388" font-size="34" font-weight="bold" fill="#ff6b6b">E</text>
+<text x="110" y="375" font-weight="bold">Encryption – encryption aes 128</text>
+<text x="110" y="397" font-size="13">Vertraulichkeit der IKE-Verhandlung: AES-128/192/256 · 3DES · DES meiden</text>
+</g>
+<text x="400" y="438" font-size="13" fill="#222" text-anchor="middle">Dazu separat: crypto isakmp key &lt;PSK&gt; address &lt;Peer-IP&gt;</text>
+</svg>

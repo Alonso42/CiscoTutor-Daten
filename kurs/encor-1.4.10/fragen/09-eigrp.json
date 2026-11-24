@@ -1,0 +1,2058 @@
+[
+    {
+        "id":  "slg-ei-001",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which three EIGRP packet types are delivered reliably by RTP and must be acknowledged? (Choose three.)",
+        "optionen":  [
+                         "Hello",
+                         "Reply",
+                         "Query",
+                         "Update",
+                         "Request"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Update, Query und Reply transportieren Routing-Informationen bzw. DUAL-Zustände und werden per RTP bestätigt. Hello, ACK und Request werden unzuverlässig gesendet."
+    },
+    {
+        "id":  "slg-ei-002",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How is an EIGRP acknowledgment packet constructed?",
+        "optionen":  [
+                         "As an update packet with the ACK flag set, sent as multicast to all neighbors",
+                         "As a dedicated ACK packet sent to 224.0.0.10 after every received hello",
+                         "As a TCP acknowledgment, because RTP is carried in TCP port 88",
+                         "As a hello packet without data that carries a nonzero acknowledgment number, sent as unicast"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein EIGRP-ACK ist ein leeres Hello mit ACK-Nummer ungleich 0 und geht per Unicast an den Absender. Normale Hellos tragen die ACK-Nummer 0. EIGRP nutzt IP-Protokoll 88, nicht TCP."
+    },
+    {
+        "id":  "slg-ei-003",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 sent a query for 10.20.0.0/16 to all neighbors. How does neighbor R3 answer?",
+        "optionen":  [
+                         "With a hello carrying the route in its TLVs",
+                         "With an unreliable multicast reply sent to 224.0.0.10",
+                         "With a reliable unicast reply sent to R1",
+                         "With a request packet sent as multicast to all neighbors"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Replies gehen zuverlässig per Unicast an den Router, der die Query gestellt hat. Queries selbst werden zuverlässig per Multicast gesendet."
+    },
+    {
+        "id":  "slg-ei-004",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R2 has just formed a new EIGRP adjacency with R1. How does R2 transfer its topology information to R1?",
+        "optionen":  [
+                         "With periodic full-table updates until R1 sends a hello",
+                         "With request packets that R1 must answer with replies",
+                         "With unreliable multicast updates to 224.0.0.10, repeated every 30 seconds",
+                         "With reliable unicast update packets addressed to R1"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Zur Synchronisation mit einem neuen Nachbarn sendet EIGRP Updates per Unicast und lässt sie bestätigen. Multicast-Updates werden bei Änderungen verwendet, periodische Full Updates gibt es bei EIGRP nicht."
+    },
+    {
+        "id":  "slg-ei-005",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 boots and receives R2\u0027s hello and R2\u0027s first update almost simultaneously. What must happen before R1 can acknowledge R2\u0027s update?",
+        "optionen":  [
+                         "The neighbor discovery between R1 and R2 must be complete",
+                         "R2 must send a second update as unicast",
+                         "R1 must first send a query for each prefix in the update",
+                         "R1 must run SPF on its topology table"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Nachbarerkennung und Route-Updates laufen parallel, ein Update darf aber erst bestätigt werden, wenn die Nachbarschaft steht. Danach schickt R1 das ACK und eigene Updates."
+    },
+    {
+        "id":  "slg-ei-006",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In which situation does an EIGRP router send query packets?",
+        "optionen":  [
+                         "When a feasible successor replaces a failed successor",
+                         "When the successor for a prefix is lost and no feasible successor exists",
+                         "Periodically every 90 seconds to verify the topology table",
+                         "Every time a new neighbor is discovered on an interface"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Queries werden nur gebraucht, wenn die Route active wird, weil kein Feasible Successor vorhanden ist. Mit FS wechselt der Router lokal ohne Queries."
+    },
+    {
+        "id":  "slg-ei-007",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about EIGRP request packets is true?",
+        "optionen":  [
+                         "They replace hellos on point-to-point links",
+                         "They are sent reliably as multicast whenever a route goes active, and each neighbor must ACK them",
+                         "They are used to acknowledge updates and queries",
+                         "They request specific information from neighbors, can be unicast or multicast, and are sent unreliably"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Requests fordern gezielt Informationen an (z. B. in Route-Server-Anwendungen) und laufen ohne RTP-Bestätigung. Für active Routen gibt es Queries, für Bestätigungen ACKs."
+    },
+    {
+        "id":  "slg-ei-008",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den EIGRP-Pakettyp seiner Aufgabe zu.",
+        "paare":  [
+                      [
+                          "Hello",
+                          "Discovers and keeps neighbors, multicast with ACK number 0"
+                      ],
+                      [
+                          "Update",
+                          "Carries route information, reliable"
+                      ],
+                      [
+                          "Query",
+                          "Asks neighbors for an alternate path while a route is active"
+                      ],
+                      [
+                          "Reply",
+                          "Answers a query with a reliable unicast"
+                      ]
+                  ],
+        "erklaerung":  "Hellos halten die Nachbarschaft, Updates verteilen Routen, Queries und Replies gehören zur DUAL-Neuberechnung im Active-Zustand. Update, Query und Reply werden per RTP bestätigt."
+    },
+    {
+        "id":  "slg-ei-009",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 multicasts an update on a LAN with three neighbors. R4 does not acknowledge it. How does RTP handle this?",
+        "optionen":  [
+                         "R1 ignores the missing ACK because multicast updates on a LAN are never acknowledged by RTP",
+                         "R1 resends the multicast to all three neighbors every 5 seconds",
+                         "R1 retransmits the update as unicast to R4 until it is acknowledged or the retry limit is reached and R4 is reset",
+                         "R1 waits for R4\u0027s next hello and then sends a request packet"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "RTP wiederholt unbestätigte Pakete gezielt per Unicast an den säumigen Nachbarn (Abstand gemäß RTO). Wird das Retry-Limit erreicht, wird die Nachbarschaft zurückgesetzt, die anderen Nachbarn sind nicht betroffen."
+    },
+    {
+        "id":  "slg-ei-010",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "EIGRP for IPv4 sends multicast hellos and updates to the reserved address ___.",
+        "optionen":  [
+                         "224.0.0.9",
+                         "224.0.0.5",
+                         "224.0.0.6",
+                         "224.0.0.10"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "224.0.0.10 ist für EIGRP reserviert. 224.0.0.5/6 gehören zu OSPF, 224.0.0.9 zu RIPv2."
+    },
+    {
+        "id":  "slg-ei-011",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "EIGRP for IPv6 sends hellos and updates to the link-local multicast address ___.",
+        "optionen":  [
+                         "FF02::A",
+                         "FF02::9",
+                         "FF02::1",
+                         "FF02::5"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "FF02::A ist das IPv6-Gegenstück zu 224.0.0.10. FF02::5 nutzt OSPFv3, FF02::9 RIPng, FF02::1 ist All-Nodes."
+    },
+    {
+        "id":  "slg-ei-012",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die EIGRP-Tabelle ihrem Inhalt zu.",
+        "paare":  [
+                      [
+                          "Neighbor table",
+                          "Adjacent routers with primary IP address and connecting interface"
+                      ],
+                      [
+                          "Topology table",
+                          "All learned destinations with every advertising neighbor and its metric"
+                      ],
+                      [
+                          "Routing table",
+                          "Only the best (successor) routes used for forwarding"
+                      ]
+                  ],
+        "erklaerung":  "Die Nachbartabelle hält die Adjazenzen, die Topologietabelle alle Pfade inklusive Backups, und nur die Successor-Routen landen in der Routing-Tabelle."
+    },
+    {
+        "id":  "slg-ei-013",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "For a destination advertised by neighbor R2, which two values does R1 record in its topology table entry?",
+        "optionen":  [
+                         "R2\u0027s link-state age and sequence number",
+                         "R1\u0027s administrative distance and R2\u0027s hold time",
+                         "R2\u0027s advertised metric and R1\u0027s own total metric via R2",
+                         "Only R2\u0027s router ID and the hop count to the destination"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Pro Nachbar speichert EIGRP die gemeldete Distanz (RD/AD) und die eigene Metrik über diesen Nachbarn (RD plus Kosten zum Nachbarn). Daraus ergeben sich Successor und Feasible Successor."
+    },
+    {
+        "id":  "slg-ei-014",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 uses hello 5/hold 15 on Gi0/0. R2 was configured with hello 10/hold 30 on the same segment. AS and K values match. What is the result?",
+        "optionen":  [
+                         "The adjacency forms, because EIGRP does not require matching hello or hold timers",
+                         "The adjacency flaps every 15 seconds",
+                         "The adjacency forms only after R1 adopts R2\u0027s timers",
+                         "No adjacency forms, because the hello and hold timers must match on both routers"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Anders als OSPF prüft EIGRP die Timer nicht. Jeder Router nutzt für den Nachbarn die Hold Time, die dieser in seinen Hellos mitschickt, und 30 s Hold bei 10 s Hello ist unkritisch."
+    },
+    {
+        "id":  "slg-ei-015",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer configures \u0027ip hello-interval eigrp 100 20\u0027 on R1 Gi0/0 and leaves the hold time unchanged. R2 now logs that neighbor R1 is going down with \u0027holding time expired\u0027 and comes back repeatedly. What is the cause?",
+        "optionen":  [
+                         "R2 automatically changed its own hold time to 20 seconds",
+                         "The hello interval must be a multiple of the hold time",
+                         "R1 still advertises a 15-second hold time, which expires before its next hello arrives",
+                         "Mismatched hello intervals are a parameter check failure in EIGRP, like a K-value mismatch"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Hold Time wird beim Ändern des Hello-Intervalls nicht automatisch angepasst. R1 meldet weiterhin 15 s, sendet aber nur alle 20 s, deshalb läuft der Timer bei R2 ab. Lösung: \u0027ip hold-time eigrp 100 60\u0027 o. ä. auf R1."
+    },
+    {
+        "id":  "slg-ei-016",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 Gi0/0 is 10.1.1.1/24. R2 Gi0/0 has primary address 192.168.5.2/24 and secondary address 10.1.1.2/24. Both run EIGRP AS 100 with network statements covering both subnets. What happens?",
+        "optionen":  [
+                         "The adjacency forms over the secondary subnet, but only IPv4 multicast updates are exchanged",
+                         "Two adjacencies form, one per address on R2",
+                         "No adjacency forms, because R2 sources its hellos from the primary address, which is not in R1\u0027s subnet",
+                         "The adjacency forms using the secondary address 10.1.1.2"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "EIGRP-Pakete stammen immer von der Primäradresse. R1 sieht Hellos von 192.168.5.2, das nicht in 10.1.1.0/24 liegt, und lehnt den Nachbarn ab (not on common subnet)."
+    },
+    {
+        "id":  "slg-ei-017",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R1 is configured with \u0027router eigrp 100\u0027 and R2 with \u0027router eigrp 10\u0027. Both have network statements for their shared link. What does \u0027show ip eigrp neighbors\u0027 show?",
+        "optionen":  [
+                         "R2 as a neighbor on R1 only, because 100 is higher than 10",
+                         "A neighbor in \u0027pending\u0027 state until the AS numbers are synchronized",
+                         "R1 and R2 as neighbors, because the AS number is only locally significant",
+                         "No neighbor on either router, because the AS numbers differ"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die AS-Nummer steht im Hello und muss übereinstimmen. Anders als die OSPF-Prozess-ID ist sie nicht nur lokal bedeutsam."
+    },
+    {
+        "id":  "slg-ei-018",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Two routers in EIGRP AS 100 accidentally use the same router ID. What is the impact on the adjacency between them?",
+        "optionen":  [
+                         "The router with the higher interface IP changes its router ID automatically",
+                         "The adjacency forms, but both routers elect a DR on the link",
+                         "The adjacency forms, but routes originated by the other router can be rejected",
+                         "No adjacency forms, because EIGRP rejects hellos with a duplicate router ID"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "AS, K-Werte, Subnetz und Authentifizierung entscheiden über die Nachbarschaft, die Router-ID nicht. Doppelte IDs fallen bei externen Routen auf, weil ein Router externe Routen mit der eigenen Router-ID als Ursprung verwirft (je nach Version auch interne)."
+    },
+    {
+        "id":  "slg-ei-019",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 runs EIGRP on Gi0/0 (toward R2) and Gi0/1 (LAN 10.5.5.0/24). The engineer adds \u0027passive-interface GigabitEthernet0/0\u0027. What is the result?",
+        "optionen":  [
+                         "R1 stops sending hellos on Gi0/0, the adjacency with R2 drops, and R2 no longer learns any routes from R1",
+                         "R1 sends only unicast hellos to R2 on Gi0/0",
+                         "Nothing changes, because passive-interface affects only OSPF",
+                         "R1 keeps the adjacency with R2 on Gi0/0 but no longer advertises the LAN 10.5.5.0/24 to it"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein passives EIGRP-Interface sendet keine Hellos und verarbeitet keine EIGRP-Pakete, die Nachbarschaft fällt weg. Passive Interfaces nutzt man für LANs ohne Router, deren Netz trotzdem annonciert wird."
+    },
+    {
+        "id":  "slg-ei-020",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 has Loopback0 10.255.0.1, Loopback1 192.168.255.1 and Gi0/0 203.0.113.1. No \u0027eigrp router-id\u0027 is configured. Which router ID does EIGRP for IPv4 use?",
+        "optionen":  [
+                         "203.0.113.1",
+                         "0.0.0.0 until a router ID is configured",
+                         "192.168.255.1",
+                         "10.255.0.1"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ohne manuelle Vorgabe nimmt EIGRP die höchste IPv4-Adresse eines Loopbacks, erst ohne Loopback die höchste aktive Interface-Adresse. Die höhere physische Adresse 203.0.113.1 zählt daher nicht."
+    },
+    {
+        "id":  "slg-ei-021",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In classic EIGRP, which command displays the router ID together with the K values and the configured networks?",
+        "optionen":  [
+                         "show ip eigrp interfaces",
+                         "show ip protocols",
+                         "show ip interface brief",
+                         "show ip route eigrp"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027show ip protocols\u0027 fasst die EIGRP-Parameter zusammen: AS, Router-ID, K-Werte, maximum-paths, variance, Netzwerke und passive Interfaces."
+    },
+    {
+        "id":  "slg-ei-022",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 uses default metric weights. R2 is configured with \u0027metric weights 0 1 0 1 1 0\u0027. Both are in AS 100 on a shared subnet. What happens?",
+        "optionen":  [
+                         "The adjacency forms, because K4 is ignored when K5 is 0",
+                         "R1 adopts R2\u0027s K values through the hello exchange",
+                         "The adjacency forms, but R2 calculates higher metrics",
+                         "No adjacency forms, because the K values do not match"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die K-Werte werden im Hello verglichen. Jeder Unterschied verhindert die Nachbarschaft (K-value mismatch), unabhängig davon, ob der Wert in der Formel wirkt. Mit K5 = 0 hätte K4 hier rechnerisch keine Wirkung."
+    },
+    {
+        "id":  "slg-ei-023",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which hello and hold time does EIGRP use by default on a multipoint Frame Relay interface with a bandwidth of 512 kbps?",
+        "optionen":  [
+                         "60 seconds hello, 180 seconds hold",
+                         "30 seconds hello, 90 seconds hold",
+                         "10 seconds hello, 40 seconds hold",
+                         "5 seconds hello, 15 seconds hold"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Auf langsamen NBMA-Interfaces (T1 oder langsamer, multipoint) gelten 60/180 s. Auf LANs, Punkt-zu-Punkt-Links und schnellen NBMA-Links sind es 5/15 s."
+    },
+    {
+        "id":  "slg-ei-024",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In \u0027show ip eigrp neighbors\u0027, the Hold column for neighbor 10.1.12.2 keeps cycling between 14 and 10 seconds. What does this indicate?",
+        "optionen":  [
+                         "Updates from the neighbor are not being acknowledged",
+                         "The neighbor\u0027s hold time is mismatched and must be corrected",
+                         "The neighbor is about to time out and will be reset when the timer reaches 10 seconds",
+                         "Hellos arrive about every 5 seconds and reset a 15-second hold timer, which is normal"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Spalte zeigt die verbleibende Hold Time. Sie zählt von 15 herunter und springt mit jedem Hello wieder hoch, bei 5-s-Hellos also zwischen etwa 10 und 15."
+    },
+    {
+        "id":  "slg-ei-025",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus (Gi0/0, classic EIGRP AS 100): Setze das Hello-Intervall auf 2 Sekunden.",
+        "bausteine":  [
+                          "ip",
+                          "hello-interval",
+                          "eigrp",
+                          "100",
+                          "2",
+                          "hold-time",
+                          "ospf",
+                          "20"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "hello-interval",
+                        "eigrp",
+                        "100",
+                        "2"
+                    ],
+        "erklaerung":  "Im Classic Mode werden Timer pro Interface mit AS-Nummer gesetzt. Die Hold Time passt sich nicht automatisch an und muss separat mit \u0027ip hold-time eigrp 100 \u003cs\u003e\u0027 gesetzt werden."
+    },
+    {
+        "id":  "slg-ei-026",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus (Gi0/0, classic EIGRP AS 100): Das Hello-Intervall ist bereits 2 s. Setze die Hold Time passend auf 6 Sekunden.",
+        "bausteine":  [
+                          "ip",
+                          "hold-time",
+                          "eigrp",
+                          "100",
+                          "6",
+                          "hello-interval",
+                          "dead-interval",
+                          "60"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "hold-time",
+                        "eigrp",
+                        "100",
+                        "6"
+                    ],
+        "erklaerung":  "\u0027ip hold-time eigrp \u003cAS\u003e \u003cSekunden\u003e\u0027 legt die Hold Time fest, die dieser Router in seinen Hellos meldet. Üblich ist das Dreifache des Hello-Intervalls."
+    },
+    {
+        "id":  "slg-ei-027",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 sends hellos every 5 seconds with hold time 15. R2 sends hellos every 5 seconds with hold time 60. R2 fails silently. After how long at most does R1 declare R2 down?",
+        "optionen":  [
+                         "60 seconds, because R1 uses the hold time advertised by R2",
+                         "45 seconds, three times R1\u0027s hello interval",
+                         "180 seconds, the NBMA default",
+                         "15 seconds, because R1 uses its own configured hold time"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Hold Time wird vom Sender im Hello angekündigt. R1 führt für R2 also einen 60-s-Timer und erklärt ihn erst nach Ablauf für tot, unabhängig von seinen eigenen Werten."
+    },
+    {
+        "id":  "slg-ei-028",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den K-Wert der Komponente zu, die er in der klassischen EIGRP-Metrik gewichtet.",
+        "paare":  [
+                      [
+                          "K1",
+                          "Bandwidth"
+                      ],
+                      [
+                          "K2",
+                          "Load"
+                      ],
+                      [
+                          "K3",
+                          "Delay"
+                      ],
+                      [
+                          "K4",
+                          "Reliability"
+                      ]
+                  ],
+        "erklaerung":  "K1 und K3 sind per Default 1, K2, K4 und K5 sind 0. Damit zählen nur Bandbreite und Delay. K5 ist ebenfalls ein Reliability-Faktor, nicht die MTU."
+    },
+    {
+        "id":  "slg-ei-029",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 has a directly connected GigabitEthernet network (BW 1,000,000 kbps, DLY 10 usec). Which classic EIGRP metric does it have with default K values?",
+        "optionen":  [
+                         "256",
+                         "28160",
+                         "3072",
+                         "2816"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bandbreitenterm 10^7/1.000.000 = 10, Delayterm 10 µs/10 = 1. (10 + 1) x 256 = 2816. 28160 wäre ein FastEthernet-Netz."
+    },
+    {
+        "id":  "slg-ei-030",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "A directly connected FastEthernet network (BW 100,000 kbps, DLY 100 usec) has a classic EIGRP metric of ___.",
+        "optionen":  [
+                         "281600",
+                         "25600",
+                         "28160",
+                         "2816"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "10^7/100.000 = 100 und 100 µs/10 = 10, (100 + 10) x 256 = 28160. 281600 ergäbe sich bei 10-Mbit/s-Ethernet."
+    },
+    {
+        "id":  "slg-ei-031",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 reaches R2 over a T1 serial link (BW 1544 kbps, DLY 20000 usec). R2 advertises its GigabitEthernet LAN (DLY 10 usec). Which classic metric does R1 calculate for the LAN?",
+        "optionen":  [
+                         "2170112",
+                         "2169856",
+                         "2172416",
+                         "8477"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Kleinste Bandbreite ist der T1: 10^7/1544 = 6476 (abgeschnitten). Delay: (20000 + 10)/10 = 2001. (6476 + 2001) x 256 = 2170112. 2169856 wäre nur das T1-Netz selbst."
+    },
+    {
+        "id":  "slg-ei-032",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 can reach R4\u0027s GigabitEthernet LAN either over a single T1 (1544 kbps, 20000 usec) or over three FastEthernet hops (100 Mbps, 100 usec each). With default K values, which path wins and why?",
+        "optionen":  [
+                         "The FastEthernet path (metric 33536), because its bandwidth term and summed delay are far smaller",
+                         "The T1 path, because it has fewer hops",
+                         "The T1 path, because the lowest delay link is used",
+                         "Both paths, because EIGRP load-balances across paths with different hop counts by default"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "FastEthernet-Pfad: 100 + (3 x 100 + 10)/10 = 131, x 256 = 33536. T1-Pfad: 6476 + 2001 = 8477, x 256 = 2170112. Hop Count spielt in der Metrik keine Rolle."
+    },
+    {
+        "id":  "slg-ei-033",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In the classic composite metric, the bandwidth term is derived from the ___ bandwidth of all outgoing interfaces along the path.",
+        "optionen":  [
+                         "average",
+                         "highest",
+                         "lowest",
+                         "summed"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Für die Bandbreite zählt der Engpass auf dem Pfad, Delay wird dagegen über alle Hops addiert."
+    },
+    {
+        "id":  "slg-ei-034",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is changing the interface delay generally preferred over changing the bandwidth when influencing EIGRP path selection?",
+        "optionen":  [
+                         "Delay changes are applied without resetting neighbors, while any bandwidth change resets all adjacencies",
+                         "Bandwidth is ignored by the default K values",
+                         "Delay is the only value advertised to neighbors",
+                         "Delay is cumulative along the path, while bandwidth only matters at the bottleneck and also affects QoS and monitoring"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Jede Delay-Änderung wirkt auf die Summe und damit sicher auf die Metrik. Eine Bandbreitenänderung wirkt nur, wenn der Link der Engpass wird, und verändert nebenbei QoS-Berechnungen und Auslastungsanzeigen."
+    },
+    {
+        "id":  "slg-ei-035",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer enters \u0027delay 100\u0027 in interface configuration mode on Gi0/0. Which delay does \u0027show interfaces GigabitEthernet0/0\u0027 display afterwards?",
+        "optionen":  [
+                         "DLY 1000 usec",
+                         "DLY 10 usec",
+                         "DLY 100000 usec",
+                         "DLY 100 usec"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Interface-Befehl \u0027delay\u0027 erwartet Zehner-Mikrosekunden, 100 entspricht also 1000 µs. \u0027show interfaces\u0027 zeigt den Wert in Mikrosekunden."
+    },
+    {
+        "id":  "slg-ei-036",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R2 and R3 both connect LAN 10.4.4.0/24 with a GigabitEthernet interface (10 usec). R1 reaches R2 over Gi0/0 (GigabitEthernet, metric 3072) and R3 over Fa0/1 (FastEthernet, 100 usec, metric 28416). The engineer configures \u0027delay 100\u0027 on R1 Gi0/0. What is the result?",
+        "optionen":  [
+                         "The R2 path still wins with metric 3072",
+                         "Both paths now have metric 28416 and are installed as equal-cost paths",
+                         "Only the R3 path remains, because the R2 path now has metric 30720",
+                         "The R2 path is removed from the topology table"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Vorher über R2: 10 + (10 + 10)/10 = 12, x 256 = 3072. Mit 1000 µs auf Gi0/0: 10 + (1000 + 10)/10 = 111, x 256 = 28416, genauso viel wie über R3. Bei gleicher Metrik und maximum-paths 4 werden beide installiert."
+    },
+    {
+        "id":  "slg-ei-037",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 reaches a LAN over Gi0/0 to R2, and R2 connects the LAN with a FastEthernet interface. The current metric is 28416. The engineer sets \u0027bandwidth 500000\u0027 on R1 Gi0/0. What happens to the metric?",
+        "optionen":  [
+                         "It drops, because the lower configured bandwidth also reduces the delay of Gi0/0",
+                         "It stays 28416, because the FastEthernet link remains the lowest bandwidth on the path",
+                         "It doubles, because the bandwidth term of Gi0/0 doubles",
+                         "It becomes unreachable until the neighbor is reset"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Metrik nutzt nur die kleinste Bandbreite des Pfades. 500 Mbit/s sind immer noch mehr als die 100 Mbit/s des FastEthernet-Links, und der Delay ändert sich nicht. Deshalb ist die Bandbreite ein unzuverlässiger Hebel."
+    },
+    {
+        "id":  "slg-ei-038",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "With default K values, the classic EIGRP metric simplifies to ___ x (bandwidth term + delay term).",
+        "optionen":  [
+                         "1000",
+                         "65536",
+                         "256",
+                         "128"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Faktor 256 stammt aus IGRP: Die 24-Bit-IGRP-Metrik wurde so auf 32 Bit skaliert. 65536 ist die Konstante der Wide Metrics, 128 der Default von rib-scale."
+    },
+    {
+        "id":  "slg-ei-039",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does the classic EIGRP metric multiply the IGRP-style formula by 256?",
+        "optionen":  [
+                         "To convert microseconds into tens of microseconds",
+                         "To allow a maximum of 256 hops",
+                         "To extend the 24-bit IGRP metric to a 32-bit value",
+                         "To match the OSPF reference bandwidth"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "EIGRP übernahm die IGRP-Metrik und multiplizierte sie mit 256 (8 Bit mehr), damit Werte zwischen beiden Protokollen umrechenbar blieben und eine feinere Auflösung möglich war."
+    },
+    {
+        "id":  "slg-ei-040",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "EIGRP updates carry MTU and hop count along with bandwidth, delay, load, and reliability. How are MTU and hop count used?",
+        "optionen":  [
+                         "Neither is part of the composite metric; hop count is used to enforce the maximum hop limit",
+                         "MTU replaces bandwidth in the metric on links faster than 1 Gbps; hop count is ignored",
+                         "Hop count is weighted by K5",
+                         "Both are added to the delay term"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "MTU und Hop Count werden mitgeschickt, gehen aber nie in die Metrik ein. Über den Hop Count begrenzt EIGRP die Pfadlänge (Default 100 Hops)."
+    },
+    {
+        "id":  "slg-ei-041",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In the full classic metric formula, how is the reliability term K5/(reliability + K4) handled when K5 is 0?",
+        "optionen":  [
+                         "It is replaced by K4/reliability",
+                         "It makes every route unreachable",
+                         "It multiplies the metric by 0, so all routes become equal",
+                         "It is not applied, which is equivalent to multiplying by 1"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Formel definiert den Faktor für K5 = 0 als nicht angewendet. Sonst würde jede Metrik zu 0. Bei Default-K-Werten bleibt daher nur 256 x (Bandbreite + Delay)."
+    },
+    {
+        "id":  "slg-ei-042",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show interfaces Serial0/0/0\u0027 shows: MTU 1500 bytes, BW 1544 Kbit/sec, DLY 20000 usec, reliability 255/255. Which classic EIGRP metric does the directly connected network on this interface get?",
+        "optionen":  [
+                         "5120000",
+                         "2169856",
+                         "1544256",
+                         "2170112"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "10^7/1544 = 6476 (abgeschnitten), 20000/10 = 2000, (6476 + 2000) x 256 = 2169856. MTU und Reliability spielen mit Default-K-Werten keine Rolle."
+    },
+    {
+        "id":  "slg-ei-043",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Why can classic EIGRP not distinguish a 40-Gbps path from a 100-Gbps path?",
+        "optionen":  [
+                         "Classic EIGRP measures both links with the same reliability of 255",
+                         "The 256 multiplier overflows for both links",
+                         "Classic EIGRP caps the bandwidth value at 10 Gbps in its updates, so both links look like 10 Gbps",
+                         "The bandwidth term 10^7/BW truncates to 0 for both, and the minimum interface delay of 10 usec is the same"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Für 40 und 100 Gbit/s ergibt 10^7/BW (in kbit/s) jeweils 0, und mit dem Mindest-Delay von 10 µs sind beide Metriken gleich. Wide Metrics rechnen deshalb mit 64 Bit und Pikosekunden."
+    },
+    {
+        "id":  "slg-ei-044",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three statements about EIGRP wide metrics are true? (Choose three.)",
+        "optionen":  [
+                         "They introduce an additional K6 value",
+                         "They use 64-bit metric values",
+                         "Latency is calculated in picoseconds",
+                         "They are enabled only with \u0027metric maximum-hops 255\u0027",
+                         "They remove delay from the metric calculation"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Wide Metrics arbeiten mit 64 Bit, Latenz in Pikosekunden und dem Faktor 65536, und sie bringen K6 mit. Delay bzw. Latenz bleibt Bestandteil der Formel."
+    },
+    {
+        "id":  "slg-ei-045",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the purpose of the \u0027metric rib-scale\u0027 command in EIGRP named mode?",
+        "optionen":  [
+                         "It converts bandwidth from kbps to Mbps",
+                         "It sets the multiplier for unequal-cost load balancing",
+                         "It limits how many EIGRP routes are installed in the RIB for each prefix",
+                         "It scales the 64-bit wide metric down so it fits the 32-bit metric field of the RIB"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die RIB erwartet einen 4-Byte-Wert, die Wide Metric passt dort nicht hinein. rib-scale teilt die Metrik vor dem Eintrag in die Routing-Tabelle durch einen Faktor."
+    },
+    {
+        "id":  "slg-ei-046",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What happens immediately after an engineer changes the \u0027metric rib-scale\u0027 value?",
+        "optionen":  [
+                         "All EIGRP adjacencies are reset because the K values change",
+                         "Only new routes use the scaled value, existing routes keep their metric",
+                         "All EIGRP routes in the RIB are cleared and reinstalled with the newly scaled metrics",
+                         "Nothing until the router is reloaded"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Beim Ändern von rib-scale entfernt EIGRP seine Routen aus der RIB und trägt sie mit den neu skalierten Werten wieder ein. Das sollte man deshalb in einem Wartungsfenster tun."
+    },
+    {
+        "id":  "slg-ei-047",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ip protocols\u0027 on R1 shows: \u0027Metric weight K1=1, K2=0, K3=1, K4=0, K5=0\u0027, \u0027Maximum path: 4\u0027, \u0027Maximum metric variance 1\u0027. Which statement is true?",
+        "optionen":  [
+                         "R1 load-balances over up to four paths with up to four times the best metric",
+                         "R1 load-balances only over up to four equal-cost paths and uses only bandwidth and delay",
+                         "R1 forwards over a single path only",
+                         "R1 uses load and reliability in the metric"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Variance 1 bedeutet nur gleich teure Pfade, maximum-paths 4 begrenzt deren Anzahl. Die K-Werte sind Default, also nur Bandbreite (K1) und Delay (K3)."
+    },
+    {
+        "id":  "slg-ei-048",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den EIGRP-Begriff seiner Definition zu.",
+        "paare":  [
+                      [
+                          "Feasible distance",
+                          "The router\u0027s own best total metric to the destination"
+                      ],
+                      [
+                          "Reported distance",
+                          "The metric a neighbor advertises for the destination"
+                      ],
+                      [
+                          "Successor",
+                          "The neighbor on the best loop-free path, installed in the RIB"
+                      ],
+                      [
+                          "Feasible successor",
+                          "A backup neighbor whose reported distance is lower than the feasible distance"
+                      ]
+                  ],
+        "erklaerung":  "Die FD ist RD plus Kosten zum Nachbarn. Der Successor liefert die kleinste FD, ein Feasible Successor erfüllt die Feasibility Condition und liegt nur in der Topologietabelle."
+    },
+    {
+        "id":  "slg-ei-049",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "R1\u0027s topology table for 10.9.9.0/24 (RD = neighbor\u0027s reported distance, FD = R1\u0027s metric via that neighbor): via A RD 1500/FD 2500; via B RD 1000/FD 2000; via C RD 1800/FD 2300; via D RD 2100/FD 2300. Which two neighbors are feasible successors? (Choose two.)",
+        "optionen":  [
+                         "D",
+                         "C",
+                         "B",
+                         "A"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "B ist mit FD 2000 der Successor. Feasible Successor wird, wer eine RD unter 2000 hat: A (1500) und C (1800). D hat dieselbe FD wie C, aber RD 2100 und ist damit kein FS."
+    },
+    {
+        "id":  "slg-ei-050",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Same table for 10.9.9.0/24: via A RD 1500/FD 2500; via B RD 1000/FD 2000 (successor); via C RD 1800/FD 2300; via D RD 2100/FD 2300. The link to B fails. What does R1 do?",
+        "optionen":  [
+                         "It installs C and D as equal-cost paths with metric 2300",
+                         "It installs A, because A has the lowest reported distance of the remaining neighbors",
+                         "It installs C immediately as the new successor without sending queries",
+                         "It goes active and queries A, C and D before choosing"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "A und C sind Feasible Successors, unter ihnen hat C die kleinste FD (2300). Der Wechsel ist eine lokale Berechnung, die Route bleibt passive. D hat zwar auch 2300, erfüllt aber die Feasibility Condition nicht."
+    },
+    {
+        "id":  "slg-ei-051",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The successor for 172.16.8.0/24 has FD 3072. An alternate neighbor reports RD 3072, and R1\u0027s metric via that neighbor is 5000. Is the alternate a feasible successor?",
+        "optionen":  [
+                         "No, because the reported distance must be strictly lower than the feasible distance",
+                         "Yes, because the reported distance equals the feasible distance",
+                         "Yes, because its total metric is less than twice the feasible distance",
+                         "Only if variance is set to 2"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Feasibility Condition verlangt RD \u003c FD. Bei Gleichheit kann EIGRP nicht ausschließen, dass der Pfad über den eigenen Router zurückführt."
+    },
+    {
+        "id":  "slg-ei-052",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "The topology table shows \u0027via 10.1.13.3 (28416/2816), GigabitEthernet0/1\u0027. What does 2816 represent?",
+        "optionen":  [
+                         "The administrative distance of the route",
+                         "The distance reported by neighbor 10.1.13.3",
+                         "R1\u0027s feasible distance via 10.1.13.3",
+                         "The metric of the GigabitEthernet0/1 link only"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "In Klammern steht zuerst die eigene Metrik über diesen Nachbarn, danach die vom Nachbarn gemeldete Distanz (RD/AD)."
+    },
+    {
+        "id":  "slg-ei-053",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 shows:\nP 10.4.4.0/24, 1 successors, FD is 3072\n        via 10.1.12.2 (3072/2816), GigabitEthernet0/0\n        via 10.1.13.3 (28416/2816), GigabitEthernet0/1\nWhich statement is correct?",
+        "optionen":  [
+                         "10.1.13.3 is a feasible successor, because its reported distance 2816 is lower than the FD of 3072",
+                         "10.1.13.3 is a second successor, because both reported distances are equal",
+                         "The route is in active state because two paths exist",
+                         "10.1.13.3 is not a feasible successor, because its metric 28416 is higher than the FD of 3072"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Entscheidend für die Feasibility Condition ist die RD des Nachbarn (2816), nicht seine Gesamtmetrik. 2816 \u003c 3072, also FS. \u0027P\u0027 bedeutet passive, die Route ist stabil."
+    },
+    {
+        "id":  "slg-ei-054",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A path via neighbor R5 appears in \u0027show ip eigrp topology all-links\u0027 but not in \u0027show ip eigrp topology\u0027. What is the most likely reason?",
+        "optionen":  [
+                         "The route via R5 has a lower metric than the successor",
+                         "R5 uses a different AS number",
+                         "R5 is a passive interface neighbor",
+                         "R5\u0027s reported distance does not satisfy the feasibility condition"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die normale Ausgabe zeigt nur Successors und Feasible Successors. all-links zeigt alle gelernten Pfade, auch die, deren RD nicht unter der FD liegt."
+    },
+    {
+        "id":  "slg-ei-055",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Why does the feasibility condition guarantee that a feasible successor\u0027s path is loop-free?",
+        "optionen":  [
+                         "Because EIGRP checks the AS path attribute for its own AS number",
+                         "Because split horizon prevents all loops in EIGRP",
+                         "Because feasible successors are always directly connected",
+                         "A neighbor closer to the destination than R1 cannot be routing through R1"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Liefe der Pfad des Nachbarn über R1, wäre seine Distanz mindestens R1s FD plus Linkkosten. Ist seine RD kleiner als R1s FD, führt sein Pfad also nicht über R1 zurück."
+    },
+    {
+        "id":  "slg-ei-056",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The successor for 10.30.0.0/16 fails. R1 has a feasible successor. Which state does the route have during the switchover?",
+        "optionen":  [
+                         "It stays passive, because DUAL performs a local computation with the feasible successor",
+                         "It is removed from the topology table until the next periodic update arrives",
+                         "It goes active until all neighbors reply",
+                         "It enters the \u0027stuck in active\u0027 state"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit Feasible Successor braucht DUAL keine Diffusing Computation. Die Route bleibt passive, wird sofort umgeschaltet und den Nachbarn per Update mitgeteilt."
+    },
+    {
+        "id":  "slg-ei-057",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The successor for 10.30.0.0/16 fails and R1 has no feasible successor, but other neighbors still advertise the prefix. What does R1 do?",
+        "optionen":  [
+                         "It floods an LSA and runs SPF",
+                         "It installs the neighbor with the lowest reported distance immediately",
+                         "It keeps forwarding to the failed successor until the hold timer expires",
+                         "It marks the route active and sends queries to its neighbors, then waits for their replies"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne FS muss DUAL neu rechnen (Diffusing Computation). R1 setzt die Route auf active, fragt die Nachbarn per Query und wählt nach Eingang aller Replies den neuen Successor."
+    },
+    {
+        "id":  "slg-ei-058",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 queries R2 for 10.30.0.0/16. R2 has a feasible successor for that prefix that does not lead through R1. How does R2 respond?",
+        "optionen":  [
+                         "It sends a request packet back to R1",
+                         "It ignores the query because it is not the originator",
+                         "It replies to R1 with its metric and does not forward the query to its own neighbors",
+                         "It forwards the query to all neighbors and replies only after they answer"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Kann ein Nachbar das Ziel weiter loop-frei erreichen, beantwortet er die Query sofort. Die Query wird nur weitergereicht, wenn er selbst ebenfalls keinen Ersatz hat. So begrenzt ein FS die Ausbreitung."
+    },
+    {
+        "id":  "slg-ei-059",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 queries its only other neighbor R2 for a lost prefix. R2 has no route to the prefix at all and no further neighbors. What does R2 send back?",
+        "optionen":  [
+                         "An update with the last known metric it had for the prefix",
+                         "A query back to R1",
+                         "A reply indicating the destination is unreachable (infinite metric)",
+                         "No reply, because it has no route"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Jede Query muss beantwortet werden. Ohne eigene Route antwortet R2 mit unendlicher Metrik, sonst würde R1 auf die Antwort warten, bis die Route stuck in active wird."
+    },
+    {
+        "id":  "slg-ei-060",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A route has been active for 90 seconds and neighbor R7 has not replied yet. With default timers on IOS-XE, what does R1 do?",
+        "optionen":  [
+                         "It resets the adjacency with R7 immediately",
+                         "It increases the variance to find an alternate path and installs it while waiting",
+                         "It sends an SIA-Query to R7 and keeps the adjacency as long as R7 answers with an SIA-Reply",
+                         "It removes the route and stops waiting"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Active Timer ist per Default 3 Minuten. Nach der Hälfte fragt R1 mit einer SIA-Query nach. Antwortet R7 mit SIA-Reply, bleibt die Nachbarschaft bestehen, erst ohne Antwort wird sie zurückgesetzt."
+    },
+    {
+        "id":  "slg-ei-061",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two measures reduce the scope of EIGRP queries and thus the risk of stuck-in-active routes? (Choose two.)",
+        "optionen":  [
+                         "Raising maximum-paths to 16",
+                         "Summarizing routes toward the remote parts of the network",
+                         "Increasing the variance on all routers",
+                         "Configuring remote routers as EIGRP stub routers",
+                         "Lowering the hello interval to 1 second"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Stub-Router werden nicht befragt, und ein Router, der nur eine Summary kennt, beantwortet Queries für Einzelprefixe sofort. Variance, maximum-paths und Timer ändern die Query-Ausbreitung nicht."
+    },
+    {
+        "id":  "slg-ei-062",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "\u0027show ip route\u0027 shows \u0027D 10.4.4.0/24 [90/3072] via 10.1.12.2\u0027. What is 3072?",
+        "optionen":  [
+                         "The feasible distance of the successor route",
+                         "The administrative distance",
+                         "The reported distance of 10.1.12.2",
+                         "The hop count multiplied by 256"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die FD des Successors wird zur Metrik in der Routing-Tabelle. 90 davor ist die administrative Distanz für interne EIGRP-Routen."
+    },
+    {
+        "id":  "slg-ei-063",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Code in \u0027show ip eigrp topology\u0027 seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "P",
+                          "Passive, no recomputation in progress"
+                      ],
+                      [
+                          "A",
+                          "Active, the router is searching for a new successor"
+                      ],
+                      [
+                          "Q",
+                          "A query packet was sent for this destination"
+                      ],
+                      [
+                          "R",
+                          "A reply packet was sent for this destination"
+                      ]
+                  ],
+        "erklaerung":  "Im Normalbetrieb sind alle Routen P. A, Q und R zeigen eine laufende DUAL-Neuberechnung (r = wartet noch auf Replies). Bleibt eine Route lange in A, droht Stuck in Active."
+    },
+    {
+        "id":  "slg-ei-064",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 reaches 10.4.4.0/24 via R2 (FD 3072, RD 2816) and via R3 (FD 28416, RD 2816). Which is the smallest variance value that installs both paths?",
+        "optionen":  [
+                         "2",
+                         "128",
+                         "10",
+                         "9"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der R3-Pfad ist FS (2816 \u003c 3072). Er muss kleiner als variance x 3072 sein: 9 x 3072 = 27648 reicht nicht, 10 x 3072 = 30720 schon. Also variance 10."
+    },
+    {
+        "id":  "slg-ei-065",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Paths to 10.50.0.0/16: via X FD 100/RD 60 (successor), via Y FD 250/RD 80, via Z FD 180/RD 120. With \u0027variance 2\u0027, which paths are installed?",
+        "optionen":  [
+                         "Only X",
+                         "X and Y",
+                         "X and Z",
+                         "X, Y and Z"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Grenze ist 2 x 100 = 200. Z liegt mit 180 darunter, ist aber kein FS (RD 120 \u003e FD 100). Y ist FS, liegt mit 250 aber über der Grenze. Es bleibt nur X."
+    },
+    {
+        "id":  "slg-ei-066",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Same paths to 10.50.0.0/16: via X FD 100/RD 60 (successor), via Y FD 250/RD 80, via Z FD 180/RD 120. The engineer raises the variance to 3. Which paths are installed now?",
+        "optionen":  [
+                         "X, Y and Z",
+                         "Only X",
+                         "X and Y",
+                         "X and Z"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Grenze steigt auf 300, Y (250, RD 80 \u003c 100) ist jetzt dabei. Z bleibt trotz der kleineren Metrik draußen, weil Unequal-Cost-Pfade die Feasibility Condition erfüllen müssen."
+    },
+    {
+        "id":  "slg-ei-067",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 shows for 10.60.0.0/16: via A (5000/2000) successor, via B (12000/4000), via C (9000/6000). \u0027variance 3\u0027 is configured. Which next hops are in the routing table?",
+        "optionen":  [
+                         "A and C",
+                         "A and B",
+                         "Only A",
+                         "A, B and C"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Grenze liegt bei 15000. B ist FS (4000 \u003c 5000) und liegt darunter. C hat eine kleinere Metrik als B, aber RD 6000 \u003e 5000 und ist damit nicht feasible."
+    },
+    {
+        "id":  "slg-ei-068",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Same router: via A (5000/2000) successor, via B (12000/4000), via C (9000/6000). Which path is shown only with \u0027show ip eigrp topology all-links\u0027?",
+        "optionen":  [
+                         "A",
+                         "None, all three are always shown",
+                         "B",
+                         "C"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Standardausgabe zeigt Successor A und Feasible Successor B. C verletzt die Feasibility Condition und erscheint nur mit all-links."
+    },
+    {
+        "id":  "slg-ei-069",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 uses \u0027variance 3\u0027 together with \u0027traffic-share min across-interfaces\u0027. What is the effect?",
+        "optionen":  [
+                         "All qualifying paths are installed, but traffic uses only the lowest-metric path",
+                         "Only the successor is installed; the variance is ignored",
+                         "Traffic is shared equally across all qualifying paths",
+                         "Traffic is distributed in proportion to the metrics of all qualifying paths"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit \u0027min\u0027 landen die Pfade zwar in der Routing-Tabelle, Traffic läuft aber nur über den besten. Fällt dieser aus, steht der Ersatz bereits in der RIB. Default ist \u0027traffic-share balanced\u0027."
+    },
+    {
+        "id":  "slg-ei-070",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which \u0027maximum-paths\u0027 value disables EIGRP load balancing?",
+        "optionen":  [
+                         "4",
+                         "1",
+                         "0",
+                         "16"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit maximum-paths 1 wird nur noch ein Pfad pro Ziel installiert. Der Default ist 4, der maximal mögliche Wert hängt von der Plattform ab."
+    },
+    {
+        "id":  "slg-ei-071",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The EIGRP \u0027variance\u0027 command accepts a multiplier in the range 1 to ___.",
+        "optionen":  [
+                         "128",
+                         "16",
+                         "255",
+                         "64"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Variance 1 (Default) heißt nur gleich teure Pfade. Bis zum 128-fachen der besten Metrik sind möglich, sofern der Pfad ein Feasible Successor ist."
+    },
+    {
+        "id":  "slg-ei-072",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router eigrp 100, classic): Erlaube Unequal-Cost-Load-Balancing über Pfade bis zur dreifachen besten Metrik.",
+        "bausteine":  [
+                          "variance",
+                          "3",
+                          "maximum-paths",
+                          "traffic-share",
+                          "balanced",
+                          "4"
+                      ],
+        "loesung":  [
+                        "variance",
+                        "3"
+                    ],
+        "erklaerung":  "\u0027variance 3\u0027 installiert zusätzlich Feasible Successors mit einer Metrik unter 3 x FD. Die Zahl der Pfade begrenzt weiterhin maximum-paths."
+    },
+    {
+        "id":  "slg-ei-073",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router eigrp 100, classic, variance 3 aktiv): Lass nur den besten Pfad Traffic tragen, die übrigen Pfade sollen aber in der Routing-Tabelle bleiben.",
+        "bausteine":  [
+                          "traffic-share",
+                          "min",
+                          "across-interfaces",
+                          "balanced",
+                          "variance",
+                          "1"
+                      ],
+        "loesung":  [
+                        "traffic-share",
+                        "min",
+                        "across-interfaces"
+                    ],
+        "erklaerung":  "\u0027traffic-share min across-interfaces\u0027 schickt den Traffic nur über den Pfad mit der kleinsten Metrik. Die per variance zugelassenen Pfade bleiben installiert und sind beim Ausfall sofort verfügbar."
+    },
+    {
+        "id":  "slg-ei-074",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In EIGRP named mode, in which configuration context are \u0027variance\u0027 and \u0027maximum-paths\u0027 configured?",
+        "optionen":  [
+                         "In interface configuration mode",
+                         "Under \u0027af-interface default\u0027",
+                         "Under \u0027topology base\u0027 within the address family",
+                         "Directly under \u0027router eigrp \u003cname\u003e\u0027"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Im Named Mode gehören Einstellungen zur Pfadauswahl und Routing-Tabelle (variance, maximum-paths, redistribute, distance) in den Untermodus \u0027topology base\u0027 der Address Family."
+    },
+    {
+        "id":  "slg-ei-075",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Address-Family-Modus (router eigrp CORP, address-family ipv4 unicast autonomous-system 100): Wechsle in den Untermodus, in dem du variance und maximum-paths setzt.",
+        "bausteine":  [
+                          "topology",
+                          "base",
+                          "af-interface",
+                          "default",
+                          "exit-address-family",
+                          "variance"
+                      ],
+        "loesung":  [
+                        "topology",
+                        "base"
+                    ],
+        "erklaerung":  "Mit \u0027topology base\u0027 gelangt man in (config-router-af-topology). Dort werden variance, maximum-paths und Redistribution konfiguriert, Interface-Parameter dagegen unter af-interface."
+    },
+    {
+        "id":  "slg-ei-076",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 runs only IPv6 and has no IPv4 address configured. After \u0027ipv6 router eigrp 100\u0027 and \u0027ipv6 eigrp 100\u0027 on the interfaces, no neighbors form. What is most likely missing?",
+        "optionen":  [
+                         "An IPv4 multicast route to 224.0.0.10",
+                         "A network statement for each IPv6 prefix",
+                         "A manually configured 32-bit router ID under the EIGRP process",
+                         "The \u0027ipv6 enable\u0027 command on the loopback interface"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "EIGRP braucht auch für IPv6 eine 32-Bit-Router-ID. Ohne IPv4-Adresse kann sie nicht automatisch gewählt werden, deshalb muss \u0027eigrp router-id\u0027 gesetzt werden."
+    },
+    {
+        "id":  "slg-ei-077",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In classic EIGRP for IPv6, how is EIGRP enabled on an interface?",
+        "optionen":  [
+                         "With \u0027ipv6 enable eigrp\u0027 in global configuration",
+                         "With \u0027ipv6 eigrp \u003cas-number\u003e\u0027 in interface configuration mode",
+                         "Automatically on every interface with an IPv6 address",
+                         "With a \u0027network\u0027 statement under \u0027ipv6 router eigrp\u0027"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "EIGRP für IPv6 kennt im Classic Mode keine network-Befehle. Jedes Interface wird einzeln mit \u0027ipv6 eigrp \u003cAS\u003e\u0027 aktiviert."
+    },
+    {
+        "id":  "slg-ei-078",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Modus (Gi0/0, IPv6-Adresse vorhanden, ipv6 router eigrp 100 existiert): Aktiviere EIGRP für IPv6 auf diesem Interface.",
+        "bausteine":  [
+                          "ipv6",
+                          "eigrp",
+                          "100",
+                          "network",
+                          "router",
+                          "enable"
+                      ],
+        "loesung":  [
+                        "ipv6",
+                        "eigrp",
+                        "100"
+                    ],
+        "erklaerung":  "\u0027ipv6 eigrp 100\u0027 hängt das Interface an den Prozess AS 100. Einen network-Befehl gibt es bei EIGRP für IPv6 im Classic Mode nicht."
+    },
+    {
+        "id":  "slg-ei-079",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Router-Modus (ipv6 router eigrp 100, Router ohne IPv4-Adressen): Setze die Router-ID 1.1.1.1.",
+        "bausteine":  [
+                          "eigrp",
+                          "router-id",
+                          "1.1.1.1",
+                          "ipv6",
+                          "2001:DB8::1",
+                          "router"
+                      ],
+        "loesung":  [
+                        "eigrp",
+                        "router-id",
+                        "1.1.1.1"
+                    ],
+        "erklaerung":  "Die Router-ID ist auch für IPv6 eine 32-Bit-Zahl in Punktnotation. Eine IPv6-Adresse ist dort nicht zulässig."
+    },
+    {
+        "id":  "slg-ei-080",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ipv6 route eigrp\u0027 on R1 shows \u0027D 2001:DB8:20::/64 [90/3072] via FE80::2, GigabitEthernet0/0\u0027. Why is the next hop a link-local address?",
+        "optionen":  [
+                         "The route was redistributed from a connected network",
+                         "R2 has no global unicast address on GigabitEthernet0/0",
+                         "EIGRP for IPv6 sources its packets from link-local addresses and uses the neighbor\u0027s link-local address as next hop",
+                         "IPv6 routing tables always replace global next hops with link-local addresses for every protocol"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "EIGRP für IPv6 bildet Nachbarschaften über Link-Local-Adressen und trägt diese als Next Hop ein. Die globale Adresse des Nachbarn spielt dafür keine Rolle."
+    },
+    {
+        "id":  "slg-ei-081",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 Gi0/0 has 2001:DB8:1::1/64 and R2 Gi0/0 has 2001:DB8:2::2/64 on the same link. Both run EIGRP for IPv6 AS 100 with valid router IDs. What happens?",
+        "optionen":  [
+                         "No adjacency forms, because the global prefixes differ",
+                         "The adjacency forms, because EIGRP for IPv6 neighbors communicate over link-local addresses",
+                         "The adjacency forms but no routes are exchanged",
+                         "The adjacency forms only after one router adds a second global address"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Für IPv6 nutzt EIGRP die Link-Local-Adressen, die auf demselben Link immer in FE80::/10 liegen. Unterschiedliche globale Präfixe verhindern die Nachbarschaft daher nicht, anders als ein fehlendes gemeinsames Subnetz bei IPv4."
+    },
+    {
+        "id":  "slg-ei-082",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "A router without any IPv4 address must run classic EIGRP for IPv6 on Gi0/0. Which three commands are required? (Choose three.)",
+        "optionen":  [
+                         "network 2001:DB8:1::/64 (under ipv6 router eigrp 100)",
+                         "eigrp router-id 10.0.0.1 (under ipv6 router eigrp 100)",
+                         "ipv6 ospf 1 area 0 (on Gi0/0)",
+                         "ipv6 unicast-routing",
+                         "ipv6 eigrp 100 (on Gi0/0)"
+                     ],
+        "richtig":  [
+                        1,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Ohne ipv6 unicast-routing routet der Router kein IPv6, ohne IPv4-Adresse muss die Router-ID manuell gesetzt werden, und das Interface wird mit \u0027ipv6 eigrp 100\u0027 aktiviert. network-Befehle gibt es hier nicht."
+    },
+    {
+        "id":  "slg-ei-083",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 uses EIGRP named mode with \u0027address-family ipv6 unicast autonomous-system 100\u0027. Which interfaces participate in the IPv6 address family by default?",
+        "optionen":  [
+                         "None until \u0027af-interface default\u0027 contains \u0027no shutdown\u0027 for the address family",
+                         "All IPv6-enabled interfaces; individual ones can be excluded with \u0027shutdown\u0027 under \u0027af-interface\u0027",
+                         "Only interfaces with \u0027ipv6 eigrp 100\u0027 in interface mode",
+                         "Only interfaces matched by a network statement"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Im Named Mode werden für IPv6 automatisch alle IPv6-Interfaces einbezogen. Wer ein Interface ausnehmen will, nutzt \u0027af-interface \u003cInt\u003e\u0027 mit \u0027shutdown\u0027 oder macht es passiv."
+    },
+    {
+        "id":  "slg-ei-084",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A dual-stack router runs EIGRP for IPv4 and IPv6. How are neighbors and topology information kept?",
+        "optionen":  [
+                         "In separate neighbor and topology tables per protocol",
+                         "In the IPv4 tables only; IPv6 routes are derived from them",
+                         "In one neighbor table and separate routing tables only",
+                         "In one shared table, with a flag per entry for IPv4 or IPv6"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Jedes protokollabhängige Modul hat eigene Nachbar- und Topologietabellen. IPv4- und IPv6-EIGRP laufen unabhängig, auch wenn DUAL und Metrik gleich arbeiten."
+    },
+    {
+        "id":  "slg-ei-085",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 is configured with \u0027router eigrp CORP\u0027 and \u0027address-family ipv4 unicast autonomous-system 200\u0027. R2 uses classic \u0027router eigrp 200\u0027. Will R1 and R2 become neighbors on a shared subnet with matching network statements?",
+        "optionen":  [
+                         "No, because named and classic mode cannot form adjacencies",
+                         "Yes, but only after R2 is also configured with the name CORP",
+                         "Yes, because the AS numbers match and the name is only locally significant",
+                         "No, because the instance name is carried in the hellos"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Im Named Mode legt die address-family die AS-Nummer fest, der Instanzname ist nur lokal. Ins Hello kommt AS 200. Named und Classic Mode sind auf dem Draht kompatibel."
+    },
+    {
+        "id":  "slg-ei-086",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router eigrp CORP, named mode): Starte die IPv4-Unicast-Address-Family für AS 100.",
+        "bausteine":  [
+                          "address-family",
+                          "ipv4",
+                          "unicast",
+                          "autonomous-system",
+                          "100",
+                          "ipv6",
+                          "vrf",
+                          "network"
+                      ],
+        "loesung":  [
+                        "address-family",
+                        "ipv4",
+                        "unicast",
+                        "autonomous-system",
+                        "100"
+                    ],
+        "erklaerung":  "Im Named Mode legt erst die Address Family die AS-Nummer fest. Danach folgen network-Befehle und Untermodi wie af-interface und topology base."
+    },
+    {
+        "id":  "slg-ei-087",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Named-Mode-Untermodus der Einstellung zu, die dort konfiguriert wird.",
+        "paare":  [
+                      [
+                          "address-family ipv4 unicast autonomous-system 100",
+                          "network statements and eigrp router-id"
+                      ],
+                      [
+                          "af-interface GigabitEthernet0/0",
+                          "hello-interval, hold-time and authentication"
+                      ],
+                      [
+                          "topology base",
+                          "variance and maximum-paths"
+                      ]
+                  ],
+        "erklaerung":  "Named Mode bündelt alles unter \u0027router eigrp \u003cName\u003e\u0027: Prozessweite AF-Einstellungen direkt in der Address Family, Interface-Parameter unter af-interface, Pfadwahl und RIB-Themen unter topology base."
+    },
+    {
+        "id":  "slg-ei-088",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three are advantages of EIGRP named mode over classic mode? (Choose three.)",
+        "optionen":  [
+                         "It forms adjacencies only with other named-mode routers",
+                         "All EIGRP settings, including interface parameters, are in one place",
+                         "Wide (64-bit) metrics are used",
+                         "It no longer requires an AS number",
+                         "Multiple address families and VRFs run under one process"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Named Mode bündelt die Konfiguration, unterstützt mehrere AFs und VRFs und rechnet mit Wide Metrics. Die AS-Nummer bleibt nötig (in der address-family), und mit Classic-Routern ist er kompatibel."
+    },
+    {
+        "id":  "slg-ei-089",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Address-Family-Modus (router eigrp CORP, address-family ipv4 unicast autonomous-system 100): Wechsle in den Interface-Untermodus für GigabitEthernet0/0, um dort Hello-Timer zu setzen.",
+        "bausteine":  [
+                          "af-interface",
+                          "GigabitEthernet0/0",
+                          "interface",
+                          "topology",
+                          "base",
+                          "default"
+                      ],
+        "loesung":  [
+                        "af-interface",
+                        "GigabitEthernet0/0"
+                    ],
+        "erklaerung":  "Interface-bezogene EIGRP-Parameter wie hello-interval, hold-time, Authentifizierung oder passive-interface stehen im Named Mode unter \u0027af-interface \u003cInterface\u003e\u0027 bzw. \u0027af-interface default\u0027 für alle."
+    },
+    {
+        "id":  "slg-ei-090",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In classic EIGRP mode, where are the hello interval, split horizon, and authentication configured?",
+        "optionen":  [
+                         "Under the address-family",
+                         "Under router eigrp \u003cas-number\u003e",
+                         "Under topology base",
+                         "In interface configuration mode"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Im Classic Mode verteilt sich die Konfiguration auf den Routerprozess und die Interfaces. Genau das bündelt der Named Mode unter af-interface."
+    },
+    {
+        "id":  "slg-ei-091",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router eigrp 100, classic): R1 hat Gi0/0 mit 10.1.1.1/24 und Gi0/1 mit 10.1.2.1/24. Aktiviere EIGRP nur auf Gi0/0, und zwar exakt über dessen Adresse.",
+        "bausteine":  [
+                          "network",
+                          "10.1.1.1",
+                          "0.0.0.0",
+                          "10.0.0.0",
+                          "0.0.0.255",
+                          "255.255.255.0"
+                      ],
+        "loesung":  [
+                        "network",
+                        "10.1.1.1",
+                        "0.0.0.0"
+                    ],
+        "erklaerung":  "Mit Wildcard 0.0.0.0 trifft der network-Befehl genau eine Interface-Adresse. \u0027network 10.0.0.0\u0027 würde beide Interfaces aktivieren."
+    },
+    {
+        "id":  "slg-ei-092",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 has interfaces 10.1.1.1/24, 10.2.2.1/24, and 172.16.1.1/24. Under \u0027router eigrp 100\u0027 the engineer enters only \u0027network 10.0.0.0\u0027. On which interfaces does EIGRP run?",
+        "optionen":  [
+                         "On 10.1.1.1 and 10.2.2.1",
+                         "On all three interfaces",
+                         "Only on 10.1.1.1",
+                         "On none, because a wildcard mask is mandatory"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ohne Wildcard gilt die klassenbezogene Netzgrenze, hier 10.0.0.0/8. Beide 10er-Interfaces passen, 172.16.1.1 nicht."
+    },
+    {
+        "id":  "slg-ei-093",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer enters \u0027network 192.168.10.0 255.255.255.0\u0027 under \u0027router eigrp 100\u0027. What does IOS do?",
+        "optionen":  [
+                         "It creates a summary route for 192.168.10.0/24",
+                         "It accepts the command and converts the subnet mask to the wildcard 0.0.0.255",
+                         "It interprets 255.255.255.0 as a wildcard and matches nearly every address",
+                         "It rejects the command with an invalid input error"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "EIGRP erkennt die Subnetzmaske und speichert sie als Wildcard. In der running-config steht danach 0.0.0.255."
+    },
+    {
+        "id":  "slg-ei-094",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does the EIGRP \u0027network\u0027 command actually do?",
+        "optionen":  [
+                         "It sets the neighbor address for unicast hellos",
+                         "It enables EIGRP on interfaces whose addresses match and advertises those interfaces\u0027 subnets",
+                         "It advertises exactly the network written in the command, even without a matching interface",
+                         "It defines which networks are summarized"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der network-Befehl wählt Interfaces aus. EIGRP sendet dort Hellos und annonciert deren Subnetze mit der Interface-Maske, nicht das Netz aus dem Befehl."
+    },
+    {
+        "id":  "slg-ei-095",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The EIGRP autonomous system number is a value from 1 to ___.",
+        "optionen":  [
+                         "255",
+                         "4294967295",
+                         "65535",
+                         "1023"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die EIGRP-AS-Nummer ist ein 16-Bit-Wert und muss auf allen Nachbarn gleich sein. Sie hat keine globale Bedeutung wie eine BGP-AS."
+    },
+    {
+        "id":  "slg-ei-096",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Show-Befehl der Information zu, die er liefert.",
+        "paare":  [
+                      [
+                          "show ip eigrp interfaces",
+                          "Interfaces on which EIGRP is active"
+                      ],
+                      [
+                          "show ip eigrp neighbors",
+                          "Adjacent routers with hold time, uptime and SRTT"
+                      ],
+                      [
+                          "show ip eigrp topology",
+                          "Successors and feasible successors with FD and RD"
+                      ],
+                      [
+                          "show ip eigrp topology all-links",
+                          "Every learned path, including non-feasible ones"
+                      ]
+                  ],
+        "erklaerung":  "Für Nachbarschaftsprobleme nutzt man neighbors und interfaces, für die Pfadwahl topology. all-links zeigt zusätzlich die Pfade, die die Feasibility Condition nicht erfüllen."
+    },
+    {
+        "id":  "slg-ei-097",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC (classic EIGRP): Zeige alle Pfade der Topologietabelle, auch die, die keine Feasible Successors sind.",
+        "bausteine":  [
+                          "show",
+                          "ip",
+                          "eigrp",
+                          "topology",
+                          "all-links",
+                          "neighbors",
+                          "detail",
+                          "route"
+                      ],
+        "loesung":  [
+                        "show",
+                        "ip",
+                        "eigrp",
+                        "topology",
+                        "all-links"
+                    ],
+        "erklaerung":  "Ohne all-links zeigt die Topologietabelle nur Successors und Feasible Successors. Damit sieht man, warum ein Pfad nicht als Backup dient."
+    },
+    {
+        "id":  "slg-ei-098",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In \u0027show ip eigrp neighbors\u0027, the Q Cnt for neighbor 10.1.12.2 stays at a nonzero value for a long time, while SRTT is high. What does this indicate?",
+        "optionen":  [
+                         "The hold timer is configured too high",
+                         "The neighbor has queued queries because a route is in passive state",
+                         "Reliable packets to that neighbor are waiting and not being acknowledged",
+                         "The neighbor has too many feasible successors"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Q Cnt zählt die Pakete, die noch auf Übertragung bzw. Bestätigung warten. Normal ist 0. Ein dauerhaft hoher Wert zusammen mit hohem SRTT spricht für Paketverlust oder Überlast zwischen den Nachbarn."
+    },
+    {
+        "id":  "slg-ei-099",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Spalte aus \u0027show ip eigrp neighbors\u0027 ihrer Bedeutung zu.",
+        "paare":  [
+                      [
+                          "Hold",
+                          "Seconds left before the neighbor is declared down"
+                      ],
+                      [
+                          "SRTT",
+                          "Average round-trip time for reliable packets and their ACKs"
+                      ],
+                      [
+                          "RTO",
+                          "Time to wait before retransmitting an unacknowledged packet"
+                      ],
+                      [
+                          "Q Cnt",
+                          "Number of packets waiting to be sent to the neighbor"
+                      ]
+                  ],
+        "erklaerung":  "SRTT ist der geglättete Mittelwert, aus dem sich das RTO ableitet. Hold zählt herunter und wird bei jedem Hello zurückgesetzt. Q Cnt sollte im Normalbetrieb 0 sein."
+    },
+    {
+        "id":  "slg-ei-100",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Kennwert dem richtigen Protokoll-Detail zu.",
+        "paare":  [
+                      [
+                          "EIGRP IP protocol number",
+                          "88"
+                      ],
+                      [
+                          "OSPF IP protocol number",
+                          "89"
+                      ],
+                      [
+                          "Internal EIGRP administrative distance",
+                          "90"
+                      ],
+                      [
+                          "OSPF administrative distance",
+                          "110"
+                      ]
+                  ],
+        "erklaerung":  "Beide Protokolle laufen direkt über IP (88 bzw. 89). Bei gleichem Präfix gewinnt EIGRP-intern mit AD 90 gegen OSPF mit 110."
+    },
+    {
+        "id":  "slg-ei-101",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Multicast-Adresse ihrer Verwendung zu.",
+        "paare":  [
+                      [
+                          "224.0.0.10",
+                          "EIGRP for IPv4"
+                      ],
+                      [
+                          "FF02::A",
+                          "EIGRP for IPv6"
+                      ],
+                      [
+                          "224.0.0.5",
+                          "OSPFv2 all SPF routers"
+                      ],
+                      [
+                          "224.0.0.6",
+                          "OSPFv2 DR and BDR"
+                      ]
+                  ],
+        "erklaerung":  "EIGRP nutzt eine einzige Multicast-Adresse pro Protokollfamilie. OSPF unterscheidet zwischen allen Routern und dem DR/BDR."
+    },
+    {
+        "id":  "slg-ei-102",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does an EIGRP router know about routers that are several hops away, compared with an OSPF router in the same area?",
+        "optionen":  [
+                         "Only the destinations and metrics its neighbors advertise, not the full topology map",
+                         "The full topology, but only for summarized routes",
+                         "The complete link-state database of the domain, like OSPF",
+                         "Nothing, because EIGRP routes only to directly connected neighbors"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "EIGRP ist ein (Advanced) Distance-Vector-Protokoll: Es kennt Ziele und Distanzen aus Nachbarsicht. OSPF-Router einer Area haben dieselbe LSDB und berechnen den Baum selbst."
+    },
+    {
+        "id":  "slg-ei-103",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A company plans a network with routers from several vendors. Which IGP is the most likely choice and why?",
+        "optionen":  [
+                         "EIGRP, because it has been an open standard since 2013",
+                         "OSPF, because EIGRP cannot run on Layer 3 switches",
+                         "OSPF, because it is supported by practically all vendors",
+                         "EIGRP, because RFC 7868 requires vendors to support it"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "RFC 7868 ist nur informational und verpflichtet niemanden. In gemischten Umgebungen ist OSPF deshalb der Standard, EIGRP eignet sich vor allem für reine Cisco-Netze."
+    },
+    {
+        "id":  "slg-ei-104",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How do EIGRP and OSPF differ in sending routing information in a stable network?",
+        "optionen":  [
+                         "EIGRP sends full updates every 90 seconds, OSPF only on changes",
+                         "Both send their full routing tables every 30 seconds",
+                         "EIGRP sends only hellos, while OSPF also refreshes each LSA every 30 minutes",
+                         "Neither protocol sends any packets while the network is stable"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "EIGRP schickt Updates nur bei Änderungen, sonst nur Hellos. OSPF flutet ebenfalls nur bei Änderungen, frischt aber jede LSA nach 30 Minuten (LSRefreshTime) neu auf."
+    },
+    {
+        "id":  "slg-ei-105",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three statements describe EIGRP rather than OSPF? (Choose three.)",
+        "optionen":  [
+                         "Neighbors must use the same autonomous system number",
+                         "It computes a shortest-path tree with the Dijkstra algorithm",
+                         "It organizes the network into areas around a backbone",
+                         "It precomputes loop-free backup paths as feasible successors",
+                         "It can load-balance over paths with unequal metrics"
+                     ],
+        "richtig":  [
+                        0,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Unequal-Cost-Load-Balancing, Feasible Successors aus DUAL und die gemeinsame AS-Nummer sind EIGRP-typisch. Areas und Dijkstra (SPF) gehören zu OSPF."
+    },
+    {
+        "id":  "slg-ei-106",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about neighbor parameters in EIGRP and OSPF are true? (Choose two.)",
+        "optionen":  [
+                         "OSPF neighbors must use the same K values",
+                         "The EIGRP AS number must match, the OSPF process ID is locally significant",
+                         "EIGRP requires matching area IDs",
+                         "OSPF neighbors must agree on hello and dead intervals, EIGRP neighbors may use different timers",
+                         "Both protocols require matching router IDs on neighbors"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "OSPF vergleicht Timer, Area und weitere Parameter im Hello, EIGRP prüft AS, K-Werte, Subnetz und Authentifizierung. Router-IDs sollen bei beiden eindeutig sein, müssen also gerade nicht übereinstimmen."
+    },
+    {
+        "id":  "slg-ei-107",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which part of EIGRP remained Cisco proprietary when the protocol was published as an informational RFC?",
+        "optionen":  [
+                         "The composite metric calculation",
+                         "The hello and update packet formats",
+                         "The stub routing functionality",
+                         "The DUAL algorithm"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Mit RFC 7868 hat Cisco die EIGRP-Grundfunktionen offengelegt. Die Stub-Funktion blieb proprietär, und Cisco steuert die Weiterentwicklung."
+    },
+    {
+        "id":  "slg-ei-108",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "EIGRP updates are described as \u0027partial\u0027 and \u0027bounded\u0027. What does \u0027bounded\u0027 mean?",
+        "optionen":  [
+                         "Updates are limited to a maximum of 100 hops from the originating router",
+                         "Updates are sent only within a single area",
+                         "Updates contain only the changed routes",
+                         "Updates are propagated only to the routers that are affected by the change"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027Partial\u0027 heißt: nur die Änderung wird gesendet. \u0027Bounded\u0027 heißt: nur Router, die die Änderung betrifft, bekommen sie. Beides spart Bandbreite gegenüber periodischen Full Updates."
+    },
+    {
+        "id":  "slg-ei-109",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which EIGRP property allows it to support VLSM and discontiguous subnets?",
+        "optionen":  [
+                         "It summarizes routes at classful boundaries by default",
+                         "It sends periodic full updates",
+                         "It includes the subnet mask with every advertised destination",
+                         "It uses broadcast for route advertisements"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Als klassenloses Protokoll übermittelt EIGRP zu jedem Präfix die Maske. Auto-Summary ist in aktuellem IOS standardmäßig aus, sonst könnten diskontinuierliche Netze Probleme machen."
+    },
+    {
+        "id":  "slg-ei-110",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two changes on R1 alone cause R1\u0027s EIGRP adjacency with R2 to go down? (Choose two.)",
+        "optionen":  [
+                         "Enabling EIGRP authentication only on R1\u0027s interface toward R2",
+                         "Changing the bandwidth on R1\u0027s interface toward R2",
+                         "Changing the hello interval on R1 to 2 seconds",
+                         "Changing the metric weights on R1",
+                         "Changing the delay on R1\u0027s interface toward R2"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Abweichende K-Werte und einseitige Authentifizierung verletzen Nachbarschaftsbedingungen. Delay und Bandbreite ändern nur Metriken (per Update), ein anderes Hello-Intervall stört nicht, solange die Hold Time passt."
+    },
+    {
+        "id":  "slg-ei-111",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 reaches R2 over a 10-Mbps Ethernet link (DLY 1000 usec). R2 advertises its GigabitEthernet LAN (DLY 10 usec). Which classic metric does R1 calculate for the LAN?",
+        "optionen":  [
+                         "281600",
+                         "28416",
+                         "281856",
+                         "284160"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Engpass ist das 10-Mbit/s-Ethernet: 10^7/10.000 = 1000. Delay: (1000 + 10)/10 = 101. (1000 + 101) x 256 = 281856. 281600 wäre nur das Ethernet-Netz selbst."
+    },
+    {
+        "id":  "slg-ei-112",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Classic EIGRP is used on 10-Gbps and 1-Gbps uplinks. Which statement about the bandwidth term (10^7/BW in kbps) is correct?",
+        "optionen":  [
+                         "It is 0 for both links",
+                         "It is 10000 for 10 Gbps and 1000 for 1 Gbps",
+                         "It is 1 for 10 Gbps and 10 for 1 Gbps",
+                         "It is 10 for 10 Gbps and 1 for 1 Gbps"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "10^7/10.000.000 = 1 und 10^7/1.000.000 = 10. Kleinere Werte sind besser. Oberhalb von 10 Gbit/s gehen die Unterschiede im Classic Mode verloren, deshalb gibt es Wide Metrics."
+    },
+    {
+        "id":  "slg-ei-113",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two EIGRP paths to a prefix have identical metrics. \u0027maximum-paths\u0027 is left at its default and variance is 1. What does R1 install?",
+        "optionen":  [
+                         "Neither, until the tie is broken by hop count",
+                         "Only the path through the neighbor with the higher router ID",
+                         "Only the path learned first",
+                         "Both paths, as equal-cost paths"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Gleich teure Pfade werden standardmäßig bis zu einer Zahl von vier installiert, die Lastverteilung übernimmt CEF. Router-ID oder Hop Count entscheiden hier nichts."
+    },
+    {
+        "id":  "slg-ei-114",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Without configuration, EIGRP installs up to ___ equal-cost paths to a destination.",
+        "optionen":  [
+                         "1",
+                         "4",
+                         "8",
+                         "16"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Default für maximum-paths ist 4. Mit 1 wird Load Balancing deaktiviert, das Maximum hängt von der Plattform ab."
+    },
+    {
+        "id":  "slg-ei-115",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why should K values be changed only consistently across the whole EIGRP domain?",
+        "optionen":  [
+                         "They are carried in hellos and must match on neighbors, and all routers must calculate metrics the same way",
+                         "Different K values cause DUAL to select OSPF routes instead",
+                         "K values are only exchanged at boot time, so any change takes effect only after a reload of all routers",
+                         "Mismatched K values disable variance"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bei abweichenden K-Werten kommt keine Nachbarschaft zustande. Und selbst wenn es ginge, würden Router dieselben Pfade unterschiedlich bewerten, was zu suboptimalem Routing führen kann."
+    },
+    {
+        "id":  "slg-ei-116",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Interface reliability is expressed as a fraction where ___ means 100 percent reliability.",
+        "optionen":  [
+                         "255/255",
+                         "100/100",
+                         "1/255",
+                         "0/255"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Reliability und Load werden als x/255 angezeigt. 255/255 bedeutet volle Zuverlässigkeit, txload/rxload 1/255 eine fast leere Leitung."
+    },
+    {
+        "id":  "slg-ei-117",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Paths to 10.70.0.0/16: via R2 metric 40 (successor), via R3 metric 70 with RD 30, via R4 metric 100 with RD 45. With \u0027variance 3\u0027 and \u0027traffic-share balanced\u0027, which paths carry traffic?",
+        "optionen":  [
+                         "Via R3 and R4 only",
+                         "Via R2 and R3 only",
+                         "Via R2, R3 and R4",
+                         "Via R2 only"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Grenze ist 3 x 40 = 120, alle drei liegen darunter. R4 meldet aber RD 45, und die ist nicht kleiner als FD 40, also kein Feasible Successor. Traffic läuft über R2 und R3, verteilt nach dem Verhältnis ihrer Metriken."
+    },
+    {
+        "id":  "slg-ei-118",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus (Gi0/1): Erhöhe den Delay dieses Interfaces auf 2000 Mikrosekunden, um den Pfad für EIGRP unattraktiver zu machen.",
+        "bausteine":  [
+                          "delay",
+                          "200",
+                          "2000",
+                          "20",
+                          "bandwidth",
+                          "ip"
+                      ],
+        "loesung":  [
+                        "delay",
+                        "200"
+                    ],
+        "erklaerung":  "Der delay-Befehl arbeitet in Zehner-Mikrosekunden, 200 ergibt also 2000 µs. \u0027show interfaces\u0027 zeigt danach DLY 2000 usec."
+    },
+    {
+        "id":  "slg-ei-119",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement correctly compares how EIGRP and OSPF select the best path?",
+        "optionen":  [
+                         "Both run SPF, but EIGRP adds delay to the cost",
+                         "Both use the same bandwidth-based metric, but OSPF has a lower administrative distance",
+                         "EIGRP uses hop count, OSPF uses bandwidth and delay",
+                         "EIGRP uses DUAL with a composite metric of bandwidth and delay, OSPF runs SPF on summed interface costs"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "OSPF berechnet mit Dijkstra den kürzesten Pfad über Kosten, die sich aus der Referenzbandbreite ableiten. EIGRP wählt mit DUAL anhand der Composite Metric aus Bandbreite und Delay."
+    },
+    {
+        "id":  "slg-ei-120",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer wants backup paths via variance to be used only with care. What is required for a path to be used for unequal-cost load balancing?",
+        "optionen":  [
+                         "It must have the same hop count as the successor",
+                         "Its metric must be lower than variance x the successor\u0027s FD, and its reported distance must be lower than that FD",
+                         "Its reported distance must be lower than variance x the successor\u0027s FD",
+                         "Its metric must be lower than variance x the successor\u0027s FD; the feasibility condition does not apply"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Variance lockert nur die Metrikgrenze, nicht die Schleifenprüfung. Nur Feasible Successors kommen in Frage, damit auch die zusätzlichen Pfade loop-frei bleiben."
+    },
+    {
+        "id":  "slg-ei-121",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "EIGRP is described as an advanced distance vector protocol. Which behavior is borrowed from link-state protocols?",
+        "optionen":  [
+                         "It floods link-state advertisements to all routers in an area after every change",
+                         "It elects a designated router on multiaccess segments",
+                         "It builds a shortest-path tree with itself as the root",
+                         "It discovers neighbors with hellos and sends only partial updates when something changes"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Hellos und ereignisgesteuerte Teil-Updates ähneln Link-State. Die Routen lernt EIGRP aber weiterhin als Distanzvektoren von den Nachbarn, ohne LSAs, SPF oder DR."
+    },
+    {
+        "id":  "slg-ei-122",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Named-mode \u0027show ip protocols\u0027 shows \u0027Metric weight K1=1, K2=0, K3=1, K4=0, K5=0 K6=0\u0027 and \u0027Metric rib-scale 128\u0027. A topology entry has a wide metric of 1310720. Which metric appears in the routing table?",
+        "optionen":  [
+                         "10240",
+                         "2816",
+                         "167772160",
+                         "1310720"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Für die RIB wird die 64-Bit-Wide-Metric durch den rib-scale-Faktor geteilt: 1310720 / 128 = 10240. Die Topologietabelle zeigt weiterhin den ungeteilten Wert."
+    }
+]

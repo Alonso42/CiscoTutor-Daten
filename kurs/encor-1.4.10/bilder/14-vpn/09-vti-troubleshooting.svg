@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>VTI-Troubleshooting: IKE-SA, dann IPsec-SA, dann Routing prüfen</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<defs>
+<marker id="t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker>
+</defs>
+<rect x="250" y="15" width="300" height="40" rx="8" fill="#ff6b6b" fill-opacity="0.3" stroke="#222"/>
+<text x="400" y="40" font-size="14" fill="#222" text-anchor="middle">Verkehr geht nicht durch den VTI</text>
+<g stroke="#222" stroke-width="1.5">
+<polygon points="400,75 520,115 400,155 280,115" fill="#4a9cff" fill-opacity="0.2"/>
+<polygon points="400,180 520,220 400,260 280,220" fill="#4a9cff" fill-opacity="0.2"/>
+<polygon points="400,285 520,325 400,365 280,325" fill="#4a9cff" fill-opacity="0.2"/>
+<rect x="580" y="95" width="200" height="40" rx="6" fill="#ffd23f" fill-opacity="0.4"/>
+<rect x="580" y="200" width="200" height="40" rx="6" fill="#ffd23f" fill-opacity="0.4"/>
+<rect x="580" y="305" width="200" height="40" rx="6" fill="#ffd23f" fill-opacity="0.4"/>
+<rect x="250" y="390" width="300" height="40" rx="8" fill="#39c86a" fill-opacity="0.35"/>
+</g>
+<g stroke="#222" stroke-width="1.6" marker-end="url(#t)">
+<line x1="400" y1="55" x2="400" y2="73"/>
+<line x1="400" y1="155" x2="400" y2="178"/>
+<line x1="400" y1="260" x2="400" y2="283"/>
+<line x1="400" y1="365" x2="400" y2="388"/>
+<line x1="520" y1="115" x2="578" y2="115"/>
+<line x1="520" y1="220" x2="578" y2="220"/>
+<line x1="520" y1="325" x2="578" y2="325"/>
+</g>
+<g font-size="13" fill="#222" text-anchor="middle">
+<text x="400" y="112">IKE-SA ok?</text><text x="400" y="128" font-size="11">QM_IDLE / ACTIVE</text>
+<text x="400" y="217">IPsec-SA ok?</text><text x="400" y="233" font-size="11">encaps/decaps steigen</text>
+<text x="400" y="322">Routing in den</text><text x="400" y="338">Tunnel ok?</text>
+<text x="680" y="113">Policy, PSK, UDP 500/4500</text><text x="680" y="128" font-size="11">IKE-SA troubleshooten</text>
+<text x="680" y="218">Transform Set / Profil</text><text x="680" y="233" font-size="11">beidseitig angleichen</text>
+<text x="680" y="323">Statische Route oder</text><text x="680" y="338" font-size="11">IGP über Tunnel0</text>
+<text x="400" y="415">Verkehr fließt durch den VTI</text>
+</g>
+<g font-size="11" fill="#222">
+<text x="545" y="108">nein</text><text x="545" y="213">nein</text><text x="545" y="318">nein</text>
+<text x="408" y="172">ja</text><text x="408" y="277">ja</text><text x="408" y="382">ja</text>
+</g>
+<g font-family="monospace" font-size="11" fill="#222">
+<text x="15" y="110">show crypto isakmp sa</text>
+<text x="15" y="125">show crypto isakmp policy</text>
+<text x="15" y="215">show crypto ipsec sa</text>
+<text x="15" y="230">show interface tunnel 0</text>
+<text x="15" y="320">show ip route</text>
+<text x="15" y="335">ping ... source e0/1</text>
+</g>
+</svg>

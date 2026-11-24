@@ -1,0 +1,149 @@
+[
+{
+ "id": "eigrp",
+ "titel": "EIGRP: DUAL, Metrik, Load Balancing und Vergleich mit OSPF",
+ "topics": ["ENCOR-3.2.a"],
+ "seiten": [
+  {
+   "text": "EIGRP ist ein Advanced-Distance-Vector-Protokoll von Cisco, seit 2013 als informational RFC 7868 offengelegt (die Stub-Funktion blieb proprietär). Wie ein Distance-Vector-Protokoll lernt es Ziele und Distanzen nur von direkten Nachbarn, es kennt keine komplette Topologie-Landkarte wie OSPF. Von Link-State übernimmt es Hellos zur Nachbarerkennung und ereignisgesteuerte Updates: keine periodischen Full Updates, sondern 'partial' (nur die Änderung) und 'bounded' (nur an betroffene Router). EIGRP läuft direkt über IP (Protokoll 88), nutzt Multicast 224.0.0.10 bzw. FF02::A und Unicast, ist klassenlos (Maske je Präfix, VLSM) und kann gleich und ungleich teure Pfade gleichzeitig nutzen. Das Herz ist DUAL: Es hält loop-freie Backup-Pfade (Feasible Successors) vor und schaltet bei Ausfall ohne Rückfrage bei den Nachbarn um.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Tabelle", "Inhalt"],
+    "zeilen": [
+     ["Neighbor Table", "Nachbarn mit Primäradresse, Interface, Hold Time, SRTT, RTO, Q Cnt"],
+     ["Topology Table", "Alle gelernten Ziele, je Nachbar dessen gemeldete Distanz (RD) und die eigene Metrik (FD) über ihn"],
+     ["Routing Table", "Nur die Successor-Routen, z. B. D 10.4.4.0/24 [90/3072]"]
+    ]
+   }
+  },
+  {
+   "text": "Damit Updates sicher ankommen, hat EIGRP ein eigenes Transportprotokoll: RTP (Reliable Transport Protocol). Es nummeriert zuverlässige Pakete und erwartet für jedes ein ACK. Bleibt das ACK eines Nachbarn aus, wird das Paket gezielt per Unicast an ihn wiederholt; nach dem Retry-Limit wird die Nachbarschaft zurückgesetzt. Ein ACK ist einfach ein leeres Hello mit einer ACK-Nummer ungleich 0. Neue Nachbarn bekommen die komplette Topologie per Unicast-Update, Änderungen gehen per Multicast. Eine Route ist 'passive', solange nicht neu gerechnet wird, und 'active', während der Router per Query einen neuen Successor sucht.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Paket", "Zweck", "Zustellung", "Zuverlässig?"],
+    "zeilen": [
+     ["Hello", "Nachbarn finden und halten (ACK-Nr. 0)", "Multicast", "nein"],
+     ["Update", "Routen verteilen", "Multicast; Unicast an neue Nachbarn", "ja"],
+     ["Query", "Ersatzpfad erfragen, Route ist active", "Multicast", "ja"],
+     ["Reply", "Antwort auf Query", "Unicast an den Fragenden", "ja"],
+     ["ACK", "Bestätigt Update, Query, Reply", "Unicast", "nein"],
+     ["Request", "Gezielte Informationsanfrage", "Unicast oder Multicast", "nein"]
+    ]
+   }
+  },
+  {
+   "text": "Eine Nachbarschaft entsteht nur, wenn im Hello AS-Nummer und K-Werte übereinstimmen, beide Router im selben Subnetz liegen (Quelle ist immer die Primäradresse, über Secondary-Adressen geht es nicht) und die Authentifizierung passt. Hello- und Hold-Timer dürfen sich unterscheiden: Jeder Router meldet seine Hold Time im Hello, und der Nachbar nutzt genau diesen Wert. Defaults: 5 s Hello / 15 s Hold auf LANs und Punkt-zu-Punkt, 60/180 s auf langsamen Multipoint-NBMA-Links. Wer das Hello-Intervall erhöht, muss die Hold Time selbst anpassen, sie folgt nicht automatisch. 'passive-interface' unterdrückt Hellos komplett und beendet damit die Nachbarschaft auf diesem Interface. Die Router-ID (höchste Loopback-, sonst höchste Interface-IPv4-Adresse) ist kein Nachbarschaftskriterium.",
+   "diagramm": {
+    "typ": "topologie",
+    "knoten": [
+     {"id": "r1", "label": "R1 (bootet)", "x": "0.2", "y": "0.5", "art": "router"},
+     {"id": "r2", "label": "R2", "x": "0.8", "y": "0.5", "art": "router"}
+    ],
+    "kanten": [
+     {"von": "r1", "nach": "r2", "label": "10.1.12.0/24, AS 100", "farbe": "39c86a"}
+    ],
+    "schritte": [
+     {"von": "r1", "nach": "r2", "farbe": "ffd23f", "text": "R1 sendet ein Hello an 224.0.0.10 (AS, K-Werte, Hold Time)"},
+     {"von": "r2", "nach": "r1", "farbe": "ffd23f", "text": "R2 prüft AS, K-Werte, Subnetz, Auth und antwortet mit Hello"},
+     {"von": "r2", "nach": "r1", "farbe": "4aa3ff", "text": "R2 schickt seine Routen als Unicast-Update"},
+     {"von": "r1", "nach": "r2", "farbe": "39c86a", "text": "R1 bestätigt mit ACK, sobald die Nachbarschaft steht"},
+     {"von": "r1", "nach": "r2", "farbe": "4aa3ff", "text": "R1 schickt seine eigenen Routen als Update"},
+     {"von": "r2", "nach": "r1", "farbe": "39c86a", "text": "R2 bestätigt mit ACK, beide Topologietabellen sind synchron"}
+    ]
+   }
+  },
+  {
+   "text": "Die klassische Metrik nutzt mit den Default-K-Werten (K1 = K3 = 1, K2 = K4 = K5 = 0) nur Bandbreite und Delay: Metrik = 256 x (10^7 / kleinste Bandbreite in kbit/s + Summe aller Delays in µs / 10). Die Bandbreite ist der Engpass des Pfades, der Delay wird über alle ausgehenden Interfaces addiert. Brüche werden abgeschnitten. Der Faktor 256 macht aus der 24-Bit-IGRP-Metrik einen 32-Bit-Wert. Zum Steuern ändert man besser den Delay ('delay' in Zehner-µs, 'delay 100' = 1000 µs): Er wirkt immer, während eine Bandbreitenänderung nur am Engpass zählt und QoS beeinflusst. MTU und Hop Count stehen im Update, gehen aber nicht in die Metrik ein. Oberhalb von 10 Gbit/s versagt die Formel (10^7/BW wird 0), daher rechnen Wide Metrics im Named Mode mit 64 Bit und Pikosekunden; 'metric rib-scale' teilt den Wert für die 32-Bit-RIB herunter.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Pfad bzw. direkt angebundenes Netz", "Bandbreitenterm", "Delayterm", "Metrik (x 256)"],
+    "zeilen": [
+     ["GigabitEthernet direkt (10 µs)", "10", "1", "2816"],
+     ["FastEthernet direkt (100 µs)", "100", "10", "28160"],
+     ["Ethernet 10 Mbit/s direkt (1000 µs)", "1000", "100", "281600"],
+     ["T1 direkt (1544 kbit/s, 20000 µs)", "6476", "2000", "2169856"],
+     ["Gi-Link + Gi-LAN beim Nachbarn", "10", "2", "3072"],
+     ["FastEthernet-Link + Gi-LAN beim Nachbarn", "100", "11", "28416"],
+     ["T1-Link + Gi-LAN beim Nachbarn", "6476", "2001", "2170112"]
+    ]
+   }
+  },
+  {
+   "text": "DUAL rechnet mit zwei Werten. Die Reported Distance (RD, auch Advertised Distance) ist die Metrik, die ein Nachbar für das Ziel meldet. Die Feasible Distance (FD) ist die eigene Gesamtmetrik: RD plus Kosten zum Nachbarn. Der Nachbar mit der kleinsten FD ist der Successor, seine Route kommt in die RIB, die FD wird zur Routing-Metrik. Ein anderer Nachbar wird Feasible Successor (FS), wenn seine RD kleiner ist als die FD des Successors (Feasibility Condition). Dann kann sein Pfad nicht über den eigenen Router zurücklaufen. Im Beispiel ist B der Successor (FD 2000), A (RD 1500) und C (RD 1800) sind FS, D (RD 2100) nicht, obwohl D dieselbe FD wie C hat. Fällt B aus, übernimmt C sofort.",
+   "diagramm": {
+    "typ": "topologie",
+    "knoten": [
+     {"id": "r1", "label": "R1", "x": "0.1", "y": "0.5", "art": "router"},
+     {"id": "a", "label": "A (RD 1500)", "x": "0.45", "y": "0.1", "art": "router"},
+     {"id": "b", "label": "B (RD 1000)", "x": "0.45", "y": "0.37", "art": "router"},
+     {"id": "c", "label": "C (RD 1800)", "x": "0.45", "y": "0.63", "art": "router"},
+     {"id": "d", "label": "D (RD 2100)", "x": "0.45", "y": "0.9", "art": "router"},
+     {"id": "net", "label": "10.9.9.0/24", "x": "0.88", "y": "0.5", "art": "cloud"}
+    ],
+    "kanten": [
+     {"von": "r1", "nach": "a", "label": "+1000 = FD 2500", "farbe": "39c86a"},
+     {"von": "r1", "nach": "b", "label": "+1000 = FD 2000", "farbe": "39c86a"},
+     {"von": "r1", "nach": "c", "label": "+500 = FD 2300", "farbe": "39c86a"},
+     {"von": "r1", "nach": "d", "label": "+200 = FD 2300", "farbe": "39c86a"},
+     {"von": "a", "nach": "net", "label": "", "farbe": "39c86a"},
+     {"von": "b", "nach": "net", "label": "", "farbe": "39c86a"},
+     {"von": "c", "nach": "net", "label": "", "farbe": "39c86a"},
+     {"von": "d", "nach": "net", "label": "", "farbe": "39c86a"}
+    ],
+    "schritte": [
+     {"von": "b", "nach": "r1", "farbe": "ffd23f", "text": "Kleinste FD 2000 über B: B ist Successor, Route in die RIB"},
+     {"von": "a", "nach": "r1", "farbe": "4aa3ff", "text": "A: RD 1500 < 2000, also Feasible Successor"},
+     {"von": "c", "nach": "r1", "farbe": "4aa3ff", "text": "C: RD 1800 < 2000, also Feasible Successor"},
+     {"von": "d", "nach": "r1", "farbe": "ff5d5d", "text": "D: RD 2100 ist nicht kleiner als 2000, kein FS (nur mit all-links sichtbar)"},
+     {"von": "r1", "nach": "c", "farbe": "39c86a", "text": "B fällt aus: C (kleinste FD der FS) übernimmt sofort, Route bleibt passive"}
+    ]
+   }
+  },
+  {
+   "text": "Fällt der Successor weg, prüft DUAL zuerst die Feasible Successors. Gibt es einen, ist das eine lokale Berechnung: Die Route bleibt passive und es gehen nur Updates an die Nachbarn. Gibt es keinen, wird die Route active, und der Router schickt Queries an alle Nachbarn. Jeder Nachbar muss antworten: mit seiner Metrik, wenn er einen loop-freien Weg hat (dann fragt er nicht weiter), oder er fragt seinerseits seine Nachbarn. Ohne jede Route antwortet er mit 'unreachable'. Erst wenn alle Replies da sind, wählt der Router den neuen Successor. Dauert das zu lange, droht Stuck in Active: Nach der Hälfte des Active Timers (Default 3 Minuten) wird per SIA-Query nachgehakt, ohne Antwort wird der Nachbar zurückgesetzt. Stub-Router und Summarization begrenzen die Query-Reichweite.",
+   "diagramm": {
+    "typ": "ablauf",
+    "stufen": [
+     "Successor fällt aus oder meldet schlechtere Metrik",
+     "Gibt es einen Feasible Successor (RD < FD)?",
+     "Ja: FS sofort installieren, Route bleibt passive, Update an die Nachbarn",
+     "Nein: Route wird active, Queries an alle Nachbarn",
+     "Nachbarn antworten mit Metrik, fragen weiter oder melden unreachable",
+     "Alle Replies da: neuen Successor wählen, Route wieder passive",
+     "Antwortet ein Nachbar nicht: SIA-Query nach halbem Active Timer, sonst Reset"
+    ]
+   }
+  },
+  {
+   "text": "Gleich teure Pfade installiert EIGRP standardmäßig bis zu vier ('maximum-paths', 1 schaltet Load Balancing ab). Einzigartig ist Unequal-Cost-Load-Balancing mit 'variance' (Default 1, bis 128): Ein Pfad wird zusätzlich genutzt, wenn seine Metrik unter variance x FD des Successors liegt UND er ein Feasible Successor ist. 'traffic-share balanced' (Default) verteilt den Traffic im Verhältnis der Metriken, 'traffic-share min across-interfaces' nutzt nur den besten Pfad, hält die anderen aber in der RIB. Im Named Mode stehen variance und maximum-paths unter 'topology base'. Named Mode ('router eigrp <Name>', 'address-family ipv4|ipv6 unicast autonomous-system <AS>') bündelt alles an einer Stelle: Interface-Werte unter af-interface. EIGRP für IPv6 hat getrennte Tabellen, nutzt Link-Local-Adressen als Nachbar und Next Hop, braucht 'ipv6 unicast-routing' und eine 32-Bit-Router-ID (manuell, wenn keine IPv4-Adresse existiert). Im Classic Mode wird es mit 'ipv6 eigrp <AS>' am Interface aktiviert, im Named Mode sind alle IPv6-Interfaces automatisch dabei.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Pfad zu 10.60.0.0/16", "FD/RD", "FS?", "variance 2 (< 10000)", "variance 3 (< 15000)"],
+    "zeilen": [
+     ["via A (Successor)", "5000/2000", "Successor", "genutzt", "genutzt"],
+     ["via B", "12000/4000", "ja (4000 < 5000)", "nein, zu teuer", "genutzt"],
+     ["via C", "9000/6000", "nein (6000 > 5000)", "nein", "nein, trotz kleinerer Metrik"]
+    ]
+   }
+  },
+  {
+   "text": "EIGRP oder OSPF? EIGRP ist einfach zu konfigurieren, braucht keine starre Area-Struktur, ist sparsam bei CPU, Speicher und Bandbreite und kann Unequal-Cost-Load-Balancing. Dafür wird es außerhalb von Cisco kaum unterstützt, in Multivendor-Netzen ist OSPF die Wahl. OSPF kennt in jeder Area die komplette Topologie und rechnet SPF, EIGRP kennt nur die Sicht der Nachbarn und hält mit DUAL Backup-Pfade vor. Kleine und mittlere EIGRP-Netze konvergieren auch ohne viel Design gut, in großen Netzen entscheidet sauberes Design (Summarization, Stubs) über die Konvergenzzeit. Beim gleichen Präfix gewinnt EIGRP intern (AD 90) gegen OSPF (AD 110).",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Merkmal", "EIGRP", "OSPF"],
+    "zeilen": [
+     ["Typ", "Advanced Distance Vector (DUAL)", "Link-State (SPF/Dijkstra)"],
+     ["IP-Protokoll / Multicast", "88 / 224.0.0.10, FF02::A", "89 / 224.0.0.5 und .6, FF02::5 und ::6"],
+     ["Metrik", "Composite: Bandbreite + Delay", "Kosten aus Referenzbandbreite"],
+     ["Load Balancing", "Equal und Unequal (variance)", "nur Equal Cost"],
+     ["Backup-Pfad", "Feasible Successor vorab berechnet", "neue SPF-Berechnung"],
+     ["Nachbar-Bedingungen", "AS, K-Werte, Subnetz, Auth; Timer egal", "Area, Timer, Subnetz, Auth, MTU u. a."],
+     ["Hierarchie", "keine Areas, Summarization an jedem Interface", "Areas mit Backbone Area 0"],
+     ["Administrative Distanz", "90 intern, 170 extern", "110"],
+     ["Herstellerunterstützung", "überwiegend Cisco", "alle Hersteller"]
+    ]
+   }
+  }
+ ]
+}
+]

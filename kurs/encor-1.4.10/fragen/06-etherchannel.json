@@ -1,0 +1,1916 @@
+[
+    {
+        "id":  "slg-ec-001",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "SW1 and SW2 are connected by two parallel Gigabit trunks that are NOT bundled. What does STP do?",
+        "optionen":  [
+                         "Bundles the links automatically into one logical port",
+                         "Places both links into the listening state permanently",
+                         "Blocks one of the two links to prevent a loop",
+                         "Forwards on both links and shares the load per VLAN by default"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ohne EtherChannel sieht STP zwei redundante Pfade und blockiert einen davon; die Hälfte der Bandbreite bleibt ungenutzt. Erst ein EtherChannel macht daraus einen logischen Port, den STP nicht blockieren muss."
+    },
+    {
+        "id":  "slg-ec-002",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two EtherChannels, Po1 (2 links) and Po2 (2 links), connect the same two switches. Which statement describes STP behavior?",
+        "optionen":  [
+                         "STP forwards on both port channels because EtherChannels are exempt from STP",
+                         "STP blocks only the member with the highest port ID inside Po2",
+                         "STP blocks one entire port channel, including all of its member ports",
+                         "STP blocks one member link in each port channel"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Jedes EtherChannel ist für STP ein einziger logischer Port. Zwei ECs zwischen denselben Switches sind redundante Pfade, deshalb wird ein komplettes EC mit allen seinen Membern blockiert."
+    },
+    {
+        "id":  "slg-ec-003",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "One member link of a four-link EtherChannel fails. What is the result?",
+        "optionen":  [
+                         "Traffic is redistributed over the remaining links and no STP recalculation occurs",
+                         "STP recalculates the topology and unblocks an alternate path to the neighbor",
+                         "The port channel goes down until all four links are up again",
+                         "The port channel stays up but stops forwarding broadcasts on the remaining links"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der logische Port bleibt bestehen, solange mindestens ein Member aktiv ist; es gibt keine Topologieänderung für STP. Nur die verfügbare Gesamtbandbreite sinkt."
+    },
+    {
+        "id":  "slg-ec-004",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An access switch has one uplink to DSW1 and one to DSW2. DSW1 and DSW2 are independent switches (no stacking, VSS or vPC). Can both uplinks be placed in a single EtherChannel?",
+        "optionen":  [
+                         "No, a standard EtherChannel always connects exactly two devices",
+                         "Yes, if both distribution switches use the same channel-group number",
+                         "Yes, if LACP is used on all three switches",
+                         "Yes, but only with mode on on all ports"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein EtherChannel ist eine Eins-zu-eins-Beziehung zwischen zwei Geräten. Ein Bündel zu zwei Switches geht nur, wenn diese sich als ein logischer Switch ausgeben (Stack, VSS, StackWise Virtual, vPC)."
+    },
+    {
+        "id":  "slg-ec-005",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about selecting member ports for an EtherChannel are true? (Choose two.)",
+        "optionen":  [
+                         "Member ports must all be on the same port ASIC",
+                         "A FastEthernet and a GigabitEthernet port can be bundled if both run at full duplex",
+                         "Ports with different STP port costs can never be bundled",
+                         "Member ports do not need to be physically contiguous",
+                         "Member ports can be located on different modules of the same chassis"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Member müssen weder nebeneinanderliegen noch auf demselben Modul sein. Porttypen dürfen nicht gemischt werden, und unterschiedliche STP-Kosten allein verhindern das Bündeln nicht."
+    },
+    {
+        "id":  "slg-ec-006",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An engineer wants to remove VLAN 30 from the trunk carried by Po1. Where should the command be applied?",
+        "optionen":  [
+                         "In global configuration with the channel-group keyword",
+                         "Under one member interface of Po1",
+                         "Under each member interface separately, then on Po1",
+                         "Under interface Port-channel1"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Konfiguration am port-channel-Interface gilt für das ganze Bündel und wird auf alle Member übertragen. Änderungen an einem einzelnen physischen Port betreffen nur diesen Port und erzeugen leicht Inkonsistenzen."
+    },
+    {
+        "id":  "slg-ec-007",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Po1 bundles Gi1/0/1 and Gi1/0/2 as trunks with native VLAN 1. An engineer enters \u0027switchport trunk native vlan 99\u0027 under Gi1/0/2 only. What happens?",
+        "optionen":  [
+                         "Po1 changes its native VLAN to 99 and keeps both members",
+                         "The command is rejected because members cannot be configured individually",
+                         "The new native VLAN is copied automatically to Gi1/0/1 and Po1",
+                         "Gi1/0/2 becomes inconsistent with the bundle and is suspended"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Konfiguration an einem physischen Port wirkt nur auf diesen Port. Weicht er dadurch von den anderen Membern ab, wird er aus dem Bündel genommen (Flag s), bis die Konsistenz wiederhergestellt ist."
+    },
+    {
+        "id":  "slg-ec-008",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which three are benefits of EtherChannel? (Choose three.)",
+        "optionen":  [
+                         "A single logical interface for configuration",
+                         "One bundle can terminate on two independent switches",
+                         "Exactly equal load on every member link",
+                         "Redundancy without an STP recalculation when a member fails",
+                         "More bandwidth by using existing switch ports"
+                     ],
+        "richtig":  [
+                        0,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "EtherChannel bündelt vorhandene Ports zu mehr Bandbreite, übersteht Member-Ausfälle ohne STP-Neuberechnung und wird zentral am port-channel konfiguriert. Die Last ist hash-basiert und nicht zwingend gleich verteilt."
+    },
+    {
+        "id":  "slg-ec-009",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "LACP was originally specified in IEEE ___ and is today part of IEEE 802.1AX.",
+        "optionen":  [
+                         "802.1s",
+                         "802.1w",
+                         "802.3ad",
+                         "802.3af"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "LACP stammt aus IEEE 802.3ad und wurde später nach 802.1AX überführt. 802.1w ist RSTP, 802.1s MST und 802.3af PoE."
+    },
+    {
+        "id":  "slg-ec-010",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two switches run LACP with default system priorities. Which switch decides which ports become active in the bundle?",
+        "optionen":  [
+                         "The switch with the lower MAC address in its LACP system ID",
+                         "The switch with the higher MAC address in its LACP system ID",
+                         "The switch that sent the first LACPDU",
+                         "Each switch decides independently for its own ports"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die LACP-System-ID besteht aus System Priority und MAC-Adresse. Bei gleicher Priorität (Default 32768) gewinnt die niedrigere MAC; dieser Switch bestimmt, welche Ports aktiv und welche standby sind."
+    },
+    {
+        "id":  "slg-ec-011",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Ten ports per side are in one LACP channel; the platform allows 8 active links. SW1 has system priority 32768 and gives Gi1/0/9-10 port priority 1. SW2 has system priority 4096 and gives Gi1/0/1-8 port priority 100; all other ports use the default. Which links become hot-standby?",
+        "optionen":  [
+                         "The links on SW2 ports Gi1/0/9 and Gi1/0/10",
+                         "The two links with the highest port numbers on SW1",
+                         "The links on SW1 ports Gi1/0/1 and Gi1/0/2",
+                         "The links on SW1 ports Gi1/0/9 and Gi1/0/10"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "SW2 hat die niedrigere System Priority und entscheidet deshalb anhand seiner eigenen Port Priorities. Gi1/0/1-8 (100) schlagen den Default 32768, also gehen die Links an SW2 Gi1/0/9-10 in Hot-Standby. Die Prioritäten von SW1 spielen keine Rolle."
+    },
+    {
+        "id":  "slg-ec-012",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The default LACP system priority on Cisco switches is ___.",
+        "optionen":  [
+                         "1",
+                         "32768",
+                         "4096",
+                         "128"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "LACP-System- und Port-Priority stehen per Default auf 32768. Ein niedrigerer Wert bedeutet höhere Priorität."
+    },
+    {
+        "id":  "slg-ec-013",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globale Konfiguration: Sorge dafür, dass dieser Switch die LACP-Entscheidungen trifft, indem du die System Priority auf 4096 setzt.",
+        "bausteine":  [
+                          "lacp",
+                          "system-priority",
+                          "4096",
+                          "port-priority",
+                          "channel-group",
+                          "priority"
+                      ],
+        "loesung":  [
+                        "lacp",
+                        "system-priority",
+                        "4096"
+                    ],
+        "erklaerung":  "\u0027lacp system-priority\u0027 ist ein globaler Befehl. Der Switch mit der niedrigeren System Priority bestimmt, welche Ports aktiv werden."
+    },
+    {
+        "id":  "slg-ec-014",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus Gi1/0/3: Gib diesem Member Vorrang bei der Auswahl der aktiven LACP-Links (Port Priority 100).",
+        "bausteine":  [
+                          "lacp",
+                          "port-priority",
+                          "100",
+                          "system-priority",
+                          "channel-group",
+                          "priority"
+                      ],
+        "loesung":  [
+                        "lacp",
+                        "port-priority",
+                        "100"
+                    ],
+        "erklaerung":  "\u0027lacp port-priority\u0027 wird am physischen Port gesetzt; der niedrigere Wert wird bevorzugt aktiv. Ausgewertet werden die Port Priorities des Switches mit der besseren System Priority."
+    },
+    {
+        "id":  "slg-ec-015",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Interface-Modus Port-channel1: Begrenze das LACP-Bündel auf maximal 4 aktive Links; weitere Member sollen Hot-Standby sein.",
+        "bausteine":  [
+                          "lacp",
+                          "max-bundle",
+                          "4",
+                          "port-channel",
+                          "min-links",
+                          "max-links"
+                      ],
+        "loesung":  [
+                        "lacp",
+                        "max-bundle",
+                        "4"
+                    ],
+        "erklaerung":  "\u0027lacp max-bundle\u0027 am port-channel-Interface legt fest, wie viele Member gleichzeitig gebündelt sind. Zusätzliche kompatible Ports werden mit Flag H (hot-standby) geführt."
+    },
+    {
+        "id":  "slg-ec-016",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Refer to the output: \u00271  Po1(SU)  LACP  Gi1/0/1(P) Gi1/0/2(P) Gi1/0/3(H) Gi1/0/4(H)\u0027. All four links are up with identical configuration. What is the most likely reason?",
+        "optionen":  [
+                         "The partner runs PAgP on Gi1/0/3 and Gi1/0/4",
+                         "Gi1/0/3 and Gi1/0/4 are configured with mode on",
+                         "The maximum number of bundled links for Po1 is limited to two",
+                         "Gi1/0/3 and Gi1/0/4 have a speed mismatch"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "H heißt Hot-Standby und gibt es nur bei LACP: Die Ports sind kompatibel, werden aber wegen eines Limits (z. B. \u0027lacp max-bundle 2\u0027) nicht gebündelt. Mismatches oder Protokollfehler würden s bzw. I zeigen."
+    },
+    {
+        "id":  "slg-ec-017",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "LACPDUs are sent to the Slow Protocols multicast MAC address ___.",
+        "optionen":  [
+                         "01-80-C2-00-00-02",
+                         "01-00-0C-CC-CC-CC",
+                         "01-00-5E-00-00-02",
+                         "01-80-C2-00-00-00"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "LACP nutzt die IEEE-Slow-Protocols-Adresse 01-80-C2-00-00-02. 01-80-C2-00-00-00 ist für STP-BPDUs, 01-00-0C-CC-CC-CC für Cisco-Protokolle wie CDP, VTP, DTP und PAgP."
+    },
+    {
+        "id":  "slg-ec-018",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A Cisco Catalyst switch must form a negotiated EtherChannel with a switch from another vendor. Which configuration is appropriate?",
+        "optionen":  [
+                         "channel-group 1 mode desirable",
+                         "channel-group 1 mode auto",
+                         "channel-group 1 mode active",
+                         "channel-group 1 mode desirable non-silent"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Herstellerübergreifend funktioniert nur der IEEE-Standard LACP (active/passive). desirable und auto sind PAgP-Modi und Cisco-proprietär."
+    },
+    {
+        "id":  "slg-ec-019",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den EtherChannel-Modus seinem Verhalten zu.",
+        "paare":  [
+                      [
+                          "active",
+                          "LACP, sends LACPDUs unconditionally"
+                      ],
+                      [
+                          "passive",
+                          "LACP, only responds to received LACPDUs"
+                      ],
+                      [
+                          "desirable",
+                          "PAgP, initiates negotiation"
+                      ],
+                      [
+                          "auto",
+                          "PAgP, only responds to PAgP packets"
+                      ]
+                  ],
+        "erklaerung":  "Bei beiden Protokollen gibt es einen aktiv werbenden Modus (active bzw. desirable) und einen nur antwortenden Modus (passive bzw. auto). Mindestens eine Seite muss aktiv werben."
+    },
+    {
+        "id":  "slg-ec-020",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Moduskombination (SW1 / SW2) dem Ergebnis zu.",
+        "paare":  [
+                      [
+                          "on / on",
+                          "Bundle forms without any control protocol"
+                      ],
+                      [
+                          "active / desirable",
+                          "No bundle: the two sides use different protocols"
+                      ],
+                      [
+                          "auto / auto",
+                          "No bundle: neither side starts negotiation"
+                      ],
+                      [
+                          "desirable / auto",
+                          "PAgP bundle forms"
+                      ]
+                  ],
+        "erklaerung":  "on bildet nur mit on ein Bündel. LACP- und PAgP-Modi sind nicht kompatibel, und zwei rein antwortende Seiten (auto/auto, passive/passive) handeln nie etwas aus."
+    },
+    {
+        "id":  "slg-ec-021",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three mode combinations result in an operational EtherChannel? (Choose three.)",
+        "optionen":  [
+                         "passive / auto",
+                         "active / passive",
+                         "active / on",
+                         "on / on",
+                         "desirable / desirable"
+                     ],
+        "richtig":  [
+                        1,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Gültig sind on-on, active-active, active-passive, desirable-desirable und desirable-auto. passive/auto mischt LACP und PAgP, und active/on mischt LACP mit statischer Konfiguration."
+    },
+    {
+        "id":  "slg-ec-022",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "SW1 uses \u0027channel-group 4 mode desirable\u0027 and SW2 uses \u0027channel-group 4 mode passive\u0027 on the connecting ports. What happens?",
+        "optionen":  [
+                         "A PAgP EtherChannel forms because SW1 initiates the negotiation",
+                         "An LACP EtherChannel forms because SW1 initiates",
+                         "No EtherChannel forms because PAgP and LACP do not interoperate",
+                         "The channel forms in static mode as a fallback"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "desirable ist PAgP, passive ist LACP. Die Protokolle verstehen sich nicht, ein Fallback auf statisch gibt es nicht. Pro EtherChannel muss auf beiden Seiten dasselbe Protokoll laufen."
+    },
+    {
+        "id":  "slg-ec-023",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the main risk of using \u0027mode on\u0027 compared to LACP?",
+        "optionen":  [
+                         "Mode on works only between Cisco devices because it relies on proprietary frames",
+                         "Mode on limits the bundle to two links",
+                         "There is no consistency check or link monitoring, so a mismatch can cause loops or packet loss",
+                         "Mode on adds negotiation delay before the bundle comes up on both switches"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Im on-Modus werden keine Kontrollpakete ausgetauscht. Der Port bündelt sofort, auch wenn die Gegenseite falsch oder gar nicht konfiguriert ist. Das kann Schleifen oder Blackholing verursachen."
+    },
+    {
+        "id":  "slg-ec-024",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "When is static \u0027mode on\u0027 a reasonable choice?",
+        "optionen":  [
+                         "When unidirectional link failures must be detected",
+                         "When the remote device supports link aggregation but neither PAgP nor LACP",
+                         "When the remote device is a switch from another vendor that supports LACP",
+                         "When hot-standby links are required"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "on ist für Gegenstellen gedacht, die bündeln können, aber kein Aushandlungsprotokoll beherrschen. Es spart die Aushandlung, bietet aber weder Konsistenzprüfung noch Standby-Links."
+    },
+    {
+        "id":  "slg-ec-025",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "SW1 bundles Gi1/0/1-2 with \u0027channel-group 1 mode on\u0027. On SW2 the connecting ports are ordinary trunks with no channel-group. Which outcome is expected with default settings?",
+        "optionen":  [
+                         "SW2 automatically adds its ports to a port channel",
+                         "SW1 places both ports in hot-standby until SW2 is configured",
+                         "Both switches negotiate a working bundle within one minute",
+                         "SW1 detects the misconfiguration and err-disables the member ports"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "SW2 behandelt die Links als Einzelports und sendet auf jedem eigene BPDUs. Der standardmäßig aktive EtherChannel Misconfig Guard auf SW1 erkennt das und setzt die Ports in err-disable (channel-misconfig), bevor eine Schleife entsteht."
+    },
+    {
+        "id":  "slg-ec-026",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A switch logs: \u0027%PM-4-ERR_DISABLE: channel-misconfig error detected on Po3, putting Te1/0/3 in err-disable state\u0027. What triggered this message?",
+        "optionen":  [
+                         "UDLD detected a unidirectional link on Te1/0/3 and disabled the member",
+                         "EtherChannel guard detected that the neighbor does not treat the links as one bundle",
+                         "LACP detected a speed mismatch on Te1/0/3",
+                         "Po3 exceeded the maximum number of active links"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027channel-misconfig\u0027 gehört zum EtherChannel Guard. Er erwartet über alle Member dieselben BPDUs; kommen BPDUs von unterschiedlichen Absendern, bündelt die Gegenseite nicht, und der Port wird abgeschaltet."
+    },
+    {
+        "id":  "slg-ec-027",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globale Konfiguration: Aktiviere den EtherChannel Misconfig Guard (z. B. nachdem er abgeschaltet wurde).",
+        "bausteine":  [
+                          "spanning-tree",
+                          "etherchannel",
+                          "guard",
+                          "misconfig",
+                          "bpduguard",
+                          "enable",
+                          "port-channel"
+                      ],
+        "loesung":  [
+                        "spanning-tree",
+                        "etherchannel",
+                        "guard",
+                        "misconfig"
+                    ],
+        "erklaerung":  "Der Befehl gehört zu Spanning Tree, weil der Guard BPDUs auswertet. Er ist per Default aktiv; \u0027show spanning-tree summary\u0027 zeigt \u0027EtherChannel misconfig guard is enabled\u0027."
+    },
+    {
+        "id":  "slg-ec-028",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which command verifies whether the EtherChannel misconfig guard is enabled?",
+        "optionen":  [
+                         "show etherchannel summary",
+                         "show spanning-tree summary",
+                         "show interfaces status err-disabled",
+                         "show etherchannel load-balance"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die STP-Zusammenfassung listet globale STP-Features, darunter \u0027EtherChannel misconfig guard is enabled\u0027. \u0027show interfaces status err-disabled\u0027 zeigt nur bereits abgeschaltete Ports."
+    },
+    {
+        "id":  "slg-ec-029",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "How does the EtherChannel misconfig guard recognize that the neighbor is not bundling the links?",
+        "optionen":  [
+                         "It receives BPDUs with different source MAC addresses on the member ports",
+                         "It sees duplicate MAC addresses in the CAM table on different member ports",
+                         "It compares CDP neighbor port IDs on all members",
+                         "It receives no LACPDUs within three seconds"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bündelt die Gegenseite, kommen auf allen Membern dieselben BPDUs vom logischen port-channel. Sendet jeder Link eigene BPDUs mit unterschiedlichen MACs, behandelt der Nachbar die Links einzeln."
+    },
+    {
+        "id":  "slg-ec-030",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globale Konfiguration: Lass Ports, die wegen channel-misconfig in err-disable sind, automatisch wiederherstellen.",
+        "bausteine":  [
+                          "errdisable",
+                          "recovery",
+                          "cause",
+                          "channel-misconfig",
+                          "interval",
+                          "bpduguard",
+                          "detect"
+                      ],
+        "loesung":  [
+                        "errdisable",
+                        "recovery",
+                        "cause",
+                        "channel-misconfig"
+                    ],
+        "erklaerung":  "Mit \u0027errdisable recovery cause channel-misconfig\u0027 werden betroffene Ports nach dem Recovery-Intervall (Default 300 s) wieder hochgefahren. Ohne Korrektur der Ursache gehen sie aber erneut in err-disable."
+    },
+    {
+        "id":  "slg-ec-031",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A switch connects via PAgP to a packet analyzer that never transmits frames. Which PAgP setting allows the port to become operational?",
+        "optionen":  [
+                         "auto or desirable with the silent option",
+                         "desirable with the non-silent option",
+                         "auto non-silent",
+                         "LACP passive"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "non-silent bündelt erst, wenn auch Pakete vom Partner empfangen werden. Ein stiller Partner sendet nie, deshalb braucht es silent, damit der Port trotzdem dem Channel zugeordnet und zum Senden genutzt wird."
+    },
+    {
+        "id":  "slg-ec-032",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus: Nimm den Port in PAgP-Gruppe 3 auf; er soll aktiv verhandeln und erst bündeln, wenn bidirektionale Kommunikation bestätigt ist.",
+        "bausteine":  [
+                          "channel-group",
+                          "3",
+                          "mode",
+                          "desirable",
+                          "non-silent",
+                          "auto",
+                          "silent",
+                          "active"
+                      ],
+        "loesung":  [
+                        "channel-group",
+                        "3",
+                        "mode",
+                        "desirable",
+                        "non-silent"
+                    ],
+        "erklaerung":  "desirable startet die PAgP-Aushandlung, non-silent verlangt empfangene Pakete vom Partner. Das schützt vor unidirektionalen Fehlern, z. B. bei Glasfaser."
+    },
+    {
+        "id":  "slg-ec-033",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What problem does the PAgP non-silent option protect against?",
+        "optionen":  [
+                         "Native VLAN mismatches on trunk members",
+                         "Unidirectional link failures that could cause bridging loops",
+                         "Hash polarization across multiple tiers",
+                         "Speed and duplex mismatches between the member ports"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit non-silent kommt ein Port erst ins Bündel, wenn er auch Daten empfängt. Fällt eine Faserrichtung aus, wird der Link nicht verwendet; so entsteht keine Schleife."
+    },
+    {
+        "id":  "slg-ec-034",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which capability does LACP provide that PAgP does not?",
+        "optionen":  [
+                         "Detection of inconsistent speed and duplex settings on the member ports",
+                         "Bundling of up to eight active links",
+                         "Negotiation of the channel between two Cisco switches",
+                         "Up to 16 configured members, with ports beyond the active maximum kept in hot-standby"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beide Protokolle verhandeln und prüfen die Konsistenz, beide bündeln bis zu 8 aktive Links. Nur LACP kann zusätzliche Ports (bis 16) als Hot-Standby vorhalten, die bei einem Ausfall einspringen."
+    },
+    {
+        "id":  "slg-ec-035",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In a four-port LACP channel with 2 active links allowed, Gi1/0/2 (active) fails. What happens next?",
+        "optionen":  [
+                         "The hot-standby port with the best port priority is moved into the bundle",
+                         "The port channel goes down until Gi1/0/2 recovers",
+                         "STP unblocks a hot-standby port as an individual link",
+                         "All hot-standby ports are added, exceeding the limit temporarily"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Hot-Standby-Ports sind kompatibel, aber nicht gebündelt. Fällt ein aktiver Link aus, nimmt LACP den Standby-Port mit der besten Port Priority (aus Sicht des entscheidenden Switches) ins Bündel. STP merkt davon nichts."
+    },
+    {
+        "id":  "slg-ec-036",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two settings may differ between member ports without preventing them from bundling? (Choose two.)",
+        "optionen":  [
+                         "Switchport mode (access or trunk)",
+                         "Native VLAN",
+                         "STP port path cost",
+                         "Interface description",
+                         "Duplex"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Beschreibung und STP-Portkosten beeinflussen die Kompatibilität nicht. Speed, Duplex, Switchport-Modus, Native und Allowed VLANs bzw. das Access-VLAN müssen dagegen auf allen Membern gleich sein."
+    },
+    {
+        "id":  "slg-ec-037",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Gi1/0/1 is an access port in VLAN 10, and Gi1/0/2 is an access port in VLAN 20. Both receive \u0027channel-group 5 mode active\u0027. What is the result?",
+        "optionen":  [
+                         "The ports are incompatible; only ports with the same access VLAN are bundled",
+                         "Po5 uses the lower VLAN, and Gi1/0/2 joins VLAN 10",
+                         "Po5 becomes a trunk carrying VLANs 10 and 20",
+                         "Both ports bundle because LACP ignores the access VLAN settings of members"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bei Layer-2-ECs müssen alle Member entweder im selben Access-VLAN oder gleich konfigurierte Trunks sein. Abweichende Ports werden nicht gebündelt bzw. suspendiert."
+    },
+    {
+        "id":  "slg-ec-038",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does Cisco recommend 2, 4 or 8 member links instead of 3, 5 or 6?",
+        "optionen":  [
+                         "LACP cannot negotiate an odd number of links",
+                         "The hash results map evenly onto a power-of-two number of links",
+                         "STP calculates the port-channel cost only for powers of two",
+                         "Odd numbers of links cause duplicate frames"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Hash erzeugt eine feste Zahl von Ergebnissen (Buckets), die auf die Links verteilt werden. Bei einer Zweierpotenz bekommt jeder Link gleich viele; bei 3 Links tragen einige Links systematisch mehr Last."
+    },
+    {
+        "id":  "slg-ec-039",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globale Konfiguration: Stelle die EtherChannel-Lastverteilung auf Quell- und Ziel-IP-Adresse um.",
+        "bausteine":  [
+                          "port-channel",
+                          "load-balance",
+                          "src-dst-ip",
+                          "src-ip",
+                          "etherchannel",
+                          "channel-group",
+                          "dst-mac"
+                      ],
+        "loesung":  [
+                        "port-channel",
+                        "load-balance",
+                        "src-dst-ip"
+                    ],
+        "erklaerung":  "\u0027port-channel load-balance\u0027 ist global und gilt für alle EtherChannels des Switches. src-dst-ip verwendet beide IP-Adressen für den Hash; der Default ist plattformabhängig (Catalyst 9300: src-mac)."
+    },
+    {
+        "id":  "slg-ec-040",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A switch has Po1 to a server farm and Po2 to the core. The engineer wants dst-mac on Po1 and src-dst-ip on Po2. What is true?",
+        "optionen":  [
+                         "Configure \u0027port-channel load-balance\u0027 separately under each port-channel interface",
+                         "Not possible; the load-balancing method is global and applies to all port channels",
+                         "Possible only if Po1 uses PAgP and Po2 uses LACP",
+                         "Configure the method under the member ports of each bundle"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Hash-Methode wird global mit \u0027port-channel load-balance\u0027 gesetzt und gilt für jedes EtherChannel des Switches. Eine Änderung wirkt auf alle Bündel gleichzeitig."
+    },
+    {
+        "id":  "slg-ec-041",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A backup server sends one large TCP session to a NAS through a 4 x 1 Gbps EtherChannel. Throughput stays at about 1 Gbps. Which statement is correct?",
+        "optionen":  [
+                         "The bundle is misconfigured; a healthy EtherChannel delivers 4 Gbps per flow",
+                         "A single flow always hashes to one member link, so it cannot exceed one link\u0027s bandwidth",
+                         "The other links are in hot-standby because LACP limits active links",
+                         "Changing to src-dst-ip will spread this session over all four links"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "EtherChannel verteilt flussbasiert: Gleiche Hash-Eingaben ergeben immer denselben Link, damit Pakete nicht umsortiert werden. Eine einzelne Session nutzt daher höchstens einen Member, egal welche Methode gewählt ist."
+    },
+    {
+        "id":  "slg-ec-042",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Most frames leaving an access switch over its uplink EtherChannel go to the default gateway\u0027s MAC address. The method is dst-mac, and one link is saturated. What is the best fix?",
+        "optionen":  [
+                         "Change the method to include IP addresses or L4 ports, such as src-dst-ip",
+                         "Add more member links to the bundle so the saturated link gets relief",
+                         "Change the channel mode from active to on",
+                         "Raise the LACP port priority of the idle links"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit dst-mac ergibt die Gateway-MAC immer denselben Hash, also nimmt fast alles denselben Link. Eingaben mit mehr Vielfalt (IP-Adressen, Ports) verteilen besser. Mehr Links ändern daran nichts."
+    },
+    {
+        "id":  "slg-ec-043",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A two-link EtherChannel uses src-dst-ip with the simple XOR model (last bit of each address). Source 10.1.1.6 sends to 10.1.1.9. Which link index is used?",
+        "optionen":  [
+                         "0",
+                         "Both links alternately",
+                         "1",
+                         "The link with the lowest port number"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "6 endet binär auf 0, 9 auf 1. 0 XOR 1 = 1, also Link-Index 1. Bei zwei Links genügt das letzte Bit."
+    },
+    {
+        "id":  "slg-ec-044",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A four-link EtherChannel uses src-dst-ip with the simple XOR model (last two bits). Source 192.168.1.5 sends to 192.168.1.14. Which link index is selected?",
+        "optionen":  [
+                         "3",
+                         "2",
+                         "1",
+                         "0"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "5 = ...01, 14 = ...10. 01 XOR 10 = 11 = Index 3. Bei vier Links werden die letzten 2 Bits ausgewertet, bei acht Links die letzten 3."
+    },
+    {
+        "id":  "slg-ec-045",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In the simple hash model, an eight-link EtherChannel uses the last ___ bits to select a link.",
+        "optionen":  [
+                         "8",
+                         "4",
+                         "3",
+                         "2"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Mit 3 Bits gibt es 2^3 = 8 Indizes, einen pro Link. Vier Links brauchen 2 Bits, zwei Links 1 Bit."
+    },
+    {
+        "id":  "slg-ec-046",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which load-balancing input lets an SSH session and an HTTP session between the same two hosts use different member links?",
+        "optionen":  [
+                         "src-dst-mac",
+                         "src-dst-ip",
+                         "src-dst-port",
+                         "dst-ip"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Zwischen denselben zwei Hosts sind IP- und MAC-Adressen identisch, also ergeben diese Methoden denselben Link. Nur L4-Portnummern unterscheiden die Sessions (z. B. auf Catalyst 9000 verfügbar)."
+    },
+    {
+        "id":  "slg-ec-047",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A firewall with a single MAC address sends traffic to many servers through an EtherChannel. The switch uses src-mac. What will be observed?",
+        "optionen":  [
+                         "Traffic is spread evenly because the destinations differ",
+                         "All traffic from the firewall uses the same member link",
+                         "The channel alternates links per frame",
+                         "Traffic is spread by VLAN ID"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei src-mac hängt der Hash nur von der Quell-MAC ab; die Firewall hat nur eine, also landet ihr gesamter Traffic auf einem Link. Eine Methode mit Zielinformation (dst-mac, src-dst-ip) verteilt besser."
+    },
+    {
+        "id":  "slg-ec-048",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The switch uses src-dst-ip. How are non-IP frames, such as some legacy protocols, distributed over the EtherChannel?",
+        "optionen":  [
+                         "They are hashed based on MAC addresses",
+                         "They are flooded on all member links",
+                         "They are dropped by the port channel",
+                         "They are always sent on the first member link"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ohne IP-Header gibt es keine IP-Adressen für den Hash; der Switch nimmt dann die MAC-Adressen. Ein Frame wird nie auf mehreren Membern gleichzeitig gesendet."
+    },
+    {
+        "id":  "slg-ec-049",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Access, distribution and core switches all use the same EtherChannel hash input. Links on the second tier are poorly used because the traffic arriving there was already selected by the same hash. What is this called?",
+        "optionen":  [
+                         "Hash polarization",
+                         "Microbursting",
+                         "Port flapping",
+                         "Asymmetric routing"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Polarisation: Eine Stufe hat den Traffic schon nach demselben Hash sortiert, die nächste Stufe sieht nur eine Teilmenge der Hash-Werte und nutzt einige Links kaum. Abhilfe sind unterschiedliche Hash-Eingaben je Stufe (z. B. L4-Ports)."
+    },
+    {
+        "id":  "slg-ec-050",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does EtherChannel not distribute traffic per packet in round-robin fashion?",
+        "optionen":  [
+                         "Round-robin works only with PAgP",
+                         "Packets of one flow could arrive out of order",
+                         "Per-packet distribution exceeds the LACP member limit",
+                         "Round-robin would require STP to unblock all members"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit flussbasiertem Hashing bleibt eine Konversation auf einem Link und kommt in der richtigen Reihenfolge an. Per-Packet-Verteilung über unterschiedlich ausgelastete Links könnte Pakete umsortieren."
+    },
+    {
+        "id":  "slg-ec-051",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Hash-Methode ihrem Verhalten zu.",
+        "paare":  [
+                      [
+                          "dst-ip",
+                          "Packets to the same destination IP always use the same link"
+                      ],
+                      [
+                          "src-mac",
+                          "All frames from one host use the same link"
+                      ],
+                      [
+                          "src-dst-ip",
+                          "A-to-B and A-to-C traffic may use different links"
+                      ],
+                      [
+                          "src-dst-port",
+                          "Two sessions between the same host pair may use different links"
+                      ]
+                  ],
+        "erklaerung":  "Je mehr Felder in den Hash eingehen, desto feiner die Verteilung. Nur die L4-Portmethode trennt verschiedene Sessions zwischen denselben zwei Hosts."
+    },
+    {
+        "id":  "slg-ec-052",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Can an administrator pin a specific flow to a chosen member link of an EtherChannel?",
+        "optionen":  [
+                         "Yes, by applying an ACL to the member port",
+                         "No, only the hash method can be chosen, which influences the distribution",
+                         "Yes, with \u0027lacp port-priority\u0027 on the desired link for that flow",
+                         "Yes, with \u0027channel-group\u0027 sequence numbers"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Link wird aus dem Hash der gewählten Felder berechnet. Steuern lässt sich nur, welche Felder eingehen; die LACP Port Priority bestimmt nur, welche Ports aktiv oder standby sind."
+    },
+    {
+        "id":  "slg-ec-053",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "To list the hash methods a platform supports, type \u0027port-channel load-balance ___\u0027 in global configuration mode.",
+        "optionen":  [
+                         "?",
+                         "all",
+                         "list",
+                         "detail"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die kontextsensitive Hilfe \u0027?\u0027 zeigt alle Schlüsselwörter, die die Plattform unterstützt. Was davon gerade aktiv ist, zeigt \u0027show etherchannel load-balance\u0027."
+    },
+    {
+        "id":  "slg-ec-054",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A Catalyst 9300 switch running IOS XE 17.x has no port-channel load-balance command configured. Which method does show etherchannel load-balance report?",
+        "optionen":  [
+                         "src-mac",
+                         "src-dst-ip",
+                         "dst-mac",
+                         "src-dst-port"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Laut Catalyst-9300-Konfigurationsleitfaden ist der Default src-mac: Verteilt wird nach der Quell-MAC des eingehenden Frames. Der Default ist plattformabhängig; prüfen lässt er sich mit\u0027show etherchannel load-balance\u0027."
+    },
+    {
+        "id":  "slg-ec-055",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "SW1 uses \u0027channel-group 1 mode passive\u0027. Po1 on SW1 stays down (SD) and no member is bundled (P). Which three peer configurations on SW2 could explain this? (Choose three.)",
+        "optionen":  [
+                         "No channel-group on the connected ports",
+                         "channel-group 1 mode active",
+                         "channel-group 1 mode desirable",
+                         "channel-group 1 mode active with \u0027lacp rate fast\u0027",
+                         "channel-group 1 mode passive"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Ein passiver Port braucht LACPDUs von einem aktiven Partner. passive, ein PAgP-Modus oder gar kein channel-group liefern keine, also wird nichts gebündelt (je nach Plattform zeigen die Member I oder s). active auf SW2, mit oder ohne fast rate, würde das Bündel bilden."
+    },
+    {
+        "id":  "slg-ec-056",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "SW1: \u00272  Po2(SU)  -  Et0/2(P) Et0/3(P)\u0027. SW2: \u00272  Po2(SD)  LACP  Et0/2(s) Et0/3(s)\u0027. What is the cause?",
+        "optionen":  [
+                         "Both switches use LACP passive",
+                         "SW1 uses mode on while SW2 uses LACP",
+                         "SW1 uses PAgP desirable while SW2 uses LACP active",
+                         "SW2 uses mode on while SW1 uses LACP"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein \u0027-\u0027 in der Protocol-Spalte bedeutet statisch (mode on); SW1 bündelt deshalb sofort. SW2 nutzt LACP, bekommt keine LACPDUs und suspendiert seine Ports. Beide Seiten müssen dasselbe Verfahren nutzen."
+    },
+    {
+        "id":  "slg-ec-057",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does a dash (-) in the Protocol column of \u0027show etherchannel summary\u0027 mean?",
+        "optionen":  [
+                         "The channel is a Layer 3 EtherChannel",
+                         "The channel is configured statically with mode on",
+                         "The port channel has no members",
+                         "The protocol negotiation has failed"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Spalte zeigt LACP, PAgP oder \u0027-\u0027. Der Strich steht für manuelles Bündeln ohne Protokoll. Ob die Aushandlung klappt, verraten die Flags, nicht diese Spalte."
+    },
+    {
+        "id":  "slg-ec-058",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A switch logs \u0027%EC-5-L3DONTBNDL2: Et0/2 suspended: LACP currently not enabled on the remote port.\u0027 What should you check first?",
+        "optionen":  [
+                         "The channel-group mode on the neighbor\u0027s connected port",
+                         "The load-balancing method on the local switch",
+                         "The speed and duplex on the local Et0/2",
+                         "The STP port cost of Et0/2"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Meldung sagt, dass der lokale Port LACP spricht, vom Partner aber keine LACPDUs kommen. Der Partner ist vermutlich auf mode on, auf PAgP oder gar nicht für EtherChannel konfiguriert."
+    },
+    {
+        "id":  "slg-ec-059",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two switches must use only standards-based link aggregation. SW1 must initiate the negotiation, and SW2 must only respond. Which configuration meets this?",
+        "optionen":  [
+                         "SW1 mode desirable, SW2 mode auto",
+                         "SW1 mode passive, SW2 mode active",
+                         "SW1 mode on, SW2 mode passive",
+                         "SW1 mode active, SW2 mode passive"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Standardbasiert heißt LACP. active sendet LACPDUs von sich aus, passive antwortet nur. desirable/auto wäre PAgP, on und LACP passen nicht zusammen."
+    },
+    {
+        "id":  "slg-ec-060",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Range-Modus auf SW2: Nimm die Ports in LACP-Gruppe 2 auf; SW2 soll nur auf Anfragen antworten.",
+        "bausteine":  [
+                          "channel-group",
+                          "2",
+                          "mode",
+                          "passive",
+                          "active",
+                          "auto",
+                          "channel-protocol"
+                      ],
+        "loesung":  [
+                        "channel-group",
+                        "2",
+                        "mode",
+                        "passive"
+                    ],
+        "erklaerung":  "passive aktiviert LACP, sendet aber erst, wenn LACPDUs ankommen. Die Gegenseite muss deshalb active sein; passive/passive bildet kein Bündel."
+    },
+    {
+        "id":  "slg-ec-061",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "On SW1, Po1 shows only Et0/1(P); SW2 shows Po1 with Et0/0(s) Et0/1(P). \u0027show run interface e0/0\u0027 on SW1 shows \u0027no switchport\u0027 and no channel-group. The other members are dot1q trunks in LACP active mode. Which two actions fix the problem? (Choose two.)",
+        "optionen":  [
+                         "Change SW2 Et0/0 to \u0027channel-group 1 mode passive\u0027",
+                         "Configure \u0027switchport\u0027, dot1q encapsulation and \u0027switchport mode trunk\u0027 on SW1 Et0/0",
+                         "Configure \u0027channel-group 1 mode active\u0027 on SW1 Et0/0",
+                         "Assign an IP address to SW1 Et0/0",
+                         "Configure \u0027channel-group 1 mode on\u0027 on SW1 Et0/0"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Et0/0 auf SW1 ist ein Layer-3-Port und in keiner Gruppe. Er muss wieder ein L2-Trunk werden wie die anderen Member und mit LACP active in Gruppe 1 kommen. mode on würde gegen LACP nicht funktionieren."
+    },
+    {
+        "id":  "slg-ec-062",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "SW2 runs LACP active on Et0/0 and Et0/1 in Po1. On SW1, Et0/1 is in Po1 with LACP active, but Et0/0 is configured with \u0027no switchport\u0027 and no channel-group. Why does SW2 show Et0/0 as suspended (s)?",
+        "optionen":  [
+                         "SW2 Et0/0 is in hot-standby",
+                         "SW2 has reached its maximum number of active links",
+                         "SW2 Et0/0 has a different native VLAN than Et0/1",
+                         "SW2 receives no LACPDUs on Et0/0 from SW1"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "SW1 Et0/0 nimmt nicht an LACP teil und sendet keine LACPDUs. SW2 kann den Port nicht mit dem Partner verhandeln und suspendiert ihn, bis LACP auf der Gegenseite läuft."
+    },
+    {
+        "id":  "slg-ec-063",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Member-Port-Flag aus \u0027show etherchannel summary\u0027 seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "P",
+                          "Bundled in the port channel"
+                      ],
+                      [
+                          "I",
+                          "Stand-alone, not bundled"
+                      ],
+                      [
+                          "H",
+                          "Hot-standby (LACP only)"
+                      ],
+                      [
+                          "D",
+                          "Down"
+                      ]
+                  ],
+        "erklaerung":  "Gesund ist ein Member nur mit P. I deutet auf fehlende Aushandlung hin, H auf ein Limit aktiver Links, D auf einen ausgefallenen oder abgeschalteten Port; s steht für suspended."
+    },
+    {
+        "id":  "slg-ec-064",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Port-Channel-Flag seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "S",
+                          "Layer 2 port channel"
+                      ],
+                      [
+                          "R",
+                          "Layer 3 port channel"
+                      ],
+                      [
+                          "U",
+                          "In use"
+                      ],
+                      [
+                          "M",
+                          "Not in use, minimum links not met"
+                      ]
+                  ],
+        "erklaerung":  "Typische Kombinationen sind SU (L2, in Betrieb), RU (L3, in Betrieb) und SD (L2, down). M zeigt an, dass ein konfiguriertes Minimum an Links unterschritten ist."
+    },
+    {
+        "id":  "slg-ec-065",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "In \u0027show etherchannel summary\u0027, a working Layer 3 EtherChannel displays the port-channel flags ___.",
+        "optionen":  [
+                         "SD",
+                         "RU",
+                         "RD",
+                         "SU"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "R steht für Layer 3, U für in use. SU wäre ein funktionierendes Layer-2-EC, SD und RD sind down."
+    },
+    {
+        "id":  "slg-ec-066",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Po3 has two members and \u0027port-channel min-links 2\u0027 configured. One member fails. What happens?",
+        "optionen":  [
+                         "Po3 goes down and shows the M flag because the minimum is not met",
+                         "Po3 stays up on the remaining link and logs a warning",
+                         "The remaining member is placed in hot-standby",
+                         "STP blocks the remaining member"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "min-links legt fest, wie viele Member mindestens aktiv sein müssen, damit der port-channel up bleibt. Wird das unterschritten, geht er down (Flag M); so kann z. B. ein redundanter Pfad mit voller Bandbreite übernehmen."
+    },
+    {
+        "id":  "slg-ec-067",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Befehl seinem Zweck zu.",
+        "paare":  [
+                      [
+                          "show etherchannel summary",
+                          "Compact view of groups, flags and member ports"
+                      ],
+                      [
+                          "show etherchannel load-balance",
+                          "Configured hash method"
+                      ],
+                      [
+                          "show lacp neighbor",
+                          "LACP partner system ID and port information"
+                      ],
+                      [
+                          "show spanning-tree summary",
+                          "Status of the EtherChannel misconfig guard"
+                      ]
+                  ],
+        "erklaerung":  "summary ist der erste Blick bei der Fehlersuche, load-balance zeigt die globale Hash-Methode, lacp neighbor die Sicht auf den Partner, und die STP-Zusammenfassung verrät, ob der Guard aktiv ist."
+    },
+    {
+        "id":  "slg-ec-068",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which command displays the local LACP system priority and system MAC address?",
+        "optionen":  [
+                         "show lacp sys-id",
+                         "show lacp neighbor",
+                         "show lacp counters",
+                         "show etherchannel summary"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027show lacp sys-id\u0027 zeigt die eigene System-ID aus Priority und MAC. \u0027show lacp neighbor\u0027 zeigt die Partnerdaten, die counters zeigen gesendete und empfangene LACPDUs."
+    },
+    {
+        "id":  "slg-ec-069",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Po1 has four 1-Gbps members configured. \u0027show interfaces port-channel 1\u0027 reports \u0027BW 3000000 Kbit/sec\u0027. What does this indicate?",
+        "optionen":  [
+                         "One member runs at 100 Mbps inside the bundle",
+                         "Only three members are currently bundled",
+                         "The load-balancing method limits throughput to 3 Gbps",
+                         "The port channel is in hot-standby mode"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Bandbreite des port-channels ist die Summe der gebündelten Member. 3 Gbit/s bei vier 1G-Membern heißt, einer ist nicht gebündelt (down, suspended oder standby). Ein Port mit anderer Geschwindigkeit würde gar nicht gebündelt."
+    },
+    {
+        "id":  "slg-ec-070",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about a duplex mismatch on a member link is true?",
+        "optionen":  [
+                         "The mismatch is invisible because errors are counted only on the port channel",
+                         "The link always goes down/down immediately",
+                         "The link can show up/up, but \u0027show interfaces\u0027 reveals high error counters",
+                         "LACP corrects the duplex setting automatically"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Wenn nur eine Seite autonegotiiert, kann der Link up/up sein, obwohl die Duplex-Modi verschieden sind. Fehlerzähler (CRC, Late Collisions) zeigen das Problem. Speed und Duplex müssen auf allen Membern gleich sein."
+    },
+    {
+        "id":  "slg-ec-071",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three conditions can cause a member port to be suspended (s) in an LACP bundle? (Choose three.)",
+        "optionen":  [
+                         "The remote port is not running LACP",
+                         "Its interface description differs from the other members",
+                         "Its STP port cost differs from the other members",
+                         "Its speed differs from the other members",
+                         "Its allowed VLAN list differs from the other members"
+                     ],
+        "richtig":  [
+                        0,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Suspendiert wird ein Port bei Inkonsistenz zum Bündel (Speed, Duplex, VLANs, Modus) oder wenn LACP auf der Gegenseite fehlt. Beschreibung und STP-Kosten spielen für die Kompatibilität keine Rolle."
+    },
+    {
+        "id":  "slg-ec-072",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A trunking Layer 2 EtherChannel is configured on two switches. Which trunk parameters must match across all member ports?",
+        "optionen":  [
+                         "Only the allowed VLAN list",
+                         "Only the encapsulation",
+                         "VTP domain name and STP port priority",
+                         "Native VLAN, allowed VLAN list and encapsulation"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bei Trunk-Membern müssen Modus, Encapsulation, Native VLAN und die erlaubten VLANs übereinstimmen. Sonst werden Ports nicht gebündelt bzw. suspendiert."
+    },
+    {
+        "id":  "slg-ec-073",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Port-channel 5 is configured with \u0027no switchport\u0027 and an IP address. The member ports are still Layer 2 switchports when \u0027channel-group 5 mode active\u0027 is entered. What happens?",
+        "optionen":  [
+                         "Po5 reverts to a Layer 2 port channel",
+                         "The members join, but only the first one forwards traffic",
+                         "The ports cannot join because their layer does not match the Layer 3 port channel",
+                         "The members inherit \u0027no switchport\u0027 from Po5 and join the bundle automatically"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Alle Member eines ECs müssen auf demselben Layer arbeiten. Für ein L3-EC braucht jeder physische Port vorher \u0027no switchport\u0027; erst dann lässt er sich dem routed port-channel zuordnen."
+    },
+    {
+        "id":  "slg-ec-074",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three statements about a Layer 3 EtherChannel are true? (Choose three.)",
+        "optionen":  [
+                         "Each member port needs its own IP address in the same subnet",
+                         "STP elects a root port on the port channel",
+                         "Member ports are configured with \u0027no switchport\u0027",
+                         "The IP address is configured on the port-channel interface",
+                         "\u0027show etherchannel summary\u0027 marks the bundle with R"
+                     ],
+        "richtig":  [
+                        2,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Ein L3-EC ist ein gerouteter Port: Member ohne switchport, die IP-Adresse auf dem port-channel, Flag R. Member haben keine eigenen Adressen, und auf routed ports läuft kein STP."
+    },
+    {
+        "id":  "slg-ec-075",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two Layer 3 switches are connected by two routed links running OSPF. What is an advantage of converting them into one Layer 3 EtherChannel?",
+        "optionen":  [
+                         "OSPF can then load-balance per packet over the members of the bundle",
+                         "A single OSPF adjacency, and a member failure causes no routing reconvergence",
+                         "STP can block the redundant member to prevent loops",
+                         "OSPF cost is no longer needed on the link"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit L3-EC gibt es nur ein Interface, ein Subnetz und eine Nachbarschaft. Fällt ein Member aus, bleibt das logische Interface up, und OSPF muss nicht neu konvergieren."
+    },
+    {
+        "id":  "slg-ec-076",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does STP determine the path cost of a Layer 2 port channel?",
+        "optionen":  [
+                         "It always uses the cost of the slowest member, regardless of how many links are bundled",
+                         "It adds the costs of all members",
+                         "From the aggregate bandwidth of the bundled members, so the cost is lower than a single member\u0027s",
+                         "Port channels always have a fixed cost of 1"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "STP behandelt den port-channel als einen Port, dessen Bandbreite der Summe der Member entspricht. Dadurch sind die Kosten niedriger als bei einem einzelnen Link, und der port-channel wird als Pfad bevorzugt."
+    },
+    {
+        "id":  "slg-ec-077",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Both switches are configured with \u0027channel-group 1 mode auto\u0027 on two parallel links. What is the result?",
+        "optionen":  [
+                         "A PAgP EtherChannel forms after the default negotiation timeout expires",
+                         "No EtherChannel forms; the links act as individual ports and STP blocks one",
+                         "Both links go into err-disable state",
+                         "The switches fall back to LACP and form a bundle"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "auto antwortet nur auf PAgP-Pakete, sendet aber selbst keine Aushandlung. Zwei auto-Seiten bilden kein Bündel; die Links bleiben Einzelports, und STP blockiert den redundanten."
+    },
+    {
+        "id":  "slg-ec-078",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Bündelverfahren seiner Eigenschaft zu.",
+        "paare":  [
+                      [
+                          "LACP",
+                          "IEEE standard with hot-standby members"
+                      ],
+                      [
+                          "PAgP",
+                          "Cisco-proprietary negotiation"
+                      ],
+                      [
+                          "Mode on",
+                          "No control packets are exchanged"
+                      ]
+                  ],
+        "erklaerung":  "LACP ist herstellerübergreifend und kann Standby-Ports halten, PAgP funktioniert nur zwischen Cisco-Geräten, und mode on bündelt ohne jede Aushandlung."
+    },
+    {
+        "id":  "slg-ec-079",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is an advantage of static mode on over LACP and PAgP?",
+        "optionen":  [
+                         "There is no negotiation overhead or delay when the bundle comes up",
+                         "It supports more active links than LACP",
+                         "It checks the configuration of both ends before bundling",
+                         "It detects unidirectional links"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ohne Aushandlung ist der Port sofort im Bündel, ohne Verzögerung und ohne Protokoll-Overhead. Der Preis: keine Konsistenzprüfung und kein Schutz bei Fehlkonfiguration."
+    },
+    {
+        "id":  "slg-ec-080",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Two switches run LACP. The deciding switch has equal port priorities on all ports, and more compatible ports exist than may be active. Which ports become active?",
+        "optionen":  [
+                         "The ports with the lowest port numbers on the deciding switch",
+                         "The ports with the highest port numbers on the deciding switch",
+                         "The ports that came up first",
+                         "The ports chosen at random by the partner switch"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die LACP-Port-ID besteht aus Port Priority und Portnummer. Bei gleicher Priorität gewinnt die niedrigere Portnummer des Switches mit der besseren System-ID."
+    },
+    {
+        "id":  "slg-ec-081",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "With \u0027lacp rate fast\u0027, a port requests LACPDUs from its partner every ___ instead of every 30 seconds.",
+        "optionen":  [
+                         "10 seconds",
+                         "90 seconds",
+                         "3 seconds",
+                         "1 second"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Im Normalfall (slow) kommen LACPDUs alle 30 Sekunden, mit fast jede Sekunde. So wird ein ausgefallener Partner schneller erkannt (Timeout nach drei verpassten LACPDUs)."
+    },
+    {
+        "id":  "slg-ec-082",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus: Lege fest, dass dieser Port nur LACP als Bündelprotokoll verwenden darf (ohne den Modus zu setzen).",
+        "bausteine":  [
+                          "channel-protocol",
+                          "lacp",
+                          "pagp",
+                          "channel-group",
+                          "mode",
+                          "active"
+                      ],
+        "loesung":  [
+                        "channel-protocol",
+                        "lacp"
+                    ],
+        "erklaerung":  "\u0027channel-protocol\u0027 schränkt ein, welches Protokoll der Port nutzen darf; ein späterer PAgP-Modus wird dann abgelehnt. Optional, denn der Modus in \u0027channel-group\u0027 legt das Protokoll ohnehin fest."
+    },
+    {
+        "id":  "slg-ec-083",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globale Konfiguration: Wähle die Ports Gi1/0/1 bis Gi1/0/4 gemeinsam aus, um sie identisch zu konfigurieren.",
+        "bausteine":  [
+                          "interface",
+                          "range",
+                          "GigabitEthernet1/0/1",
+                          "-",
+                          "4",
+                          "port-channel",
+                          "all"
+                      ],
+        "loesung":  [
+                        "interface",
+                        "range",
+                        "GigabitEthernet1/0/1",
+                        "-",
+                        "4"
+                    ],
+        "erklaerung":  "Mit \u0027interface range\u0027 geht dieselbe Konfiguration auf alle Member gleichzeitig. So vermeidest du Inkonsistenzen, die sonst zu suspendierten Ports führen."
+    },
+    {
+        "id":  "slg-ec-084",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Interface-Modus Port-channel3: Der port-channel soll down gehen, sobald weniger als 2 Member aktiv sind.",
+        "bausteine":  [
+                          "port-channel",
+                          "min-links",
+                          "2",
+                          "lacp",
+                          "max-bundle",
+                          "minimum"
+                      ],
+        "loesung":  [
+                        "port-channel",
+                        "min-links",
+                        "2"
+                    ],
+        "erklaerung":  "\u0027port-channel min-links\u0027 auf Catalyst-IOS-XE schaltet den port-channel ab, wenn zu wenige Member gebündelt sind (Flag M). \u0027lacp max-bundle\u0027 begrenzt dagegen die Obergrenze."
+    },
+    {
+        "id":  "slg-ec-085",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After the first \u0027channel-group 7 mode active\u0027 command on a Layer 2 switchport, what happens to interface Port-channel7 if it does not exist yet?",
+        "optionen":  [
+                         "The command is rejected until Port-channel7 is created manually",
+                         "It is created as a Layer 3 interface",
+                         "It is created automatically",
+                         "It is created only after the partner answers with LACPDUs"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei Layer-2-ECs legt IOS das port-channel-Interface beim ersten channel-group-Befehl automatisch an. Danach wird es zentral konfiguriert, und die Einstellungen gehen auf die Member."
+    },
+    {
+        "id":  "slg-ec-086",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which statement about EtherChannel and spanning tree is correct?",
+        "optionen":  [
+                         "STP treats the port channel as one logical port and sends BPDUs on it",
+                         "STP blocks all but one member of the bundle",
+                         "STP is disabled on switches that use EtherChannel for uplinks",
+                         "STP runs separately on each member link"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Für STP ist der port-channel ein einziger Port mit eigener Rolle und eigenem Status. Die Member werden nicht einzeln betrachtet, darum blockiert STP keinen Member innerhalb des Bündels."
+    },
+    {
+        "id":  "slg-ec-087",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "SW1 has Po1 with members Gi1/0/1-2 in mode active. SW2 uses mode active on Gi1/0/1 and mode on on Gi1/0/2 for the same group. Which result is expected?",
+        "optionen":  [
+                         "Both links bundle because one side runs LACP active and the other side follows",
+                         "SW2 rejects the mixed configuration because one channel group cannot combine LACP and static mode",
+                         "Gi1/0/2 bundles statically and Gi1/0/1 via LACP",
+                         "Both links enter hot-standby"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Eine Channel-Group kann nur ein Verfahren nutzen; IOS lehnt den abweichenden Modus ab (z. B. 'Command rejected ... Invalid etherchnl mode'). Alle Member einer Gruppe brauchen denselben Modus-Typ (LACP, PAgP oder on)."
+    },
+    {
+        "id":  "slg-ec-088",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A member port was suspended because its speed differed from the bundle. The speed is corrected. What happens?",
+        "optionen":  [
+                         "The whole port channel must be deleted and recreated",
+                         "The port rejoins the bundle once it is consistent again",
+                         "The port joins as hot-standby permanently",
+                         "The port stays suspended until the switch reloads"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Suspendiert ist ein Port nur, solange die Inkonsistenz besteht. Stimmen die Parameter wieder, wird er automatisch neu gebündelt; err-disable wäre dagegen ein eigener Zustand mit shutdown/no shutdown oder Recovery."
+    },
+    {
+        "id":  "slg-ec-089",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two statements about LACP hot-standby ports are true? (Choose two.)",
+        "optionen":  [
+                         "They exist only in PAgP bundles",
+                         "They forward traffic for VLANs not carried by active members",
+                         "They are placed into STP blocking state",
+                         "They are shown with the H flag",
+                         "They are compatible with the bundle but do not forward data"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Hot-Standby-Ports sind fertig ausgehandelt, aber nicht aktiv, und springen bei Ausfällen ein. Sie erscheinen mit H und gibt es nur bei LACP; STP hat damit nichts zu tun."
+    },
+    {
+        "id":  "slg-ec-090",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A server team configures NIC teaming with LACP. The switch ports are already set to \u0027channel-group 10 mode passive\u0027. What is required for the bundle to form?",
+        "optionen":  [
+                         "Nothing; passive on the switch forms the bundle alone",
+                         "The server team must use PAgP auto",
+                         "The server team must run LACP in active mode",
+                         "The switch ports must be changed to mode on"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "passive wartet auf LACPDUs. Ein Bündel entsteht nur, wenn die Gegenseite active ist. Server unterstützen kein PAgP, deshalb muss die Teaming-Software LACP aktiv senden (oder der Switch auf active umgestellt werden)."
+    },
+    {
+        "id":  "slg-ec-091",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What happens when an administrator shuts down one member port of an EtherChannel?",
+        "optionen":  [
+                         "It is treated as a link failure, and traffic uses the remaining members",
+                         "STP recalculates because the bundle changed its member count",
+                         "The whole port channel is shut down",
+                         "The port channel moves into hot-standby"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein shutdown am Member ist für das Bündel wie ein Linkausfall. Der Hash verteilt den Traffic auf die verbleibenden Member, der logische Port bleibt für STP unverändert."
+    },
+    {
+        "id":  "slg-ec-092",
+        "topic":  "ENCOR-3.1.b",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Symptom der wahrscheinlichsten Ursache zu.",
+        "paare":  [
+                      [
+                          "Po1(SD), all members (I)",
+                          "No compatible negotiation partner on the peer"
+                      ],
+                      [
+                          "Po1(SU), one member (s)",
+                          "That member\u0027s settings differ from the bundle"
+                      ],
+                      [
+                          "Po1(SU), two members (H)",
+                          "The limit of active links has been reached"
+                      ],
+                      [
+                          "Members err-disabled, reason channel-misconfig",
+                          "Local side uses mode on while the peer does not bundle"
+                      ]
+                  ],
+        "erklaerung":  "I deutet auf fehlende Aushandlung, s auf eine Inkonsistenz oder einen Partner ohne LACP, H auf ein Limit aktiver Links. err-disable wegen channel-misconfig kommt vom EtherChannel Guard."
+    },
+    {
+        "id":  "slg-ec-093",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den PBR-Befehl seiner Aufgabe zu.",
+        "paare":  [
+                      [
+                          "ip policy route-map NAME",
+                          "Policy routes packets received on that interface"
+                      ],
+                      [
+                          "ip local policy route-map NAME",
+                          "Policy routes packets generated by the router itself"
+                      ],
+                      [
+                          "show ip policy",
+                          "Lists interfaces and their applied route maps"
+                      ],
+                      [
+                          "show route-map NAME",
+                          "Shows match counters per route-map entry"
+                      ]
+                  ],
+        "erklaerung":  "Die Interface-Policy wirkt nur eingehend, die lokale Policy nur auf eigenen Router-Traffic. Zur Kontrolle zeigt \u0027show ip policy\u0027 die Zuordnung, \u0027show route-map\u0027 die Policy-Routing-Treffer."
+    },
+    {
+        "id":  "slg-ec-094",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Users in 192.168.1.0/24 must reach the internet via ISP1, and users in 192.168.2.0/24 via ISP2, regardless of the routing table. Which feature fits best?",
+        "optionen":  [
+                         "EIGRP unequal-cost load balancing",
+                         "A floating static default route",
+                         "Policy-based routing",
+                         "EtherChannel load balancing"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Wahl hängt hier von der Quelladresse ab; normales Routing entscheidet nur nach dem Ziel. PBR wählt per route-map nach Quelle (oder anderen Kriterien) einen anderen Next Hop."
+    },
+    {
+        "id":  "slg-ec-095",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which route-map achieves source-based ISP selection for 192.168.2.0/24 toward ISP2 at 198.51.100.1?",
+        "optionen":  [
+                         "match interface Gi0/1 (LAN toward 192.168.2.0/24), set ip next-hop 192.168.2.1",
+                         "match ip next-hop 198.51.100.1, set ip address 192.168.2.0",
+                         "match ip address ACL-SRC2 (permit 192.168.2.0 0.0.0.255 any), set ip next-hop 198.51.100.1",
+                         "match ip route-source 192.168.2.0 (ACL permit 192.168.2.0 0.0.0.255), set interface Null0"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "PBR wählt Pakete mit \u0027match ip address\u0027 über eine ACL aus (hier Quellnetz 192.168.2.0/24) und lenkt sie mit \u0027set ip next-hop\u0027 zum gewünschten Provider. Die Route-Map wird dann eingehend am LAN-Interface angewendet."
+    },
+    {
+        "id":  "slg-ec-096",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A route-map uses \u0027set ip default next-hop 10.3.3.3\u0027. A matched packet is destined to 10.5.5.5, and the routing table has an explicit route 10.5.0.0/16 via 10.2.2.2. Where is the packet sent?",
+        "optionen":  [
+                         "To 10.2.2.2, because an explicit route exists",
+                         "It is dropped because the next hops conflict",
+                         "To 10.3.3.3, because PBR always overrides the routing table",
+                         "It is load-balanced between both next hops"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027set ip default next-hop\u0027 greift nur, wenn es für das Ziel keine explizite Route gibt (die Default-Route zählt nicht). Bei \u0027set ip next-hop\u0027 würde PBR die Route überschreiben und 10.3.3.3 nehmen."
+    },
+    {
+        "id":  "slg-ec-097",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den PBR-set-Befehl seiner Wirkung zu.",
+        "paare":  [
+                      [
+                          "set ip next-hop",
+                          "Overrides the routing table with the given next hop"
+                      ],
+                      [
+                          "set ip default next-hop",
+                          "Used only if no explicit route exists for the destination"
+                      ],
+                      [
+                          "set interface Null0",
+                          "Drops the matching packets"
+                      ],
+                      [
+                          "set ip next-hop verify-availability",
+                          "Uses the next hop only while a tracked object reports it reachable"
+                      ]
+                  ],
+        "erklaerung":  "next-hop hat Vorrang vor der Routing-Tabelle, default next-hop dient nur als Ersatz für fehlende Routen. Null0 verwirft Pakete, und verify-availability mit Track (z. B. IP SLA) prüft die Erreichbarkeit vorher."
+    },
+    {
+        "id":  "slg-ec-098",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A PBR route-map sets \u0027set ip next-hop 10.9.9.9\u0027, but 10.9.9.9 is not on a directly connected subnet of the router. What happens to matching packets?",
+        "optionen":  [
+                         "The packets are sent out every interface",
+                         "The router recursively resolves 10.9.9.9 and forwards there",
+                         "The set is ignored and the packets are routed normally",
+                         "The packets are dropped"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027set ip next-hop\u0027 erwartet einen direkt angebundenen Nachbarn. Ist der nicht adjazent, wird die Anweisung übergangen und das Paket normal geroutet. Für entfernte Next Hops gibt es \u0027set ip next-hop recursive\u0027."
+    },
+    {
+        "id":  "slg-ec-099",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Route-map PBR permit 10 matches ACL 110, which has \u0027deny ip host 192.168.1.50 any\u0027 followed by \u0027permit ip 192.168.1.0 0.0.0.255 any\u0027. No other entries exist. How is traffic from 192.168.1.50 handled?",
+        "optionen":  [
+                         "It does not match entry 10 and is routed normally",
+                         "It is policy routed with the default next hop",
+                         "It is policy routed because the subnet is permitted",
+                         "It is dropped by the route-map"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "In einer Route-Map heißt ein ACL-deny nur \u0027kein Treffer für diesen Eintrag\u0027, nicht \u0027verwerfen\u0027. Ohne weiteren passenden Eintrag fällt das Paket an das Ende der Route-Map und wird normal nach der Routing-Tabelle weitergeleitet."
+    },
+    {
+        "id":  "slg-ec-100",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A PBR route-map ends with \u0027route-map PBR permit 20\u0027 containing only \u0027set ip next-hop 10.1.1.1\u0027 and no match statement. Which traffic does entry 20 affect?",
+        "optionen":  [
+                         "Only packets without a route in the routing table",
+                         "Only packets generated by the router",
+                         "All packets not matched by earlier entries",
+                         "No packets, because a match statement is required"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein Route-Map-Eintrag ohne match passt auf alles. Was von früheren Sequenzen nicht erfasst wurde, wird also von Eintrag 20 zu 10.1.1.1 umgeleitet."
+    },
+    {
+        "id":  "slg-ec-101",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "A packet that matches a PBR route-map entry whose action is deny is ___.",
+        "optionen":  [
+                         "forwarded by normal destination-based routing",
+                         "dropped",
+                         "sent to Null0",
+                         "forwarded to the default next hop"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bei PBR bedeutet deny in der Route-Map \u0027nicht policy-routen\u0027. Das Paket wird nicht verworfen, sondern normal nach der Routing-Tabelle weitergeleitet. Verwerfen geht gezielt mit \u0027set interface Null0\u0027."
+    },
+    {
+        "id":  "slg-ec-102",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Pings sourced from the router itself do not follow the PBR path, while transit traffic from the LAN does. \u0027ip policy route-map PBR\u0027 is applied on the LAN interface. What is missing?",
+        "optionen":  [
+                         "ip cef in global configuration",
+                         "ip policy route-map PBR out on the WAN interface",
+                         "A second permit entry for ICMP",
+                         "ip local policy route-map PBR in global configuration"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027ip policy\u0027 wirkt nur auf Pakete, die an diesem Interface eingehen. Selbst erzeugter Router-Traffic braucht eine eigene, global angewendete \u0027ip local policy route-map\u0027."
+    },
+    {
+        "id":  "slg-ec-103",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "PBR should steer traffic from LAN users to ISP2. The engineer applied \u0027ip policy route-map ISP2\u0027 on the router\u0027s WAN interface toward ISP1. What is the result?",
+        "optionen":  [
+                         "The router rejects the command on WAN interfaces",
+                         "Both inbound and outbound traffic on the WAN interface are policy routed toward ISP2",
+                         "LAN traffic is policy routed as it leaves the WAN interface",
+                         "LAN traffic is not policy routed because PBR evaluates packets entering the interface where it is applied"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "PBR wird nur auf Pakete angewendet, die an dem Interface eingehen, auf dem \u0027ip policy\u0027 konfiguriert ist. Die Policy gehört an das LAN-Interface, an dem der Benutzer-Traffic ankommt."
+    },
+    {
+        "id":  "slg-ec-104",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three criteria can a PBR route-map use to select packets? (Choose three.)",
+        "optionen":  [
+                         "Packet length",
+                         "Destination IP address via an ACL",
+                         "Source IP address via an ACL",
+                         "BGP AS path",
+                         "OSPF route type"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "PBR klassifiziert Pakete, typischerweise mit \u0027match ip address\u0027 (ACL mit Quelle, Ziel, Protokoll, Ports) oder \u0027match length\u0027. AS-Path oder OSPF-Routentyp beschreiben Routen und gehören zu Redistribution und BGP-Policies, nicht zur Paketweiterleitung."
+    },
+    {
+        "id":  "slg-ec-105",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A route-map contains \u0027set ip next-hop 10.1.1.1 10.2.2.2\u0027. How is this list used?",
+        "optionen":  [
+                         "10.1.1.1 is used; 10.2.2.2 is used only if 10.1.1.1 is unavailable",
+                         "10.2.2.2 is used because the last entry wins",
+                         "Packets are duplicated to both next hops",
+                         "Traffic is load-balanced across both next hops in round-robin order"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mehrere Next Hops werden der Reihe nach probiert: Der erste erreichbare wird genommen, die weiteren dienen als Backup. Lastverteilung findet nicht statt."
+    },
+    {
+        "id":  "slg-ec-106",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which command shows, in real time, whether individual packets are policy routed or forwarded normally?",
+        "optionen":  [
+                         "show ip policy",
+                         "show route-map",
+                         "debug ip routing",
+                         "debug ip policy"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027debug ip policy\u0027 zeigt pro Paket, ob es policy-geroutet (und wohin) oder abgelehnt wurde. \u0027show ip policy\u0027 listet nur Interfaces und Route-Maps, \u0027show route-map\u0027 die Trefferzähler."
+    },
+    {
+        "id":  "slg-ec-107",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which statement describes how PBR relates to normal IP routing?",
+        "optionen":  [
+                         "PBR changes routing protocol metrics so that the selected path wins in the routing table",
+                         "PBR replaces the routing table for all traffic on the router",
+                         "PBR can forward selected packets based on criteria such as source address before the routing table is consulted",
+                         "PBR applies only to outbound packets after routing"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Normales Routing entscheidet nur nach der Zieladresse. PBR prüft eingehende (bzw. lokal erzeugte) Pakete vorher gegen eine Route-Map und leitet passende anders weiter; alles andere wird normal geroutet."
+    },
+    {
+        "id":  "slg-ec-108",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globale Konfiguration: Lege den ersten Eintrag (Sequenz 10, erlaubend) der Route-Map PBR-ISP2 an.",
+        "bausteine":  [
+                          "route-map",
+                          "PBR-ISP2",
+                          "permit",
+                          "10",
+                          "deny",
+                          "match",
+                          "ip"
+                      ],
+        "loesung":  [
+                        "route-map",
+                        "PBR-ISP2",
+                        "permit",
+                        "10"
+                    ],
+        "erklaerung":  "\u0027route-map \u003cName\u003e permit \u003cSeq\u003e\u0027 öffnet einen Eintrag. permit heißt bei PBR: passende Pakete werden policy-geroutet, deny: sie werden normal geroutet."
+    },
+    {
+        "id":  "slg-ec-109",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Route-Map-Modus: Passende Pakete sollen nur dann zu 198.51.100.1 gehen, wenn die Routing-Tabelle keine explizite Route für das Ziel hat.",
+        "bausteine":  [
+                          "set",
+                          "ip",
+                          "default",
+                          "next-hop",
+                          "198.51.100.1",
+                          "interface",
+                          "match",
+                          "recursive"
+                      ],
+        "loesung":  [
+                        "set",
+                        "ip",
+                        "default",
+                        "next-hop",
+                        "198.51.100.1"
+                    ],
+        "erklaerung":  "\u0027set ip default next-hop\u0027 dient als Ersatz, wenn keine spezifische Route existiert. \u0027set ip next-hop\u0027 hätte Vorrang vor der Routing-Tabelle."
+    },
+    {
+        "id":  "slg-ec-110",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "PBR sends guest traffic to 203.0.113.1. When that next hop fails, guest traffic must fall back to normal routing automatically. Which option provides this?",
+        "optionen":  [
+                         "set ip next-hop verify-availability with a track object based on IP SLA",
+                         "set interface Null0 as a second set statement after the next hop",
+                         "set ip default next-hop 203.0.113.1",
+                         "A second route-map entry with action deny"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "verify-availability mit einem Track-Objekt (z. B. IP-SLA-Ping) nutzt den Next Hop nur, solange er erreichbar ist. Fällt er aus, wird der Eintrag übergangen und das Paket normal geroutet."
+    },
+    {
+        "id":  "slg-ec-111",
+        "topic":  "ENCOR-3.2.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Contracts require traffic from one department to always use a specific provider, even though the routing table prefers another path. Which PBR benefit does this show?",
+        "optionen":  [
+                         "Source-based transit-provider selection",
+                         "Automatic route summarization",
+                         "Fast convergence after link failure",
+                         "Equal-cost multipath load balancing"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "PBR setzt Vorgaben aus Verträgen, Recht oder Politik um, indem es Traffic bestimmter Quellen über einen bestimmten Provider schickt. Die Routing-Tabelle allein könnte das nicht, weil sie nur das Ziel betrachtet."
+    }
+]

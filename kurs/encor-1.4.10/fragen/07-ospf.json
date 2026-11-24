@@ -1,0 +1,2293 @@
+[
+    {
+        "id":  "slg-os-001",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "OSPF packets are carried directly in IP with protocol number ___.",
+        "optionen":  [
+                         "89",
+                         "520",
+                         "88",
+                         "179"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "OSPF nutzt weder TCP noch UDP, sondern liegt direkt in IP mit Protokollnummer 89. 88 ist EIGRP, 179 ist der TCP-Port von BGP, 520 der UDP-Port von RIP."
+    },
+    {
+        "id":  "slg-os-002",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does OSPF define its own Link State Acknowledgment packet type?",
+        "optionen":  [
+                         "Because OSPF runs directly over IP and cannot rely on TCP for reliable delivery of LSAs",
+                         "Because UDP checksums are too weak to protect LSAs",
+                         "Because LSAcks replace the periodic 30-minute LSA refresh",
+                         "Because the DR must confirm every hello packet it receives from DROTHERs"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "OSPF braucht eine zuverlässige Übertragung der LSAs, nutzt aber kein TCP. Deshalb muss jede per LSU geflutete LSA bestätigt werden – normalerweise per LSAck (mehrere LSA-Header in einem Paket möglich), in Sonderfällen implizit. Ohne Bestätigung wird sie nach dem Retransmit-Intervall erneut gesendet."
+    },
+    {
+        "id":  "slg-os-003",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "During the database exchange, DBD packets carry only the ___ of the LSAs in the sender\u0027s LSDB.",
+        "optionen":  [
+                         "full contents",
+                         "router IDs only",
+                         "checksums only",
+                         "headers"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "DBD-Pakete beschreiben die LSDB nur mit LSA-Headern (Typ, Link-State-ID, Advertising Router, Sequenznummer usw.). Die vollständigen LSAs kommen erst per LSU, nachdem sie mit LSR angefordert wurden."
+    },
+    {
+        "id":  "slg-os-004",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den OSPF-Pakettyp seiner Aufgabe zu.",
+        "paare":  [
+                      [
+                          "Hello",
+                          "Discovers and maintains neighbors"
+                      ],
+                      [
+                          "DBD",
+                          "Summarizes the LSDB with LSA headers"
+                      ],
+                      [
+                          "LSR",
+                          "Asks the neighbor for specific missing or newer LSAs"
+                      ],
+                      [
+                          "LSU",
+                          "Carries complete LSAs, used for flooding"
+                      ]
+                  ],
+        "erklaerung":  "Hello (Typ 1) baut Nachbarschaften auf, DBD (Typ 2) vergleicht die Datenbanken, LSR (Typ 3) fordert fehlende Einträge an und LSU (Typ 4) liefert die kompletten LSAs. LSAck (Typ 5) bestätigt sie."
+    },
+    {
+        "id":  "slg-os-005",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "While in the EXCHANGE state, R3 receives a DBD from R1 listing an LSA header with a higher sequence number than R3\u0027s own copy of that LSA. What does R3 do next?",
+        "optionen":  [
+                         "It sends an LSAck for the header and discards it",
+                         "It restarts the adjacency from EXSTART",
+                         "It immediately floods its own older copy back to R1",
+                         "It adds the LSA to its request list and sends an LSR for it"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Eine höhere Sequenznummer bedeutet, dass der Nachbar die neuere LSA hat. R3 trägt sie in die Link State Request List ein und fordert sie per LSR an. R1 antwortet mit einem LSU."
+    },
+    {
+        "id":  "slg-os-006",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What does an OSPF Link State Acknowledgment packet contain?",
+        "optionen":  [
+                         "The complete LSAs that were received",
+                         "Only the sequence number of the last DBD packet",
+                         "The headers of the LSAs being acknowledged",
+                         "No data beyond the OSPF header"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Laut RFC 2328 listet ein LSAck die Header der bestätigten LSAs, so dass ein Paket mehrere LSAs bestätigen kann. Der Kurs nennt das LSAck vereinfacht \u0027leer\u0027, das stimmt so nicht."
+    },
+    {
+        "id":  "slg-os-007",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "During adjacency formation between R1 (router ID 1.1.1.1) and R3 (router ID 3.3.3.3), R3 logs \u0027NBR Negotiation Done. We are the MASTER\u0027. Why is R3 the master?",
+        "optionen":  [
+                         "R3 has the larger interface MTU",
+                         "R3 has the higher router ID",
+                         "R3 sent its first DBD packet earlier",
+                         "R3 is the BDR on the segment"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "In EXSTART beanspruchen beide Router zunächst die Master-Rolle. Der Router mit der höheren Router-ID wird Master und gibt die DBD-Sequenznummern vor. Die DR/BDR-Rolle spielt dabei keine Rolle."
+    },
+    {
+        "id":  "slg-os-008",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which routers in an OSPF domain should have identical link-state databases?",
+        "optionen":  [
+                         "All routers in the same OSPF autonomous system",
+                         "All routers in the same area",
+                         "Only routers that use the same process ID",
+                         "Only the DR and BDR of a segment"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "LSAs vom Typ 1 und 2 werden nur innerhalb einer Area geflutet, deshalb ist die LSDB pro Area identisch. Router in anderen Areas haben eine andere LSDB, ein ABR hat eine LSDB je Area."
+    },
+    {
+        "id":  "slg-os-009",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three are advantages of a multiarea OSPF design over a single large area? (Choose three.)",
+        "optionen":  [
+                         "Each router holds a smaller LSDB",
+                         "DR/BDR elections are no longer needed",
+                         "ABRs can summarize routes to shrink routing tables",
+                         "Area 0 is no longer required",
+                         "A topology change in one area triggers a full SPF calculation only in that area"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Areas begrenzen Flooding und SPF-Berechnung und verkleinern die LSDB. Am ABR lässt sich zusätzlich summarisieren. Area 0 bleibt Pflicht, und die DR-Wahl hängt vom Netztyp ab, nicht vom Area-Design."
+    },
+    {
+        "id":  "slg-os-010",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A router has no router-id command configured. Its interfaces are Loopback0 10.255.255.3, Loopback1 10.0.0.9 and GigabitEthernet0/0 192.168.50.1, all up. Which router ID does OSPF select?",
+        "optionen":  [
+                         "192.168.50.1",
+                         "0.0.0.0",
+                         "10.255.255.3",
+                         "10.0.0.9"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ohne router-id gewinnt die höchste IP eines aktiven Loopbacks, auch wenn ein physisches Interface eine höhere IP hat. Physische Interfaces zählen nur, wenn kein Loopback aktiv ist."
+    },
+    {
+        "id":  "slg-os-011",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the lab, R1 has no loopbacks and no router-id when OSPF starts. Its interfaces are Ethernet0/0 172.16.13.1, Ethernet0/1 172.16.145.1 and Serial2/0 172.16.12.1. Which router ID do its neighbors see?",
+        "optionen":  [
+                         "172.16.13.1",
+                         "172.16.12.1",
+                         "1.1.1.1",
+                         "172.16.145.1"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne Loopback und ohne router-id nimmt OSPF die höchste IP eines aktiven physischen Interfaces, hier 172.16.145.1. Die 1.1.1.1 gilt erst, nachdem router-id konfiguriert und der Prozess zurückgesetzt wurde."
+    },
+    {
+        "id":  "slg-os-012",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An OSPF router without a configured router-id currently uses 10.1.1.1 as its router ID. An engineer adds Loopback5 with 10.200.200.200. What happens to the router ID?",
+        "optionen":  [
+                         "It stays 10.1.1.1 until the OSPF process is reset or the router reloads",
+                         "It changes to 10.200.200.200 at the next 30-minute LSA refresh",
+                         "It changes to 10.200.200.200 immediately and all adjacencies reset",
+                         "It changes only if the loopback is added with a network command"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Router-ID wird nur beim Start des OSPF-Prozesses gewählt. Ein neues Interface ändert sie erst nach clear ip ospf process oder Reload. Das kann nach einem ungeplanten Reboot überraschend kommen."
+    },
+    {
+        "id":  "slg-os-013",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A new router has no router-id configured, no loopbacks, and none of its interfaces with an IP address is up/up yet. What happens when \u0027router ospf 1\u0027 is entered?",
+        "optionen":  [
+                         "OSPF starts anyway and uses the highest IP address of the down interfaces as its router ID",
+                         "OSPF starts with a random router ID derived from the MAC address of the first interface and changes it later",
+                         "OSPF starts with router ID 0.0.0.0 and waits for neighbors to assign it a unique router ID",
+                         "The OSPF process cannot select a router ID and does not start until a router ID is configured or an interface with an IP address comes up"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "OSPF braucht eine eindeutige Router-ID. Ohne router-id und ohne IP auf einem up/up-Interface loggt IOS %OSPF-4-NORTRID (kann keine Router-ID wählen), und der Prozess startet nicht. Abhilfe: router-id konfigurieren oder ein Interface mit IP-Adresse hochbringen."
+    },
+    {
+        "id":  "slg-os-014",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A router runs OSPF process 1 with router ID 2.2.2.2. An engineer enables OSPF process 2 and enters \u0027router-id 2.2.2.2\u0027 under it. What is the result?",
+        "optionen":  [
+                         "The command is rejected because the router ID is already used by another OSPF process on the router",
+                         "Process 1 changes its router ID automatically",
+                         "Both processes share the router ID and one LSDB",
+                         "The command is accepted, but process 2 forms no adjacencies until process 1 is removed"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Jeder OSPF-Prozess braucht eine eigene Router-ID. Überschneidet sich der Wert mit der Router-ID eines anderen aktiven Prozesses auf demselben Router, schlägt der router-id-Befehl fehl."
+    },
+    {
+        "id":  "slg-os-015",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R1 is configured with \u0027router ospf 1\u0027 and its neighbor R2 with \u0027router ospf 2\u0027. All other parameters match. What happens?",
+        "optionen":  [
+                         "They form a normal adjacency because the process ID is only locally significant",
+                         "They stay in INIT because the process IDs in the hellos differ",
+                         "They become neighbors only if both are in area 0",
+                         "They form an adjacency but exchange no routes between the processes"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Prozess-ID identifiziert nur die OSPF-Instanz auf dem eigenen Gerät und wird nicht im Hello übertragen. Im Lab nutzen R1, R2 und R3 die Prozesse 1, 2 und 3 und werden trotzdem FULL."
+    },
+    {
+        "id":  "slg-os-016",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The OSPF router ID is a ___-bit value written in dotted-decimal notation.",
+        "optionen":  [
+                         "16",
+                         "32",
+                         "64",
+                         "48"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Router-ID ist 32 Bit lang und sieht aus wie eine IPv4-Adresse. Sie muss keine erreichbare Adresse sein, aber im OSPF-AS eindeutig."
+    },
+    {
+        "id":  "slg-os-017",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer configures \u0027router-id 10.255.255.7\u0027 on a router, but no interface has this address. Which statement is true?",
+        "optionen":  [
+                         "This is valid; the router ID only has to be a unique 32-bit value",
+                         "OSPF accepts it but cannot form adjacencies until a loopback with that IP exists",
+                         "OSPF rejects it because the router ID must match an interface IP",
+                         "Neighbors will drop the hellos because the router ID is unreachable"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Router-ID ist nur ein Identifikator im IP-Format und muss nicht erreichbar sein. Eine passende Loopback-IP erleichtert lediglich das Troubleshooting."
+    },
+    {
+        "id":  "slg-os-018",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Two routers on a shared Ethernet segment never list each other in \u0027show ip ospf neighbor\u0027. Which three mismatches can cause this? (Choose three.)",
+        "optionen":  [
+                         "Stub area flag",
+                         "OSPF process ID",
+                         "Area ID",
+                         "Interface IP MTU",
+                         "Hello or dead interval"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Timer, Area-ID, Stub-Flag (sowie Subnetz/Maske und Authentifizierung) werden im Hello geprüft. Bei einem Mismatch entsteht gar keine Nachbarschaft. Ein MTU-Mismatch zeigt den Nachbarn dagegen an, er bleibt aber in EXSTART/EXCHANGE hängen."
+    },
+    {
+        "id":  "slg-os-019",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R3 Ethernet0/0 has \u0027ip mtu 1400\u0027, and R1 Ethernet0/0 uses 1500. Which router logs \u0027Nbr ... has larger interface MTU\u0027, and in which state does it keep the neighbor?",
+        "optionen":  [
+                         "R1, which keeps R3 in LOADING",
+                         "R3, which keeps R1 in INIT",
+                         "R1, which keeps R3 in EXSTART",
+                         "R3, which keeps R1 in EXSTART"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Das DBD-Paket enthält die Interface-MTU. R3 empfängt von R1 ein DBD mit 1500 \u003e 1400, verwirft es und bleibt in EXSTART. R1 pendelt im Lab zwischen INIT und EXCHANGE."
+    },
+    {
+        "id":  "slg-os-020",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Interface-Modus: Die MTU auf beiden Seiten kann kurzfristig nicht angeglichen werden. Lass OSPF die MTU-Prüfung im DBD auf diesem Interface ignorieren.",
+        "bausteine":  [
+                          "ip",
+                          "ospf",
+                          "mtu-ignore",
+                          "mtu",
+                          "1500",
+                          "ignore-mtu"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "ospf",
+                        "mtu-ignore"
+                    ],
+        "erklaerung":  "Mit \u0027ip ospf mtu-ignore\u0027 prüft der Router die MTU im empfangenen DBD nicht mehr. Das ist nur ein Workaround, die saubere Lösung ist eine gleiche IP-MTU auf beiden Seiten."
+    },
+    {
+        "id":  "slg-os-021",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027debug ip ospf hello\u0027 on R2 shows: \u0027Mismatched hello parameters from 172.16.12.1\u0027 followed by \u0027Dead R 30 C 40, Hello R 5 C 10\u0027. What does this mean?",
+        "optionen":  [
+                         "R1 has a hello of 10, but the dead timer of 40 has 30 seconds left",
+                         "R2 has received 5 hellos and 30 dead-timer expiries",
+                         "R1 sends hello 5/dead 30, while R2 is configured with hello 10/dead 40",
+                         "R2 sends hello 5/dead 30, while R1 is configured with hello 10/dead 40"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "R steht für die im Hello empfangenen Werte, C für die lokal konfigurierten. R1 sendet also 5/30, R2 ist auf den Defaults 10/40. Bis die Timer passen, gibt es keine Nachbarschaft."
+    },
+    {
+        "id":  "slg-os-022",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On a FULL point-to-point adjacency, the engineer sets \u0027ip ospf hello-interval 5\u0027 and \u0027ip ospf dead-interval 30\u0027 on R1 only. What happens?",
+        "optionen":  [
+                         "The adjacency drops to 2-WAY but routes remain",
+                         "R2 adopts R1\u0027s timers automatically",
+                         "The adjacency stays FULL because timers are only checked when the adjacency is first formed",
+                         "The neighbor goes down when the dead timer expires and stays down until the timers match"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Hellos mit abweichenden Timern werden verworfen, daher wird der Dead-Timer nicht mehr zurückgesetzt. Im Lab fällt die Nachbarschaft mit \u0027Dead timer expired\u0027 und wird erst FULL, als R2 dieselben Timer bekommt."
+    },
+    {
+        "id":  "slg-os-023",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "An engineer configures only \u0027ip ospf hello-interval 5\u0027 on an Ethernet interface. The dead interval automatically becomes ___ seconds.",
+        "optionen":  [
+                         "30",
+                         "40",
+                         "15",
+                         "20"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Wird nur das Hello-Intervall geändert, setzt IOS den Dead-Intervall automatisch auf das Vierfache, hier 20 s. Ein explizit konfiguriertes dead-interval hat Vorrang."
+    },
+    {
+        "id":  "slg-os-024",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 (10.1.1.1/24) and R2 (10.1.1.2/25) are connected via Ethernet with default OSPF settings. They do not become neighbors. Which change alone would allow the adjacency to form while the masks stay different?",
+        "optionen":  [
+                         "Setting \u0027ip ospf network point-to-point\u0027 on both interfaces",
+                         "Using the same OSPF process ID on both routers",
+                         "Setting \u0027ip ospf priority 0\u0027 on both interfaces",
+                         "Configuring \u0027ip ospf mtu-ignore\u0027 on both interfaces"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Auf Broadcast- und NBMA-Netzen muss die Maske im Hello übereinstimmen. Auf Point-to-Point-Links wird das Maskenfeld laut RFC 2328 ignoriert. Sauberer ist es trotzdem, die Masken zu korrigieren."
+    },
+    {
+        "id":  "slg-os-025",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R2 logs \u0027%OSPF-4-ERRRCV: Received invalid packet: mismatch area ID ...\u0027 for packets from 172.16.12.1. What is the most likely cause?",
+        "optionen":  [
+                         "R1 and R2 have the same router ID",
+                         "R1 and R2 have their link interfaces configured in different OSPF areas",
+                         "R1 and R2 use different OSPF process IDs",
+                         "The link MTU differs between R1 and R2, so the packets are rejected"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Area-ID steht im OSPF-Header jedes Pakets und muss auf beiden Seiten des Links gleich sein. Die Prozess-ID ist lokal, und ein MTU-Problem zeigt sich erst beim DBD-Austausch."
+    },
+    {
+        "id":  "slg-os-026",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027debug ip ospf adj\u0027 shows \u0027Mismatch Authentication type. Input packet specified type 0, we use type 2\u0027. What is wrong?",
+        "optionen":  [
+                         "The neighbor uses MD5 with a different key ID",
+                         "Both routers use MD5, but the keys differ",
+                         "The neighbor uses plaintext authentication with the wrong password",
+                         "The neighbor uses no authentication, while the local router uses MD5"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "OSPFv2 kennt Typ 0 (keine), Typ 1 (Klartext) und Typ 2 (MD5). Der Nachbar sendet Typ 0, lokal ist MD5 konfiguriert. Bei ungleichem Authentifizierungstyp kommt keine Nachbarschaft zustande."
+    },
+    {
+        "id":  "slg-os-027",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On an Ethernet segment, DROTHER R4 detects a link change. To which destination does R4 send its LSU?",
+        "optionen":  [
+                         "The unicast address of the DR only",
+                         "255.255.255.255, so that all hosts receive it",
+                         "224.0.0.5, so that all OSPF routers receive it",
+                         "224.0.0.6, so that only the DR and BDR receive it"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "DROTHERs senden Updates an AllDRouters (224.0.0.6), das hören nur DR und BDR. Der DR flutet die LSA dann an AllSPFRouters (224.0.0.5) an alle Router des Segments."
+    },
+    {
+        "id":  "slg-os-028",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die OSPF-Multicast-Adresse ihrer Verwendung zu.",
+        "paare":  [
+                      [
+                          "224.0.0.5",
+                          "All OSPFv2 routers (hellos, DR flooding)"
+                      ],
+                      [
+                          "224.0.0.6",
+                          "OSPFv2 DR and BDR only"
+                      ],
+                      [
+                          "FF02::5",
+                          "All OSPFv3 routers"
+                      ],
+                      [
+                          "FF02::6",
+                          "OSPFv3 DR and BDR only"
+                      ]
+                  ],
+        "erklaerung":  "AllSPFRouters ist 224.0.0.5 bzw. FF02::5, AllDRouters ist 224.0.0.6 bzw. FF02::6. Auf NBMA-Netzen wird stattdessen Unicast verwendet."
+    },
+    {
+        "id":  "slg-os-029",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den OSPF-Neighbor-State seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "INIT",
+                          "Hello received, but own router ID not yet listed in it"
+                      ],
+                      [
+                          "2-WAY",
+                          "Own router ID seen in the neighbor\u0027s hello"
+                      ],
+                      [
+                          "EXSTART",
+                          "Master/slave and initial DBD sequence number are negotiated"
+                      ],
+                      [
+                          "LOADING",
+                          "Missing LSAs are requested with LSR and received in LSU"
+                      ]
+                  ],
+        "erklaerung":  "Nach DOWN folgen INIT, 2-WAY, EXSTART, EXCHANGE (DBD-Austausch), LOADING und FULL. Ab 2-WAY ist die Kommunikation bidirektional, ab FULL sind die Datenbanken synchron."
+    },
+    {
+        "id":  "slg-os-030",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "On an NBMA network with statically configured neighbors, a neighbor is in the ___ state when hellos are being sent to it but none has been received yet.",
+        "optionen":  [
+                         "EXSTART",
+                         "DOWN",
+                         "ATTEMPT",
+                         "INIT"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "ATTEMPT gibt es nur bei manuell konfigurierten Nachbarn auf NBMA-Netzen. Der Router sendet Unicast-Hellos, hat aber noch nichts gehört. Der Kurs nennt nur die sieben üblichen States."
+    },
+    {
+        "id":  "slg-os-031",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "When two routers on a point-to-point link decide to form a full adjacency, the neighbor state immediately after 2-WAY is ___.",
+        "optionen":  [
+                         "INIT",
+                         "EXCHANGE",
+                         "EXSTART",
+                         "LOADING"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Nach 2-WAY handeln die Router in EXSTART Master und Slave sowie die DBD-Startsequenz aus. Danach kommen EXCHANGE, LOADING und FULL."
+    },
+    {
+        "id":  "slg-os-032",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "At which point of the neighbor process is the DR/BDR election performed on a broadcast segment?",
+        "optionen":  [
+                         "Before the first hello is sent",
+                         "During the EXSTART state",
+                         "When the routers reach the 2-WAY state",
+                         "When the routers reach the FULL state"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Wahl braucht bidirektionale Kommunikation, sie erfolgt also am Ende von 2-WAY. Danach bauen die Router nur zu DR und BDR volle Adjazenzen auf."
+    },
+    {
+        "id":  "slg-os-033",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On an Ethernet segment with three OSPF routers, all interfaces are configured with \u0027ip ospf priority 0\u0027. What is the result?",
+        "optionen":  [
+                         "No DR or BDR is elected, the routers stay in 2-WAY with each other, and no LSDB synchronization takes place over the segment",
+                         "The router with the highest interface IP address becomes DR anyway, and the others sync with it",
+                         "All three routers form FULL adjacencies with each other, as they would on point-to-point links, and sync their LSDBs",
+                         "The router with the highest router ID becomes DR anyway"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Priority 0 heißt, der Router kann weder DR noch BDR werden. Ohne DR/BDR bauen DROTHERs untereinander keine vollen Adjazenzen auf. Sie bleiben in 2-WAY, und über das Segment werden keine LSAs ausgetauscht."
+    },
+    {
+        "id":  "slg-os-034",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In \u0027show ip ospf neighbor\u0027, a neighbor shows a Dead Time of 00:00:36. What does this value represent?",
+        "optionen":  [
+                         "The next hello will be sent in 36 seconds",
+                         "The neighbor is declared down in 36 seconds unless a new hello arrives",
+                         "The neighbor\u0027s configured dead interval is 36 seconds on that link",
+                         "The adjacency has been up for 36 seconds"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Dead Time ist ein Countdown. Jedes empfangene Hello setzt ihn auf den vollen Dead-Intervall zurück. Läuft er auf null, wird die Nachbarschaft beendet."
+    },
+    {
+        "id":  "slg-os-035",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R2\u0027s \u0027show ip ospf neighbor\u0027 shows \u00271.1.1.1  0  FULL/ -  ...  Serial0/0\u0027. What does the hyphen after FULL mean?",
+        "optionen":  [
+                         "The neighbor has no router ID",
+                         "The neighbor is a DROTHER",
+                         "The DR election has not finished yet on this segment",
+                         "No DR/BDR role applies because the network type is point-to-point"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Auf Point-to-Point-Links gibt es keine DR/BDR-Wahl, deshalb steht dort ein Bindestrich. Die Priority wird als 0 angezeigt, und \u0027show ip ospf neighbor detail\u0027 nennt DR und BDR als 0.0.0.0."
+    },
+    {
+        "id":  "slg-os-036",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On R3, \u0027show ip ospf neighbor\u0027 shows \u00271.1.1.1  1  FULL/DR  00:00:36  172.16.13.1  Ethernet0/0\u0027. Which statement is correct?",
+        "optionen":  [
+                         "R3 is the DR on the segment",
+                         "R1 (1.1.1.1) is the DR on the segment connected to R3 Ethernet0/0",
+                         "R1 is the DR for the entire area",
+                         "R1\u0027s priority is 0, so it is the DR by default on this segment"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Rolle in der State-Spalte beschreibt den Nachbarn, nicht den lokalen Router. R1 ist DR auf diesem Segment, die Rolle gilt nur pro Segment und nicht für die ganze Area."
+    },
+    {
+        "id":  "slg-os-037",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which three pieces of information are shown for each entry in \u0027show ip ospf neighbor\u0027? (Choose three.)",
+        "optionen":  [
+                         "Neighbor\u0027s OSPF area ID",
+                         "Local interface toward the neighbor",
+                         "Neighbor interface priority",
+                         "Neighbor router ID",
+                         "OSPF cost to the neighbor"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Die Spalten heißen Neighbor ID, Pri, State, Dead Time, Address und Interface. Area und Kosten stehen in \u0027show ip ospf interface\u0027 bzw. in der Routing-Tabelle."
+    },
+    {
+        "id":  "slg-os-038",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 (1.1.1.1), R4 (4.4.4.4) and R5 (5.5.5.5) share an Ethernet segment. All use the default priority and come up at the same time. What is the result of the election?",
+        "optionen":  [
+                         "R5 becomes DR, R1 becomes BDR, R4 becomes DROTHER",
+                         "R5 becomes DR, R4 becomes BDR, R1 becomes DROTHER",
+                         "R1 becomes DR, R4 becomes BDR, R5 becomes DROTHER",
+                         "All three are DR because the priority is equal"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei gleicher Priority (Default 1) entscheidet die höchste Router-ID: 5.5.5.5 wird DR, 4.4.4.4 BDR. R1 bleibt DROTHER, genau wie im Lab."
+    },
+    {
+        "id":  "slg-os-039",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On the segment, R5 is the DR, R4 the BDR and R1 a DROTHER (all priority 1). R5\u0027s interface is shut down and later brought back up. What are the final roles?",
+        "optionen":  [
+                         "R4 is DR, R1 is BDR, R5 is DROTHER",
+                         "R1 is DR, R4 is BDR, R5 is DROTHER",
+                         "R5 is DR again, R4 is BDR, R1 is DROTHER",
+                         "R4 is DR, R5 is BDR, R1 is DROTHER"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Fällt der DR aus, wird der BDR (R4) zum DR, und R1 wird neuer BDR. Die Wahl ist nicht präemptiv: R5 hat zwar die höchste Router-ID, wird bei seiner Rückkehr aber nur DROTHER."
+    },
+    {
+        "id":  "slg-os-040",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R4 is DR and R1 is BDR. The engineer sets \u0027ip ospf priority 100\u0027 on R1 and then clears the OSPF process on R4. R1 becomes DR. What is the actual reason?",
+        "optionen":  [
+                         "When the DR goes down, the BDR is promoted to DR regardless of priority",
+                         "Clearing the process on R4 resets the priority of all routers to 1",
+                         "R1 has the lowest router ID on the segment",
+                         "The priority change triggers an immediate re-election"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der BDR übernimmt beim Ausfall des DR automatisch, die Priority 100 spielt hier noch keine Rolle. Sie wirkt erst bei künftigen Wahlen, zum Beispiel wenn R1 einmal neu wählen muss."
+    },
+    {
+        "id":  "slg-os-041",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The OSPF interface priority can be set from 0 to ___; the default is 1.",
+        "optionen":  [
+                         "255",
+                         "128",
+                         "65535",
+                         "15"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Priority ist ein 8-Bit-Wert (0–255). Der höchste Wert gewinnt die DR-Wahl, und 0 schließt den Router von der DR/BDR-Rolle aus."
+    },
+    {
+        "id":  "slg-os-042",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Modus (Ethernet0/1 von R1): Erhöhe die OSPF-Priority auf 100, damit R1 künftige DR-Wahlen auf diesem Segment gewinnt.",
+        "bausteine":  [
+                          "ip",
+                          "ospf",
+                          "priority",
+                          "100",
+                          "router",
+                          "dr-priority",
+                          "255"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "ospf",
+                        "priority",
+                        "100"
+                    ],
+        "erklaerung":  "\u0027ip ospf priority 100\u0027 gilt nur für dieses Interface. Wegen der nicht präemptiven Wahl wirkt der Wert erst bei der nächsten Wahl."
+    },
+    {
+        "id":  "slg-os-043",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 connects to two Ethernet segments. It should become DR on the Gi0/1 segment but must never become DR or BDR on the Gi0/2 segment. What should the engineer configure?",
+        "optionen":  [
+                         "A router ID higher than all neighbors",
+                         "\u0027ip ospf priority 0\u0027 on Gi0/1 and a high priority on Gi0/2",
+                         "A high \u0027ip ospf priority\u0027 on Gi0/1 and \u0027ip ospf priority 0\u0027 on Gi0/2",
+                         "\u0027ip ospf priority 255\u0027 once under router ospf"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Priority wird pro Interface gesetzt, die DR-Wahl findet pro Segment statt. Die Router-ID entscheidet nur bei Gleichstand und würde auf beiden Segmenten wirken."
+    },
+    {
+        "id":  "slg-os-044",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Five OSPF routers share one Ethernet segment, and a DR and BDR are elected. How many full adjacencies exist on the segment, compared with a full mesh without a DR?",
+        "optionen":  [
+                         "7 instead of 10",
+                         "5 instead of 25",
+                         "4 instead of 10",
+                         "8 instead of 20"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "DR und BDR sind mit allen anderen voll adjazent: 4 Adjazenzen vom DR plus 3 weitere vom BDR ergeben 7. Ein Full Mesh bräuchte n(n-1)/2 = 10. Die Zahl wächst also quadratisch, nicht exponentiell, wie der Kurs schreibt."
+    },
+    {
+        "id":  "slg-os-045",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement describes the BDR while the DR is operational?",
+        "optionen":  [
+                         "It only keeps a 2-WAY state with the DROTHERs",
+                         "It is fully adjacent with all routers and receives all LSAs, but it does not flood them on behalf of the segment",
+                         "It originates the Type 2 LSA for the segment while the DR handles the flooding",
+                         "It floods half of the LSAs on behalf of the segment to share the flooding load with the DR"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der BDR hört alles mit (er empfängt auch 224.0.0.6), übernimmt die DR-Aufgaben aber erst bei dessen Ausfall. Die Type-2-LSA und das Fluten erledigt nur der DR."
+    },
+    {
+        "id":  "slg-os-046",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Right after a neighbor on Et0/0 reaches 2-WAY, \u0027debug ip ospf adj\u0027 on R3 reports a BackupSeen event before R3\u0027s wait timer has expired. What does this indicate?",
+        "optionen":  [
+                         "The wait timer expired before any hello was received",
+                         "A neighbor already claims a DR/BDR role, so R3 ends its wait period and runs the election immediately",
+                         "R3 lost its BDR role because of a priority change",
+                         "R3 detected a duplicate BDR on the segment and resets the adjacency to restart the election"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Kommt ein Broadcast-Interface hoch, wartet OSPF normalerweise den Wait-Timer ab (so lang wie das Dead-Intervall, also 40 s), bevor es wählt. Das Ereignis BackupSeen (RFC 2328) tritt ein, wenn ein Nachbar sich als BDR meldet oder als DR ohne BDR. Dann beendet der Router die Wartezeit und wählt sofort."
+    },
+    {
+        "id":  "slg-os-047",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 shows \u0027Ethernet0/1 ... State DROTHER\u0027 and \u0027Ethernet0/0 ... State DR\u0027 in \u0027show ip ospf interface\u0027. How is this possible?",
+        "optionen":  [
+                         "The output is inconsistent; a router has only one role",
+                         "The DR/BDR election is held separately for each multiaccess segment",
+                         "R1 is in the middle of a re-election and will soon be DR on both",
+                         "R1 is DR for area 0 and DROTHER for area 2"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "DR und BDR werden pro Segment gewählt. Ein Router kann auf einem Segment DR und auf einem anderen DROTHER sein, unabhängig von den Areas."
+    },
+    {
+        "id":  "slg-os-048",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "After R4 and R5 set priority 0, R1 (priority 100) is the only DR-eligible router on the segment. What does \u0027show ip ospf interface ethernet0/1\u0027 on R1 show?",
+        "optionen":  [
+                         "R1 is BDR, and R5 remains DR",
+                         "R1 is DR, and R5 remains BDR because the election is not preemptive",
+                         "R1 is DR, and no BDR is elected on the segment",
+                         "R1 is DR, and R4 becomes BDR because of its lower router ID"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Router mit Priority 0 sind für DR und BDR nicht wählbar, auch eine bestehende Rolle geht dadurch verloren. Bleibt nur R1 wählbar, wird er DR, und es gibt keinen BDR. R4 und R5 sind beide DROTHER."
+    },
+    {
+        "id":  "slg-os-049",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den OSPF-Netztyp seinem Standardverhalten zu.",
+        "paare":  [
+                      [
+                          "broadcast",
+                          "Hello 10 s, DR/BDR elected, dynamic neighbors"
+                      ],
+                      [
+                          "non-broadcast",
+                          "Hello 30 s, DR/BDR elected, static neighbors"
+                      ],
+                      [
+                          "point-to-multipoint",
+                          "Hello 30 s, no DR/BDR, dynamic neighbors"
+                      ],
+                      [
+                          "point-to-point",
+                          "Hello 10 s, no DR/BDR, only two routers"
+                      ]
+                  ],
+        "erklaerung":  "Broadcast und Point-to-Point nutzen 10/40 s, NBMA und P2MP 30/120 s. Einen DR gibt es nur auf broadcast und non-broadcast, statische Nachbarn nur auf den nonbroadcast-Varianten."
+    },
+    {
+        "id":  "slg-os-050",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two routers are connected by a dedicated Ethernet link with no other devices. What is a benefit of configuring \u0027ip ospf network point-to-point\u0027 on both sides?",
+        "optionen":  [
+                         "The routers can use different subnets on the link",
+                         "The link cost is automatically lowered to 1",
+                         "Hellos are sent as unicast to the neighbor, which saves bandwidth on the link",
+                         "No DR/BDR election or wait time is needed and no Type 2 LSA is created for the link"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Auf einem Link mit nur zwei Routern bringt die DR-Wahl nichts. Als Point-to-Point entfallen Wahl und Wait-Timer, die Adjazenz kommt schneller hoch, und die LSDB enthält keine Network-LSA für das Segment."
+    },
+    {
+        "id":  "slg-os-051",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R2\u0027s Loopback0 is configured as 192.168.2.1/24, but R5 shows \u0027O IA 192.168.2.1/32\u0027. How can R2 advertise the full /24?",
+        "optionen":  [
+                         "Change the network statement wildcard to 0.0.0.255",
+                         "Configure \u0027ip ospf priority 1\u0027 on Loopback0",
+                         "Configure \u0027area 1 range 192.168.2.0 255.255.255.0\u0027 on R2",
+                         "Configure \u0027ip ospf network point-to-point\u0027 on R2 Loopback0"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Netztyp LOOPBACK annonciert Loopbacks immer als /32-Host-Route. Mit dem Netztyp point-to-point annonciert OSPF die konfigurierte Maske. Die Wildcard im network-Befehl wählt nur Interfaces aus und ändert die Maske nicht."
+    },
+    {
+        "id":  "slg-os-052",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On an Ethernet link, R1 is set to \u0027ip ospf network non-broadcast\u0027 with a neighbor statement, while R2 keeps the default network type. What happens?",
+        "optionen":  [
+                         "They form a FULL adjacency, but R2 becomes DR",
+                         "They form a FULL adjacency with no DR",
+                         "The adjacency forms, but only R1 installs routes learned from R2",
+                         "No adjacency forms because the default hello/dead timers differ (30/120 vs 10/40)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Non-broadcast nutzt per Default 30/120 s, broadcast 10/40 s. Durch den Timer-Mismatch werden die Hellos abgewiesen. Erst angeglichene Timer oder ein gleicher Netztyp lösen das Problem."
+    },
+    {
+        "id":  "slg-os-053",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two OSPF network types require neighbors to be configured manually? (Choose two.)",
+        "optionen":  [
+                         "non-broadcast",
+                         "point-to-point",
+                         "point-to-multipoint",
+                         "broadcast",
+                         "point-to-multipoint non-broadcast"
+                     ],
+        "richtig":  [
+                        0,
+                        4
+                    ],
+        "erklaerung":  "Ohne Multicast-Fähigkeit können Nachbarn nicht automatisch gefunden werden. Beide nonbroadcast-Typen brauchen deshalb statische Nachbarn und Unicast. P2MP-Nonbroadcast ist eine Cisco-Erweiterung ohne DR."
+    },
+    {
+        "id":  "slg-os-054",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "\u0027show ip ospf interface\u0027 on R2 shows \u0027Serial0/0 ... Network Type POINT_TO_POINT, Cost: 64\u0027. Why is the network type point-to-point?",
+        "optionen":  [
+                         "The engineer must have configured it manually",
+                         "Serial links always run NBMA unless changed",
+                         "The neighbor forced it through its hello packet",
+                         "It is the default OSPF network type for serial interfaces"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Serielle Links (HDLC/PPP) verbinden genau zwei Router. Deshalb ist point-to-point der Default, ohne DR. Ethernet ist dagegen per Default broadcast."
+    },
+    {
+        "id":  "slg-os-055",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 is an ABR with interfaces in area 0, area 1 and area 2. How many Type 1 (router) LSAs does R1 originate?",
+        "optionen":  [
+                         "Three, one for each attached area",
+                         "One, flooded into all areas",
+                         "One for area 0 only; other areas receive Type 3 LSAs",
+                         "Two, one for area 0 and one shared by the nonbackbone areas"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Jeder Router erzeugt für jede Area, an die er angeschlossen ist, eine eigene Router-LSA. Sie beschreibt nur seine Links in dieser Area und bleibt in dieser Area."
+    },
+    {
+        "id":  "slg-os-056",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne dem LSA-Typ zu, was im Feld Link-State-ID steht.",
+        "paare":  [
+                      [
+                          "Type 1 (Router)",
+                          "Router ID of the originating router"
+                      ],
+                      [
+                          "Type 2 (Network)",
+                          "Interface IP address of the DR"
+                      ],
+                      [
+                          "Type 3 (Summary)",
+                          "Destination network number"
+                      ],
+                      [
+                          "Type 4 (ASBR Summary)",
+                          "Router ID of the described ASBR"
+                      ]
+                  ],
+        "erklaerung":  "Die Link-State-ID identifiziert eine LSA zusammen mit Typ und Advertising Router. Bei Typ 5 und 7 ist sie ebenfalls die externe Zielnetzadresse."
+    },
+    {
+        "id":  "slg-os-057",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Area 1 consists only of routers connected by serial point-to-point links. Which section is absent from \u0027show ip ospf database\u0027 for area 1?",
+        "optionen":  [
+                         "All sections are present in every area",
+                         "Router Link States (Type 1)",
+                         "Summary Net Link States (Type 3)",
+                         "Net Link States (Type 2)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Type-2-LSAs erzeugt nur ein DR auf einem Multiaccess-Segment. Auf Point-to-Point-Links gibt es keinen DR, also auch keine Network-LSA. Router-LSAs und Summary-LSAs vom ABR sind trotzdem vorhanden."
+    },
+    {
+        "id":  "slg-os-058",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the lab, R5 (area 0) installs \u0027O IA 192.168.2.1/32 via 172.16.145.1\u0027. From which LSA does R5 know this prefix?",
+        "optionen":  [
+                         "A Type 3 LSA originated by ABR R1 (1.1.1.1)",
+                         "A Type 2 LSA originated by the DR in area 1",
+                         "A Type 1 LSA originated by R2 (2.2.2.2)",
+                         "A Type 5 LSA originated by R2"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Type-1-LSA von R2 bleibt in Area 1. Der ABR R1 fasst die Information in einer Summary-LSA (Typ 3) für Area 0 zusammen, deshalb erscheint die Route als O IA."
+    },
+    {
+        "id":  "slg-os-059",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Why do routers in areas other than the ASBR\u0027s own area need a Type 4 LSA to use a Type 5 route?",
+        "optionen":  [
+                         "The Type 5 LSA names the ASBR\u0027s router ID as advertising router, and that router\u0027s Type 1 LSA is not flooded outside its area",
+                         "The Type 5 LSA does not contain the external prefix itself; only the Type 4 LSA carries it to other areas",
+                         "Type 5 LSAs are not flooded into other areas unless a Type 4 LSA is flooded with them first",
+                         "The Type 4 LSA carries the external metric type E1 or E2"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Um eine Type-5-Route zu nutzen, muss der Router den ASBR erreichen können. Dessen Router-LSA kennt aber nur die eigene Area. Der ABR erzeugt deshalb eine Type-4-LSA mit der ASBR-Router-ID und seinen Kosten dorthin."
+    },
+    {
+        "id":  "slg-os-060",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An ASBR in NSSA area 3 redistributes a static route. In area 0, routers see a Type 5 LSA for it whose advertising router is ABR R1. Why is no Type 4 LSA required in area 0 for this route?",
+        "optionen":  [
+                         "R1 translated the Type 7 LSA and is itself the advertising router, and R1 is known in area 0 through its own Type 1 LSA",
+                         "Type 4 LSAs exist only in OSPFv3",
+                         "Type 5 LSAs that come from an NSSA never need a forwarding router",
+                         "The NSSA ASBR also floods its own Type 1 LSA into area 0, so area 0 routers can reach it directly"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der ABR übersetzt Typ 7 in Typ 5 und trägt sich selbst als Advertising Router ein. Da R1 in Area 0 eine eigene Router-LSA hat, ist er dort direkt erreichbar, eine ASBR-Summary ist nicht nötig."
+    },
+    {
+        "id":  "slg-os-061",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "How far are Type 5 AS external LSAs flooded?",
+        "optionen":  [
+                         "Only to the ABRs, which convert them into Type 3 LSAs for the other areas",
+                         "Throughout the OSPF domain, except into stub, totally stubby and NSSA areas",
+                         "Only within the area of the ASBR",
+                         "Only within area 0"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Type-5-LSAs haben AS-weite Gültigkeit und werden unverändert durch alle normalen Areas geflutet. Die Spezialareas blocken sie, damit ihre LSDB klein bleibt."
+    },
+    {
+        "id":  "slg-os-062",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Where is a Type 7 LSA flooded?",
+        "optionen":  [
+                         "Throughout the whole OSPF domain",
+                         "Only between ASBRs in different areas",
+                         "Only within area 0",
+                         "Only within the NSSA in which it was originated"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Typ 7 ist die NSSA-Variante einer externen LSA und bleibt in der NSSA. Am ABR wird sie in Typ 5 übersetzt, falls die Route außerhalb sichtbar sein soll."
+    },
+    {
+        "id":  "slg-os-063",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In OSPFv3, Router and Network LSAs no longer carry IP prefixes. Which LSA type advertises the IPv6 prefixes of a router or transit network within an area?",
+        "optionen":  [
+                         "AS External LSA (Type 5)",
+                         "Inter-Area-Prefix LSA (Type 3)",
+                         "Intra-Area-Prefix LSA (Type 9)",
+                         "Link LSA (Type 8)"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "OSPFv3 trennt Topologie und Adressen. Die Intra-Area-Prefix-LSA trägt die Präfixe in der Area. Die Link-LSA (Typ 8) ist link-lokal und meldet die Link-Local-Adresse und die Präfixe nur an Nachbarn auf dem Link."
+    },
+    {
+        "id":  "slg-os-064",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Every OSPF LSA begins with a common LSA header of ___ bytes.",
+        "optionen":  [
+                         "24",
+                         "40",
+                         "32",
+                         "20"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der 20-Byte-Header enthält unter anderem LS Age, LS Type, Link-State-ID, Advertising Router und Sequenznummer. Diese Header werden in DBDs und LSAcks übertragen."
+    },
+    {
+        "id":  "slg-os-065",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A router receives an LSA whose type, link-state ID and advertising router match an entry in its LSDB, but the sequence number is higher. What does it do?",
+        "optionen":  [
+                         "It keeps both copies until the older one reaches MaxAge",
+                         "It treats the LSA as newer, installs it, acknowledges it and floods it further",
+                         "It discards it because the LSA already exists",
+                         "It sends an LSR to the originator to verify the LSA before installing it"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Über die Sequenznummer erkennt OSPF die Aktualität einer LSA. Die neuere Instanz ersetzt die alte, wird mit LSAck bestätigt und auf den anderen Interfaces der Area geflutet."
+    },
+    {
+        "id":  "slg-os-066",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Überschrift in \u0027show ip ospf database\u0027 dem LSA-Typ zu.",
+        "paare":  [
+                      [
+                          "Router Link States",
+                          "Type 1"
+                      ],
+                      [
+                          "Net Link States",
+                          "Type 2"
+                      ],
+                      [
+                          "Summary Net Link States",
+                          "Type 3"
+                      ],
+                      [
+                          "Summary ASB Link States",
+                          "Type 4"
+                      ]
+                  ],
+        "erklaerung":  "IOS zeigt die LSDB pro Area und LSA-Typ. Externe LSAs erscheinen unter \u0027Type-5 AS External Link States\u0027 bzw. \u0027Type-7 AS External Link States\u0027."
+    },
+    {
+        "id":  "slg-os-067",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On a router in area 1, \u0027show ip ospf database\u0027 contains: \u0027Summary ASB Link States (Area 1)  Link ID 3.3.3.3  ADV Router 1.1.1.1\u0027. What does this entry mean?",
+        "optionen":  [
+                         "ASBR 1.1.1.1 advertises the external network 3.3.3.3 into area 1",
+                         "Router 3.3.3.3 is the DR in area 1",
+                         "Router 3.3.3.3 summarizes area 1 toward area 0",
+                         "ABR 1.1.1.1 tells area 1 how to reach ASBR 3.3.3.3, which is located outside area 1"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Das ist eine Type-4-LSA: Link-State-ID ist die Router-ID des ASBR, Advertising Router der ABR, der sie in die Area einspeist. Damit können Router in Area 1 Type-5-Routen von 3.3.3.3 nutzen."
+    },
+    {
+        "id":  "slg-os-068",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ip ospf database\u0027 in area 0 lists \u0027Net Link States (Area 0)  Link ID 172.16.145.5  ADV Router 5.5.5.5\u0027. What can you conclude?",
+        "optionen":  [
+                         "R5 is the DR on the 172.16.145.0/29 segment, and its interface address there is 172.16.145.5",
+                         "R5 is the BDR on the segment",
+                         "R5 is an ABR that summarizes 172.16.145.0/29 into area 0 for the other areas",
+                         "172.16.145.5 is an external route redistributed by R5"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Eine Network-LSA (Typ 2) erzeugt nur der DR, und ihre Link-State-ID ist seine Interface-IP auf dem Segment. Sie listet alle Router, die am Segment angeschlossen sind."
+    },
+    {
+        "id":  "slg-os-069",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Under \u0027Type-5 AS External Link States\u0027, the LSDB shows \u0027Link ID 0.0.0.0  ADV Router 9.9.9.9\u0027. Which statement is most likely true?",
+        "optionen":  [
+                         "Router 9.9.9.9 is the DR for an unknown segment",
+                         "The entry is a stale LSA with an invalid link-state ID",
+                         "9.9.9.9 is the ABR that summarizes all networks of its area into the prefix 0.0.0.0",
+                         "Router 9.9.9.9 is an ASBR that originates a default route, for example with default-information originate"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bei Type-5-LSAs ist die Link-State-ID das externe Netz, 0.0.0.0 ist also die Default-Route. Ein Router, der mit default-information originate einen Default erzeugt, wird zum ASBR."
+    },
+    {
+        "id":  "slg-os-070",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "R1 is an ABR between area 0 and normal area 1, is not DR on any segment and does not redistribute. An ASBR exists in area 1. Which three LSA types does R1 originate? (Choose three.)",
+        "optionen":  [
+                         "Type 4",
+                         "Type 1",
+                         "Type 7",
+                         "Type 5",
+                         "Type 3"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        4
+                    ],
+        "erklaerung":  "R1 erzeugt je Area eine Router-LSA, Summary-LSAs für die Netze der jeweils anderen Area und eine Type-4-LSA für den ASBR aus Area 1 in Area 0. Type 5 erzeugt nur der ASBR selbst, Type 7 nur ein ASBR in einer NSSA."
+    },
+    {
+        "id":  "slg-os-071",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "On a broadcast segment with four routers, which LSA does only the DR originate?",
+        "optionen":  [
+                         "Type 1 router LSA",
+                         "Type 5 external LSA",
+                         "Type 3 summary LSA",
+                         "Type 2 network LSA"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Network-LSA beschreibt das Multiaccess-Segment und alle angeschlossenen Router. Sie wird nur vom DR erzeugt, Router-LSAs erzeugt dagegen jeder Router."
+    },
+    {
+        "id":  "slg-os-072",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "OSPF area IDs are 32-bit values. Area 0.0.2.1 is the same as area ___.",
+        "optionen":  [
+                         "258",
+                         "21",
+                         "513",
+                         "201"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Dotted Decimal ist nur eine andere Schreibweise: 2 × 256 + 1 = 513. Ebenso ist Area 300 gleich 0.0.1.44."
+    },
+    {
+        "id":  "slg-os-073",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R5 (all interfaces in area 1) and R6 (all other interfaces in area 2, none in area 0) get a direct link, configured in area 1 on both ends. Why is it not used for inter-area routing between area 1 and area 2?",
+        "optionen":  [
+                         "The link must be in area 0 to carry any traffic",
+                         "Inter-area routes are exchanged only via ABRs attached to area 0, so inter-area traffic must cross the backbone",
+                         "OSPF blocks all links that are not configured as point-to-point",
+                         "OSPF never uses links between different routers in nonbackbone areas, even within the same area"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "OSPF erzwingt eine Zwei-Ebenen-Hierarchie: Summary-LSAs werden nur über ABRs mit Area-0-Anschluss zwischen Areas weitergegeben. Ein Router ohne Interface in Area 0 arbeitet nicht als vollwertiger ABR."
+    },
+    {
+        "id":  "slg-os-074",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "R7 has all its interfaces in area 0 and is configured with \u0027redistribute static subnets\u0027. Which two roles does R7 have? (Choose two.)",
+        "optionen":  [
+                         "Backbone router",
+                         "NSSA translator",
+                         "ASBR",
+                         "DR on every segment",
+                         "ABR"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "Ein Interface in Area 0 reicht für die Rolle Backbone-Router, und redistribute macht ihn zum ASBR. ABR wäre er nur mit Interfaces in mehreren Areas. Die DR-Rolle hängt von der Wahl pro Segment ab."
+    },
+    {
+        "id":  "slg-os-075",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R1\u0027s \u0027show ip protocols\u0027 shows \u0027Number of areas in this router is 3. 3 normal 0 stub 0 nssa\u0027. What is R1\u0027s role?",
+        "optionen":  [
+                         "Internal router",
+                         "ASBR only",
+                         "DROTHER",
+                         "ABR"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein Router mit Interfaces in mehreren Areas ist ABR und führt eine LSDB pro Area. Im Lab verbindet R1 Area 0 mit Area 1 und Area 2."
+    },
+    {
+        "id":  "slg-os-076",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two commands under \u0027router ospf\u0027 make a router an ASBR? (Choose two.)",
+        "optionen":  [
+                         "redistribute connected subnets",
+                         "area 1 range 10.1.0.0 255.255.0.0",
+                         "network 0.0.0.0 255.255.255.255 area 0",
+                         "default-information originate",
+                         "passive-interface default"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "ASBR wird ein Router, sobald er externe Informationen ins OSPF bringt: per Redistribution oder durch Erzeugen einer Default-Route. Summarization und passive Interfaces ändern die Rolle nicht."
+    },
+    {
+        "id":  "slg-os-077",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does an ABR attached to area 0 and area 1 calculate its routes?",
+        "optionen":  [
+                         "It runs SPF only for the area with the most routers",
+                         "It merges both areas into one LSDB and runs one SPF",
+                         "It runs SPF only for area 0 and uses Type 3 LSAs for area 1",
+                         "It keeps one LSDB per area and runs SPF separately for each area"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Für jede angeschlossene Area hat der ABR eine eigene LSDB und berechnet den SPF-Baum je Area. Die Ergebnisse gibt er als Summary-LSAs in die jeweils andere Area weiter."
+    },
+    {
+        "id":  "slg-os-078",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In R5\u0027s routing table (area 0), which route is an intra-area route?",
+        "optionen":  [
+                         "O IA 192.168.3.1/32 [110/21] via 172.16.145.1",
+                         "O IA 172.16.13.0/30 [110/20] via 172.16.145.1",
+                         "O IA 172.16.12.0/30 [110/74] via 172.16.145.1",
+                         "O 192.168.4.0/24 [110/11] via 172.16.145.4"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Code O ohne Zusatz bedeutet intra-area: R4 liegt wie R5 in Area 0. O IA kennzeichnet Inter-Area-Routen, die der ABR R1 aus Area 1 und Area 2 eingespeist hat."
+    },
+    {
+        "id":  "slg-os-079",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R5 reaches R1 over Ethernet (cost 10). R1 reaches R2 over Serial2/0 (cost 64). What OSPF cost does R5 show for 172.16.12.0/30, the R1–R2 serial subnet?",
+        "optionen":  [
+                         "64",
+                         "74",
+                         "84",
+                         "75"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Kosten sind die Summe der ausgehenden Interface-Kosten bis zum Ziel: 10 (R5 Richtung R1) plus 64 (R1 Serial2/0) = 74. Im Lab steht dort [110/74]."
+    },
+    {
+        "id":  "slg-os-080",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R5 shows \u0027O IA 192.168.2.1/32 [110/75]\u0027 (10 + 64 + 1). The engineer configures \u0027ip ospf cost 10\u0027 on R2 Serial0/0 only, the interface toward R1. What cost does R5 now show for 192.168.2.1/32?",
+        "optionen":  [
+                         "11",
+                         "75",
+                         "30",
+                         "21"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "OSPF zählt nur die Kosten der ausgehenden Interfaces in Richtung Ziel. Der Weg von R5 zu R2 nutzt R1 Serial2/0, nicht R2 Serial0/0. Die Änderung wirkt nur auf die Gegenrichtung, R5 bleibt bei 75."
+    },
+    {
+        "id":  "slg-os-081",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does a 1.544-Mbps serial interface have an OSPF cost of 64 by default?",
+        "optionen":  [
+                         "Cost is derived from the delay of the serial line",
+                         "Cost = reference bandwidth 100 Mbps / 1.544 Mbps = 64 (truncated)",
+                         "Serial interfaces always have a fixed cost of 64",
+                         "Cost = 64 kbps channel size multiplied by the number of channels"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Standardformel lautet 100 000 kbps geteilt durch die Interface-Bandbreite in kbps, das Ergebnis wird abgeschnitten. Ethernet mit 10 Mbps ergibt deshalb 10, alles ab 100 Mbps ergibt 1."
+    },
+    {
+        "id":  "slg-os-082",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne der Interface-Bandbreite die OSPF-Standardkosten zu (Referenzbandbreite 100 Mbps).",
+        "paare":  [
+                      [
+                          "10 Mbps",
+                          "10"
+                      ],
+                      [
+                          "1.544 Mbps",
+                          "64"
+                      ],
+                      [
+                          "100 Mbps",
+                          "1"
+                      ],
+                      [
+                          "56 kbps",
+                          "1785"
+                      ]
+                  ],
+        "erklaerung":  "Kosten = 100 000 kbps / Bandbreite, abgeschnitten, mindestens 1: 100000/10000 = 10, 100000/1544 = 64, 100000/56 = 1785. Gigabit und schneller landen ebenfalls bei 1."
+    },
+    {
+        "id":  "slg-os-083",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router ospf 1): Passe die Referenzbandbreite so an, dass ein 10-Gbit/s-Link Kosten 1 und ein 1-Gbit/s-Link Kosten 10 bekommt. Wert in Mbit/s.",
+        "bausteine":  [
+                          "auto-cost",
+                          "reference-bandwidth",
+                          "10000",
+                          "bandwidth",
+                          "10000000",
+                          "ip",
+                          "ospf",
+                          "cost"
+                      ],
+        "loesung":  [
+                        "auto-cost",
+                        "reference-bandwidth",
+                        "10000"
+                    ],
+        "erklaerung":  "auto-cost reference-bandwidth erwartet Mbit/s. Mit 10000 ergibt 10G Kosten 1 und 1G Kosten 10. Der Wert sollte auf allen OSPF-Routern gleich sein, sonst rechnen sie mit unterschiedlichen Metriken."
+    },
+    {
+        "id":  "slg-os-084",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R1 is configured with \u0027network 172.16.145.0 0.0.0.7 area 0\u0027. Which interface address is matched and placed in area 0?",
+        "optionen":  [
+                         "172.16.144.1",
+                         "172.16.145.9",
+                         "172.16.145.14",
+                         "172.16.145.1"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Wildcard 0.0.0.7 lässt die letzten drei Bits frei, der Befehl erfasst also 172.16.145.0 bis .7. Nur .1 liegt in diesem Bereich."
+    },
+    {
+        "id":  "slg-os-085",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R3 is configured with \u0027network 172.16.13.2 0.0.0.0 area 2\u0027. What does this command do?",
+        "optionen":  [
+                         "It enables OSPF in area 2 only on the interface whose IP address is exactly 172.16.13.2",
+                         "It enables OSPF on all interfaces because 0.0.0.0 matches everything",
+                         "It advertises a host route 172.16.13.2/32 without sending hellos",
+                         "It enables OSPF on every interface in 172.16.13.0/24"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Wildcard 0.0.0.0 verlangt eine exakte Übereinstimmung aller Bits. So wird gezielt genau ein Interface aktiviert, die Maske des Interfaces bleibt dabei unverändert."
+    },
+    {
+        "id":  "slg-os-086",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router ospf 1 auf R1): Aktiviere OSPF für das serielle Netz 172.16.12.0/30 in Area 1 mit einem network-Befehl.",
+        "bausteine":  [
+                          "network",
+                          "172.16.12.0",
+                          "0.0.0.3",
+                          "area",
+                          "1",
+                          "255.255.255.252",
+                          "0.0.0.255",
+                          "ip"
+                      ],
+        "loesung":  [
+                        "network",
+                        "172.16.12.0",
+                        "0.0.0.3",
+                        "area",
+                        "1"
+                    ],
+        "erklaerung":  "Der network-Befehl erwartet eine Wildcard-Maske, für ein /30 also 0.0.0.3. Die Subnetzmaske 255.255.255.252 wäre hier falsch."
+    },
+    {
+        "id":  "slg-os-087",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router ospf 3 auf R3): Lege die Router-ID manuell auf 3.3.3.3 fest.",
+        "bausteine":  [
+                          "router-id",
+                          "3.3.3.3",
+                          "router",
+                          "id",
+                          "ip",
+                          "ospf"
+                      ],
+        "loesung":  [
+                        "router-id",
+                        "3.3.3.3"
+                    ],
+        "erklaerung":  "\u0027router-id 3.3.3.3\u0027 hat bei der RID-Wahl Vorrang vor allen Interfaces. Läuft der Prozess schon, wird die neue ID erst nach clear ip ospf process oder Reload aktiv."
+    },
+    {
+        "id":  "slg-os-088",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf R3: Setze nur OSPF-Prozess 3 zurück, damit die neue Router-ID aktiv wird.",
+        "bausteine":  [
+                          "clear",
+                          "ip",
+                          "ospf",
+                          "3",
+                          "process",
+                          "reset",
+                          "router",
+                          "all"
+                      ],
+        "loesung":  [
+                        "clear",
+                        "ip",
+                        "ospf",
+                        "3",
+                        "process"
+                    ],
+        "erklaerung":  "Mit \u0027clear ip ospf 3 process\u0027 wird nur Prozess 3 zurückgesetzt, \u0027clear ip ospf process\u0027 betrifft alle Prozesse. Beides baut die Adjazenzen neu auf und erzeugt neue LSAs."
+    },
+    {
+        "id":  "slg-os-089",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "A production ABR has a new router ID configured and the engineer runs \u0027clear ip ospf process\u0027. Which two effects should be expected? (Choose two.)",
+        "optionen":  [
+                         "Only adjacencies in area 0 are affected",
+                         "All OSPF adjacencies of the router go down and re-form",
+                         "Neighbors keep their adjacency because the process ID is unchanged",
+                         "The LSDBs of all routers in the domain are erased immediately",
+                         "The router originates new copies of its LSAs with the new router ID"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Ein Prozess-Reset beendet alle Nachbarschaften des Routers und erzeugt die LSAs mit der neuen Router-ID neu. Das bedeutet einen kurzen Routing-Ausfall, also gehört es in ein Wartungsfenster. Die alten LSAs altern bei den anderen aus."
+    },
+    {
+        "id":  "slg-os-090",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Modus (Serial2/0 von R1): Setze das OSPF-Hello-Intervall auf 5 Sekunden.",
+        "bausteine":  [
+                          "ip",
+                          "ospf",
+                          "hello-interval",
+                          "5",
+                          "hello",
+                          "timers",
+                          "20"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "ospf",
+                        "hello-interval",
+                        "5"
+                    ],
+        "erklaerung":  "\u0027ip ospf hello-interval 5\u0027 gilt pro Interface. Ohne expliziten dead-interval setzt IOS diesen auf 20 s, und der Nachbar braucht dieselben Werte."
+    },
+    {
+        "id":  "slg-os-091",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus (Serial0/0 von R2): Setze den OSPF-Dead-Intervall auf 30 Sekunden, passend zu R1.",
+        "bausteine":  [
+                          "ip",
+                          "ospf",
+                          "dead-interval",
+                          "30",
+                          "dead",
+                          "hold-time",
+                          "120"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "ospf",
+                        "dead-interval",
+                        "30"
+                    ],
+        "erklaerung":  "Hello- und Dead-Intervall müssen auf beiden Seiten gleich sein. Im Lab wird die Adjazenz erst FULL, nachdem R2 hello 5 und dead 30 erhalten hat."
+    },
+    {
+        "id":  "slg-os-092",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An interface is covered by \u0027network 10.0.0.0 0.255.255.255 area 0\u0027, and the interface itself has \u0027ip ospf 1 area 2\u0027. In which area is the interface placed?",
+        "optionen":  [
+                         "Area 2, because the interface-level command takes precedence",
+                         "Both areas, the interface forms adjacencies in each",
+                         "Area 0, because the network statement is evaluated first",
+                         "Neither; OSPF disables the interface because of the conflict"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Konfiguration am Interface hat Vorrang vor dem network-Befehl. Ein Interface kann ohnehin nur einer Area angehören, \u0027show ip ospf interface\u0027 zeigt dann \u0027Attached via Interface Enable\u0027."
+    },
+    {
+        "id":  "slg-os-093",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "\u0027show ip ospf interface\u0027 on R3 shows \u0027Loopback0 ... Area 2, Attached via Interface Enable\u0027. How was Loopback0 added to OSPF?",
+        "optionen":  [
+                         "Through redistribution of connected routes",
+                         "With the \u0027ip ospf 3 area 2\u0027 interface command",
+                         "Automatically, because loopbacks are always included",
+                         "With a network statement under router ospf 3"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027Interface Enable\u0027 bedeutet, dass OSPF direkt am Interface aktiviert wurde. Bei \u0027Attached via Network Statement\u0027 stammt die Zuordnung aus einem network-Befehl."
+    },
+    {
+        "id":  "slg-os-094",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router ospf 1, interner Router mit \u0027network 0.0.0.0 255.255.255.255 area 1\u0027): Mach alle Interfaces standardmäßig passiv. Die Uplinks aktivierst du danach einzeln wieder.",
+        "bausteine":  [
+                          "passive-interface",
+                          "default",
+                          "no",
+                          "shutdown",
+                          "all",
+                          "interface"
+                      ],
+        "loesung":  [
+                        "passive-interface",
+                        "default"
+                    ],
+        "erklaerung":  "\u0027passive-interface default\u0027 unterdrückt Hellos auf allen Interfaces, die Netze werden trotzdem annonciert. Mit \u0027no passive-interface \u003cif\u003e\u0027 werden die Links zu den Nachbarn wieder aktiv."
+    },
+    {
+        "id":  "slg-os-095",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R5\u0027s \u0027show ip ospf route\u0027 lists \u0027i 1.1.1.1 [10] via 172.16.145.1, Ethernet0/0, ABR, Area 0\u0027. What does this line tell you?",
+        "optionen":  [
+                         "R5 knows ABR 1.1.1.1 in area 0 at a cost of 10 through 172.16.145.1",
+                         "R1 is an ASBR advertising 10 external routes",
+                         "1.1.1.1/32 is an intra-area network in area 0 with metric 10",
+                         "R5 is the ABR for area 0 with 10 neighbors"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Intra-area Router Path List zeigt Border-Router, die R5 in seiner Area kennt, mit Kosten, Next Hop und Rolle. Inter-Area-Routen laufen über diesen ABR."
+    },
+    {
+        "id":  "slg-os-096",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "After R1\u0027s router ID was changed from 172.16.145.1 to 1.1.1.1, R2\u0027s \u0027show ip protocols\u0027 lists both 1.1.1.1 and 172.16.145.1 under \u0027Routing Information Sources\u0027. What is the explanation?",
+        "optionen":  [
+                         "172.16.145.1 is the DR of area 1",
+                         "R2 has two different OSPF neighbors on the serial link, one with each router ID",
+                         "172.16.145.1 is R1\u0027s old router ID; the stale entry remains for a while after the change",
+                         "R1 is now running two OSPF processes"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Nach dem RID-Wechsel taucht die alte Router-ID 172.16.145.1 noch eine Zeit lang als Quelle auf, weil die mit ihr verknüpften Informationen nicht sofort verschwinden. Ein zweiter Nachbar oder ein zweiter Prozess ist nicht die Ursache."
+    },
+    {
+        "id":  "slg-os-097",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ip ospf interface\u0027 shows \u0027Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5\u0027. What does \u0027Retransmit 5\u0027 mean?",
+        "optionen":  [
+                         "The router waits 5 seconds before starting the DR election",
+                         "The LSDB is retransmitted to all neighbors every 5 minutes",
+                         "A hello is retransmitted 5 times before the neighbor is declared down",
+                         "An LSA that is not acknowledged is resent to the neighbor after 5 seconds"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Gesendete LSAs stehen auf der Retransmission List, bis ein LSAck kommt. Ohne Bestätigung werden sie nach dem Retransmit-Intervall (Default 5 s) erneut gesendet."
+    },
+    {
+        "id":  "slg-os-098",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den OSPF-Interface-Timer seiner Funktion zu (Defaults auf Ethernet).",
+        "paare":  [
+                      [
+                          "Hello 10",
+                          "Interval between hello packets"
+                      ],
+                      [
+                          "Dead 40",
+                          "Time without hellos before the neighbor is declared down"
+                      ],
+                      [
+                          "Wait 40",
+                          "Delay before the DR/BDR election when the interface comes up"
+                      ],
+                      [
+                          "Retransmit 5",
+                          "Time before an unacknowledged LSA is resent"
+                      ]
+                  ],
+        "erklaerung":  "Der Wait-Timer ist so lang wie der Dead-Intervall. Er gibt bestehenden DR/BDR die Chance, sich zu melden, bevor neu gewählt wird."
+    },
+    {
+        "id":  "slg-os-099",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Area-Typ den LSAs zu, die er nicht hereinlässt bzw. zusätzlich erlaubt.",
+        "paare":  [
+                      [
+                          "Stub",
+                          "Blocks Type 4 and 5; ABR injects a default route"
+                      ],
+                      [
+                          "Totally stubby",
+                          "Blocks Type 3, 4 and 5; only a default Type 3 enters"
+                      ],
+                      [
+                          "NSSA",
+                          "Blocks Type 4 and 5; allows Type 7 from a local ASBR"
+                      ],
+                      [
+                          "Totally NSSA",
+                          "Blocks Type 3, 4 and 5; allows Type 7"
+                      ]
+                  ],
+        "erklaerung":  "Ohne Type 5 braucht eine Area auch keine Type-4-LSA, deshalb fehlen in Stub und NSSA beide. Die \u0027totally\u0027-Varianten blocken zusätzlich die Summary-LSAs bis auf eine Default-Route vom ABR."
+    },
+    {
+        "id":  "slg-os-100",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Area 1 is configured as a stub area. Which two LSA types will never appear in the LSDB of an internal router in area 1? (Choose two.)",
+        "optionen":  [
+                         "Type 3",
+                         "Type 4",
+                         "Type 5",
+                         "Type 1",
+                         "Type 2"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Eine Stub-Area blockt externe LSAs (Typ 5) und damit auch die ASBR-Summary (Typ 4). Type-3-LSAs kommen weiter herein, dazu eine Default-Route vom ABR."
+    },
+    {
+        "id":  "slg-os-101",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Area 3 is a regular NSSA (not totally NSSA) with an ASBR that redistributes static routes. Which three LSA types can be found in the area 3 LSDB? (Choose three.)",
+        "optionen":  [
+                         "Type 3",
+                         "Type 1",
+                         "Type 7",
+                         "Type 4",
+                         "Type 5"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Eine NSSA blockt Typ 4 und 5 aus anderen Areas, lässt aber Summary-LSAs (Typ 3) herein. Der lokale ASBR erzeugt Type-7-LSAs. Router-LSAs gibt es in jeder Area."
+    },
+    {
+        "id":  "slg-os-102",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Area 1 contains an ASBR that redistributes routes from a partner network. The engineer wants to keep Type 5 LSAs from area 0 out of area 1. Which area type fits?",
+        "optionen":  [
+                         "Stub",
+                         "Totally stubby",
+                         "NSSA",
+                         "A normal area with a virtual link"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Stub und Totally Stubby dürfen keinen ASBR enthalten. Eine NSSA blockt externe LSAs von außen, erlaubt aber einen lokalen ASBR, dessen Routen als Typ 7 verteilt werden."
+    },
+    {
+        "id":  "slg-os-103",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The engineer configures \u0027area 1 stub\u0027 on the ABR only. The internal routers in area 1 are unchanged. What happens?",
+        "optionen":  [
+                         "Only the ABR stops sending Type 5 LSAs; the adjacencies stay up",
+                         "The internal routers become ABRs for the stub area",
+                         "Area 1 becomes a stub area, and the internal routers accept it automatically",
+                         "The ABR loses its adjacencies in area 1 because the stub flag in the hellos no longer matches"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Das Stub-Flag (E-Bit in den Options) steht im Hello und muss bei Nachbarn übereinstimmen. Deshalb gehört \u0027area 1 stub\u0027 auf alle Router der Area. Nur \u0027no-summary\u0027 für Totally Stubby braucht es ausschließlich am ABR."
+    },
+    {
+        "id":  "slg-os-104",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router ospf 1 auf einem internen Router in Area 1): Kennzeichne Area 1 als Stub-Area.",
+        "bausteine":  [
+                          "area",
+                          "1",
+                          "stub",
+                          "no-summary",
+                          "nssa",
+                          "range"
+                      ],
+        "loesung":  [
+                        "area",
+                        "1",
+                        "stub"
+                    ],
+        "erklaerung":  "Alle Router der Area brauchen \u0027area 1 stub\u0027, damit das Stub-Flag im Hello passt. \u0027no-summary\u0027 gehört nur auf den ABR, wenn die Area totally stubby werden soll."
+    },
+    {
+        "id":  "slg-os-105",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router ospf 1 auf dem ABR): Mach Area 2 zur Totally NSSA, damit nur eine Default-Route statt Summary-LSAs hineinkommt.",
+        "bausteine":  [
+                          "area",
+                          "2",
+                          "nssa",
+                          "no-summary",
+                          "stub",
+                          "default-information-originate",
+                          "range"
+                      ],
+        "loesung":  [
+                        "area",
+                        "2",
+                        "nssa",
+                        "no-summary"
+                    ],
+        "erklaerung":  "\u0027area 2 nssa no-summary\u0027 am ABR blockt Typ 3, 4 und 5 und speist automatisch eine Default-Route ein. Die internen Router brauchen nur \u0027area 2 nssa\u0027."
+    },
+    {
+        "id":  "slg-os-106",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An ASBR in NSSA area 3 redistributes 10.50.0.0/16 with default settings. How does the route appear inside area 3 and in area 0?",
+        "optionen":  [
+                         "As O N2 in area 3 and as O E2 in area 0",
+                         "As O IA in area 3 and as O E1 in area 0",
+                         "As O E2 in both areas",
+                         "As O N1 in area 3 and as O IA in area 0"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "In der NSSA wird die externe Route als Type-7-LSA verteilt und erscheint als N2 (Default-Typ 2). Der ABR übersetzt sie in Type 5, ab Area 0 erscheint sie dann als E2."
+    },
+    {
+        "id":  "slg-os-107",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which OSPF routes does an internal router in a totally stubby area have in its routing table?",
+        "optionen":  [
+                         "Only a default route, no intra-area routes",
+                         "Intra-area routes plus the external routes translated to Type 7",
+                         "Intra-area routes of its own area plus a default route (O*IA) from the ABR",
+                         "Intra-area and inter-area routes, but no external routes"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Totally Stubby blockt Typ 3 (außer dem Default), Typ 4 und Typ 5. Die Router kennen ihre eigene Area im Detail, alles andere erreichen sie über die Default-Route zum ABR."
+    },
+    {
+        "id":  "slg-os-108",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router ospf 1 auf ABR R1): Fasse die Netze 192.168.0.0 bis 192.168.3.0 (/24) aus Area 1 zu einer Summary-Route für die anderen Areas zusammen.",
+        "bausteine":  [
+                          "area",
+                          "1",
+                          "range",
+                          "192.168.0.0",
+                          "255.255.252.0",
+                          "summary-address",
+                          "0.0.3.255",
+                          "network"
+                      ],
+        "loesung":  [
+                        "area",
+                        "1",
+                        "range",
+                        "192.168.0.0",
+                        "255.255.252.0"
+                    ],
+        "erklaerung":  "Inter-Area-Summarization geschieht am ABR mit \u0027area \u003cquell-area\u003e range\u0027 und Subnetzmaske. \u0027summary-address\u0027 ist für externe Routen am ASBR gedacht. Summarization ist nie automatisch aktiv."
+    },
+    {
+        "id":  "slg-os-109",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "ABR R1 summarizes area 1 with \u0027area 1 range 192.168.0.0 255.255.252.0\u0027. Subnet 192.168.2.0/24 in area 1 starts flapping, while the other /24s stay up. What do routers in area 0 see?",
+        "optionen":  [
+                         "The summary is withdrawn and re-advertised with every flap",
+                         "They receive a Type 3 LSA for 192.168.2.0/24 with every flap",
+                         "The summary stays advertised while at least one component route exists",
+                         "They run a full SPF calculation for area 1 with every flap"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Summary bleibt bestehen, solange irgendein Teilnetz im Bereich erreichbar ist, und die einzelnen /24 werden nicht annonciert. Höchstens die Summary-Metrik kann sich ändern, wenn gerade das Teilnetz flappt, das sie bestimmt: bei Cisco IOS (Default 'compatible rfc1583') das günstigste, nach RFC 2328 bzw. mit 'no compatible rfc1583' das teuerste. Instabilität in Area 1 bleibt so weitgehend vor dem Rest verborgen."
+    },
+    {
+        "id":  "slg-os-110",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer applies \u0027distribute-list prefix BLOCK in\u0027 under router ospf 1 on an internal router to block 10.9.9.0/24. What is the effect?",
+        "optionen":  [
+                         "The ABR stops advertising the Type 3 LSA into the area",
+                         "The router stops forming adjacencies with the neighbor that advertised the prefix and removes its LSAs",
+                         "The LSA is removed from the LSDB of the whole area",
+                         "The route is not installed in that router\u0027s routing table, but the LSA stays in the LSDB and is still flooded to other routers"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Innerhalb einer Area müssen alle LSDBs identisch bleiben, deshalb kann ein distribute-list in nur die Übernahme in die eigene Routing-Tabelle verhindern. LSAs selbst filtert man zwischen Areas am ABR, etwa mit \u0027area filter-list\u0027."
+    },
+    {
+        "id":  "slg-os-111",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R5\u0027s interface toward the shared Ethernet switch is shut down. R1\u0027s own interface to the switch stays up. How long does R1 keep R5 in its neighbor table at most, with default timers?",
+        "optionen":  [
+                         "Up to 10 seconds, one hello interval",
+                         "Up to 40 seconds, until the dead timer expires",
+                         "Immediately, because R5 sends a goodbye hello",
+                         "Up to 120 seconds, the NBMA dead interval"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "R1 merkt den Ausfall nicht direkt, weil sein eigener Link up bleibt. Erst wenn 40 s lang kein Hello kommt, erklärt er R5 für tot und wählt bei Bedarf neu. Schnellere Erkennung gibt es mit kleineren Timern oder BFD."
+    },
+    {
+        "id":  "slg-os-112",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A router runs OSPF process 1 toward company A and OSPF process 2 toward company B. How do the two processes share routes?",
+        "optionen":  [
+                         "They cannot exchange routes at all",
+                         "Only through redistribution between the processes; each process has its own LSDB",
+                         "Automatically, because both processes run on the same router and share one RIB",
+                         "Through Type 3 LSAs, because the router acts as an ABR"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mehrere OSPF-Prozesse sind getrennte Routing-Instanzen mit eigener LSDB und eigenem SPF. Routen zwischen ihnen gibt es nur per Redistribution, der Router wird damit zum ASBR."
+    },
+    {
+        "id":  "slg-os-113",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show ip ospf interface brief\u0027 on a router shows \u0027Gi0/1  1  0  10.1.1.3/24  1  DROTH  2/3\u0027. Four routers share the segment. What does \u00272/3\u0027 mean?",
+        "optionen":  [
+                         "3 neighbors are known, 2 of them are FULL (the DR and BDR); the third stays in 2-WAY, which is normal",
+                         "The interface has cost 2 and 3 is its priority",
+                         "2 of the 3 adjacencies are stuck in EXSTART, most likely because of an MTU mismatch on the segment",
+                         "2 neighbors are down and 3 are up"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Spalte Nbrs F/C zeigt Full/Count. Ein DROTHER ist nur mit DR und BDR voll adjazent, mit dem anderen DROTHER bleibt er in 2-WAY. 2/3 ist hier also der Normalzustand."
+    },
+    {
+        "id":  "slg-os-114",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027debug ip ospf adj\u0027 shows \u0027Exchange Done with 1.1.1.1\u0027, then \u0027Send LS REQ ... LSA count 6\u0027 and \u0027Rcv LS UPD ... LSA count 6\u0027, followed by \u0027Synchronized with 1.1.1.1, state FULL\u0027. In which state was the neighbor between the LS REQ and the LS UPD?",
+        "optionen":  [
+                         "EXCHANGE",
+                         "LOADING",
+                         "EXSTART",
+                         "2-WAY"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Nach dem DBD-Austausch (EXCHANGE) fordert der Router fehlende LSAs per LSR an und erhält sie per LSU, das ist der LOADING-State. Sind alle Anfragen erfüllt, wechselt der Nachbar auf FULL."
+    },
+    {
+        "id":  "slg-os-115",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In EXSTART, both routers send \u0027DBD ... flag 0x7 len 32\u0027. What does flag 0x7 indicate?",
+        "optionen":  [
+                         "The Init, More and Master bits are set; each router claims to be master with an empty initial DBD",
+                         "The DBD acknowledges sequence number 7",
+                         "The DR, BDR and ASBR bits are set; the sender claims all three roles at the same time",
+                         "The packet contains seven LSA headers"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die DBD-Flags sind I (Init, 4), M (More, 2) und MS (Master, 1), zusammen 0x7. Mit dem ersten leeren DBD beanspruchen beide die Master-Rolle, die höhere Router-ID gewinnt."
+    },
+    {
+        "id":  "slg-os-116",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer adds \u0027default-information originate\u0027 on the edge router, but no default route is advertised into OSPF. What is the most likely reason?",
+        "optionen":  [
+                         "The router must be an ABR to originate a default route",
+                         "The command only works in stub areas",
+                         "The router has no default route in its routing table; without the \u0027always\u0027 keyword nothing is originated",
+                         "The command must be configured on every router in the area before the default is flooded"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ohne \u0027always\u0027 erzeugt OSPF die Default-LSA nur, wenn der Router selbst eine Default-Route in seiner Routing-Tabelle hat. Mit \u0027always\u0027 wird sie in jedem Fall annonciert, das kann aber Verkehr ins Leere leiten."
+    },
+    {
+        "id":  "slg-os-117",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router ospf 1 am Internet-Edge): Annonciere eine Default-Route ins OSPF, auch wenn der Router selbst gerade keine Default-Route hat.",
+        "bausteine":  [
+                          "default-information",
+                          "originate",
+                          "always",
+                          "redistribute",
+                          "static",
+                          "metric-type"
+                      ],
+        "loesung":  [
+                        "default-information",
+                        "originate",
+                        "always"
+                    ],
+        "erklaerung":  "Mit \u0027always\u0027 entfällt die Bedingung, dass eine Default-Route in der Routing-Tabelle steht. Der Router wird dadurch zum ASBR und erzeugt eine Type-5-LSA für 0.0.0.0/0."
+    },
+    {
+        "id":  "slg-os-118",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A link inside area 1 fails. What happens on internal routers in area 2 (normal area, no summarization on the ABR)?",
+        "optionen":  [
+                         "They receive the Type 1 LSAs from area 1 and run a full SPF for area 1",
+                         "They only receive updated Type 3 LSAs from the ABR and adjust those inter-area routes; no full SPF of area 2 is needed",
+                         "Nothing changes, because Type 3 LSAs are only refreshed every 30 minutes, so area 2 sees the change later",
+                         "They run a full SPF for all areas of the domain"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Router- und Network-LSAs bleiben in Area 1, dort läuft der volle SPF. Andere Areas sehen nur geänderte Summary-LSAs und berechnen die betroffenen Inter-Area-Routen neu. Mit Summarization am ABR sähen sie oft gar nichts."
+    },
+    {
+        "id":  "slg-os-119",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In \u0027O IA 172.16.13.0/30 [110/20] via 172.16.145.1\u0027, what do the values 110 and 20 represent?",
+        "optionen":  [
+                         "110 is the hello interval, 20 is the hop count",
+                         "110 is the process ID, 20 is the area",
+                         "110 is the administrative distance, 20 is the OSPF cost",
+                         "110 is the OSPF cost, 20 is the administrative distance"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "In eckigen Klammern steht immer [AD/Metrik]. OSPF hat die AD 110. Die Kosten 20 ergeben sich hier aus 10 (R5 zu R1) plus 10 (R1 Ethernet0/0)."
+    },
+    {
+        "id":  "slg-os-120",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "On an internal router, the engineer configures \u0027network 0.0.0.0 255.255.255.255 area 1\u0027. What does it do?",
+        "optionen":  [
+                         "It enables OSPF only on interfaces with the address 0.0.0.0",
+                         "It advertises a default route into area 1",
+                         "It makes area 1 a stub area",
+                         "It enables OSPF in area 1 on all interfaces that have an IP address"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Wildcard 255.255.255.255 passt auf jede Adresse, also landen alle Interfaces in Area 1 und senden Hellos. Wo keine Nachbarn sein sollen, unterdrückt passive-interface die Hellos."
+    },
+    {
+        "id":  "slg-os-121",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three fields are carried in an OSPF hello packet? (Choose three.)",
+        "optionen":  [
+                         "List of neighbor router IDs already heard on the link",
+                         "OSPF process ID",
+                         "Interface IP MTU",
+                         "Hello and dead intervals",
+                         "Router priority"
+                     ],
+        "richtig":  [
+                        0,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Das Hello enthält unter anderem Router-ID, Area, Maske, Timer, Priority, DR/BDR, Options (Stub-Flag) und die Neighbor-Liste. Die MTU steht im DBD, die Prozess-ID wird nie übertragen."
+    },
+    {
+        "id":  "slg-os-122",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about the OSPF DR/BDR election are true? (Choose two.)",
+        "optionen":  [
+                         "A router with priority 0 becomes DR if no other router is present",
+                         "The router with the lowest router ID wins a priority tie",
+                         "The election takes place separately on each multiaccess segment",
+                         "The DR is elected once per area",
+                         "The election is not preemptive; a router with a higher priority joining later does not take over"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Ein bestehender DR/BDR bleibt im Amt, bis er ausfällt. Die Wahl findet pro Segment statt. Bei Gleichstand gewinnt die höchste Router-ID, und Priority 0 ist nie wählbar."
+    },
+    {
+        "id":  "slg-os-123",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two statements about the OSPF process ID are true? (Choose two.)",
+        "optionen":  [
+                         "It is carried in every hello packet",
+                         "It is used as the router ID if no router-id is configured",
+                         "Several OSPF processes can run on one router, each with its own LSDB",
+                         "It is locally significant and does not have to match between neighbors",
+                         "It must equal the area number"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "\u0027router ospf \u003cid\u003e\u0027 benennt nur die lokale Instanz. Mehrere Prozesse sind möglich (z. B. bei Firmenfusionen), jeder mit eigener LSDB. Die Prozess-ID hat nichts mit Area oder Router-ID zu tun."
+    },
+    {
+        "id":  "slg-os-124",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements describe an OSPF-enabled loopback interface with default settings? (Choose two.)",
+        "optionen":  [
+                         "It takes part in the DR/BDR election",
+                         "It always has an OSPF cost of 10",
+                         "Its subnet is advertised as a /32 host route",
+                         "\u0027show ip ospf interface\u0027 shows Network Type LOOPBACK",
+                         "It sends hellos and can form adjacencies"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Ein Loopback hat den Netztyp LOOPBACK mit Kosten 1 und wird als Host-Route annonciert. Nachbarn gibt es dort nicht. Für die echte Maske setzt man \u0027ip ospf network point-to-point\u0027."
+    },
+    {
+        "id":  "slg-os-125",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about the master/slave relationship in the DBD exchange are true? (Choose two.)",
+        "optionen":  [
+                         "The router with the higher router ID becomes master",
+                         "Master and slave are negotiated in the LOADING state",
+                         "The slave acknowledges each DBD by echoing the master\u0027s sequence number",
+                         "DBD packets from the master contain the complete LSAs",
+                         "The DR is always the master"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "In EXSTART wird der Master über die höhere Router-ID bestimmt, unabhängig von der DR-Rolle. Nur der Master erhöht die Sequenznummer, und der Slave bestätigt durch Echo. DBDs enthalten nur LSA-Header."
+    },
+    {
+        "id":  "slg-os-126",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "R1 Serial2/0 has hello 5/dead 30, while R2 Serial0/0 uses the defaults. Which two actions restore the adjacency? (Choose two.)",
+        "optionen":  [
+                         "Configure \u0027ip ospf hello-interval 5\u0027 and \u0027ip ospf dead-interval 30\u0027 on R2 Serial0/0",
+                         "Run \u0027clear ip ospf process\u0027 on both routers",
+                         "Remove the hello and dead interval commands from R1 Serial2/0",
+                         "Configure \u0027ip ospf mtu-ignore\u0027 on both interfaces",
+                         "Set \u0027ip ospf priority 0\u0027 on R2"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "Die Timer müssen gleich sein, egal ob beide Seiten auf 5/30 oder beide auf 10/40 stehen. Ein Prozess-Reset oder mtu-ignore ändern am Timer-Mismatch nichts."
+    },
+    {
+        "id":  "slg-os-127",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne der Debug-/Logmeldung die wahrscheinlichste Ursache zu.",
+        "paare":  [
+                      [
+                          "Nbr has larger interface MTU",
+                          "IP MTU differs on the link"
+                      ],
+                      [
+                          "Mismatched hello parameters",
+                          "Hello/dead timers or subnet mask differ"
+                      ],
+                      [
+                          "Mismatch Authentication type",
+                          "One side uses a different OSPF authentication type"
+                      ],
+                      [
+                          "Received invalid packet: mismatch area ID",
+                          "The link is in different areas on each side"
+                      ]
+                  ],
+        "erklaerung":  "Viele Adjazenzprobleme erkennt man direkt an debug ip ospf adj bzw. hello. MTU-Fehler zeigen sich erst beim DBD-Austausch, alle anderen schon beim Hello."
+    },
+    {
+        "id":  "slg-os-128",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den OSPF-Routing-Code seiner Herkunft zu.",
+        "paare":  [
+                      [
+                          "O",
+                          "Intra-area route from Type 1/2 LSAs"
+                      ],
+                      [
+                          "O IA",
+                          "Inter-area route from a Type 3 LSA"
+                      ],
+                      [
+                          "O E2",
+                          "External route from a Type 5 LSA, metric not increased internally"
+                      ],
+                      [
+                          "O N2",
+                          "External route from a Type 7 LSA inside an NSSA"
+                      ]
+                  ],
+        "erklaerung":  "Der Code zeigt, aus welcher LSA eine Route stammt. E2 und N2 behalten die vom ASBR gesetzte Metrik, bei E1/N1 kommen die internen Kosten dazu."
+    },
+    {
+        "id":  "slg-os-129",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Router aus dem Multiarea-Lab seiner OSPF-Rolle zu.",
+        "paare":  [
+                      [
+                          "R1",
+                          "ABR connecting area 0, area 1 and area 2"
+                      ],
+                      [
+                          "R2",
+                          "Internal router in area 1"
+                      ],
+                      [
+                          "R3",
+                          "Internal router in area 2"
+                      ],
+                      [
+                          "R4",
+                          "Internal backbone router in area 0"
+                      ]
+                  ],
+        "erklaerung":  "R1 hat Interfaces in drei Areas und ist damit ABR. R2 und R3 liegen komplett in je einer Nicht-Backbone-Area, R4 und R5 komplett in Area 0."
+    },
+    {
+        "id":  "slg-os-130",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den show-Befehl der Information zu, die du damit am schnellsten findest.",
+        "paare":  [
+                      [
+                          "show ip ospf neighbor",
+                          "Adjacency state and DR/BDR role of each neighbor"
+                      ],
+                      [
+                          "show ip ospf interface",
+                          "Network type, timers, priority and DR/BDR per interface"
+                      ],
+                      [
+                          "show ip ospf database",
+                          "LSAs stored per area and type"
+                      ],
+                      [
+                          "show ip ospf border-routers",
+                          "ABRs and ASBRs known and the cost to reach them"
+                      ]
+                  ],
+        "erklaerung":  "Für Adjazenzprobleme nimmt man neighbor und interface, für Topologie- und Routingfragen database und border-routers. \u0027show ip protocols\u0027 zeigt zusätzlich Router-ID und network-Befehle."
+    },
+    {
+        "id":  "slg-os-131",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "To list the ABRs and ASBRs a router knows, together with the cost to reach them, use \u0027show ip ospf ___\u0027.",
+        "optionen":  [
+                         "neighbor",
+                         "virtual-links",
+                         "border-routers",
+                         "database"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027show ip ospf border-routers\u0027 zeigt die interne Routing-Tabelle zu ABRs und ASBRs. Diese Einträge braucht ein Router, um Inter-Area- und externe Routen zu berechnen."
+    },
+    {
+        "id":  "slg-os-132",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which statement about the OSPF backbone area is correct?",
+        "optionen":  [
+                         "Nonbackbone areas may exchange inter-area routes directly if they share a router",
+                         "Area 0 must contain all ASBRs of the domain",
+                         "Area 0 is optional in a multiarea design if every area has an ABR",
+                         "All nonbackbone areas must connect to area 0, and area 0 must be contiguous"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Area 0 ist der Transit für den gesamten Inter-Area-Verkehr und muss zusammenhängend sein. ASBRs dürfen dagegen in jeder Area stehen, außer in Stub und Totally Stubby."
+    }
+]

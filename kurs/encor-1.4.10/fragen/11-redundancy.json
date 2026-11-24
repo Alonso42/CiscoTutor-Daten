@@ -1,0 +1,2236 @@
+[
+    {
+        "id":  "slg-hr-001",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Routers RA and RB both connect to subnet 10.1.10.0/24 and run OSPF. All hosts use RA (10.1.10.2) as their statically configured default gateway. RA fails and OSPF converges via RB. Why do the hosts still lose off-subnet connectivity?",
+        "optionen":  [
+                         "RB drops traffic from hosts until their ARP caches are cleared manually",
+                         "The hosts keep using their one configured gateway and cannot learn RB",
+                         "OSPF cannot converge between routers that share a LAN segment",
+                         "STP blocks the switch port toward RB until RA comes back"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Endgeräte nehmen nicht am IGP teil. Ihr einziges Default Gateway ist fest eingetragen oder per DHCP gelernt und ändert sich nicht, wenn die Topologie sich ändert – genau diese Lücke schließt ein FHRP."
+    },
+    {
+        "id":  "slg-hr-002",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Hosts on a LAN protected by an FHRP should be configured with which default gateway address?",
+        "optionen":  [
+                         "The physical interface address of the router with the highest priority",
+                         "The address of the distribution switch management VLAN",
+                         "The loopback address of the active router",
+                         "The virtual IP address that the FHRP group shares"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Hosts zeigen auf die virtuelle IP der Gruppe. Welcher physische Router gerade weiterleitet, bleibt für sie unsichtbar, deshalb funktioniert ein Failover ohne Änderung an den Hosts."
+    },
+    {
+        "id":  "slg-hr-003",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A host sends an ARP request for its HSRP-protected default gateway 192.168.1.1. Which MAC address does it receive?",
+        "optionen":  [
+                         "The virtual MAC address of the HSRP group, sent by the active router",
+                         "The broadcast MAC address FFFF.FFFF.FFFF",
+                         "The MAC address of the standby router, so that it can monitor traffic",
+                         "The burned-in MAC address of the active router\u0027s LAN interface"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Active-Router beantwortet ARP-Anfragen für die virtuelle IP mit der virtuellen MAC der Gruppe. So bleibt der ARP-Eintrag des Hosts auch nach einem Failover gültig."
+    },
+    {
+        "id":  "slg-hr-004",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why does an HSRP failover normally not require hosts to refresh their ARP cache?",
+        "optionen":  [
+                         "The new active router takes over both the virtual IP and the virtual MAC address",
+                         "Hosts automatically flush their ARP cache when hellos stop",
+                         "HSRP sends a unicast ARP reply to every host after failover",
+                         "The standby router forwards frames for the old router\u0027s burned-in MAC"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Virtuelle IP und virtuelle MAC wandern gemeinsam auf den neuen Active-Router. Die Hosts senden weiter an dieselbe MAC, nur die Switches müssen den neuen Port lernen."
+    },
+    {
+        "id":  "slg-hr-005",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After an HSRP failover, the new active router sends gratuitous ARP messages for the virtual IP. What is their main purpose?",
+        "optionen":  [
+                         "To trigger a new HSRP election on the remaining routers",
+                         "To announce the new active router\u0027s burned-in MAC to the routing protocol",
+                         "To let the LAN switches learn the new port behind the virtual MAC address",
+                         "To ask the hosts to change their configured default gateway"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die virtuelle MAC ist jetzt hinter einem anderen Switchport erreichbar. Gratuitous ARPs aktualisieren die MAC-Adresstabellen der Switches sofort, statt auf Aging zu warten."
+    },
+    {
+        "id":  "slg-hr-006",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "PC1 uses HSRP virtual IP 192.168.1.1. R2 (192.168.1.2) is active and R1 (192.168.1.3) is standby. PC1 runs a traceroute to a remote server. What does the first hop show?",
+        "optionen":  [
+                         "192.168.1.3, because the standby router generates the replies",
+                         "192.168.1.1, because the virtual router answers all ICMP traffic",
+                         "No reply, because HSRP routers do not send ICMP time-exceeded messages",
+                         "192.168.1.2, the real interface address of the active router"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "ARP und Ping nutzen die virtuellen Adressen, aber ICMP time-exceeded wird mit der echten Interface-Adresse des weiterleitenden Routers gesendet. So sieht man im Traceroute, welcher Router gerade den Verkehr trägt."
+    },
+    {
+        "id":  "slg-hr-007",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das FHRP seiner Eigenschaft zu.",
+        "paare":  [
+                      [
+                          "HSRP",
+                          "Cisco proprietary, one active and one standby router per group"
+                      ],
+                      [
+                          "VRRP",
+                          "IETF standard, one master and one or more backup routers"
+                      ],
+                      [
+                          "GLBP",
+                          "Cisco proprietary, several routers forward for the same virtual IP"
+                      ]
+                  ],
+        "erklaerung":  "HSRP und VRRP haben pro Gruppe genau einen Weiterleiter; VRRP ist der offene Standard. GLBP verteilt die Last innerhalb einer Gruppe auf mehrere aktive Forwarder."
+    },
+    {
+        "id":  "slg-hr-008",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "How does GLBP let several routers forward traffic for the same virtual IP address within one group?",
+        "optionen":  [
+                         "The hosts are configured with one virtual IP address per forwarding router",
+                         "The active and standby routers both answer ARP with the same virtual MAC",
+                         "The AVG answers ARP requests with the virtual MAC addresses of different AVFs",
+                         "Every router replies to ARP requests with its own burned-in MAC address"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Active Virtual Gateway (AVG) beantwortet ARP-Anfragen für die eine virtuelle IP abwechselnd mit verschiedenen virtuellen MACs. Jede MAC gehört einem Active Virtual Forwarder (AVF), so verteilen sich die Hosts auf mehrere Router."
+    },
+    {
+        "id":  "slg-hr-009",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the maximum number of active virtual forwarders (AVFs) in one GLBP group?",
+        "optionen":  [
+                         "16",
+                         "2",
+                         "8",
+                         "4"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Eine GLBP-Gruppe hat höchstens vier AVFs, also vier virtuelle MACs. Weitere Router bleiben als Secondary Virtual Forwarder in Reserve."
+    },
+    {
+        "id":  "slg-hr-010",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which GLBP load-balancing method is used by default?",
+        "optionen":  [
+                         "Round-robin",
+                         "Per-packet",
+                         "Host-dependent",
+                         "Weighted"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Standardmäßig vergibt der AVG die virtuellen MACs reihum (round-robin). Weighted verteilt nach Gewichtung, host-dependent gibt einem Host immer dieselbe MAC."
+    },
+    {
+        "id":  "slg-hr-011",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die GLBP-Rolle ihrer Aufgabe zu.",
+        "paare":  [
+                      [
+                          "AVG",
+                          "Assigns virtual MACs and answers ARP requests for the virtual IP"
+                      ],
+                      [
+                          "AVF",
+                          "Forwards frames sent to the virtual MAC it was assigned"
+                      ],
+                      [
+                          "Standby AVG",
+                          "Takes over ARP handling if the gateway role holder fails"
+                      ]
+                  ],
+        "erklaerung":  "Der AVG verteilt die virtuellen MACs und beantwortet ARP. Die AVFs leiten den Verkehr für ihre jeweilige MAC weiter. Fällt der AVG aus, übernimmt der Standby-AVG."
+    },
+    {
+        "id":  "slg-hr-012",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "GLBP virtual MAC addresses use the format ___ , where XX is the group and YY the forwarder number.",
+        "optionen":  [
+                         "0000.0C07.ACXX",
+                         "0007.B400.XXYY",
+                         "0000.0C9F.FXXX",
+                         "0000.5E00.01XX"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "GLBP nutzt 0007.B400.XXYY. 0000.0C07.ACXX ist HSRPv1, 0000.0C9F.FXXX HSRPv2 und 0000.5E00.01XX VRRP für IPv4."
+    },
+    {
+        "id":  "slg-hr-013",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus Ethernet0/1: Mache den Router Mitglied der HSRP-Gruppe 1 mit der virtuellen IP 192.168.1.1.",
+        "bausteine":  [
+                          "standby",
+                          "1",
+                          "ip",
+                          "192.168.1.1",
+                          "vrrp",
+                          "address",
+                          "virtual"
+                      ],
+        "loesung":  [
+                        "standby",
+                        "1",
+                        "ip",
+                        "192.168.1.1"
+                    ],
+        "erklaerung":  "HSRP wird mit standby \u003cgruppe\u003e ip \u003cvirtuelle-ip\u003e aktiviert. vrrp gehört zum anderen Protokoll, address wird bei VRRPv3 verwendet."
+    },
+    {
+        "id":  "slg-hr-014",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer enters \u0027standby ip 10.1.1.1\u0027 under an interface without a group number. Which HSRP group is used?",
+        "optionen":  [
+                         "Group 0",
+                         "The command is rejected because a group is required",
+                         "The VLAN number of the interface",
+                         "Group 1"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ohne Gruppennummer verwendet HSRP Gruppe 0. Bei VRRP gibt es keinen solchen Default, dort muss die Gruppe immer angegeben werden."
+    },
+    {
+        "id":  "slg-hr-015",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Where does HSRP version 1 send its hello messages?",
+        "optionen":  [
+                         "224.0.0.102 using UDP port 3222",
+                         "224.0.0.18 using IP protocol 112",
+                         "224.0.0.10 using UDP port 1985",
+                         "224.0.0.2 using UDP port 1985"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "HSRPv1 sendet Hellos an 224.0.0.2 (all routers) über UDP 1985. 224.0.0.18 mit Protokoll 112 ist VRRP, UDP 3222 nutzt GLBP."
+    },
+    {
+        "id":  "slg-hr-016",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A multilayer switch runs HSRP group 1 on interface VLAN 22 and also HSRP group 1 on interface VLAN 33, each with a different virtual IP. What is the result?",
+        "optionen":  [
+                         "The switch automatically renumbers the second group to 2",
+                         "The two groups work independently because HSRP group numbers are locally significant per interface",
+                         "Both VLANs share one active router because they share the group number",
+                         "The second group is rejected because group numbers must be unique per device"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "HSRP-Gruppennummern gelten nur pro Interface bzw. Segment. Gleiche Nummern in verschiedenen VLANs sind unabhängige Gruppen, auch wenn sie dieselbe virtuelle MAC nutzen, denn die VLANs sind getrennte Broadcast-Domänen."
+    },
+    {
+        "id":  "slg-hr-017",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Three routers are in the same HSRP group and the election is complete. Which routers send periodic hello messages?",
+        "optionen":  [
+                         "All three routers, each at the same interval",
+                         "The active and the standby router; the third router listens",
+                         "Only the standby router, to probe the active router",
+                         "Only the active router"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Active und Standby senden Hellos. Ein weiterer Router bleibt im Listen-Zustand, hört nur zu und sendet erst wieder, wenn eine neue Wahl nötig wird."
+    },
+    {
+        "id":  "slg-hr-018",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ip arp\u0027 on a router lists \u0027Internet 10.20.0.1 - 0000.0c07.ac32 ARPA Vlan20\u0027. What does this entry indicate?",
+        "optionen":  [
+                         "HSRPv2 group 50 with virtual IP 10.20.0.1",
+                         "HSRPv1 group 32 with virtual IP 10.20.0.1",
+                         "HSRPv1 group 50 with virtual IP 10.20.0.1",
+                         "VRRP group 50 with virtual IP 10.20.0.1"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das Präfix 0000.0C07.AC steht für HSRPv1, das letzte Byte ist die Gruppe in Hex: 0x32 = 50. HSRPv2 würde 0000.0C9F.F032 verwenden, VRRP 0000.5E00.0132."
+    },
+    {
+        "id":  "slg-hr-019",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which virtual MAC address does HSRP version 2 use for group 300?",
+        "optionen":  [
+                         "0000.0C9F.F12C",
+                         "0000.0C07.AC2C",
+                         "0000.5E00.012C",
+                         "0000.0C9F.F300"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "HSRPv2 nutzt 0000.0C9F.FXXX mit der Gruppe als dreistelliger Hex-Wert. 300 dezimal = 0x12C, also 0000.0C9F.F12C. In HSRPv1 wäre Gruppe 300 gar nicht möglich."
+    },
+    {
+        "id":  "slg-hr-020",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The HSRP version 1 virtual MAC address for group 20 is 0000.0C07.AC___ .",
+        "optionen":  [
+                         "20",
+                         "1A",
+                         "02",
+                         "14"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Gruppe wird hexadezimal angehängt: 20 dezimal = 0x14. 1A wäre Gruppe 26."
+    },
+    {
+        "id":  "slg-hr-021",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 (10.1.1.2) and R2 (10.1.1.3) are configured for HSRP group 1 with no priority or preempt commands and come up at the same time. Which router becomes active?",
+        "optionen":  [
+                         "R1, because the lower IP address wins a tie",
+                         "The router with the lower MAC address",
+                         "Both become active until preemption is configured",
+                         "R2, because the higher IP address wins a tie"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beide haben die Standardpriorität 100. Bei Gleichstand gewinnt die höhere IP-Adresse der Interfaces, also R2."
+    },
+    {
+        "id":  "slg-hr-022",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 is the HSRP active router with priority 100 and \u0027standby 1 preempt\u0027. R2 is standby with \u0027standby 1 priority 120\u0027 and no preempt command. What happens?",
+        "optionen":  [
+                         "R1 sends a resign message and R2 becomes active",
+                         "R2 stays standby because it has no preempt configured itself",
+                         "R2 takes over immediately because R1 has preemption enabled",
+                         "Both routers become active because their settings do not match"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Preempt wirkt auf dem Router, der die Rolle übernehmen will. R2 hat zwar die höhere Priorität, darf den laufenden Active-Router ohne eigenes preempt aber nicht verdrängen. Preempt auf R1 ist dafür bedeutungslos."
+    },
+    {
+        "id":  "slg-hr-023",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R2 is HSRP standby with priority 110. Right after entering \u0027standby 1 preempt\u0027 on R2, the console logs \u0027%HSRP-5-STATECHANGE: Ethernet0/1 Grp 1 state Standby -\u003e Active\u0027. Why?",
+        "optionen":  [
+                         "The command changed the HSRP version and restarted the group",
+                         "Preemption now lets R2 take over with its higher priority",
+                         "The preempt command resets the hold timer and forces a new random election",
+                         "R1 lost its virtual IP address when R2\u0027s configuration changed"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit 110 hatte R2 schon die höhere Priorität, durfte aber ohne preempt nicht übernehmen. Sobald preempt aktiv ist, übernimmt R2 die Active-Rolle, R1 wird Standby."
+    },
+    {
+        "id":  "slg-hr-024",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 shows:\nEthernet0/1 - Group 1\n  State is Standby\n  Virtual IP address is 192.168.1.1\n  Preemption enabled\n  Active router is 192.168.1.2, priority 110 (expires in 9.744 sec)\n  Standby router is local\n  Priority 100 (default 100)\nWhich statement is correct?",
+        "optionen":  [
+                         "R1 cannot become active because preemption is disabled",
+                         "R1 has the default priority; 192.168.1.2 is active with 110",
+                         "R1 is active and 192.168.1.2 is its standby peer",
+                         "The active router\u0027s priority of 110 is the HSRP default"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Zeile Active router nennt 192.168.1.2 mit Priorität 110, R1 selbst ist Standby mit dem Default 100. Preemption ist laut Ausgabe aktiviert."
+    },
+    {
+        "id":  "slg-hr-025",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In \u0027show standby\u0027 output on the standby router, the line \u0027Active router is 192.168.1.2, priority 110 (expires in 9.744 sec)\u0027 appears. What does the countdown represent?",
+        "optionen":  [
+                         "Time left before the active router is declared down",
+                         "The time until the active router sends its next hello",
+                         "The time until the virtual MAC entry ages out of the ARP table",
+                         "The remaining preempt delay before a new election"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Das ist der laufende Hold-Timer. Jedes Hello vom Active-Router setzt ihn wieder auf die Hold Time zurück; läuft er ab, übernimmt der Standby-Router."
+    },
+    {
+        "id":  "slg-hr-026",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R2 shows:\nInterface   Grp  Pri P State   Active   Standby       Virtual IP\nEt0/1       1    110 P Active  local    192.168.1.3   192.168.1.1\nWhich statement is correct?",
+        "optionen":  [
+                         "R2 is standby and 192.168.1.3 is the active router",
+                         "R2 is active and the router at 192.168.1.3 is the standby router",
+                         "R2 runs HSRP without preemption",
+                         "192.168.1.3 is the virtual IP that hosts use"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "State Active und Active = local bedeuten, dass R2 selbst weiterleitet. Die Spalte Standby nennt den Backup-Router 192.168.1.3, die Virtual IP ist 192.168.1.1. Das P zeigt konfiguriertes Preempt."
+    },
+    {
+        "id":  "slg-hr-027",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After the LAN interface of the active router R2 is shut down, R1 shows \u0027Et0/1 1 100 P Active local unknown 192.168.1.1\u0027. What does \u0027unknown\u0027 in the Standby column mean?",
+        "optionen":  [
+                         "The HSRP version on R1 does not match the group",
+                         "R1 is waiting for its preempt delay timer to expire",
+                         "No other router is currently known as standby in the group",
+                         "R1 has not learned the virtual IP address yet"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "R1 hat übernommen, hört aber keinen anderen Router mehr. Ohne zweiten Teilnehmer gibt es keinen Standby, daher unknown. Die Gruppe läuft trotzdem ohne Redundanz weiter."
+    },
+    {
+        "id":  "slg-hr-028",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After \u0027shutdown\u0027 on its HSRP interface, R2 shows the group in state \u0027Init\u0027. What does this state indicate?",
+        "optionen":  [
+                         "R2 heard a hello from a router with a higher priority",
+                         "R2 is waiting for the preempt delay before it becomes active",
+                         "HSRP is not running, for example because the interface is down",
+                         "R2 is speaking and taking part in the election"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Initial ist der Startzustand: HSRP läuft auf dem Interface nicht. Man sieht ihn nach Konfigurationsänderungen oder wenn das Interface down ist bzw. gerade hochkommt."
+    },
+    {
+        "id":  "slg-hr-029",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R2 (priority 110, \u0027standby 1 preempt delay minimum 300\u0027) recovers after an outage while R1 (priority 100) is active. What happens next?",
+        "optionen":  [
+                         "R2 stays standby permanently because the delay disables preemption",
+                         "R2 becomes active immediately because it has the higher priority",
+                         "R2 waits at least 300 seconds and then takes over the active role",
+                         "R1 hands over the active role after its own hold time of 300 seconds"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "preempt delay minimum verzögert die Übernahme. R2 wird zunächst Standby und übernimmt erst nach mindestens 300 Sekunden; bis dahin leitet R1 weiter."
+    },
+    {
+        "id":  "slg-hr-030",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why should a preempt delay be configured on a distribution switch that is the preferred HSRP active router?",
+        "optionen":  [
+                         "So that it becomes active only after its routing has converged",
+                         "So that the standby router can synchronize its ARP table first",
+                         "So that the hello interval can be lowered below one second",
+                         "So that both switches can be active for a short overlap period"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Nach einem Reboot würde der Switch sonst sofort Active, obwohl IGP und Uplinks noch nicht bereit sind – der Verkehr liefe ins Leere. Die Verzögerung gibt dem Routing Zeit zu konvergieren."
+    },
+    {
+        "id":  "slg-hr-032",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus: Aktiviere Preemption für HSRP-Gruppe 1, aber erst nach mindestens 300 Sekunden.",
+        "bausteine":  [
+                          "standby",
+                          "1",
+                          "preempt",
+                          "delay",
+                          "minimum",
+                          "300",
+                          "reload",
+                          "timers",
+                          "sync"
+                      ],
+        "loesung":  [
+                        "standby",
+                        "1",
+                        "preempt",
+                        "delay",
+                        "minimum",
+                        "300"
+                    ],
+        "erklaerung":  "standby 1 preempt delay minimum 300 erlaubt die Übernahme, verzögert sie aber um mindestens 300 s. reload und sync sind andere optionale Verzögerungsparameter."
+    },
+    {
+        "id":  "slg-hr-033",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus: Setze für HSRP-Gruppe 1 die Hello-Zeit auf 200 ms und die Hold-Zeit auf 750 ms.",
+        "bausteine":  [
+                          "standby",
+                          "1",
+                          "timers",
+                          "msec",
+                          "200",
+                          "msec",
+                          "750",
+                          "hellotime",
+                          "sec"
+                      ],
+        "loesung":  [
+                        "standby",
+                        "1",
+                        "timers",
+                        "msec",
+                        "200",
+                        "msec",
+                        "750"
+                    ],
+        "erklaerung":  "Ohne msec werden die Werte als Sekunden interpretiert, deshalb steht msec vor jedem Wert. Zuerst kommt die Hello-, dann die Hold-Zeit."
+    },
+    {
+        "id":  "slg-hr-034",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which effect does \u0027standby 1 timers 1 3\u0027 have?",
+        "optionen":  [
+                         "Hello every 1 ms, hold time 3 ms",
+                         "Preempt after 1 second, hold time 3 seconds",
+                         "Hold time 1 second, hello every 3 seconds",
+                         "Hello every 1 second, hold time 3 seconds"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Werte gelten ohne msec in Sekunden, zuerst Hello, dann Hold. 1/3 s verkürzt den Failover gegenüber dem Default 3/10 s deutlich."
+    },
+    {
+        "id":  "slg-hr-035",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which HSRP timer configuration violates the guideline that the hold time should be at least three times the hello time?",
+        "optionen":  [
+                         "standby 1 timers msec 250 msec 800",
+                         "standby 1 timers 3 10",
+                         "standby 1 timers 5 10",
+                         "standby 1 timers 1 3"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei 5/10 ist die Hold Time nur doppelt so lang wie das Hello-Intervall. Schon zwei verlorene Hellos würden einen Failover auslösen. Die anderen Werte liegen bei mindestens dem Dreifachen."
+    },
+    {
+        "id":  "slg-hr-036",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "How do you return HSRP group 1 on an interface to the default hello and hold timers?",
+        "optionen":  [
+                         "no standby 1 timers",
+                         "clear standby 1 timers",
+                         "standby 1 timers 0 0",
+                         "standby 1 timers default"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die no-Form entfernt die eigenen Timer, danach gelten wieder 3 s Hello und 10 s Hold."
+    },
+    {
+        "id":  "slg-hr-037",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "With default HSRP timers, the active router suddenly loses power. In the worst case, for about how long can hosts lose their default gateway?",
+        "optionen":  [
+                         "About 30 seconds",
+                         "About 3 seconds",
+                         "About 10 seconds",
+                         "About 1 second"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Standby-Router wartet die Hold Time von 10 s ab, bevor er übernimmt. Fällt der Active-Router direkt nach einem Hello aus, läuft fast die ganze Hold Time ohne Gateway ab."
+    },
+    {
+        "id":  "slg-hr-038",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer tunes HSRP to a 750 ms hold time, but the IGP between the distribution routers needs several seconds to converge. What problem can this cause?",
+        "optionen":  [
+                         "The virtual MAC address changes on every failover",
+                         "The IGP automatically raises its own timers to match HSRP",
+                         "HSRP stops sending hellos until the IGP has converged",
+                         "Traffic may be lost while routing still points at the failed router"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "HSRP und IGP wissen nichts voneinander. Ist das Gateway schneller umgeschaltet als das Routing, existieren eine Zeit lang Pfade über den ausgefallenen Router, Pakete gehen verloren. Die Timer sollten zur übrigen Konvergenz passen."
+    },
+    {
+        "id":  "slg-hr-039",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 is HSRP active with \u0027standby 1 timers 1 3\u0027. R2 has no timers command for group 1. Which timers does R2 use?",
+        "optionen":  [
+                         "No timers, so R2 cannot join the group",
+                         "The average of both configurations",
+                         "3/10 seconds, because unconfigured routers always keep the defaults",
+                         "1/3 seconds, learned from the hellos of the active router"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Hellos enthalten Hello- und Hold-Zeit. Ein Router ohne eigene Timer übernimmt die Werte aus den Hellos des Active-Routers (RFC 2281). Sauberer ist es trotzdem, die Timer überall gleich zu setzen."
+    },
+    {
+        "id":  "slg-hr-040",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den HSRP-Zustand seiner Beschreibung zu.",
+        "paare":  [
+                      [
+                          "Initial",
+                          "HSRP is not running yet, for example after a configuration change or interface coming up"
+                      ],
+                      [
+                          "Listen",
+                          "Knows the virtual IP and only receives hellos from the active and standby routers"
+                      ],
+                      [
+                          "Speak",
+                          "Sends periodic hellos and takes part in the active/standby election"
+                      ],
+                      [
+                          "Standby",
+                          "Next candidate for the active role, monitors the active router"
+                      ]
+                  ],
+        "erklaerung":  "Ein Router durchläuft Initial, Listen und Speak, bevor er Standby oder Active wird. In Gruppen mit mehr als zwei Routern bleiben die übrigen im Listen-Zustand."
+    },
+    {
+        "id":  "slg-hr-041",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Four routers belong to one HSRP group and the network is stable. How many of them are in the listen state?",
+        "optionen":  [
+                         "0",
+                         "3",
+                         "1",
+                         "2"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Es gibt immer genau einen Active- und einen Standby-Router. Die restlichen zwei bleiben im Listen-Zustand."
+    },
+    {
+        "id":  "slg-hr-042",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In an HSRP group of four routers, the active and the standby router fail at the same time. What happens?",
+        "optionen":  [
+                         "The hosts fall back to ARP for the physical router addresses",
+                         "The listening router with the lowest IP address becomes active without an election",
+                         "The two listening routers move to speak and elect a new active and standby router",
+                         "The group stays down until one of the failed routers recovers"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Router im Listen-Zustand bemerken das Ausbleiben der Hellos, wechseln in Speak und wählen untereinander neue Active- und Standby-Rollen, wieder nach Priorität und IP."
+    },
+    {
+        "id":  "slg-hr-043",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three tasks does the HSRP active router perform? (Choose three.)",
+        "optionen":  [
+                         "Sends advertisements to 224.0.0.18",
+                         "Sends periodic hello messages",
+                         "Forwards packets sent to the virtual MAC address",
+                         "Stays silent and only listens to the standby router",
+                         "Answers ARP requests for the virtual IP with the virtual MAC"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Der Active-Router beantwortet ARP, leitet für die virtuelle MAC weiter und sendet Hellos. 224.0.0.18 ist die VRRP-Adresse; nur ein Router im Listen-Zustand bleibt stumm."
+    },
+    {
+        "id":  "slg-hr-044",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why is it a common practice on multilayer switches to use the VLAN number as the HSRP group number?",
+        "optionen":  [
+                         "HSRP requires matching numbers to form a group",
+                         "It automatically enables load sharing between the VLANs",
+                         "It makes troubleshooting easier by matching group and VLAN",
+                         "It is required for HSRP authentication"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Technisch ist die Gruppennummer frei wählbar und lokal signifikant. Gruppe = VLAN macht Konfiguration und Fehlersuche nur übersichtlicher; mit HSRPv2 (0–4095) passt das für alle VLANs."
+    },
+    {
+        "id":  "slg-hr-045",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which command shows HSRP state changes and election events in real time on the console?",
+        "optionen":  [
+                         "debug ip packet",
+                         "debug standby events",
+                         "show standby detail",
+                         "show standby brief"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "debug standby events gibt Zustandswechsel und Ereignisse live aus. show standby zeigt nur den aktuellen Zustand."
+    },
+    {
+        "id":  "slg-hr-046",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege Tracking-Objekt 1 an, das den Line-Protocol-Zustand von GigabitEthernet0/0 überwacht.",
+        "bausteine":  [
+                          "track",
+                          "1",
+                          "interface",
+                          "GigabitEthernet0/0",
+                          "line-protocol",
+                          "standby",
+                          "ip",
+                          "state"
+                      ],
+        "loesung":  [
+                        "track",
+                        "1",
+                        "interface",
+                        "GigabitEthernet0/0",
+                        "line-protocol"
+                    ],
+        "erklaerung":  "Zuerst wird ein Objekt global definiert. line-protocol prüft, ob das Interface up/up ist; ip routing würde stattdessen den IP-Routing-Zustand prüfen."
+    },
+    {
+        "id":  "slg-hr-047",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus: Senke die Priorität von HSRP-Gruppe 10 um 20, wenn Tracking-Objekt 1 down ist.",
+        "bausteine":  [
+                          "standby",
+                          "10",
+                          "track",
+                          "1",
+                          "decrement",
+                          "20",
+                          "priority",
+                          "shutdown"
+                      ],
+        "loesung":  [
+                        "standby",
+                        "10",
+                        "track",
+                        "1",
+                        "decrement",
+                        "20"
+                    ],
+        "erklaerung":  "standby \u003cgruppe\u003e track \u003cobjekt\u003e decrement \u003cwert\u003e verknüpft das Objekt mit der Gruppe. Ohne decrement würde um 10 gesenkt; shutdown würde die Gruppe stattdessen deaktivieren."
+    },
+    {
+        "id":  "slg-hr-048",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "If no decrement value is configured, HSRP lowers the priority by ___ when the tracked object goes down.",
+        "optionen":  [
+                         "20",
+                         "1",
+                         "100",
+                         "10"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Standardabzug ist 10. Ob das für einen Rollenwechsel reicht, hängt vom Prioritätsabstand ab, deshalb wird der Wert meist explizit gesetzt."
+    },
+    {
+        "id":  "slg-hr-049",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1: priority 110, preempt, tracks its uplink with decrement 20. R2: priority 100, preempt. R1\u0027s uplink goes down. What happens?",
+        "optionen":  [
+                         "R1 drops to 90 and R2 takes over as active",
+                         "Both routers drop to 90 and a new election by IP address takes place",
+                         "R1 drops to 100 and stays active because it wins the IP tie-break",
+                         "R1 stays active because a tracked uplink does not affect HSRP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "110 − 20 = 90 und damit weniger als R2 mit 100. Da R2 preempt hat, übernimmt R2 die Active-Rolle, der Verkehr geht direkt über den funktionierenden Uplink."
+    },
+    {
+        "id":  "slg-hr-050",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1: priority 110, preempt, \u0027standby 1 track 1 decrement 5\u0027. R2: priority 100, preempt. Track object 1 goes down, yet R1 remains active and traffic takes a suboptimal path. What is the cause?",
+        "optionen":  [
+                         "The preempt delay on R2 has not been configured",
+                         "R2 needs \u0027standby 1 track 1\u0027 as well",
+                         "Tracking only works on the HSRP-enabled interface itself",
+                         "R1 drops only to 105, which is still higher than R2\u0027s priority"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "110 − 5 = 105 \u003e 100, R1 bleibt also rechnerisch der beste Router. Der Abzug muss größer sein als der Prioritätsabstand (hier mehr als 10), damit Tracking einen Rollenwechsel auslöst."
+    },
+    {
+        "id":  "slg-hr-051",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1: priority 120, preempt, track 1 decrement 15 and track 2 decrement 15 (two uplinks). R2: priority 100, preempt. Which statement is correct?",
+        "optionen":  [
+                         "Losing one uplink already makes R2 active",
+                         "R1 gives up the role only when both uplinks fail",
+                         "R2 becomes active only if R1\u0027s priority drops to 0",
+                         "R1 never gives up the role because the decrements are not added"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein Ausfall: 120 − 15 = 105 \u003e 100, R1 bleibt Active. Beide Ausfälle: 120 − 30 = 90 \u003c 100, R2 übernimmt. So gibt R1 die Rolle erst ab, wenn kein Uplink mehr verfügbar ist."
+    },
+    {
+        "id":  "slg-hr-052",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1: priority 110, preempt, tracks its uplink with decrement 20. R2: priority 100 with no preempt command. R1\u0027s uplink fails. What is the result?",
+        "optionen":  [
+                         "R1 shuts down its HSRP interface to force a failover",
+                         "R2 becomes active because R1\u0027s priority is now lower",
+                         "Both routers become active until the uplink recovers",
+                         "R1 stays active with 90 because R2 cannot preempt"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Tracking senkt nur die Priorität. Die Übernahme muss der Router mit der nun höheren Priorität per preempt durchführen. Ohne preempt auf R2 bleibt R1 trotz 90 Active."
+    },
+    {
+        "id":  "slg-hr-053",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R2 is HSRP active for VLAN 10 and R1 is standby; no tracking is configured. R2\u0027s uplink to the core fails, but its LAN interface stays up. How does traffic from VLAN 10 to the core flow?",
+        "optionen":  [
+                         "Directly via R1, because HSRP detects the uplink failure",
+                         "Hosts automatically use the second gateway learned by DHCP",
+                         "It is dropped, because R2 removes the virtual IP",
+                         "Hosts send to R2, which routes it via the LAN to R1"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne Tracking verliert R2 die Rolle nur, wenn sein HSRP-Interface oder er selbst ausfällt. Er bleibt Active und muss den Verkehr über das LAN zu R1 schicken – ein ineffizienter Pfad."
+    },
+    {
+        "id":  "slg-hr-054",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How is HSRP interface tracking configured on current Cisco IOS XE platforms?",
+        "optionen":  [
+                         "By adding the uplink interface to the HSRP group with \u0027standby 1 ip\u0027",
+                         "By enabling \u0027ip sla\u0027 on the HSRP interface without any track object",
+                         "Only with \u0027standby 1 track GigabitEthernet0/0\u0027 directly under the interface",
+                         "By defining a global track object and referencing it with \u0027standby \u003cgroup\u003e track \u003cobject\u003e\u0027"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Moderne Plattformen nutzen Object Tracking: global track \u003cn\u003e definieren und in der Gruppe referenzieren. Die alte Syntax mit direkt genanntem Interface ist veraltet und funktioniert nicht überall."
+    },
+    {
+        "id":  "slg-hr-055",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which command verifies whether tracking object 1 is currently up or down?",
+        "optionen":  [
+                         "show track 1",
+                         "show ip sla 1",
+                         "show interfaces track",
+                         "show standby track"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "show track 1 zeigt Zustand und Typ des Objekts sowie die Clients, z. B. die HSRP-Gruppe. show standby bestätigt nur, dass Tracking konfiguriert ist."
+    },
+    {
+        "id":  "slg-hr-056",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1\u0027s uplink to the ISP stays up/up even when the ISP\u0027s next hop fails further upstream. Which tracking approach lets HSRP react to such a failure?",
+        "optionen":  [
+                         "track 1 interface GigabitEthernet0/0 line-protocol",
+                         "Lowering the HSRP hello time to 100 ms",
+                         "Track an IP SLA probe toward the ISP next hop",
+                         "Configuring \u0027standby 1 preempt delay minimum 60\u0027"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Line-protocol erkennt nur den lokalen Link-Zustand. Eine IP-SLA-Probe prüft die tatsächliche Erreichbarkeit, das Track-Objekt geht down, wenn die Probe scheitert, und senkt dann die HSRP-Priorität."
+    },
+    {
+        "id":  "slg-hr-057",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "R1 is HSRP active and tracks its uplink. Which two conditions must be met so that R2 becomes active when R1\u0027s uplink fails? (Choose two.)",
+        "optionen":  [
+                         "The tracked interface is also the HSRP-enabled interface",
+                         "R2 has preemption enabled",
+                         "R1\u0027s decremented priority falls below R2\u0027s priority",
+                         "Both routers use the same decrement value",
+                         "R1 has preemption enabled"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "R1s Priorität muss unter die von R2 fallen, und R2 braucht preempt, um zu übernehmen. preempt auf R1 ist erst für die Rückkehr nach der Reparatur nötig."
+    },
+    {
+        "id":  "slg-hr-058",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Tracking moved the HSRP active role from R1 to R2. R1\u0027s uplink recovers and its priority returns to 110 (R2: 100). What is required for R1 to become active again?",
+        "optionen":  [
+                         "Clearing the ARP cache on the hosts",
+                         "Preemption on R1",
+                         "A reload of R2",
+                         "Nothing, the role always returns to the original router"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "R1 hat wieder die höhere Priorität, darf den laufenden Active-Router R2 aber nur mit eigenem preempt ablösen. Deshalb wird preempt in Tracking-Designs auf allen Routern konfiguriert."
+    },
+    {
+        "id":  "slg-hr-059",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three types of conditions can a track object monitor for use with HSRP? (Choose three.)",
+        "optionen":  [
+                         "Line-protocol state of an interface",
+                         "Number of CDP neighbors on an interface",
+                         "Reachability of a route in the routing table",
+                         "Reachability result of an IP SLA operation",
+                         "STP root port role of a VLAN"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Track-Objekte können Interface-Zustände, Routen (track ip route ... reachability) und IP-SLA-Ergebnisse überwachen. STP-Rollen oder CDP-Nachbarn sind keine Tracking-Typen."
+    },
+    {
+        "id":  "slg-hr-060",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two distribution switches run HSRP for VLAN 10 and VLAN 20 with default priorities. What is the likely result?",
+        "optionen":  [
+                         "Traffic is load-balanced per host between both switches",
+                         "One switch is likely active for both VLANs, using one uplink",
+                         "Each switch becomes active for exactly one VLAN",
+                         "HSRP refuses to run two groups on the same switch pair"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit gleichen Prioritäten gewinnt in beiden Gruppen typischerweise derselbe Switch (höhere IP). HSRP selbst verteilt keine Last; erst unterschiedliche Prioritäten je Gruppe (MHSRP) nutzen beide Wege."
+    },
+    {
+        "id":  "slg-hr-061",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Switch1: group 10 priority 110, group 20 priority 90. Switch2: group 10 priority 90, group 20 priority 110. Preempt is enabled on both. Which switch is active for group 20?",
+        "optionen":  [
+                         "Switch1, because it has the lower group number configured first",
+                         "Whichever switch has the higher IP address on VLAN 20",
+                         "Switch2, because it has the higher priority for group 20",
+                         "Switch1, because priorities are compared across all groups"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Prioritäten gelten pro Gruppe. In Gruppe 20 hat Switch2 110 gegen 90 und ist Active. So trägt Switch1 VLAN 10 und Switch2 VLAN 20 – Lastverteilung per MHSRP."
+    },
+    {
+        "id":  "slg-hr-062",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Switch1 is configured with \u0027spanning-tree vlan 10 root primary\u0027, but Switch2 is HSRP active for VLAN 10. What is the effect for hosts in VLAN 10 on access switches dual-homed to both?",
+        "optionen":  [
+                         "STP blocks the access uplink toward Switch2, so the VIP is unreachable",
+                         "HSRP automatically moves the active role to the STP root",
+                         "Frames go to Switch1 first, then across the link to Switch2",
+                         "No effect, STP and HSRP are independent and paths stay optimal"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Access-Uplinks zu Switch2 werden für VLAN 10 von STP blockiert, die Frames laufen erst zu Switch1 und dann über die Verbindung zwischen den Distribution-Switches. Daher sollten STP-Root und HSRP-Active pro VLAN auf demselben Switch liegen."
+    },
+    {
+        "id":  "slg-hr-063",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "All hosts are in a single VLAN, and you want both HSRP routers to forward traffic. Which design achieves this?",
+        "optionen":  [
+                         "Two groups with different VIPs, each active on another router",
+                         "Enable \u0027standby 1 preempt\u0027 on both routers",
+                         "Configure HSRPv2 so that both routers become active",
+                         "Configure one HSRP group with equal priorities on both routers"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Eine HSRP-Gruppe hat immer nur einen Active-Router. Mit zwei Gruppen und zwei VIPs auf demselben Interface wird jeder Router für eine Gruppe Active; die Hosts werden z. B. per DHCP auf beide Gateways verteilt."
+    },
+    {
+        "id":  "slg-hr-064",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the main risk that HSRP authentication mitigates?",
+        "optionen":  [
+                         "A rogue device claiming the active role (DoS or MITM)",
+                         "Hello messages that are lost on congested links",
+                         "Mismatched HSRP versions on the two routers",
+                         "Hosts that use an incorrect default gateway"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ohne Authentifizierung kann ein fremdes Gerät mit höherer Priorität Active werden. Dann landet der Verkehr bei ihm, er kann ihn verwerfen oder mitschneiden."
+    },
+    {
+        "id":  "slg-hr-065",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus: Aktiviere MD5-Authentifizierung für HSRP-Gruppe 1 mit dem Schlüssel VerySecret55.",
+        "bausteine":  [
+                          "standby",
+                          "1",
+                          "authentication",
+                          "md5",
+                          "key-string",
+                          "VerySecret55",
+                          "text",
+                          "key-chain",
+                          "vrrp"
+                      ],
+        "loesung":  [
+                        "standby",
+                        "1",
+                        "authentication",
+                        "md5",
+                        "key-string",
+                        "VerySecret55"
+                    ],
+        "erklaerung":  "md5 key-string legt den Schlüssel direkt fest. key-chain würde auf eine Key Chain verweisen, text wäre Klartext-Authentifizierung."
+    },
+    {
+        "id":  "slg-hr-066",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus: Verwende für HSRP-Gruppe 1 MD5-Authentifizierung mit der Key Chain HSRP-KEYS.",
+        "bausteine":  [
+                          "standby",
+                          "1",
+                          "authentication",
+                          "md5",
+                          "key-chain",
+                          "HSRP-KEYS",
+                          "key-string",
+                          "key"
+                      ],
+        "loesung":  [
+                        "standby",
+                        "1",
+                        "authentication",
+                        "md5",
+                        "key-chain",
+                        "HSRP-KEYS"
+                    ],
+        "erklaerung":  "Mit key-chain verweist die Gruppe auf eine global definierte Key Chain. Deren Schlüssel können unterschiedliche Gültigkeitszeiten haben, das erleichtert den Schlüsselwechsel."
+    },
+    {
+        "id":  "slg-hr-067",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the maximum length of an HSRP plaintext authentication string?",
+        "optionen":  [
+                         "32 characters",
+                         "64 characters",
+                         "8 characters",
+                         "16 characters"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Klartext-Schlüssel sind auf 8 Zeichen begrenzt und werden lesbar übertragen. MD5 ist deshalb vorzuziehen."
+    },
+    {
+        "id":  "slg-hr-068",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about HSRP MD5 authentication are true? (Choose two.)",
+        "optionen":  [
+                         "A hash is calculated over the HSRP message, and the key itself is never transmitted",
+                         "A key chain allows several keys with different validity periods",
+                         "The key is sent in each hello, protected with type 7 encryption",
+                         "MD5 authentication requires HSRP version 2",
+                         "Only the active router needs the key configured"
+                     ],
+        "richtig":  [
+                        0,
+                        1
+                    ],
+        "erklaerung":  "Gesendet wird nur der Hash, der Empfänger rechnet mit seinem Schlüssel nach. Key Chains erlauben mehrere Schlüssel mit Laufzeiten. Alle Peers brauchen dieselben Einstellungen, und MD5 funktioniert mit beiden Versionen."
+    },
+    {
+        "id":  "slg-hr-069",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does the 7 mean in \u0027standby 1 authentication md5 key-string 7 0822455D0A16\u0027?",
+        "optionen":  [
+                         "HSRP retries authentication 7 times",
+                         "The key is valid for 7 days",
+                         "The following string is already type 7 encrypted",
+                         "The key belongs to key chain number 7"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "0 bzw. nichts heißt Klartext-Eingabe, 7 heißt, dass bereits ein Type-7-verschlüsselter Wert eingefügt wird, etwa aus einer anderen Konfiguration. Type 7 ist leicht umkehrbar."
+    },
+    {
+        "id":  "slg-hr-070",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Hello-/Advertisement-Zieladresse dem Protokoll zu.",
+        "paare":  [
+                      [
+                          "HSRPv1 for IPv4",
+                          "224.0.0.2"
+                      ],
+                      [
+                          "HSRPv2 for IPv4",
+                          "224.0.0.102"
+                      ],
+                      [
+                          "VRRP for IPv4",
+                          "224.0.0.18"
+                      ],
+                      [
+                          "HSRP for IPv6",
+                          "FF02::66"
+                      ]
+                  ],
+        "erklaerung":  "HSRPv1 nutzt die All-Routers-Adresse 224.0.0.2, HSRPv2 die eigene 224.0.0.102. VRRP sendet an 224.0.0.18, HSRP für IPv6 an FF02::66."
+    },
+    {
+        "id":  "slg-hr-071",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die virtuelle MAC-Adresse für Gruppe 5 dem Protokoll zu.",
+        "paare":  [
+                      [
+                          "HSRPv1",
+                          "0000.0C07.AC05"
+                      ],
+                      [
+                          "HSRPv2",
+                          "0000.0C9F.F005"
+                      ],
+                      [
+                          "VRRP (IPv4)",
+                          "0000.5E00.0105"
+                      ],
+                      [
+                          "GLBP",
+                          "0007.B400.05YY (YY = forwarder)"
+                      ]
+                  ],
+        "erklaerung":  "Jedes Protokoll hat ein eigenes Präfix, die Gruppe steht hexadezimal am Ende. Bei GLBP folgt nach der Gruppe noch die Nummer des Forwarders."
+    },
+    {
+        "id":  "slg-hr-072",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne dem Protokoll seinen Gruppennummernbereich zu.",
+        "paare":  [
+                      [
+                          "HSRPv1",
+                          "0–255"
+                      ],
+                      [
+                          "HSRPv2",
+                          "0–4095"
+                      ],
+                      [
+                          "VRRP",
+                          "1–255"
+                      ],
+                      [
+                          "GLBP",
+                          "0–1023"
+                      ]
+                  ],
+        "erklaerung":  "HSRPv1 kennt 256 Gruppen, HSRPv2 4096 – genug für Gruppe = VLAN. VRRP beginnt bei 1 und hat keine Default-Gruppe, GLBP erlaubt 0–1023."
+    },
+    {
+        "id":  "slg-hr-073",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On a switch running the default HSRP version, an engineer configures \u0027standby 4000 ip 10.40.0.1\u0027 under interface VLAN 4000. What happens?",
+        "optionen":  [
+                         "The switch converts the group number to 4000 mod 256",
+                         "The command succeeds because group numbers are locally significant",
+                         "The group is created and uses virtual MAC 0000.0C07.ACA0",
+                         "The command fails because HSRPv1 supports groups 0–255 only; version 2 is needed"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Default ist HSRPv1 mit Gruppen 0–255. Für Gruppe 4000 muss zuerst standby version 2 gesetzt werden, das erlaubt 0–4095."
+    },
+    {
+        "id":  "slg-hr-074",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus: Stelle HSRP auf diesem Interface auf Version 2 um.",
+        "bausteine":  [
+                          "standby",
+                          "10",
+                          "version",
+                          "2",
+                          "1",
+                          "hsrp",
+                          "mode"
+                      ],
+        "loesung":  [
+                        "standby",
+                        "version",
+                        "2"
+                    ],
+        "erklaerung":  "standby version 2 gilt für das ganze Interface und hat keine Gruppennummer. Die Version muss auf allen Routern der Gruppe gleich sein, ein Interface kann nicht beide Versionen gleichzeitig nutzen."
+    },
+    {
+        "id":  "slg-hr-075",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three statements about HSRP version 2 are true? (Choose three.)",
+        "optionen":  [
+                         "It is the default version on Cisco IOS devices",
+                         "It sends hellos to 224.0.0.102",
+                         "It must be enabled before HSRP for IPv6 can be configured",
+                         "It uses the virtual MAC range 0000.0C07.ACxx",
+                         "It supports group numbers from 0 to 4095"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "HSRPv2 erweitert die Gruppen auf 0–4095, nutzt 224.0.0.102 und ist Voraussetzung für IPv6. Default ist weiterhin Version 1, und v2 nutzt 0000.0C9F.Fxxx."
+    },
+    {
+        "id":  "slg-hr-076",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "HSRPv2 packets contain a 6-byte identifier field. What is its benefit?",
+        "optionen":  [
+                         "It identifies the sender by its interface MAC",
+                         "It encodes the virtual MAC address for the group",
+                         "It replaces the priority field for the election",
+                         "It carries the MD5 hash of the authentication key"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Das Feld enthält die Interface-MAC des Absenders. Damit lässt sich eindeutig feststellen, welches Gerät ein Hello geschickt hat, etwa bei doppelten Active-Routern."
+    },
+    {
+        "id":  "slg-hr-077",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does HSRPv2 send its hellos to 224.0.0.102 instead of 224.0.0.2?",
+        "optionen":  [
+                         "224.0.0.102 has a higher TTL and reaches remote subnets",
+                         "It lets CGMP processing run at the same time as HSRP",
+                         "224.0.0.2 is reserved for VRRP",
+                         "224.0.0.2 is not forwarded on 802.1Q trunks"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "224.0.0.2 ist die All-Routers-Adresse, die auch von CGMP-Leave-Verarbeitung genutzt wird. Die eigene Adresse 224.0.0.102 vermeidet diesen Konflikt."
+    },
+    {
+        "id":  "slg-hr-078",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus (HSRP Version 2 ist bereits aktiv): Lass HSRP-Gruppe 1 für IPv6 die virtuelle Link-Local-Adresse automatisch erzeugen.",
+        "bausteine":  [
+                          "standby",
+                          "1",
+                          "ipv6",
+                          "autoconfig",
+                          "ip",
+                          "link-local",
+                          "eui-64"
+                      ],
+        "loesung":  [
+                        "standby",
+                        "1",
+                        "ipv6",
+                        "autoconfig"
+                    ],
+        "erklaerung":  "standby \u003cgruppe\u003e ipv6 autoconfig erzeugt die virtuelle Link-Local-Adresse aus der virtuellen MAC. Hosts lernen das Gateway dann über Router Advertisements."
+    },
+    {
+        "id":  "slg-hr-079",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which virtual MAC address range does HSRP for IPv6 use?",
+        "optionen":  [
+                         "0000.5E00.0200 to 0000.5E00.02FF",
+                         "0007.B400.0000 to 0007.B400.FFFF",
+                         "0000.0C9F.F000 to 0000.0C9F.FFFF",
+                         "0005.73A0.0000 to 0005.73A0.0FFF"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "HSRP für IPv6 nutzt 0005.73A0.0000–0FFF und sendet Hellos an FF02::66 über UDP 2029. 0000.0C9F.Fxxx ist HSRPv2 für IPv4, 0000.5E00.02xx VRRP für IPv6."
+    },
+    {
+        "id":  "slg-hr-080",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two routers are in HSRP group 10, but R1 runs version 2 and R2 runs version 1. What happens?",
+        "optionen":  [
+                         "R1 translates its hellos for R2",
+                         "They negotiate down to version 1 automatically",
+                         "Neither understands the other\u0027s hellos; both become active",
+                         "Only IPv6 traffic is affected"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "HSRPv1 und v2 sind nicht kompatibel: andere Multicast-Adresse, anderes Paketformat. Jeder Router hört keinen Peer und wird Active, es gibt dann zwei Gateways mit unterschiedlichen MACs."
+    },
+    {
+        "id":  "slg-hr-081",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R2 is configured with only \u0027standby 1 ip\u0027 (no address) and \u0027standby 1 priority 90\u0027. R1 has \u0027standby 1 ip 10.1.1.1\u0027 and is active. What happens on R2?",
+        "optionen":  [
+                         "R2 uses its own interface address as the virtual IP",
+                         "R2 stays in Init until an address is configured",
+                         "The command is rejected because a virtual IP is mandatory on every router",
+                         "R2 learns the virtual IP 10.1.1.1 from R1\u0027s hellos and becomes standby"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Hellos enthalten die virtuelle IP. Ein Router ohne eigene Angabe kann sie vom Active-Router lernen. Konfiguriert sein muss sie mindestens auf einem Router der Gruppe."
+    },
+    {
+        "id":  "slg-hr-082",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Without any tracking, which two events cause the HSRP active router to lose its role? (Choose two.)",
+        "optionen":  [
+                         "Its uplink toward the core goes down",
+                         "The router itself fails",
+                         "Its HSRP-enabled interface fails",
+                         "Its CPU utilization exceeds 90 percent",
+                         "It loses an OSPF neighbor"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "HSRP sieht nur das eigene Segment: Ausfall des HSRP-Interfaces oder des Routers lässt die Hellos verstummen. Uplink- oder Routing-Probleme bemerkt es nur mit Tracking."
+    },
+    {
+        "id":  "slg-hr-083",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "R2 has priority 120 and R1, the current active router, has priority 100. R2 still stays standby. Which two configurations could explain this? (Choose two.)",
+        "optionen":  [
+                         "R1 has a higher IP address than R2",
+                         "R2\u0027s preempt delay timer has not expired yet",
+                         "R1 is configured with \u0027standby 1 preempt\u0027",
+                         "R2 uses the default hello timer",
+                         "Preemption is not configured on R2"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Ohne preempt übernimmt R2 nie, mit preempt delay erst nach Ablauf der Verzögerung. Die IP entscheidet nur bei gleicher Priorität, preempt auf R1 spielt für R2s Übernahme keine Rolle."
+    },
+    {
+        "id":  "slg-hr-084",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "On a multilayer switch, where is HSRP configured for the hosts in VLAN 10?",
+        "optionen":  [
+                         "Under the SVI \u0027interface vlan 10\u0027",
+                         "Under the 802.1Q trunk toward the access switches",
+                         "In global configuration with \u0027standby vlan 10\u0027",
+                         "Under the access ports in VLAN 10"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Das Gateway eines VLANs ist dessen SVI, dort wird HSRP konfiguriert. Auf einem gerouteten physischen Port geht es ebenso, aber nicht auf Access- oder Trunk-Ports."
+    },
+    {
+        "id":  "slg-hr-085",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "VRRP advertisements are carried directly in IP using protocol number ___ .",
+        "optionen":  [
+                         "89",
+                         "88",
+                         "112",
+                         "103"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "VRRP nutzt IP-Protokoll 112 und kein UDP. 88 ist EIGRP, 89 OSPF und 103 PIM."
+    },
+    {
+        "id":  "slg-hr-086",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den HSRP-Begriff dem entsprechenden VRRP-Begriff zu.",
+        "paare":  [
+                      [
+                          "HSRP active router",
+                          "VRRP master"
+                      ],
+                      [
+                          "HSRP standby router",
+                          "VRRP backup"
+                      ],
+                      [
+                          "HSRP hello message",
+                          "VRRP advertisement"
+                      ]
+                  ],
+        "erklaerung":  "Die Rollen sind sehr ähnlich. Unterschied: Bei VRRP sendet nur der Master Advertisements, bei HSRP senden Active und Standby Hellos."
+    },
+    {
+        "id":  "slg-hr-087",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In a VRRP group with one master and two backups, which devices send periodic advertisements?",
+        "optionen":  [
+                         "Only the backups, to signal that they are ready",
+                         "The master and the backup with the highest priority",
+                         "All three devices",
+                         "Only the master"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Nur der Master sendet Advertisements. Die Backups hören zu und werden erst aktiv, wenn das Master Down Interval abläuft."
+    },
+    {
+        "id":  "slg-hr-088",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The VRRP master sends an advertisement with priority 0. What does this mean for the backups?",
+        "optionen":  [
+                         "The master is leaving, so a backup takes over at once",
+                         "The virtual IP address is being removed from the group",
+                         "The master\u0027s priority has been reset to the default",
+                         "The master wants all backups to reset their priority to 0"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Priorität 0 signalisiert, dass der Master aufhört teilzunehmen, etwa beim Herunterfahren. Ein Backup übernimmt sofort, statt das Master Down Interval abzuwarten."
+    },
+    {
+        "id":  "slg-hr-089",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 has interface address 192.168.1.3 and \u0027vrrp 1 ip 192.168.1.3\u0027. R2 has \u0027vrrp 1 priority 254\u0027. Which router becomes master while both are up?",
+        "optionen":  [
+                         "The router with the higher interface IP address",
+                         "R1, because it owns the virtual IP and therefore has priority 255",
+                         "R2, because 254 is higher than the default priority",
+                         "Both routers, because the configuration is invalid"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ist die virtuelle IP die echte Adresse eines Routers, ist dieser der Owner mit Priorität 255. Er ist immer Master, wenn er verfügbar ist – 254 ist der höchste konfigurierbare Wert für andere Router."
+    },
+    {
+        "id":  "slg-hr-090",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A VRRP backup has priority 100 and the master advertisement interval is 1 second. How long is its master down interval?",
+        "optionen":  [
+                         "3.609 seconds",
+                         "10.000 seconds",
+                         "3.000 seconds",
+                         "3.391 seconds"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Master Down Interval = 3 × Advertisement-Intervall + Skew Time. Skew = (256 − 100)/256 ≈ 0,609 s, also 3 + 0,609 = 3,609 s – genau der Wert aus show vrrp im Lab."
+    },
+    {
+        "id":  "slg-hr-091",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Why is the master down interval of a VRRP backup with priority 110 (3.570 s) shorter than that of a backup with priority 100 (3.609 s)?",
+        "optionen":  [
+                         "Skew time shrinks as priority grows, so it times out first",
+                         "Priority 110 enables millisecond timers automatically",
+                         "The higher-priority backup uses a shorter advertisement interval",
+                         "The value is random and only differs by chance"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Skew Time = (256 − Priorität)/256. Je höher die Priorität, desto kürzer die Wartezeit. So übernimmt bei einem Ausfall zuerst der beste Backup und nicht alle gleichzeitig."
+    },
+    {
+        "id":  "slg-hr-092",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "A VRRP backup declares the master down after Master_Down_Interval = 3 × Master_Adver_Interval + ___ .",
+        "optionen":  [
+                         "Skew_Time",
+                         "Hold_Time",
+                         "Preempt_Delay",
+                         "Hello_Time"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Skew Time hängt von der Priorität ab und sorgt dafür, dass Backups mit höherer Priorität zuerst übernehmen. VRRP kennt keine separat konfigurierte Hold Time wie HSRP."
+    },
+    {
+        "id":  "slg-hr-093",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R1 is VRRP master with the default priority. An engineer enters \u0027vrrp 1 priority 110\u0027 on R2, a backup, and configures nothing else. What happens?",
+        "optionen":  [
+                         "R1 stays master because it was elected first",
+                         "Both routers become master until R1 is reloaded",
+                         "R2 becomes master at once, VRRP preempts by default",
+                         "Nothing until \u0027vrrp 1 preempt\u0027 is added on R2"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Anders als bei HSRP ist Preemption bei VRRP standardmäßig aktiv. Mit der höheren Priorität übernimmt R2 sofort, R1 wird Backup – genau das zeigt das Lab."
+    },
+    {
+        "id":  "slg-hr-094",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about VRRP group numbers on Cisco IOS is correct?",
+        "optionen":  [
+                         "Group numbers range from 0 to 4095",
+                         "Group numbers must match the VLAN number",
+                         "If no group is given, group 0 is used as with HSRP",
+                         "A group number from 1 to 255 must always be specified"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "VRRP hat keine Default-Gruppe; die Nummer 1–255 muss angegeben werden. Nur HSRP fällt ohne Angabe auf Gruppe 0 zurück."
+    },
+    {
+        "id":  "slg-hr-095",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The VRRP virtual MAC address for IPv4 group 20 is 0000.5E00.01___ .",
+        "optionen":  [
+                         "14",
+                         "20",
+                         "02",
+                         "0A"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "VRRP nutzt 0000.5E00.01XX mit der Gruppe in Hex: 20 dezimal = 0x14."
+    },
+    {
+        "id":  "slg-hr-096",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 shows:\nEthernet0/1 - Group 1\n  State is Backup\n  Virtual IP address is 192.168.1.1\n  Virtual MAC address is 0000.5e00.0101\n  Preemption enabled\n  Priority is 100\n  Master Router is 192.168.1.2, priority is 110\nWhich statement is correct?",
+        "optionen":  [
+                         "R1 is backup with default priority; 192.168.1.2 is master",
+                         "R1 owns the virtual IP address",
+                         "Preemption was configured manually because it is off by default",
+                         "R1 is the master and 192.168.1.2 is a backup"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "State Backup und die Zeile Master Router zeigen, dass 192.168.1.2 mit Priorität 110 weiterleitet. R1 hat den Default 100; Preemption ist bei VRRP ohnehin standardmäßig an."
+    },
+    {
+        "id":  "slg-hr-097",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R2 shows:\nInterface  Grp Pri Time  Own Pre State   Master addr   Group addr\nEt0/1      1   110 3570       Y  Master  192.168.1.2   192.168.1.1\nWhat does the empty \u0027Own\u0027 column tell you?",
+        "optionen":  [
+                         "R2 has no virtual IP configured",
+                         "The virtual IP is not one of R2\u0027s own interface addresses",
+                         "R2 does not own the virtual MAC",
+                         "Ownership information is shown only on backups"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Own wäre markiert, wenn die virtuelle IP R2s eigene Interface-Adresse wäre (Owner, Priorität 255). Hier ist R2 Master, weil seine Priorität 110 die höchste ist; Pre = Y heißt Preemption an."
+    },
+    {
+        "id":  "slg-hr-098",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The VRRP master uses a Cisco millisecond advertisement timer of 250 ms, but \u0027show vrrp\u0027 on the backup shows \u0027Master Advertisement interval is 1.000 sec\u0027. What is the best explanation?",
+        "optionen":  [
+                         "The master is sending advertisements every second despite the configuration",
+                         "Expected; backups always display 1 second with msec timers",
+                         "The VRRP versions of the two routers do not match",
+                         "The backup ignores millisecond timers and has fallen back to the default"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Laut Cisco akzeptieren Backups keine Millisekundenwerte vom Master, daher zeigt show vrrp dort immer 1 s an, auch wenn der Master schneller sendet. Millisekunden-Timer sind eine Cisco-Erweiterung von VRRPv2 und sollten nur mit Bedacht eingesetzt werden."
+    },
+    {
+        "id":  "slg-hr-099",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus: Setze die VRRP-Priorität für Gruppe 1 auf 110.",
+        "bausteine":  [
+                          "vrrp",
+                          "1",
+                          "priority",
+                          "110",
+                          "standby",
+                          "preempt",
+                          "255"
+                      ],
+        "loesung":  [
+                        "vrrp",
+                        "1",
+                        "priority",
+                        "110"
+                    ],
+        "erklaerung":  "Bei VRRPv2 steht die Gruppe direkt hinter vrrp. preempt ist hier nicht nötig, weil es bei VRRP standardmäßig aktiv ist."
+    },
+    {
+        "id":  "slg-hr-100",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus: Authentifiziere VRRP-Gruppe 1 per MD5 mit der Key Chain VRRP-KEYS.",
+        "bausteine":  [
+                          "vrrp",
+                          "1",
+                          "authentication",
+                          "md5",
+                          "key-chain",
+                          "VRRP-KEYS",
+                          "text",
+                          "key-string"
+                      ],
+        "loesung":  [
+                        "vrrp",
+                        "1",
+                        "authentication",
+                        "md5",
+                        "key-chain",
+                        "VRRP-KEYS"
+                    ],
+        "erklaerung":  "Wie bei HSRP kann VRRP auf eine Key Chain verweisen. Das ist eine Cisco-Erweiterung, denn RFC 3768 und RFC 5798 sehen keine Authentifizierung mehr vor."
+    },
+    {
+        "id":  "slg-hr-101",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "After MD5 authentication is configured for VRRP group 1 on R1 only, R1 logs \u0027%VRRP-4-BADAUTHTYPE: Bad authentication from 192.168.1.2, group 1, type 0, expected 254\u0027. Which two statements are correct? (Choose two.)",
+        "optionen":  [
+                         "The problem is solved by changing R1 to plaintext authentication",
+                         "Both routers now consider themselves master for group 1",
+                         "R2 must be configured as the address owner",
+                         "R1 has automatically disabled VRRP on the interface",
+                         "R2 is sending advertisements without authentication"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Typ 0 heißt keine Authentifizierung bei R2, R1 erwartet MD5. Beide verwerfen die Pakete des anderen und werden Master. Erst die gleiche MD5-Konfiguration auf R2 behebt das."
+    },
+    {
+        "id":  "slg-hr-102",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why did RFC 3768 and RFC 5798 remove authentication from VRRP?",
+        "optionen":  [
+                         "Authentication made the advertisements too large for one frame",
+                         "Authentication prevented interoperability with HSRP",
+                         "VRRP authentication was replaced by mandatory IPsec",
+                         "It did not stop multiple masters or attacks via ARP"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Falsch gesetzte Schlüssel erzeugen mehrere Master, und ein Angreifer im LAN kann ohnehin per ARP stören. Der Sicherheitsgewinn war gering, daher wurde Authentifizierung gestrichen."
+    },
+    {
+        "id":  "slg-hr-103",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "VRRP routers send advertisements with TTL 255 and discard received advertisements with any other TTL. What does this protect against?",
+        "optionen":  [
+                         "Hosts that send ARP requests for the virtual IP",
+                         "VRRP packets injected from a remote network",
+                         "Loops between two VRRP groups",
+                         "Duplicate virtual MAC addresses on trunks"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Jeder Router-Hop senkt die TTL. Ein Paket mit 255 kann nur aus dem lokalen Segment stammen, so sind entfernte Angriffe ausgeschlossen und nur lokale möglich."
+    },
+    {
+        "id":  "slg-hr-104",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three statements describe differences between VRRP and HSRP? (Choose three.)",
+        "optionen":  [
+                         "The default VRRP advertisement interval is 1 second, while the HSRP hello is 3 seconds",
+                         "VRRP backups also send periodic advertisements",
+                         "In VRRP only the master sends periodic advertisements",
+                         "VRRP uses the virtual MAC range 0000.0C9F.Fxxx",
+                         "A VRRP group number must always be specified"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Bei VRRP schweigen die Backups, das Intervall ist kürzer und es gibt keine Default-Gruppe. 0000.0C9F.Fxxx ist HSRPv2; VRRP nutzt 0000.5E00.01xx."
+    },
+    {
+        "id":  "slg-hr-105",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 is VRRP master with priority 120 and \u0027vrrp 1 track 1 decrement 30\u0027. R2 is backup with priority 100 and no extra commands. R1\u0027s tracked uplink fails. What happens?",
+        "optionen":  [
+                         "R2 becomes master only if R1 sends priority 0",
+                         "R1 stays master because R2 has no preempt command",
+                         "R1 drops to 90, and R2 becomes master because VRRP preemption is on by default",
+                         "R1 drops to 90 but remains master until its hold timer of 10 seconds expires"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "120 − 30 = 90 \u003c 100. Weil VRRP-Preemption standardmäßig aktiv ist, übernimmt R2 sofort. Bei HSRP bräuchte R2 dafür ein explizites preempt."
+    },
+    {
+        "id":  "slg-hr-106",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which capability is new in VRRP version 3 (RFC 5798) compared with VRRPv2?",
+        "optionen":  [
+                         "Group numbers up to 4095",
+                         "Support for MD5 authentication",
+                         "Support for both IPv4 and IPv6",
+                         "Multiple active forwarders per group"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "VRRPv3 deckt IPv4 und IPv6 ab und erlaubt Intervalle in Zentisekunden. Authentifizierung gibt es dort nicht, Lastverteilung innerhalb einer Gruppe ebenfalls nicht."
+    },
+    {
+        "id":  "slg-hr-107",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus (IOS XE): Aktiviere VRRP Version 3, damit Gruppen per address-family konfiguriert werden können.",
+        "bausteine":  [
+                          "fhrp",
+                          "version",
+                          "vrrp",
+                          "v3",
+                          "v2",
+                          "standby",
+                          "ipv6"
+                      ],
+        "loesung":  [
+                        "fhrp",
+                        "version",
+                        "vrrp",
+                        "v3"
+                    ],
+        "erklaerung":  "fhrp version vrrp v3 schaltet auf VRRPv3 um. Danach werden Gruppen mit vrrp \u003cgruppe\u003e address-family ipv4|ipv6 angelegt, die alten VRRPv2-Befehle stehen nicht mehr zur Verfügung."
+    },
+    {
+        "id":  "slg-hr-108",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "VRRPv3 is enabled on an IOS XE switch. Which configuration creates group 10 with virtual IPv4 address 10.1.10.1 on interface VLAN 10?",
+        "optionen":  [
+                         "vrrp 10 ipv4 10.1.10.1 version 3 primary",
+                         "vrrp 10 ip 10.1.10.1 + vrrp 10 version 3",
+                         "standby 10 ip 10.1.10.1 + standby 10 vrrp v3",
+                         "vrrp 10 address-family ipv4 + address 10.1.10.1 primary"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "In VRRPv3 öffnet vrrp \u003cgruppe\u003e address-family ipv4 einen Untermodus, dort folgt address \u003cip\u003e primary sowie optional priority und track. vrrp 10 ip ist die VRRPv2-Syntax."
+    },
+    {
+        "id":  "slg-hr-109",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "VRRPv3 for IPv6 sends its advertisements to the link-local multicast address ___ .",
+        "optionen":  [
+                         "FF02::12",
+                         "FF02::2",
+                         "FF02::66",
+                         "FF02::102"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "FF02::12 ist das IPv6-Gegenstück zu 224.0.0.18. FF02::66 nutzt HSRP für IPv6, FF02::2 ist All-Routers."
+    },
+    {
+        "id":  "slg-hr-110",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "HSRP version 2 supports group numbers from 0 to ___ .",
+        "optionen":  [
+                         "65535",
+                         "255",
+                         "1023",
+                         "4095"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "HSRPv2 nutzt 12 Bit für die Gruppe (0–4095), das passt zum VLAN-Bereich. HSRPv1 ist auf 0–255 begrenzt, GLBP auf 0–1023."
+    },
+    {
+        "id":  "slg-hr-111",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Befehl seinem Zweck zu.",
+        "paare":  [
+                      [
+                          "show standby brief",
+                          "One-line HSRP summary per group with state, active and standby router"
+                      ],
+                      [
+                          "show vrrp brief",
+                          "One-line VRRP summary with owner, preempt flag and master address"
+                      ],
+                      [
+                          "show track",
+                          "State of tracked objects and the clients that use them"
+                      ],
+                      [
+                          "debug standby events",
+                          "Live output of HSRP state changes"
+                      ]
+                  ],
+        "erklaerung":  "Die brief-Varianten fassen Gruppen pro Zeile zusammen. show track prüft das Objekt selbst, debug zeigt Ereignisse in Echtzeit."
+    },
+    {
+        "id":  "slg-hr-112",
+        "topic":  "ENCOR-3.3.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about GLBP are true? (Choose two.)",
+        "optionen":  [
+                         "Hosts must be configured with one gateway per forwarder",
+                         "Up to four routers can forward traffic for the same group at the same time",
+                         "It is an IETF standard defined in RFC 5798",
+                         "One router is elected as AVG and answers ARP requests for the virtual IP",
+                         "Only one router per group forwards traffic, like in HSRP"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "GLBP wählt einen AVG, der die bis zu vier AVFs per ARP auf die Hosts verteilt. Alle Hosts nutzen dieselbe virtuelle IP. RFC 5798 ist VRRPv3, GLBP ist Cisco-proprietär."
+    },
+    {
+        "id":  "slg-hr-113",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Redundanzmodus des Supervisors seinem Verhalten bei Ausfall zu.",
+        "paare":  [
+                      [
+                          "RPR",
+                          "Standby only partly booted; all other modules are reloaded on failover"
+                      ],
+                      [
+                          "RPR+",
+                          "Standby booted; finishes initialization without reloading modules"
+                      ],
+                      [
+                          "SSO",
+                          "Standby fully initialized; configuration and states synchronized"
+                      ]
+                  ],
+        "erklaerung":  "Je weiter der Standby-Supervisor vorbereitet ist, desto schneller der Failover (RPR am langsamsten, SSO am schnellsten; die genauen Zeiten sind plattformabhängig). Nur bei SSO sind Konfiguration, Layer-2-Informationen und Interface-Zustände bereits synchron."
+    },
+    {
+        "id":  "slg-hr-114",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which supervisor redundancy mode keeps interface states synchronized so that links do not flap during a supervisor failover?",
+        "optionen":  [
+                         "RPR",
+                         "RPR+",
+                         "SSO",
+                         "NSF only, without a redundancy mode"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei SSO sind Interface-Zustände und Layer-2-Informationen auf beiden Supervisoren synchron, die Hardware switcht weiter und Links bleiben oben. RPR+ lädt die Module zwar nicht neu, muss L2/L3-Funktionen nach dem Wechsel aber erst starten."
+    },
+    {
+        "id":  "slg-hr-115",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A Catalyst chassis has two supervisors with SSO configured, but the standby supervisor runs a different IOS XE release. What is the typical result?",
+        "optionen":  [
+                         "The standby supervisor upgrades the active one automatically",
+                         "Both supervisors become active",
+                         "SSO works normally because only the configuration has to match",
+                         "The redundancy mode falls back to RPR"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "SSO setzt kompatible, in der Regel identische Software voraus, um den Zustand zu synchronisieren. Bei abweichenden Images fällt das System auf RPR zurück und der Failover dauert deutlich länger."
+    },
+    {
+        "id":  "slg-hr-116",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Redundancy-Konfigurationsmodus (config-red): Setze den Redundanzmodus auf Stateful Switchover.",
+        "bausteine":  [
+                          "mode",
+                          "sso",
+                          "rpr",
+                          "nsf",
+                          "standby"
+                      ],
+        "loesung":  [
+                        "mode",
+                        "sso"
+                    ],
+        "erklaerung":  "Unter redundancy wird mit mode sso der Stateful-Switchover-Modus gewählt. NSF wird dagegen im Routing-Protokoll aktiviert."
+    },
+    {
+        "id":  "slg-hr-117",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which command shows the current redundancy mode and the state of the peer supervisor?",
+        "optionen":  [
+                         "show standby",
+                         "show redundancy",
+                         "show module redundancy-peer",
+                         "show switch detail"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "show redundancy zeigt konfigurierten und laufenden Modus sowie den Zustand des Peers, z. B. STANDBY HOT bei SSO. show standby gehört zu HSRP."
+    },
+    {
+        "id":  "slg-hr-118",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What does NSF add to an SSO supervisor switchover?",
+        "optionen":  [
+                         "Forwarding continues on the old FIB while the RIB is rebuilt",
+                         "It moves the default gateway role to another chassis",
+                         "It synchronizes the startup and running configurations",
+                         "It keeps the standby supervisor partly booted to save memory"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "SSO hält Konfiguration, Layer-2-Zustand und Interfaces synchron, die Routing-Sitzungen starten aber neu. NSF lässt CEF mit der alten FIB weiterleiten, während die RIB per Graceful Restart neu aufgebaut wird."
+    },
+    {
+        "id":  "slg-hr-119",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Begriff seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "NSF-capable",
+                          "Router with redundant route processors that can perform a graceful restart"
+                      ],
+                      [
+                          "NSF-aware",
+                          "Neighbor that keeps routes via the restarting router during its graceful restart"
+                      ],
+                      [
+                          "NSR",
+                          "Standby route processor keeps the routing protocol state itself, neighbors need no support"
+                      ]
+                  ],
+        "erklaerung":  "Bei NSF braucht der umschaltende Router hilfsbereite Nachbarn (NSF-aware). NSR hält die Protokollzustände intern synchron, die Nachbarn merken vom Wechsel nichts."
+    },
+    {
+        "id":  "slg-hr-120",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A core switch with dual route processors peers with a partner router that does not support graceful restart. Which feature still avoids a routing adjacency reset during an RP switchover?",
+        "optionen":  [
+                         "Nonstop Routing (NSR)",
+                         "RPR+",
+                         "HSRP between the two route processors",
+                         "NSF with IETF graceful restart"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "NSF ist auf NSF-aware Nachbarn angewiesen. NSR synchronisiert die Protokollzustände auf den Standby-RP, sodass die Adjazenz ohne Mitwirkung des Nachbarn bestehen bleibt."
+    },
+    {
+        "id":  "slg-hr-121",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Router-Konfigurationsmodus OSPF: Aktiviere NSF nach dem IETF-Graceful-Restart-Verfahren.",
+        "bausteine":  [
+                          "nsf",
+                          "ietf",
+                          "cisco",
+                          "graceful-restart",
+                          "sso"
+                      ],
+        "loesung":  [
+                        "nsf",
+                        "ietf"
+                    ],
+        "erklaerung":  "Unter router ospf aktiviert nsf ietf den standardisierten Graceful Restart, nsf bzw. nsf cisco die Cisco-Variante. sso wird unter redundancy gesetzt."
+    },
+    {
+        "id":  "slg-hr-122",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about SSO and NSF are true? (Choose two.)",
+        "optionen":  [
+                         "With SSO, startup and running configurations are synchronized between the supervisors",
+                         "NSF makes SSO unnecessary",
+                         "SSO requires the supervisors to run different software releases",
+                         "RPR+ keeps the Layer 3 routing state of the standby supervisor up to date",
+                         "NSF relies on NSF-aware neighbors that keep forwarding toward the restarting router"
+                     ],
+        "richtig":  [
+                        0,
+                        4
+                    ],
+        "erklaerung":  "SSO synchronisiert Konfiguration und Zustände, NSF baut darauf auf und braucht kooperierende Nachbarn. RPR+ startet keine L2/L3-Funktionen vorab, und NSF ersetzt SSO nicht."
+    },
+    {
+        "id":  "slg-hr-123",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A site has one Catalyst 9400 with dual supervisors running SSO as its only gateway. Which failure does this design NOT protect against?",
+        "optionen":  [
+                         "A failed supervisor that is replaced during operation",
+                         "A software crash on the active supervisor",
+                         "Loss of the entire chassis, for example a power outage of the rack",
+                         "Failure of the active supervisor"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "SSO schützt vor dem Ausfall eines Supervisors im selben Gehäuse. Fällt das ganze Chassis aus, braucht es ein zweites Gerät, z. B. mit FHRP oder StackWise Virtual."
+    },
+    {
+        "id":  "slg-hr-124",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Redundanzfunktion dem Ausfall zu, den sie abfängt.",
+        "paare":  [
+                      [
+                          "HSRP/VRRP",
+                          "Failure of the hosts\u0027 default gateway device"
+                      ],
+                      [
+                          "SSO",
+                          "Failure of the active supervisor within one chassis"
+                      ],
+                      [
+                          "EtherChannel",
+                          "Failure of a single member link of a bundle"
+                      ],
+                      [
+                          "Dual power supplies",
+                          "Failure of one power supply in a switch"
+                      ]
+                  ],
+        "erklaerung":  "Jede Funktion deckt eine andere Ebene ab: FHRPs das Gateway-Gerät, SSO den Supervisor, EtherChannel einzelne Links, redundante Netzteile die Stromversorgung."
+    },
+    {
+        "id":  "slg-hr-125",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two Catalyst 9500 distribution switches are combined with StackWise Virtual. Do the VLAN SVIs need an FHRP such as HSRP?",
+        "optionen":  [
+                         "No, because StackWise Virtual runs GLBP internally",
+                         "No, the pair has one SVI per VLAN as a single logical switch",
+                         "Yes, because each physical switch still has its own SVI",
+                         "Yes, but only VRRP is supported with StackWise Virtual"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit StackWise Virtual gibt es eine Control Plane und je VLAN nur ein SVI als Gateway. Fällt ein Switch aus, übernimmt der andere per SSO, ein FHRP entfällt."
+    },
+    {
+        "id":  "slg-hr-126",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What is the purpose of dual-active detection (DAD) in a StackWise Virtual pair?",
+        "optionen":  [
+                         "It load-balances traffic across the StackWise Virtual link",
+                         "It detects unidirectional links on the access uplinks",
+                         "It elects the HSRP active router between the two switches",
+                         "It detects both switches turning active after an SVL failure"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Fällt die SVL aus, könnten beide Switches sich für aktiv halten und mit gleicher Konfiguration Störungen verursachen. DAD erkennt das über einen separaten Pfad und versetzt einen der beiden Switches in den Recovery-Modus, in dem seine Ports abgeschaltet werden."
+    },
+    {
+        "id":  "slg-hr-127",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An access switch connects with one uplink to each switch of a StackWise Virtual pair. How should these uplinks be configured for best use?",
+        "optionen":  [
+                         "As one multichassis EtherChannel to the logical switch, so both links forward",
+                         "As routed links with HSRP on each",
+                         "As one active link and one link with \u0027switchport backup interface\u0027",
+                         "As two separate trunks so that STP blocks one of them"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die beiden Switches erscheinen als ein Gerät, daher lassen sich die Uplinks zu einem EtherChannel (MEC) bündeln. STP sieht einen logischen Link, beide physischen Links leiten weiter."
+    },
+    {
+        "id":  "slg-hr-128",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about Cisco StackWise Virtual are true? (Choose two.)",
+        "optionen":  [
+                         "It requires special stacking cables on the back of the switches",
+                         "Up to eight switches can join one StackWise Virtual domain",
+                         "The switches are connected by a StackWise Virtual link (SVL)",
+                         "Both switches run independent control planes and synchronize via HSRP",
+                         "Two switches share one control and management plane"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "StackWise Virtual verbindet genau zwei Switches über normale Ethernet-Ports (SVL) zu einem logischen Switch mit einer Control Plane. Bis zu acht Switches mit Stacking-Kabeln sind dagegen StackWise-480 bei der Catalyst 9300."
+    },
+    {
+        "id":  "slg-hr-129",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the maximum number of Catalyst 9300 switches in one StackWise-480 stack?",
+        "optionen":  [
+                         "16",
+                         "4",
+                         "2",
+                         "8"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein StackWise-480-Stack umfasst bis zu acht Catalyst 9300. StackWise Virtual verbindet dagegen nur zwei Switches."
+    },
+    {
+        "id":  "slg-hr-130",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A new Catalyst 9300 with a higher stack member priority than the current active switch is added to a running stack. What happens?",
+        "optionen":  [
+                         "It immediately becomes the active switch",
+                         "The stack splits into two stacks",
+                         "The new switch becomes standby and the old standby is shut down",
+                         "It joins as a member; the current active keeps its role"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Wahl des Active-Switches erfolgt nur beim Start des Stacks bzw. wenn der Active ausfällt. Ein höher priorisierter Neuzugang verdrängt den laufenden Active-Switch nicht."
+    },
+    {
+        "id":  "slg-hr-131",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements describe the roles in a Catalyst 9300 stack? (Choose two.)",
+        "optionen":  [
+                         "The active switch runs the control plane for the whole stack",
+                         "The standby switch is kept synchronized via SSO and takes over if the active fails",
+                         "Only the active switch forwards data traffic",
+                         "Every member runs its own independent control plane",
+                         "The members use HSRP among themselves to share the gateway role"
+                     ],
+        "richtig":  [
+                        0,
+                        1
+                    ],
+        "erklaerung":  "Ein Stack ist ein logischer Switch: der Active-Switch steuert, der Standby ist per SSO synchron. Alle Mitglieder leiten Daten weiter, HSRP ist innerhalb des Stacks nicht nötig."
+    }
+]

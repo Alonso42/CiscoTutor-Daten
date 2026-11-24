@@ -1,0 +1,138 @@
+[
+{
+ "id": "ospf-opt",
+ "titel": "OSPF optimieren: Kosten, Summarization, Filter und OSPFv3",
+ "topics": ["ENCOR-3.2.a", "ENCOR-3.2.b"],
+ "seiten": [
+  {
+   "text": "OSPF bewertet Pfade nach Kosten. Cisco berechnet sie als Referenzbandbreite geteilt durch Interface-Bandbreite, ganzzahlig abgeschnitten, mindestens 1. Die Referenz ist standardmäßig 100 Mbit/s, daher kosten FastEthernet, 1G, 10G und 100G alle 1, und OSPF zählt nur noch Hops. Mit 'auto-cost reference-bandwidth <Mbit/s>' auf ALLEN Routern hebt man die Referenz an. Vorsicht: Link-Kosten sind 16 Bit (max. 65535). Bei 100 Gbit/s Referenz kostet ein T1 schon 64766, alles Langsamere landet bei 65535. Die Pfadkosten sind die Summe der ausgehenden Interfaces bis zum Ziel, jeder Router rechnet SPF mit sich selbst als Wurzel.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Interface", "Ref. 100 (Default)", "Ref. 10000", "Ref. 100000"],
+    "zeilen": [
+     ["T1 1,544 Mbit/s", "64", "6476", "64766"],
+     ["Ethernet 10 Mbit/s", "10", "1000", "10000"],
+     ["FastEthernet 100 Mbit/s", "1", "100", "1000"],
+     ["1 Gbit/s", "1", "10", "100"],
+     ["10 Gbit/s", "1", "1", "10"],
+     ["100 Gbit/s", "1", "1", "1"]
+    ]
+   }
+  },
+  {
+   "text": "Im Tuning-Lab erreicht DIST das Loopback von GW über zwei 10-Mbit/s-Segmente, entweder über HQ1 oder über HQ2. Mit Default-Referenz kostet das 10 + 10 + 1 = 21, mit Referenz 10000 sind es 1000 + 1000 + 1 = 2001, auf beiden Wegen gleich, also ECMP. 'ip ospf cost 500' auf DISTs Interface zu HQ1 überschreibt die Berechnung: über HQ1 kostet es jetzt 1501, über HQ2 weiter 2001, nur HQ1 bleibt. Die Kosten wirken nur in Senderichtung von DIST. Bei E2-Routen bleibt die Metrik dagegen gleich (Default-Route 1, redistributierte Netze 20); bei Gleichstand entscheidet die Forward Metric, also die Kosten bis zum ASBR. Deshalb gehen die externen Netze von BR (hinter HQ2) weiter über HQ2.",
+   "diagramm": {
+    "typ": "topologie",
+    "knoten": [
+     {"id": "dist", "label": "DIST (Area 1)", "x": "0.15", "y": "0.5", "art": "router"},
+     {"id": "hq1", "label": "HQ1 (ABR)", "x": "0.45", "y": "0.2", "art": "router"},
+     {"id": "hq2", "label": "HQ2 (ABR)", "x": "0.45", "y": "0.8", "art": "router"},
+     {"id": "gw", "label": "GW (ASBR, Default)", "x": "0.8", "y": "0.2", "art": "router"},
+     {"id": "br", "label": "BR (ASBR, Area 2)", "x": "0.8", "y": "0.8", "art": "router"}
+    ],
+    "kanten": [
+     {"von": "dist", "nach": "hq1", "label": "Kosten 500 (vorher 1000)", "farbe": "ffd23f"},
+     {"von": "dist", "nach": "hq2", "label": "1000", "farbe": "39c86a"},
+     {"von": "hq1", "nach": "gw", "label": "1000 (Area 0)", "farbe": "39c86a"},
+     {"von": "hq2", "nach": "gw", "label": "1000 (Area 0)", "farbe": "39c86a"},
+     {"von": "hq2", "nach": "br", "label": "1000", "farbe": "39c86a"}
+    ],
+    "schritte": [
+     {"von": "dist", "nach": "hq1", "farbe": "ffd23f", "text": "Zu GW: 500 + 1000 + 1 = 1501 über HQ1"},
+     {"von": "hq1", "nach": "gw", "farbe": "ffd23f", "text": "Über HQ2 wären es 2001, kein ECMP mehr"},
+     {"von": "dist", "nach": "hq2", "farbe": "39c86a", "text": "E2-Netze von BR: Forward Metric über HQ2 2000 statt 2500"},
+     {"von": "hq2", "nach": "br", "farbe": "39c86a", "text": "Externe Metrik bleibt 20, Pfad bleibt bei HQ2"}
+    ]
+   }
+  },
+  {
+   "text": "Weitere Tuning-Werkzeuge: 'passive-interface' unterdrückt OSPF-Pakete auf einem Interface, das Netz wird trotzdem annonciert. Mit 'passive-interface default' sind alle Interfaces passiv, auch die Uplinks, bis man sie mit 'no passive-interface <if>' wieder freigibt (sonst fällt die Nachbarschaft). 'default-information originate' macht den Router zum ASBR und erzeugt eine Type-5-LSA für 0.0.0.0/0, aber nur, wenn er selbst eine Default-Route hat. 'always' annonciert sie immer, was ohne Uplink ein Black Hole erzeugt. 'metric' und 'metric-type' setzen Kosten und E1/E2, 'route-map' macht die Annonce bedingt. ECMP: OSPF installiert bis zu 4 gleich teure Pfade (Maximum path: 4).",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Befehl", "Wirkung"],
+    "zeilen": [
+     ["auto-cost reference-bandwidth 10000", "Referenz 10 Gbit/s, auf allen Routern gleich setzen"],
+     ["ip ospf cost 500", "Feste Kosten 1–65535, überschreibt die Berechnung"],
+     ["bandwidth 100000", "Rechenwert in kbit/s, wirkt auch auf EIGRP/QoS"],
+     ["passive-interface default", "Alle Interfaces passiv, Uplinks mit no passive-interface"],
+     ["default-information originate", "Type-5-Default (E2, Metrik 1), nur mit eigener Default-Route"],
+     ["… always / metric / metric-type", "Immer annoncieren / Kosten / E1 oder E2"]
+    ]
+   }
+  },
+  {
+   "text": "Summarization: Der ABR fasst die Netze einer Area mit 'area <Area> range <Netz> <Maske>' zu einer Type-3-LSA zusammen, der ASBR fasst redistributierte Netze mit 'summary-address <Netz> <Maske>' zu einer Type-5-LSA zusammen. Die Range verweist immer auf die Area, in der die Teilnetze liegen. Eine Summary wird nur annonciert, solange mindestens ein Teilnetz existiert. Cisco IOS ist standardmäßig RFC-1583-kompatibel ('compatible rfc1583') und gibt ihr die niedrigsten Kosten der Teilnetze. RFC 2328 verlangt die höchsten Kosten, das schaltet 'no compatible rfc1583' ein (auf allen Routern gleich setzen). Mit 'cost' setzt man einen festen Wert. Der summierende Router legt eine Discard-Route nach Null0 an: Pakete für nicht vorhandene Teilnetze werden verworfen, statt per Default-Route zu kreisen. Vorteile: kleinere Tabellen, weniger LSAs und SPF-Läufe in anderen Areas. Nachteile: eine einzige Metrik, mögliche suboptimale Pfade bei mehreren ABRs; spezifischere Routen gewinnen immer per Longest Match.",
+   "diagramm": {
+    "typ": "topologie",
+    "knoten": [
+     {"id": "r2", "label": "R2: 192.168.16–23.0/24 (Area 1)", "x": "0.1", "y": "0.3", "art": "router"},
+     {"id": "r3", "label": "R3 ASBR: 10.33.4–7.0/24 (Area 2)", "x": "0.1", "y": "0.8", "art": "router"},
+     {"id": "r1", "label": "R1 ABR", "x": "0.5", "y": "0.5", "art": "router"},
+     {"id": "r4", "label": "R4 (Area 0)", "x": "0.9", "y": "0.5", "art": "router"}
+    ],
+    "kanten": [
+     {"von": "r2", "nach": "r1", "label": "Area 1", "farbe": "39c86a"},
+     {"von": "r3", "nach": "r1", "label": "Area 2", "farbe": "39c86a"},
+     {"von": "r1", "nach": "r4", "label": "Area 0", "farbe": "39c86a"}
+    ],
+    "schritte": [
+     {"von": "r2", "nach": "r1", "farbe": "39c86a", "text": "Acht Typ-1-Einträge für die /24-Netze"},
+     {"von": "r1", "nach": "r4", "farbe": "ffd23f", "text": "area 1 range 192.168.16.0 255.255.248.0 → eine Type-3 /21, R1: Null0-Route"},
+     {"von": "r3", "nach": "r1", "farbe": "ffd23f", "text": "summary-address 10.33.4.0 255.255.252.0 → eine Type-5 /22"},
+     {"von": "r1", "nach": "r4", "farbe": "ffd23f", "text": "R4 sieht O IA 192.168.16.0/21 und O E2 10.33.4.0/22"}
+    ]
+   }
+  },
+  {
+   "text": "Filtern bei OSPF ist besonders, weil alle Router einer Area dieselbe LSDB brauchen. Deshalb filtert man an Grenzen oder nur lokal. Am ABR: 'area X filter-list prefix NAME out' unterdrückt Type-3-LSAs für Präfixe aus Area X in allen anderen Areas, mit 'in' nur in Area X hinein. 'area X range … not-advertise' unterdrückt die Type-3 eines ganzen Bereichs. Am ASBR: 'summary-address … not-advertise' erzeugt gar keine Type-5. Die inbound 'distribute-list' (ACL, 'prefix' oder 'route-map') ändert die LSDB nie, sie hält Routen nur aus der eigenen Routingtabelle fern. Im Lab erzeugt der ABR trotzdem weiter die Type-3-LSA. Auf Transitroutern droht so ein Black Hole. Eine outbound distribute-list wirkt bei OSPF nur am ASBR auf redistributierte Routen.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Werkzeug", "Wo", "LSA", "Wirkung"],
+    "zeilen": [
+     ["area 1 filter-list prefix X out", "ABR", "Type 3", "Präfix fehlt in allen anderen Areas"],
+     ["area 0 filter-list prefix X in", "ABR", "Type 3", "Präfix fehlt nur in Area 0"],
+     ["area 2 range … not-advertise", "ABR", "Type 3", "Bereich wird nicht annonciert"],
+     ["summary-address … not-advertise", "ASBR", "Type 5", "Externe LSA wird nicht erzeugt"],
+     ["distribute-list … in", "jeder Router", "keine", "Nur lokale Routingtabelle gefiltert"]
+    ]
+   }
+  },
+  {
+   "text": "Prefix-Lists prüfen Netz und Präfixlänge und werden als Baum ausgewertet. Eine ACL sieht dagegen nur die Adresse. Ohne ge/le muss die Länge exakt passen. 'ge' setzt die Mindestlänge, 'le' die Höchstlänge, dabei gilt Länge < ge ≤ le ≤ 32. Einträge ohne seq werden in Fünferschritten nummeriert, am Ende steht ein implizites deny. Deshalb endet eine Filterliste meist mit 'permit 0.0.0.0/0 le 32'. Route-Maps arbeiten von oben nach unten, die erste passende Sequenz entscheidet. Mehrere match-Zeilen sind UND, mehrere Werte in einer Zeile sind ODER. Eine Sequenz ohne match passt auf alles, am Ende steht ebenfalls ein implizites deny. 'no route-map NAME' ohne Nummer löscht die ganze Map.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Eintrag", "Passt auf", "Passt nicht auf"],
+    "zeilen": [
+     ["10.0.0.0/16", "nur 10.0.0.0/16", "10.0.1.0/24, 10.1.0.0/16"],
+     ["10.0.0.0/8 ge 24 le 24", "jedes /24 in 10/8", "10.1.0.0/16, 10.1.1.0/25"],
+     ["172.16.0.0/16 ge 17", "172.16.5.0/24", "172.16.0.0/16"],
+     ["0.0.0.0/0 le 32", "alles", "–"],
+     ["0.0.0.0/0 ge 32", "alle /32-Host-Routen", "alles Kürzere"]
+    ]
+   }
+  },
+  {
+   "text": "OSPFv3 übernimmt von OSPFv2 Pakettypen, Kosten, SPF, Areas und DR/BDR, kommuniziert aber über IPv6-Link-Local-Adressen (FF02::5/6). Next Hops sind darum FE80-Adressen. Klassisch: 'ipv6 unicast-routing', 'ipv6 router ospf 1', 'router-id' (Pflicht ohne aktive IPv4-Adresse) und pro Interface 'ipv6 ospf 1 area 0', einen network-Befehl gibt es nicht. Neu: 'router ospfv3 1' mit Address-Families für IPv4 und IPv6, beide über IPv6 transportiert, daher kein Peering mit OSPFv2. Pro Interface: 'ospfv3 1 ipv4|ipv6 area n'. Für IPv4 braucht das Interface eine IPv4-Adresse. Passive Interfaces, default-information, area range und Kosten ('ospfv3 1 ipv6 cost 200') gelten je AF. Jede AF hat eigene Nachbarschaften (Instance-ID 0 für IPv6, 64 für IPv4). Show-Befehle: 'show ospfv3 neighbor/database', 'show ip route ospfv3'.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["LSA", "OSPFv3-Name", "Inhalt / Reichweite"],
+    "zeilen": [
+     ["1", "Router", "Links des Routers, keine Präfixe; Bits B=ABR, E=ASBR"],
+     ["2", "Network", "Transitnetz vom DR, keine Präfixe"],
+     ["3", "Inter-Area-Prefix", "Präfix/Länge aus anderer Area (vom ABR)"],
+     ["4", "Inter-Area-Router", "Ort eines ASBR in anderer Area"],
+     ["8", "Link", "Link-Local-Adresse + Präfixe, nur auf dem Link"],
+     ["9", "Intra-Area-Prefix", "Präfixe eines Routers (0x2001) oder Transitnetzes (0x2002)"]
+    ]
+   }
+  },
+  {
+   "text": "Migration und Optimierung im OSPFv3-Lab: Gibt man auf einem Router mit 'ipv6 router ospf 1' den Befehl 'router ospfv3 1' ein, übernimmt IOS die Konfiguration und legt automatisch 'address-family ipv6 unicast' an. Danach ersetzt man die Interface-Befehle durch 'ospfv3 1 ipv6 area …' und aktiviert die IPv4-AF mit 'address-family ipv4 unicast' plus 'ospfv3 1 ipv4 area …'. Optimierung: 'area 1 range 2001:DB8:0:220::/60' fasst 16 /64-Netze zusammen (OI-Eintrag), 'summary-prefix' fasst externe IPv6-Routen am ASBR zusammen, 'default-information originate' wird je AF gesetzt (O*E2 0.0.0.0/0 bzw. OE2 ::/0). Kosten je AF: Mit 'ospfv3 1 ipv6 cost 200' steigt die IPv6-Metrik von R4 zu R2 auf 10 + 200 + 1 = 211, IPv4 bleibt bei 75.",
+   "diagramm": {
+    "typ": "ablauf",
+    "stufen": ["ipv6 unicast-routing + ipv6 router ospf 1 + router-id", "Interfaces: ipv6 ospf 1 area x (Loopback: ipv6 ospf network point-to-point)", "router ospfv3 1 → address-family ipv6 unicast wird automatisch angelegt", "Interfaces umstellen: ospfv3 1 ipv6 area x", "address-family ipv4 unicast + ospfv3 1 ipv4 area x", "Prüfen: show ospfv3 neighbor, show ip route ospfv3, show ospfv3 database", "Optimieren je AF: area range, summary-prefix, default-information originate, ospfv3 1 ipv6 cost"]
+   }
+  }
+ ]
+}
+]

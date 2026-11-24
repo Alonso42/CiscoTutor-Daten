@@ -1,0 +1,146 @@
+[
+{
+ "id": "stp",
+ "titel": "Spanning Tree: STP, RSTP, MST und Schutzfunktionen",
+ "topics": ["ENCOR-3.1.c"],
+ "seiten": [
+  {
+   "text": "Redundante Links machen das Netz ausfallsicher, erzeugen aber Layer-2-Schleifen. Ethernet hat kein TTL: Broadcasts kreisen endlos (Broadcast-Sturm), Hosts bekommen Frames mehrfach, und die MAC-Tabelle springt, weil dieselbe Quell-MAC auf mehreren Ports auftaucht. STP lässt pro Segment genau einen aktiven Weg offen und blockiert den Rest. Fällt ein aktiver Link aus, schaltet STP den Ersatzweg frei.",
+   "diagramm": {
+    "typ": "topologie",
+    "knoten": [
+     {"id": "pc", "label": "Host X", "x": "0.1", "y": "0.5", "art": "pc"},
+     {"id": "a", "label": "Switch A", "x": "0.4", "y": "0.25", "art": "switch"},
+     {"id": "b", "label": "Switch B", "x": "0.4", "y": "0.75", "art": "switch"},
+     {"id": "srv", "label": "Host Y", "x": "0.85", "y": "0.5", "art": "server"}
+    ],
+    "kanten": [
+     {"von": "pc", "nach": "a", "label": "", "farbe": "39c86a"},
+     {"von": "a", "nach": "b", "label": "Link 1", "farbe": "39c86a"},
+     {"von": "a", "nach": "b", "label": "Link 2", "farbe": "ff6b6b"},
+     {"von": "b", "nach": "srv", "label": "", "farbe": "39c86a"}
+    ],
+    "schritte": [
+     {"von": "pc", "nach": "a", "farbe": "ffd23f", "text": "Host X sendet einen Broadcast"},
+     {"von": "a", "nach": "b", "farbe": "ff6b6b", "text": "A flutet ihn über beide Links zu B"},
+     {"von": "b", "nach": "a", "farbe": "ff6b6b", "text": "B flutet jede Kopie zurück – ohne STP endlos"},
+     {"von": "a", "nach": "b", "farbe": "39c86a", "text": "Mit STP blockiert ein Port, nur ein Weg bleibt aktiv"}
+    ]
+   }
+  },
+  {
+   "text": "Die Wahl läuft in drei Schritten. 1) Root Bridge: niedrigste Bridge ID (Priorität 0–61440 in 4096er-Schritten, Default 32768, plus VLAN als Extended System ID, dann MAC). 2) Root Port: auf jedem anderen Switch der Port mit den niedrigsten gesamten Kosten zur Root. 3) Designated Port: pro Segment der Port, der die beste BPDU sendet. Bei Gleichstand gilt: niedrigere Kosten, dann niedrigere Sender-BID, dann niedrigere Sender-Port-ID. Ports, die weder Root noch Designated sind, blockieren.",
+   "diagramm": {
+    "typ": "topologie",
+    "knoten": [
+     {"id": "sw1", "label": "SW1 Root (Prio 24576)", "x": "0.5", "y": "0.12", "art": "switch"},
+     {"id": "sw2", "label": "SW2 (32768, MAC ..01)", "x": "0.15", "y": "0.5", "art": "switch"},
+     {"id": "sw3", "label": "SW3 (32768, MAC ..02)", "x": "0.85", "y": "0.5", "art": "switch"},
+     {"id": "sw4", "label": "SW4", "x": "0.5", "y": "0.88", "art": "switch"}
+    ],
+    "kanten": [
+     {"von": "sw1", "nach": "sw2", "label": "Kosten 4", "farbe": "39c86a"},
+     {"von": "sw1", "nach": "sw3", "label": "Kosten 4", "farbe": "39c86a"},
+     {"von": "sw2", "nach": "sw4", "label": "Kosten 4", "farbe": "39c86a"},
+     {"von": "sw3", "nach": "sw4", "label": "blockiert auf SW4", "farbe": "ff6b6b"}
+    ],
+    "schritte": [
+     {"von": "sw1", "nach": "sw2", "farbe": "ffd23f", "text": "SW1 hat die niedrigste BID und wird Root"},
+     {"von": "sw2", "nach": "sw1", "farbe": "4a9cff", "text": "SW2 und SW3: Root Port direkt zu SW1 (Kosten 4)"},
+     {"von": "sw4", "nach": "sw2", "farbe": "4a9cff", "text": "SW4: beide Wege kosten 8 – SW2 hat die bessere Sender-BID, also Root Port Richtung SW2"},
+     {"von": "sw3", "nach": "sw4", "farbe": "ff6b6b", "text": "Segment SW3–SW4: SW3 (4) schlägt SW4 (8) – SW4s Port blockiert"}
+    ]
+   }
+  },
+  {
+   "text": "Pfadkosten hängen von der Bandbreite ab und werden entlang des Weges addiert: Die empfangene Root Path Cost plus die Kosten des eigenen Ports. Cisco kennt die kurze (802.1D-1998) und die lange Methode (aus 802.1t, Teil von 802.1D-2004, Befehl 'spanning-tree pathcost method long'); auf aktuellen Catalyst-9000-Switches ist lang Default, MST rechnet immer lang. Alle Switches sollten dieselbe Methode nutzen. Beeinflussen lässt sich der Weg mit 'spanning-tree vlan X cost' auf dem eigenen Port. Die Port-Priorität ('spanning-tree vlan X port-priority') wirkt dagegen beim Nachbarn, weil sie als Sender-Port-ID in den BPDUs steht.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Bandbreite", "Kosten kurz (1998)", "Kosten lang (802.1t/2004)"],
+    "zeilen": [
+     ["10 Mbit/s", "100", "2.000.000"],
+     ["100 Mbit/s", "19", "200.000"],
+     ["1 Gbit/s", "4", "20.000"],
+     ["10 Gbit/s", "2", "2.000"]
+    ]
+   }
+  },
+  {
+   "text": "Klassisches STP (802.1D) ist langsam. Ein Port durchläuft Blocking, Listening (15 s) und Learning (15 s), bevor er weiterleitet. Bei direktem Ausfall dauert das rund 30 s, bei indirektem Ausfall kommen 20 s Max Age dazu (rund 50 s). Timer (Hello 2 s, Forward Delay 15 s, Max Age 20 s) gibt die Root vor. RSTP (802.1w) fasst Blocking und Listening zu Discarding zusammen. Es kennt die zusätzlichen Rollen Alternate und Backup und konvergiert per Proposal/Agreement auf Point-to-Point-Links in unter einer Sekunde.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["802.1D-State", "RSTP-State", "BPDUs", "MAC lernen", "Daten"],
+    "zeilen": [
+     ["Disabled", "Discarding", "nein", "nein", "nein"],
+     ["Blocking", "Discarding", "empfangen", "nein", "nein"],
+     ["Listening", "Discarding", "senden + empfangen", "nein", "nein"],
+     ["Learning", "Learning", "senden + empfangen", "ja", "nein"],
+     ["Forwarding", "Forwarding", "senden + empfangen", "ja", "ja"]
+    ]
+   }
+  },
+  {
+   "text": "So schnell wird RSTP: Jeder Switch sendet im Hello-Takt eigene BPDUs, nach 3 verpassten Hellos (6 s) gilt der Nachbar als weg. Ein neuer Designated Port auf einem Point-to-Point-Link schickt eine Proposal. Der Nachbar blockiert dann seine eigenen Nonedge-Designated-Ports (Sync) und antwortet mit Agreement. Danach darf der Port sofort forwarden, und die Welle läuft so Richtung Rand weiter. Einen Topology Change gibt es nur, wenn ein Nonedge-Port in forwarding geht. Der auslösende Switch flutet ihn selbst, Edge-Ports lösen nie einen TC aus.",
+   "diagramm": {
+    "typ": "ablauf",
+    "stufen": [
+     "Upstream-Port wird designated und sendet eine Proposal",
+     "Downstream-Switch blockiert seine Nonedge-Designated-Ports (Sync)",
+     "Downstream-Switch sendet Agreement auf seinem Root Port",
+     "Upstream-Port geht sofort in Forwarding",
+     "Downstream-Switch wiederholt Proposal/Agreement auf seinen Ports Richtung Rand"
+    ]
+   }
+  },
+  {
+   "text": "Welche Variante? CST hat einen Baum für alle VLANs, braucht wenig CPU, verteilt aber keine Last. PVST+ und Rapid PVST+ bauen einen Baum pro VLAN: Lastverteilung wird so möglich, verbraucht aber viel CPU bei vielen VLANs. MST (802.1s) fasst VLANs mit gleichem Pfadbedarf zu wenigen Instanzen zusammen und rechnet mit RSTP-Geschwindigkeit. Der Modus wird global gesetzt: 'spanning-tree mode pvst | rapid-pvst | mst' (Default auf Catalyst 9000 mit IOS-XE: Rapid PVST+). 'show spanning-tree' zeigt ihn als protocol ieee, rstp oder mstp.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Variante", "Standard", "Konvergenz", "Instanzen"],
+    "zeilen": [
+     ["STP / CST", "802.1D", "langsam", "eine für alle VLANs"],
+     ["PVST+", "Cisco", "langsam", "eine pro VLAN"],
+     ["RSTP", "802.1w", "schnell", "eine"],
+     ["Rapid PVST+", "Cisco", "schnell", "eine pro VLAN"],
+     ["MST", "802.1s", "schnell", "eine pro VLAN-Gruppe"]
+    ]
+   }
+  },
+  {
+   "text": "MST-Region: Alle Switches brauchen denselben Namen (Groß-/Kleinschreibung zählt), dieselbe Revision und dieselbe VLAN-Instanz-Zuordnung. In der BPDU steht nur ein Digest der Zuordnung, bei Abweichung liegt dort eine Regionsgrenze. Instanz 0 (IST) läuft auf allen Ports und nimmt alle nicht zugeordneten VLANs auf. Nach außen wirkt die Region wie eine einzige Bridge. Best Practice: Trunks mit allen VLANs, kein Pruning, keine Nutz-VLANs in der IST. Erst mappen, dann 'spanning-tree mode mst'.",
+   "diagramm": {
+    "typ": "topologie",
+    "knoten": [
+     {"id": "sw1", "label": "SW1 Root MST1", "x": "0.2", "y": "0.15", "art": "switch"},
+     {"id": "sw2", "label": "SW2 Root MST2", "x": "0.8", "y": "0.15", "art": "switch"},
+     {"id": "sw3", "label": "SW3 Access", "x": "0.5", "y": "0.8", "art": "switch"}
+    ],
+    "kanten": [
+     {"von": "sw1", "nach": "sw2", "label": "Trunk", "farbe": "39c86a"},
+     {"von": "sw3", "nach": "sw1", "label": "MST1 FWD / MST2 BLK", "farbe": "4a9cff"},
+     {"von": "sw3", "nach": "sw2", "label": "MST2 FWD / MST1 BLK", "farbe": "b08aff"}
+    ],
+    "schritte": [
+     {"von": "sw1", "nach": "sw2", "farbe": "ffd23f", "text": "Region CCNP, Revision 1: VLAN 2–3 in MST1, VLAN 4–5 in MST2, Rest in MST0"},
+     {"von": "sw3", "nach": "sw1", "farbe": "4a9cff", "text": "MST1 (VLAN 2–3) nutzt den Uplink zu SW1"},
+     {"von": "sw3", "nach": "sw2", "farbe": "b08aff", "text": "MST2 (VLAN 4–5) nutzt den Uplink zu SW2 – Last verteilt mit nur 3 Instanzen"}
+    ]
+   }
+  },
+  {
+   "text": "Schutzfunktionen sichern die geplante Topologie ab. PortFast lässt Host-Ports sofort forwarden. BPDU Guard schaltet einen Port ab, sobald dort eine BPDU ankommt. Root Guard verhindert, dass hinter einem Port eine neue Root entsteht (gehört auf Distribution-Ports Richtung Access, nie auf Root Ports). Loop Guard verhindert, dass ein Root- oder Alternate-Port bei ausbleibenden BPDUs (z. B. unidirektionaler Link) in Forwarding geht. Root- und loop-inconsistente Ports erholen sich selbst, err-disabled braucht shut/no shut oder errdisable recovery.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Funktion", "Befehl (Interface / global)", "Auslöser", "Reaktion"],
+    "zeilen": [
+     ["PortFast", "spanning-tree portfast / spanning-tree portfast default", "Link up an Host-Port", "sofort Forwarding"],
+     ["BPDU Guard", "spanning-tree bpduguard enable / spanning-tree portfast bpduguard default", "beliebige BPDU", "err-disabled"],
+     ["Root Guard", "spanning-tree guard root", "superiore BPDU", "root-inconsistent"],
+     ["Loop Guard", "spanning-tree guard loop / spanning-tree loopguard default", "BPDUs bleiben aus", "loop-inconsistent"],
+     ["BPDU Filter", "spanning-tree bpdufilter enable / spanning-tree portfast bpdufilter default", "– (unterdrückt BPDUs)", "Interface: kein STP am Port, Schleifengefahr"]
+    ]
+   }
+  }
+ ]
+}
+]

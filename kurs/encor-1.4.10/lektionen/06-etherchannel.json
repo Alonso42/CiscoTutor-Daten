@@ -1,0 +1,113 @@
+[
+{
+ "id": "etherchannel",
+ "titel": "EtherChannel (LACP, PAgP, statisch) und Policy-Based Routing",
+ "topics": ["ENCOR-3.1.b", "ENCOR-3.2.d"],
+ "seiten": [
+  {
+   "text": "Zwei parallele Links zwischen zwei Switches bringen ohne Bündelung nichts: STP sieht eine Schleife und blockiert einen Link. EtherChannel fasst 2–8 gleichartige Ports (bei LACP bis 16, davon 8 aktiv) zu einem logischen Port-channel zusammen. STP sieht nur noch diesen einen Port, alle Member leiten weiter. Fällt ein Member aus, bleibt der Port-channel up, es gibt keine STP-Neuberechnung, nur weniger Bandbreite. Ein EtherChannel verbindet immer genau zwei Geräte.",
+   "diagramm": {
+    "typ": "topologie",
+    "knoten": [
+     {"id": "sw1", "label": "SW1", "x": "0.2", "y": "0.5", "art": "switch"},
+     {"id": "sw2", "label": "SW2", "x": "0.8", "y": "0.5", "art": "switch"}
+    ],
+    "kanten": [
+     {"von": "sw1", "nach": "sw2", "label": "Po1 = Gi1/0/1 + Gi1/0/2", "farbe": "39c86a"}
+    ],
+    "schritte": [
+     {"von": "sw1", "nach": "sw2", "farbe": "ffd23f", "text": "Ohne EC: STP blockiert einen der beiden Links"},
+     {"von": "sw1", "nach": "sw2", "farbe": "39c86a", "text": "Mit EC: ein logischer Port, beide Links aktiv"},
+     {"von": "sw2", "nach": "sw1", "farbe": "ff6b6b", "text": "Ein Member fällt aus: Po1 bleibt up, kein STP-Ereignis"}
+    ]
+   }
+  },
+  {
+   "text": "Drei Wege zum Bündel: LACP (IEEE 802.3ad/802.1AX, herstellerübergreifend), PAgP (Cisco-proprietär) und statisch mit mode on (keine Kontrollpakete, keine Konsistenzprüfung). Mindestens eine Seite muss aktiv werben (active bzw. desirable). Zwei nur antwortende Seiten (passive/passive, auto/auto) bilden nie ein Bündel. LACP und PAgP verstehen sich nicht, und on funktioniert nur mit on.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["SW1 \\ SW2", "on", "active", "passive", "desirable", "auto"],
+    "zeilen": [
+     ["on", "Bündel", "–", "–", "–", "–"],
+     ["active", "–", "Bündel", "Bündel", "–", "–"],
+     ["passive", "–", "Bündel", "–", "–", "–"],
+     ["desirable", "–", "–", "–", "Bündel", "Bündel"],
+     ["auto", "–", "–", "–", "Bündel", "–"]
+    ]
+   }
+  },
+  {
+   "text": "LACP im Detail: Der Switch mit der niedrigeren System-ID (System Priority, Default 32768, dann MAC) entscheidet, welche Ports aktiv werden – und zwar nach seinen eigenen Port Priorities (niedriger = besser, dann Portnummer). Ports über dem Limit sind Hot-Standby (Flag H) und springen bei einem Ausfall ein. PAgP kann zusätzlich silent (stiller Partner wie ein Analyzer) oder non-silent (Bündel erst nach empfangenen Paketen, Schutz gegen unidirektionale Links) arbeiten.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Befehl", "Modus", "Wirkung"],
+    "zeilen": [
+     ["channel-group 1 mode active", "Interface", "Port in LACP-Gruppe 1, sendet LACPDUs"],
+     ["lacp system-priority 4096", "Global", "Dieser Switch entscheidet über aktive Ports"],
+     ["lacp port-priority 100", "Interface", "Port wird bevorzugt aktiv"],
+     ["lacp max-bundle 4", "Port-channel", "Höchstens 4 aktive Member, Rest Hot-Standby"],
+     ["channel-group 3 mode desirable non-silent", "Interface", "PAgP, bündelt erst bei bidirektionalem Verkehr"]
+    ]
+   }
+  },
+  {
+   "text": "Konsistenzregeln: Alle Member brauchen gleiche Speed, gleichen Duplex, gleichen Switchport-Modus, gleiches Access-VLAN bzw. gleiche Native VLAN, Allowed VLANs und Encapsulation, und alle müssen auf demselben Layer arbeiten. Unterschiedliche STP-Kosten oder Beschreibungen stören nicht. Konfiguriere immer am Port-channel, denn das geht auf alle Member. Eine Änderung an nur einem Member macht ihn inkonsistent, und er wird suspendiert (s). Bei einem Layer-3-EC bekommen die Member 'no switchport', die IP-Adresse liegt auf dem Port-channel (Flag R).",
+   "diagramm": {
+    "typ": "ablauf",
+    "stufen": ["Ports wählen (2, 4 oder 8, gleicher Typ)", "interface range … → identische Konfiguration", "channel-group <n> mode <active|passive|desirable|auto|on>", "interface port-channel <n> → VLANs/Trunk bzw. no switchport + IP", "show etherchannel summary → Po (SU/RU), Member (P)"]
+   }
+  },
+  {
+   "text": "Lastverteilung: Der Switch berechnet aus gewählten Header-Feldern einen Hash, und der Hash bestimmt den Link. Ein Flow bleibt deshalb immer auf demselben Member, eine einzelne Session wird nie schneller als ein Link. Die Methode gilt global für alle ECs (port-channel load-balance …; Default plattformabhängig, auf Catalyst 9300 src-mac). Bei 2/4/8 Links genügen 1/2/3 Bits, mit einer Zweierpotenz verteilt es sich gleichmäßig. Ungleichgewicht entsteht, wenn die Eingabe wenig variiert, z. B. dst-mac und fast alles geht an die Gateway-MAC. Nutzen mehrere Stufen denselben Hash, droht Polarisation.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Quelle", "Ziel", "letzte 2 Bits XOR", "Link (4er-Bündel)"],
+    "zeilen": [
+     ["…01 (.5)", "…10 (.14)", "11", "3"],
+     ["…00 (.4)", "…00 (.8)", "00", "0"],
+     ["…11 (.3)", "…01 (.1)", "10", "2"],
+     ["…10 (.6)", "…11 (.7)", "01", "1"]
+    ]
+   }
+  },
+  {
+   "text": "Troubleshooting mit show etherchannel summary: Po(SD) heißt, das Bündel ist nicht gebildet. Member-Flags: P = gebündelt, s = suspendiert (Inkonsistenz oder Partner ohne LACP), I = stand-alone (kein passender Verhandlungspartner), H = Hot-Standby, D = down. Ein '-' in der Protocol-Spalte bedeutet mode on. Im Lab bündelte SW1 statisch (Po2 SU, '-') und SW2 suspendierte seine LACP-Ports mit der Meldung 'LACP currently not enabled on the remote port'. Ist eine Seite auf on und die andere bündelt gar nicht, setzt der standardmäßig aktive EtherChannel Guard die Ports in err-disable (channel-misconfig).",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Ausgabe", "Bedeutung", "Nächster Schritt"],
+    "zeilen": [
+     ["Po2(SD) LACP, Et0/2(s) Et0/3(s)", "Partner spricht kein LACP", "Modus der Gegenseite prüfen (on?)"],
+     ["Po1(SU), Et0/0(s)", "Member inkonsistent oder Partnerport ohne LACP", "show run int beider Seiten vergleichen"],
+     ["Po1(SD), alle (I)", "Keine Aushandlung (passive/passive, Protokoll-Mismatch)", "Eine Seite active/desirable"],
+     ["err-disable channel-misconfig", "EtherChannel Guard: Peer bündelt nicht", "Beide Seiten korrigieren, shut/no shut"]
+    ]
+   }
+  },
+  {
+   "text": "Policy-Based Routing: Normales Routing entscheidet nur nach dem Ziel. PBR prüft eingehende Pakete (ip policy route-map am Eingangs-Interface) oder vom Router selbst erzeugte Pakete (ip local policy route-map) gegen eine Route-Map. 'match ip address' wählt per ACL aus, z. B. nach Quellnetz. 'set ip next-hop' überschreibt die Routing-Tabelle, 'set ip default next-hop' greift nur ohne explizite Route. Was nicht passt (oder auf deny trifft), wird normal geroutet. Typisch: Quellnetz A über ISP1, Quellnetz B über ISP2.",
+   "diagramm": {
+    "typ": "topologie",
+    "knoten": [
+     {"id": "lan1", "label": "192.168.1.0/24", "x": "0.08", "y": "0.25", "art": "pc"},
+     {"id": "lan2", "label": "192.168.2.0/24", "x": "0.08", "y": "0.75", "art": "pc"},
+     {"id": "r1", "label": "R1 (ip policy am LAN)", "x": "0.45", "y": "0.5", "art": "router"},
+     {"id": "isp1", "label": "ISP1", "x": "0.88", "y": "0.2", "art": "cloud"},
+     {"id": "isp2", "label": "ISP2", "x": "0.88", "y": "0.8", "art": "cloud"}
+    ],
+    "kanten": [
+     {"von": "lan1", "nach": "r1", "label": "LAN", "farbe": "39c86a"},
+     {"von": "lan2", "nach": "r1", "label": "LAN", "farbe": "b08aff"},
+     {"von": "r1", "nach": "isp1", "label": "Default-Route", "farbe": "4a9cff"},
+     {"von": "r1", "nach": "isp2", "label": "PBR next-hop", "farbe": "ff6b6b"}
+    ],
+    "schritte": [
+     {"von": "lan1", "nach": "r1", "farbe": "ffd23f", "text": "Paket von .1.x passt nicht auf die Route-Map"},
+     {"von": "r1", "nach": "isp1", "farbe": "ffd23f", "text": "Normales Routing nach Ziel → ISP1"},
+     {"von": "lan2", "nach": "r1", "farbe": "ff6b6b", "text": "Paket von .2.x passt (match ip address ACL)"},
+     {"von": "r1", "nach": "isp2", "farbe": "ff6b6b", "text": "set ip next-hop → ISP2, Routing-Tabelle übergangen"}
+    ]
+   }
+  }
+ ]
+}
+]

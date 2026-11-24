@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Site-to-Site-VPN: verschlüsselt über das unsichere Netz, Klartext im Unternehmen</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<ellipse cx="330" cy="225" rx="150" ry="120" fill="#eeeeee" stroke="#999" stroke-dasharray="6 4"/>
+<text x="330" y="125" font-size="14" fill="#222" text-anchor="middle">Internet oder MPLS-WAN</text>
+<text x="330" y="143" font-size="12" fill="#222" text-anchor="middle">(nicht vertrauenswürdig)</text>
+<rect x="520" y="60" width="260" height="330" fill="none" stroke="#39c86a" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="650" y="380" font-size="14" fill="#222" text-anchor="middle">Unternehmensnetz</text>
+<g stroke="#4a9cff" stroke-width="10" stroke-linecap="round" opacity="0.55">
+<line x1="110" y1="140" x2="560" y2="225"/>
+<line x1="110" y1="320" x2="560" y2="225"/>
+</g>
+<g font-size="13" fill="#222">
+<text x="230" y="160">IPsec-Tunnel (ESP)</text>
+<text x="230" y="300">IPsec-Tunnel (ESP)</text>
+</g>
+<line x1="582" y1="225" x2="690" y2="225" stroke="#ffd23f" stroke-width="4"/>
+<text x="636" y="212" font-size="12" fill="#222" text-anchor="middle">Klartext</text>
+<g fill="#ffffff" stroke="#222" stroke-width="2">
+<circle cx="110" cy="140" r="22"/><circle cx="110" cy="320" r="22"/><circle cx="560" cy="225" r="24"/>
+<rect x="690" y="195" width="60" height="60" fill="#b08aff"/>
+</g>
+<g font-size="14" fill="#222" text-anchor="middle" dominant-baseline="central">
+<text x="110" y="140">R</text><text x="110" y="320">R</text><text x="560" y="225">R</text>
+<text x="720" y="225" fill="#ffffff">SRV</text>
+</g>
+<g font-size="13" fill="#222" text-anchor="middle">
+<text x="110" y="185">Remote Site 1</text>
+<text x="110" y="365">Remote Site 2</text>
+<text x="560" y="270">VPN-Gateway</text>
+<text x="720" y="280">sensible Ressourcen</text>
+</g>
+<text x="400" y="425" font-size="13" fill="#222" text-anchor="middle">Peers (Standorte) authentisieren sich gegenseitig; der Tunnel schützt Vertraulichkeit, Integrität und Herkunft.</text>
+</svg>

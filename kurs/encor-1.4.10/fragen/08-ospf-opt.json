@@ -1,0 +1,2251 @@
+[
+    {
+        "id":  "slg-oo-001",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "All routers use \u0027auto-cost reference-bandwidth 10000\u0027. Which OSPF cost does a FastEthernet (100 Mbps) interface receive?",
+        "optionen":  [
+                         "100",
+                         "1",
+                         "1000",
+                         "10"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Referenzbandbreite wird in Mbit/s angegeben: 10000 Mbit/s geteilt durch 100 Mbit/s ergibt 100. Mit dem Default von 100 Mbit/s hätte FastEthernet nur Kosten 1."
+    },
+    {
+        "id":  "slg-oo-002",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The reference bandwidth is set to 100000 on all routers. Which OSPF cost does a GigabitEthernet interface get?",
+        "optionen":  [
+                         "1",
+                         "10",
+                         "100",
+                         "1000"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "100000 Mbit/s (100 Gbit/s) geteilt durch 1000 Mbit/s ergibt 100. Ein 10-Gbit/s-Link hätte dann Kosten 10 und ein 100-Gbit/s-Link Kosten 1."
+    },
+    {
+        "id":  "slg-oo-003",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "With \u0027auto-cost reference-bandwidth 100000\u0027, a 40-Gbps interface receives an OSPF cost of ___.",
+        "optionen":  [
+                         "3",
+                         "2.5",
+                         "1",
+                         "2"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "100000/40000 ergibt 2,5. OSPF-Kosten sind ganze Zahlen, der Nachkommaanteil wird abgeschnitten, genauso wie beim T1 (100/1,544 = 64,77 wird 64). Daraus ergibt sich 2."
+    },
+    {
+        "id":  "slg-oo-004",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The reference bandwidth is raised to 100 Gbps (\u0027auto-cost reference-bandwidth 100000\u0027). Which OSPF cost does a 64-kbps serial link receive?",
+        "optionen":  [
+                         "65535",
+                         "1562",
+                         "1562500",
+                         "15625"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Rechnerisch wären es 100.000.000.000 / 64.000 = 1.562.500. Die Kosten eines Links sind aber ein 16-Bit-Wert und werden bei 65535 gekappt. Alle sehr langsamen Links sind damit gleich teuer und lassen sich nicht mehr unterscheiden."
+    },
+    {
+        "id":  "slg-oo-005",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A campus uses only 1-Gbps and 10-Gbps links, and OSPF runs with the default reference bandwidth. What is the consequence?",
+        "optionen":  [
+                         "All links have cost 1, so OSPF counts hops and cannot prefer the faster links",
+                         "The adjacencies on the 10-Gbps links fail because the cost is below 1",
+                         "OSPF uses the interface delay as a tie-breaker between the links",
+                         "The 10-Gbps links get cost 10 and the 1-Gbps links get cost 100"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit 100 Mbit/s Referenz ergibt jede Bandbreite ab 100 Mbit/s Kosten 1 (kleiner als 1 geht nicht). OSPF wählt dann den Pfad mit den wenigsten Links, auch wenn ein Pfad über 10-Gbit/s-Links schneller wäre. Abhilfe: Referenzbandbreite auf allen Routern erhöhen."
+    },
+    {
+        "id":  "slg-oo-006",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The OSPF cost of a single link is a 16-bit value. The highest cost that \u0027ip ospf cost\u0027 accepts is ___.",
+        "optionen":  [
+                         "65535",
+                         "255",
+                         "16777215",
+                         "4294967295"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Link-Kosten in der Router-LSA haben 16 Bit, daher reicht \u0027ip ospf cost\u0027 von 1 bis 65535. Die Summe der Kosten eines ganzen Pfads darf größer werden. 16777215 ist das 24-Bit-Maximum der Metrik in Summary- und External-LSAs."
+    },
+    {
+        "id":  "slg-oo-007",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer configures \u0027auto-cost reference-bandwidth 10000\u0027 on router DIST only. The other routers keep the default. What is the result?",
+        "optionen":  [
+                         "The neighbors adopt the new reference bandwidth from DIST\u0027s hello packets",
+                         "Adjacencies stay up, but path costs become inconsistent between routers",
+                         "DIST loses all adjacencies until the reference bandwidth matches on every router",
+                         "DIST rejects LSAs from routers that use another reference bandwidth"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Referenzbandbreite wird nicht in Hellos geprüft. Sie ändert nur die Kosten, die DIST in seiner eigenen Router-LSA annonciert. Router mit unterschiedlicher Referenz bewerten Links aber unterschiedlich, das führt zu asymmetrischen oder suboptimalen Pfaden. IOS warnt deshalb, die Referenz auf allen Routern gleich zu setzen."
+    },
+    {
+        "id":  "slg-oo-008",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Interface Ethernet0/0 has \u0027ip ospf cost 500\u0027. Later the engineer changes the reference bandwidth to 10000. Which cost does Ethernet0/0 use now?",
+        "optionen":  [
+                         "1000, because the new reference bandwidth recalculates all costs",
+                         "1500, because both values are added",
+                         "500, because \u0027ip ospf cost\u0027 overrides the automatic calculation",
+                         "10, because the old reference bandwidth stays in effect for configured interfaces"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027ip ospf cost\u0027 setzt die Kosten fest und hat Vorrang vor der Berechnung aus Referenz- und Interface-Bandbreite. Nur Interfaces ohne manuellen Wert erhalten neue Kosten, wenn sich die Referenz ändert."
+    },
+    {
+        "id":  "slg-oo-009",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "All routers use \u0027auto-cost reference-bandwidth 10000\u0027. On a 10-Mbps Ethernet interface, the engineer enters \u0027bandwidth 100000\u0027. Which OSPF cost results?",
+        "optionen":  [
+                         "1",
+                         "100",
+                         "10",
+                         "1000"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Befehl \u0027bandwidth\u0027 wird in kbit/s angegeben: 100000 kbit/s sind 100 Mbit/s. 10000 Mbit/s / 100 Mbit/s ergibt 100. Die reale Geschwindigkeit des Ports ändert sich dadurch nicht, nur der Wert, mit dem die Protokolle rechnen."
+    },
+    {
+        "id":  "slg-oo-010",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "To influence OSPF path selection on one link, why might an engineer prefer \u0027ip ospf cost\u0027 over changing the \u0027bandwidth\u0027 value?",
+        "optionen":  [
+                         "\u0027bandwidth\u0027 is ignored by OSPF when the reference bandwidth was changed",
+                         "\u0027bandwidth\u0027 changes the physical speed of the port and can cause errors",
+                         "\u0027bandwidth\u0027 also affects EIGRP and QoS, \u0027ip ospf cost\u0027 only OSPF",
+                         "\u0027ip ospf cost\u0027 is flooded to all routers, while \u0027bandwidth\u0027 stays local"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die bandwidth-Angabe ist nur ein Rechenwert, aber viele Funktionen lesen sie, etwa die EIGRP-Metrik oder QoS-Policies mit Prozentangaben. \u0027ip ospf cost\u0027 ändert gezielt nur die OSPF-Kosten. Beide Varianten wirken nur auf die Kosten, die der Router in seiner eigenen LSA annonciert."
+    },
+    {
+        "id":  "slg-oo-011",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 and R2 are connected by one link. R1\u0027s interface has OSPF cost 10, R2\u0027s interface has cost 100. R2\u0027s LAN interface has cost 1. Which cost does R1 show for R2\u0027s LAN?",
+        "optionen":  [
+                         "111",
+                         "110",
+                         "11",
+                         "101"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "OSPF zählt die Kosten der ausgehenden Interfaces entlang des Pfads: R1 sendet über sein Interface mit Kosten 10, dazu kommen die Kosten des Ziel-LAN-Interfaces auf R2 (1). R2s Interfacekosten zum Link (100) zählen nur für Verkehr in Gegenrichtung, die Kosten können also asymmetrisch sein."
+    },
+    {
+        "id":  "slg-oo-012",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "All routers in an area have identical link-state databases. Why can their shortest-path trees still differ?",
+        "optionen":  [
+                         "The DR calculates the tree and sends a copy to each router",
+                         "LSAs are flooded with different costs to different routers",
+                         "Each router uses a different SPF algorithm version",
+                         "Each router runs SPF with itself as the root of the tree"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Alle Router haben dieselbe \u0027Landkarte\u0027, aber jeder setzt sich selbst als Wurzel und berechnet von dort die kürzesten Wege. Daher hat jeder Router seinen eigenen SPF-Baum und eigene Next-Hops."
+    },
+    {
+        "id":  "slg-oo-013",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After SPF, R1 has a best path to 10.9.0.0/16 and a slightly more expensive alternative. How does OSPF treat the alternative compared to EIGRP?",
+        "optionen":  [
+                         "It is not kept as a backup; SPF runs again after a failure",
+                         "OSPF stores it as a feasible successor and switches without recalculation",
+                         "OSPF load-balances unequally between both paths by default",
+                         "OSPF installs it in the routing table with a higher administrative distance"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "SPF behält nur die kürzesten Pfade, schlechtere werden aus dem Baum entfernt. EIGRP kann dagegen einen Feasible Successor als sofort nutzbaren Backup halten. Bei OSPF löst ein Ausfall eine neue SPF-Berechnung aus."
+    },
+    {
+        "id":  "slg-oo-014",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Path A uses three 1-Gbps links, path B one 100-Mbps link to the same destination (destination interface cost ignored). Which path does OSPF prefer with the default reference bandwidth, and which with \u0027auto-cost reference-bandwidth 10000\u0027?",
+        "optionen":  [
+                         "Default: path B (1 vs. 3); with 10000: path B (10 vs. 30)",
+                         "Default: path A (3 vs. 10); with 10000: path A (30 vs. 100)",
+                         "Both cases: ECMP over A and B, because the bandwidth is not considered",
+                         "Default: path B (1 vs. 3); with 10000: path A (30 vs. 100)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Mit Default-Referenz kostet jeder Link ab 100 Mbit/s 1: A = 3, B = 1, OSPF nimmt den langsamen Pfad B. Mit 10 Gbit/s Referenz kostet ein 1-Gbit/s-Link 10 und der 100-Mbit/s-Link 100: A = 30, B = 100, jetzt gewinnt der schnelle Pfad A."
+    },
+    {
+        "id":  "slg-oo-015",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the tuning lab, DIST reaches GW\u0027s Loopback0 (192.168.3.3) over two 10-Mbps Ethernet segments. All routers now use \u0027auto-cost reference-bandwidth 10000\u0027. Which metric does DIST show?",
+        "optionen":  [
+                         "21",
+                         "2010",
+                         "2001",
+                         "3000"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Jedes 10-Mbit/s-Segment kostet jetzt 10000/10 = 1000. Dazu kommt das Loopback von GW mit Kosten 1 (seine Bandbreite liegt weit über 10 Gbit/s). Vorher waren es 10 + 10 + 1 = 21."
+    },
+    {
+        "id":  "slg-oo-016",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "DIST has equal-cost paths to 192.168.3.3 via HQ1 (Ethernet0/0) and HQ2 (Ethernet0/1), each 2001. The engineer sets \u0027ip ospf cost 500\u0027 on DIST Ethernet0/0. What does DIST\u0027s routing table show now?",
+        "optionen":  [
+                         "Two equal paths with metric 1501, because HQ2 also adopts the cost",
+                         "One path via HQ1 with metric 1501",
+                         "Two paths, via HQ1 with 1501 and via HQ2 with 2001",
+                         "One path via HQ2 with metric 2001"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Pfad über HQ1 kostet jetzt 500 + 1000 + 1 = 1501, der über HQ2 bleibt bei 2001. OSPF installiert nur Pfade mit den niedrigsten Kosten, das ECMP fällt weg. HQ2 übernimmt keine Kosten, sie gelten nur für DISTs eigenes ausgehendes Interface."
+    },
+    {
+        "id":  "slg-oo-017",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "After \u0027ip ospf cost 500\u0027 on DIST\u0027s link to HQ1, the default route moves to HQ1, but the O E2 routes from ASBR BR (behind HQ2) still use HQ2 with [110/20]. Why?",
+        "optionen":  [
+                         "HQ2 is the DR on DIST\u0027s segment, so external routes always go through it",
+                         "The default route is E1, so only it is affected by the cost change",
+                         "The cost to ASBR BR is lower via HQ2 (2000 vs. 2500)",
+                         "E2 routes ignore interface costs completely and always keep the first learned path"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei E2-Routen bleibt die externe Metrik (20) gleich. Ist sie auf beiden Pfaden gleich, entscheidet die Forward Metric, also die Kosten bis zum ASBR. BR hängt an HQ2, über HQ2 sind es 2000, über HQ1 2500. Der ASBR für die Default-Route ist GW, und zu GW ist der Weg über HQ1 jetzt günstiger."
+    },
+    {
+        "id":  "slg-oo-018",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ip route 0.0.0.0\u0027 on DIST shows: \u0027Known via \"ospf 1\", distance 110, metric 1, candidate default path, Tag 1, type extern 2, forward metric 1500\u0027. What does \u0027forward metric 1500\u0027 represent?",
+        "optionen":  [
+                         "The sum of the external metric and the administrative distance",
+                         "The external metric that the ASBR assigned to the default route",
+                         "The cost from the ASBR to the Internet next hop",
+                         "DIST\u0027s OSPF cost to reach the ASBR that originates the default route"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Forward Metric sind die internen Kosten bis zum ASBR, der die Type-5-LSA erzeugt hat. Die eigentliche Routenmetrik einer E2-Route bleibt der Wert des ASBR (hier 1). Die Forward Metric dient als Tie-Breaker zwischen gleichen E2-Routen."
+    },
+    {
+        "id":  "slg-oo-019",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "DIST receives the E2 default route via HQ1 and HQ2 and installs both. Which three values must be equal for this ECMP to happen? (Choose three.)",
+        "optionen":  [
+                         "The forward metric to the ASBR (both 20)",
+                         "The external metric (both 1)",
+                         "The route type (both E2)",
+                         "The router ID of the advertising neighbors",
+                         "The OSPF priority of the next-hop interfaces"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "OSPF installiert mehrere externe Pfade nur, wenn Routentyp, externe Metrik und bei E2 auch die Kosten zum ASBR übereinstimmen. Ändert sich einer dieser Werte, gewinnt nur noch ein Pfad. Router-ID und Priority spielen für die Pfadwahl keine Rolle."
+    },
+    {
+        "id":  "slg-oo-020",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "\u0027show ip protocols\u0027 shows \u0027Maximum path: 4\u0027. By default, OSPF on IOS installs up to ___ equal-cost paths to one destination.",
+        "optionen":  [
+                         "4",
+                         "1",
+                         "16",
+                         "8"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Standardmäßig installiert OSPF bis zu vier gleich teure Pfade. Mit \u0027maximum-paths\u0027 unter \u0027router ospf\u0027 lässt sich der Wert ändern, das Maximum hängt von der Plattform ab."
+    },
+    {
+        "id":  "slg-oo-021",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027traceroute 209.165.201.1 probe 8\u0027 from DIST shows the first hop alternating between 172.16.14.1 and 172.16.24.2. Why does the load sharing look per packet?",
+        "optionen":  [
+                         "The two paths have different costs, so OSPF alternates between them",
+                         "OSPF always balances per packet across equal-cost paths",
+                         "Router-originated packets are process-switched and balanced per packet",
+                         "CEF uses per-packet load sharing by default for all traffic"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Pakete, die der Router selbst erzeugt, laufen nicht über CEF, sondern werden process-switched und dabei paketweise verteilt. Durchlaufender Verkehr wird mit CEF standardmäßig pro Quell-/Zielpaar verteilt."
+    },
+    {
+        "id":  "slg-oo-022",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "DIST (router ID 4.4.4.4) shows both neighbors HQ1 (1.1.1.1) and HQ2 (2.2.2.2) as \u0027FULL/BDR\u0027 on two different segments. All priorities are 1. What is DIST\u0027s role?",
+        "optionen":  [
+                         "DR on both segments, because it has the highest router ID",
+                         "DR on one segment and BDR on the other, based on interface IPs",
+                         "BDR on both segments, like its neighbors",
+                         "DROTHER on both segments"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "In \u0027show ip ospf neighbor\u0027 steht die Rolle des Nachbarn, nicht die eigene. Auf jedem Segment ist nur ein Nachbar, und der ist BDR. Bei gleicher Priority gewinnt die höhere Router-ID, also ist DIST auf beiden Segmenten DR."
+    },
+    {
+        "id":  "slg-oo-023",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On BR, the engineer enters \u0027passive-interface default\u0027 under \u0027router ospf 1\u0027. Immediately the log shows \u0027Nbr 2.2.2.2 on Ethernet0/0 from FULL to DOWN\u0027. What is the reason?",
+        "optionen":  [
+                         "HQ2 rejects BR because BR\u0027s hello now carries the passive flag",
+                         "The OSPF process is restarted by every passive-interface command",
+                         "The router ID of BR changed because of the command",
+                         "Ethernet0/0 is now passive too, so no hellos are sent or processed"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027passive-interface default\u0027 macht alle Interfaces passiv, auch den Uplink. Auf passiven Interfaces sendet und verarbeitet OSPF keine Hellos, daher fällt die Nachbarschaft. Erst \u0027no passive-interface Ethernet0/0\u0027 baut sie wieder auf (LOADING to FULL)."
+    },
+    {
+        "id":  "slg-oo-024",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router ospf 1 auf BR, nach \u0027passive-interface default\u0027): Nimm den Uplink Ethernet0/0 zu HQ2 wieder aus dem Passive-Modus heraus.",
+        "bausteine":  [
+                          "no",
+                          "passive-interface",
+                          "Ethernet0/0",
+                          "default",
+                          "ip",
+                          "ospf"
+                      ],
+        "loesung":  [
+                        "no",
+                        "passive-interface",
+                        "Ethernet0/0"
+                    ],
+        "erklaerung":  "Nach \u0027passive-interface default\u0027 aktiviert man die Interfaces mit Nachbarn einzeln über \u0027no passive-interface \u003cInterface\u003e\u0027. Die Netze der passiven Interfaces werden weiterhin annonciert."
+    },
+    {
+        "id":  "slg-oo-025",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Option von \u0027default-information originate\u0027 ihrer Wirkung zu.",
+        "paare":  [
+                      [
+                          "always",
+                          "Advertises 0.0.0.0/0 even if the router has no default route"
+                      ],
+                      [
+                          "metric",
+                          "Sets the OSPF cost of the advertised default route"
+                      ],
+                      [
+                          "metric-type",
+                          "Selects E1 or E2 for the default route"
+                      ],
+                      [
+                          "route-map",
+                          "Advertises the default only if the route-map conditions are met"
+                      ]
+                  ],
+        "erklaerung":  "Ohne Optionen wird die Default-Route nur annonciert, wenn der Router selbst eine hat, als E2 mit Metrik 1. \u0027always\u0027 entfernt diese Bedingung, \u0027metric\u0027 und \u0027metric-type\u0027 steuern Kosten und Typ, \u0027route-map\u0027 macht die Annonce von Bedingungen abhängig."
+    },
+    {
+        "id":  "slg-oo-026",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "GW uses \u0027default-information originate always\u0027. Its Internet link fails. What happens to Internet-bound traffic from the other OSPF routers?",
+        "optionen":  [
+                         "It is still sent to GW, which drops it and returns ICMP unreachable messages",
+                         "The traffic is load-balanced across all ABRs",
+                         "It automatically switches to another exit, because GW withdraws the default route",
+                         "OSPF flushes the Type 5 LSA when the static default route disappears"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit \u0027always\u0027 bleibt die Type-5-LSA für 0.0.0.0/0 bestehen, auch ohne eigene Default-Route. Alle Router schicken unbekannten Verkehr weiter zu GW, der ihn verwirft. Ohne \u0027always\u0027 hätte GW die Default-Route zurückgezogen."
+    },
+    {
+        "id":  "slg-oo-027",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "DIST (two hops from ASBR GW) and BR (three hops from GW) both show \u0027O*E2 0.0.0.0/0 [110/1]\u0027. Why is the metric the same?",
+        "optionen":  [
+                         "Both routers have the same cost to GW",
+                         "The ABRs reset the metric of external routes to 1",
+                         "OSPF always shows metric 1 for default routes from any source",
+                         "An E2 metric keeps the ASBR\u0027s value, regardless of internal cost"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bei E2 bleibt die Metrik der Wert, den der ASBR vergibt (für die Default-Route standardmäßig 1). Die internen Kosten zum ASBR sieht man nur als Forward Metric in \u0027show ip route 0.0.0.0\u0027. Bei E1 würden sie zur Metrik addiert."
+    },
+    {
+        "id":  "slg-oo-028",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router ospf 1 auf GW): Annonciere die Default-Route als E1 mit der Metrik 10 (Reihenfolge: zuerst metric, dann metric-type).",
+        "bausteine":  [
+                          "default-information",
+                          "originate",
+                          "metric",
+                          "10",
+                          "metric-type",
+                          "1",
+                          "2",
+                          "always"
+                      ],
+        "loesung":  [
+                        "default-information",
+                        "originate",
+                        "metric",
+                        "10",
+                        "metric-type",
+                        "1"
+                    ],
+        "erklaerung":  "\u0027metric 10\u0027 setzt die Startkosten, \u0027metric-type 1\u0027 macht die Route zu E1. Bei E1 addiert jeder Router seine internen Kosten zum ASBR, sodass der nächstgelegene Ausgang bevorzugt wird."
+    },
+    {
+        "id":  "slg-oo-029",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which summary address covers exactly the networks 192.168.16.0/24 through 192.168.23.0/24?",
+        "optionen":  [
+                         "192.168.0.0 255.255.224.0",
+                         "192.168.16.0 255.255.240.0",
+                         "192.168.16.0 255.255.252.0",
+                         "192.168.16.0 255.255.248.0"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Acht /24-Netze ergeben einen /21-Block (2^3 = 8). 16 ist durch 8 teilbar, also beginnt der Block bei 192.168.16.0 und endet bei 192.168.23.255. Die Maske ist 255.255.248.0."
+    },
+    {
+        "id":  "slg-oo-030",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which is the smallest single summary for 172.16.32.0/24 through 172.16.47.0/24?",
+        "optionen":  [
+                         "172.16.32.0/19",
+                         "172.16.32.0/21",
+                         "172.16.32.0/20",
+                         "172.16.0.0/18"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Es sind 16 /24-Netze, also ein /20-Block (2^4 = 16). 32 ist ein Vielfaches von 16, daher reicht 172.16.32.0/20 genau von .32.0 bis .47.255. Ein /21 deckt nur 8 Netze ab, ein /19 wäre doppelt so groß wie nötig."
+    },
+    {
+        "id":  "slg-oo-031",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Area 1 contains 10.1.4.0/24, 10.1.5.0/24, 10.1.6.0/24, 10.1.7.0/24 and 10.1.8.0/24. Which is the smallest single summary that covers all five?",
+        "optionen":  [
+                         "10.1.4.0/21",
+                         "10.1.4.0/22",
+                         "10.1.0.0/20",
+                         "10.1.0.0/21"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "10.1.4.0/22 deckt nur .4 bis .7 ab, 10.1.0.0/21 nur .0 bis .7. Für .8 muss die Grenze an der vierten Bitstelle fallen: 10.1.0.0/20 umfasst .0 bis .15. 10.1.4.0/21 ist keine gültige Blockgrenze. Das Beispiel zeigt, warum zusammenhängende Adressplanung pro Area wichtig ist."
+    },
+    {
+        "id":  "slg-oo-032",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which IPv6 summary covers exactly 2001:DB8:0:220::/64 through 2001:DB8:0:22F::/64?",
+        "optionen":  [
+                         "2001:DB8:0:220::/56",
+                         "2001:DB8:0:220::/62",
+                         "2001:DB8:0:220::/60",
+                         "2001:DB8:0:200::/60"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Es sind 16 /64-Netze, die sich nur im letzten Hex-Zeichen des vierten Blocks unterscheiden (0 bis F). Ein Hex-Zeichen sind 4 Bit, also 64 - 4 = /60 mit Beginn bei 2001:DB8:0:220::."
+    },
+    {
+        "id":  "slg-oo-033",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R3 redistributes 10.33.4.0/24 through 10.33.7.0/24 into OSPF. Which command on R3 advertises them as one external route?",
+        "optionen":  [
+                         "summary-address 10.33.4.0 255.255.248.0",
+                         "ip summary-address ospf 1 10.33.4.0 255.255.252.0",
+                         "summary-address 10.33.4.0 255.255.252.0",
+                         "area 2 range 10.33.4.0 255.255.252.0"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Externe Routen (Type 5) fasst der ASBR mit \u0027summary-address\u0027 unter \u0027router ospf\u0027 zusammen. Vier /24 ergeben einen /22 (255.255.252.0). \u0027area range\u0027 wirkt nur auf Inter-Area-Routen am ABR."
+    },
+    {
+        "id":  "slg-oo-034",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router ospf 1 auf ASBR R3): Fasse die redistributierten Netze 10.33.4.0/24 bis 10.33.7.0/24 zu einer externen Summary zusammen.",
+        "bausteine":  [
+                          "summary-address",
+                          "10.33.4.0",
+                          "255.255.252.0",
+                          "255.255.248.0",
+                          "area",
+                          "range"
+                      ],
+        "loesung":  [
+                        "summary-address",
+                        "10.33.4.0",
+                        "255.255.252.0"
+                    ],
+        "erklaerung":  "Am ASBR erzeugt \u0027summary-address\u0027 statt vier einzelner Type-5-LSAs eine einzige für 10.33.4.0/22. Der ASBR legt dazu eine Discard-Route nach Null0 an."
+    },
+    {
+        "id":  "slg-oo-035",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The 192.168.16.0/24–192.168.23.0/24 networks are in area 1. On ABR R1, the engineer configures \u0027area 0 range 192.168.16.0 255.255.248.0\u0027. What happens?",
+        "optionen":  [
+                         "Area 1 networks are summarized into area 0 as intended",
+                         "All other areas receive only the /21, including area 1",
+                         "Nothing is summarized, because the range must name area 1",
+                         "The /24 networks are removed from area 1"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027area X range\u0027 fasst Netze zusammen, die in Area X liegen, bevor sie in andere Areas annonciert werden. In Area 0 liegen keine Netze aus diesem Bereich, also passiert nichts. Richtig wäre \u0027area 1 range 192.168.16.0 255.255.248.0\u0027."
+    },
+    {
+        "id":  "slg-oo-036",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On ABR R1, an engineer uses \u0027summary-address 192.168.16.0 255.255.248.0\u0027 to summarize the internal networks of area 1. What is the result?",
+        "optionen":  [
+                         "R1 rejects the command because it is not an ASBR",
+                         "The networks become external E2 routes",
+                         "The area 1 networks are summarized into area 0 as Type 3 LSAs",
+                         "No effect, because summary-address only summarizes external routes"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027summary-address\u0027 wirkt nur auf redistributierte Routen (Type 5 bzw. Type 7). Für Netze aus einer Area braucht man am ABR \u0027area 1 range\u0027. Den Befehl selbst nimmt IOS trotzdem an, deshalb fällt der Fehler oft erst bei der Kontrolle auf."
+    },
+    {
+        "id":  "slg-oo-037",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Summarization-Befehl seinem Einsatz zu.",
+        "paare":  [
+                      [
+                          "area 1 range 192.168.16.0 255.255.248.0",
+                          "OSPFv2 ABR: inter-area routes of area 1"
+                      ],
+                      [
+                          "summary-address 10.33.4.0 255.255.252.0",
+                          "OSPFv2 ASBR: external IPv4 routes"
+                      ],
+                      [
+                          "area 1 range 2001:DB8:0:220::/60",
+                          "OSPFv3 ABR: inter-area IPv6 prefixes"
+                      ],
+                      [
+                          "summary-prefix 2001:DB8:1::/56",
+                          "OSPFv3 ASBR: external IPv6 prefixes"
+                      ]
+                  ],
+        "erklaerung":  "Der ABR fasst Inter-Area-Routen mit \u0027area range\u0027 zusammen, unter OSPFv3 in der IPv6-Address-Family mit Präfixlänge. Externe Routen fasst der ASBR zusammen: in OSPFv2 mit \u0027summary-address\u0027, in der OSPFv3-IPv6-AF mit \u0027summary-prefix\u0027."
+    },
+    {
+        "id":  "slg-oo-038",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why does Cisco IOS install a route to Null0 for a configured OSPF summary on the summarizing router?",
+        "optionen":  [
+                         "It reserves the summary in the RIB so other protocols cannot use it",
+                         "Null0 is used to forward traffic to the most specific component route",
+                         "Packets for unused subnets are dropped instead of looping via a default route",
+                         "It marks the summary as invalid until all component routes are up"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Router annonciert den ganzen Block. Kommt ein Paket für ein nicht existierendes Teilnetz, passt die Summary per Longest Match besser als die Default-Route. Ohne Null0-Route könnte das Paket per Default zurückgeschickt werden und kreisen."
+    },
+    {
+        "id":  "slg-oo-039",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On which router does the entry \u0027O 192.168.16.0/21 is a summary, 00:34:30, Null0\u0027 appear after \u0027area 1 range 192.168.16.0 255.255.248.0\u0027 on R1?",
+        "optionen":  [
+                         "On all routers in area 1",
+                         "Only on ABR R1, which creates the summary",
+                         "On all routers in area 0",
+                         "On R2, which originates the component networks"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Discard-Route nach Null0 legt nur der Router an, der die Summary erzeugt. Router in anderen Areas sehen stattdessen \u0027O IA 192.168.16.0/21\u0027 mit R1 als Next Hop. In Area 1 bleiben die einzelnen /24-Netze sichtbar."
+    },
+    {
+        "id":  "slg-oo-040",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 summarizes 192.168.16.0/21 and has an E2 default route via R4. 192.168.21.0/24 goes down in area 1, the other /24s stay up. A packet for 192.168.21.77 arrives at R1. What happens?",
+        "optionen":  [
+                         "It matches 192.168.16.0/21 to Null0 and is dropped",
+                         "It is forwarded to R2, which originated the /21 range",
+                         "It is forwarded via the default route to R4",
+                         "R1 sends it to all neighbors in area 1"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ohne die /24 ist die Null0-Summary (/21) der längste Treffer, sie schlägt die Default-Route (/0). Das Paket wird verworfen. Genau das soll Schleifen zwischen R1 und R4 verhindern."
+    },
+    {
+        "id":  "slg-oo-041",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "ABR R1 has \u0027area 1 range 192.168.16.0 255.255.248.0\u0027. All eight component networks in area 1 go down. What do routers in area 0 see?",
+        "optionen":  [
+                         "The summary is withdrawn, because at least one component network must exist",
+                         "The eight /24 networks appear individually in area 0 as unreachable",
+                         "The summary stays, pointing to Null0 on R1",
+                         "The summary stays with the maximum metric 16777215"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der ABR annonciert eine Range nur, solange mindestens ein Netz aus Area 1 in diesen Bereich fällt. Fallen alle weg, zieht er die Type-3-LSA zurück und entfernt auch die Null0-Route."
+    },
+    {
+        "id":  "slg-oo-042",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Area 1 contains networks inside 192.168.16.0/21 with costs 11, 21 and 65 from ABR R1. \u0027area 1 range 192.168.16.0 255.255.248.0\u0027 is configured on Cisco IOS with default settings (\u0027compatible rfc1583\u0027 is active). Which cost does R1 advertise for the summary?",
+        "optionen":  [
+                         "65, the highest component cost",
+                         "1, the fixed default for summaries",
+                         "11, the lowest component cost",
+                         "97, the sum of the component costs"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Cisco IOS ist standardmäßig RFC-1583-kompatibel und gibt der Summary die niedrigsten Kosten der Teilnetze, hier 11. RFC 2328 verlangt dagegen die höchsten Kosten (65); dieses Verhalten schaltet \u0027no compatible rfc1583\u0027 ein, und zwar einheitlich auf allen Routern. Einen festen Wert setzt man mit \u0027cost\u0027 im area-range-Befehl."
+    },
+    {
+        "id":  "slg-oo-043",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The engineer configures \u0027area 1 range 192.168.16.0 255.255.248.0 cost 100\u0027 on ABR R1. What is the effect of \u0027cost 100\u0027?",
+        "optionen":  [
+                         "The summary is advertised only after 100 seconds",
+                         "Cost 100 is added to every component route inside area 1",
+                         "Only component networks with cost below 100 are included in the summary",
+                         "The summary Type 3 LSA is advertised with a fixed cost of 100"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Mit \u0027cost\u0027 legt man die Metrik der Summary-LSA fest, statt sie aus den Teilnetzen abzuleiten. Router in anderen Areas addieren ihre Kosten bis zum ABR dazu. Die Routen innerhalb von Area 1 bleiben unverändert."
+    },
+    {
+        "id":  "slg-oo-044",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show ip ospf\u0027 on ABR R1 shows: \u0027Area ranges are 192.168.16.0/21 Active(11) Advertise\u0027. Which statement is correct?",
+        "optionen":  [
+                         "11 component networks are inside the range",
+                         "The range is active for 11 seconds before it is advertised",
+                         "The range is advertised, and 11 is the summary\u0027s cost",
+                         "The summary is advertised to 11 neighbors"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027Active\u0027 bedeutet, dass mindestens ein Teilnetz im Bereich existiert, \u0027Advertise\u0027, dass die Range annonciert wird. Die Zahl in Klammern ist die Metrik der Summary, hier 11 wie die Kosten der Teilnetze (im Lab sind es acht Teilnetze, also keine Anzahl). Ein unterdrückter Bereich erscheint als \u0027DoNotAdvertise\u0027."
+    },
+    {
+        "id":  "slg-oo-045",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Before summarization, R4\u0027s \u0027Summary Net Link States (Area 0)\u0027 listed eight entries 192.168.16.0 to 192.168.23.0 from 1.1.1.1. After \u0027area 1 range 192.168.16.0 255.255.248.0\u0027 on R1, only 192.168.16.0 is listed. What does this show?",
+        "optionen":  [
+                         "R1 now originates one Type 3 LSA for the /21 instead of eight",
+                         "The other seven LSAs moved to the Type 5 section",
+                         "R4 has filtered seven of the LSAs with a distribute list",
+                         "Only 192.168.16.0/24 is still reachable from area 0"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Link-ID der Summary-LSA ist die Netzadresse 192.168.16.0, die Maske /21 steht in der LSA selbst. Die acht einzelnen Type-3-LSAs gibt es in Area 0 nicht mehr. Alle Netze bleiben über die Summary erreichbar."
+    },
+    {
+        "id":  "slg-oo-046",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After \u0027summary-address 10.33.4.0 255.255.252.0\u0027 on ASBR R3, how many Type 5 LSAs from 3.3.3.3 for these four networks does R4 in area 0 hold?",
+        "optionen":  [
+                         "None, because summaries are carried in Type 3 LSAs",
+                         "Four, one per /24 network",
+                         "Five, four /24s plus the /22",
+                         "One, for 10.33.4.0/22"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der ASBR erzeugt statt der vier einzelnen Type-5-LSAs nur noch eine für 10.33.4.0/22. Sie wird wie jede Type-5-LSA in alle normalen Areas geflutet. In den Routingtabellen steht dann ein einziger Eintrag \u0027O E2 10.33.4.0/22\u0027."
+    },
+    {
+        "id":  "slg-oo-047",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three are benefits of OSPF route summarization at area boundaries? (Choose three.)",
+        "optionen":  [
+                         "Smaller routing tables in other areas",
+                         "A smaller LSDB inside the area where the component networks reside",
+                         "Fewer LSAs flooded into the backbone",
+                         "Optimal paths are guaranteed when there are several ABRs",
+                         "A flapping subnet inside the summary does not trigger SPF in other areas"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Andere Areas sehen nur noch die Summary: weniger Routen, weniger LSAs, und Änderungen innerhalb des Bereichs bleiben lokal. In der Ursprungs-Area ändert sich nichts, dort gibt es weiter alle Typ-1/2-LSAs. Bei mehreren ABRs kann Summarization sogar zu suboptimalen Pfaden führen."
+    },
+    {
+        "id":  "slg-oo-048",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "ABR1 advertises 10.0.0.0/16 as a summary with cost 10. ABR2 advertises the more specific 10.0.5.0/24 with cost 50. Which path does a router in area 0 use for 10.0.5.9?",
+        "optionen":  [
+                         "Via ABR2, because the longest prefix match wins",
+                         "ECMP over both ABRs",
+                         "Via ABR1, because its cost is lower",
+                         "Via ABR1, because summaries are preferred over specific routes"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Im Routing gilt zuerst der längste Präfix. 10.0.5.0/24 und 10.0.0.0/16 sind verschiedene Einträge, die Metrik vergleicht OSPF nur innerhalb desselben Präfixes. Deshalb geht der Verkehr zu ABR2, egal wie teuer der Pfad ist."
+    },
+    {
+        "id":  "slg-oo-049",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two ABRs connect area 1 to area 0, and both advertise the same summary for area 1 with equal cost. What is a typical drawback?",
+        "optionen":  [
+                         "Area 1 loses its intra-area routes",
+                         "Traffic to some subnets may use a suboptimal ABR",
+                         "Area 0 routers must run SPF for each component network",
+                         "The two ABRs form a routing loop through Null0"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Summary hat nur eine Metrik. Area 0 erkennt nicht, welcher ABR näher an einem bestimmten Teilnetz liegt, und wählt eventuell den weiteren Weg. Das ist der Preis für kleinere Tabellen und stabilere SPF-Läufe."
+    },
+    {
+        "id":  "slg-oo-050",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "ABR R1 is configured with \u0027area 1 filter-list prefix FROM_R2 out\u0027. Which routers are affected?",
+        "optionen":  [
+                         "Only area 1 stops receiving the denied prefixes",
+                         "Only R1 removes the denied prefixes from its routing table",
+                         "No other area receives the denied area 1 prefixes from R1",
+                         "Only area 0 stops receiving the denied prefixes; other areas still get them"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027out\u0027 filtert Präfixe, die aus Area 1 hinausgehen. R1 erzeugt für sie keine Type-3-LSAs in irgendeiner anderen Area. Seine eigene Intra-Area-Route behält R1."
+    },
+    {
+        "id":  "slg-oo-051",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "ABR R1 connects areas 0, 1 and 2. 192.168.2.0/24 is in area 1. It must not reach area 0 but must still reach area 2. Which command achieves this?",
+        "optionen":  [
+                         "area 1 range 192.168.2.0 255.255.255.0 not-advertise",
+                         "area 2 filter-list prefix FROM_R2 in",
+                         "area 0 filter-list prefix FROM_R2 in",
+                         "area 1 filter-list prefix FROM_R2 out"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027in\u0027 filtert Präfixe, die in die genannte Area hineingehen. \u0027area 0 ... in\u0027 blockiert die Type-3-LSA nur in Area 0. \u0027area 1 ... out\u0027 und \u0027area range not-advertise\u0027 blockieren den Präfix in allen anderen Areas, \u0027area 2 ... in\u0027 nur in Area 2."
+    },
+    {
+        "id":  "slg-oo-052",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router ospf 1 auf ABR R1): Verhindere mit der Prefix-List FROM_R2, dass die darin abgelehnten Präfixe aus Area 1 in irgendeine andere Area gelangen.",
+        "bausteine":  [
+                          "area",
+                          "1",
+                          "filter-list",
+                          "prefix",
+                          "FROM_R2",
+                          "out",
+                          "in",
+                          "0",
+                          "distribute-list"
+                      ],
+        "loesung":  [
+                        "area",
+                        "1",
+                        "filter-list",
+                        "prefix",
+                        "FROM_R2",
+                        "out"
+                    ],
+        "erklaerung":  "\u0027area 1 filter-list prefix FROM_R2 out\u0027 verhindert am ABR die Type-3-LSAs für Präfixe, die die Prefix-List ablehnt, in allen anderen Areas. Die Prefix-List braucht am Ende ein \u0027permit 0.0.0.0/0 le 32\u0027, sonst fällt alles andere unter das implizite deny."
+    },
+    {
+        "id":  "slg-oo-053",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer creates \u0027ip prefix-list FROM_R2 deny 192.168.2.0/24\u0027 and applies \u0027area 1 filter-list prefix FROM_R2 out\u0027 on the ABR. Afterward, no area 1 network is reachable from other areas. Why?",
+        "optionen":  [
+                         "The filter-list removes the area 1 router LSAs",
+                         "A filter-list with \u0027out\u0027 also blocks the summary of area 0",
+                         "The implicit deny at the end of the list blocks all other prefixes",
+                         "The ABR must be reloaded before a filter-list works correctly"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Prefix-Lists enden wie ACLs mit einem impliziten deny. Ohne eine Zeile wie \u0027ip prefix-list FROM_R2 permit 0.0.0.0/0 le 32\u0027 werden alle Präfixe aus Area 1 abgelehnt, nicht nur 192.168.2.0/24."
+    },
+    {
+        "id":  "slg-oo-054",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After \u0027area 1 filter-list prefix FROM_R2 out\u0027 (FROM_R2 denies 192.168.2.0/24), R3 shows \u0027% Network not in table\u0027 for 192.168.2.0. What does ABR R1 itself show?",
+        "optionen":  [
+                         "\u0027O 192.168.2.0/24\u0027 as an intra-area route",
+                         "No route, because the filter applies to R1\u0027s routing table first",
+                         "\u0027192.168.2.0/24 is a summary, Null0\u0027",
+                         "\u0027O IA 192.168.2.0/24\u0027 via area 0"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die filter-list verhindert nur, dass R1 Type-3-LSAs in andere Areas erzeugt. In Area 1 sind die Type-1-LSAs unverändert, deshalb berechnet R1 die Route weiter als Intra-Area-Route."
+    },
+    {
+        "id":  "slg-oo-055",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ip ospf\u0027 on R1 shows \u0027Area BACKBONE(0) ... Area-filter FROM_R2 in\u0027. Which statement is correct?",
+        "optionen":  [
+                         "R1 drops all LSAs received from area 0 neighbors that match FROM_R2",
+                         "R1 does not advertise area 0 prefixes denied by FROM_R2 into other areas",
+                         "R1 does not create Type 3 LSAs in area 0 for prefixes denied by FROM_R2",
+                         "R1 removes matching routes only from its own routing table"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Eine filter-list mit \u0027in\u0027 unter Area 0 wirkt auf Type-3-LSAs, die R1 in Area 0 hinein erzeugen würde. Präfixe aus Area 1 und 2, die FROM_R2 ablehnt, fehlen dann in Area 0, sind aber in den übrigen Areas weiter sichtbar."
+    },
+    {
+        "id":  "slg-oo-056",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer wants to hide the external route 10.33.33.0/24 from area 0 and uses \u0027area 0 filter-list prefix BLOCK in\u0027 on the ABR. The route is still in area 0. Why?",
+        "optionen":  [
+                         "The prefix list must use \u0027le 32\u0027 to match external routes",
+                         "The filter-list needs the \u0027out\u0027 keyword for external routes",
+                         "The area filter-list acts only on Type 3 LSAs",
+                         "Type 5 LSAs are filtered only after \u0027clear ip ospf process\u0027"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die ABR-Filter wirken beim Erzeugen von Type-3-LSAs. Type-5-LSAs erzeugt der ASBR, und die ABRs fluten sie unverändert weiter. Externe Präfixe filtert man am ASBR, etwa mit \u0027summary-address ... not-advertise\u0027 oder schon bei der Redistribution."
+    },
+    {
+        "id":  "slg-oo-057",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ip ospf | begin Area 2\u0027 on R1 shows \u0027Area ranges are 192.168.3.0/24 Passive DoNotAdvertise\u0027. R1 still has \u0027O 192.168.3.0/24\u0027 in its routing table. Which statement is correct?",
+        "optionen":  [
+                         "OSPF hellos are no longer sent on the interface for 192.168.3.0/24",
+                         "R1 suppresses the Type 3 LSA for 192.168.3.0/24",
+                         "R1 advertises 192.168.3.0/24 only into area 2",
+                         "The route is passive and is no longer used by R1"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027area 2 range 192.168.3.0 255.255.255.0 not-advertise\u0027 unterdrückt die Type-3-LSA für diesen Bereich. R1 behält die Intra-Area-Route, andere Areas sehen sie nicht mehr. Die Wirkung entspricht \u0027area 2 filter-list prefix ... out\u0027."
+    },
+    {
+        "id":  "slg-oo-058",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "ASBR R3 redistributes 10.33.33.0/24. The engineer enters \u0027summary-address 10.33.33.0 255.255.255.0 not-advertise\u0027 on R3. What happens on R1 in another area?",
+        "optionen":  [
+                         "The Type 5 LSA for 10.33.33.0/24 disappears from R1\u0027s LSDB and the route leaves its routing table",
+                         "R1 keeps the Type 5 LSA in its LSDB but removes the route from its routing table",
+                         "R1 receives a Type 3 LSA instead of the Type 5 LSA",
+                         "R1 receives the route as a summary pointing to Null0"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit \u0027not-advertise\u0027 erzeugt der ASBR für diesen Bereich gar keine Type-5-LSA. Deshalb fehlt sie in der LSDB aller Router, und die Route verschwindet überall. Ein distribute-list in würde dagegen nur lokal die Routingtabelle filtern."
+    },
+    {
+        "id":  "slg-oo-059",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das OSPF-Filterwerkzeug seiner Wirkung zu.",
+        "paare":  [
+                      [
+                          "area 1 filter-list prefix X out",
+                          "ABR does not create Type 3 LSAs for denied prefixes from area 1"
+                      ],
+                      [
+                          "area 1 range ... not-advertise",
+                          "ABR suppresses the Type 3 LSA for the whole range"
+                      ],
+                      [
+                          "distribute-list prefix X in",
+                          "LSDB unchanged; only the local routing table is filtered"
+                      ],
+                      [
+                          "summary-address ... not-advertise",
+                          "ASBR does not originate the Type 5 LSA"
+                      ]
+                  ],
+        "erklaerung":  "Drei Werkzeuge verhindern schon das Erzeugen von LSAs: filter-list und \u0027area range not-advertise\u0027 am ABR (Type 3), \u0027summary-address not-advertise\u0027 am ASBR (Type 5). Die inbound distribute-list lässt die LSDB unverändert und filtert nur, was SPF in die lokale Routingtabelle schreiben will."
+    },
+    {
+        "id":  "slg-oo-060",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which three methods prevent other OSPF routers from having the filtered prefix in their LSDB? (Choose three.)",
+        "optionen":  [
+                         "area filter-list prefix on the ABR",
+                         "distribute-list in on every router in the area",
+                         "distribute-list in on an internal router",
+                         "area range not-advertise on the ABR",
+                         "summary-address not-advertise on the ASBR"
+                     ],
+        "richtig":  [
+                        0,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "filter-list und \u0027area range not-advertise\u0027 unterdrücken Type-3-LSAs am ABR, \u0027summary-address not-advertise\u0027 unterdrückt Type-5-LSAs am ASBR. Eine inbound distribute-list ändert die LSDB nie, auch nicht, wenn sie auf jedem Router konfiguriert ist. Sie filtert nur die jeweilige Routingtabelle."
+    },
+    {
+        "id":  "slg-oo-061",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is it generally not possible to filter individual Type 1 or Type 2 LSAs inside an OSPF area?",
+        "optionen":  [
+                         "All routers in an area need identical LSDBs for loop-free SPF",
+                         "Filtering is possible, but only with route maps",
+                         "Type 1 and Type 2 LSAs are encrypted",
+                         "Type 1 and Type 2 LSAs are sent only to the DR"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "SPF verhindert Schleifen nur, wenn alle Router einer Area dieselbe LSDB haben. Würde man LSAs unterwegs filtern, rechnen die Router mit verschiedenen Topologien. Deshalb filtert OSPF nur an Area- und AS-Grenzen oder lokal in der Routingtabelle."
+    },
+    {
+        "id":  "slg-oo-062",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R1 is configured with \u0027access-list 1 deny 192.168.4.0 0.0.0.255\u0027, \u0027access-list 1 permit any\u0027 and \u0027distribute-list 1 in\u0027. \u0027show ip ospf database router 4.4.4.4\u0027 still shows the stub network 192.168.4.0. What does \u0027show ip route 192.168.4.0\u0027 show?",
+        "optionen":  [
+                         "192.168.4.0/24 is a summary, Null0",
+                         "O IA 192.168.4.0/24 via R4",
+                         "O 192.168.4.0/24 [110/11] via 172.16.14.2",
+                         "% Network not in table"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die inbound distribute-list lässt die LSA in der LSDB, verhindert aber, dass SPF die Route in die Routingtabelle schreibt. Deshalb sieht man die Type-1-LSA von R4, aber keine Route."
+    },
+    {
+        "id":  "slg-oo-063",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In the lab, ABR R1 filters 192.168.4.0/24 (from area 0) with \u0027distribute-list 1 in\u0027. R2 in area 1 and R3 in area 2 still show \u0027O IA 192.168.4.0/24 [110/21]\u0027. Why?",
+        "optionen":  [
+                         "The distribute list filters only R1\u0027s own routing table",
+                         "The ACL is applied only to area 0",
+                         "R2 and R3 cache the route until the dead timer expires",
+                         "R2 and R3 learn the route directly from R4"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Ausgabe im Lab zeigt: R1 erzeugt weiterhin die Type-3-LSA für 192.168.4.0/24 mit Metrik 11, obwohl die Route in seiner eigenen Tabelle fehlt. Die inbound distribute-list ist kein Mittel gegen LSAs. Um Areas zu filtern, nutzt man am ABR die area filter-list."
+    },
+    {
+        "id":  "slg-oo-064",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R2 is an internal router between R1 and R3. R2 has \u0027distribute-list prefix BLOCK in\u0027, which denies 10.9.9.0/24. R3\u0027s only path to 10.9.9.0/24 is via R2. What happens to traffic from R3 to 10.9.9.0/24?",
+        "optionen":  [
+                         "R3 does not know the route, because R2 no longer floods the LSA",
+                         "R2 forwards it based on its LSDB",
+                         "R3 automatically chooses another path around R2",
+                         "R3 still forwards it to R2, which has no route for it"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die LSDB von R3 ist unverändert, also berechnet R3 den Pfad weiter über R2. R2 hat die Route aber nicht in seiner Tabelle und verwirft das Paket (oder schickt es per Default weiter). Lokale Filter auf Transitroutern erzeugen so leicht ein Black Hole."
+    },
+    {
+        "id":  "slg-oo-065",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "For OSPF, what does \u0027distribute-list 10 out\u0027 under the routing process do?",
+        "optionen":  [
+                         "It filters Type 3 LSAs leaving an area on the ABR",
+                         "It filters which LSAs are flooded out of each interface",
+                         "It removes routes from the local routing table",
+                         "It filters which redistributed routes an ASBR advertises into OSPF"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bei Link-State-Protokollen können keine einzelnen LSAs per Interface zurückgehalten werden. Die outbound distribute-list wirkt bei OSPF daher nur am ASBR auf redistributierte Routen. Für ABRs gibt es die area filter-list."
+    },
+    {
+        "id":  "slg-oo-066",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ip protocols\u0027 on R1 shows \u0027Incoming update filter list for all interfaces is (prefix-list) R4-LOOP\u0027. What is configured?",
+        "optionen":  [
+                         "area 0 filter-list prefix R4-LOOP in",
+                         "route-map R4-LOOP in",
+                         "distribute-list prefix R4-LOOP in",
+                         "ip prefix-list R4-LOOP applied to Ethernet0/0 inbound"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Diese Zeile zeigt eine inbound distribute-list, hier mit einer Prefix-List. Bei einer ACL stünde nur die Nummer (zum Beispiel \u0027is 1\u0027), bei einer Route-Map \u0027(route-map) NAME\u0027. Eine area filter-list erscheint stattdessen in \u0027show ip ospf\u0027 als \u0027Area-filter\u0027."
+    },
+    {
+        "id":  "slg-oo-067",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router ospf 1 auf R4): Filtere die Routen, die SPF in die Routingtabelle schreiben will, mit der Route-Map WAN-FILTER.",
+        "bausteine":  [
+                          "distribute-list",
+                          "route-map",
+                          "WAN-FILTER",
+                          "in",
+                          "out",
+                          "prefix",
+                          "filter-list"
+                      ],
+        "loesung":  [
+                        "distribute-list",
+                        "route-map",
+                        "WAN-FILTER",
+                        "in"
+                    ],
+        "erklaerung":  "Eine distribute-list kann eine ACL, eine Prefix-List (\u0027prefix\u0027) oder eine Route-Map (\u0027route-map\u0027) nutzen. Mit \u0027in\u0027 filtert sie die Ergebnisse von SPF für die lokale Routingtabelle. Die LSDB bleibt unverändert."
+    },
+    {
+        "id":  "slg-oo-068",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R4 uses \u0027route-map WAN-FILTER deny 10\u0027 with \u0027match ip address prefix-list WAN-LINKS\u0027 and \u0027match ip route-source R1-ID\u0027 (ACL permits 1.1.1.1), followed by \u0027route-map WAN-FILTER permit 20\u0027 with no match statements, applied as \u0027distribute-list route-map WAN-FILTER in\u0027. Which routes are removed from R4\u0027s routing table?",
+        "optionen":  [
+                         "All routes advertised by 1.1.1.1",
+                         "All routes, because of the implicit deny at the end of the route map",
+                         "Only routes that match WAN-LINKS and were advertised by router 1.1.1.1",
+                         "All routes that match WAN-LINKS, from any router"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Zwei match-Befehle in einer Sequenz sind eine UND-Verknüpfung: Präfix aus WAN-LINKS UND Quelle 1.1.1.1. Nur solche Routen trifft \u0027deny 10\u0027. Sequenz 20 ohne match passt auf alles Übrige und erlaubt es, daher greift das implizite deny nicht."
+    },
+    {
+        "id":  "slg-oo-069",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer applies \u0027distribute-list route-map WAN-FILTER in\u0027, but the route map contains only \u0027route-map WAN-FILTER deny 10\u0027 with a prefix-list match. What is the result?",
+        "optionen":  [
+                         "Only the matched routes are removed; everything else is permitted",
+                         "Only routes from the backbone area are affected",
+                         "All OSPF routes are filtered by the implicit deny",
+                         "The route map is ignored because it has no permit statement"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Route-Maps enden mit einem impliziten deny. Routen, die Sequenz 10 nicht treffen, laufen ans Ende und werden ebenfalls abgelehnt. Deshalb braucht man eine abschließende permit-Sequenz ohne match, wie \u0027permit 20\u0027 im Lab."
+    },
+    {
+        "id":  "slg-oo-070",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the OSPF filtering lab, what does \u0027match ip route-source R1-ID\u0027 (standard ACL permitting 1.1.1.1) check?",
+        "optionen":  [
+                         "Whether the next-hop interface address is 1.1.1.1",
+                         "Whether the source IP of data packets is 1.1.1.1",
+                         "Whether the route\u0027s tag equals 1.1.1.1",
+                         "Whether the route was advertised by the router with ID 1.1.1.1"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bei OSPF ist die Routenquelle der Router, der die LSA erzeugt hat. In der Routingtabelle steht er als \u0027from 1.1.1.1\u0027. So filtert R4 nur die WAN-Präfixe, die R1 als Type-3-LSA annonciert."
+    },
+    {
+        "id":  "slg-oo-071",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A route map has \u0027permit 10\u0027 with match statements and \u0027permit 20\u0027 with no match statement. Which routes does sequence 20 match?",
+        "optionen":  [
+                         "No routes, because a sequence without match is ignored",
+                         "Only connected routes",
+                         "All routes that did not match sequence 10",
+                         "Only routes with a tag of 20"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Eine Route-Map-Sequenz ohne match-Befehl passt auf alles. Am Ende einer Map dient sie deshalb als \u0027permit any\u0027 und hebelt das implizite deny aus."
+    },
+    {
+        "id":  "slg-oo-072",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "An engineer enters \u0027route-map TEST permit\u0027 without a sequence number, and no route map TEST exists yet. IOS creates the entry with sequence number ___.",
+        "optionen":  [
+                         "100",
+                         "5",
+                         "10",
+                         "1"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ohne Angabe legt IOS den ersten Eintrag einer neuen Route-Map mit Sequenz 10 an. Weitere Einträge sollte man mit Nummern anlegen, damit man später Zeilen dazwischen einfügen kann."
+    },
+    {
+        "id":  "slg-oo-073",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Route map WAN-FILTER has sequences 10 and 20. The engineer wants to remove only sequence 10 and enters \u0027no route-map WAN-FILTER\u0027. What happens?",
+        "optionen":  [
+                         "The whole route map, including sequence 20, is deleted",
+                         "Only sequence 10 is deleted",
+                         "Only the last sequence is deleted",
+                         "IOS prompts for the sequence number that should be removed"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ohne Sequenznummer löscht \u0027no route-map NAME\u0027 die ganze Route-Map. Wird sie noch von einer distribute-list referenziert, ändert sich das Filterverhalten sofort. Richtig wäre \u0027no route-map WAN-FILTER deny 10\u0027."
+    },
+    {
+        "id":  "slg-oo-074",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which routes match \u0027ip prefix-list P1 permit 10.0.0.0/8 ge 24 le 24\u0027?",
+        "optionen":  [
+                         "Every /24 prefix inside 10.0.0.0/8",
+                         "Only 10.0.0.0/8",
+                         "Every prefix inside 10.0.0.0/8 with a length of 8 to 24",
+                         "Only 10.0.0.0/24"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die ersten 8 Bit müssen 10 sein, und \u0027ge 24 le 24\u0027 verlangt eine Präfixlänge von genau 24. Damit passen 10.1.2.0/24 oder 10.200.5.0/24, aber kein /16 und kein /25."
+    },
+    {
+        "id":  "slg-oo-075",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which route matches \u0027ip prefix-list P2 permit 172.16.0.0/16 ge 17\u0027?",
+        "optionen":  [
+                         "172.16.5.0/24",
+                         "172.17.1.0/24",
+                         "172.0.0.0/8",
+                         "172.16.0.0/16"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die ersten 16 Bit müssen 172.16 sein, und die Länge muss mindestens 17 sein (ohne le bis 32). 172.16.0.0/16 ist zu kurz, 172.17.1.0/24 und 172.0.0.0/8 passen nicht zu den ersten 16 Bit."
+    },
+    {
+        "id":  "slg-oo-076",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which route matches \u0027ip prefix-list P3 permit 192.168.0.0/16 ge 24 le 30\u0027?",
+        "optionen":  [
+                         "192.169.0.0/24",
+                         "192.168.10.0/24",
+                         "192.168.1.0/23",
+                         "192.168.4.0/31"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Erlaubt sind Präfixe innerhalb von 192.168.0.0/16 mit Länge 24 bis 30. /23 ist zu kurz, /31 zu lang, und 192.169.0.0 liegt außerhalb der ersten 16 Bit."
+    },
+    {
+        "id":  "slg-oo-077",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which routes match \u0027ip prefix-list HOSTS permit 0.0.0.0/0 ge 32\u0027?",
+        "optionen":  [
+                         "No routes, because ge 32 is invalid",
+                         "Only the default route",
+                         "All /32 host routes",
+                         "All routes"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "0.0.0.0/0 prüft keine Adressbits, also passt jede Adresse. \u0027ge 32\u0027 (ohne le bis 32) lässt nur die Länge 32 zu. Die Zeile trifft daher genau alle Host-Routen, etwa Loopbacks mit /32."
+    },
+    {
+        "id":  "slg-oo-078",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Prefix list Q contains \u0027seq 5 deny 10.1.0.0/16 le 24\u0027 and \u0027seq 10 permit 10.0.0.0/8 le 24\u0027. Which two routes are permitted? (Choose two.)",
+        "optionen":  [
+                         "10.2.0.0/16",
+                         "10.1.1.128/25",
+                         "10.3.3.0/24",
+                         "10.1.0.0/16",
+                         "10.1.5.0/24"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "10.1.5.0/24 und 10.1.0.0/16 treffen seq 5 und werden abgelehnt. 10.1.1.128/25 ist für seq 5 und seq 10 zu lang (le 24) und fällt unter das implizite deny. 10.2.0.0/16 und 10.3.3.0/24 liegen nicht in 10.1.0.0/16, passen aber auf seq 10."
+    },
+    {
+        "id":  "slg-oo-079",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which route matches \u0027ip prefix-list EXACT permit 10.0.0.0/16\u0027?",
+        "optionen":  [
+                         "10.0.0.0/16 only",
+                         "10.0.1.0/24",
+                         "Every prefix inside 10.0.0.0/16",
+                         "10.1.0.0/16"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ohne ge/le muss die Präfixlänge genau der angegebenen entsprechen. Es passt nur 10.0.0.0/16. 10.0.1.0/24 hat die richtigen ersten 16 Bit, ist aber länger, 10.1.0.0/16 hat andere Netzbits."
+    },
+    {
+        "id":  "slg-oo-080",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which prefix-list entry does IOS reject as invalid?",
+        "optionen":  [
+                         "ip prefix-list X permit 10.0.0.0/24 le 16",
+                         "ip prefix-list X permit 10.0.0.0/8 ge 16 le 24",
+                         "ip prefix-list X permit 0.0.0.0/0 le 32",
+                         "ip prefix-list X permit 10.0.0.0/8 le 24"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Für ge und le gilt: Präfixlänge \u003c ge ≤ le ≤ 32. Ein le-Wert von 16 bei einem /24 ist kleiner als die Präfixlänge, kein Präfix könnte passen. Die übrigen Einträge halten die Regel ein."
+    },
+    {
+        "id":  "slg-oo-081",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "An engineer creates a new prefix list with three \u0027ip prefix-list\u0027 commands and no \u0027seq\u0027 keyword. In \u0027show ip prefix-list\u0027, the first entry has sequence number ___.",
+        "optionen":  [
+                         "1",
+                         "0",
+                         "10",
+                         "5"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne \u0027seq\u0027 vergibt IOS die Sequenznummern automatisch in Fünferschritten: 5, 10, 15. So kann man später mit z. B. \u0027seq 7\u0027 gezielt eine Zeile dazwischen einfügen."
+    },
+    {
+        "id":  "slg-oo-082",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why can a standard ACL used in a distribute list not distinguish between the routes 10.0.0.0/8 and 10.0.0.0/16?",
+        "optionen":  [
+                         "The ACL checks only the network address, not the prefix length of the route",
+                         "Standard ACLs cannot match addresses in the 10.0.0.0 range",
+                         "The ACL compares the route\u0027s next hop instead of its prefix",
+                         "Distribute lists convert ACLs to prefix lists automatically"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Eine Standard-ACL prüft nur die Netzadresse 10.0.0.0, die bei beiden Routen gleich ist. Eine Prefix-List prüft auch die Länge, etwa mit \u0027permit 10.0.0.0/8\u0027 nur genau den /8. Prefix-Lists werden außerdem intern als Baum ausgewertet und sind bei langen Listen schneller."
+    },
+    {
+        "id":  "slg-oo-083",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Global-Modus auf R1: Lege in der Prefix-List FROM_R2 eine Zeile an, die genau das Netz 192.168.2.0/24 ablehnt.",
+        "bausteine":  [
+                          "ip",
+                          "prefix-list",
+                          "FROM_R2",
+                          "deny",
+                          "192.168.2.0/24",
+                          "permit",
+                          "le",
+                          "32",
+                          "access-list"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "prefix-list",
+                        "FROM_R2",
+                        "deny",
+                        "192.168.2.0/24"
+                    ],
+        "erklaerung":  "Ohne ge/le trifft die Zeile nur genau 192.168.2.0/24. Damit die übrigen Präfixe nicht durch das implizite deny fallen, folgt danach \u0027ip prefix-list FROM_R2 permit 0.0.0.0/0 le 32\u0027."
+    },
+    {
+        "id":  "slg-oo-084",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router ospf 1 auf R1): Wende die Prefix-List R4-LOOP als inbound distribute-list an, um 192.168.4.0/24 aus der eigenen Routingtabelle fernzuhalten.",
+        "bausteine":  [
+                          "distribute-list",
+                          "prefix",
+                          "R4-LOOP",
+                          "in",
+                          "out",
+                          "route-map",
+                          "filter-list"
+                      ],
+        "loesung":  [
+                        "distribute-list",
+                        "prefix",
+                        "R4-LOOP",
+                        "in"
+                    ],
+        "erklaerung":  "Mit dem Schlüsselwort \u0027prefix\u0027 referenziert die distribute-list eine Prefix-List statt einer ACL. Die LSA von R4 bleibt in der LSDB, nur die Route fehlt in R1s Tabelle."
+    },
+    {
+        "id":  "slg-oo-085",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "External route 10.33.33.0/24 from ASBR R3 must disappear from all OSPF routers\u0027 LSDBs, while R3 keeps the connected network. Which solution fits?",
+        "optionen":  [
+                         "area 0 filter-list prefix on the ABR",
+                         "distribute-list in on every router in the domain",
+                         "area 2 range 10.33.33.0 255.255.255.0 not-advertise on the ABR",
+                         "summary-address 10.33.33.0 255.255.255.0 not-advertise on R3"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Nur der ASBR erzeugt die Type-5-LSA. Mit \u0027summary-address ... not-advertise\u0027 erzeugt er sie gar nicht, deshalb fehlt sie in allen LSDBs. distribute-lists ändern die LSDB nicht, und \u0027area range\u0027 sowie filter-list wirken nur auf Type-3-LSAs."
+    },
+    {
+        "id":  "slg-oo-086",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1\u0027s LSDB shows the Type 5 LSA for 10.33.33.0/24 with \u0027Metric Type: 2, Metric: 20, Forward Address: 0.0.0.0\u0027. \u0027show ip route 10.33.33.0\u0027 shows \u0027metric 20, type extern 2, forward metric 10\u0027. How is the forward metric of 10 derived?",
+        "optionen":  [
+                         "It is the metric the ASBR assigned minus 10",
+                         "It is R3\u0027s cost to the external network",
+                         "It is R1\u0027s internal OSPF cost to ASBR R3",
+                         "It is the default seed metric for redistributed connected routes"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Forward Metric sind die Kosten von R1 zum ASBR, hier ein Ethernet-Link mit Kosten 10. Die Metrik 20 ist der Standardwert für redistributierte Routen als E2 und bleibt im ganzen AS gleich. Forward Address 0.0.0.0 heißt: Verkehr geht zum ASBR selbst."
+    },
+    {
+        "id":  "slg-oo-087",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Konfigurationsbefehl dem OSPF-Modell zu.",
+        "paare":  [
+                      [
+                          "router ospf 1",
+                          "OSPFv2, IPv4 only, transported over IPv4"
+                      ],
+                      [
+                          "ipv6 router ospf 1",
+                          "Traditional OSPFv3, IPv6 only"
+                      ],
+                      [
+                          "router ospfv3 1",
+                          "OSPFv3 with IPv4 and IPv6 address families"
+                      ],
+                      [
+                          "ospfv3 1 ipv4 area 0",
+                          "Interface command enabling the IPv4 address family"
+                      ]
+                  ],
+        "erklaerung":  "OSPFv2 wird mit \u0027router ospf\u0027 gestartet und läuft über IPv4. Klassisches OSPFv3 (\u0027ipv6 router ospf\u0027) kennt nur IPv6. \u0027router ospfv3\u0027 unterstützt beide Address-Families über IPv6-Transport, aktiviert wird pro Interface mit \u0027ospfv3 \u003cid\u003e ipv4|ipv6 area \u003cn\u003e\u0027."
+    },
+    {
+        "id":  "slg-oo-088",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 runs \u0027router ospfv3 1\u0027 with the IPv4 address family. Its neighbor R2 runs \u0027router ospf 1\u0027 (OSPFv2) on the same IPv4 subnet. What happens?",
+        "optionen":  [
+                         "They form an adjacency and exchange IPv4 routes",
+                         "They form an adjacency, but only for IPv6 routes",
+                         "No adjacency forms, because OSPFv3 always runs over IPv6",
+                         "R1 automatically falls back to OSPFv2 for this neighbor"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Auch für die IPv4-Address-Family transportiert OSPFv3 seine Pakete über IPv6 Link-Local. OSPFv2 spricht IPv4 mit Protokoll 89, die beiden verstehen sich nicht. Bei einer Migration müssen beide Seiten dasselbe Modell verwenden."
+    },
+    {
+        "id":  "slg-oo-089",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "An interface should take part in the IPv4 address family of \u0027router ospfv3 1\u0027. Which two requirements must be met on the interface? (Choose two.)",
+        "optionen":  [
+                         "IPv6 is enabled, for example with a link-local address",
+                         "An OSPFv2 process on the same interface",
+                         "A global IPv6 unicast address in the same subnet as the neighbor",
+                         "A network statement under the IPv4 address family",
+                         "An IPv4 address is configured"
+                     ],
+        "richtig":  [
+                        0,
+                        4
+                    ],
+        "erklaerung":  "Die IPv4-AF braucht eine IPv4-Adresse, denn sie annonciert IPv4-Präfixe. Der Transport läuft aber über IPv6 Link-Local, also muss IPv6 auf dem Interface aktiv sein. Eine globale IPv6-Adresse ist nicht nötig, und \u0027network\u0027-Befehle gibt es in OSPFv3 nicht."
+    },
+    {
+        "id":  "slg-oo-090",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "OSPFv3 with the IPv4 address family is running and adjacencies are FULL. \u0027show ip route ospf\u0027 shows nothing. Which command shows the IPv4 routes learned through OSPFv3?",
+        "optionen":  [
+                         "show ipv6 route ospf",
+                         "show ip route ospfv3",
+                         "show ip ospf route",
+                         "show ip route ospf 1 ipv4"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027show ip route ospf\u0027 filtert auf OSPFv2. IPv4-Routen aus OSPFv3 zeigt \u0027show ip route ospfv3\u0027. \u0027show ipv6 route ospf\u0027 zeigt nur die IPv6-Routen."
+    },
+    {
+        "id":  "slg-oo-091",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A router runs only \u0027router ospfv3 1\u0027 with IPv4 and IPv6 address families. \u0027show ip ospf database\u0027 returns no entries. What should the engineer use instead?",
+        "optionen":  [
+                         "show ipv6 ospf interface",
+                         "show ospfv3 database",
+                         "show ip ospf database external",
+                         "show ip protocols"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Befehle mit \u0027ip ospf\u0027 beziehen sich auf OSPFv2. Die OSPFv3-Datenbank zeigt \u0027show ospfv3 database\u0027, getrennt nach Address-Family. Die alten \u0027show ipv6 ospf\u0027-Befehle funktionieren für die IPv6-AF weiterhin."
+    },
+    {
+        "id":  "slg-oo-092",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "By default, traditional OSPFv3 advertises the IPv6 prefix of a loopback interface with a prefix length of /___, unless \u0027ipv6 ospf network point-to-point\u0027 is configured.",
+        "optionen":  [
+                         "32",
+                         "128",
+                         "64",
+                         "48"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Wie OSPFv2 bei IPv4 (/32) behandelt OSPFv3 Loopbacks als Host und annonciert /128. Mit dem Netzwerktyp point-to-point auf dem Loopback wird das konfigurierte Präfix annonciert, im Lab 2001:DB8:0:11::/64."
+    },
+    {
+        "id":  "slg-oo-093",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ipv6 route ospf\u0027 on R1 shows \u0027O 2001:DB8:0:22::/64 [110/65] via FE80::2, Serial2/0\u0027. Why is the next hop a link-local address?",
+        "optionen":  [
+                         "The global next hop is hidden because of route summarization",
+                         "FE80::2 is the router ID of R2 written in IPv6 format",
+                         "OSPFv3 uses the neighbors\u0027 link-local addresses as next hops",
+                         "R2 has no global IPv6 address on Serial0/0"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "OSPFv3 sendet Hellos und LSAs von der Link-Local-Adresse aus. Deshalb sieht der Router den Nachbarn über dessen Link-Local-Adresse und trägt sie zusammen mit dem Interface als Next Hop ein. Die Router-ID ist weiter eine 32-Bit-Zahl."
+    },
+    {
+        "id":  "slg-oo-094",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show ipv6 ospf neighbor\u0027 shows a column \u0027Interface ID\u0027 (for example 3) where OSPFv2 shows the neighbor\u0027s IP address. What is the Interface ID?",
+        "optionen":  [
+                         "The neighbor\u0027s own identifier for its interface on the link",
+                         "The DR priority that the neighbor uses on this interface",
+                         "The instance ID of the address family",
+                         "The OSPF area number of the link"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "OSPFv3 beschreibt Links nicht mehr über Adressen, sondern über Interface-IDs (RFC 5340). Jeder Router vergibt pro Interface eine 32-Bit-ID und teilt sie im Hello mit; die Spalte zeigt die ID des Nachbarn. Seine Link-Local-Adresse lernt der Router aus dem Hello bzw. der Link-LSA."
+    },
+    {
+        "id":  "slg-oo-095",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den OSPFv3-LSA-Typ seiner Bezeichnung zu.",
+        "paare":  [
+                      [
+                          "Type 3",
+                          "Inter-Area-Prefix LSA"
+                      ],
+                      [
+                          "Type 4",
+                          "Inter-Area-Router LSA"
+                      ],
+                      [
+                          "Type 8",
+                          "Link LSA"
+                      ],
+                      [
+                          "Type 9",
+                          "Intra-Area-Prefix LSA"
+                      ]
+                  ],
+        "erklaerung":  "OSPFv3 benennt Type 3 und Type 4 um, weil sie Präfixe bzw. ASBRs statt Netz-Summaries beschreiben. Neu sind Type 8 (Link-LSA, nur auf dem Link) und Type 9 (Präfixe eines Routers oder Transitnetzes innerhalb der Area)."
+    },
+    {
+        "id":  "slg-oo-096",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the flooding scope of an OSPFv3 Link LSA (Type 8)?",
+        "optionen":  [
+                         "The entire OSPF domain",
+                         "Only from the ABR into the backbone",
+                         "The entire area",
+                         "Only the local link it describes"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Link-LSAs werden nur auf dem jeweiligen Link verteilt und nie weitergeflutet. Darum sieht man im Lab Type-8-Einträge pro Interface (Lo0, Et0/0), nicht für entfernte Links."
+    },
+    {
+        "id":  "slg-oo-097",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which information does an OSPFv3 Link LSA (Type 8) carry to the other routers on the same link?",
+        "optionen":  [
+                         "The external routes of the ASBR",
+                         "The router\u0027s link-local address and the IPv6 prefixes on that link",
+                         "The router IDs of all ABRs in the area",
+                         "The cost from the router to every inter-area prefix in the area"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Über die Link-LSA erfahren die Nachbarn die Link-Local-Adresse des Routers (wichtig als Next Hop) und die IPv6-Präfixe des Links. Außerdem enthält sie Options-Bits für die Network-LSA des Links."
+    },
+    {
+        "id":  "slg-oo-098",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In \u0027show ipv6 ospf database\u0027, the \u0027Intra Area Prefix Link States\u0027 section lists an entry from 4.4.4.4 with \u0027Ref-lstype 0x2002\u0027. What does this mean?",
+        "optionen":  [
+                         "The LSA carries the prefixes of R4 itself and refers to its Router LSA",
+                         "The LSA carries the prefixes of a transit network and refers to R4\u0027s Network LSA",
+                         "The LSA describes an NSSA external route",
+                         "The LSA is an Inter-Area-Prefix LSA created by an ABR"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Eine Intra-Area-Prefix-LSA verweist auf die LSA, zu der ihre Präfixe gehören. 0x2001 ist die Router-LSA, 0x2002 die Network-LSA. Im Lab ist R4 DR auf dem Ethernet-Segment und annonciert so das Präfix des Transitnetzes."
+    },
+    {
+        "id":  "slg-oo-099",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In \u0027Router Link States (Area 0)\u0027 of R1\u0027s OSPFv3 database, the \u0027Bits\u0027 column shows \u0027B\u0027 for 1.1.1.1 and \u0027None\u0027 for 4.4.4.4. What does the B bit indicate?",
+        "optionen":  [
+                         "R1 is an area border router",
+                         "R1 is the DR on the segment",
+                         "R1 is the endpoint of a virtual link",
+                         "R1 is an AS boundary router"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "In der Router-LSA zeigt das B-Bit (Border) einen ABR an, das E-Bit (External) einen ASBR und das V-Bit das Ende eines Virtual Links. R1 hat Interfaces in drei Areas und ist deshalb ABR."
+    },
+    {
+        "id":  "slg-oo-100",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 runs traditional \u0027ipv6 router ospf 1\u0027. The engineer enters \u0027router ospfv3 1\u0027. What does \u0027show running-config | section router\u0027 show afterward?",
+        "optionen":  [
+                         "Both \u0027ipv6 router ospf 1\u0027 and \u0027router ospfv3 1\u0027 with identical settings",
+                         "\u0027router ospfv3 1\u0027 without any address family until one is configured manually",
+                         "\u0027router ospfv3 1\u0027 with an automatically created IPv6 AF only",
+                         "\u0027router ospfv3 1\u0027 with IPv4 and IPv6 address families"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "IOS übernimmt die bestehende OSPFv3-Konfiguration ins neue Modell. Da der alte Prozess nur IPv6 bediente, wird nur \u0027address-family ipv6 unicast\u0027 angelegt; die IPv4-AF muss man selbst hinzufügen."
+    },
+    {
+        "id":  "slg-oo-101",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After migration to \u0027router ospfv3 1\u0027, \u0027passive-interface Loopback0\u0027 appears under \u0027address-family ipv6 unicast\u0027 instead of directly under the process. Why?",
+        "optionen":  [
+                         "The command is invalid at process level and was moved as a warning",
+                         "Passive interfaces are supported only for IPv6",
+                         "Passive interfaces are configured per address family",
+                         "IOS places all commands under the IPv6 AF by default"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Im AF-Modell gelten Einstellungen wie passive-interface pro Address-Family. Ein Interface kann für IPv4 passiv sein und für IPv6 Nachbarn bilden. Deshalb steht der Befehl in der jeweiligen AF."
+    },
+    {
+        "id":  "slg-oo-102",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In \u0027router ospfv3 1\u0027, \u0027router-id 1.1.1.1\u0027 is configured at process level and also appears under the IPv6 address family. Which statement is correct?",
+        "optionen":  [
+                         "OSPFv3 derives the router ID from the IPv6 link-local address",
+                         "It applies to all AFs, but an AF can override it",
+                         "Only the router ID under the IPv6 AF is used; the process-level one is ignored",
+                         "Each AF must have a different router ID"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Router-ID unter dem Prozess gilt global für alle Address-Families. Laut Kurs kann man pro AF eine eigene ID vergeben. Es bleibt aber immer eine 32-Bit-Zahl im IPv4-Format."
+    },
+    {
+        "id":  "slg-oo-103",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus (Ethernet0/0 von R1, router ospfv3 1 existiert): Aktiviere die IPv4-Address-Family von OSPFv3-Prozess 1 in Area 0.",
+        "bausteine":  [
+                          "ospfv3",
+                          "1",
+                          "ipv4",
+                          "area",
+                          "0",
+                          "ipv6",
+                          "ip",
+                          "ospf"
+                      ],
+        "loesung":  [
+                        "ospfv3",
+                        "1",
+                        "ipv4",
+                        "area",
+                        "0"
+                    ],
+        "erklaerung":  "Im neuen Modell aktiviert \u0027ospfv3 \u003cProzess\u003e ipv4|ipv6 area \u003cArea\u003e\u0027 die gewünschte Address-Family auf dem Interface. Für IPv4 muss das Interface eine IPv4-Adresse haben, der Transport läuft über IPv6 Link-Local."
+    },
+    {
+        "id":  "slg-oo-104",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus (Serial2/0 von R1): Setze die OSPFv3-Kosten nur für die IPv6-Address-Family von Prozess 1 auf 200.",
+        "bausteine":  [
+                          "ospfv3",
+                          "1",
+                          "ipv6",
+                          "cost",
+                          "200",
+                          "ipv4",
+                          "ip",
+                          "ospf"
+                      ],
+        "loesung":  [
+                        "ospfv3",
+                        "1",
+                        "ipv6",
+                        "cost",
+                        "200"
+                    ],
+        "erklaerung":  "Mit \u0027ospfv3 1 ipv6 cost 200\u0027 gilt der Wert nur für die IPv6-AF. Die IPv4-AF rechnet auf diesem Interface weiter mit den berechneten Kosten (im Lab 64)."
+    },
+    {
+        "id":  "slg-oo-105",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Before the change, R4 reached R2\u0027s LAN with metric 75 (10 + 64 + 1) for both IPv4 and IPv6. Then \u0027ospfv3 1 ipv6 cost 200\u0027 is set on R1 Serial2/0. Which metrics does R4 show now for IPv6 2001:DB8:0:22::/64 and IPv4 192.168.2.0/24?",
+        "optionen":  [
+                         "IPv6 200, IPv4 64",
+                         "IPv6 211, IPv4 211",
+                         "IPv6 75, IPv4 211",
+                         "IPv6 211, IPv4 75"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die neuen Kosten gelten nur für die IPv6-AF: 10 + 200 + 1 = 211. In der IPv4-AF bleibt der Serial-Link bei 64, also weiter 75. So kann man IPv4- und IPv6-Verkehr über verschiedene Pfade lenken."
+    },
+    {
+        "id":  "slg-oo-106",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show ospfv3 interface Ethernet0/0\u0027 lists the interface twice: once with \u0027Instance ID 64\u0027 (IPv4 AF) and once with \u0027Instance ID 0\u0027 (IPv6 AF). Why does the IPv4 AF use instance 64?",
+        "optionen":  [
+                         "RFC 5838 reserves instance IDs 64–95 for the IPv4 unicast AF",
+                         "The instance ID is chosen randomly when the IPv4 AF starts",
+                         "The instance ID equals the OSPF cost of the IPv4 AF",
+                         "The IPv4 AF always runs 64 parallel instances on the link"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "OSPFv3 trennt Address-Families über die Instance-ID im Paketheader (RFC 5838): 0–31 für IPv6 Unicast, 64–95 für IPv4 Unicast. So laufen beide AFs über dieselbe IPv6-Link-Local-Verbindung, und die Nachbarschaften bleiben getrennt."
+    },
+    {
+        "id":  "slg-oo-107",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A new IOS router with the OSPFv3 IPv4 AF is connected to an older third-party router running OSPFv3 without address-family support. What happens for the IPv4 AF?",
+        "optionen":  [
+                         "No IPv4 AF adjacency forms, because the AF bit is not set",
+                         "The older router translates the IPv4 prefixes to IPv6",
+                         "The adjacency forms and IPv4 routes are installed in the IPv6 RIB",
+                         "The IPv4 AF falls back to OSPFv2 packets automatically"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Laut Cisco bilden ältere IOS-Versionen und Fremdgeräte ohne AF-Unterstützung für die IPv4-AF keine Nachbarschaft, weil sie das AF-Bit nicht setzen; Router mit AF verwerfen solche Hellos (RFC 5838). Der Kurs schreibt an dieser Stelle \u0027IPv6 RIB\u0027, gemeint ist die IPv4-RIB."
+    },
+    {
+        "id":  "slg-oo-108",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 has static default routes for IPv4 and IPv6. Under \u0027router ospfv3 1\u0027, \u0027default-information originate\u0027 is configured only in \u0027address-family ipv6 unicast\u0027. What does R3 receive?",
+        "optionen":  [
+                         "Only \u0027OE2 ::/0\u0027; no IPv4 default route",
+                         "No default route, because the command belongs at process level",
+                         "Only \u0027O*E2 0.0.0.0/0\u0027",
+                         "Both \u0027O*E2 0.0.0.0/0\u0027 and \u0027OE2 ::/0\u0027"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Im AF-Modell gilt \u0027default-information originate\u0027 pro Address-Family. Für die IPv4-Default-Route muss der Befehl zusätzlich unter \u0027address-family ipv4 unicast\u0027 stehen, wie im Lab gezeigt."
+    },
+    {
+        "id":  "slg-oo-109",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Router-Modus (router ospfv3 1 auf R1): Wechsle in die IPv4-Unicast-Address-Family, um dort IPv4-spezifische Einstellungen vorzunehmen.",
+        "bausteine":  [
+                          "address-family",
+                          "ipv4",
+                          "unicast",
+                          "ipv6",
+                          "multicast",
+                          "vrf"
+                      ],
+        "loesung":  [
+                        "address-family",
+                        "ipv4",
+                        "unicast"
+                    ],
+        "erklaerung":  "\u0027address-family ipv4 unicast\u0027 öffnet den Modus config-router-af für die IPv4-AF. Dort stehen zum Beispiel passive-interface, default-information originate oder area range für IPv4."
+    },
+    {
+        "id":  "slg-oo-110",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Address-Family-Modus (router ospfv3 1, address-family ipv6 unicast auf ABR R1): Fasse die Präfixe 2001:DB8:0:220::/64 bis 2001:DB8:0:22F::/64 aus Area 1 zusammen.",
+        "bausteine":  [
+                          "area",
+                          "1",
+                          "range",
+                          "2001:DB8:0:220::/60",
+                          "2001:DB8:0:220::/56",
+                          "summary-prefix",
+                          "0"
+                      ],
+        "loesung":  [
+                        "area",
+                        "1",
+                        "range",
+                        "2001:DB8:0:220::/60"
+                    ],
+        "erklaerung":  "Wie bei IPv4 fasst der ABR mit \u0027area \u003cid\u003e range\u0027 zusammen, für IPv6 aber mit Präfixlänge statt Maske. 16 /64-Netze ergeben einen /60. \u0027summary-prefix\u0027 wäre für externe Routen am ASBR."
+    },
+    {
+        "id":  "slg-oo-111",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In the IPv6 address family of \u0027router ospfv3 1\u0027, which command summarizes redistributed (external) IPv6 routes on an ASBR?",
+        "optionen":  [
+                         "summary-prefix 2001:DB8:1::/56",
+                         "summary-address 2001:DB8:1::/56",
+                         "ipv6 summary-address ospfv3 2001:DB8:1::/56",
+                         "area 0 range 2001:DB8:1::/56"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "In der OSPFv3-IPv6-AF heißt der Befehl für externe Summaries \u0027summary-prefix\u0027. \u0027summary-address\u0027 ist der OSPFv2-Befehl für IPv4, \u0027area range\u0027 fasst nur Inter-Area-Routen zusammen."
+    },
+    {
+        "id":  "slg-oo-112",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After \u0027area 1 range 2001:DB8:0:220::/60\u0027 on R1, R3\u0027s IPv6 table shrinks from 26 to 11 entries. Which entry now represents R2\u0027s sixteen networks?",
+        "optionen":  [
+                         "O 2001:DB8:0:220::/60 [110/75]",
+                         "OE2 2001:DB8:0:220::/60 [110/20]",
+                         "OI 2001:DB8:0:22::/56 [110/75]",
+                         "OI 2001:DB8:0:220::/60 [110/75]"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Summary kommt als Inter-Area-Prefix-LSA vom ABR, daher der Code OI (OSPF Inter). Die Kosten entsprechen denen der Teilnetze (10 + 64 + 1 = 75). OE2 wäre eine externe Route."
+    },
+    {
+        "id":  "slg-oo-113",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three characteristics are the same in OSPFv2 and OSPFv3? (Choose three.)",
+        "optionen":  [
+                         "Interfaces are enabled with the network command in router mode",
+                         "Neighbors are identified by their global unicast addresses",
+                         "Cost-based metric and the SPF algorithm",
+                         "The same five packet types (Hello, DBD, LSR, LSU, LSAck)",
+                         "DR/BDR election on broadcast segments"
+                     ],
+        "richtig":  [
+                        2,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "OSPFv3 übernimmt Pakettypen, Kostenmetrik, SPF, Areas und die DR/BDR-Wahl. Neu ist die Kommunikation über Link-Local-Adressen und die Aktivierung pro Interface statt mit network-Befehlen."
+    },
+    {
+        "id":  "slg-oo-115",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ospfv3 neighbor\u0027 on R1 lists the neighbors 2.2.2.2, 3.3.3.3 and 4.4.4.4 twice, once under \u0027address-family ipv4\u0027 and once under \u0027address-family ipv6\u0027. What does this show?",
+        "optionen":  [
+                         "Each neighbor has two router IDs",
+                         "The output is duplicated by a display bug",
+                         "IPv4 neighbors are tunneled inside the IPv6 adjacency",
+                         "A separate adjacency is formed for each address family"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Im AF-Modell baut OSPFv3 pro Address-Family eine eigene Nachbarschaft auf (unterscheidbar an der Instance-ID). Deshalb erscheint jeder Nachbar einmal je AF, mit eigenen Zuständen und Timern."
+    },
+    {
+        "id":  "slg-oo-116",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An engineer configures \u0027ipv6 router ospf 1\u0027 with a router ID and \u0027ipv6 ospf 1 area 0\u0027 on all interfaces. The adjacencies come up, but the router does not forward IPv6 traffic between interfaces. What is missing?",
+        "optionen":  [
+                         "ipv6 enable on every interface",
+                         "A network statement under ipv6 router ospf",
+                         "ipv6 ospf network point-to-point",
+                         "ipv6 unicast-routing"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "IPv6-Forwarding ist auf Cisco-Routern standardmäßig aus und wird global mit \u0027ipv6 unicast-routing\u0027 eingeschaltet. Der Kurs nennt das als ersten Schritt, bevor ein IPv6-Routingprotokoll sinnvoll arbeiten kann."
+    },
+    {
+        "id":  "slg-oo-118",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ospfv3 interface\u0027 on R4 shows \u0027Timer intervals configured, Hello 10, Dead 40\u0027 for both address families. Which command changes the hello interval only for the IPv6 AF to 5 seconds?",
+        "optionen":  [
+                         "ospfv3 1 ipv6 hello-interval 5",
+                         "ipv6 ospf hello-interval 5 ipv6",
+                         "ospfv3 hello-interval ipv6 5",
+                         "ip ospf hello-interval 5"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Timer im neuen Modell folgen dem Muster \u0027ospfv3 \u003cProzess\u003e ipv4|ipv6 hello-interval \u003cs\u003e\u0027 bzw. \u0027dead-interval\u0027. \u0027ip ospf hello-interval\u0027 betrifft nur OSPFv2."
+    },
+    {
+        "id":  "slg-oo-119",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In OSPFv3, how is an Inter-Area-Prefix LSA (Type 3) for the IPv6 default route written?",
+        "optionen":  [
+                         "OSPFv3 cannot carry a default route in a Type 3 LSA",
+                         "As FE80::/10",
+                         "As 0.0.0.0 with mask 0.0.0.0",
+                         "As the prefix ::/0, a prefix with length 0"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "OSPFv3 beschreibt Ziele als Präfix mit Präfixlänge statt als Adresse mit Maske. Die Default-Route ist darum ::/0. Im Routingtable erscheint sie als OI ::/0 oder, vom ASBR erzeugt, als OE2 ::/0."
+    },
+    {
+        "id":  "slg-oo-122",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An ASBR has \u0027summary-address 10.33.4.0 255.255.252.0\u0027. Which entry appears in the ASBR\u0027s own routing table?",
+        "optionen":  [
+                         "O IA 10.33.4.0/22 via the ABR",
+                         "O E2 10.33.4.0/22 [110/20] via its own loopback",
+                         "O 10.33.4.0/22 is a summary, Null0",
+                         "No OSPF entry, because the ASBR uses the connected routes"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Wie der ABR bei \u0027area range\u0027 legt auch der ASBR bei \u0027summary-address\u0027 eine Discard-Route nach Null0 an. Die einzelnen Netze bleiben bei ihm als connected bzw. ursprüngliche Routen bestehen."
+    },
+    {
+        "id":  "slg-oo-123",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Ausgabe von \u0027show ip protocols\u0027 der Konfiguration zu.",
+        "paare":  [
+                      [
+                          "It is an autonomous system boundary router",
+                          "Redistribution or default-information originate is configured"
+                      ],
+                      [
+                          "Incoming update filter list for all interfaces is 1",
+                          "distribute-list 1 in"
+                      ],
+                      [
+                          "Passive Interface(s): Loopback0",
+                          "passive-interface Loopback0"
+                      ],
+                      [
+                          "Maximum path: 4",
+                          "Default number of equal-cost paths"
+                      ]
+                  ],
+        "erklaerung":  "\u0027show ip protocols\u0027 fasst die Prozess-Einstellungen zusammen: ASBR-Rolle, inbound distribute-list, passive Interfaces und die Zahl der ECMP-Pfade. Area-Filter und Ranges zeigt dagegen \u0027show ip ospf\u0027."
+    },
+    {
+        "id":  "slg-oo-124",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An internal router in area 1 should not install 10.50.0.0/16, but all other routers must keep the route. Which method fits best?",
+        "optionen":  [
+                         "summary-address 10.50.0.0 255.255.0.0 not-advertise on the ASBR",
+                         "area 1 range 10.50.0.0 255.255.0.0 not-advertise on the ABR",
+                         "area 1 filter-list prefix in on the ABR",
+                         "An inbound distribute-list with a prefix list on that router only"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Nur die inbound distribute-list wirkt rein lokal: Sie filtert die eigene Routingtabelle und lässt LSDB und alle anderen Router unberührt. Die übrigen Werkzeuge entfernen den Präfix für ganze Areas oder die ganze Domain."
+    },
+    {
+        "id":  "slg-oo-125",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "ABR R1 summarizes area 1 with \u0027area 1 range 192.168.16.0 255.255.248.0\u0027. Which two statements are true? (Choose two.)",
+        "optionen":  [
+                         "Routers in area 0 see the /21 and the eight /24 networks",
+                         "The summary is flooded as a Type 5 LSA",
+                         "R1 installs 192.168.16.0/21 to Null0",
+                         "The summary stays advertised even if all /24 networks fail",
+                         "Routers inside area 1 still see the individual /24 networks"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Der ABR legt für die Summary eine Discard-Route nach Null0 an. In Area 1 ändern sich die Typ-1/2-LSAs nicht, dort bleiben die /24-Netze sichtbar. Andere Areas sehen nur die /21 als Type-3-LSA, und sie verschwindet, wenn kein Teilnetz mehr existiert."
+    },
+    {
+        "id":  "slg-oo-126",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two commands are configured inside an address family of \u0027router ospfv3 1\u0027? (Choose two.)",
+        "optionen":  [
+                         "ipv6 unicast-routing",
+                         "default-information originate",
+                         "ospfv3 1 ipv4 area 0",
+                         "ipv6 ospf network point-to-point",
+                         "passive-interface Loopback0"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Passive Interfaces und die Default-Route werden pro Address-Family unter \u0027router ospfv3\u0027 gesetzt. \u0027ipv6 unicast-routing\u0027 ist ein globaler Befehl, \u0027ospfv3 1 ipv4 area 0\u0027 und \u0027ipv6 ospf network point-to-point\u0027 sind Interface-Befehle."
+    },
+    {
+        "id":  "slg-oo-127",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two commands show OSPF filter settings in their output? (Choose two.)",
+        "optionen":  [
+                         "show ip ospf",
+                         "show ip ospf interface brief",
+                         "show ip route summary",
+                         "show ip protocols",
+                         "show ip ospf neighbor"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "\u0027show ip protocols\u0027 zeigt inbound und outbound distribute-lists (\u0027Incoming update filter list ...\u0027). \u0027show ip ospf\u0027 zeigt je Area die area filter-list (\u0027Area-filter ... in/out\u0027) und die Ranges inklusive DoNotAdvertise. Die anderen Befehle zeigen Nachbarn, Interfaces oder Routenzahlen."
+    },
+    {
+        "id":  "slg-oo-128",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two prefixes are permitted by \u0027ip prefix-list L permit 10.0.0.0/8 ge 16 le 24\u0027? (Choose two.)",
+        "optionen":  [
+                         "10.0.0.0/8",
+                         "10.5.5.0/24",
+                         "10.5.0.0/16",
+                         "11.1.0.0/16",
+                         "10.5.5.128/25"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Die ersten 8 Bit müssen 10 sein, die Länge muss zwischen 16 und 24 liegen. 10.0.0.0/8 ist zu kurz, /25 zu lang, und 11.1.0.0/16 hat andere Netzbits."
+    },
+    {
+        "id":  "slg-oo-129",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements describe differences between OSPFv3 and OSPFv2? (Choose two.)",
+        "optionen":  [
+                         "OSPFv3 floods Link LSAs throughout the whole area",
+                         "OSPFv3 derives its router ID from the IPv6 link-local address",
+                         "OSPFv3 runs over TCP for reliable flooding",
+                         "OSPFv3 exchanges its packets using IPv6 link-local addresses",
+                         "OSPFv3 is enabled per interface instead of with network statements"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "OSPFv3 nutzt Link-Local-Adressen als Quelle und wird pro Interface aktiviert. Die Router-ID bleibt eine 32-Bit-Zahl, das Protokoll läuft weiter direkt in IP (Next Header 89), und Link-LSAs bleiben auf ihrem Link."
+    },
+    {
+        "id":  "slg-oo-130",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Routingtabellen-Eintrag aus dem Optimierungs-Lab seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "O 192.168.16.0/21 is a summary, Null0",
+                          "Discard route on the router that creates the summary"
+                      ],
+                      [
+                          "O IA 192.168.16.0/21 [110/21]",
+                          "Inter-area summary learned from the ABR"
+                      ],
+                      [
+                          "O E2 10.33.4.0/22 [110/20]",
+                          "External summary created by the ASBR"
+                      ],
+                      [
+                          "O*E2 0.0.0.0/0 [110/1]",
+                          "Default route originated with default-information originate"
+                      ]
+                  ],
+        "erklaerung":  "Nur der summierende Router hat die Null0-Route. In anderen Areas erscheint die ABR-Summary als O IA, die ASBR-Summary als O E2 mit der externen Metrik 20. Die Default-Route trägt den Stern als Candidate Default und standardmäßig die Metrik 1."
+    },
+    {
+        "id":  "slg-oo-131",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Befehl dem Konfigurationsmodus zu, in dem er eingegeben wird.",
+        "paare":  [
+                      [
+                          "auto-cost reference-bandwidth 10000",
+                          "Router configuration (router ospf)"
+                      ],
+                      [
+                          "ip ospf cost 500",
+                          "Interface configuration"
+                      ],
+                      [
+                          "ip prefix-list FROM_R2 deny 192.168.2.0/24",
+                          "Global configuration"
+                      ],
+                      [
+                          "passive-interface Loopback0 (OSPFv3)",
+                          "Address-family configuration (router ospfv3)"
+                      ]
+                  ],
+        "erklaerung":  "Die Referenzbandbreite gilt für den ganzen OSPF-Prozess, die Kosten für ein einzelnes Interface. Prefix-Lists sind globale Objekte, die man von OSPF aus referenziert. Im OSPFv3-AF-Modell stehen passive Interfaces in der jeweiligen Address-Family."
+    },
+    {
+        "id":  "slg-oo-132",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne der Kombination aus Interface-Bandbreite und Referenzbandbreite die OSPF-Kosten zu.",
+        "paare":  [
+                      [
+                          "10 Mbit/s, reference 10000",
+                          "1000"
+                      ],
+                      [
+                          "1 Gbit/s, reference 100000",
+                          "100"
+                      ],
+                      [
+                          "25 Gbit/s, reference 100000",
+                          "4"
+                      ],
+                      [
+                          "100 Mbit/s, reference 100 (default)",
+                          "1"
+                      ]
+                  ],
+        "erklaerung":  "Kosten = Referenz (Mbit/s) / Bandbreite (Mbit/s), ganzzahlig abgeschnitten, mindestens 1: 10000/10 = 1000, 100000/1000 = 100, 100000/25000 = 4 und 100/100 = 1."
+    },
+    {
+        "id":  "slg-oo-133",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den OSPFv3-show-Befehl der Information zu, die er liefert.",
+        "paare":  [
+                      [
+                          "show ospfv3 neighbor",
+                          "Adjacencies listed per address family"
+                      ],
+                      [
+                          "show ip route ospfv3",
+                          "IPv4 routes learned through OSPFv3"
+                      ],
+                      [
+                          "show ipv6 route ospf",
+                          "IPv6 routes learned through OSPFv3"
+                      ],
+                      [
+                          "show ospfv3 interface",
+                          "Instance ID, cost and timers per interface and AF"
+                      ]
+                  ],
+        "erklaerung":  "Im AF-Modell zeigen die ospfv3-Befehle beide Address-Families getrennt an. Die IPv4-Routen aus OSPFv3 filtert man mit dem Schlüsselwort \u0027ospfv3\u0027, denn \u0027show ip route ospf\u0027 meint OSPFv2. Die IPv6-Routen zeigt weiterhin \u0027show ipv6 route ospf\u0027."
+    },
+    {
+        "id":  "slg-oo-134",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The value of \u0027auto-cost reference-bandwidth\u0027 is entered in ___.",
+        "optionen":  [
+                         "Gbps",
+                         "kbps",
+                         "Mbps",
+                         "bps"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Referenzbandbreite wird in Mbit/s angegeben, 10000 entspricht also 10 Gbit/s. Der Interface-Befehl \u0027bandwidth\u0027 verwendet dagegen kbit/s, das führt leicht zu Verwechslungen."
+    },
+    {
+        "id":  "slg-oo-135",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "To summarize redistributed IPv4 routes on an OSPFv2 ASBR, use the router configuration command ___.",
+        "optionen":  [
+                         "area range",
+                         "summary-prefix",
+                         "ip summary-address",
+                         "summary-address"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027summary-address\u0027 unter \u0027router ospf\u0027 fasst externe Routen (Type 5/7) zusammen. \u0027area range\u0027 ist für Inter-Area-Routen am ABR, \u0027ip summary-address\u0027 ist ein EIGRP-Interface-Befehl und \u0027summary-prefix\u0027 der OSPFv3-Befehl für IPv6."
+    },
+    {
+        "id":  "slg-oo-136",
+        "topic":  "ENCOR-3.2.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The interface command \u0027bandwidth\u0027, which OSPF uses to calculate the cost, is entered in ___.",
+        "optionen":  [
+                         "kbps",
+                         "bps",
+                         "Mbps",
+                         "Gbps"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027bandwidth 100000\u0027 bedeutet 100.000 kbit/s, also 100 Mbit/s. Die Referenzbandbreite unter \u0027router ospf\u0027 wird dagegen in Mbit/s angegeben."
+    },
+    {
+        "id":  "slg-oo-137",
+        "topic":  "ENCOR-3.2.a",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "In an OSPFv3 Intra-Area-Prefix LSA, a Ref-lstype of 0x___ means that the prefixes belong to a Router LSA.",
+        "optionen":  [
+                         "0008",
+                         "2002",
+                         "2009",
+                         "2001"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "OSPFv3 kodiert die LSA-Typen mit Flooding-Bits: 0x2001 ist die Router-LSA, 0x2002 die Network-LSA, 0x2009 die Intra-Area-Prefix-LSA selbst und 0x0008 die Link-LSA mit Link-Scope."
+    }
+]

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>IKE-Ablauf: IKEv1 Main Mode und Quick Mode im Vergleich zu IKEv2</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker>
+</defs>
+<text x="200" y="30" font-size="16" font-weight="bold" fill="#222" text-anchor="middle">IKEv1 (9 Nachrichten)</text>
+<text x="600" y="30" font-size="16" font-weight="bold" fill="#222" text-anchor="middle">IKEv2 (4 Nachrichten)</text>
+<g font-size="12" fill="#222" text-anchor="middle">
+<text x="50" y="55">Initiator</text><text x="350" y="55">Responder</text>
+<text x="450" y="55">Initiator</text><text x="750" y="55">Responder</text>
+</g>
+<g stroke="#999" stroke-width="2">
+<line x1="50" y1="62" x2="50" y2="420"/><line x1="350" y1="62" x2="350" y2="420"/>
+<line x1="450" y1="62" x2="450" y2="300"/><line x1="750" y1="62" x2="750" y2="300"/>
+<line x1="400" y1="45" x2="400" y2="430" stroke-dasharray="4 4"/>
+</g>
+<rect x="55" y="66" width="290" height="230" fill="#4a9cff" opacity="0.12"/>
+<rect x="55" y="306" width="290" height="110" fill="#39c86a" opacity="0.15"/>
+<g stroke="#222" stroke-width="1.6" marker-end="url(#a)">
+<line x1="50" y1="85" x2="350" y2="85"/><line x1="350" y1="110" x2="50" y2="110"/>
+<line x1="50" y1="155" x2="350" y2="155"/><line x1="350" y1="180" x2="50" y2="180"/>
+<line x1="50" y1="225" x2="350" y2="225"/><line x1="350" y1="250" x2="50" y2="250"/>
+<line x1="50" y1="330" x2="350" y2="330"/><line x1="350" y1="355" x2="50" y2="355"/><line x1="50" y1="380" x2="350" y2="380"/>
+<line x1="450" y1="95" x2="750" y2="95"/><line x1="750" y1="125" x2="450" y2="125"/>
+<line x1="450" y1="200" x2="750" y2="200"/><line x1="750" y1="230" x2="450" y2="230"/>
+</g>
+<g font-size="11" fill="#222" text-anchor="middle">
+<text x="200" y="80">1–2: SA-Proposals (HAGLE)</text>
+<text x="200" y="150">3–4: DH-Werte + Nonces (+ NAT-D)</text>
+<text x="200" y="220">5–6: ID + Authentisierung (verschlüsselt)</text>
+<text x="200" y="285" font-size="12" font-weight="bold">Phase 1 Main Mode → IKE-SA (QM_IDLE)</text>
+<text x="200" y="325">Quick Mode 1–3: Transform Set, Proxy-IDs, opt. PFS</text>
+<text x="200" y="405" font-size="12" font-weight="bold">Phase 2 → 2 IPsec-SAs</text>
+<text x="600" y="90">IKE_SA_INIT: Algorithmen, DH, Nonces</text>
+<text x="600" y="150" font-size="12" font-weight="bold">→ verschlüsselter Kanal steht</text>
+<text x="600" y="195">IKE_AUTH: ID, Auth (PSK/Zert./EAP)</text>
+<text x="600" y="260" font-size="12" font-weight="bold">→ IKE-SA + erste Child-SA (IPsec)</text>
+</g>
+<g font-size="12" fill="#222">
+<text x="420" y="330">Aggressive Mode (IKEv1): Phase 1 in 3 Nachrichten,</text>
+<text x="420" y="348">Identität im Klartext – schneller, aber schwächer.</text>
+<text x="420" y="378">IKEv2 extra: CREATE_CHILD_SA (weitere SAs/Rekey),</text>
+<text x="420" y="396">INFORMATIONAL (DPD, Delete), NAT-T und EAP eingebaut.</text>
+<text x="420" y="424">Transport: UDP 500, nach NAT-Erkennung UDP 4500.</text>
+</g>
+</svg>

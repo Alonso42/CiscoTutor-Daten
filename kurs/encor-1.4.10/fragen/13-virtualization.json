@@ -1,0 +1,2048 @@
+[
+    {
+        "id":  "slg-vr-001",
+        "topic":  "ENCOR-2.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A network engineer wants to run a lab router VM on a Windows laptop while still using email and a browser on the same Windows installation. Which approach fits?",
+        "optionen":  [
+                         "A Type 1 hypervisor such as ESXi installed in place of Windows on the laptop",
+                         "A distributed virtual switch that runs the VM image inside the laptop NIC",
+                         "A Type 2 hypervisor such as VirtualBox running as an application on Windows",
+                         "A vCenter Server appliance that hosts the VM directly without any hypervisor"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein Typ-2-Hypervisor (hosted) läuft als normale Anwendung auf einem vorhandenen Betriebssystem, sodass Windows weiter nutzbar bleibt. Ein Typ-1-Hypervisor würde Windows als Basis-OS ersetzen."
+    },
+    {
+        "id":  "slg-vr-002",
+        "topic":  "ENCOR-2.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which hypervisor component conveys the instructions issued by software inside a VM to the actual hardware of the physical server?",
+        "optionen":  [
+                         "Distributed virtual switch",
+                         "Virtual Machine Monitor (VMM)",
+                         "vCenter Server",
+                         "VMware Host Client"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Virtual Machine Monitor ist der Teil des Hypervisors, der Befehle der VM an die physische Hardware weiterreicht. vCenter und Host Client sind Management-Werkzeuge, der vSwitch ist nur fürs Netzwerk zuständig."
+    },
+    {
+        "id":  "slg-vr-003",
+        "topic":  "ENCOR-2.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A host has two 16-core CPUs, and the design rule is one vCPU per physical core (no oversubscription). One VM needs 16 vCPUs and every other VM needs 4 vCPUs. What is the maximum total number of VMs on this host?",
+        "optionen":  [
+                         "8",
+                         "4",
+                         "5",
+                         "9"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "32 Kerne minus 16 für die große VM lassen 16 Kerne übrig, das reicht für 4 VMs mit je 4 vCPUs. Zusammen sind das 5 VMs."
+    },
+    {
+        "id":  "slg-vr-004",
+        "topic":  "ENCOR-2.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A host with two 12-core processors already runs VMs with 8, 4, and 4 vCPUs. Without oversubscribing physical cores, how many additional 2-vCPU VMs can be deployed?",
+        "optionen":  [
+                         "8",
+                         "2",
+                         "4",
+                         "6"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "24 Kerne minus 16 belegte vCPUs ergibt 8 freie Kerne. Bei 2 vCPUs pro VM passen genau 4 weitere VMs darauf."
+    },
+    {
+        "id":  "slg-vr-005",
+        "topic":  "ENCOR-2.1.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "To the guest operating system, a VM\u0027s virtual hard disk looks like a normal disk, but on the host it is ___.",
+        "optionen":  [
+                         "a dedicated physical disk",
+                         "a RAM disk in host memory",
+                         "a specially formatted file",
+                         "a LUN mapped per vCPU"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die virtuelle Festplatte ist eine speziell formatierte Datei auf dem Datastore des Hosts. Das Gast-OS sieht sie als gewöhnliche Disk, deshalb lassen sich VMs leicht kopieren und verschieben."
+    },
+    {
+        "id":  "slg-vr-006",
+        "topic":  "ENCOR-2.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two VMs on the same ESXi host are attached to the same port group in VLAN 10. When VM1 sends a frame to VM2, what happens?",
+        "optionen":  [
+                         "The frame is sent to vCenter Server, which forwards it to the destination VM",
+                         "The frame always leaves through an uplink and is switched back by the physical switch",
+                         "The hypervisor drops the frame because VMs in the same VLAN need a router",
+                         "The vSwitch delivers the frame locally inside the host without using an uplink"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der vSwitch ist ein Layer-2-Switch im Host. Verkehr zwischen VMs im selben Port Group/VLAN auf demselben Host wird lokal im Speicher weitergeleitet und verlässt die physische NIC nicht."
+    },
+    {
+        "id":  "slg-vr-007",
+        "topic":  "ENCOR-2.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "VM-A is in port group VLAN 10 and VM-B is in port group VLAN 20 on the same host\u0027s standard vSwitch. How does traffic between them get forwarded?",
+        "optionen":  [
+                         "A Layer 3 device such as an external router or SVI must route it",
+                         "The hypervisor bridges both VLANs automatically on the same host",
+                         "The vSwitch routes it internally between the two port groups",
+                         "It cannot be forwarded at all because VLANs are isolated on a host"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein Standard-vSwitch arbeitet nur auf Layer 2. Für Verkehr zwischen zwei VLANs braucht es ein Layer-3-Gerät, etwa einen Router, eine SVI oder eine Router-VM. Der Verkehr geht dazu meist über den Uplink-Trunk."
+    },
+    {
+        "id":  "slg-vr-008",
+        "topic":  "ENCOR-2.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In a VMware environment, which capability is available only when the hosts are managed by vCenter Server?",
+        "optionen":  [
+                         "vMotion live migration of a VM between hosts",
+                         "Connecting to one host with the Host Client",
+                         "Creating a new VM on a single ESXi host",
+                         "Configuring a standard vSwitch on one host"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "vMotion, Distributed Switches und Load Balancing über mehrere Hosts brauchen vCenter als zentralen Kontrollpunkt. VMs anlegen oder einen Standard-vSwitch konfigurieren geht auch direkt am einzelnen Host."
+    },
+    {
+        "id":  "slg-vr-009",
+        "topic":  "ENCOR-2.1.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three tasks does a hypervisor perform? (Choose three.)",
+        "optionen":  [
+                         "Encrypt all traffic leaving each VM by default",
+                         "Partition the physical resources of the host among the VMs",
+                         "Provide connectivity between VMs and to external networks",
+                         "Run end-user applications directly on the hypervisor kernel",
+                         "Ensure separation between the individual VMs"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Ein Hypervisor teilt die Ressourcen auf, verbindet die VMs untereinander und mit der Außenwelt und hält sie voneinander getrennt. Für Anwendungen ist er nicht gedacht, die laufen in den VMs. Verschlüsselung gehört nicht zu seinen Grundaufgaben."
+    },
+    {
+        "id":  "slg-vr-010",
+        "topic":  "ENCOR-2.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A VM is moved from a server of vendor A to a server of vendor B and boots without any driver changes. What makes this possible?",
+        "optionen":  [
+                         "The hypervisor presents the same virtual hardware on both",
+                         "The guest OS loads vendor drivers automatically at boot",
+                         "vCenter rewrites the guest OS drivers during migration",
+                         "Both servers must use identical CPUs and NIC chipsets"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Virtualisierungsschicht stellt dem Gast-OS einheitliche virtuelle Hardware bereit, unabhängig vom Hersteller des physischen Servers. Leistungsunterschiede kann es geben, die Art der Geräte bleibt aber gleich."
+    },
+    {
+        "id":  "slg-vr-011",
+        "topic":  "ENCOR-2.1.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Match each virtual VM resource to what backs it on the host.",
+        "paare":  [
+                      [
+                          "vCPU",
+                          "Scheduled time on the host\u0027s physical cores"
+                      ],
+                      [
+                          "Virtual disk",
+                          "A file on the host datastore"
+                      ],
+                      [
+                          "vNIC",
+                          "A port on a virtual switch"
+                      ],
+                      [
+                          "Virtual memory (vRAM)",
+                          "A portion of the host\u0027s physical RAM"
+                      ]
+                  ],
+        "erklaerung":  "CPU und RAM einer VM sind Anteile der Host-Ressourcen, die Festplatte ist eine Datei. Die vNIC ist eine Ausnahme: Sie hängt an einem vSwitch, der über Uplinks mit den physischen NICs verbunden ist."
+    },
+    {
+        "id":  "slg-vr-012",
+        "topic":  "ENCOR-2.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A team must run a Windows Server application and a Linux application on the same physical host, each with its own kernel. Which technology fits?",
+        "optionen":  [
+                         "Containers, because the host kernel can run both OS families",
+                         "Virtual machines, because they share one kernel with the host",
+                         "Containers, because each container image brings its own kernel",
+                         "Virtual machines, because each VM boots its own guest OS kernel"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Jede VM bootet ein vollständiges Gast-Betriebssystem mit eigenem Kernel, daher können verschiedene OS-Familien auf einem Host laufen. Container teilen sich dagegen den Kernel des Host-Betriebssystems."
+    },
+    {
+        "id":  "slg-vr-013",
+        "topic":  "ENCOR-2.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does a container image typically include?",
+        "optionen":  [
+                         "A full guest OS including its kernel, drivers, and virtual BIOS",
+                         "The vCPU, vNIC, and virtual disk definitions for the hypervisor",
+                         "Only the compiled application binary without any libraries",
+                         "The application with its libraries and dependencies, but no OS kernel"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein Container-Image packt die Anwendung samt Bibliotheken und Abhängigkeiten. Den Kernel liefert das Host-Betriebssystem, deshalb sind Container klein und starten schnell."
+    },
+    {
+        "id":  "slg-vr-014",
+        "topic":  "ENCOR-2.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement best describes Network Functions Virtualization (NFV)?",
+        "optionen":  [
+                         "Every network function is replaced by a VLAN, so routers and firewalls are no longer required",
+                         "Network functions such as routers and firewalls run as software VNFs on standard x86 servers",
+                         "Network functions run only in public cloud data centers and can no longer be installed on-site",
+                         "Network functions are moved into ASICs on switches so that no separate appliance is needed"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei NFV laufen Netzwerkfunktionen wie Router, Firewall oder WLC als Software (VNF) auf Standard-x86-Hardware statt auf dedizierten Appliances. Das ist on-premises genauso möglich wie in der Cloud."
+    },
+    {
+        "id":  "slg-vr-015",
+        "topic":  "ENCOR-2.1.b",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Match each Cisco software product to its role in a virtualized network.",
+        "paare":  [
+                      [
+                          "Catalyst 8000V",
+                          "Virtual router"
+                      ],
+                      [
+                          "Secure Firewall ASA Virtual (ASAv)",
+                          "Virtual firewall"
+                      ],
+                      [
+                          "Catalyst 9800-CL",
+                          "Virtual wireless LAN controller"
+                      ],
+                      [
+                          "NFVIS",
+                          "Host software that runs VNFs on x86 platforms"
+                      ]
+                  ],
+        "erklaerung":  "Catalyst 8000V ist der virtuelle IOS-XE-Router, ASAv die virtuelle ASA-Firewall und 9800-CL der Cloud-WLC. NFVIS ist die Linux/KVM-basierte Infrastruktursoftware, auf der Cisco VNFs betrieben werden, zum Beispiel auf ENCS."
+    },
+    {
+        "id":  "slg-vr-016",
+        "topic":  "ENCOR-2.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why does server virtualization usually reduce power, cooling, and rack-space costs in a data center?",
+        "optionen":  [
+                         "Virtual switches remove the need for physical switches",
+                         "Underutilized workloads are consolidated onto fewer servers",
+                         "VMs use less CPU than the same workload on bare metal",
+                         "Hypervisors automatically power off unused CPU cores"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Viele physische Server laufen nur zu einem kleinen Teil ausgelastet, etwa unter 20 % CPU. Durch Konsolidierung auf wenige Hosts braucht man weniger Geräte und damit weniger Platz, Strom und Kühlung."
+    },
+    {
+        "id":  "slg-vr-017",
+        "topic":  "ENCOR-2.1.c",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "A vSphere Distributed Switch is configured centrally for many ESXi hosts and requires ___.",
+        "optionen":  [
+                         "one uplink per VM",
+                         "a Type 2 hypervisor",
+                         "vCenter Server",
+                         "a physical Nexus switch"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Distributed Switch wird zentral über vCenter angelegt und auf alle beteiligten Hosts verteilt. Ohne vCenter gibt es nur Standard-vSwitches pro Host."
+    },
+    {
+        "id":  "slg-vr-018",
+        "topic":  "ENCOR-2.1.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three are benefits of server virtualization? (Choose three.)",
+        "optionen":  [
+                         "Higher per-application performance than bare metal",
+                         "Better utilization of server capacity",
+                         "Faster deployment of new servers",
+                         "Consolidation of hardware resources",
+                         "Built-in redundancy against any host hardware failure"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Virtualisierung konsolidiert Hardware, lastet sie besser aus und stellt neue Server schneller bereit. Sie ist aber nicht schneller als Bare Metal, und ein Hardwareausfall des Hosts trifft alle VMs darauf."
+    },
+    {
+        "id":  "slg-vr-019",
+        "topic":  "ENCOR-2.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Ten independent VMs run on one host that has a single, non-redundant power supply. The power supply fails. What is the impact?",
+        "optionen":  [
+                         "The VMs keep running from the hypervisor\u0027s memory",
+                         "All ten VMs fail because they share the host hardware",
+                         "vCenter moves the VMs away before they can fail",
+                         "Only the VM that used the most power is affected"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "VMs sind logisch voneinander unabhängig, teilen aber dieselbe physische Hardware. Fällt eine nicht redundante Komponente aus, sind alle VMs auf dem Host betroffen. vMotion braucht einen laufenden Quell-Host."
+    },
+    {
+        "id":  "slg-vr-020",
+        "topic":  "ENCOR-2.1.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Match each item to its description.",
+        "paare":  [
+                      [
+                          "VMware ESXi",
+                          "Hypervisor installed directly on server hardware"
+                      ],
+                      [
+                          "Oracle VirtualBox",
+                          "Hypervisor that runs as an application on a desktop OS"
+                      ],
+                      [
+                          "Docker container",
+                          "Isolated application sharing the host OS kernel"
+                      ],
+                      [
+                          "vCenter Server",
+                          "Central management point for many hypervisor hosts"
+                      ]
+                  ],
+        "erklaerung":  "ESXi ist ein Typ-1-Hypervisor, VirtualBox ein Typ-2-Hypervisor. Container brauchen keinen Hypervisor, sie teilen den Host-Kernel. vCenter verwaltet viele ESXi-Hosts zentral."
+    },
+    {
+        "id":  "slg-vr-021",
+        "topic":  "ENCOR-2.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A guest OS reports four CPUs. What is the guest actually using?",
+        "optionen":  [
+                         "Four containers that share the host kernel threads",
+                         "Four vCPUs that the hypervisor schedules on host cores",
+                         "Four physical cores reserved exclusively by the BIOS",
+                         "Four NUMA nodes passed through by the vSwitch"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die VM sieht virtuelle CPUs. Der Hypervisor verteilt sie auf die physischen Kerne des Hosts, ohne dass das Gast-OS davon etwas merkt."
+    },
+    {
+        "id":  "slg-vr-022",
+        "topic":  "ENCOR-2.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A branch currently has a separate router, firewall, and WAN optimizer appliance. What is the main benefit of replacing them with VNFs on one x86 platform?",
+        "optionen":  [
+                         "No further need for any WAN or internet connection",
+                         "Fewer physical devices and faster rollout of new services",
+                         "Hardware ASIC forwarding speeds for every VNF instance",
+                         "Removal of all licensing for the network functions"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit NFV laufen mehrere Netzwerkfunktionen als VMs auf einer Plattform. Das spart Geräte, Strom und Platz, und neue Dienste lassen sich per Software ausrollen. Lizenzen und WAN-Anbindung bleiben nötig."
+    },
+    {
+        "id":  "slg-vr-023",
+        "topic":  "ENCOR-2.1.c",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two statements about a VMware standard vSwitch are true? (Choose two.)",
+        "optionen":  [
+                         "It needs vCenter Server before it can forward any frames",
+                         "It forwards frames between VMs on the same host and port group locally",
+                         "It adds the port group\u0027s VLAN tag to frames sent out a trunk uplink",
+                         "It participates in Spanning Tree by exchanging BPDUs with the physical switch",
+                         "It routes traffic between port groups in different VLANs"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Der Standard-vSwitch arbeitet auf Layer 2: Er leitet Frames zwischen VMs lokal weiter und taggt sie mit der VLAN-ID der Port Group, wenn sie den Trunk-Uplink verlassen. Er routet nicht, nimmt nicht an STP teil und funktioniert auch ohne vCenter."
+    },
+    {
+        "id":  "slg-vr-024",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Match each component of the network virtualization architecture to its function.",
+        "paare":  [
+                      [
+                          "Access control",
+                          "Authenticates devices at the edge and assigns them to a segment"
+                      ],
+                      [
+                          "Path isolation",
+                          "Keeps each group\u0027s traffic separated across the shared infrastructure"
+                      ],
+                      [
+                          "Services edge",
+                          "Centrally enforces policies between partitions and to shared services"
+                      ]
+                  ],
+        "erklaerung":  "Access Control ordnet Endgeräte am Rand einem Segment (meist einem VLAN) zu. Path Isolation trennt die logischen Pfade, zum Beispiel per VRF. Die Services Edge setzt zentral fest, wer zwischen Partitionen oder auf gemeinsame Dienste zugreifen darf."
+    },
+    {
+        "id":  "slg-vr-025",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Guests are placed in their own virtual network. They may reach a shared DHCP server and the internet, but no internal servers. In the network virtualization architecture, where is this policy enforced?",
+        "optionen":  [
+                         "Inside the path isolation VRF tables",
+                         "On each guest\u0027s endpoint software",
+                         "At access control on the access switch port",
+                         "At the services edge"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Services Edge ist der zentrale Policy-Punkt. Dort wird geregelt, welche Partition welche gemeinsamen Dienste nutzen darf. Weil die Policies zentral liegen, muss beim Hinzufügen neuer Nutzer nichts geändert werden."
+    },
+    {
+        "id":  "slg-vr-026",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In a campus network, all Layer 3 switches support VRFs, and the IGP is fully under the organization\u0027s control. Which data path virtualization technique fits best?",
+        "optionen":  [
+                         "VRF-Lite end-to-end with 802.1Q per hop",
+                         "VRF-Lite with GRE tunnels across the core",
+                         "Dynamic ACLs on every access port only",
+                         "MPLS VPN with MP-BGP route reflectors"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Sind die VRF-Geräte direkt miteinander verbunden (hop-by-hop), reicht VRF-Lite mit einem 802.1Q-Subinterface bzw. VLAN pro VRF auf jedem Link. Tunnel braucht man erst, wenn dazwischen nicht virtualisierte Hops liegen."
+    },
+    {
+        "id":  "slg-vr-027",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two campus sites use VRF-Lite. They are connected through a service provider\u0027s IP WAN that the enterprise does not control. How can the VRFs be extended between the sites?",
+        "optionen":  [
+                         "Run one GRE tunnel per VRF between the site edge routers",
+                         "Configure the same VLAN IDs at both sites only",
+                         "Ask the provider to create matching VRFs on its core routers",
+                         "Extend the 802.1Q trunks across the provider\u0027s WAN routers"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Über ein nicht virtualisiertes IP-Netz (Multihop) braucht man einen Tunnel. Bei VRF-Lite + GRE gehört jedes Tunnel-Interface zu einer VRF. Der Provider sieht nur normale IP-Pakete zwischen den Tunnelendpunkten."
+    },
+    {
+        "id":  "slg-vr-028",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A large enterprise needs about 60 virtual networks per device, traffic engineering with fast reroute, and scalable any-to-any connectivity. Which path isolation technology is the best choice?",
+        "optionen":  [
+                         "EVN with VNET trunks",
+                         "MPLS VPN",
+                         "VRF-Lite with 802.1Q trunks",
+                         "VRF-Lite with point-to-point GRE"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "MPLS VPN skaliert über 32 virtuelle Netze pro Gerät hinaus, bietet Traffic Engineering mit Fast Reroute und liefert dynamisches Any-to-Any. Bei GRE müsste man viele Punkt-zu-Punkt-Tunnel pflegen."
+    },
+    {
+        "id":  "slg-vr-029",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the main advantage of MPLS VPN over VRF-Lite with GRE tunnels for path isolation?",
+        "optionen":  [
+                         "It needs no routing protocol between sites",
+                         "It provides any-to-any connectivity without many point-to-point tunnels",
+                         "It works without any changes on the provider edge routers",
+                         "It encrypts all traffic of each VPN by default"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit GRE braucht jedes Standortpaar und jede VRF eigene Tunnel, was schlecht skaliert. MPLS VPN baut die Konnektivität innerhalb jeder Partition dynamisch auf. Verschlüsselt wird dabei nichts."
+    },
+    {
+        "id":  "slg-vr-030",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Match each path isolation approach to how it keeps the virtual networks separated on the wire.",
+        "paare":  [
+                      [
+                          "VRF-Lite end-to-end (hop-by-hop)",
+                          "A separate 802.1Q VLAN tag per VRF on every link"
+                      ],
+                      [
+                          "VRF-Lite over a non-virtualized IP core",
+                          "A separate GRE tunnel per VRF"
+                      ],
+                      [
+                          "MPLS VPN",
+                          "A label that identifies the VPN of each packet"
+                      ]
+                  ],
+        "erklaerung":  "Hop-by-hop trennt man mit 802.1Q-Tags pro VRF. Über mehrere nicht virtualisierte Hops kapselt man jede VRF in einen eigenen GRE-Tunnel. MPLS VPN unterscheidet die VPNs anhand von Labels."
+    },
+    {
+        "id":  "slg-vr-031",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which example is data path virtualization rather than device virtualization?",
+        "optionen":  [
+                         "Creating VRF RED in the global configuration of a router",
+                         "Running a separate OSPF process inside VRF RED",
+                         "Creating VLAN 30 in the VLAN database of an access switch",
+                         "Carrying VRF RED on its own 802.1Q subinterface between two routers"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Device Virtualization teilt ein Gerät auf, zum Beispiel mit VLANs, VRFs und eigenen Routingprozessen. Data Path Virtualization virtualisiert die Verbindung zwischen Geräten, etwa mit 802.1Q-Subinterfaces, GRE oder MPLS."
+    },
+    {
+        "id":  "slg-vr-032",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A switch supports many VLANs but has only one routing table. At which level is this switch virtualized?",
+        "optionen":  [
+                         "Layers 2 through 7",
+                         "Layer 2 only",
+                         "Layer 3 only",
+                         "Layers 2 and 3"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "VLANs virtualisieren die Layer-2-Ebene. Mit nur einer Routing-Tabelle ist Layer 3 nicht virtualisiert. Für einen Wiring Closet kann das reichen, für getrennte Routing-Domänen braucht man VRFs."
+    },
+    {
+        "id":  "slg-vr-033",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A data center needs a separate virtual firewall for each tenant, with its own policies. Which levels of virtualization does this require?",
+        "optionen":  [
+                         "Layer 3 only, because each tenant has a VRF",
+                         "Layer 1 only, because each tenant has a port",
+                         "Layers 2 to 4, plus separate services per firewall",
+                         "Layer 2 only, because each tenant has a VLAN"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Eine virtuelle Firewall muss L2 (VLANs), L3 (Routing) und L4 (Sessions, Ports) pro Mandant trennen. Dazu kommen eigene Dienste pro Instanz, was man als L7-Virtualisierung sehen kann."
+    },
+    {
+        "id":  "slg-vr-034",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Employees reach the internet through a web proxy. Guests must reach the internet without any proxy setting in their browsers. Which VRF-Lite capability solves this?",
+        "optionen":  [
+                         "A separate default route in the guest VRF",
+                         "A second global routing table for guests",
+                         "A proxy ACL on the guest SVI only",
+                         "One shared default route for all VRFs"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Jede VRF hat ihre eigene Control und Data Plane und damit auch eine eigene Default-Route. Die Gast-VRF kann direkt zur Internet-Firewall zeigen, während die globale Tabelle weiter den Proxy-Pfad nutzt."
+    },
+    {
+        "id":  "slg-vr-035",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "With VRF-Lite, the guest VRF has its own default route to the internet. Why might the global routing table instead use a default route that blackholes traffic?",
+        "optionen":  [
+                         "To replace the need for any route in the guest VRF",
+                         "To detect worms and scans aimed at unknown destinations",
+                         "To make OSPF converge faster in the global table",
+                         "To force all employee traffic through the guest VRF"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Weil jede VRF eine eigene Default-Route hat, kann die globale Tabelle Unbekanntes bewusst in ein Blackhole schicken. Verkehr zu nicht existierenden Zielen fällt dadurch auf, typisch für Würmer und Netzwerk-Scans."
+    },
+    {
+        "id":  "slg-vr-036",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three elements make up a VRF instance on a router? (Choose three.)",
+        "optionen":  [
+                         "The set of interfaces assigned to it",
+                         "Its own IP routing table (RIB)",
+                         "Its own startup configuration file",
+                         "Its own CEF forwarding table (FIB)",
+                         "Its own MAC address table per VRF"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Eine VRF besteht aus eigener RIB, daraus abgeleiteter FIB, den zugewiesenen Interfaces und den Routingprotokoll-Instanzen, die sie füllen. Die MAC-Tabelle ist Layer 2, und die Konfigurationsdatei bleibt eine einzige."
+    },
+    {
+        "id":  "slg-vr-037",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Router ISP has 10.1.1.1/24 on Ethernet0/0 in VRF CUST-A and 10.1.1.1/24 on Ethernet0/2 in VRF CUST-B. The admin enters \u0027ping 10.1.1.2\u0027 without any VRF keyword. What happens?",
+        "optionen":  [
+                         "The ping is sent out Ethernet0/0 because it has the lower interface number",
+                         "The router rejects the command because overlapping addresses are configured",
+                         "The ping is sent out both interfaces because both VRFs match the subnet",
+                         "The ping fails because the global routing table has no route to 10.1.1.0/24"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Gleiche Subnetze in verschiedenen VRFs sind erlaubt, weil jede VRF eine eigene RIB hat. Ein ping ohne \u0027vrf\u0027 nutzt aber die globale Tabelle, und dort gibt es diese Netze nicht. Richtig wäre \u0027ping vrf CUST-A 10.1.1.2\u0027."
+    },
+    {
+        "id":  "slg-vr-038",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "After all four Ethernet interfaces of router ISP are placed into VRFs, \u0027show ip route\u0027 displays no connected networks. Why?",
+        "optionen":  [
+                         "The router needs a reload before routes appear",
+                         "CEF must be re-enabled for each VRF after the change",
+                         "The interfaces went down when the VRF was applied",
+                         "The routes moved from the global table into the VRF tables"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027show ip route\u0027 zeigt nur die globale Tabelle. Mit dem VRF-Befehl wandert ein Interface samt seinen Connected-Routen in die VRF-Tabelle. Zu sehen sind sie dann mit \u0027show ip route vrf NAME\u0027."
+    },
+    {
+        "id":  "slg-vr-039",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Without the \u0027vrf\u0027 keyword, the ping command on a Cisco router uses the ___.",
+        "optionen":  [
+                         "routing table of the ingress interface",
+                         "VRF with the lowest name",
+                         "management VRF only",
+                         "global routing table"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne Angabe einer VRF arbeiten ping, traceroute und show ip route mit der globalen Tabelle. Für Ziele in einer VRF braucht man \u0027ping vrf NAME\u0027."
+    },
+    {
+        "id":  "slg-vr-040",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ip vrf\u0027 on a VRF-Lite router lists \u0027Default RD \u003cnot set\u003e\u0027 for VRFs CUST-A and CUST-B. What does this mean?",
+        "optionen":  [
+                         "No route distinguisher is configured, which is fine for VRF-Lite",
+                         "The interfaces of both VRFs are administratively down",
+                         "The VRFs cannot forward traffic until an RD is set",
+                         "Both VRFs share the global routing table by default"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Den Route Distinguisher braucht man erst, wenn VRF-Routen per MP-BGP ausgetauscht werden, etwa in MPLS VPN. Für reines VRF-Lite mit \u0027ip vrf\u0027 ist er nicht nötig. Die VRFs funktionieren trotzdem voll."
+    },
+    {
+        "id":  "slg-vr-041",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the lab, router ISP uses \u0027router ospf 100 vrf CUST-A\u0027 and \u0027router ospf 200 vrf CUST-B\u0027. Why do the two VRFs use different process IDs?",
+        "optionen":  [
+                         "Process IDs must equal the customer area numbers",
+                         "Process IDs must be identical on all customer routers",
+                         "Each VRF needs its own unique OSPF process",
+                         "OSPF process IDs must match the VRF RD values"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein OSPF-Prozess gehört genau zu einer VRF (oder zur globalen Tabelle). Jede VRF braucht deshalb einen eigenen Prozess mit eigener ID. Die Prozess-ID ist lokal und muss nicht zu den Nachbarn passen."
+    },
+    {
+        "id":  "slg-vr-042",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which command shows the manually configured OSPF router ID and the networks advertised by the OSPF process in VRF CUST-A?",
+        "optionen":  [
+                         "show ip protocols vrf CUST-A",
+                         "show ip route vrf CUST-A ospf",
+                         "show ip vrf detail CUST-A",
+                         "show ip vrf interfaces CUST-A"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027show ip protocols vrf CUST-A\u0027 zeigt den Routingprozess der VRF mit Router-ID, \u0027Routing for Networks\u0027 und den Routing Information Sources. \u0027show ip route vrf\u0027 listet nur die gelernten Routen."
+    },
+    {
+        "id":  "slg-vr-043",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On CUST-A-SITE1, \u0027show ip route ospf\u0027 lists 10.0.1.32/28 and 10.0.1.50/32 but none of customer B\u0027s 10.0.2.x networks. Both customers connect to the same ISP router. Why?",
+        "optionen":  [
+                         "CUST-A-SITE1 filters 10.0.2.0/24 with a distribute list",
+                         "Customer B routes are summarized into a default route",
+                         "Customer B uses a different OSPF area number than customer A",
+                         "ISP keeps customer B routes in VRF CUST-B and does not leak them"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Auf ISP gehören die Kundenrouten zu getrennten VRFs mit getrennten OSPF-Prozessen. Ohne Route Leaking kommt nichts aus CUST-B in CUST-A an. Genau das ist der Zweck der Pfadisolation."
+    },
+    {
+        "id":  "slg-vr-044",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the VRF-Lite lab, none of the customer routers has any VRF configured, yet routing between sites of the same customer works. Why?",
+        "optionen":  [
+                         "The customer routers learn the VRF automatically from OSPF hellos",
+                         "VRFs must only be configured on the router that separates the customers",
+                         "VRF-Lite requires MPLS labels on the customer routers instead",
+                         "The ISP converts customer routes into the global routing table"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "VRF-Lite muss nur auf dem Gerät laufen, an dem die Kunden zusammenkommen (hier ISP). Die Kundenrouter routen ganz normal in ihrer globalen Tabelle und wissen nichts von den VRFs."
+    },
+    {
+        "id":  "slg-vr-045",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus, Legacy-Syntax wie im Lab (\u0027ip vrf\u0027, nur IPv4): Lege die VRF CUST-A an.",
+        "bausteine":  [
+                          "ip",
+                          "vrf",
+                          "CUST-A",
+                          "definition",
+                          "forwarding",
+                          "address-family"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "vrf",
+                        "CUST-A"
+                    ],
+        "erklaerung":  "\u0027ip vrf CUST-A\u0027 ist die ältere, reine IPv4-Syntax. Die neuere Multi-AF-Syntax wäre \u0027vrf definition CUST-A\u0027 mit \u0027address-family ipv4\u0027."
+    },
+    {
+        "id":  "slg-vr-046",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Modus Ethernet0/0, Legacy-Syntax (\u0027ip vrf\u0027 wurde zum Anlegen benutzt): Ordne das Interface der VRF CUST-A zu.",
+        "bausteine":  [
+                          "ip",
+                          "vrf",
+                          "forwarding",
+                          "CUST-A",
+                          "definition",
+                          "member"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "vrf",
+                        "forwarding",
+                        "CUST-A"
+                    ],
+        "erklaerung":  "Zur Legacy-VRF passt \u0027ip vrf forwarding CUST-A\u0027. Danach ist die IP-Adresse des Interfaces gelöscht und muss neu gesetzt werden. Bei \u0027vrf definition\u0027 lautet der Befehl \u0027vrf forwarding CUST-A\u0027."
+    },
+    {
+        "id":  "slg-vr-047",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Die VRF wurde mit \u0027vrf definition GUEST\u0027 (Multi-AF-Syntax) angelegt, du bist im Modus (config-vrf). Aktiviere die IPv4-Address-Family.",
+        "bausteine":  [
+                          "address-family",
+                          "ipv4",
+                          "ip",
+                          "vrf",
+                          "unicast-only",
+                          "enable"
+                      ],
+        "loesung":  [
+                        "address-family",
+                        "ipv4"
+                    ],
+        "erklaerung":  "Bei \u0027vrf definition\u0027 muss jede Address Family ausdrücklich aktiviert werden (\u0027address-family ipv4\u0027, ggf. \u0027address-family ipv6\u0027). Erst dann können Interfaces in dieser VRF IPv4-Adressen tragen."
+    },
+    {
+        "id":  "slg-vr-048",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus auf ISP: Starte OSPF-Prozess 100 für die VRF CUST-A.",
+        "bausteine":  [
+                          "router",
+                          "ospf",
+                          "100",
+                          "vrf",
+                          "CUST-A",
+                          "ip",
+                          "forwarding",
+                          "area"
+                      ],
+        "loesung":  [
+                        "router",
+                        "ospf",
+                        "100",
+                        "vrf",
+                        "CUST-A"
+                    ],
+        "erklaerung":  "Der OSPF-Prozess wird mit \u0027router ospf \u003cid\u003e vrf \u003cname\u003e\u0027 an eine VRF gebunden. Sonst ist die Konfiguration identisch mit normalem OSPF (router-id, network-Statements)."
+    },
+    {
+        "id":  "slg-vr-049",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege in der VRF GUEST eine statische Default-Route zum Next Hop 192.0.2.1 an.",
+        "bausteine":  [
+                          "ip",
+                          "route",
+                          "vrf",
+                          "GUEST",
+                          "0.0.0.0",
+                          "0.0.0.0",
+                          "192.0.2.1",
+                          "forwarding",
+                          "global"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "route",
+                        "vrf",
+                        "GUEST",
+                        "0.0.0.0",
+                        "0.0.0.0",
+                        "192.0.2.1"
+                    ],
+        "erklaerung":  "Statische Routen werden mit \u0027ip route vrf NAME\u0027 in die Tabelle einer VRF eingetragen. So bekommt jede VRF ihre eigene Default-Route."
+    },
+    {
+        "id":  "slg-vr-050",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Match each IOS command to its purpose.",
+        "paare":  [
+                      [
+                          "ip vrf NAME",
+                          "Defines a legacy IPv4-only VRF"
+                      ],
+                      [
+                          "vrf definition NAME",
+                          "Defines a multi-address-family VRF"
+                      ],
+                      [
+                          "ip vrf forwarding NAME",
+                          "Assigns an interface to a legacy IPv4-only VRF"
+                      ],
+                      [
+                          "vrf forwarding NAME",
+                          "Assigns an interface to a multi-AF VRF"
+                      ]
+                  ],
+        "erklaerung":  "Es gibt zwei Syntaxfamilien: die alte \u0027ip vrf\u0027/\u0027ip vrf forwarding\u0027 (nur IPv4) und die neue \u0027vrf definition\u0027/\u0027vrf forwarding\u0027 mit Address Families für IPv4 und IPv6. Beide löschen beim Zuweisen die IP-Adresse des Interfaces."
+    },
+    {
+        "id":  "slg-vr-051",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "VRFs were created with \u0027vrf definition\u0027 and both IPv4 and IPv6 address families. Which command lists every VRF with its RD, enabled protocols, and interfaces?",
+        "optionen":  [
+                         "show ip route vrf all",
+                         "show ip vrf interfaces",
+                         "show vrf",
+                         "show running-config | include ip vrf"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027show vrf\u0027 zeigt Name, Default RD, Protocols (ipv4/ipv6) und Interfaces aller VRFs. \u0027show ip vrf\u0027 bzw. \u0027show ip vrf interfaces\u0027 beziehen sich auf den IPv4-Teil."
+    },
+    {
+        "id":  "slg-vr-052",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "VRF GUEST has no internet path of its own. The internet edge router 203.0.113.1 is reachable only through the global routing table. Which static route leaks guest traffic toward it?",
+        "optionen":  [
+                         "ip route vrf global 0.0.0.0 0.0.0.0 GUEST 203.0.113.1",
+                         "ip route vrf GUEST 0.0.0.0 0.0.0.0 203.0.113.1 global",
+                         "ip vrf forwarding GUEST 0.0.0.0 0.0.0.0 203.0.113.1",
+                         "ip route 0.0.0.0 0.0.0.0 203.0.113.1 vrf GUEST"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Das Schlüsselwort \u0027global\u0027 am Ende sagt, dass der Next Hop in der globalen Tabelle aufgelöst wird, obwohl die Route in VRF GUEST steht. Für den Rückweg braucht die globale Tabelle zusätzlich eine Route in die VRF (oder NAT)."
+    },
+    {
+        "id":  "slg-vr-053",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Because each VRF has its own routing and forwarding tables, a VRF instance is often compared to a ___ inside one physical router.",
+        "optionen":  [
+                         "virtual router",
+                         "virtual switch",
+                         "routing area",
+                         "VLAN trunk"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Eine VRF verhält sich wie ein eigener Router im Gerät, mit eigener RIB, FIB, eigenen Interfaces und Routingprozessen."
+    },
+    {
+        "id":  "slg-vr-054",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In the VRF-Lite lab, CUST-A-SITE1 pings 10.0.2.50, a loopback of customer B, and gets 0 percent success. What does this result show?",
+        "optionen":  [
+                         "Path isolation between the VRFs works",
+                         "The ISP router needs an RD per VRF",
+                         "Customer B\u0027s loopback interface is down",
+                         "OSPF on ISP has not converged yet"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Routen von Kunde B stehen nur in VRF CUST-B. Kunde A kennt sie nicht, daher scheitert der Ping. Das ist das gewünschte Ergebnis der Pfadisolation."
+    },
+    {
+        "id":  "slg-vr-055",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about VRF-Lite are true? (Choose two.)",
+        "optionen":  [
+                         "Every VRF requires a route distinguisher",
+                         "All VRFs share one CEF forwarding table",
+                         "Different VRFs may use overlapping IP subnets",
+                         "It works without MPLS",
+                         "Traffic between VRFs is permitted by default"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "VRF-Lite ist VRF ohne MPLS. Weil jede VRF eigene Tabellen hat, dürfen sich Adressen überschneiden. Ein RD ist nur für MP-BGP nötig. Zwischen VRFs fließt ohne explizite Konfiguration nichts."
+    },
+    {
+        "id":  "slg-vr-056",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On ISP, Ethernet0/0 and Ethernet0/1 are already in VRF CUST-A. The admin configures \u0027router ospf 1\u0027 (without a VRF) with \u0027network 172.16.1.16 0.0.0.15 area 0\u0027. What is the result?",
+        "optionen":  [
+                         "An adjacency forms on Ethernet0/0 and routes go into VRF CUST-A",
+                         "The router moves Ethernet0/0 back to the global table automatically",
+                         "An adjacency forms on Ethernet0/0 and routes go into the global table",
+                         "No adjacency forms, because the global process does not use VRF interfaces"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein OSPF-Prozess ohne VRF-Bindung gehört zur globalen Tabelle. Er aktiviert sich nur auf Interfaces der globalen Tabelle, VRF-Interfaces matcht er nicht. Nötig ist \u0027router ospf 100 vrf CUST-A\u0027."
+    },
+    {
+        "id":  "slg-vr-057",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "\u0027show ip vrf ___\u0027 lists each interface assigned to a VRF together with its IP address, VRF name, and protocol state.",
+        "optionen":  [
+                         "brief",
+                         "interfaces",
+                         "detail",
+                         "summary"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027show ip vrf interfaces\u0027 zeigt pro Interface IP-Adresse, VRF und Protokollstatus. \u0027show ip vrf\u0027 allein listet nur Name, RD und Interfaces."
+    },
+    {
+        "id":  "slg-vr-058",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "With hop-by-hop VRF-Lite between two Layer 3 switches, each VRF typically needs its own ___ on the link between them.",
+        "optionen":  [
+                         "OSPF area",
+                         "MPLS label range",
+                         "GRE tunnel",
+                         "802.1Q VLAN or subinterface"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Hop-by-hop wird jede VRF über ein eigenes VLAN bzw. 802.1Q-Subinterface auf dem Trunk transportiert. Das Subinterface wird der VRF zugewiesen, dadurch bleiben die Pfade getrennt."
+    },
+    {
+        "id":  "slg-vr-059",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer notices that the ISP router\u0027s \u0027show ip ospf neighbor\u0027 lists four neighbors, although the neighbors belong to two different VRFs. What explains this?",
+        "optionen":  [
+                         "OSPF neighbors in VRFs appear only after an RD is configured",
+                         "The command shows neighbors of all OSPF processes, including VRF processes",
+                         "All four neighbors are in the global table due to a misconfiguration",
+                         "The VRFs leak OSPF neighbor information into the global table"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027show ip ospf neighbor\u0027 ohne weitere Angabe zeigt die Nachbarn aller OSPF-Prozesse, auch derer, die an VRFs gebunden sind. Welche Routen in welcher VRF landen, zeigt erst \u0027show ip route vrf NAME\u0027."
+    },
+    {
+        "id":  "slg-vr-060",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A user in VLAN 40 must be placed into VRF GUEST on a distribution switch. The SVI already has IP address 10.40.0.1/24. The admin enters \u0027vrf forwarding GUEST\u0027 under interface Vlan40 (VRF defined with \u0027vrf definition\u0027 and \u0027address-family ipv4\u0027). What must happen next?",
+        "optionen":  [
+                         "The IP address 10.40.0.1/24 must be configured again on the SVI",
+                         "Nothing, because the SVI keeps its address in the new VRF",
+                         "The switch must be reloaded so CEF rebuilds the VRF table",
+                         "VLAN 40 must be deleted and recreated in the VRF database"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beim Zuweisen einer VRF entfernt IOS alle IP-Adressen des Interfaces, weil es aus der globalen Tabelle in die VRF-Tabelle wandert. Die Adresse muss danach neu konfiguriert werden. Für SVIs gilt das genauso wie für Router-Interfaces."
+    },
+    {
+        "id":  "slg-vr-061",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The underlay path MTU is 1500 bytes. What is the largest IPv4 packet that can enter a plain GRE tunnel (no GRE options) without fragmentation of the outer packet?",
+        "optionen":  [
+                         "1480 bytes",
+                         "1460 bytes",
+                         "1476 bytes",
+                         "1500 bytes"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "GRE fügt 20 Byte neuen IP-Header und 4 Byte GRE-Header hinzu, zusammen 24 Byte. 1500 − 24 = 1476 Byte, daher ist das der typische Wert für \u0027ip mtu\u0027 auf reinen GRE-Tunneln."
+    },
+    {
+        "id":  "slg-vr-062",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A GRE tunnel uses a tunnel key, which adds an optional 4-byte field to the GRE header. With a 1500-byte underlay MTU, what is the largest passenger IPv4 packet that avoids fragmentation?",
+        "optionen":  [
+                         "1468 bytes",
+                         "1480 bytes",
+                         "1472 bytes",
+                         "1476 bytes"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der GRE-Header wächst mit Key auf 8 Byte, mit dem äußeren IP-Header ergibt das 28 Byte Overhead. 1500 − 28 = 1472 Byte."
+    },
+    {
+        "id":  "slg-vr-063",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A plain GRE tunnel has \u0027ip mtu 1476\u0027. Which TCP MSS value lets TCP segments fit into the tunnel without fragmentation?",
+        "optionen":  [
+                         "1456",
+                         "1416",
+                         "1460",
+                         "1436"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "MSS = IP-MTU − 20 Byte IP-Header − 20 Byte TCP-Header. 1476 − 40 = 1436, konfiguriert mit \u0027ip tcp adjust-mss 1436\u0027 auf dem Tunnel."
+    },
+    {
+        "id":  "slg-vr-064",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is \u0027ip mtu 1400\u0027 commonly configured on GRE over IPsec tunnels instead of 1476?",
+        "optionen":  [
+                         "IPsec ESP adds further, variable overhead on top of GRE",
+                         "OSPF requires an MTU of exactly 1400 on all tunnels",
+                         "GRE over IPsec only supports packets up to 1400 bytes",
+                         "The value of 1400 disables the GRE checksum field"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Zum GRE-Overhead von 24 Byte kommen bei IPsec noch ESP-Header, IV, Padding, Trailer und ICV dazu, und deren Größe hängt vom Verfahren ab. 1400 Byte lassen genug Reserve, dazu passt \u0027ip tcp adjust-mss 1360\u0027."
+    },
+    {
+        "id":  "slg-vr-065",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Users at a branch connected by a GRE tunnel can ping the HQ server and open small web pages, but large downloads hang. ICMP is filtered in the provider network. What is the most likely cause?",
+        "optionen":  [
+                         "The tunnel key is missing on one tunnel endpoint",
+                         "OSPF over the tunnel uses the wrong area type",
+                         "GRE keepalives are disabled on both endpoints",
+                         "Oversized packets are dropped and PMTUD cannot work"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Durch den GRE-Overhead passen volle 1500-Byte-Pakete nicht mehr in den Tunnel. Wird ICMP gefiltert, kommen keine \u0027Fragmentation needed\u0027-Meldungen an, und PMTUD scheitert. Abhilfe schaffen \u0027ip mtu\u0027 und \u0027ip tcp adjust-mss\u0027 auf dem Tunnel."
+    },
+    {
+        "id":  "slg-vr-066",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An auditor captures traffic of a plain GRE tunnel (no IPsec) on the WAN. What can the auditor see?",
+        "optionen":  [
+                         "Nothing, because GRE hides both inner and outer IP headers",
+                         "Only the outer IP header; the payload is encrypted",
+                         "Only the GRE key, because the payload is hashed",
+                         "The outer headers and the full passenger packet in clear text"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "GRE verschlüsselt nichts. Unter dem äußeren IP- und dem GRE-Header steht das Originalpaket im Klartext. Vertraulichkeit gibt es erst mit IPsec (GRE over IPsec)."
+    },
+    {
+        "id":  "slg-vr-067",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two sites need encrypted connectivity and must run OSPF between them. Why is GRE added on top of a plain IPsec crypto-map tunnel?",
+        "optionen":  [
+                         "GRE compresses OSPF packets to fit IPsec MTU limits",
+                         "GRE carries the multicast OSPF packets that plain IPsec cannot",
+                         "GRE removes the need for IKE to negotiate keys",
+                         "GRE adds stronger encryption than IPsec ESP does"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein klassischer IPsec-Tunnel mit Crypto Map transportiert nur Unicast. GRE kapselt die OSPF-Multicasts in Unicast-GRE-Pakete, und die schützt dann IPsec. Die Verschlüsselung selbst kommt von IPsec."
+    },
+    {
+        "id":  "slg-vr-068",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "An IPv6 packet from a LAN is sent across an IPv4 WAN in a GRE tunnel. Match each part to its role.",
+        "paare":  [
+                      [
+                          "The original IPv6 packet",
+                          "Passenger protocol"
+                      ],
+                      [
+                          "GRE",
+                          "Carrier (encapsulation) protocol"
+                      ],
+                      [
+                          "The new outer IPv4 header",
+                          "Transport (delivery) protocol"
+                      ]
+                  ],
+        "erklaerung":  "Das Passagierprotokoll ist das, was transportiert wird (hier IPv6). Das Carrier-Protokoll kapselt es (GRE). Das Transportprotokoll befördert das Ganze durch das Netz (äußeres IPv4)."
+    },
+    {
+        "id":  "slg-vr-069",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An inbound ACL on R4\u0027s WAN interface must permit the GRE tunnel from R1 (10.10.1.1) to R4 (10.10.3.2). Which entry is correct?",
+        "optionen":  [
+                         "permit tcp host 10.10.1.1 host 10.10.3.2 eq 47",
+                         "permit esp host 10.10.1.1 host 10.10.3.2",
+                         "permit gre host 10.10.1.1 host 10.10.3.2",
+                         "permit udp host 10.10.1.1 host 10.10.3.2 eq 47"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "GRE ist ein eigenes IP-Protokoll (Nummer 47) und nutzt weder TCP noch UDP. 47 ist keine Portnummer. Im ACL-Eintrag steht deshalb das Schlüsselwort \u0027gre\u0027 (oder \u002747\u0027) als Protokoll."
+    },
+    {
+        "id":  "slg-vr-070",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Without keepalives, which conditions keep the line protocol of a point-to-point GRE tunnel interface up?",
+        "optionen":  [
+                         "The remote router has a matching tunnel key",
+                         "An OSPF adjacency exists across the tunnel",
+                         "The remote tunnel IP answers ICMP echo requests",
+                         "The tunnel source is up and the destination is routable"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne Keepalives prüft IOS nur lokal: Ist die Tunnelquelle up und gibt es eine Route zum Tunnelziel? Ob die Gegenstelle wirklich antwortet, prüft es nicht. GRE ist zustandslos."
+    },
+    {
+        "id":  "slg-vr-071",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In the GRE lab, R1 has a static route 10.0.0.0/8 via 10.10.1.2. The admin mistypes R1\u0027s tunnel destination as 10.10.3.3, an address that does not exist. Keepalives are not configured. What does \u0027show interface tunnel 0\u0027 on R1 report?",
+        "optionen":  [
+                         "Tunnel0 is up, line protocol is up",
+                         "Tunnel0 is administratively down, line protocol is down",
+                         "Tunnel0 is up, line protocol is down",
+                         "Tunnel0 is down, line protocol is down (recursive routing)"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die statische 10.0.0.0/8 liefert eine Route zu 10.10.3.3, und mehr prüft IOS ohne Keepalives nicht. Der Tunnel steht also auf up/up, aber der Verkehr wird ins Leere geschickt."
+    },
+    {
+        "id":  "slg-vr-072",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Only R1 has \u0027keepalive 10 3\u0027 configured on its GRE tunnel; R4 has no keepalive command. Will R1\u0027s GRE keepalives work?",
+        "optionen":  [
+                         "Yes, but only after R4 is reloaded with the new feature",
+                         "Yes, R4 simply decapsulates and forwards the reply back",
+                         "No, both ends must have identical keepalive values",
+                         "No, because R4 never generates any keepalive replies"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "R1 baut ein GRE-Paket, in dem schon ein zweites GRE-Paket an R1 selbst steckt. R4 entfernt nur den äußeren Header und routet das innere Paket normal zurück. Die Gegenstelle braucht dafür keine Keepalive-Konfiguration."
+    },
+    {
+        "id":  "slg-vr-073",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A GRE tunnel is configured with \u0027keepalive 5 4\u0027. The remote end fails completely. After about how long does the local tunnel line protocol go down?",
+        "optionen":  [
+                         "20 seconds",
+                         "5 seconds",
+                         "40 seconds",
+                         "9 seconds"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Alle 5 Sekunden geht ein Keepalive raus. Nach 4 fehlenden Antworten setzt IOS das Line Protocol auf down, also nach etwa 5 × 4 = 20 Sekunden."
+    },
+    {
+        "id":  "slg-vr-074",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "\u0027show interface tunnel 0\u0027 on a freshly configured GRE tunnel shows \u0027Keepalive not set\u0027. This means GRE keepalives are ___.",
+        "optionen":  [
+                         "enabled with 10 s / 3 retries",
+                         "disabled by default",
+                         "only sent when OSPF is down",
+                         "negotiated with the peer"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "GRE-Keepalives sind standardmäßig aus. Aktiviert man sie mit \u0027keepalive\u0027 ohne Werte, gelten 10 Sekunden Intervall und 3 Retries."
+    },
+    {
+        "id":  "slg-vr-075",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In the GRE lab, R1 reaches R4\u0027s tunnel destination 10.10.3.2 through a static route 10.0.0.0/8. The admin then adds \u0027network 10.0.0.0 0.255.255.255 area 0\u0027 to OSPF on both R1 and R4, which run OSPF over Tunnel0. Shortly afterwards Tunnel0 flaps with %TUN-5-RECURDOWN. Why?",
+        "optionen":  [
+                         "R2 and R3 start to drop GRE traffic once OSPF is enabled",
+                         "R1 now learns 10.10.3.0/24 via Tunnel0, a longer match than the static /8",
+                         "OSPF does not support GRE tunnels with 10.0.0.0/8 addresses",
+                         "The OSPF route has a lower administrative distance than the static route"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "R4 bietet 10.10.3.0/24 per OSPF über den Tunnel an. Für R1 ist das ein längerer Prefix als die statische /8, also läge das Tunnelziel jetzt hinter dem Tunnel selbst. IOS erkennt dieses rekursive Routing und schaltet den Tunnel ab. Die AD spielt dabei keine Rolle, der Longest Match entscheidet."
+    },
+    {
+        "id":  "slg-vr-076",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "A GRE tunnel keeps going down because of recursive routing. Which two actions prevent the problem? (Choose two.)",
+        "optionen":  [
+                         "Do not advertise the underlay networks into the routing process that runs over the tunnel",
+                         "Add a static /32 host route to the tunnel destination via the physical next hop",
+                         "Enable GRE keepalives on both tunnel endpoints",
+                         "Increase the bandwidth value on the tunnel interface",
+                         "Change the tunnel mode from \u0027gre ip\u0027 to \u0027gre ipv6\u0027"
+                     ],
+        "richtig":  [
+                        0,
+                        1
+                    ],
+        "erklaerung":  "Die Route zum Tunnelziel darf nie über den Tunnel zeigen. Dafür hält man Underlay-Netze aus dem Overlay-Routing heraus oder setzt eine genauere statische Route zum Ziel über das physische Interface. Keepalives, Bandbreite und Tunnelmodus ändern daran nichts."
+    },
+    {
+        "id":  "slg-vr-077",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the GRE lab, R1 pings from Loopback0 (172.16.11.1) to R4\u0027s Loopback0 (172.16.14.1) through Tunnel0. Which addresses does R2 see in the outer IP header?",
+        "optionen":  [
+                         "Source 10.10.1.1, destination 10.10.3.2",
+                         "Source 172.16.99.1, destination 172.16.99.2",
+                         "Source 10.10.1.2, destination 10.10.3.1",
+                         "Source 172.16.11.1, destination 172.16.14.1"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der äußere Header nutzt \u0027tunnel source\u0027 und \u0027tunnel destination\u0027, hier 10.10.1.1 und 10.10.3.2. Die 172.16.x-Adressen stehen nur im inneren Paket, das R2 nicht auswertet."
+    },
+    {
+        "id":  "slg-vr-078",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In the GRE lab, transit routers R2 and R3 know only the 10.0.0.0/8 networks. Why can they still forward traffic between R1\u0027s and R4\u0027s 172.16.x.x networks?",
+        "optionen":  [
+                         "They forward based on the outer header between tunnel endpoints",
+                         "They learn 172.16.0.0/16 from OSPF hellos in the tunnel",
+                         "They decapsulate GRE and route the inner packet",
+                         "They use a default route that R1 injects into EIGRP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "R2 und R3 sehen nur normale IP-Pakete von 10.10.1.1 an 10.10.3.2 (Protokoll 47) und routen anhand des äußeren Headers. Das innere Paket mit 172.16.x.x bleibt für sie unsichtbar."
+    },
+    {
+        "id":  "slg-vr-079",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In the GRE lab, Tunnel0 shows \u0027BW 100 Kbit/sec\u0027, and OSPF uses the default reference bandwidth of 100 Mbps. R1 lists \u0027O 172.16.4.0/24 [110/1010] via 172.16.99.2, Tunnel0\u0027. How is the metric 1010 made up?",
+        "optionen":  [
+                         "AD 110 plus tunnel cost 900 on R1 and R4",
+                         "Tunnel cost 1000 plus the R2 and R3 hop costs",
+                         "Tunnel cost 1000 plus cost 10 of R4\u0027s Ethernet0/1",
+                         "Tunnel cost 10 plus cost 1000 of R4\u0027s Ethernet0/1"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "OSPF-Kosten = 100 Mbps / 100 kbps = 1000 für den Tunnel. Dazu kommen die Kosten von R4s Ethernet0/1 (10 bei 10 Mbit/s), macht 1010. Die Loopback-Route hat entsprechend 1000 + 1 = 1001. R2 und R3 sind für OSPF unsichtbar."
+    },
+    {
+        "id":  "slg-vr-080",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "OSPF over a GRE tunnel computes a very high cost because the tunnel uses its default bandwidth. Which change lowers the OSPF cost of only Tunnel0 to 10?",
+        "optionen":  [
+                         "ip mtu 10 under interface Tunnel0",
+                         "ip ospf cost 10 under interface Tunnel0",
+                         "auto-cost reference-bandwidth 10 under router ospf",
+                         "tunnel path-mtu-discovery under Tunnel0"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027ip ospf cost\u0027 setzt die Kosten direkt pro Interface. Eine geänderte Referenzbandbreite würde alle Interfaces des Prozesses treffen. MTU und PMTUD haben mit der Metrik nichts zu tun."
+    },
+    {
+        "id":  "slg-vr-081",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On R1, \u0027show ip ospf neighbor\u0027 shows neighbor 0.0.0.4 on Tunnel0 with priority 0 and state \u0027FULL/  -\u0027. Why is no DR or BDR shown?",
+        "optionen":  [
+                         "OSPF runs as a stub area over GRE tunnels by default",
+                         "Both routers were configured with \u0027ip ospf priority 0\u0027 manually",
+                         "The adjacency is still forming and the DR election is pending",
+                         "OSPF uses the point-to-point network type on GRE tunnels by default"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Auf GRE-Tunnel-Interfaces nutzt OSPF standardmäßig den Netzwerktyp point-to-point. Dort gibt es keine DR/BDR-Wahl, deshalb steht \u0027FULL/ -\u0027 da."
+    },
+    {
+        "id":  "slg-vr-082",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "On Cisco IOS, the default tunnel mode of a new tunnel interface is ___, so it does not need to be configured for plain GRE over IPv4.",
+        "optionen":  [
+                         "tunnel mode gre ip",
+                         "tunnel mode gre multipoint",
+                         "tunnel mode ipsec ipv4",
+                         "tunnel mode ipip"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027tunnel mode gre ip\u0027 ist der Standard. Für einen Punkt-zu-Punkt-GRE-Tunnel über IPv4 reichen daher IP-Adresse, \u0027tunnel source\u0027 und \u0027tunnel destination\u0027."
+    },
+    {
+        "id":  "slg-vr-083",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A branch router has two WAN uplinks. What is the advantage of using Loopback0 instead of a physical interface as GRE tunnel source?",
+        "optionen":  [
+                         "The tunnel stays up if one uplink fails and the loopback is still reachable",
+                         "The loopback adds no GRE overhead, so no MTU change is needed",
+                         "The loopback removes the need for a tunnel destination on the peer",
+                         "A loopback source enables IPsec encryption on the tunnel automatically"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Eine Loopback ist immer up und kann über jedes Uplink erreicht werden. Fällt ein physisches Interface aus, läuft der Tunnel weiter, solange das Routing einen anderen Weg zur Loopback findet. Die Gegenseite muss diese Adresse als \u0027tunnel destination\u0027 nutzen."
+    },
+    {
+        "id":  "slg-vr-084",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show interface tunnel 0\u0027 displays \u0027Tunnel0 is up, line protocol is down\u0027. Keepalives are not configured. What is the most likely cause?",
+        "optionen":  [
+                         "OSPF has not yet formed an adjacency across the tunnel",
+                         "The tunnel interface was shut down by the administrator",
+                         "The remote tunnel IP address is in a different subnet",
+                         "There is no usable route to the tunnel destination"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne Keepalives geht das Line Protocol down, wenn die Tunnelquelle down ist oder es keine Route zum Tunnelziel gibt (oder diese rekursiv über den Tunnel zeigt). Ein \u0027shutdown\u0027 würde \u0027administratively down\u0027 anzeigen."
+    },
+    {
+        "id":  "slg-vr-085",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 uses \u0027tunnel source Loopback0\u0027 (192.0.2.1) and \u0027tunnel destination 10.10.3.2\u0027. R4 uses \u0027tunnel source 10.10.3.2\u0027 and \u0027tunnel destination 10.10.1.1\u0027 (R1\u0027s Ethernet0/0). Both tunnels are up/up, but OSPF never forms. Why?",
+        "optionen":  [
+                         "The tunnel IP addresses must be in the same subnet as the physical tunnel source",
+                         "R4 drops R1\u0027s GRE packets because 192.0.2.1 is not its tunnel destination",
+                         "OSPF hellos cannot be sent on tunnels sourced from a loopback interface",
+                         "R2 and R3 drop GRE packets whose outer source is a loopback address"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Endpunkte müssen symmetrisch sein: Die Quelle der einen Seite ist das Ziel der anderen. R4 ordnet eingehende GRE-Pakete von 192.0.2.1 keinem Tunnel zu und verwirft sie. Ohne Keepalives bleiben beide Tunnel trotzdem up/up."
+    },
+    {
+        "id":  "slg-vr-086",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Match each line of \u0027show interface tunnel 0\u0027 on R4 to what it tells you.",
+        "paare":  [
+                      [
+                          "Tunnel protocol/transport GRE/IP",
+                          "The tunnel mode: GRE carried over IPv4"
+                      ],
+                      [
+                          "Tunnel source 10.10.3.2, destination 10.10.1.1",
+                          "The addresses used in the outer IP header"
+                      ],
+                      [
+                          "Keepalive not set",
+                          "The remote end is not actively monitored"
+                      ],
+                      [
+                          "Internet address is 172.16.99.2/24",
+                          "The overlay address of the tunnel interface"
+                      ]
+                  ],
+        "erklaerung":  "Die Ausgabe zeigt Tunnelmodus, die Endpunkte des äußeren Headers, den Keepalive-Status und die IP-Adresse, die im Overlay (z. B. für OSPF) genutzt wird."
+    },
+    {
+        "id":  "slg-vr-087",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three settings are needed for a minimal working point-to-point GRE tunnel over IPv4 on Cisco IOS? (Choose three.)",
+        "optionen":  [
+                         "tunnel destination",
+                         "tunnel mode gre ip",
+                         "tunnel source",
+                         "keepalive 10 3",
+                         "An IP address on the tunnel interface"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Minimal braucht man Quelle, Ziel und ein IP-Subnetz auf dem Tunnel. \u0027tunnel mode gre ip\u0027 ist der Standard und muss nicht eingegeben werden. Keepalives sind optional."
+    },
+    {
+        "id":  "slg-vr-088",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 has \u0027tunnel key 100\u0027 on Tunnel0, while R4\u0027s Tunnel0 uses \u0027tunnel key 200\u0027. Source and destination match. What is the result?",
+        "optionen":  [
+                         "The tunnel negotiates the lower key value automatically",
+                         "GRE packets are dropped by the receiver because the key does not match",
+                         "The tunnel uses IPsec instead of GRE to fix the mismatch",
+                         "Traffic passes, but the GRE checksum is recalculated"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der GRE-Key wird nicht ausgehandelt. Der Empfänger nimmt nur Pakete mit dem Key an, der auf seinem Tunnel konfiguriert ist. Bei einem Mismatch kann der Tunnel up/up anzeigen, transportiert aber nichts."
+    },
+    {
+        "id":  "slg-vr-089",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Ten sites are connected with GRE over IPsec. How many tunnels are needed for a full mesh compared to a hub-and-spoke design with one hub?",
+        "optionen":  [
+                         "Full mesh 45, hub-and-spoke 10",
+                         "Full mesh 20, hub-and-spoke 9",
+                         "Full mesh 90, hub-and-spoke 10",
+                         "Full mesh 45, hub-and-spoke 9"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Full Mesh: n(n−1)/2 = 10 · 9 / 2 = 45 Tunnel. Hub-and-Spoke: jeder der 9 Spokes einen Tunnel zum Hub. Deshalb wird GRE over IPsec meist als Hub-and-Spoke gebaut."
+    },
+    {
+        "id":  "slg-vr-090",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Tunnel0 must carry traffic of VRF BLUE (overlay), but the tunnel destination is reachable only through VRF WAN (underlay). Which pair of commands under interface Tunnel0 achieves this?",
+        "optionen":  [
+                         "tunnel vrf BLUE and tunnel vrf WAN",
+                         "vrf forwarding WAN and tunnel vrf BLUE",
+                         "vrf forwarding BLUE and vrf forwarding WAN",
+                         "vrf forwarding BLUE and tunnel vrf WAN"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027vrf forwarding\u0027 legt fest, zu welcher VRF das Tunnel-Interface im Overlay gehört. \u0027tunnel vrf\u0027 bestimmt, in welcher Tabelle Tunnelziel und Tunnelquelle aufgelöst werden. Ohne \u0027tunnel vrf\u0027 sucht IOS das Ziel in der globalen Tabelle."
+    },
+    {
+        "id":  "slg-vr-091",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Three VRFs are extended between the same two routers with three GRE tunnels. All tunnels use the same source and destination addresses. What lets each receiver map incoming GRE packets to the correct tunnel?",
+        "optionen":  [
+                         "A different \u0027ip mtu\u0027 value per tunnel",
+                         "A unique tunnel key on each tunnel",
+                         "A different OSPF process per tunnel",
+                         "A different tunnel IP subnet per tunnel"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Empfänger ordnet GRE-Pakete anhand von Quelle, Ziel und, falls vorhanden, dem Key einem Tunnel zu. Haben mehrere Tunnel dieselben Endpunkte, braucht jeder einen eigenen Key, sonst eigene Quell-/Zieladressen. Die inneren Adressen sieht der Empfänger erst nach der Zuordnung."
+    },
+    {
+        "id":  "slg-vr-092",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Modus Tunnel0: Nutze die Adresse von Loopback0 als Tunnelquelle.",
+        "bausteine":  [
+                          "tunnel",
+                          "source",
+                          "Loopback0",
+                          "destination",
+                          "ip",
+                          "mode"
+                      ],
+        "loesung":  [
+                        "tunnel",
+                        "source",
+                        "Loopback0"
+                    ],
+        "erklaerung":  "Als \u0027tunnel source\u0027 gehen eine IP-Adresse oder ein Interface. Bei einem Interface nutzt IOS dessen primäre IP-Adresse als Quelle im äußeren Header."
+    },
+    {
+        "id":  "slg-vr-093",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus Tunnel0: Aktiviere GRE-Keepalives alle 5 Sekunden; nach 4 fehlenden Antworten soll der Tunnel down gehen.",
+        "bausteine":  [
+                          "keepalive",
+                          "5",
+                          "4",
+                          "tunnel",
+                          "hello",
+                          "20",
+                          "retries"
+                      ],
+        "loesung":  [
+                        "keepalive",
+                        "5",
+                        "4"
+                    ],
+        "erklaerung":  "Syntax: \u0027keepalive [period [retries]]\u0027. Ohne Werte gelten 10 Sekunden und 3 Retries."
+    },
+    {
+        "id":  "slg-vr-094",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Modus Tunnel0 (GRE over IPsec): Setze die IP-MTU des Tunnels auf 1400 Byte.",
+        "bausteine":  [
+                          "ip",
+                          "mtu",
+                          "1400",
+                          "tunnel",
+                          "tcp",
+                          "adjust-mss",
+                          "1476"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "mtu",
+                        "1400"
+                    ],
+        "erklaerung":  "\u0027ip mtu 1400\u0027 begrenzt die Größe der IP-Pakete, die in den Tunnel gehen, und lässt Platz für GRE- und IPsec-Overhead. Dazu passt \u0027ip tcp adjust-mss 1360\u0027."
+    },
+    {
+        "id":  "slg-vr-095",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Interface-Modus Tunnel0: Schütze den GRE-Tunnel mit dem IPsec-Profil GRE-PROT.",
+        "bausteine":  [
+                          "tunnel",
+                          "protection",
+                          "ipsec",
+                          "profile",
+                          "GRE-PROT",
+                          "crypto",
+                          "map",
+                          "mode"
+                      ],
+        "loesung":  [
+                        "tunnel",
+                        "protection",
+                        "ipsec",
+                        "profile",
+                        "GRE-PROT"
+                    ],
+        "erklaerung":  "\u0027tunnel protection ipsec profile\u0027 verschlüsselt den GRE-Verkehr des Tunnels mit IPsec, ganz ohne Crypto Map. Das Profil verweist auf ein Transform-Set bzw. einen IKE-Vorschlag."
+    },
+    {
+        "id":  "slg-vr-096",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Modus (config-router) von \u0027router ospf 1\u0027 auf R1 im GRE-Lab: Nimm alle Interfaces im Bereich 172.16.0.0/16 (Ethernet0/1, Loopback0, Tunnel0) in Area 0 auf.",
+        "bausteine":  [
+                          "network",
+                          "172.16.0.0",
+                          "0.0.255.255",
+                          "area",
+                          "0",
+                          "255.255.0.0",
+                          "172.16.99.0",
+                          "1"
+                      ],
+        "loesung":  [
+                        "network",
+                        "172.16.0.0",
+                        "0.0.255.255",
+                        "area",
+                        "0"
+                    ],
+        "erklaerung":  "Das network-Statement braucht eine Wildcard-Maske (0.0.255.255 für /16), keine Subnetzmaske. Damit sind Tunnel0 und die LAN-Netze im OSPF, das 10.x-Underlay bleibt draußen, was rekursives Routing verhindert."
+    },
+    {
+        "id":  "slg-vr-097",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "From R1\u0027s Loopback0, the admin runs a traceroute to R4\u0027s Loopback0 (172.16.14.1) through the GRE tunnel. R2 and R3 are transit routers in the underlay. How many hops does the traceroute show?",
+        "optionen":  [
+                         "Three hops: R2, R3, and then R4",
+                         "One hop: R4, reached directly through Tunnel0",
+                         "Two hops: R2 and R3, then the trace times out",
+                         "Four hops: Tunnel0, R2, R3, and then R4"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "R2 und R3 verändern nur den TTL des äußeren Headers, der innere TTL wird von ihnen nicht angefasst. Für das Overlay ist der Tunnel ein einziger Hop, schon die erste Probe erreicht R4. Als Adresse zeigt IOS dabei meist R4s Tunnel-IP 172.16.99.2, weil das Port-Unreachable mit der Adresse des Eingangs-Interfaces gesendet wird."
+    },
+    {
+        "id":  "slg-vr-098",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R4 in the GRE lab reboots. No GRE keepalives are configured on R1. What eventually stops R1 from sending 172.16.14.0 traffic into Tunnel0?",
+        "optionen":  [
+                         "The static route to 10.0.0.0/8 is withdrawn automatically",
+                         "The OSPF dead timer expires and the OSPF routes via the tunnel are removed",
+                         "R2 sends an ICMP message that shuts down Tunnel0 on R1",
+                         "Tunnel0 goes down immediately when R4 stops responding"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ohne Keepalives bleibt der Tunnel up/up, denn die Route zum Ziel existiert weiter. Erst wenn der OSPF-Dead-Timer abläuft, verschwinden die über den Tunnel gelernten Routen. Mit Keepalives würde der Tunnel selbst down gehen."
+    },
+    {
+        "id":  "slg-vr-099",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Two IPv6-only LANs must be connected across an IPv4-only WAN. Which solution covers this with the topics of this chapter?",
+        "optionen":  [
+                         "A GRE tunnel with IPv6 on the tunnel and IPv4 endpoints",
+                         "A VRF that translates IPv6 packets to IPv4 at the WAN edge",
+                         "An 802.1Q trunk that carries IPv6 frames over the IPv4 WAN",
+                         "A vSwitch uplink that converts IPv6 into IPv4 addresses"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "GRE kann beliebige Layer-3-Protokolle transportieren. IPv6 ist hier das Passagierprotokoll im Tunnel, IPv4 das Transportprotokoll im WAN. Eine VRF übersetzt keine Protokolle."
+    },
+    {
+        "id":  "slg-vr-100",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Match each tunnel mode command to its use.",
+        "paare":  [
+                      [
+                          "tunnel mode gre ip",
+                          "Point-to-point GRE over IPv4 (default)"
+                      ],
+                      [
+                          "tunnel mode gre ipv6",
+                          "GRE with an IPv6 transport network"
+                      ],
+                      [
+                          "tunnel mode gre multipoint",
+                          "mGRE, e.g., for a DMVPN hub"
+                      ],
+                      [
+                          "tunnel mode ipsec ipv4",
+                          "Static IPsec VTI without a GRE header"
+                      ]
+                  ],
+        "erklaerung":  "Der Tunnelmodus legt Carrier und Transport fest. \u0027gre ip\u0027 ist der Standard, \u0027gre ipv6\u0027 nutzt IPv6 als Transport, \u0027gre multipoint\u0027 erlaubt viele Ziele über einen Tunnel, und \u0027ipsec ipv4\u0027 baut ein VTI ohne zusätzlichen GRE-Header."
+    },
+    {
+        "id":  "slg-vr-101",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three statements about GRE are true? (Choose three.)",
+        "optionen":  [
+                         "It is stateless and has no flow control by default",
+                         "It runs over TCP port 47 to guarantee delivery",
+                         "It can carry multicast, such as routing protocol hellos",
+                         "It provides no encryption of its own",
+                         "It always includes a mandatory checksum for integrity"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "GRE ist zustandslos, ohne Flusskontrolle und ohne eigene Sicherheit. Es transportiert auch Multicast. GRE ist IP-Protokoll 47, nicht TCP. Die Checksum ist optional."
+    },
+    {
+        "id":  "slg-vr-102",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which fields form the basic 4-byte GRE header defined in RFC 2784?",
+        "optionen":  [
+                         "Source and destination port",
+                         "Flags/version and protocol type",
+                         "Sequence number and tunnel key",
+                         "Checksum and tunnel key"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Basis-Header enthält das Checksum-Present-Bit, reservierte Bits (RFC 2890 nutzt davon K und S), die Version und den Protocol Type des Passagiers (z. B. 0x0800 für IPv4). Checksum (RFC 2784) sowie Key und Sequence Number (RFC 2890) sind optionale 4-Byte-Zusatzfelder."
+    },
+    {
+        "id":  "slg-vr-103",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1\u0027s Tunnel0 has \u0027ip mtu 1400\u0027, while R4\u0027s Tunnel0 keeps the default IP MTU of 1476. OSPF runs over the tunnel, and the neighbors stay stuck in EXSTART/EXCHANGE. What is the cause?",
+        "optionen":  [
+                         "The OSPF network types differ on both ends",
+                         "Hello and dead timers default to different values on tunnels",
+                         "The tunnel keys differ between both ends",
+                         "OSPF detects the interface MTU mismatch in its DBD packets"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "OSPF trägt die Interface-MTU in die DBD-Pakete ein. Bei unterschiedlichen Werten kommt der Datenbankaustausch nicht zustande, die Nachbarn bleiben in EXSTART/EXCHANGE hängen. Deshalb sollte die Tunnel-MTU auf beiden Seiten gleich sein."
+    },
+    {
+        "id":  "slg-vr-104",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "After \u0027interface tunnel0\u0027 and an IP address are configured, but before tunnel source and destination are set, the tunnel shows \u0027up\u0027 with line protocol ___.",
+        "optionen":  [
+                         "down",
+                         "up",
+                         "looped",
+                         "administratively down"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein neues Tunnel-Interface ist sofort up, das Line Protocol bleibt aber down, bis Quelle und ein routbares Ziel konfiguriert sind. Im Lab kam es erst nach \u0027tunnel destination\u0027 hoch."
+    },
+    {
+        "id":  "slg-vr-105",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After Tunnel0 comes up on R1, which entry appears in R1\u0027s routing table for the tunnel subnet?",
+        "optionen":  [
+                         "S 172.16.99.0/24 [1/0] via 10.10.1.2",
+                         "O 172.16.99.0/24 [110/1000] via Tunnel0",
+                         "C 172.16.99.0/24 is directly connected, Tunnel0",
+                         "D 172.16.99.0/24 [90/...] via 10.10.1.2"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das Tunnel-Subnetz ist für R1 direkt verbunden, wie bei einem Punkt-zu-Punkt-Link. Zusätzlich gibt es die Local-Route 172.16.99.1/32. Alles, was dorthin geht, wird in GRE gekapselt."
+    },
+    {
+        "id":  "slg-vr-106",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "VRF-Lite is extended across a non-virtualized WAN with one GRE tunnel per VRF. To which VRF must each tunnel interface be assigned, and where must the tunnel destination be reachable by default?",
+        "optionen":  [
+                         "Tunnel and destination both only in the customer VRF table",
+                         "Tunnel in no VRF; the destination is resolved via MPLS labels",
+                         "Tunnel in the global table; destination reachable in the customer VRF",
+                         "Tunnel in the customer VRF; destination reachable in the global table"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Das Tunnel-Interface bekommt \u0027vrf forwarding \u003cKunden-VRF\u003e\u0027 und trägt dadurch die Overlay-Routen dieser VRF. Das Tunnelziel löst IOS standardmäßig in der globalen Tabelle auf, also im Underlay. Steht das Underlay selbst in einer VRF, braucht man \u0027tunnel vrf\u0027."
+    },
+    {
+        "id":  "slg-vr-107",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement correctly describes how GRE supports OSPF between two sites across the internet?",
+        "optionen":  [
+                         "GRE encapsulates the OSPF packets so the internet routers only see unicast GRE",
+                         "GRE converts OSPF multicast hellos into TCP sessions between the endpoints",
+                         "GRE requires the ISP routers to join the OSPF multicast group 224.0.0.5",
+                         "GRE redistributes OSPF routes into BGP at the provider edge automatically"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die OSPF-Pakete (auch Multicast an 224.0.0.5) werden im Tunnel gekapselt. Im Internet sind nur Unicast-Pakete zwischen den Tunnelendpunkten unterwegs, die Provider-Router müssen von OSPF nichts wissen."
+    },
+    {
+        "id":  "slg-vr-108",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The log shows \u0027%TUN-5-RECURDOWN: Tunnel0 temporarily disabled due to recursive routing\u0027. Which \u0027show\u0027 command best confirms the cause?",
+        "optionen":  [
+                         "show interface Tunnel0 counters",
+                         "show ip ospf interface Tunnel0",
+                         "show ip route \u003ctunnel destination\u003e",
+                         "show ip vrf interfaces"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Rekursives Routing heißt: Die beste Route zum Tunnelziel zeigt auf den Tunnel selbst. \u0027show ip route\u0027 mit der Zieladresse zeigt sofort, ob der Next Hop über Tunnel0 läuft."
+    },
+    {
+        "id":  "slg-vr-109",
+        "topic":  "ENCOR-2.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Where is a VM\u0027s vNIC connected inside an ESXi host?",
+        "optionen":  [
+                         "Directly to a dedicated physical NIC per VM",
+                         "To the vCenter Server management interface",
+                         "To the host\u0027s loopback interface only",
+                         "To a port on a vSwitch that has physical uplinks"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Anders als CPU oder RAM wird die vNIC nicht direkt auf physische Hardware abgebildet. Sie hängt an einem Port eines vSwitches, und der ist über Uplinks mit den physischen NICs verbunden. Viele VMs teilen sich so wenige physische Ports."
+    },
+    {
+        "id":  "slg-vr-110",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In network virtualization, why does adding a new user to an existing virtual network typically require no policy change?",
+        "optionen":  [
+                         "Policies are enforced centrally at the edge of each virtual network",
+                         "Each user device stores its own copy of the policy locally",
+                         "Policies are rewritten automatically by the routing protocol",
+                         "Users inherit policies from the VLAN trunk native VLAN"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Policies gelten für die ganze Gruppe und werden zentral am VPN-Perimeter bzw. an der Services Edge durchgesetzt. Neue Nutzer kommen einfach in die passende Partition."
+    },
+    {
+        "id":  "slg-vr-111",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two are examples of multihop data path virtualization over an IP network? (Choose two.)",
+        "optionen":  [
+                         "MPLS VPN using labels to separate traffic",
+                         "VLANs on access switch ports only",
+                         "VRF-Lite end-to-end with 802.1Q trunks",
+                         "VRF-Lite combined with GRE or mGRE tunnels",
+                         "EVN with VNET trunks between neighbors"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Liegen zwischen den VRF-Geräten mehrere IP-Hops, braucht man Tunnel (GRE/mGRE) oder MPLS-Labels. 802.1Q und VNET-Trunks sind Hop-by-Hop-Verfahren zwischen direkt verbundenen Geräten."
+    },
+    {
+        "id":  "slg-vr-112",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In the VRF-Lite lab, the router ID of the OSPF process in VRF CUST-A is set to 0.0.0.100 although no interface has this address. Why is this valid and recommended?",
+        "optionen":  [
+                         "The router ID must match the VRF\u0027s route distinguisher",
+                         "OSPF in a VRF requires router IDs below 1.0.0.0",
+                         "The router ID is only a 32-bit identifier and need not be an interface IP",
+                         "OSPF automatically creates a loopback 0.0.0.100 in the VRF"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die OSPF-Router-ID ist nur eine eindeutige 32-Bit-Kennung im Format einer IPv4-Adresse und muss keinem Interface gehören. Manuell gesetzt bleibt sie stabil. Sonst würde OSPF die höchste aktive Loopback- bzw. Interface-Adresse wählen."
+    },
+    {
+        "id":  "slg-vr-113",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "When VRF forwarding is enabled on an interface, IOS prints \u0027Interface Ethernet0/0 IPv4 disabled and address(es) removed due to enabling VRF CUST-A\u0027. What is the correct next step?",
+        "optionen":  [
+                         "Remove the VRF and apply it with the \u0027force\u0027 keyword",
+                         "Enter \u0027no shutdown\u0027 to re-enable IPv4 on the interface",
+                         "Reconfigure the IP address on the interface",
+                         "Reload the router to restore the previous address"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das Interface ist nicht abgeschaltet, nur seine Adresse ist weg, weil es in eine andere Routing-Tabelle gewandert ist. Man setzt die IP-Adresse einfach neu, sie gehört dann zur VRF."
+    },
+    {
+        "id":  "slg-vr-114",
+        "topic":  "ENCOR-2.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A company deploys a hypervisor directly on new rack servers in its data center to host production VMs. Which statement about this setup is correct?",
+        "optionen":  [
+                         "It is a Type 1 deployment; no general-purpose host OS sits below the hypervisor",
+                         "It is a Type 2 deployment; the hypervisor runs on top of a host operating system",
+                         "It is an NFV deployment; the hypervisor itself acts as the network firewall",
+                         "It is a container deployment; all VMs share the hypervisor\u0027s application kernel"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein Hypervisor, der statt eines Betriebssystems direkt auf der Hardware installiert wird (z. B. ESXi), ist Typ 1 (bare metal). Das ist das übliche Modell im Rechenzentrum. Typ 2 bräuchte ein Host-OS darunter."
+    },
+    {
+        "id":  "slg-vr-115",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Underlay MTU is 1500 bytes. Match each tunnel setting to its typical value.",
+        "paare":  [
+                      [
+                          "ip mtu on a plain GRE tunnel",
+                          "1476"
+                      ],
+                      [
+                          "TCP MSS on a plain GRE tunnel",
+                          "1436"
+                      ],
+                      [
+                          "ip mtu commonly used for GRE over IPsec",
+                          "1400"
+                      ],
+                      [
+                          "ip tcp adjust-mss matching an IP MTU of 1400",
+                          "1360"
+                      ]
+                  ],
+        "erklaerung":  "Reines GRE kostet 24 Byte: 1500 − 24 = 1476, die MSS liegt 40 Byte darunter (IP + TCP) bei 1436. Mit IPsec nimmt man meist 1400 als IP-MTU mit Reserve, dazu passt eine MSS von 1360."
+    },
+    {
+        "id":  "slg-vr-116",
+        "topic":  "ENCOR-2.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Match each verification command from the VRF-Lite lab to what it shows.",
+        "paare":  [
+                      [
+                          "show ip vrf",
+                          "VRF names, default RD, and assigned interfaces"
+                      ],
+                      [
+                          "show ip vrf interfaces",
+                          "Per interface: IP address, VRF, and protocol state"
+                      ],
+                      [
+                          "show ip route vrf CUST-A",
+                          "The routes in the routing table of one VRF"
+                      ],
+                      [
+                          "show ip protocols vrf CUST-A",
+                          "Routing process, router ID, and networks of one VRF"
+                      ]
+                  ],
+        "erklaerung":  "Mit \u0027show ip vrf\u0027 und \u0027show ip vrf interfaces\u0027 prüft man die Zuordnung der Interfaces, mit \u0027show ip route vrf\u0027 den Inhalt der VRF-Tabelle und mit \u0027show ip protocols vrf\u0027 den Routingprozess der VRF."
+    },
+    {
+        "id":  "slg-vr-117",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "A point-to-point GRE tunnel without keepalives shows up/up on both routers, but no traffic passes through it. Which two misconfigurations can cause this? (Choose two.)",
+        "optionen":  [
+                         "\u0027tunnel mode gre ip\u0027 is missing from both tunnel interfaces",
+                         "The tunnel interface is shut down on one router",
+                         "One side\u0027s tunnel source does not match the other side\u0027s tunnel destination",
+                         "There is no route to the tunnel destination on either router",
+                         "The tunnel keys differ on the two ends"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Key-Mismatch und asymmetrische Endpunkte bemerkt IOS ohne Keepalives lokal nicht, der Tunnel bleibt up/up, aber der Empfänger verwirft die Pakete. Fehlt die Route zum Ziel, wäre das Line Protocol down, ein \u0027shutdown\u0027 zeigt \u0027administratively down\u0027. \u0027tunnel mode gre ip\u0027 ist Standard."
+    },
+    {
+        "id":  "slg-vr-118",
+        "topic":  "ENCOR-2.1.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about containers are true? (Choose two.)",
+        "optionen":  [
+                         "Each container requires its own vNIC on a vSwitch uplink",
+                         "Containers on the same host share the host OS kernel",
+                         "Containers can run on bare metal or inside a VM",
+                         "Containers can only run on a Type 2 hypervisor",
+                         "Each container boots its own guest OS kernel"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Container teilen sich den Kernel des Betriebssystems, auf dem sie laufen. Das kann ein Bare-Metal-Server oder eine VM sein. Einen eigenen Kernel oder einen Hypervisor brauchen sie nicht."
+    },
+    {
+        "id":  "slg-vr-119",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus Tunnel1: Mehrere Tunnel nutzen dieselbe Quelle und dasselbe Ziel. Setze für diesen Tunnel den GRE-Key 100.",
+        "bausteine":  [
+                          "tunnel",
+                          "key",
+                          "100",
+                          "ip",
+                          "mode",
+                          "checksum",
+                          "id"
+                      ],
+        "loesung":  [
+                        "tunnel",
+                        "key",
+                        "100"
+                    ],
+        "erklaerung":  "\u0027tunnel key 100\u0027 fügt dem GRE-Header ein 4-Byte-Key-Feld hinzu. Der Wert muss auf beiden Seiten gleich sein und unterscheidet Tunnel, die dieselben Endpunkte nutzen."
+    },
+    {
+        "id":  "slg-vr-120",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The new 20-byte outer IPv4 header that GRE places in front of the GRE header is also called the ___ header.",
+        "optionen":  [
+                         "carrier",
+                         "passenger",
+                         "delivery",
+                         "payload"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der äußere IP-Header ist der Delivery Header des Transportprotokolls. GRE selbst ist das Carrier-Protokoll, das ursprüngliche Paket das Passagierprotokoll."
+    }
+]

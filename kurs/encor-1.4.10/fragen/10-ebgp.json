@@ -1,0 +1,2297 @@
+[
+    {
+        "id":  "slg-bg-001",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Two subsidiaries own their routers legally, but one NOC operates all of them with a single common routing policy toward the internet. How should they be treated from a BGP perspective?",
+        "optionen":  [
+                         "They must use two ASNs because each legal owner needs its own AS number",
+                         "They can only form one AS if every router runs the same IGP process",
+                         "They need a confederation because the routers have separate legal owners",
+                         "They can form one AS because they share common technical administration and policy"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein AS ist eine Menge von Netzen unter einer gemeinsamen technischen Verwaltung mit gleicher Routing-Policy. Rechtliches oder administratives Eigentum der Router spielt dafür keine Rolle."
+    },
+    {
+        "id":  "slg-bg-002",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why does BGP not implement its own retransmission and error-recovery mechanism?",
+        "optionen":  [
+                         "It sends every update three times to be safe",
+                         "It uses RTP like EIGRP, which already retransmits",
+                         "It relies on TCP, which provides reliable, ordered delivery",
+                         "It refloods its full table every 30 seconds instead"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "BGP läuft über TCP (Port 179). TCP übernimmt Bestätigung, Wiederholung und Reihenfolge, deshalb braucht BGP keine eigenen Mechanismen dafür."
+    },
+    {
+        "id":  "slg-bg-003",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why can BGP transfer a full internet table more efficiently than OSPF or EIGRP could transfer the same number of updates?",
+        "optionen":  [
+                         "BGP needs no acknowledgments because it sends periodic full-table updates",
+                         "TCP\u0027s sliding window keeps many unacknowledged segments in flight",
+                         "BGP sends its updates as multicast to all neighboring routers at once",
+                         "BGP compresses the prefixes with a proprietary encoding algorithm"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "OSPF und EIGRP arbeiten beim zuverlässigen Versand praktisch mit einem One-for-one-Fenster: das nächste Paket erst nach dem ACK. TCP nutzt ein dynamisches Sliding Window, sodass BGP kontinuierlich streamen kann."
+    },
+    {
+        "id":  "slg-bg-004",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Compared with OSPF and EIGRP, why does BGP typically converge more slowly?",
+        "optionen":  [
+                         "It recalculates a full SPF tree for every prefix it receives",
+                         "It only sends updates after the hold timer of the session expires",
+                         "It batches updates so instability in one AS does not ripple everywhere",
+                         "It must wait for a DR election on every link before sending updates"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "BGP sendet Änderungen gebündelt statt sofort, damit flappende Routen eines AS nicht alle anderen AS belasten. Der Preis dafür ist eine langsamere Konvergenz als bei IGPs."
+    },
+    {
+        "id":  "slg-bg-005",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "AS 65020 knows two paths to AS 65060: \u002765030 65060\u0027 (its best path) and \u002765050 65030 65060\u0027. What does AS 65010, a neighbor of AS 65020, learn from AS 65020?",
+        "optionen":  [
+                         "Only the path \u002765050 65030 65060\u0027, because it is longer and therefore loop-free",
+                         "Only its best path, \u002765020 65030 65060\u0027",
+                         "Both paths, so that AS 65010 can pick one",
+                         "No path, because transit routes are never advertised by default"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Wie ein IGP gibt ein BGP-Router nur seinen eigenen besten Pfad weiter. Beim Senden an den eBGP-Nachbarn stellt AS 65020 seine ASN voran, alternative Pfade sieht AS 65010 erst, wenn der beste ausfällt."
+    },
+    {
+        "id":  "slg-bg-006",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "AS 65010 sends traffic for AS 65060 into AS 65020. The administrator of AS 65010 wants that traffic to leave AS 65020 via AS 65050 instead of AS 65030, which is the best path of AS 65020. What is true?",
+        "optionen":  [
+                         "AS 65010 can achieve this by setting a higher local preference",
+                         "AS 65010 can achieve this by sending a lower MED to AS 65020",
+                         "AS 65010 can achieve this with AS-path prepending toward AS 65020",
+                         "It cannot, because AS 65020 forwards based on its own best path"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "BGP folgt dem Hop-by-hop-Paradigma: Ein AS bestimmt nur, an welches Nachbar-AS es Traffic übergibt, nicht wie dieses weiterroutet. Local Preference wirkt nur im eigenen AS, MED und Prepending beeinflussen den Traffic in Gegenrichtung."
+    },
+    {
+        "id":  "slg-bg-007",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A router in AS 65002 receives an eBGP update for 10.9.0.0/16 with AS_PATH \u002765003 65002 65001\u0027. What does the router do?",
+        "optionen":  [
+                         "It discards the update because its own AS is already in the path",
+                         "It sends a NOTIFICATION to the peer and resets the BGP session",
+                         "It installs the route but assigns it a higher weight than normal",
+                         "It accepts the route and prepends its own AS 65002 once more"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Findet ein Router seine eigene ASN im AS_PATH, hat das Update sein AS schon durchlaufen. Zur Schleifenvermeidung wird die Route stillschweigend ignoriert, die Session bleibt bestehen."
+    },
+    {
+        "id":  "slg-bg-008",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements describe the path-vector information that BGP exchanges? (Choose two.)",
+        "optionen":  [
+                         "It is flooded as link-state advertisements to build a topology map",
+                         "It includes the reachable prefixes plus attributes such as NEXT_HOP and ORIGIN",
+                         "It lists the AS numbers that must be crossed to reach the destination",
+                         "It lists every router hop inside each AS",
+                         "It contains a cumulative metric built from bandwidth and delay"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Ein Path Vector besteht aus der Liste der AS bis zum Ziel, den Netzen am Ende dieses Pfads und weiteren Pfadattributen wie NEXT_HOP und ORIGIN. Einzelne Router-Hops und Bandbreiten-Metriken enthält er nicht."
+    },
+    {
+        "id":  "slg-bg-009",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The AS that originally injected a prefix into BGP is always found at the ___ end of the AS_PATH.",
+        "optionen":  [
+                         "middle",
+                         "right-most",
+                         "left-most",
+                         "neither, it is stored in the ORIGIN attribute"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Jedes AS stellt beim Verlassen seine ASN links voran. Das Ursprungs-AS steht daher immer ganz rechts. ORIGIN gibt nur an, wie die Route in BGP kam (i, e, ?)."
+    },
+    {
+        "id":  "slg-bg-010",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A customer wants to use a 16-bit private ASN for its eBGP session to the ISP. Which value must not be used?",
+        "optionen":  [
+                         "65534",
+                         "65000",
+                         "64512",
+                         "65535"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der private 16-Bit-Bereich ist 64512–65534. 65535 ist reserviert (RFC 7300) und darf nicht verwendet werden."
+    },
+    {
+        "id":  "slg-bg-011",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which range is reserved for private use among 32-bit (4-byte) AS numbers?",
+        "optionen":  [
+                         "4000000000–4100000000",
+                         "4200000000–4294967294",
+                         "65536–131071",
+                         "1.0–1.65535 in asdot notation"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "RFC 6996 reserviert 4200000000–4294967294 als privaten 4-Byte-Bereich, zusätzlich zu 64512–65534 im 2-Byte-Bereich. 65536–131071 entspricht 1.0–1.65535 und ist öffentlicher Adressraum."
+    },
+    {
+        "id":  "slg-bg-012",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A peer uses the 4-byte ASN 2.10 in asdot notation. Which value must you enter in asplain notation?",
+        "optionen":  [
+                         "210",
+                         "131082",
+                         "131072",
+                         "65546"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "asdot X.Y entspricht X × 65536 + Y. Also 2 × 65536 + 10 = 131082."
+    },
+    {
+        "id":  "slg-bg-013",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "How is the asplain ASN 65546 written in asdot notation?",
+        "optionen":  [
+                         "1.10",
+                         "10.1",
+                         "6.5546",
+                         "0.65546"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "65546 − 65536 = 10, der obere 16-Bit-Teil ist 1. In asdot ergibt das 1.10."
+    },
+    {
+        "id":  "slg-bg-014",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An old BGP speaker that only supports 2-byte ASNs peers with a router in AS 131082. Which AS number does the old speaker see in the OPEN message and AS_PATH?",
+        "optionen":  [
+                         "The lower 16 bits of 131082",
+                         "65535",
+                         "0",
+                         "23456 (AS_TRANS)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Für Nachbarn ohne 4-Byte-Unterstützung ersetzt ein 4-Byte-Speaker seine ASN durch AS_TRANS 23456 (RFC 6793). Der echte Pfad reist im optionalen transitiven Attribut AS4_PATH mit."
+    },
+    {
+        "id":  "slg-bg-015",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A router learns 10.5.0.0/16 from an eBGP peer and also via OSPF intra-area. Default settings are used. Which route is installed in the routing table?",
+        "optionen":  [
+                         "Both, because BGP and OSPF load-share equal routes by default",
+                         "The eBGP route, because AD 20 is lower than OSPF\u0027s AD 110",
+                         "The route with the lower metric, regardless of the protocol",
+                         "The OSPF route, because IGP routes always win over BGP routes"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die BGP-Best-Path-Auswahl liefert eine Route, die dann per AD mit anderen Quellen verglichen wird. eBGP hat AD 20, OSPF 110, daher gewinnt eBGP."
+    },
+    {
+        "id":  "slg-bg-016",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The output of \u0027show ip bgp\u0027 shows \u0027r\u003ei 10.8.0.0/16\u0027. The same prefix is known via OSPF. What does the \u0027r\u0027 indicate?",
+        "optionen":  [
+                         "The route was received from a route reflector client",
+                         "RIB failure: a route with a better AD is already in the RIB",
+                         "The route was redistributed into BGP with origin incomplete",
+                         "The route was refreshed with a recent route-refresh request"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027r\u0027 steht für RIB-failure. Der iBGP-Pfad (AD 200) ist zwar BGP-Best-Path (\u003e), unterliegt aber der OSPF-Route (AD 110) in der Routing-Tabelle. Details zeigt \u0027show ip bgp rib-failure\u0027."
+    },
+    {
+        "id":  "slg-bg-017",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A BGP router learns three valid paths to 172.20.0.0/16 from three neighbors. With default settings, what happens to these paths?",
+        "optionen":  [
+                         "Only the best path is kept, the other two paths are discarded",
+                         "All three stay in the BGP table, only the best goes to the RIB",
+                         "The router asks the neighbors to stop sending duplicate paths",
+                         "All three are installed in the RIB and traffic is load-shared"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Alle gelernten Pfade bleiben als Backup in der BGP-Tabelle. Die Best-Path-Auswahl reduziert auf genau einen Pfad, der der Routing-Tabelle angeboten wird. Load Sharing braucht maximum-paths."
+    },
+    {
+        "id":  "slg-bg-018",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den BGP-Nachrichtentyp seiner Aufgabe zu.",
+        "paare":  [
+                      [
+                          "OPEN",
+                          "Starts the session and carries ASN, hold time and router ID"
+                      ],
+                      [
+                          "UPDATE",
+                          "Advertises prefixes with attributes or withdraws prefixes"
+                      ],
+                      [
+                          "KEEPALIVE",
+                          "Header-only message proving the session is still alive"
+                      ],
+                      [
+                          "NOTIFICATION",
+                          "Reports an error and closes the session"
+                      ]
+                  ],
+        "erklaerung":  "OPEN baut die Session auf, UPDATE transportiert Routen und Withdrawals, KEEPALIVE hält den Hold Timer am Leben und NOTIFICATION meldet einen Fehler, danach wird die Verbindung geschlossen."
+    },
+    {
+        "id":  "slg-bg-019",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three fields are carried in a BGP OPEN message? (Choose three.)",
+        "optionen":  [
+                         "Withdrawn Routes",
+                         "BGP Identifier",
+                         "Hold Time",
+                         "My Autonomous System",
+                         "Network Layer Reachability Information"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "OPEN enthält Version, eigene ASN, Hold Time, BGP Identifier (Router-ID) und optionale Parameter wie Capabilities. NLRI und Withdrawn Routes sind Felder der UPDATE-Nachricht."
+    },
+    {
+        "id":  "slg-bg-020",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the lab, SP1 uses the default BGP timers. R1 is configured with \u0027timers bgp 20 60\u0027. Which hold time will the R1–SP1 session use?",
+        "optionen":  [
+                         "The session fails because the timers do not match",
+                         "180 seconds on both routers",
+                         "180 seconds on SP1 and 60 seconds on R1",
+                         "60 seconds on both routers"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beim Empfang des OPEN nimmt jeder Router den kleineren Wert aus eigener und empfangener Hold Time. Beide landen daher bei 60 s. Unterschiedliche Timer verhindern die Session nicht."
+    },
+    {
+        "id":  "slg-bg-021",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Two BGP peers negotiate a hold time of 0. What is the effect?",
+        "optionen":  [
+                         "Keepalives are sent every second instead of every 60 seconds",
+                         "The default hold time of 180 seconds is used instead",
+                         "No keepalives are sent and the hold timer never expires",
+                         "The session cannot be established because 0 is invalid"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Eine Hold Time von 0 bedeutet: keine periodischen Keepalives und kein Ablauf des Hold Timers. Ein Ausfall des Nachbarn wird dann nur über TCP oder andere Mechanismen erkannt."
+    },
+    {
+        "id":  "slg-bg-022",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R1 receives an acceptable OPEN message from its peer. Which message does R1 send to confirm it?",
+        "optionen":  [
+                         "NOTIFICATION",
+                         "KEEPALIVE",
+                         "OPEN-ACK",
+                         "UPDATE"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein akzeptiertes OPEN wird mit einem KEEPALIVE bestätigt. Danach ist die Session Established und die Peers tauschen UPDATEs aus. Eine Nachricht OPEN-ACK gibt es nicht."
+    },
+    {
+        "id":  "slg-bg-023",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R2 receives a NOTIFICATION message from its eBGP peer R1. What happens next?",
+        "optionen":  [
+                         "R2 retransmits its last UPDATE and keeps the session",
+                         "R2 lowers the hold time and keeps the session",
+                         "The BGP connection is closed and the routes learned from R1 are removed",
+                         "Only the prefix named in the NOTIFICATION is withdrawn; the session stays up"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "NOTIFICATION meldet einen Fehler mit Error Code, Subcode und Daten. Direkt danach wird die Verbindung geschlossen, und alle Pfade von diesem Nachbarn werden ungültig."
+    },
+    {
+        "id":  "slg-bg-024",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the lab, the R2 loopback 10.0.2.1/24 is shut down. How does R2 inform SP1?",
+        "optionen":  [
+                         "It sends an UPDATE that lists 10.0.2.0/24 in the Withdrawn Routes field",
+                         "It stops sending keepalives until SP1 times out the route",
+                         "It sends its full BGP table again without 10.0.2.0/24",
+                         "It sends a NOTIFICATION, and the session is reset"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Nach dem initialen Volltausch sendet BGP nur noch inkrementelle Änderungen. Ein nicht mehr erreichbares Präfix wird per UPDATE im Feld Withdrawn Routes zurückgezogen, die Session bleibt bestehen."
+    },
+    {
+        "id":  "slg-bg-025",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A router must advertise 12 prefixes to a peer: 8 share one identical set of path attributes, the other 4 share a different set. What is the minimum number of UPDATE messages needed?",
+        "optionen":  [
+                         "4",
+                         "2",
+                         "12",
+                         "1"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein UPDATE trägt genau einen Satz Pfadattribute, aber beliebig viele Präfixe (NLRI), die diesen Satz teilen. Zwei Attributsätze ergeben mindestens zwei UPDATEs."
+    },
+    {
+        "id":  "slg-bg-026",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A router has Loopback0 10.0.3.1, Loopback1 172.16.9.9 and GigabitEthernet0/0 192.168.200.1. No \u0027bgp router-id\u0027 is configured. Which BGP router ID is chosen?",
+        "optionen":  [
+                         "172.16.9.9",
+                         "0.0.0.0 until a router ID is configured",
+                         "192.168.200.1",
+                         "10.0.3.1"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ohne manuelle Konfiguration nimmt IOS die höchste Loopback-Adresse, erst ohne Loopback die höchste aktive Interface-Adresse. 172.16.9.9 ist die höchste Loopback-IP."
+    },
+    {
+        "id":  "slg-bg-027",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Lege in \u0027router bgp 65001\u0027 die BGP-Router-ID fest auf 1.1.1.1.",
+        "bausteine":  [
+                          "bgp",
+                          "router-id",
+                          "1.1.1.1",
+                          "ip",
+                          "router",
+                          "id",
+                          "neighbor"
+                      ],
+        "loesung":  [
+                        "bgp",
+                        "router-id",
+                        "1.1.1.1"
+                    ],
+        "erklaerung":  "\u0027bgp router-id 1.1.1.1\u0027 setzt die 32-Bit-ID fest. Sie wird im OPEN gesendet und dient als Tie-Breaker in der Best-Path-Auswahl."
+    },
+    {
+        "id":  "slg-bg-028",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ip bgp neighbors\u0027 displays \u0027Route refresh: advertised and received(new)\u0027. What does this capability allow?",
+        "optionen":  [
+                         "The full table is refreshed automatically every 60 seconds",
+                         "Received prefixes are automatically summarized by the router",
+                         "The peer can be asked to resend updates without a session reset",
+                         "The TCP session is refreshed when the hold timer expires"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Route Refresh (RFC 2918) erlaubt es, beim Nachbarn eine erneute Übermittlung anzufordern, z. B. mit \u0027clear ip bgp x soft in\u0027. So greift eine geänderte Inbound-Policy ohne harten Reset."
+    },
+    {
+        "id":  "slg-bg-029",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the lab, \u0027show ip bgp neighbors 192.168.1.11\u0027 shows \u0027Four-octets ASN Capability: advertised and received\u0027. What does it mean?",
+        "optionen":  [
+                         "The AS_PATH is limited to four AS numbers",
+                         "The neighbor uses a 4-byte ASN, so the session is iBGP",
+                         "The routers use four TCP sessions",
+                         "Both peers support and use 4-byte AS number encoding"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Capability wird im OPEN ausgetauscht. Haben sie beide Seiten, werden ASNs im AS_PATH 32 Bit breit übertragen, auch wenn wie hier 16-Bit-ASNs (1, 100) verwendet werden."
+    },
+    {
+        "id":  "slg-bg-030",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den BGP-Neighbor-State seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "Idle",
+                          "Waiting for a start event, no connection attempt yet"
+                      ],
+                      [
+                          "Connect",
+                          "Waiting for the TCP three-way handshake to complete"
+                      ],
+                      [
+                          "OpenSent",
+                          "OPEN sent, waiting for the peer\u0027s OPEN"
+                      ],
+                      [
+                          "OpenConfirm",
+                          "OPEN received, waiting for a KEEPALIVE"
+                      ]
+                  ],
+        "erklaerung":  "Die BGP-FSM läuft Idle → Connect → OpenSent → OpenConfirm → Established. Scheitert der TCP-Aufbau, wechselt sie nach Active und versucht es erneut."
+    },
+    {
+        "id":  "slg-bg-031",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which sequence of states does a BGP session go through when it comes up without any errors?",
+        "optionen":  [
+                         "Idle, Connect, OpenSent, OpenConfirm, Established",
+                         "Idle, OpenSent, Connect, OpenConfirm, Established",
+                         "Idle, Active, OpenConfirm, OpenSent, Established",
+                         "Connect, Idle, OpenSent, Established"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Nach Idle wird TCP aufgebaut (Connect), danach OPEN gesendet (OpenSent), das OPEN des Nachbarn empfangen (OpenConfirm) und nach dem KEEPALIVE Established erreicht. Active tritt nur auf, wenn der TCP-Aufbau scheitert."
+    },
+    {
+        "id":  "slg-bg-032",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "\u0027show ip bgp summary\u0027 on R1 shows neighbor 192.168.1.10 in the Active state, although a ping to 192.168.1.10 succeeds. Which two problems can cause this? (Choose two.)",
+        "optionen":  [
+                         "R1 has no network command configured",
+                         "The hold times on both routers are different",
+                         "The peer\u0027s neighbor statement points to a different IP address than R1 uses",
+                         "An ACL on the path drops TCP port 179",
+                         "The two routers have different BGP router IDs"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Active heißt: Der TCP-Aufbau klappt nicht. Ursachen sind z. B. gefilterter Port 179 oder ein Nachbar, der R1 unter einer anderen Adresse erwartet. Unterschiedliche Hold Times und Router-IDs sind normal, fehlende network-Befehle verhindern die Session nicht."
+    },
+    {
+        "id":  "slg-bg-033",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An ISP router shows \u0027Idle (PfxCt)\u0027 in the State/PfxRcd column for a customer neighbor. What is the most likely cause?",
+        "optionen":  [
+                         "The customer exceeded the \u0027neighbor maximum-prefix\u0027 limit",
+                         "The neighbor was shut down with \u0027neighbor shutdown\u0027",
+                         "The TCP session to the customer cannot be established",
+                         "The customer uses a private AS number on the session"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027Idle (PfxCt)\u0027 bedeutet, dass das per maximum-prefix gesetzte Limit überschritten wurde und der Router die Session beendet hat. \u0027Idle (Admin)\u0027 wäre ein manueller Shutdown."
+    },
+    {
+        "id":  "slg-bg-034",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Two routers are connected by a single Ethernet link and should form an eBGP session with default settings. Which three conditions must be met? (Choose three.)",
+        "optionen":  [
+                         "TCP port 179 is permitted between the routers",
+                         "Each neighbor statement points to the peer\u0027s IP address on the shared link",
+                         "Both routers use the same BGP router ID",
+                         "An IGP runs on the link to exchange the peer addresses",
+                         "The remote-as on each router matches the peer\u0027s local AS number"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Nachbarn müssen explizit mit der richtigen Adresse und Remote-AS konfiguriert sein, und TCP 179 muss durchgehen. Für direkt verbundene eBGP-Peers ist kein IGP nötig. Gleiche Router-IDs sind ein Fehler, keine Voraussetzung."
+    },
+    {
+        "id":  "slg-bg-035",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 and R2 are directly connected eBGP peers but peer between their loopbacks using update-source. You want to keep the TTL at 1 instead of using ebgp-multihop. Which command allows the session to come up?",
+        "optionen":  [
+                         "neighbor 2.2.2.2 disable-connected-check",
+                         "neighbor 2.2.2.2 next-hop-self",
+                         "neighbor 2.2.2.2 allowas-in",
+                         "neighbor 2.2.2.2 ttl 1"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Per Default verlangt eBGP, dass die Peer-Adresse in einem direkt verbundenen Netz liegt. \u0027disable-connected-check\u0027 hebt nur diese Prüfung auf. Die Loopback ist mit TTL 1 trotzdem erreichbar, weil sie auf dem direkten Nachbarn endet."
+    },
+    {
+        "id":  "slg-bg-036",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "By default, Cisco IOS sends iBGP packets with an IP TTL of ___.",
+        "optionen":  [
+                         "2",
+                         "1",
+                         "255",
+                         "64"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "iBGP-Nachbarn sind oft nicht direkt verbunden und nutzen daher TTL 255. eBGP verwendet per Default TTL 1."
+    },
+    {
+        "id":  "slg-bg-037",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the lab, SP1 learns 10.0.2.0/24 from R2 (next hop 192.168.2.11) and advertises it to R1. Which next hop does R1 see for 10.0.2.0/24?",
+        "optionen":  [
+                         "192.168.2.11",
+                         "10.0.3.1",
+                         "0.0.0.0",
+                         "192.168.1.10"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beim Senden an einen eBGP-Nachbarn setzt der Router den Next Hop auf die eigene Adresse der Session, hier 192.168.1.10. So zeigt es auch \u0027show ip bgp\u0027 auf R1."
+    },
+    {
+        "id":  "slg-bg-038",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two statements describe default iBGP behavior on Cisco IOS? (Choose two.)",
+        "optionen":  [
+                         "iBGP routes have an administrative distance of 20",
+                         "The next hop of an eBGP-learned route is not changed when it is sent to an iBGP peer",
+                         "The local AS is prepended when a route is sent to an iBGP peer",
+                         "iBGP peers must be directly connected",
+                         "Routes learned from an iBGP peer are not advertised to other iBGP peers"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "iBGP lässt den externen Next Hop unverändert (deshalb oft next-hop-self) und gibt iBGP-gelernte Routen nicht an andere iBGP-Peers weiter. iBGP hat AD 200, prependet nicht und ist häufig nicht direkt verbunden."
+    },
+    {
+        "id":  "slg-bg-039",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In AS 65000, iBGP sessions exist only between R1–R2 and R2–R3. R1 learns 203.0.113.0/24 from an ISP and sends it to R2. Does R3 learn the prefix?",
+        "optionen":  [
+                         "No, because R2 does not change the next hop for R3",
+                         "Yes, R2 forwards it to R3 like any other update",
+                         "No, R2 does not pass iBGP-learned routes to iBGP peers",
+                         "Yes, but R3 receives it with a lower local preference"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die iBGP-Split-Horizon-Regel verbietet R2, die von R1 per iBGP gelernte Route an R3 weiterzugeben. Lösung: Full Mesh (R1–R3) oder ein Route Reflector."
+    },
+    {
+        "id":  "slg-bg-040",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Why does BGP need the rule that iBGP-learned routes are not passed to other iBGP peers?",
+        "optionen":  [
+                         "The AS_PATH does not change inside an AS, so it cannot detect loops",
+                         "iBGP updates are not acknowledged by TCP and could loop forever",
+                         "iBGP uses TTL 1, so updates could not reach a third router anyway",
+                         "Local preference would otherwise be lost between iBGP peers"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Innerhalb des AS wird keine ASN hinzugefügt, daher kann der AS_PATH Schleifen zwischen iBGP-Peers nicht erkennen. Die Regel ersetzt diesen Schutz und erzwingt Full Mesh oder Route Reflection."
+    },
+    {
+        "id":  "slg-bg-041",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Default-Wert in Cisco IOS zu.",
+        "paare":  [
+                      [
+                          "eBGP TTL",
+                          "1"
+                      ],
+                      [
+                          "iBGP TTL",
+                          "255"
+                      ],
+                      [
+                          "Weight of a locally originated route",
+                          "32768"
+                      ],
+                      [
+                          "Local preference",
+                          "100"
+                      ]
+                  ],
+        "erklaerung":  "eBGP-Pakete haben TTL 1, iBGP TTL 255. Selbst originierte Routen bekommen Weight 32768, gelernte 0. Local Preference ist per Default 100."
+    },
+    {
+        "id":  "slg-bg-042",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two statements about the \u0027network\u0027 command under \u0027router bgp\u0027 are true? (Choose two.)",
+        "optionen":  [
+                         "It forms BGP sessions on interfaces in the matching range",
+                         "It sets the origin code to incomplete",
+                         "It does not enable BGP on any interface",
+                         "It uses a wildcard mask like OSPF",
+                         "It originates the prefix only if an exact prefix and mask match exists in the routing table"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "In BGP legt \u0027network\u0027 nur fest, welche Präfixe originiert werden, und braucht dafür einen exakten RIB-Eintrag. Wo BGP läuft, bestimmen die neighbor-Befehle. Per network originierte Routen haben Origin i."
+    },
+    {
+        "id":  "slg-bg-043",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "SP1\u0027s routing table contains 10.0.3.0/24 (connected) but no 10.0.0.0/8. The administrator enters \u0027network 10.0.0.0\u0027 without a mask. What happens?",
+        "optionen":  [
+                         "10.0.3.0/24 is advertised because it falls inside 10.0.0.0/8",
+                         "The command is rejected because a mask is always mandatory",
+                         "10.0.0.0/8 is advertised as a summary of all 10.x subnets",
+                         "Nothing, because the implied /8 has no exact match in the RIB"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne \u0027mask\u0027 nimmt BGP die klassenbezogene Maske, hier /8. Da genau 10.0.0.0/8 nicht in der RIB steht, wird nichts originiert. Für das Subnetz braucht es \u0027network 10.0.3.0 mask 255.255.255.0\u0027."
+    },
+    {
+        "id":  "slg-bg-044",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An enterprise has many /24 subnets inside 172.16.0.0/16 and wants to advertise only 172.16.0.0/16 to its ISP using the network command. What else must be configured?",
+        "optionen":  [
+                         "neighbor x next-hop-self toward the ISP",
+                         "redistribute connected under router bgp",
+                         "auto-summary under router bgp",
+                         "ip route 172.16.0.0 255.255.0.0 Null0"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027network 172.16.0.0 mask 255.255.0.0\u0027 braucht einen exakten /16-Eintrag in der RIB. Eine statische Route nach Null0 schafft diesen Eintrag dauerhaft und verhindert zugleich Schleifen für nicht genutzte Teilnetze."
+    },
+    {
+        "id":  "slg-bg-045",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "SP1 (config-router für \u0027router bgp 1\u0027): Originiere das Loopback-Netz 10.0.3.0/24 in BGP.",
+        "bausteine":  [
+                          "network",
+                          "10.0.3.0",
+                          "mask",
+                          "255.255.255.0",
+                          "0.0.0.255",
+                          "area",
+                          "redistribute"
+                      ],
+        "loesung":  [
+                        "network",
+                        "10.0.3.0",
+                        "mask",
+                        "255.255.255.0"
+                    ],
+        "erklaerung":  "BGP verwendet beim network-Befehl das Schlüsselwort \u0027mask\u0027 mit Subnetzmaske, keine Wildcard. Die Route wird nur originiert, wenn 10.0.3.0/24 exakt in der RIB steht."
+    },
+    {
+        "id":  "slg-bg-046",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "ISP-Router (config-router): Sende dem Kunden 192.168.1.11 eine Default Route per BGP.",
+        "bausteine":  [
+                          "neighbor",
+                          "192.168.1.11",
+                          "default-originate",
+                          "default-information",
+                          "originate",
+                          "network",
+                          "0.0.0.0"
+                      ],
+        "loesung":  [
+                        "neighbor",
+                        "192.168.1.11",
+                        "default-originate"
+                    ],
+        "erklaerung":  "\u0027neighbor x default-originate\u0027 schickt diesem Nachbarn 0.0.0.0/0, auch ohne Default Route in der eigenen RIB. \u0027default-information originate\u0027 wirkt dagegen bei Redistribution."
+    },
+    {
+        "id":  "slg-bg-047",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "SP1 (config-router): Deaktiviere die Session zum Nachbarn 192.168.1.11 administrativ, ohne seine Konfiguration zu löschen.",
+        "bausteine":  [
+                          "neighbor",
+                          "192.168.1.11",
+                          "shutdown",
+                          "no",
+                          "disable",
+                          "remote-as"
+                      ],
+        "loesung":  [
+                        "neighbor",
+                        "192.168.1.11",
+                        "shutdown"
+                    ],
+        "erklaerung":  "\u0027neighbor x shutdown\u0027 beendet die Session (mit NOTIFICATION Cease) und behält die Konfiguration. In \u0027show ip bgp summary\u0027 steht dann \u0027Idle (Admin)\u0027."
+    },
+    {
+        "id":  "slg-bg-048",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Setze in \u0027router bgp 65001\u0027 global Keepalive 10 s und Hold Time 30 s für alle Nachbarn.",
+        "bausteine":  [
+                          "timers",
+                          "bgp",
+                          "10",
+                          "30",
+                          "hello",
+                          "neighbor",
+                          "keepalive"
+                      ],
+        "loesung":  [
+                        "timers",
+                        "bgp",
+                        "10",
+                        "30"
+                    ],
+        "erklaerung":  "Syntax: \u0027timers bgp \u003ckeepalive\u003e \u003choldtime\u003e\u0027. Wirksam wird die kleinere der beiden im OPEN angebotenen Hold Times, die Session muss dafür neu aufgebaut werden."
+    },
+    {
+        "id":  "slg-bg-049",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "SP1 (privileged EXEC): Zeige, welche Präfixe SP1 an den Nachbarn 192.168.1.11 sendet.",
+        "bausteine":  [
+                          "show",
+                          "ip",
+                          "bgp",
+                          "neighbors",
+                          "192.168.1.11",
+                          "advertised-routes",
+                          "received-routes",
+                          "summary"
+                      ],
+        "loesung":  [
+                        "show",
+                        "ip",
+                        "bgp",
+                        "neighbors",
+                        "192.168.1.11",
+                        "advertised-routes"
+                    ],
+        "erklaerung":  "\u0027advertised-routes\u0027 zeigt die an diesen Nachbarn gesendeten Präfixe. \u0027received-routes\u0027 zeigt die ungefilterten empfangenen Präfixe und braucht dafür soft-reconfiguration inbound."
+    },
+    {
+        "id":  "slg-bg-050",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "R1 (config-router): Gib allen Routen vom Nachbarn 192.168.1.10 lokal ein Weight von 200.",
+        "bausteine":  [
+                          "neighbor",
+                          "192.168.1.10",
+                          "weight",
+                          "200",
+                          "local-preference",
+                          "set",
+                          "metric"
+                      ],
+        "loesung":  [
+                        "neighbor",
+                        "192.168.1.10",
+                        "weight",
+                        "200"
+                    ],
+        "erklaerung":  "\u0027neighbor x weight\u0027 setzt das Cisco-Weight für alle Routen dieses Nachbarn. Es wirkt nur auf diesem Router und wird nicht weitergegeben."
+    },
+    {
+        "id":  "slg-bg-051",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "R1 (privileged EXEC): Wende eine geänderte Inbound-Policy für Nachbar 192.168.1.10 an, ohne die Session zurückzusetzen.",
+        "bausteine":  [
+                          "clear",
+                          "ip",
+                          "bgp",
+                          "192.168.1.10",
+                          "soft",
+                          "in",
+                          "out",
+                          "*"
+                      ],
+        "loesung":  [
+                        "clear",
+                        "ip",
+                        "bgp",
+                        "192.168.1.10",
+                        "soft",
+                        "in"
+                    ],
+        "erklaerung":  "\u0027clear ip bgp x soft in\u0027 fordert per Route Refresh die Updates neu an und wendet die Inbound-Policy darauf an. Ein harter Clear würde die TCP-Session abbauen."
+    },
+    {
+        "id":  "slg-bg-052",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Konfiguriere in \u0027router bgp 65001\u0027, dass MED auch zwischen Pfaden aus verschiedenen Nachbar-AS verglichen wird.",
+        "bausteine":  [
+                          "bgp",
+                          "always-compare-med",
+                          "deterministic-med",
+                          "bestpath",
+                          "med",
+                          "compare"
+                      ],
+        "loesung":  [
+                        "bgp",
+                        "always-compare-med"
+                    ],
+        "erklaerung":  "Per Default vergleicht IOS MED nur bei Pfaden aus demselben Nachbar-AS. \u0027bgp always-compare-med\u0027 hebt diese Einschränkung auf und sollte AS-weit einheitlich gesetzt werden."
+    },
+    {
+        "id":  "slg-bg-053",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "R1 (config-router): Wende die Route-Map SET-LP auf eingehende Updates vom Nachbarn 192.168.1.10 an.",
+        "bausteine":  [
+                          "neighbor",
+                          "192.168.1.10",
+                          "route-map",
+                          "SET-LP",
+                          "in",
+                          "out",
+                          "distribute-list"
+                      ],
+        "loesung":  [
+                        "neighbor",
+                        "192.168.1.10",
+                        "route-map",
+                        "SET-LP",
+                        "in"
+                    ],
+        "erklaerung":  "Route-Maps werden pro Nachbar und Richtung angewendet. Inbound gesetzte Local Preference beeinflusst den ausgehenden Traffic des ganzen AS."
+    },
+    {
+        "id":  "slg-bg-054",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege die Route an, die \u0027network 172.16.0.0 mask 255.255.0.0\u0027 in BGP wirksam macht.",
+        "bausteine":  [
+                          "ip",
+                          "route",
+                          "172.16.0.0",
+                          "255.255.0.0",
+                          "Null0",
+                          "0.0.255.255",
+                          "Loopback0"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "route",
+                        "172.16.0.0",
+                        "255.255.0.0",
+                        "Null0"
+                    ],
+        "erklaerung":  "Die statische Route nach Null0 erzeugt den exakten /16-Eintrag in der RIB, den der BGP-network-Befehl braucht. Pakete an ungenutzte Teilnetze werden verworfen statt im Kreis geroutet."
+    },
+    {
+        "id":  "slg-bg-055",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "\u0027show ip bgp summary\u0027 on SP1 shows: \u0027192.168.1.11  4  100  5  6  3  0  0 00:00:10  1\u0027. What is true?",
+        "optionen":  [
+                         "The session to AS 100 is Established and one prefix was received",
+                         "The neighbor uses BGP version 1",
+                         "The session is down and 5 messages are waiting in the queue",
+                         "The neighbor is in state 1 (Idle)"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Eine Zahl in State/PfxRcd bedeutet Established, sie gibt die empfangenen Präfixe an. Die 4 ist die BGP-Version, 100 die Remote-AS, 5/6 sind empfangene/gesendete Nachrichten."
+    },
+    {
+        "id":  "slg-bg-056",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "SP1 shows these lines in \u0027show ip bgp summary\u0027:\n192.168.1.11  4  100  25  27  5  0  0 00:20:31  1\n192.168.2.11  4  200   0   0  1  0  0 00:01:12  Active\nWhich statement is correct?",
+        "optionen":  [
+                         "Both customers\u0027 prefixes are already in SP1\u0027s BGP table",
+                         "Only R1\u0027s prefix can be in the table; the R2 session is down",
+                         "The R2 session is active and already forwarding traffic",
+                         "The R2 session is established, but R2 sends no prefixes"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Nur bei R1 steht eine Präfixzahl, also ist nur diese Session Established. \u0027Active\u0027 bei R2 heißt, der TCP-Aufbau gelingt nicht, von R2 kommen keine Routen."
+    },
+    {
+        "id":  "slg-bg-057",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A neighbor line in \u0027show ip bgp summary\u0027 shows increasing MsgRcvd and MsgSent counters and \u00270\u0027 in State/PfxRcd. What is the most likely situation?",
+        "optionen":  [
+                         "The session is administratively shut down by the peer",
+                         "The hold timer of the session is about to expire",
+                         "The session is stuck in the OpenConfirm state",
+                         "The session is up, but no prefixes are received or accepted"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Eine Zahl, auch 0, bedeutet Established, und die Zähler zeigen den Keepalive-Austausch. Es kommen nur keine Präfixe an, etwa weil der Nachbar keine network-Befehle hat oder ein Filter greift."
+    },
+    {
+        "id":  "slg-bg-058",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R1 shows \u0027*\u003e  10.0.2.0/24  192.168.1.10  0 1 200 i\u0027. In which AS was 10.0.2.0/24 originated?",
+        "optionen":  [
+                         "AS 100",
+                         "AS 200",
+                         "AS 1",
+                         "It was originated locally on R1"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Das Ursprungs-AS steht ganz rechts im AS_PATH, hier 200 (R2). AS 1 ist SP1, über das die Route kam. Das \u0027i\u0027 am Ende ist der Origin-Code."
+    },
+    {
+        "id":  "slg-bg-059",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On R1, 10.0.3.0/24 (originated by SP1) shows Metric 0, while 10.0.2.0/24 (originated by R2 with MED 0) shows an empty Metric column. Why?",
+        "optionen":  [
+                         "R1 removes MED from routes that have more than one AS in the path",
+                         "The Metric column shows the IGP metric, which is unknown for remote prefixes",
+                         "R2 sets MED only for iBGP peers",
+                         "MED is optional non-transitive: SP1 does not pass the MED received from AS 200 on to AS 100"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "SP1 setzt für selbst originierte Routen einen MED (0 für Connected) und sendet ihn an R1. Den von R2 empfangenen MED gibt SP1 nicht an ein weiteres AS weiter, daher bleibt die Spalte leer."
+    },
+    {
+        "id":  "slg-bg-060",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "SP1 shows \u0027*\u003e  10.0.3.0/24  0.0.0.0  0  32768 i\u0027. Which two statements are true? (Choose two.)",
+        "optionen":  [
+                         "The weight is the default for locally originated routes",
+                         "The prefix was originated on SP1 itself",
+                         "The AS_PATH contains AS 1",
+                         "The prefix was learned from an iBGP neighbor",
+                         "The origin is incomplete, so it was redistributed"
+                     ],
+        "richtig":  [
+                        0,
+                        1
+                    ],
+        "erklaerung":  "Next Hop 0.0.0.0 und Weight 32768 kennzeichnen eine lokal originierte Route. Das \u0027i\u0027 ist Origin IGP (network-Befehl). Die eigene ASN wird erst beim Senden an einen eBGP-Peer vorangestellt."
+    },
+    {
+        "id":  "slg-bg-061",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "For one prefix, \u0027show ip bgp\u0027 lists two lines: one starting with \u0027*\u003e\u0027 and one starting with \u0027*\u0027. What does the second line represent?",
+        "optionen":  [
+                         "An invalid path that will be deleted soon",
+                         "A valid path that lost the best-path selection",
+                         "A path suppressed by an aggregate-address",
+                         "A path that is damped because it flapped"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027*\u0027 heißt gültig, \u0027\u003e\u0027 markiert den Best Path. Ein Pfad mit nur \u0027*\u0027 ist gültig, hat die Best-Path-Auswahl aber verloren und bleibt als Backup in der BGP-Tabelle."
+    },
+    {
+        "id":  "slg-bg-062",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A line reads \u0027*\u003ei 10.50.0.0/16  10.255.0.2  0  100  0 65010 i\u0027. What do the two \u0027i\u0027 characters mean?",
+        "optionen":  [
+                         "Both mean the route was learned from an IGP",
+                         "The first means inaccessible next hop, the last means internal",
+                         "The first means learned via iBGP, the last is the origin code IGP",
+                         "The first means invalid, the last means incomplete"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das \u0027i\u0027 in der Statusspalte steht für internal (vom iBGP-Peer gelernt). Das \u0027i\u0027 am Ende des AS_PATH ist der Origin-Code IGP, also per network oder Aggregation in BGP eingebracht."
+    },
+    {
+        "id":  "slg-bg-063",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Statuscode aus \u0027show ip bgp\u0027 seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "*",
+                          "Valid path"
+                      ],
+                      [
+                          "\u003e",
+                          "Best path"
+                      ],
+                      [
+                          "r",
+                          "RIB failure"
+                      ],
+                      [
+                          "s",
+                          "Suppressed"
+                      ]
+                  ],
+        "erklaerung":  "\u0027*\u0027 = gültig, \u0027\u003e\u0027 = Best Path, \u0027r\u0027 = konnte nicht in die RIB (bessere AD), \u0027s\u0027 = unterdrückt, z. B. durch aggregate-address summary-only."
+    },
+    {
+        "id":  "slg-bg-064",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Origin-Code der Art zu, wie die Route in BGP gelangt ist.",
+        "paare":  [
+                      [
+                          "i",
+                          "network command or aggregate-address"
+                      ],
+                      [
+                          "?",
+                          "Redistribution into BGP"
+                      ],
+                      [
+                          "e",
+                          "Learned from the historic EGP protocol"
+                      ]
+                  ],
+        "erklaerung":  "Origin i entsteht durch network oder Aggregation, ? (incomplete) durch Redistribution. e stammt aus der Migration von EGP zu BGP und ist heute obsolet."
+    },
+    {
+        "id":  "slg-bg-065",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two paths to 10.70.0.0/16 have equal weight, local preference and AS_PATH length. Path A has origin \u0027i\u0027, path B has origin \u0027?\u0027. MED of path B is lower. Which path wins?",
+        "optionen":  [
+                         "Path B, because incomplete means it was redistributed locally",
+                         "Neither, BGP load-shares on equal paths",
+                         "Path B, because MED is compared before origin",
+                         "Path A, because origin IGP is preferred over incomplete before MED is compared"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Origin wird vor MED geprüft, und es gilt IGP \u003c EGP \u003c incomplete. Pfad A gewinnt daher, bevor MED überhaupt betrachtet wird."
+    },
+    {
+        "id":  "slg-bg-066",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "SP1\u0027s routing table shows \u0027B  10.0.1.0/24 [20/0] via 192.168.1.11\u0027. What do 20 and 0 stand for?",
+        "optionen":  [
+                         "Hold time 20 and keepalive interval 0",
+                         "Hop count 20 and AS_PATH length 0",
+                         "Weight 20 and local preference 0",
+                         "eBGP administrative distance and MED"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die erste Zahl ist die AD (eBGP 20), die zweite die Metrik, bei BGP der MED. R1 hat das Connected-Netz mit MED 0 originiert."
+    },
+    {
+        "id":  "slg-bg-067",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "After configuring the neighbors on SP1, the console shows \u0027%BGP-5-ADJCHANGE: neighbor 192.168.1.11 Up\u0027. What does this message indicate?",
+        "optionen":  [
+                         "The BGP session to the neighbor reached the Established state",
+                         "The TCP SYN was sent to the neighbor",
+                         "The neighbor\u0027s first prefix was installed in the RIB",
+                         "The interface toward the neighbor came up"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "ADJCHANGE Up wird geloggt, wenn die Session Established erreicht (mit \u0027bgp log-neighbor-changes\u0027, in IOS Default). Präfixe können danach erst ausgetauscht werden."
+    },
+    {
+        "id":  "slg-bg-068",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Path A: weight 0, local preference 200, AS_PATH \u002765020 65030 65060\u0027. Path B: weight 0, local preference 100, AS_PATH \u002765040\u0027. Which path is selected?",
+        "optionen":  [
+                         "Path B, because local preference 100 is the default",
+                         "Both, because BGP load-shares on equal weight",
+                         "Path A, because local preference is compared before AS_PATH length",
+                         "Path B, because its AS_PATH is shorter"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Nach gleichem Weight entscheidet die höhere Local Preference. Die Länge des AS_PATH wird erst danach verglichen und spielt hier keine Rolle mehr."
+    },
+    {
+        "id":  "slg-bg-069",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On R1, path A has weight 100 and local preference 100. Path B has weight 0 and local preference 300. Which path does R1 select?",
+        "optionen":  [
+                         "Path A, because weight is compared first",
+                         "Path B, because local preference is AS-wide and overrides weight",
+                         "Path B, because higher local preference is always first",
+                         "The path with the shorter AS_PATH"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Das Cisco-Weight ist der erste Vergleich in der Best-Path-Auswahl. Pfad A gewinnt mit Weight 100, bevor Local Preference geprüft wird."
+    },
+    {
+        "id":  "slg-bg-070",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Path A: LP 100, AS_PATH \u002765002 65005\u0027, origin i, MED 50. Path B: LP 100, AS_PATH \u002765003 65005\u0027, origin ?, MED 10. Weights are equal. Which attribute decides?",
+        "optionen":  [
+                         "AS_PATH, so path A wins",
+                         "Router ID, because MED is not compared",
+                         "MED, so path B wins",
+                         "Origin, so path A wins"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Weight, LP und AS_PATH-Länge sind gleich. Dann entscheidet Origin: i ist besser als ?, Pfad A gewinnt. MED käme erst danach und würde hier auch nicht verglichen, weil die Nachbar-AS verschieden sind."
+    },
+    {
+        "id":  "slg-bg-071",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 receives 172.20.0.0/16 from two routers in neighboring AS 65020: via R2 with MED 200 and via R3 with MED 150. All earlier attributes are equal. Which path is chosen?",
+        "optionen":  [
+                         "Via the router with the higher router ID",
+                         "Via R2, because the higher MED is preferred",
+                         "Via R3, because the lower MED is preferred",
+                         "Both paths, because MED enables load sharing"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Beide Pfade kommen aus demselben Nachbar-AS, also wird MED verglichen, und der niedrigere gewinnt. AS 65020 bittet damit, über R3 hereinzukommen."
+    },
+    {
+        "id":  "slg-bg-072",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 has two eBGP paths to 198.51.100.0/24: from AS 65002 with MED 50 and from AS 65003 with MED 200. Weight, LP, AS_PATH length and origin are equal, and both next hops are directly connected. With default settings, which path wins?",
+        "optionen":  [
+                         "The path from AS 65002, because of the lower MED",
+                         "The path from AS 65003, because of the higher MED",
+                         "Both paths, because they are installed by default",
+                         "The older path, because MED is not compared here"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "IOS vergleicht MED per Default nur bei Pfaden aus demselben Nachbar-AS. Da beide eBGP sind und die IGP-Metrik gleich ist, entscheidet der ältere Pfad. Mit \u0027bgp always-compare-med\u0027 würde AS 65002 gewinnen."
+    },
+    {
+        "id":  "slg-bg-073",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R3 has two iBGP paths to 203.0.113.0/24 that are equal up to the eBGP/iBGP comparison. Next hop 10.1.1.1 is reachable with an OSPF cost of 20, next hop 10.2.2.2 with a cost of 30. Which path does R3 prefer?",
+        "optionen":  [
+                         "The path via 10.2.2.2, because it has the higher IGP metric",
+                         "The path from the neighbor with the lower router ID",
+                         "The older path",
+                         "The path via 10.1.1.1, because it has the lower IGP metric to the next hop"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Nach eBGP vor iBGP wählt BGP den Pfad mit der niedrigsten IGP-Metrik zum Next Hop, also den nächsten Ausgang (Hot-Potato). Router-ID und Alter kommen erst später."
+    },
+    {
+        "id":  "slg-bg-074",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Two eBGP paths are identical up to the IGP metric. Path X was received 2 hours ago from router ID 10.9.9.9. Path Y was received 5 minutes ago from router ID 10.1.1.1. Default settings. Which path is best?",
+        "optionen":  [
+                         "Path Y, because newer information is preferred",
+                         "Both, because the router load-shares by default",
+                         "Path X, because it is the oldest eBGP path",
+                         "Path Y, because it has the lower router ID"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei eBGP-Pfaden bevorzugt IOS den ältesten Pfad, um Flapping zu vermeiden. Die niedrigste Router-ID entscheidet erst danach (oder mit \u0027bgp bestpath compare-routerid\u0027)."
+    },
+    {
+        "id":  "slg-bg-075",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "SP1 originates 10.0.3.0/24 with a network command. A misconfigured customer also advertises 10.0.3.0/24 to SP1. Which attribute makes SP1 prefer its own path?",
+        "optionen":  [
+                         "Origin, because local routes are always incomplete",
+                         "AS_PATH, because the local path has length 0",
+                         "Weight, because locally originated routes get 32768",
+                         "Local preference, because local routes get 200"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Weight wird zuerst verglichen. Lokal originierte Routen erhalten 32768, gelernte 0, daher gewinnt der eigene Pfad schon im ersten Schritt."
+    },
+    {
+        "id":  "slg-bg-076",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two paths with equal weight and local preference: A = \u002765010 65020 65020 65020 65030\u0027, B = \u002765040 65050 65030\u0027. Which path is selected and why?",
+        "optionen":  [
+                         "B, because AS_PATH A is five entries long and B only three",
+                         "B, because 65040 is a lower ASN than 65010",
+                         "A, because it contains fewer different AS numbers",
+                         "A, because repeated (prepended) AS numbers are ignored"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Jeder Eintrag im AS_PATH zählt, auch per Prepending wiederholte ASNs. A hat Länge 5, B Länge 3, daher gewinnt B. Genau so wirkt AS-Path-Prepending."
+    },
+    {
+        "id":  "slg-bg-077",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "If several paths have the same weight, BGP next prefers the path with the highest ___.",
+        "optionen":  [
+                         "local preference",
+                         "MED",
+                         "IGP metric",
+                         "router ID"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Nach Weight folgt Local Preference, höher ist besser. MED und IGP-Metrik kommen später und bevorzugen jeweils den niedrigeren Wert."
+    },
+    {
+        "id":  "slg-bg-078",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Five valid paths to 10.0.0.0/8 all have weight 0. Their local preferences are 150, 150, 300, 300 and 100. What happens to the three paths with lower local preference?",
+        "optionen":  [
+                         "They are withdrawn from all neighbors immediately",
+                         "They stay in the BGP table but are out of this comparison",
+                         "They are deleted from the BGP table permanently",
+                         "They are installed as equal-cost backups in the RIB"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Nur die zwei Pfade mit LP 300 werden weiter verglichen. Die anderen bleiben in der BGP-Tabelle und stehen bereit, falls die besseren Pfade wegfallen."
+    },
+    {
+        "id":  "slg-bg-079",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three criteria does Cisco IOS evaluate before comparing AS_PATH length? (Choose three.)",
+        "optionen":  [
+                         "Weight",
+                         "Local preference",
+                         "Origin code",
+                         "Locally originated path",
+                         "MED"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Die Reihenfolge beginnt mit Weight, Local Preference und lokal originierten Pfaden (Next Hop 0.0.0.0). Danach folgen AS_PATH-Länge, Origin und MED."
+    },
+    {
+        "id":  "slg-bg-080",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about the BGP best-path selection on Cisco IOS are true? (Choose two.)",
+        "optionen":  [
+                         "The bandwidth of the link to the neighbor is a tie-breaker",
+                         "The path with the highest MED is preferred",
+                         "The path with the lowest weight is preferred",
+                         "A path whose next hop is unreachable is not considered",
+                         "By default only one best path per prefix is installed"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Pfade mit nicht erreichbarem Next Hop sind ungültig. Ohne maximum-paths wird pro Präfix genau ein Best Path installiert. Weight hoch und MED niedrig gelten als besser, Bandbreite spielt keine Rolle."
+    },
+    {
+        "id":  "slg-bg-081",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A customer has a 1 Gbps link and a 10 Mbps link to the same ISP router, each with its own eBGP session. All attributes are equal. How does BGP choose?",
+        "optionen":  [
+                         "It prefers the 1 Gbps link because of its lower cost",
+                         "It load-shares in proportion to the link bandwidth",
+                         "It prefers the 10 Mbps link because of its lower delay",
+                         "It ignores bandwidth and decides with tie-breakers"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "BGP entscheidet nach Policy und Attributen, nicht nach Linkeigenschaften wie Bandbreite oder Delay. Ohne Policy entscheiden die letzten Tie-Breaker, notfalls landet der Traffic auf dem langsamen Link."
+    },
+    {
+        "id":  "slg-bg-082",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two paths come from the same neighbor router over two parallel sessions, so the router IDs are identical. All earlier criteria are equal. What is the final tie-breaker?",
+        "optionen":  [
+                         "The lowest neighbor IP address",
+                         "The higher neighbor IP address",
+                         "The interface with the higher bandwidth",
+                         "The lower hold time"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Sind auch Router-ID (und Cluster-List-Länge) gleich, gewinnt der Pfad vom Nachbarn mit der niedrigsten IP-Adresse. Das ist der letzte Schritt der Auswahl."
+    },
+    {
+        "id":  "slg-bg-083",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Attribut seiner Reichweite zu.",
+        "paare":  [
+                      [
+                          "Weight",
+                          "Never leaves the local router"
+                      ],
+                      [
+                          "Local preference",
+                          "Shared with iBGP peers, stripped toward eBGP peers"
+                      ],
+                      [
+                          "MED",
+                          "Sent to a neighboring AS, not passed beyond it"
+                      ],
+                      [
+                          "AS_PATH",
+                          "Carried end to end across all autonomous systems"
+                      ]
+                  ],
+        "erklaerung":  "Weight ist Cisco-lokal, Local Preference gilt AS-weit, MED geht nur ins Nachbar-AS und wird dort nicht an weitere AS gereicht. Der AS_PATH begleitet die Route über alle AS."
+    },
+    {
+        "id":  "slg-bg-084",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Attribut seiner Kategorie zu.",
+        "paare":  [
+                      [
+                          "ORIGIN",
+                          "Well-known mandatory"
+                      ],
+                      [
+                          "LOCAL_PREF",
+                          "Well-known discretionary"
+                      ],
+                      [
+                          "COMMUNITY",
+                          "Optional transitive"
+                      ],
+                      [
+                          "MED",
+                          "Optional non-transitive"
+                      ]
+                  ],
+        "erklaerung":  "ORIGIN muss in jedem Update stehen, LOCAL_PREF müssen alle kennen, es ist aber nicht überall Pflicht. COMMUNITY wird auch unbekannt weitergegeben, MED nicht."
+    },
+    {
+        "id":  "slg-bg-085",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Attribut seiner Kategorie zu.",
+        "paare":  [
+                      [
+                          "NEXT_HOP",
+                          "Well-known mandatory"
+                      ],
+                      [
+                          "ATOMIC_AGGREGATE",
+                          "Well-known discretionary"
+                      ],
+                      [
+                          "AGGREGATOR",
+                          "Optional transitive"
+                      ],
+                      [
+                          "Weight",
+                          "Cisco-specific value that is never sent in updates"
+                      ]
+                  ],
+        "erklaerung":  "NEXT_HOP gehört mit ORIGIN und AS_PATH zu den Pflichtattributen. ATOMIC_AGGREGATE ist well-known discretionary, AGGREGATOR optional transitive. Weight ist gar kein Pfadattribut im Update, sondern ein lokaler Cisco-Wert."
+    },
+    {
+        "id":  "slg-bg-086",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two BGP attributes are optional transitive? (Choose two.)",
+        "optionen":  [
+                         "MED",
+                         "ORIGIN",
+                         "LOCAL_PREF",
+                         "COMMUNITY",
+                         "AGGREGATOR"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "AGGREGATOR und COMMUNITY sind optional transitive Attribute. MED ist optional non-transitive, LOCAL_PREF well-known discretionary und ORIGIN well-known mandatory."
+    },
+    {
+        "id":  "slg-bg-087",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A router receives a route with an optional transitive attribute it does not recognize. What does it do when it advertises the route?",
+        "optionen":  [
+                         "It passes the attribute on and sets the Partial bit",
+                         "It sends a NOTIFICATION to the sender",
+                         "It removes the attribute and advertises the route",
+                         "It drops the route"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Optional transitive Attribute werden auch unbekannt weitergereicht, weil sie anderen Routern nützen können. Das Partial-Bit zeigt an, dass mindestens ein Router auf dem Weg das Attribut nicht verstanden hat."
+    },
+    {
+        "id":  "slg-bg-088",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A router receives a route with an optional non-transitive attribute it does not recognize. What does it do?",
+        "optionen":  [
+                         "It passes the attribute on and sets the Partial bit",
+                         "It ignores the attribute and advertises the route without it",
+                         "It resets the BGP session",
+                         "It drops the whole route"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Unbekannte optional non-transitive Attribute werden entfernt, die Route selbst wird normal verarbeitet und ohne das Attribut weitergegeben. Das Partial-Bit gibt es nur bei transitive."
+    },
+    {
+        "id":  "slg-bg-089",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which class of BGP attributes must every BGP implementation recognize?",
+        "optionen":  [
+                         "Vendor-specific attributes",
+                         "Well-known attributes",
+                         "Optional transitive attributes",
+                         "Optional non-transitive attributes"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Well-known Attribute muss jede Implementierung kennen. Mandatory müssen zusätzlich in jedem Update vorhanden sein, discretionary nur bei Bedarf."
+    },
+    {
+        "id":  "slg-bg-090",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does the ATOMIC_AGGREGATE attribute signal?",
+        "optionen":  [
+                         "The route was aggregated and path information may be lost",
+                         "The aggregate contains exactly one component route",
+                         "The route is the most specific one in the BGP table",
+                         "The aggregate was created by a route reflector"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "ATOMIC_AGGREGATE (well-known discretionary) markiert eine durch Zusammenfassung entstandene Route und warnt, dass Pfadinformationen der Einzelrouten (z. B. AS-Pfade) fehlen können. Laut RFC 4271 darf ein Empfänger das NLRI dieser Route nicht spezifischer machen."
+    },
+    {
+        "id":  "slg-bg-091",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which information does the AGGREGATOR attribute carry?",
+        "optionen":  [
+                         "The list of all prefixes that were summarized",
+                         "The next hop address of every component route",
+                         "The MED value of the most specific component route",
+                         "The AS and router ID of the router that aggregated"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "AGGREGATOR nennt AS und Router, die die Zusammenfassung erzeugt haben. Es ist optional transitive und wird daher auch über Router weitergereicht, die es nicht kennen."
+    },
+    {
+        "id":  "slg-bg-092",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 in AS 65001 sets local preference 250 on routes from ISP-A and advertises these routes to ISP-B over eBGP. Which local preference does ISP-B use for them?",
+        "optionen":  [
+                         "0, because the attribute was stripped on the eBGP session",
+                         "250 converted into a MED value of 250 by R1",
+                         "Its own default of 100, because LP is not sent over eBGP",
+                         "250, because local preference is a transitive attribute"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Local Preference wird nur innerhalb eines AS weitergegeben und beim Senden an eBGP-Peers entfernt. ISP-B wendet auf empfangene eBGP-Routen seinen eigenen Default von 100 an."
+    },
+    {
+        "id":  "slg-bg-093",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R1 sets weight 200 on all routes learned from R2. What is the effect on R3, an iBGP peer of R1 in the same AS?",
+        "optionen":  [
+                         "R3 also prefers routes via R2",
+                         "None, because weight is local to R1 and not advertised",
+                         "R3 receives the routes with weight 200",
+                         "R3 receives the routes with local preference 200"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Weight ist ein lokaler Cisco-Wert und wird nie in Updates mitgeschickt. Für eine AS-weite Exit-Wahl nimmt man Local Preference."
+    },
+    {
+        "id":  "slg-bg-094",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In AS 65040, R1 sets local preference 150 on 209.165.201.0/27 from its eBGP peer R5. R2 sets local preference 200 on the same prefix from its eBGP peer R3 and sends it to R1 via iBGP. Which path does R1 use?",
+        "optionen":  [
+                         "Its own eBGP path, because AD 20 beats AD 200",
+                         "The path via R2/R3, because local preference is compared first",
+                         "Both paths, because R1 load-shares between eBGP and iBGP",
+                         "Its own eBGP path via R5, because eBGP is preferred over iBGP"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Local Preference kommt in der Reihenfolge weit vor \u0027eBGP vor iBGP\u0027. Mit LP 200 gewinnt der iBGP-Pfad, und alle Router im AS verlassen es über R3. AD spielt erst nach der BGP-Auswahl eine Rolle."
+    },
+    {
+        "id":  "slg-bg-095",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A path arrives without a MED attribute. How does Cisco IOS treat it by default when MED is compared?",
+        "optionen":  [
+                         "As MED 100",
+                         "The path is not valid for best-path selection",
+                         "As MED 4294967295, the worst possible value",
+                         "As MED 0, which is the best possible value"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "IOS behandelt einen fehlenden MED per Default als 0 und damit als besten Wert. Mit \u0027bgp bestpath med missing-as-worst\u0027 wird er stattdessen als schlechtester Wert gewertet."
+    },
+    {
+        "id":  "slg-bg-096",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In \u0027show ip bgp\u0027 output, the Metric column displays the ___ attribute.",
+        "optionen":  [
+                         "IGP cost to the next hop",
+                         "local preference",
+                         "weight",
+                         "MED"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "MED wird auch BGP-Metrik genannt und steht in der Spalte Metric. Weight und Local Preference haben eigene Spalten (Weight, LocPrf)."
+    },
+    {
+        "id":  "slg-bg-097",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R4 in AS 65020 originates 209.165.201.0/27. The route crosses AS 65030 and then AS 65040 before it reaches R1 in AS 65010. Which AS_PATH does R1 see?",
+        "optionen":  [
+                         "65020 65030 65040",
+                         "65040 65030 65020",
+                         "65040 65030",
+                         "65010 65040 65030 65020"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Jedes AS stellt seine ASN beim Senden an einen eBGP-Peer links voran. Das zuletzt durchlaufene AS 65040 steht links, das Ursprungs-AS 65020 rechts. Die eigene ASN 65010 wird beim Empfang nicht hinzugefügt."
+    },
+    {
+        "id":  "slg-bg-098",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In SP1\u0027s BGP table, 10.0.3.0/24 shows only \u0027i\u0027 in the Path column, without AS 1. Why?",
+        "optionen":  [
+                         "The local AS is added only when the route is sent via eBGP",
+                         "AS 1 is hidden because it is a reserved AS number",
+                         "The network command strips the local AS from all routes",
+                         "The route has origin incomplete, which hides the AS"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beim Originieren ist der AS_PATH leer. Erst beim Senden an R1 oder R2 stellt SP1 AS 1 voran, deshalb sieht R1 \u00271 i\u0027."
+    },
+    {
+        "id":  "slg-bg-099",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 in AS 100 learns 10.0.2.0/24 from SP1 with AS_PATH \u00271 200\u0027 and sends it to its iBGP peer R3. Which AS_PATH does R3 see?",
+        "optionen":  [
+                         "1 200 100",
+                         "100 1 200",
+                         "100",
+                         "1 200"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beim Senden an iBGP-Peers wird keine ASN vorangestellt. R3 sieht den Pfad unverändert. Erst wenn AS 100 die Route an ein anderes AS gibt, kommt 100 hinzu."
+    },
+    {
+        "id":  "slg-bg-100",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Anbindungstyp seiner Beschreibung zu.",
+        "paare":  [
+                      [
+                          "Single-homed",
+                          "One link to one ISP"
+                      ],
+                      [
+                          "Dual-homed",
+                          "Two links to the same ISP"
+                      ],
+                      [
+                          "Multihomed",
+                          "Links to two different ISPs"
+                      ],
+                      [
+                          "Dual-multihomed",
+                          "Two links to each of two ISPs"
+                      ]
+                  ],
+        "erklaerung":  "Die Begriffe unterscheiden Anzahl der ISPs und Anzahl der Links. Nur bei mehreren ISPs (multihomed) braucht man meist echtes BGP mit eigener ASN und Policy."
+    },
+    {
+        "id":  "slg-bg-101",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why do many single-homed enterprises not run BGP to their ISP at all?",
+        "optionen":  [
+                         "BGP requires a 32-bit ASN for single-homed customers",
+                         "With one exit there is no choice, so a default route is enough",
+                         "ISPs do not support BGP with customers that have one link",
+                         "BGP cannot run over a single link"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei nur einem Ausgang gibt es keine Policy-Entscheidung. Eine Default Route zum ISP und eine statische Route des ISP zum Kundennetz reichen meist aus."
+    },
+    {
+        "id":  "slg-bg-102",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A single-homed customer runs eBGP to its ISP mainly to advertise its own prefix. What does the ISP typically send to the customer edge router?",
+        "optionen":  [
+                         "Only the ISP\u0027s loopback addresses",
+                         "Nothing, the customer must configure a static route",
+                         "The full internet table",
+                         "Only a default route"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne zweiten Ausgang bringt die volle Internettabelle keinen Nutzen und kostet nur Speicher. Üblich ist, dass der ISP per default-originate nur 0.0.0.0/0 schickt."
+    },
+    {
+        "id":  "slg-bg-103",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The ISP configures \u0027neighbor 192.168.1.11 default-originate\u0027. The ISP router has no 0.0.0.0/0 in its own routing table. What happens?",
+        "optionen":  [
+                         "The default route is sent to all neighbors",
+                         "Nothing is sent until a default route exists in the RIB",
+                         "The default route is sent to the neighbor anyway",
+                         "The command is rejected"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027neighbor default-originate\u0027 erzeugt die Default Route für genau diesen Nachbarn, unabhängig davon, ob 0.0.0.0/0 in der eigenen RIB steht. Ein \u0027network 0.0.0.0\u0027 bräuchte dagegen einen RIB-Eintrag."
+    },
+    {
+        "id":  "slg-bg-104",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 receives 0.0.0.0/0 from SP1 via eBGP. How does it appear in R1\u0027s routing table?",
+        "optionen":  [
+                         "B* 0.0.0.0/0 [20/0] via 192.168.1.10",
+                         "S* 0.0.0.0/0 [1/0] via 192.168.1.10",
+                         "O*E2 0.0.0.0/0 [110/1] via 192.168.1.10",
+                         "B* 0.0.0.0/0 [200/0] via 192.168.1.10"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Eine per eBGP gelernte Default Route erscheint als B* mit AD 20 und wird zum Gateway of Last Resort. AD 200 hätte sie nur, wenn sie per iBGP gelernt wäre."
+    },
+    {
+        "id":  "slg-bg-105",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why can a single-homed customer use private AS 64512 for its eBGP session to the ISP?",
+        "optionen":  [
+                         "The customer prefix is never advertised beyond the ISP",
+                         "Private ASNs are routed on the internet like public ones",
+                         "Private ASNs are automatically translated by the ISP\u0027s NAT",
+                         "The ISP strips the private ASN before advertising upstream"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Da der Kunde nur über diesen ISP erreichbar ist, kann der ISP die private ASN (z. B. mit remove-private-as) entfernen. Nach außen sieht das Präfix aus wie aus dem ISP-AS."
+    },
+    {
+        "id":  "slg-bg-106",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A multihomed enterprise connected to ISP-A and ISP-B has no outbound filters. It re-advertises routes learned from ISP-A to ISP-B. What is the risk?",
+        "optionen":  [
+                         "The local preference of the enterprise is exposed",
+                         "ISP-B rejects all routes because of the private ASN",
+                         "The eBGP sessions flap because of an AS_PATH loop",
+                         "The enterprise becomes a transit AS between the ISPs"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne Filter erhält ISP-B einen Pfad über das Unternehmen zu ISP-A und kann Fremdtraffic darüber schicken. Deshalb sollte ein Kunden-AS nur eigene Präfixe an jeden ISP geben."
+    },
+    {
+        "id":  "slg-bg-107",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 runs \u0027router bgp 100\u0027. An administrator enters \u0027router bgp 200\u0027 on R1 to peer with another provider. What happens?",
+        "optionen":  [
+                         "A second BGP process for AS 200 starts",
+                         "The command is rejected, because a router can run only one BGP process",
+                         "Both processes run, but only one can have neighbors",
+                         "The router changes its AS to 200 and resets all sessions"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein Router kann nur einen BGP-Prozess haben und damit nur in einem AS sein. IOS lehnt den Befehl mit dem Hinweis ab, dass BGP bereits mit AS 100 läuft."
+    },
+    {
+        "id":  "slg-bg-108",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 (router ID 1.1.1.1) and R2 (router ID 2.2.2.2) open TCP connections to each other at the same time. Which connection is kept?",
+        "optionen":  [
+                         "The one that reached Established first, regardless of router ID",
+                         "Both connections are kept for redundancy",
+                         "The one initiated by R2, the speaker with the higher BGP identifier",
+                         "The one initiated by R1, the speaker with the lower BGP identifier"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei einer Verbindungskollision vergleicht BGP die BGP Identifier. Die vom Speaker mit der höheren Router-ID aufgebaute Verbindung bleibt, die andere wird geschlossen (RFC 4271)."
+    },
+    {
+        "id":  "slg-bg-109",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On SP1, \u0027show tcp brief\u0027 shows: Local 192.168.1.10.179, Foreign 192.168.1.11.37211, State ESTAB. Which statement is correct?",
+        "optionen":  [
+                         "SP1 initiated the TCP session to R1",
+                         "Both routers use port 179 as source port",
+                         "R1 initiated the TCP session to SP1\u0027s port 179",
+                         "The session uses UDP port 37211"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "SP1 ist auf Port 179 lokal erreichbar, R1 nutzt einen zufälligen hohen Quellport. Also hat R1 die TCP-Verbindung zu SP1:179 aufgebaut."
+    },
+    {
+        "id":  "slg-bg-110",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three events tear down an established BGP session? (Choose three.)",
+        "optionen":  [
+                         "A route-refresh request is received",
+                         "An UPDATE with withdrawn routes is received",
+                         "The neighbor is shut down with \u0027neighbor shutdown\u0027",
+                         "A NOTIFICATION message is received",
+                         "The hold timer expires"
+                     ],
+        "richtig":  [
+                        2,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Ablauf des Hold Timers, eine empfangene NOTIFICATION und ein administrativer Shutdown beenden die Session. Withdrawals und Route-Refresh-Anfragen sind normale Nachrichten in einer bestehenden Session."
+    },
+    {
+        "id":  "slg-bg-111",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "With the Cisco default hold time of 180 seconds, BGP sends a keepalive every ___ seconds.",
+        "optionen":  [
+                         "60",
+                         "30",
+                         "10",
+                         "90"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Keepalive-Intervall ist per Default ein Drittel der Hold Time, also 60 s bei 180 s Hold Time. So zeigt es auch \u0027show ip bgp neighbors\u0027 im Lab."
+    },
+    {
+        "id":  "slg-bg-112",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the difference between a BGP speaker and a BGP peer?",
+        "optionen":  [
+                         "There is no difference; both terms mean the same router",
+                         "A speaker originates routes, a peer only receives them",
+                         "A speaker runs BGP; a peer is a speaker you have a session with",
+                         "A speaker runs iBGP sessions, a peer runs eBGP sessions"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Jeder Router mit BGP ist ein BGP Speaker. Peer oder Neighbor ist ein Speaker, mit dem eine konfigurierte TCP-Session zum direkten Routenaustausch besteht, intern oder extern."
+    },
+    {
+        "id":  "slg-bg-113",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An enterprise connects its sites through an MPLS Layer 3 VPN. Which protocol is commonly used between the CE and PE routers to exchange site routes?",
+        "optionen":  [
+                         "eBGP",
+                         "Static routes only",
+                         "iBGP",
+                         "OSPF virtual links"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Zwischen Customer Edge und Provider Edge läuft häufig eBGP, weil Kunde und Provider in verschiedenen AS sind. Der Provider trägt die Routen dann durch die MPLS-Wolke zu den anderen Standorten."
+    },
+    {
+        "id":  "slg-bg-114",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 has two eBGP sessions to the same ISP AS with identical attributes for all prefixes. Which command under \u0027router bgp\u0027 lets R1 install both paths in the routing table?",
+        "optionen":  [
+                         "neighbor x weight 0",
+                         "bgp bestpath compare-routerid",
+                         "variance 2",
+                         "maximum-paths 2"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Per Default installiert BGP nur einen Best Path. \u0027maximum-paths 2\u0027 erlaubt eBGP-Multipath über gleichwertige Pfade. \u0027variance\u0027 gehört zu EIGRP."
+    },
+    {
+        "id":  "slg-bg-115",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In the local BGP table, a route that the router originated itself shows ___ as its next hop.",
+        "optionen":  [
+                         "the loopback address",
+                         "0.0.0.0",
+                         "255.255.255.255",
+                         "its router ID"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Next Hop 0.0.0.0 kennzeichnet lokal originierte Routen, z. B. 10.0.3.0/24 auf SP1. Beim Senden an einen eBGP-Peer ersetzt SP1 ihn durch die eigene Session-Adresse."
+    },
+    {
+        "id":  "slg-bg-116",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "A BGP KEEPALIVE message consists only of the ___.",
+        "optionen":  [
+                         "router ID",
+                         "withdrawn routes field",
+                         "BGP message header",
+                         "hold time field"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "KEEPALIVE hat keinen Inhalt außer dem 19-Byte-BGP-Header. Er dient nur dazu, den Hold Timer des Nachbarn zurückzusetzen."
+    },
+    {
+        "id":  "slg-bg-117",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "BGP selects a single best path based on ___, not on link characteristics such as bandwidth or delay.",
+        "optionen":  [
+                         "interface cost",
+                         "hop count",
+                         "round-trip time",
+                         "path attributes and policy"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Best-Path-Auswahl vergleicht Pfadattribute wie Weight, Local Preference, AS_PATH und MED, die der Administrator per Policy beeinflusst. Bandbreite und Delay fließen nicht ein."
+    },
+    {
+        "id":  "slg-bg-118",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Writing the 4-byte ASN 131082 as 2.10 uses the ___ notation.",
+        "optionen":  [
+                         "asplain",
+                         "ashex",
+                         "ascolon",
+                         "asdot"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "asdot schreibt eine 4-Byte-ASN als obere16.untere16 Bit, asplain als Dezimalzahl. In IOS stellt man mit \u0027bgp asnotation dot\u0027 auf asdot um."
+    },
+    {
+        "id":  "slg-bg-119",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "In \u0027show ip bgp summary\u0027, an established neighbor shows the number of ___ in the State/PfxRcd column.",
+        "optionen":  [
+                         "messages waiting in the queue",
+                         "seconds since the last keepalive",
+                         "prefixes sent to that neighbor",
+                         "prefixes received from that neighbor"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Steht in State/PfxRcd eine Zahl, ist die Session Established, und die Zahl sind die empfangenen Präfixe. Sonst steht dort der Zustand, z. B. Idle oder Active."
+    },
+    {
+        "id":  "slg-bg-120",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The well-known mandatory BGP attributes are ORIGIN, AS_PATH and ___.",
+        "optionen":  [
+                         "LOCAL_PREF",
+                         "NEXT_HOP",
+                         "MED",
+                         "COMMUNITY"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "ORIGIN, AS_PATH und NEXT_HOP müssen in jedem Update mit NLRI stehen. LOCAL_PREF ist well-known discretionary, MED und COMMUNITY sind optional."
+    },
+    {
+        "id":  "slg-bg-121",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "After the TCP connection succeeds and the router has sent its OPEN message, the BGP neighbor moves to the ___ state.",
+        "optionen":  [
+                         "Active",
+                         "OpenSent",
+                         "OpenConfirm",
+                         "Established"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "OpenSent bedeutet: eigenes OPEN gesendet, warten auf das OPEN des Nachbarn. Nach dessen Empfang folgt OpenConfirm, nach dem KEEPALIVE Established."
+    },
+    {
+        "id":  "slg-bg-122",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "A BGP hold time must be either 0 or at least ___ seconds.",
+        "optionen":  [
+                         "60",
+                         "10",
+                         "30",
+                         "3"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "RFC 4271 erlaubt als Hold Time nur 0 (keine Keepalives) oder mindestens 3 Sekunden. Werte 1 und 2 sind unzulässig."
+    },
+    {
+        "id":  "slg-bg-123",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show ip bgp 203.0.113.0\u0027 on R3 shows the only path with \u0027Next hop 198.51.100.1 (inaccessible)\u0027. What is the effect?",
+        "optionen":  [
+                         "The path is valid, but only used as backup",
+                         "The path cannot be selected as best path, so the prefix is not installed",
+                         "R3 automatically changes the next hop to its iBGP peer and installs the path",
+                         "The path is installed with AD 200"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein Pfad mit nicht erreichbarem Next Hop ist für die Best-Path-Auswahl ungültig. Typische Ursache bei iBGP: der externe Next Hop ist nicht im IGP; Abhilfe ist next-hop-self oder das Link-Netz im IGP."
+    },
+    {
+        "id":  "slg-bg-124",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Two customer sites both use AS 65001 and connect via eBGP to an MPLS provider in AS 100. Site B never installs the prefixes of site A. What is the cause?",
+        "optionen":  [
+                         "The provider must use iBGP toward the CE routers",
+                         "Site B sees AS 65001 in the AS_PATH and drops the routes",
+                         "The provider strips the MED from all customer routes",
+                         "The CE routers at both sites have the same router ID"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Routen von Standort A tragen \u0027100 65001\u0027. Standort B findet die eigene ASN und verwirft sie per Loop-Schutz. Abhilfe: \u0027allowas-in\u0027 auf dem CE oder \u0027as-override\u0027 auf dem PE."
+    },
+    {
+        "id":  "slg-bg-125",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R1 is configured with \u0027router bgp 65001\u0027 and \u0027neighbor 10.1.1.2 remote-as 65001\u0027. Which type of session is formed?",
+        "optionen":  [
+                         "iBGP, because the remote AS equals the local AS",
+                         "eBGP multihop",
+                         "eBGP, because a neighbor command is used",
+                         "No session, because the AS numbers must differ"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ist die Remote-AS gleich der eigenen ASN, ist es eine iBGP-Session. \u0027show ip bgp neighbors\u0027 zeigt dann \u0027internal link\u0027 statt \u0027external link\u0027."
+    },
+    {
+        "id":  "slg-bg-126",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In \u0027show ip bgp summary\u0027, the OutQ value for one neighbor stays high for a long time. What does it indicate?",
+        "optionen":  [
+                         "The neighbor has sent many prefixes that are waiting to be installed",
+                         "Many messages are queued on this router waiting to be sent to that neighbor",
+                         "The neighbor has a higher BGP version",
+                         "The neighbor\u0027s hold timer is about to expire"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "OutQ zählt Nachrichten, die auf den Versand an diesen Nachbarn warten. Bleibt der Wert hoch, kommt das Senden nicht nach, z. B. wegen eines langsamen Peers oder eines überlasteten Links. InQ wäre die Empfangsseite."
+    },
+    {
+        "id":  "slg-bg-127",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Situation dem NOTIFICATION-Error-Code zu, den BGP sendet.",
+        "paare":  [
+                      [
+                          "Peer announces a different AS than configured in remote-as",
+                          "OPEN Message Error"
+                      ],
+                      [
+                          "No KEEPALIVE or UPDATE received within the hold time",
+                          "Hold Timer Expired"
+                      ],
+                      [
+                          "Administrator enters \u0027neighbor x shutdown\u0027",
+                          "Cease"
+                      ],
+                      [
+                          "Received AS_PATH attribute is malformed",
+                          "UPDATE Message Error"
+                      ]
+                  ],
+        "erklaerung":  "Falsche Peer-AS ist ein OPEN-Fehler (Subcode Bad Peer AS), fehlende Lebenszeichen lösen Hold Timer Expired aus. Ein administrativer Shutdown wird als Cease gemeldet, fehlerhafte Attribute als UPDATE Message Error."
+    },
+    {
+        "id":  "slg-bg-128",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which BGP feature suppresses a prefix that flaps repeatedly, shown with the \u0027d\u0027 status code in \u0027show ip bgp\u0027?",
+        "optionen":  [
+                         "Route refresh",
+                         "Soft reconfiguration",
+                         "Graceful restart",
+                         "Route dampening"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Route Dampening vergibt flappenden Präfixen Strafpunkte und unterdrückt sie ab einem Schwellwert (\u0027d\u0027 = damped, \u0027h\u0027 = history). So bleibt Instabilität in einem AS lokal."
+    },
+    {
+        "id":  "slg-bg-129",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which value can not be configured as a Cisco BGP weight?",
+        "optionen":  [
+                         "65535",
+                         "70000",
+                         "32768",
+                         "0"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Weight ist ein 16-Bit-Wert von 0 bis 65535. 32768 ist der Default für lokal originierte Routen, 0 für gelernte."
+    },
+    {
+        "id":  "slg-bg-130",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the lab, an additional direct eBGP session is added between R1 (AS 100) and R2 (AS 200). All other settings stay default. Which path does R1 prefer to 10.0.2.0/24?",
+        "optionen":  [
+                         "Both paths, because they are both eBGP paths",
+                         "The path via SP1, because AS 1 is the lowest ASN",
+                         "The path via SP1, because it is the older path",
+                         "The direct path via R2, because its AS_PATH is shorter"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Weight und Local Preference sind gleich (0 bzw. 100), lokal originiert ist keiner. Dann entscheidet die AS_PATH-Länge: 1 gegen 2, der direkte Pfad gewinnt."
+    },
+    {
+        "id":  "slg-bg-131",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In the lab, R1 and R2 have no BGP session with each other, but R1 learns 10.0.2.0/24. Why?",
+        "optionen":  [
+                         "R2 sends the prefix directly over the SP1 link using TTL 2",
+                         "R1 and R2 discover each other with BGP multicast hellos",
+                         "SP1 redistributes BGP into an IGP",
+                         "SP1 advertises its best eBGP-learned paths to its other eBGP peers"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Für eBGP gibt es keine Split-Horizon-Regel wie bei iBGP. SP1 gibt die von R2 gelernte beste Route mit AS_PATH \u00271 200\u0027 an R1 weiter."
+    },
+    {
+        "id":  "slg-bg-132",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "How does a BGP router find its neighbors?",
+        "optionen":  [
+                         "Through multicast hellos sent to 224.0.0.10",
+                         "Through a DR election on each shared segment",
+                         "Each neighbor is configured with a neighbor command",
+                         "Through LLDP neighbor discovery on each link"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "BGP hat keine automatische Nachbarerkennung. Jeder Peer wird mit \u0027neighbor x remote-as y\u0027 konfiguriert, danach baut BGP eine TCP-Session auf Port 179 auf."
+    },
+    {
+        "id":  "slg-bg-133",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "AS 65001 is connected to ISP-A and ISP-B with one link each. It wants inbound traffic to arrive mainly via ISP-A. Which two methods can achieve this? (Choose two.)",
+        "optionen":  [
+                         "Set a higher weight on routes received from ISP-A",
+                         "Send a lower MED to ISP-A",
+                         "Prepend its own AS several times on advertisements to ISP-B",
+                         "Advertise more specific prefixes to ISP-A in addition to the aggregate",
+                         "Set a higher local preference on routes received from ISP-A"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Ein verlängerter AS_PATH über ISP-B und spezifischere Präfixe über ISP-A (Longest Match) lenken eingehenden Traffic. MED wirkt nur zwischen Links zum selben Nachbar-AS, Local Preference und Weight steuern nur den ausgehenden Traffic."
+    },
+    {
+        "id":  "slg-bg-134",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about the BGP router ID are true? (Choose two.)",
+        "optionen":  [
+                         "It is a 16-bit value derived from the AS number",
+                         "It must be an address reachable by the peer",
+                         "It must match the address in the peer\u0027s neighbor statement",
+                         "It is a 32-bit value carried in the OPEN message",
+                         "It is used as a tie-breaker in best-path selection"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Die Router-ID ist ein 32-Bit-Wert im Feld BGP Identifier des OPEN und dient später als Tie-Breaker. Sie muss weder erreichbar sein noch der Peering-Adresse entsprechen."
+    },
+    {
+        "id":  "slg-bg-135",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two commands confirm that the BGP session from SP1 to 192.168.1.11 is Established? (Choose two.)",
+        "optionen":  [
+                         "show ip bgp summary",
+                         "show ip interface brief",
+                         "show ip bgp rib-failure",
+                         "show ip route connected",
+                         "show ip bgp neighbors 192.168.1.11"
+                     ],
+        "richtig":  [
+                        0,
+                        4
+                    ],
+        "erklaerung":  "Die Summary zeigt bei Established die Präfixzahl in State/PfxRcd, \u0027show ip bgp neighbors\u0027 nennt ausdrücklich \u0027BGP state = Established\u0027. Die anderen Befehle zeigen keinen Session-Zustand."
+    },
+    {
+        "id":  "slg-bg-136",
+        "topic":  "ENCOR-3.2.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ip bgp neighbors 192.168.1.11\u0027 on SP1 shows \u0027remote AS 100, external link\u0027. What does \u0027external link\u0027 indicate?",
+        "optionen":  [
+                         "The session uses ebgp-multihop",
+                         "The peer is in a different AS, so this is an eBGP session",
+                         "The neighbor is reachable only through a default route",
+                         "The neighbor is outside the IGP domain but in the same AS"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027external link\u0027 bedeutet eBGP, also Nachbar in einem anderen AS. Bei gleicher ASN stünde dort \u0027internal link\u0027."
+    }
+]

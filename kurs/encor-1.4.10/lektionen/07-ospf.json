@@ -1,0 +1,131 @@
+[
+{
+ "id": "ospf",
+ "titel": "OSPF: Nachbarschaften, LSAs, Areas und Multiarea-Konfiguration",
+ "topics": ["ENCOR-3.2.a", "ENCOR-3.2.b"],
+ "seiten": [
+  {
+   "text": "OSPF ist ein Link-State-Protokoll. Jeder Router beschreibt seine Links (Interfaces, Netze, Nachbarn, Kosten) in LSAs und flutet sie an alle Router seiner Area. Aus allen LSAs entsteht die LSDB, die in einer Area auf allen Routern identisch ist. Daraus berechnet jeder Router mit SPF (Dijkstra) selbst die kürzesten Wege. OSPF liegt direkt in IP (Protokoll 89), ohne TCP, und bestätigt geflutete LSAs deshalb selbst, normalerweise per LSAck (ohne Bestätigung folgt nach 5 s eine Wiederholung). LSAs werden sofort bei einer Änderung gesendet und sonst alle 30 Minuten aufgefrischt.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Typ", "Paket", "Aufgabe"],
+    "zeilen": [
+     ["1", "Hello", "Nachbarn finden und halten (224.0.0.5)"],
+     ["2", "DBD", "LSDB-Zusammenfassung: nur LSA-Header, plus MTU"],
+     ["3", "LSR", "Fehlende oder neuere LSAs anfordern"],
+     ["4", "LSU", "Komplette LSAs liefern, Flooding"],
+     ["5", "LSAck", "Empfang bestätigen (enthält die LSA-Header)"]
+    ]
+   }
+  },
+  {
+   "text": "Router-ID: eine eindeutige 32-Bit-Kennung im IP-Format, die nicht erreichbar sein muss. Sie wird nur beim Start des Prozesses gewählt. Die Reihenfolge: zuerst der manuelle Befehl router-id, dann die höchste IP eines aktiven Loopbacks, dann die höchste IP eines aktiven physischen Interfaces. Kommt später ein höheres Interface dazu, bleibt die RID gleich, bis zu clear ip ospf process oder einem Reload. Ein RID-Wechsel setzt alle Adjazenzen zurück. Die Prozess-ID aus router ospf <id> ist nur lokal relevant, Nachbarn dürfen verschiedene IDs nutzen.",
+   "diagramm": {
+    "typ": "ablauf",
+    "stufen": ["router-id x.x.x.x konfiguriert? → verwenden", "Sonst: höchste IP eines aktiven Loopbacks", "Sonst: höchste IP eines aktiven physischen Interfaces", "Keine IP auf up/up-Interface → Prozess startet nicht", "Änderung wirkt erst nach clear ip ospf process / Reload"]
+   }
+  },
+  {
+   "text": "Nachbarschaft: Router senden Hellos und werden erst Nachbarn, wenn Area-ID, Hello/Dead-Timer, Subnetz und Maske (außer auf Point-to-Point), Authentifizierung und Stub-Flag übereinstimmen. Danach durchlaufen sie die States. In INIT kam ein Hello an, aber ohne die eigene RID. In 2-WAY sieht der Router sich selbst in der Neighbor-Liste, hier wird auf Multiaccess der DR gewählt. In EXSTART wird Master/Slave ausgehandelt (die höhere RID wird Master), in EXCHANGE werden DBDs getauscht, in LOADING LSR und LSU, am Ende steht FULL. Typische Hänger: INIT bei einseitigem Empfang (z. B. ACL), EXSTART/EXCHANGE bei einem MTU-Mismatch ('Nbr has larger interface MTU'). Gar kein Nachbar heißt meist Timer, Area oder Authentifizierung.",
+   "diagramm": {
+    "typ": "ablauf",
+    "stufen": ["DOWN – noch kein Hello", "INIT – Hello empfangen, eigene RID fehlt", "2-WAY – eigene RID im Hello; DR/BDR-Wahl", "EXSTART – Master/Slave, Start-Sequenz (MTU-Prüfung)", "EXCHANGE – DBDs mit LSA-Headern", "LOADING – LSR → LSU → LSAck", "FULL – LSDBs synchron"]
+   }
+  },
+  {
+   "text": "DR/BDR auf Broadcast- und NBMA-Segmenten: Statt eines Full Mesh mit n(n-1)/2 Adjazenzen bilden alle Router nur zum DR und BDR eine FULL-Adjazenz. Zwischen DROTHERs bleibt 2-WAY, das ist normal. DROTHERs schicken Updates an 224.0.0.6, der DR flutet sie an 224.0.0.5. Gewählt wird nach der höchsten Priority (0–255, Default 1, 0 = nie DR) und bei Gleichstand nach der höchsten RID. Die Wahl ist nicht präemptiv: Fällt der DR aus, wird der BDR zum DR, und ein neuer BDR wird gewählt. Ein zurückkehrender Router mit höherer RID bleibt DROTHER. Im Lab war das so: R5 DR, R4 BDR, dann R5 aus, danach R4 DR, R1 BDR, und R5 kam als DROTHER zurück.",
+   "diagramm": {
+    "typ": "topologie",
+    "knoten": [
+     {"id": "sw", "label": "Switch 172.16.145.0/29", "x": "0.5", "y": "0.5", "art": "switch"},
+     {"id": "r1", "label": "R1 1.1.1.1", "x": "0.15", "y": "0.5", "art": "router"},
+     {"id": "r4", "label": "R4 4.4.4.4", "x": "0.5", "y": "0.12", "art": "router"},
+     {"id": "r5", "label": "R5 5.5.5.5", "x": "0.85", "y": "0.5", "art": "router"}
+    ],
+    "kanten": [
+     {"von": "r1", "nach": "sw", "label": "Pri 1", "farbe": "39c86a"},
+     {"von": "r4", "nach": "sw", "label": "Pri 1", "farbe": "39c86a"},
+     {"von": "r5", "nach": "sw", "label": "Pri 1", "farbe": "39c86a"}
+    ],
+    "schritte": [
+     {"von": "r5", "nach": "sw", "farbe": "ffd23f", "text": "Gleiche Priority → höchste RID: R5 DR, R4 BDR, R1 DROTHER"},
+     {"von": "r1", "nach": "sw", "farbe": "4a9cff", "text": "R1 sendet Updates an 224.0.0.6 (DR + BDR)"},
+     {"von": "r5", "nach": "sw", "farbe": "ff6b6b", "text": "R5 fällt aus → nach Dead 40 s: R4 DR, R1 BDR"},
+     {"von": "r5", "nach": "sw", "farbe": "b08aff", "text": "R5 kommt zurück → nur DROTHER (nicht präemptiv)"}
+    ]
+   }
+  },
+  {
+   "text": "Netztypen bestimmen Timer, DR-Wahl und Nachbarfindung. Ethernet ist per Default broadcast, serielle Links sind point-to-point. Die Timer müssen bei Nachbarn gleich sein, deshalb scheitert zum Beispiel broadcast gegen non-broadcast schon an 10 gegen 30 s. Wird nur das Hello-Intervall geändert, wird der Dead-Intervall automatisch das Vierfache. Loopbacks werden als /32 annonciert, mit 'ip ospf network point-to-point' wird die echte Maske annonciert. Auf einem Ethernet-Link mit nur zwei Routern spart point-to-point die DR-Wahl und die Type-2-LSA.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Netztyp", "DR/BDR", "Hello/Dead", "Nachbarn", "Default auf"],
+    "zeilen": [
+     ["broadcast", "ja", "10/40", "dynamisch", "Ethernet"],
+     ["point-to-point", "nein", "10/40", "dynamisch", "Serial, P2P-Subif"],
+     ["non-broadcast", "ja", "30/120", "statisch", "Frame Relay physisch"],
+     ["point-to-multipoint", "nein", "30/120", "dynamisch", "– (manuell)"],
+     ["p2mp non-broadcast", "nein", "30/120", "statisch", "– (Cisco-Erweiterung)"],
+     ["loopback", "–", "–", "keine", "Loopback (/32)"]
+    ]
+   }
+  },
+  {
+   "text": "LSA-Typen: Router-LSAs (Typ 1) und Network-LSAs (Typ 2) beschreiben die Topologie einer Area und verlassen sie nie. Der ABR fasst die Netze einer Area als Summary-LSAs (Typ 3) für andere Areas zusammen, daraus werden O-IA-Routen. Externe Routen erzeugt der ASBR als Typ 5. Damit andere Areas den ASBR finden, erzeugt der ABR eine Typ-4-LSA mit dessen RID. In einer NSSA erzeugt der ASBR stattdessen Typ 7, und der ABR übersetzt sie in Typ 5. Auf reinen Point-to-Point-Areas gibt es keine Typ-2-LSAs, weil es keinen DR gibt.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Typ", "Name", "Erzeuger", "Flooding", "Link-State-ID", "Routing-Code"],
+    "zeilen": [
+     ["1", "Router", "jeder Router, je Area", "nur eigene Area", "RID des Erzeugers", "O"],
+     ["2", "Network", "DR", "nur eigene Area", "Interface-IP des DR", "O"],
+     ["3", "Summary", "ABR", "in andere Areas", "Zielnetz", "O IA"],
+     ["4", "ASBR Summary", "ABR", "Areas ohne den ASBR", "RID des ASBR", "–"],
+     ["5", "AS External", "ASBR", "ganze Domain außer Stub/NSSA", "externes Netz", "O E1/E2"],
+     ["7", "NSSA External", "ASBR in NSSA", "nur die NSSA", "externes Netz", "O N1/N2"]
+    ]
+   }
+  },
+  {
+   "text": "Areas und Rollen: Area 0 (Backbone) muss zusammenhängend sein, und jede andere Area hängt direkt daran. Inter-Area-Verkehr läuft immer über Area 0. Ein ABR verbindet Area 0 mit anderen Areas, führt eine LSDB je Area und ist der einzige Ort für Inter-Area-Summarization (area X range, nie automatisch). ASBR wird ein Router durch redistribute oder default-information originate. Spezialareas halten die LSDB klein. Wichtig: Stub und NSSA blocken Typ 4 UND Typ 5. Das Stub-Flag steht im Hello, deshalb gehört 'area X stub' auf alle Router der Area und 'no-summary' nur auf den ABR.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Area-Typ", "Typ 3", "Typ 4", "Typ 5", "Typ 7", "Default-Route", "Konfiguration"],
+    "zeilen": [
+     ["normal", "ja", "ja", "ja", "nein", "nein", "–"],
+     ["stub", "ja", "geblockt", "geblockt", "nein", "automatisch (O*IA)", "area X stub (alle)"],
+     ["totally stubby", "nur Default", "geblockt", "geblockt", "nein", "automatisch", "+ no-summary (ABR)"],
+     ["NSSA", "ja", "geblockt", "geblockt", "ja", "nur mit default-information-originate", "area X nssa (alle)"],
+     ["totally NSSA", "nur Default", "geblockt", "geblockt", "ja", "automatisch", "+ no-summary (ABR)"]
+    ]
+   }
+  },
+  {
+   "text": "Das Multiarea-Lab: R1 ist ABR mit Et0/1 in Area 0 (zu R4/R5), S2/0 in Area 1 (zu R2) und Et0/0 in Area 2 (zu R3). Konfiguriert wurde mit network-Befehlen und Wildcard (172.16.145.0 0.0.0.7 area 0), auf R3 mit 0.0.0.0 für genau ein Interface und 'ip ospf 3 area 2' auf dem Loopback (Attached via Interface Enable). R5 sieht O 192.168.4.0/24 von R4 als Intra-Area-Route und alles aus Area 1 und 2 als O IA über R1. Die Kosten addieren sich über die ausgehenden Interfaces: zu 192.168.2.1/32 sind es 10 (Ethernet) + 64 (T1-Serial) + 1 (Loopback) = 75.",
+   "diagramm": {
+    "typ": "topologie",
+    "knoten": [
+     {"id": "r4", "label": "R4 (Area 0) Lo 192.168.4.1/24", "x": "0.12", "y": "0.2", "art": "router"},
+     {"id": "r5", "label": "R5 (Area 0)", "x": "0.12", "y": "0.8", "art": "router"},
+     {"id": "sw", "label": "172.16.145.0/29", "x": "0.32", "y": "0.5", "art": "switch"},
+     {"id": "r1", "label": "R1 ABR 1.1.1.1", "x": "0.55", "y": "0.5", "art": "router"},
+     {"id": "r2", "label": "R2 (Area 1) Lo 192.168.2.1/24", "x": "0.88", "y": "0.2", "art": "router"},
+     {"id": "r3", "label": "R3 (Area 2) Lo 192.168.3.1/24", "x": "0.88", "y": "0.8", "art": "router"}
+    ],
+    "kanten": [
+     {"von": "r4", "nach": "sw", "label": "Et0/0 .4", "farbe": "39c86a"},
+     {"von": "r5", "nach": "sw", "label": "Et0/0 .5", "farbe": "39c86a"},
+     {"von": "sw", "nach": "r1", "label": "Et0/1 .1 Area 0, Kosten 10", "farbe": "39c86a"},
+     {"von": "r1", "nach": "r2", "label": "S2/0 172.16.12.0/30 Area 1, Kosten 64", "farbe": "4a9cff"},
+     {"von": "r1", "nach": "r3", "label": "Et0/0 172.16.13.0/30 Area 2, Kosten 10", "farbe": "b08aff"}
+    ],
+    "schritte": [
+     {"von": "r2", "nach": "r1", "farbe": "ffd23f", "text": "R2 flutet Typ 1 nur in Area 1"},
+     {"von": "r1", "nach": "sw", "farbe": "ffd23f", "text": "ABR R1 erzeugt Typ 3 für 192.168.2.1/32 in Area 0"},
+     {"von": "sw", "nach": "r5", "farbe": "ffd23f", "text": "R5: O IA 192.168.2.1/32 [110/75] = 10 + 64 + 1"},
+     {"von": "r4", "nach": "sw", "farbe": "39c86a", "text": "R4s Loopback bei R5: O 192.168.4.0/24 (intra-area)"}
+    ]
+   }
+  }
+ ]
+}
+]

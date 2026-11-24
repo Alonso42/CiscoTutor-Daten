@@ -1,0 +1,75 @@
+[
+{
+ "id": "enterprise-architektur",
+ "titel": "Enterprise-Architektur – Module, Schichten, Cloud",
+ "topics": ["ENCOR-1.1.a", "ENCOR-1.1.b", "ENCOR-1.2.a"],
+ "seiten": [
+  {
+   "text": "Cisco teilt ein Unternehmensnetz in vier Module. Der Campus ist das Gelände mit Access, Distribution, Core und Rechenzentrum. Die Enterprise Edge verbindet nach außen (Internet, VPN, WAN). Über die Service Provider Edge laufen die Provider-Verbindungen zu den Remote Locations (Filialen, Teleworker). Vorteil: Ein Fehler bleibt in seinem Modul.",
+   "diagramm": {
+    "typ": "topologie",
+    "knoten": [
+     {"id": "campus", "label": "Enterprise Campus", "x": "0.12", "y": "0.5", "art": "switch"},
+     {"id": "edge", "label": "Enterprise Edge", "x": "0.38", "y": "0.5", "art": "router"},
+     {"id": "sp", "label": "Service Provider Edge", "x": "0.64", "y": "0.5", "art": "cloud"},
+     {"id": "remote", "label": "Remote Locations", "x": "0.9", "y": "0.5", "art": "router"}
+    ],
+    "kanten": [
+     {"von": "campus", "nach": "edge", "label": "über den Core", "farbe": "39c86a"},
+     {"von": "edge", "nach": "sp", "label": "Internet / MPLS / VPN", "farbe": "4a9cff"},
+     {"von": "sp", "nach": "remote", "label": "Provider-Netz", "farbe": "b08aff"}
+    ],
+    "schritte": [
+     {"von": "campus", "nach": "edge", "farbe": "ffd23f", "text": "Campus-Verkehr nach außen geht über die Enterprise Edge"},
+     {"von": "edge", "nach": "sp", "farbe": "ffd23f", "text": "Edge übergibt an Provider (ISP, MPLS, Metro Ethernet)"},
+     {"von": "sp", "nach": "remote", "farbe": "ffd23f", "text": "Provider verbindet zur Filiale oder zum Teleworker"}
+    ]
+   }
+  },
+  {
+   "text": "Im Campus hat jede Schicht eine Rolle. Die Schichten beschreiben Funktionen, nicht die Anzahl der Geräte: Kleine Standorte legen Core und Distribution zusammen (Collapsed Core), große Standorte haben einen eigenen Core.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Schicht", "Aufgabe", "Typisch dort"],
+    "zeilen": [
+     ["Access", "Endgeräte anschließen", "PoE, Port Security, VLANs, APs, IP-Telefone"],
+     ["Distribution", "Access-Blöcke bündeln, Grenze L2/L3", "FHRP, Summarization, QoS, Filter"],
+     ["Core", "Backbone, schnell und immer verfügbar", "keine Policies, keine Endgeräte"]
+    ]
+   }
+  },
+  {
+   "text": "Warum ein eigener Core? Ohne Core müssen alle Distribution-Blöcke vollvermascht sein. Mit 2 Switches pro Block gilt: Links = B × (N − 2), wobei B die Zahl der Blöcke und N die Zahl aller Switches ist. Die Zahl der Links wächst sehr schnell, ein Core hält sie konstant.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Gebäude (B)", "Switches (N)", "Links Full Mesh"],
+    "zeilen": [
+     ["2", "4", "4"],
+     ["3", "6", "12"],
+     ["4", "8", "24"],
+     ["5", "10", "40"]
+    ]
+   }
+  },
+  {
+   "text": "Drei Arten, die Distribution zu bauen. Traditional: zwei einzelne Switches, Gateway-Redundanz per HSRP/VRRP/GLBP, STP blockiert Uplinks, wenn VLANs mehrere Access-Switches überspannen. Simplified: mehrere Switches wirken wie einer (Stack, StackWise Virtual), der Access hängt per EtherChannel dran, alle Uplinks sind aktiv, ein FHRP ist unnötig. SD-Access: ein automatisiertes Fabric-Overlay auf geroutetem Underlay mit Segmentierung nach Identität.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Design", "Gateway", "Uplinks", "STP"],
+    "zeilen": [
+     ["Traditional", "HSRP/VRRP/GLBP", "teils blockiert", "nötig"],
+     ["Simplified", "ein logisches Interface", "alle aktiv (EtherChannel)", "kaum Rolle"],
+     ["SD-Access", "Anycast-Gateway im Fabric", "geroutet", "kein STP im Underlay"]
+    ]
+   }
+  },
+  {
+   "text": "Cloud: Die vier Modelle sind Private (nur eine Organisation), Public (Drittanbieter, Abo), Hybrid (Mischung) und Community (mehrere Organisationen mit gleichen Zielen). Zur Anbindung gibt es Direct Connect (privater Pfad zum Anbieter), MPLS Direct Connect (über Partner wie Megaport oder Equinix) und Cisco SD-WAN Cloud OnRamp, das die Anbindung automatisiert und z. B. für SaaS per Probes den besten Pfad wählt.",
+   "diagramm": {
+    "typ": "ablauf",
+    "stufen": ["Filiale (SD-WAN Edge)", "Probes messen Latenz/Verlust (vQoE)", "bester Pfad gewählt", "SaaS / Public Cloud"]
+   }
+  }
+ ]
+}
+]

@@ -1,0 +1,2350 @@
+[
+    {
+        "id":  "slg-st-001",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "STP is disabled in a looped switched network. A switch repeatedly logs that the MAC address of one host is moving between Gi1/0/1 and Gi1/0/2. Which loop symptom is this?",
+        "optionen":  [
+                         "Asymmetric routing",
+                         "MAC address table instability",
+                         "Native VLAN mismatch",
+                         "Multiple frame transmission to the host"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Kreisen Kopien desselben Frames durch die Schleife, sieht der Switch dieselbe Quell-MAC abwechselnd auf verschiedenen Ports und überschreibt ständig den MAC-Tabelleneintrag (MAC Flapping)."
+    },
+    {
+        "id":  "slg-st-002",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does a broadcast storm in a Layer 2 loop not die out by itself?",
+        "optionen":  [
+                         "The Ethernet header has no TTL field that would discard looping frames",
+                         "Broadcasts are always retransmitted by the sending host",
+                         "The FCS is recalculated on each switch, which resets the frame age",
+                         "Switches increase the frame priority on every hop"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Anders als IP hat ein Ethernet-Frame kein TTL. Ein Broadcast wird auf allen Ports außer dem Eingangsport geflutet und kreist deshalb endlos, bis die Schleife unterbrochen wird."
+    },
+    {
+        "id":  "slg-st-003",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which three problems are caused by an active Layer 2 loop? (Choose three.)",
+        "optionen":  [
+                         "Broadcast storms",
+                         "Delivery of multiple copies of the same unicast frame",
+                         "MAC address table instability",
+                         "Duplex mismatch on the looped links",
+                         "IP packets dropped because TTL reaches zero"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Typisch für Layer-2-Schleifen sind Broadcast-Stürme, mehrfach zugestellte Unicast-Frames und eine instabile MAC-Tabelle. TTL-Abläufe betreffen Layer-3-Routing-Schleifen, Duplex-Mismatch hat mit Schleifen nichts zu tun."
+    },
+    {
+        "id":  "slg-st-004",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements describe a nondesignated (blocking) port in 802.1D STP? (Choose two.)",
+        "optionen":  [
+                         "It forwards user frames but not BPDUs",
+                         "It sends configuration BPDUs every hello time",
+                         "It can exist on the root bridge in a stable topology",
+                         "It still receives and processes BPDUs",
+                         "It does not learn source MAC addresses from data frames"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Ein blockierender Port leitet keine Nutzdaten weiter und lernt keine MACs, hört aber weiter BPDUs, um auf Topologieänderungen reagieren zu können. Auf der Root Bridge sind alle aktiven Ports designated."
+    },
+    {
+        "id":  "slg-st-005",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In a stable STP topology, which role do all active ports on the root bridge have?",
+        "optionen":  [
+                         "Alternate",
+                         "Root",
+                         "Designated",
+                         "Backup"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Root Bridge hat die Root Path Cost 0 und ist deshalb auf jedem angeschlossenen Segment die beste Bridge – alle ihre Ports sind designated und forwarding."
+    },
+    {
+        "id":  "slg-st-007",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "IEEE STP BPDUs are sent to the multicast MAC address ___.",
+        "optionen":  [
+                         "01-00-0C-CC-CC-CD",
+                         "01-00-5E-00-00-01",
+                         "FF-FF-FF-FF-FF-FF",
+                         "01-80-C2-00-00-00"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Standard-BPDUs gehen an die reservierte IEEE-Adresse 01-80-C2-00-00-00; die Quell-MAC ist die MAC des sendenden Ports. 01-00-0C-CC-CC-CD ist die Cisco-SSTP-Adresse für PVST+."
+    },
+    {
+        "id":  "slg-st-008",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A Cisco switch runs Rapid PVST+. To which destination MAC address are the BPDUs for VLAN 20 sent on an 802.1Q trunk?",
+        "optionen":  [
+                         "01-00-0C-CC-CC-CD (Cisco SSTP address), tagged with VLAN 20",
+                         "FF-FF-FF-FF-FF-FF, tagged with VLAN 20",
+                         "01-80-C2-00-00-00, untagged in the native VLAN",
+                         "01-80-C2-00-00-00, tagged with VLAN 20"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "PVST+/Rapid PVST+ sendet für Nicht-Native-VLANs getaggte BPDUs an die Cisco-SSTP-Adresse 0100.0CCC.CCCD. Nur für VLAN 1 werden zusätzlich IEEE-BPDUs an 0180.C200.0000 gesendet, damit Standard-Switches mitspielen."
+    },
+    {
+        "id":  "slg-st-009",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das BPDU-Feld seinem Inhalt zu.",
+        "paare":  [
+                      [
+                          "Root path cost",
+                          "Cost from the sending switch to the root bridge"
+                      ],
+                      [
+                          "Sender bridge ID",
+                          "Bridge ID of the switch transmitting the BPDU"
+                      ],
+                      [
+                          "Message age",
+                          "Age of the information since the root generated it"
+                      ],
+                      [
+                          "Forward delay",
+                          "Time a port spends in listening and in learning"
+                      ]
+                  ],
+        "erklaerung":  "Root Path Cost und Sender BID dienen der Wahl von Root und Designated Ports; Message Age, Max Age, Hello und Forward Delay sind die Timer, die die Root Bridge vorgibt."
+    },
+    {
+        "id":  "slg-st-010",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In 802.1D STP, a non-root switch detects that one of its ports changed to forwarding. Where does it send the TCN BPDU?",
+        "optionen":  [
+                         "Directly to the root bridge as a unicast frame",
+                         "Out of all designated ports",
+                         "Out of all ports except the one that changed",
+                         "Out of its root port toward the root bridge"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die TCN läuft Hop für Hop über die Root Ports zur Root Bridge. Jeder upstream Designated Switch bestätigt sie und schickt seinerseits eine TCN auf seinem Root Port weiter."
+    },
+    {
+        "id":  "slg-st-011",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does the upstream designated switch acknowledge a TCN BPDU in 802.1D?",
+        "optionen":  [
+                         "It stops sending BPDUs until the root confirms",
+                         "It immediately sends a configuration BPDU with the TCA bit set",
+                         "It sends its own TCN BPDU back to the sender",
+                         "It sets the TC bit in all BPDUs for max age seconds"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Bestätigung ist eine normale Configuration-BPDU mit gesetztem Topology-Change-Acknowledgment-Bit. Der meldende Switch wiederholt seine TCN so lange, bis diese Bestätigung eintrifft."
+    },
+    {
+        "id":  "slg-st-012",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In 802.1D, the root bridge has learned of a topology change. How do the switches make sure stale MAC entries disappear quickly?",
+        "optionen":  [
+                         "They age out MAC entries after the forward delay (15 s by default) instead of the normal aging time",
+                         "They flush the entire MAC table on every port immediately when the TCN arrives",
+                         "They send gratuitous ARP for every learned host so neighbors relearn it",
+                         "They keep MAC entries but mark them as blocking until max age (20 s) expires"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Root setzt das TC-Bit für Max Age + Forward Delay. Solange es gesetzt ist, verkürzen die Bridges die MAC-Aging-Zeit auf den Forward-Delay-Wert, statt die Tabelle sofort komplett zu löschen."
+    },
+    {
+        "id":  "slg-st-013",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "For how long does an 802.1D root bridge set the TC bit in its configuration BPDUs after learning of a topology change (default timers)?",
+        "optionen":  [
+                         "15 seconds (forward delay)",
+                         "20 seconds (max age)",
+                         "35 seconds (max age + forward delay)",
+                         "50 seconds (max age + 2 x forward delay)"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Topology-Change-Zustand dauert Max Age plus Forward Delay, standardmäßig 20 + 15 = 35 s. Diese lange Phase entfällt bei RSTP, wo der Initiator den TC direkt flutet."
+    },
+    {
+        "id":  "slg-st-014",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which event is considered a topology change in RSTP?",
+        "optionen":  [
+                         "An edge port comes up",
+                         "A nonedge port transitions to the forwarding state",
+                         "A port moves from forwarding to discarding",
+                         "Any port goes down"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei RSTP löst nur ein Nonedge-Port, der in forwarding geht, einen TC aus. Linkverlust allein schafft keinen neuen Pfad und ist daher kein TC; Edge-Ports (PortFast) lösen nie einen TC aus."
+    },
+    {
+        "id":  "slg-st-015",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An RSTP switch receives a BPDU with the TC bit set on Gi0/1. Which MAC addresses does it flush?",
+        "optionen":  [
+                         "Only those learned on Gi0/1",
+                         "Those learned on all its other ports, but not on Gi0/1",
+                         "None – it waits for the root bridge to confirm the change",
+                         "All MAC addresses on all ports, including Gi0/1"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Empfänger löscht die MACs aller Ports außer dem, auf dem der TC ankam, und gibt den TC über seine Designated Ports und den Root Port weiter. So wird schnell neu gelernt, ohne die Einträge Richtung Auslöser zu verlieren."
+    },
+    {
+        "id":  "slg-st-016",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In an RSTP network, a PC connected to an edge port (PortFast) is unplugged. What happens regarding topology change?",
+        "optionen":  [
+                         "The switch floods BPDUs with the TC bit set out of all designated ports",
+                         "The switch sends a TCN BPDU to the root bridge",
+                         "Nothing – edge ports do not generate topology changes",
+                         "All switches flush their MAC tables"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Edge-Ports erzeugen keine Topologieänderungen. So wird verhindert, dass jedes Ein-/Ausstecken eines Endgeräts im ganzen VLAN MAC-Tabellen löscht und Flooding verursacht."
+    },
+    {
+        "id":  "slg-st-017",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Why does RSTP not treat the loss of a link as a topology change?",
+        "optionen":  [
+                         "RSTP ignores link loss until max age expires and then floods a TCN toward the root",
+                         "Link loss is reported only by the root bridge, which then triggers the TC for all switches in the VLAN",
+                         "Losing a link creates no new path; if a downstream switch unblocks an alternate port, that switch generates the TC itself",
+                         "Link loss is handled by UDLD instead of RSTP, which err-disables the port without a TC"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein Linkausfall entfernt nur einen Pfad. Hat der betroffene Switch eine Alternative, schaltet er sie auf forwarding – genau dieser Übergang ist der TC, den er dann selbst flutet."
+    },
+    {
+        "id":  "slg-st-018",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three statements describe RSTP topology change handling and BPDU behavior compared to 802.1D? (Choose three.)",
+        "optionen":  [
+                         "The switch that detects the change floods BPDUs with the TC bit set itself",
+                         "Every RSTP bridge generates BPDUs every hello time",
+                         "TCN BPDUs are used only to notify legacy 802.1D bridges",
+                         "The switch must first notify the root bridge, which then sets the TC flag",
+                         "Only the root bridge is allowed to originate BPDUs"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Bei RSTP flutet der Initiator den TC selbst (ein Schritt statt Umweg über die Root), TCN-BPDUs gibt es nur noch für Legacy-Bridges, und jede Bridge sendet eigene BPDUs im Hello-Takt als Keepalive."
+    },
+    {
+        "id":  "slg-st-019",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "With default timers, after how long does an RSTP switch consider its neighbor\u0027s BPDU information lost if no BPDUs arrive?",
+        "optionen":  [
+                         "2 seconds (1 missed hello)",
+                         "30 seconds (2 x forward delay)",
+                         "6 seconds (3 missed hellos)",
+                         "20 seconds (max age)"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Weil bei RSTP jede Bridge im Hello-Takt (2 s) BPDUs sendet, gilt die Information nach drei verpassten Hellos (6 s) als veraltet – viel schneller als die 20 s Max Age bei 802.1D."
+    },
+    {
+        "id":  "slg-st-020",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In a stable 802.1D topology, on which ports does a non-root switch send configuration BPDUs?",
+        "optionen":  [
+                         "Only on its root port",
+                         "Only on its designated ports",
+                         "On its root port and its designated ports",
+                         "On all ports, including blocking ports"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Root erzeugt die Configuration-BPDUs; Nonroot-Switches empfangen sie auf dem Root Port und geben sie aktualisiert auf ihren Designated Ports weiter. Richtung Root senden sie im Normalbetrieb keine BPDUs."
+    },
+    {
+        "id":  "slg-st-021",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "All switches use the default bridge priority. SW1 has MAC 0011.2233.4455, SW2 has 000a.1111.2222 and SW3 has 00ab.0000.0001. Which switch becomes the root bridge?",
+        "optionen":  [
+                         "SW1",
+                         "SW2",
+                         "SW3",
+                         "The switch that booted first"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei gleicher Priorität entscheidet die niedrigere MAC-Adresse. 000a.1111.2222 ist die kleinste der drei, also wird SW2 Root Bridge."
+    },
+    {
+        "id":  "slg-st-022",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "SW-A: priority 32768, MAC 0011.1111.1111. SW-B: priority 28672, MAC 00aa.aaaa.aaaa. SW-C: priority 28672, MAC 0055.5555.5555. Which switch is the root bridge?",
+        "optionen":  [
+                         "SW-B and SW-C share the root role",
+                         "SW-B",
+                         "SW-C",
+                         "SW-A"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Zuerst zählt die Priorität: SW-B und SW-C (28672) schlagen SW-A. Bei diesem Gleichstand entscheidet die MAC – 0055.5555.5555 ist kleiner als 00aa.aaaa.aaaa, also SW-C."
+    },
+    {
+        "id":  "slg-st-023",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show spanning-tree vlan 30\u0027 shows \u0027Bridge ID Priority 24606\u0027. Which priority was configured for the switch?",
+        "optionen":  [
+                         "24606",
+                         "28672",
+                         "30",
+                         "24576"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die angezeigte Priorität ist konfigurierte Priorität plus Extended System ID (VLAN-Nummer): 24576 + 30 = 24606."
+    },
+    {
+        "id":  "slg-st-024",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why can the STP bridge priority only be configured in multiples of 4096 on Cisco switches?",
+        "optionen":  [
+                         "The MAC address occupies the lower 12 bits of the priority field, leaving 4 bits for the priority",
+                         "IEEE requires the priority to be a multiple of the hello time multiplied by 2048",
+                         "4096 is the maximum number of VLANs",
+                         "12 bits of the 16-bit priority field carry the VLAN ID (extended system ID), leaving 4 bits for the priority"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Durch die Extended System ID stehen von den 16 Bit nur noch die oberen 4 Bit zur Verfügung – das ergibt 16 Werte von 0 bis 61440 in 4096er-Schritten."
+    },
+    {
+        "id":  "slg-st-025",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer enters \u0027spanning-tree vlan 10 priority 30000\u0027. What is the result?",
+        "optionen":  [
+                         "The command is rejected because the priority must be a multiple of 4096",
+                         "The switch rounds the value down to the nearest valid priority, 28672",
+                         "The priority is set to 30000 plus the VLAN ID",
+                         "The switch rounds the value up to the nearest valid priority, 32768"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Gültig sind nur 0–61440 in 4096er-Schritten. 30000 ist kein Vielfaches von 4096, deshalb nimmt IOS den Wert nicht an; möglich wären etwa 28672 oder 32768."
+    },
+    {
+        "id":  "slg-st-026",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The highest configurable STP bridge priority on a Cisco switch is ___.",
+        "optionen":  [
+                         "61440",
+                         "65535",
+                         "32768",
+                         "4094"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit 4 nutzbaren Bits und Schrittweite 4096 ist der höchste Wert 15 x 4096 = 61440; der Bereich reicht von 0 bis 61440."
+    },
+    {
+        "id":  "slg-st-027",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The current root bridge for VLAN 40 uses the default priority. Which priority does a switch set for VLAN 40 after \u0027spanning-tree vlan 40 root primary\u0027?",
+        "optionen":  [
+                         "28672",
+                         "4096",
+                         "24576",
+                         "0"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das Makro setzt 24576, wenn die aktuelle Root-Priorität höher als 24576 ist. 32768 ist höher, also wird 24576 eingetragen."
+    },
+    {
+        "id":  "slg-st-028",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The current root bridge for VLAN 50 has priority 16384. Which priority does SW2 set after \u0027spanning-tree vlan 50 root primary\u0027?",
+        "optionen":  [
+                         "8192",
+                         "12288",
+                         "16380",
+                         "24576"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Liegt die Root-Priorität schon unter 24576, setzt das Makro einen Wert 4096 unterhalb der aktuellen Root: 16384 - 4096 = 12288."
+    },
+    {
+        "id":  "slg-st-029",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which priority does \u0027spanning-tree vlan 10 root secondary\u0027 configure?",
+        "optionen":  [
+                         "24576",
+                         "32764",
+                         "28672",
+                         "36864"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Secondary setzt fest 28672 – niedriger als der Default 32768, aber höher als die 24576 des Primary-Makros. Der Switch kann die zweitbeste Priorität im Netz nicht kennen, 28672 ist eine Schätzung."
+    },
+    {
+        "id":  "slg-st-030",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The root bridge for VLAN 1 is configured with priority 0. What happens when you enter \u0027spanning-tree vlan 1 root primary\u0027 on another switch?",
+        "optionen":  [
+                         "The switch sets priority 0 and wins with a lower MAC address",
+                         "The command fails because it cannot set a priority 4096 lower than 0",
+                         "The switch sets priority 4096 and becomes the root",
+                         "The existing root lowers its priority automatically"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Das Makro müsste 4096 unter die Root-Priorität gehen. Bei Priorität 0 ist das unmöglich, daher schlägt der Befehl fehl und ändert nichts."
+    },
+    {
+        "id":  "slg-st-031",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer configured \u0027spanning-tree vlan 1 root primary\u0027. What appears in the running configuration?",
+        "optionen":  [
+                         "spanning-tree vlan 1 root primary",
+                         "Nothing – the macro is not saved",
+                         "spanning-tree vlan 1 priority 0",
+                         "spanning-tree vlan 1 priority 24576"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "root primary/secondary ist nur ein Makro, das einmalig einen Zahlenwert berechnet. In der Konfiguration steht deshalb die Priorität als Zahl, nicht das Schlüsselwort."
+    },
+    {
+        "id":  "slg-st-032",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two statements about the \u0027spanning-tree vlan X root primary\u0027 macro are true? (Choose two.)",
+        "optionen":  [
+                         "It calculates a priority value once and stores that number in the configuration",
+                         "It guarantees that the switch stays root permanently",
+                         "It does not react if another switch later gets a lower priority",
+                         "It always sets the priority to 0",
+                         "It also enables Root Guard on all designated ports"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "Das Makro schaut nur beim Ausführen auf die aktuelle Root und speichert eine feste Zahl. Konfiguriert später jemand eine niedrigere Priorität, verliert der Switch die Root-Rolle – das verhindert nur Root Guard."
+    },
+    {
+        "id":  "slg-st-033",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A technician connects a lab switch with priority 4096 to an access port. The current root for VLAN 10 has priority 24576. No STP protection is configured. What happens?",
+        "optionen":  [
+                         "The access port is err-disabled",
+                         "The lab switch becomes the new root bridge for VLAN 10",
+                         "The lab switch becomes the secondary root",
+                         "Nothing, because the existing root bridge keeps its role until reboot"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Root-Wahl läuft ständig weiter: Sobald eine bessere BID auftaucht, wird sie Root. Ohne Root Guard oder BPDU Guard kann so ein falscher Switch die gesamte Topologie umbauen."
+    },
+    {
+        "id":  "slg-st-034",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "All switches in a campus keep the default STP priority. Why is this a design problem?",
+        "optionen":  [
+                         "The switch with the lowest MAC, often an old access switch, may become root and cause suboptimal paths",
+                         "All switches become root for different VLANs randomly, so traffic paths change after each reboot",
+                         "STP falls back to CST mode, so all VLANs share one tree with a random root",
+                         "STP will not elect any root bridge"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bei gleicher Priorität gewinnt die niedrigste MAC – meist das älteste Gerät. Landet die Root im Access Layer, wird eventuell der Link zwischen den Distribution-Switches blockiert und Verkehr läuft über den Access-Switch."
+    },
+    {
+        "id":  "slg-st-035",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Access switch SW3 has become root bridge for VLAN 1, and distribution switches SW1 and SW2 are connected to each other and to SW3. What is the effect on traffic between SW1 and SW2?",
+        "optionen":  [
+                         "Traffic is load-balanced over both paths",
+                         "Traffic between SW1 and SW2 is dropped completely",
+                         "The SW1–SW2 link is blocked, so their traffic is forwarded through SW3",
+                         "Nothing changes because distribution links are never blocked"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Als Root hat SW3 nur Designated Ports. SW1 und SW2 nehmen ihre Uplinks zu SW3 als Root Ports, und auf dem SW1–SW2-Segment wird ein Port blockiert. Der Distribution-Verkehr läuft dann über den Access-Switch."
+    },
+    {
+        "id":  "slg-st-036",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three components make up the bridge ID on a Cisco switch running PVST+? (Choose three.)",
+        "optionen":  [
+                         "MAC address",
+                         "Management IP address",
+                         "Bridge priority",
+                         "Extended system ID (VLAN ID)",
+                         "Port priority"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Die BID besteht aus 4-Bit-Priorität, 12-Bit-Extended-System-ID (VLAN) und 48-Bit-MAC. Port-Priorität gehört zur Port ID, nicht zur Bridge ID."
+    },
+    {
+        "id":  "slg-st-037",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the long-method (802.1D-2004) STP path cost of a 10-Gbps link?",
+        "optionen":  [
+                         "2000",
+                         "200",
+                         "20,000",
+                         "2"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die lange Methode (aus IEEE 802.1t, in 802.1D-2004 übernommen) skaliert besser: 10 Mbit/s = 2.000.000, 100 Mbit/s = 200.000, 1 Gbit/s = 20.000, 10 Gbit/s = 2000. Der Short-Wert für 10 Gbit/s wäre 2."
+    },
+    {
+        "id":  "slg-st-038",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Link-Geschwindigkeit dem STP-Pfadkostenwert nach 802.1D-2004 (long) zu.",
+        "paare":  [
+                      [
+                          "10 Mbps",
+                          "2,000,000"
+                      ],
+                      [
+                          "100 Mbps",
+                          "200,000"
+                      ],
+                      [
+                          "1 Gbps",
+                          "20,000"
+                      ],
+                      [
+                          "10 Gbps",
+                          "2,000"
+                      ]
+                  ],
+        "erklaerung":  "Bei der langen Methode verringern sich die Kosten pro Verzehnfachung der Bandbreite um den Faktor 10. Je schneller der Link, desto niedriger die Kosten."
+    },
+    {
+        "id":  "slg-st-039",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Short path-cost method. Access switch AS1 connects with Gi0/1 (1 Gbps) directly to root bridge D1 and with Fa0/24 (100 Mbps) to D2. D2 connects to D1 over 10 Gbps. Which port is AS1\u0027s root port and what is its root path cost?",
+        "optionen":  [
+                         "Gi0/1, cost 4",
+                         "Fa0/24, cost 21",
+                         "Fa0/24, cost 19",
+                         "Gi0/1, cost 6"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Direkt über Gi0/1 kostet es 4. Über Fa0/24 summiert sich 19 (100 Mbit/s) + 2 (10 Gbit/s D2–D1) = 21. Der niedrigere Wert gewinnt: Gi0/1 mit Kosten 4."
+    },
+    {
+        "id":  "slg-st-040",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Long path-cost method. AS1 connects Gi1/0/1 (1 Gbps) directly to root D1 and Te1/1/1 (10 Gbps) to D2. D2 connects to D1 over 10 Gbps. Which port is AS1\u0027s root port?",
+        "optionen":  [
+                         "Te1/1/1, with root path cost 2000",
+                         "Te1/1/1, with root path cost 4000",
+                         "Gi1/0/1, with root path cost 4",
+                         "Gi1/0/1, with root path cost 20,000"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Direkt: 20.000. Über D2: 2000 + 2000 = 4000. Mit langer Methode ist der Umweg über zwei 10-G-Links billiger als der direkte 1-G-Link, daher wird Te1/1/1 Root Port."
+    },
+    {
+        "id":  "slg-st-041",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Same topology with the short path-cost method: AS1 Gi1/0/1 (1 Gbps) goes directly to root D1; Te1/1/1 (10 Gbps) goes to D2, and D2–D1 is 10 Gbps. Which port becomes root port and why?",
+        "optionen":  [
+                         "Te1/1/1, because 10-Gbps ports are always preferred regardless of path cost",
+                         "Gi1/0/1, because the direct path cost of 4 is lower than the 6 via D2",
+                         "Gi1/0/1, because both paths cost 4 and the sender bridge ID of D1 is lower than D2\u0027s",
+                         "Te1/1/1, because its local port number is higher"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Kurzmethode: direkt 4, über D2 2 + 2 = 4 – Gleichstand. Dann zählt die Sender-BID: Auf Gi1/0/1 sendet die Root D1 selbst, deren BID ist die beste im Netz, also gewinnt Gi1/0/1."
+    },
+    {
+        "id":  "slg-st-042",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A switch receives BPDUs on its root port (1 Gbps, short method cost 4) that advertise a root path cost of 8. Which root path cost does this switch advertise in its own BPDUs?",
+        "optionen":  [
+                         "12",
+                         "32",
+                         "4",
+                         "8"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die eigene Root Path Cost ist die empfangene Kosten plus die Kosten des eigenen Root Ports: 8 + 4 = 12. Diesen Wert trägt der Switch in die BPDUs auf seinen Designated Ports ein."
+    },
+    {
+        "id":  "slg-st-043",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Stelle global die STP-Pfadkostenberechnung auf die lange Methode (802.1D-2004) um.",
+        "bausteine":  [
+                          "spanning-tree",
+                          "pathcost",
+                          "method",
+                          "long",
+                          "cost",
+                          "short",
+                          "mode"
+                      ],
+        "loesung":  [
+                        "spanning-tree",
+                        "pathcost",
+                        "method",
+                        "long"
+                    ],
+        "erklaerung":  "\u0027spanning-tree pathcost method long\u0027 nutzt 32-Bit-Kosten, damit sich 10G/40G/100G-Links noch sinnvoll unterscheiden. Auf aktuellen Catalyst-9000-Switches ist long bereits Default; wichtig ist, dass alle Switches dieselbe Methode nutzen."
+    },
+    {
+        "id":  "slg-st-044",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "\u0027show spanning-tree\u0027 on SW3 shows under Root ID: \u0027Cost 100\u0027 and \u0027Port 4 (Ethernet0/3)\u0027. What does this tell you?",
+        "optionen":  [
+                         "SW3 is the root bridge and Et0/3 is its designated port",
+                         "Et0/3 is blocked with cost 100",
+                         "Et0/3 is the root bridge\u0027s port number 4",
+                         "Et0/3 is SW3\u0027s root port and SW3\u0027s total cost to the root is 100"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Im Root-ID-Block zeigt \u0027Cost\u0027 die gesamte Root Path Cost dieses Switches und \u0027Port\u0027 seinen Root Port. Auf der Root steht stattdessen \u0027This bridge is the root\u0027."
+    },
+    {
+        "id":  "slg-st-045",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Four switches form a ring: SW1–SW2, SW2–SW4, SW4–SW3, SW3–SW1, all 1 Gbps (cost 4). SW1 is root. SW2 has a lower bridge ID than SW3. Which port is SW4\u0027s root port?",
+        "optionen":  [
+                         "The port toward SW2",
+                         "No root port, because SW4 is two hops from the root",
+                         "The port toward SW3",
+                         "Both ports, load-balanced"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beide Wege kosten 8. Bei Kostengleichheit entscheidet die niedrigere Sender-BID – SW2 hat die bessere BID, also wird SW4s Port Richtung SW2 Root Port."
+    },
+    {
+        "id":  "slg-st-046",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Same ring (SW1 root; SW1–SW2, SW2–SW4, SW4–SW3, SW3–SW1, all cost 4; SW2 BID lower than SW3). Which port is blocked?",
+        "optionen":  [
+                         "SW3\u0027s port toward SW4",
+                         "SW3\u0027s port toward SW1",
+                         "SW2\u0027s port toward SW4",
+                         "SW4\u0027s port toward SW3"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Auf dem Segment SW3–SW4 hat SW3 Root Path Cost 4, SW4 hat 8 – SW3 ist designated. SW4s Port Richtung SW3 ist weder Root noch Designated und blockiert."
+    },
+    {
+        "id":  "slg-st-047",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Triangle SW1–SW2–SW3, all links equal cost. SW1 is root. SW2: priority 32768, MAC 0000.0000.0001. SW3: priority 28672, MAC ffff.ffff.fff0. Which port blocks on the SW2–SW3 segment?",
+        "optionen":  [
+                         "No port, because the costs are equal",
+                         "SW2\u0027s port toward SW3",
+                         "SW3\u0027s port toward SW2",
+                         "SW1\u0027s port toward SW2"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Beide haben gleiche Root Path Cost, also entscheidet die Sender-BID. Die Priorität kommt vor der MAC: 28672 schlägt 32768, SW3 ist designated, SW2 blockiert trotz kleinerer MAC."
+    },
+    {
+        "id":  "slg-st-048",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "SW1 is root. Two parallel links connect SW1 and SW2: SW1 Gi0/1 (port ID 128.1) to SW2 Gi0/2, and SW1 Gi0/2 (128.2) to SW2 Gi0/1. All costs are equal. Which SW2 port becomes root port?",
+        "optionen":  [
+                         "Gi0/1, because it receives BPDUs with sender port ID 128.2",
+                         "Gi0/2, because it receives BPDUs with the lower sender port ID 128.1",
+                         "Both ports, as an EtherChannel",
+                         "Gi0/1, because its local port number is lower"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Kosten und Sender-BID sind gleich, also entscheidet die Sender-Port-ID des Nachbarn – nicht die eigene Portnummer. SW2 Gi0/2 hört 128.1 und wird Root Port."
+    },
+    {
+        "id":  "slg-st-049",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "SW3 has two links to root SW2: SW3 Et0/1 connects to SW2 Et0/1 (port ID 128.2), SW3 Et0/2 connects to SW2 Et0/3 (128.4). Costs are equal, so Et0/1 is the root port. Which two changes make SW3 Et0/2 the root port? (Choose two.)",
+        "optionen":  [
+                         "Lower the STP cost on SW3 Et0/2",
+                         "Lower the port priority on SW3 Et0/1",
+                         "Lower the port priority on SW3 Et0/2",
+                         "Lower the port priority on SW2 Et0/3",
+                         "Raise the bridge priority value of SW3"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Niedrigere Kosten auf dem eigenen Port gewinnen schon im ersten Kriterium. Port-Priorität wirkt nur als Sender-Port-ID, muss also auf dem Upstream-Switch SW2 gesenkt werden – die Priorität auf SW3 selbst ändert die Wahl nicht."
+    },
+    {
+        "id":  "slg-st-050",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Root is SW2. SW3 Et0/1 (to SW2) is root port, SW3 Et0/3 connects to SW1, and SW1 Et0/1 (to SW3) is designated. All costs are 100. After \u0027spanning-tree vlan 1 cost 16\u0027 on SW3 Et0/2 (second link to SW2), which port blocks on the SW1–SW3 segment?",
+        "optionen":  [
+                         "SW3 Et0/3",
+                         "No port on that segment",
+                         "SW1 Et0/1",
+                         "SW3 Et0/1"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "SW3 hat jetzt Root Path Cost 16, SW1 weiterhin 100. Auf dem SW1–SW3-Segment wird SW3 Et0/3 designated, SW1 Et0/1 wird Alternate und blockiert. SW3 Et0/1 wird ebenfalls Alternate."
+    },
+    {
+        "id":  "slg-st-051",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Output on SW3:\nEt0/1  Altn BLK 100  128.2  Shr\nEt0/2  Altn BLK 100  128.3  Shr\nEt0/3  Root FWD 100  128.4  Shr\nWhich statement is correct?",
+        "optionen":  [
+                         "SW3 is not the designated switch on any of its connected segments",
+                         "SW3 is the root bridge for this VLAN",
+                         "Et0/1 and Et0/2 are backup ports for Et0/3 on the same segment",
+                         "SW3 forwards on three ports"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "SW3 hat nur einen Root Port und zwei Alternate-Ports, aber keinen Designated Port. Damit ist auf allen drei Segmenten ein anderer Switch designated."
+    },
+    {
+        "id":  "slg-st-052",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In \u0027show spanning-tree\u0027, a port shows \u0027Prio.Nbr 128.4\u0027. What is the 4?",
+        "optionen":  [
+                         "The port number",
+                         "The number of the neighbor switch",
+                         "The VLAN ID",
+                         "The port cost"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Port ID besteht aus Port-Priorität (Default 128) und Portnummer. 128.4 bedeutet Priorität 128, Port Nummer 4."
+    },
+    {
+        "id":  "slg-st-053",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus auf dem Upstream-Switch: Senke für VLAN 20 die Port-Priorität dieses Ports auf 64, damit der Nachbar diesen Link bevorzugt.",
+        "bausteine":  [
+                          "spanning-tree",
+                          "vlan",
+                          "20",
+                          "port-priority",
+                          "64",
+                          "cost",
+                          "priority"
+                      ],
+        "loesung":  [
+                        "spanning-tree",
+                        "vlan",
+                        "20",
+                        "port-priority",
+                        "64"
+                    ],
+        "erklaerung":  "\u0027spanning-tree vlan 20 port-priority 64\u0027 senkt die Port ID, die in den BPDUs dieses Ports steht. Der Nachbar bevorzugt dann bei Kostengleichheit den Link mit der niedrigeren Sender-Port-ID."
+    },
+    {
+        "id":  "slg-st-054",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "D1 is root for VLAN 10 and D2 is root for VLAN 20. Access switch AS1 has one uplink to D1 and one to D2. What is the state of AS1\u0027s uplink to D2 for VLAN 10?",
+        "optionen":  [
+                         "Disabled",
+                         "Blocking (alternate)",
+                         "Forwarding as designated port",
+                         "Forwarding as root port"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Für VLAN 10 führt der beste Weg direkt zu D1, also blockiert der Uplink zu D2. Für VLAN 20 ist es umgekehrt – so verteilt PVST+ die Last über beide Uplinks."
+    },
+    {
+        "id":  "slg-st-055",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den 802.1D-Port-State seinem Verhalten zu.",
+        "paare":  [
+                      [
+                          "Blocking",
+                          "Only receives BPDUs"
+                      ],
+                      [
+                          "Listening",
+                          "Sends and receives BPDUs, does not learn MACs"
+                      ],
+                      [
+                          "Learning",
+                          "Learns MAC addresses, does not forward data"
+                      ],
+                      [
+                          "Forwarding",
+                          "Forwards data frames and learns MACs"
+                      ]
+                  ],
+        "erklaerung":  "Die Zwischenzustände Listening und Learning verhindern, dass ein Port zu früh Daten weiterleitet. Erst im Forwarding-Zustand werden Nutzframes übertragen."
+    },
+    {
+        "id":  "slg-st-056",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In 802.1D with default timers, the root port of a switch goes down and the switch has a blocked port with a path to the root. How long until that port forwards?",
+        "optionen":  [
+                         "About 20 seconds",
+                         "About 50 seconds",
+                         "About 30 seconds",
+                         "About 1 second"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei direktem Linkausfall entfällt das Max-Age-Warten. Der Ersatzport durchläuft Listening (15 s) und Learning (15 s), also rund 30 s (2 x Forward Delay)."
+    },
+    {
+        "id":  "slg-st-057",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In 802.1D with default timers, a switch stops receiving BPDUs on its root port because of an indirect failure further upstream, while its own link stays up. How long until a blocked port can forward?",
+        "optionen":  [
+                         "About 50 seconds",
+                         "About 6 seconds",
+                         "About 30 seconds",
+                         "About 20 seconds"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bei indirektem Ausfall muss erst Max Age (20 s) ablaufen, bis die alte BPDU verfällt. Danach folgen Listening und Learning mit je 15 s: insgesamt rund 50 s."
+    },
+    {
+        "id":  "slg-st-058",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Debug output on SW3:\n18:24:45 STP: VLAN0001 Et0/1 -\u003e listening\n18:25:00 STP: VLAN0001 Et0/1 -\u003e learning\n18:25:15 STP: VLAN0001 Et0/1 -\u003e forwarding\nWhich timer determines the 15-second intervals?",
+        "optionen":  [
+                         "Hello time",
+                         "Max age",
+                         "Forward delay",
+                         "MAC aging time"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Forward Delay (Default 15 s) legt fest, wie lange ein Port in Listening und dann in Learning bleibt. Zusammen ergibt das die 30 s bis Forwarding."
+    },
+    {
+        "id":  "slg-st-059",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Where should STP timers be changed so that they take effect in the whole VLAN?",
+        "optionen":  [
+                         "On the root bridge, which propagates them in its BPDUs",
+                         "On every access switch, because timers are local",
+                         "On the switch with the most blocked ports",
+                         "On the secondary root only"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Nonroot-Switches übernehmen Hello, Forward Delay und Max Age aus den BPDUs der Root. Deshalb werden Timer – wenn überhaupt – auf der Root Bridge geändert."
+    },
+    {
+        "id":  "slg-st-060",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer configures \u0027spanning-tree vlan 10 hello-time 1\u0027 on a non-root access switch running PVST+. What is the effect on the VLAN 10 topology?",
+        "optionen":  [
+                         "The access switch\u0027s ports are err-disabled due to a hello timer mismatch with the root",
+                         "None while the switch is not root, because the switches use the timers in the root\u0027s BPDUs",
+                         "The access switch becomes root because of the shorter timer",
+                         "All switches in VLAN 10 start sending BPDUs every second"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "In 802.1D-basiertem STP gelten die Timer der Root Bridge. Ein lokal geänderter Hello-Timer greift erst, wenn dieser Switch selbst Root wird."
+    },
+    {
+        "id":  "slg-st-061",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which three timer values are within the configurable ranges on a Cisco switch? (Choose three.)",
+        "optionen":  [
+                         "spanning-tree vlan 10 forward-time 4",
+                         "spanning-tree vlan 10 hello-time 12",
+                         "spanning-tree vlan 10 forward-time 45",
+                         "spanning-tree vlan 10 max-age 6",
+                         "spanning-tree vlan 10 max-age 40"
+                     ],
+        "richtig":  [
+                        0,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Gültige Bereiche: Hello 1–10 s, Forward Delay 4–30 s, Max Age 6–40 s. Hello 12 und Forward Delay 45 liegen außerhalb."
+    },
+    {
+        "id":  "slg-st-062",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "With default 802.1D timers, a port keeps a received configuration BPDU for a max age of ___ seconds before it is considered stale.",
+        "optionen":  [
+                         "20",
+                         "10",
+                         "15",
+                         "6"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Max Age beträgt standardmäßig 20 s (10 Hello-Intervalle). Läuft es ab, ohne dass eine neue BPDU kam, verwirft der Port die gespeicherte Information."
+    },
+    {
+        "id":  "slg-st-063",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "By default, the root bridge generates configuration BPDUs every ___ seconds.",
+        "optionen":  [
+                         "1",
+                         "5",
+                         "10",
+                         "2"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Hello Time beträgt 2 s. In diesem Takt verschickt die Root Configuration-BPDUs, die die anderen Switches weitergeben."
+    },
+    {
+        "id":  "slg-st-064",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A PC on a switch port without PortFast often fails to get a DHCP address after boot, but works after a retry. What is the most likely cause?",
+        "optionen":  [
+                         "The PC uses a static IP address that conflicts with the DHCP pool",
+                         "The DHCP server is overloaded and drops the first requests",
+                         "The port spends about 30 seconds in listening and learning before forwarding",
+                         "The port is in the wrong native VLAN"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ohne PortFast durchläuft der Port nach Link-up erst Listening und Learning. In dieser Zeit verwirft er Daten, und die ersten DHCP-Discovers des PCs gehen verloren."
+    },
+    {
+        "id":  "slg-st-065",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die STP-Variante der Anzahl ihrer Spanning-Tree-Instanzen zu.",
+        "paare":  [
+                      [
+                          "802.1D (CST)",
+                          "One instance for all VLANs"
+                      ],
+                      [
+                          "PVST+",
+                          "One 802.1D instance per VLAN"
+                      ],
+                      [
+                          "Rapid PVST+",
+                          "One 802.1w instance per VLAN"
+                      ],
+                      [
+                          "MST (802.1s)",
+                          "One instance per group of VLANs"
+                      ]
+                  ],
+        "erklaerung":  "CST hat einen Baum für alles, PVST+ und Rapid PVST+ einen pro VLAN (klassisch bzw. schnell), MST fasst VLANs mit gleichem Pfadbedarf zu wenigen Instanzen zusammen."
+    },
+    {
+        "id":  "slg-st-066",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which spanning tree mode has the highest CPU and memory requirements on a switch with many VLANs?",
+        "optionen":  [
+                         "802.1D CST",
+                         "MST",
+                         "Rapid PVST+",
+                         "RSTP (802.1w, single instance)"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Rapid PVST+ betreibt eine RSTP-Instanz pro VLAN mit eigenen BPDUs und Berechnungen. MST braucht weniger, weil viele VLANs eine Instanz teilen; CST/RSTP mit nur einer Instanz am wenigsten."
+    },
+    {
+        "id":  "slg-st-067",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which drawback does a single spanning tree (CST) have in a network with many VLANs and two uplinks per access switch?",
+        "optionen":  [
+                         "It sends one BPDU per VLAN, which overloads the CPU",
+                         "All VLANs use the same path, so one uplink stays unused",
+                         "Each VLAN needs its own root bridge",
+                         "It cannot block any redundant links"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit nur einer Instanz blockiert für alle VLANs derselbe Port. Lastverteilung pro VLAN, wie sie PVST+ oder MST ermöglichen, ist nicht möglich."
+    },
+    {
+        "id":  "slg-st-068",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Zeile aus \u0027show spanning-tree\u0027 dem laufenden STP-Modus zu.",
+        "paare":  [
+                      [
+                          "Spanning tree enabled protocol ieee",
+                          "PVST+"
+                      ],
+                      [
+                          "Spanning tree enabled protocol rstp",
+                          "Rapid PVST+"
+                      ],
+                      [
+                          "Spanning tree enabled protocol mstp",
+                          "MST"
+                      ]
+                  ],
+        "erklaerung":  "\u0027ieee\u0027 steht für klassisches 802.1D pro VLAN (PVST+), \u0027rstp\u0027 für Rapid PVST+ und \u0027mstp\u0027 für Multiple Spanning Tree."
+    },
+    {
+        "id":  "slg-st-069",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "All switches are migrated to Rapid PVST+ except one legacy switch that still runs PVST+. What happens?",
+        "optionen":  [
+                         "The ports to the legacy switch are err-disabled because of a protocol mismatch in the BPDUs",
+                         "The whole network falls back to PVST+, and all switches lose rapid convergence",
+                         "Ports facing the legacy switch fall back to 802.1D behavior; the rest of the network keeps rapid convergence",
+                         "The legacy switch automatically converts to Rapid PVST+"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "RSTP ist abwärtskompatibel: Erkennt ein Port Legacy-BPDUs, arbeitet er dort im langsamen 802.1D-Modus. Schnelle Konvergenz gibt es nur zwischen RSTP-Switches."
+    },
+    {
+        "id":  "slg-st-070",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Stelle den Switch auf Rapid PVST+ um.",
+        "bausteine":  [
+                          "spanning-tree",
+                          "mode",
+                          "rapid-pvst",
+                          "rstp",
+                          "pvst",
+                          "mst"
+                      ],
+        "loesung":  [
+                        "spanning-tree",
+                        "mode",
+                        "rapid-pvst"
+                    ],
+        "erklaerung":  "\u0027spanning-tree mode rapid-pvst\u0027 aktiviert eine 802.1w-Instanz pro VLAN. Ein Schlüsselwort \u0027rstp\u0027 gibt es beim Mode-Befehl nicht."
+    },
+    {
+        "id":  "slg-st-071",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two RSTP port roles are in the discarding state in a stable topology? (Choose two.)",
+        "optionen":  [
+                         "Designated",
+                         "Backup",
+                         "Edge designated",
+                         "Root",
+                         "Alternate"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Root und Designated Ports leiten weiter. Alternate (Ersatzweg zur Root) und Backup (Ersatz für einen Designated Port am selben Segment) bleiben discarding, bis sie gebraucht werden."
+    },
+    {
+        "id":  "slg-st-072",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A switch has two ports connected to the same shared hub segment. One of them is designated for that segment. Which RSTP role does the other port get?",
+        "optionen":  [
+                         "Alternate",
+                         "Backup",
+                         "Edge",
+                         "Root"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein Backup Port empfängt bessere BPDUs vom eigenen Switch auf demselben Segment und sichert den Designated Port ab. Alternate Ports dagegen hören bessere BPDUs von einem anderen Switch."
+    },
+    {
+        "id":  "slg-st-073",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A switch running Rapid PVST+ shows \u0027Et0/1 Altn BLK\u0027. In which RSTP port state is the port?",
+        "optionen":  [
+                         "Listening",
+                         "Learning",
+                         "Discarding",
+                         "Blocking as a separate RSTP state"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "RSTP kennt nur discarding, learning und forwarding. Die Ausgabe zeigt aus Gewohnheit \u0027BLK\u0027, der Port ist aber im Zustand discarding."
+    },
+    {
+        "id":  "slg-st-074",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does RSTP automatically determine the link type of a nonedge port?",
+        "optionen":  [
+                         "Trunk ports are point-to-point, access ports are shared",
+                         "It uses CDP to count the neighbors",
+                         "Full-duplex ports are point-to-point, half-duplex ports are shared",
+                         "Ports above 100 Mbps are point-to-point"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "RSTP leitet den Link-Typ aus dem Duplex ab: Vollduplex bedeutet einen einzelnen Nachbarn (point-to-point), Halbduplex ein geteiltes Medium (shared). Manuell lässt sich das überschreiben."
+    },
+    {
+        "id":  "slg-st-075",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A designated port toward another RSTP switch runs in half duplex. What is the effect on its transition to forwarding?",
+        "optionen":  [
+                         "It becomes an edge port",
+                         "It transitions immediately because it is designated, regardless of the link type",
+                         "It cannot use the proposal/agreement handshake and falls back to timer-based transition",
+                         "It stays in discarding permanently"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der schnelle Proposal/Agreement-Mechanismus funktioniert für Designated Ports nur auf Point-to-Point-Links. Ein Shared-Link (Halbduplex) muss die Forward-Delay-Timer abwarten."
+    },
+    {
+        "id":  "slg-st-076",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus: Lege den RSTP-Link-Typ dieses Switch-zu-Switch-Ports manuell als Point-to-Point fest.",
+        "bausteine":  [
+                          "spanning-tree",
+                          "link-type",
+                          "point-to-point",
+                          "shared",
+                          "portfast",
+                          "p2p"
+                      ],
+        "loesung":  [
+                        "spanning-tree",
+                        "link-type",
+                        "point-to-point"
+                    ],
+        "erklaerung":  "\u0027spanning-tree link-type point-to-point\u0027 erzwingt den P2P-Typ, damit der Port Proposal/Agreement nutzen kann – sinnvoll, wenn er fälschlich als shared erkannt wird."
+    },
+    {
+        "id":  "slg-st-077",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den RSTP-Port-Typ seiner typischen Situation zu.",
+        "paare":  [
+                      [
+                          "Point-to-point",
+                          "Full-duplex link to exactly one other switch"
+                      ],
+                      [
+                          "Shared",
+                          "Half-duplex link to a hub with several switches"
+                      ],
+                      [
+                          "Edge",
+                          "Port toward an end host, configured with PortFast"
+                      ]
+                  ],
+        "erklaerung":  "Point-to-Point- und Edge-Ports können schnell in Forwarding gehen; Shared-Links müssen auf die klassischen Timer warten."
+    },
+    {
+        "id":  "slg-st-078",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In \u0027show spanning-tree\u0027, the Type column of an access port shows \u0027P2p Edge\u0027. What does this mean?",
+        "optionen":  [
+                         "The port is at the boundary of an MST region",
+                         "The port is a point-to-point port configured as an edge (PortFast) port",
+                         "The port received a BPDU and lost its edge status",
+                         "The port connects two switches over a point-to-point trunk"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027Edge\u0027 zeigt an, dass PortFast/Edge aktiv ist, \u0027P2p\u0027 den Vollduplex-Link-Typ. An einer Regionsgrenze stünde dagegen \u0027Bound\u0027."
+    },
+    {
+        "id":  "slg-st-079",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An RSTP switch receives a proposal on its new root port. What does it do before it sends the agreement?",
+        "optionen":  [
+                         "It moves all its nonedge designated ports to discarding (sync)",
+                         "It waits for one forward delay before sending the agreement",
+                         "It puts its edge ports into discarding",
+                         "It sends a TCN BPDU to the root"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beim Sync blockiert der Switch alle Nonedge-Designated-Ports, damit keine Schleife entstehen kann. Danach antwortet er mit Agreement, und der Upstream-Port darf sofort forwarden. Edge-Ports bleiben dabei unberührt."
+    },
+    {
+        "id":  "slg-st-080",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two conditions are required for an RSTP designated port toward another switch to move to forwarding without waiting for timers? (Choose two.)",
+        "optionen":  [
+                         "The port first waits twice the forward delay",
+                         "The link type is point-to-point",
+                         "The proposal/agreement handshake completes with the neighbor",
+                         "The neighbor runs 802.1D STP",
+                         "The link type is shared"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Schnelles Forwarding eines Designated Ports braucht einen P2P-Link und das Agreement des Nachbarn auf die Proposal. Bei shared Links oder einem 802.1D-Nachbarn fällt RSTP auf Timer zurück."
+    },
+    {
+        "id":  "slg-st-081",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "RSTP debug on SW3 after its root port Et0/2 goes down:\nRSTP(1): Et0/1 is now root port\nRSTP(1): syncing port Et0/3\nRSTP(1): transmitting a proposal on Et0/3\nRSTP(1): received superior bpdu on Et0/3\nRSTP(1): Et0/3 is now alternate\nWhat does the output show?",
+        "optionen":  [
+                         "SW3 became the root bridge",
+                         "Et0/3 became the new designated port after the forward delay, and Et0/1 took over as root port",
+                         "SW3 switched to its alternate path at once; the neighbor on Et0/3 had better information, so Et0/3 became alternate",
+                         "SW3 waited for max age before choosing a new root port"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Et0/1 übernimmt sofort als Root Port. SW3 schlägt auf Et0/3 die Designated-Rolle vor, bekommt aber eine bessere BPDU zurück – Et0/3 wird Alternate. Alles passiert innerhalb von Millisekunden."
+    },
+    {
+        "id":  "slg-st-082",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "RSTP (802.1w) BPDUs carry protocol version ___, which lets a neighbor detect that the sender runs RSTP.",
+        "optionen":  [
+                         "3",
+                         "0",
+                         "2",
+                         "1"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "802.1D-BPDUs haben Version 0, RSTP-BPDUs Version 2, MST-BPDUs Version 3. Empfängt ein RSTP-Port Version-0-BPDUs, schaltet er in den Legacy-Kompatibilitätsmodus."
+    },
+    {
+        "id":  "slg-st-083",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A network has VLANs 1–1000. VLANs 1–500 should use one uplink and VLANs 501–1000 the other. How many user-defined MST instances (MSTIs) are needed?",
+        "optionen":  [
+                         "2",
+                         "1",
+                         "500",
+                         "1000"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Es gibt nur zwei gewünschte Pfade, also reichen zwei MSTIs (jeweils eine VLAN-Gruppe). Dazu läuft immer die IST (MST0). Mit PVST+ wären es 1000 Instanzen."
+    },
+    {
+        "id":  "slg-st-084",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Switches run PVST+ with VLANs 1–5. After migrating to MST with VLANs 2–3 in instance 1 and VLANs 4–5 in instance 2, how many instances does \u0027show spanning-tree summary\u0027 list?",
+        "optionen":  [
+                         "1 (the IST)",
+                         "5 (one per VLAN)",
+                         "2 (MST1, MST2)",
+                         "3 (MST0, MST1, MST2)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Neben den zwei konfigurierten Instanzen läuft immer MST0, die IST, die hier VLAN 1 und alle anderen nicht zugeordneten VLANs trägt. Vorher waren es fünf PVST+-Instanzen."
+    },
+    {
+        "id":  "slg-st-085",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "How does an MST switch find out whether a neighbor uses the same VLAN-to-instance mapping?",
+        "optionen":  [
+                         "It reads the full VLAN mapping table from the neighbor\u0027s BPDU",
+                         "It queries the neighbor through VTP",
+                         "It compares the configuration digest in the received BPDU with its own",
+                         "It compares the number of instances listed in CDP"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die BPDU enthält Name, Revision und nur einen Digest (Hash) der 4096 Einträge großen Zuordnungstabelle. Weicht der Digest ab, liegt der Port an einer Regionsgrenze."
+    },
+    {
+        "id":  "slg-st-086",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "SW1 and SW2 have the same MST name and identical VLAN-to-instance mappings. SW1 uses revision 1, SW2 uses revision 2. What is the result?",
+        "optionen":  [
+                         "They are in the same region because the mappings match",
+                         "The higher revision is copied to SW1 automatically",
+                         "SW2 overwrites SW1\u0027s configuration",
+                         "They are in different MST regions"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Name, Revision und Zuordnung müssen alle übereinstimmen. Unterschiedliche Revisionsnummern reichen, damit beide Switches sich gegenseitig als fremde Region sehen."
+    },
+    {
+        "id":  "slg-st-087",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer adds VLAN 6 to MST instance 2 on all switches. What happens to the configuration revision number?",
+        "optionen":  [
+                         "It increases by 1 automatically, like the VTP revision",
+                         "It is replaced by the new digest",
+                         "Nothing – it changes only if the engineer changes it manually",
+                         "It resets to 0"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Anders als bei VTP zählt die MST-Revision nicht automatisch hoch. Sie dient zur Nachverfolgung und muss auf allen Switches der Region manuell gleich gesetzt werden."
+    },
+    {
+        "id":  "slg-st-088",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "SW1 shows \u0027Name [CCNP]\u0027, SW2 shows \u0027Name [ccnp]\u0027. Revision and VLAN mappings are identical. Are they in the same MST region?",
+        "optionen":  [
+                         "No, because the region name is case-sensitive",
+                         "No, because the revision must be different for each switch",
+                         "Yes, because only the digest is compared",
+                         "Yes, because names are not case-sensitive"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der MST-Regionsname wird exakt verglichen, Groß- und Kleinschreibung zählt. \u0027CCNP\u0027 und \u0027ccnp\u0027 ergeben zwei Regionen."
+    },
+    {
+        "id":  "slg-st-089",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show spanning-tree mst configuration digest\u0027 shows the same name and revision on SW1 and SW2, but different digests. What is the cause?",
+        "optionen":  [
+                         "The VLAN-to-instance mappings differ",
+                         "The bridge priorities differ",
+                         "The port costs differ",
+                         "One switch uses the long path-cost method"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Digest wird nur aus der VLAN-Instanz-Tabelle berechnet. Unterschiedliche Digests bei gleichem Namen und gleicher Revision bedeuten unterschiedliche VLAN-Listen."
+    },
+    {
+        "id":  "slg-st-090",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Switch1 and Switch2 are connected by two access links: one in VLAN 10 (mapped to MST0) and one in VLAN 20 (mapped to MST1). VLAN 10 traffic between the switches fails although there is no loop. Why?",
+        "optionen":  [
+                         "MST1 blocks all traffic for VLAN 10 because it has the better root path",
+                         "Access ports cannot carry MST BPDUs",
+                         "The IST runs on both links and blocks one of them, possibly the VLAN 10 link",
+                         "MST does not support VLAN 10"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "MST schickt nur eine BPDU, die IST-BPDU, und die IST ist auf allen Ports der Region aktiv. Switch2 sieht zwei Wege für MST0 und blockiert einen – im Pech-Fall genau den VLAN-10-Link."
+    },
+    {
+        "id":  "slg-st-091",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three practices are recommended for MST? (Choose three.)",
+        "optionen":  [
+                         "Use access links between switches, one per VLAN",
+                         "Map every VLAN to its own instance",
+                         "Avoid mapping user VLANs to the IST (instance 0)",
+                         "Connect switches with trunks that allow all VLANs",
+                         "Do not manually prune VLANs from inter-switch trunks"
+                     ],
+        "richtig":  [
+                        2,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Jede Instanz läuft auf jedem Link der Region. Pruning oder Access-Links zwischen Switches führen dazu, dass ein blockierter Link genau das VLAN abschneidet. Einzelne Instanzen pro VLAN widersprechen dem Sinn von MST."
+    },
+    {
+        "id":  "slg-st-092",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In an MST region, VLAN 10 (instance 1) is pruned from trunk A but allowed on trunk B. MST instance 1 forwards on trunk A and blocks trunk B. What is the result for VLAN 10?",
+        "optionen":  [
+                         "MST creates a separate instance for VLAN 10",
+                         "VLAN 10 traffic is cut off between the switches",
+                         "Trunk A is err-disabled",
+                         "VLAN 10 automatically uses trunk B"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "MST berechnet die Topologie pro Instanz, nicht pro VLAN. Instanz 1 blockiert Trunk B, auf Trunk A ist VLAN 10 aber gepruned – so gibt es für VLAN 10 keinen Weg."
+    },
+    {
+        "id":  "slg-st-093",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Wechsle in den MST-Konfigurationsmodus.",
+        "bausteine":  [
+                          "spanning-tree",
+                          "mst",
+                          "configuration",
+                          "mode",
+                          "region",
+                          "instance"
+                      ],
+        "loesung":  [
+                        "spanning-tree",
+                        "mst",
+                        "configuration"
+                    ],
+        "erklaerung":  "\u0027spanning-tree mst configuration\u0027 öffnet den config-mst-Modus, in dem name, revision und instance-Zuordnungen gesetzt werden."
+    },
+    {
+        "id":  "slg-st-094",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "MST-Konfigurationsmodus (config-mst): Ordne die VLANs 2 und 3 der Instanz 1 zu.",
+        "bausteine":  [
+                          "instance",
+                          "1",
+                          "vlan",
+                          "2,3",
+                          "vlans",
+                          "mst",
+                          "map"
+                      ],
+        "loesung":  [
+                        "instance",
+                        "1",
+                        "vlan",
+                        "2,3"
+                    ],
+        "erklaerung":  "\u0027instance 1 vlan 2,3\u0027 mappt die VLANs. Die Änderung wird erst beim Verlassen mit exit oder end wirksam."
+    },
+    {
+        "id":  "slg-st-095",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Mache diesen Switch zur sekundären Root Bridge für MST-Instanz 1.",
+        "bausteine":  [
+                          "spanning-tree",
+                          "mst",
+                          "1",
+                          "root",
+                          "secondary",
+                          "primary",
+                          "vlan",
+                          "priority"
+                      ],
+        "loesung":  [
+                        "spanning-tree",
+                        "mst",
+                        "1",
+                        "root",
+                        "secondary"
+                    ],
+        "erklaerung":  "\u0027spanning-tree mst 1 root secondary\u0027 setzt die MST-Priorität dieser Instanz per Makro auf einen Zahlenwert, der in der running-config als priority erscheint."
+    },
+    {
+        "id":  "slg-st-096",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why should the VLAN-to-instance mapping be finished before entering \u0027spanning-tree mode mst\u0027?",
+        "optionen":  [
+                         "The switch reboots after the mode change",
+                         "MST mode cannot be entered once VLANs exist on the switch",
+                         "Every mapping change in MST mode triggers a recalculation of the spanning tree",
+                         "The mapping is ignored once MST mode is active until the switch reloads"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Läuft MST bereits, erzwingt jede Mapping-Änderung eine Neuberechnung mit kurzer Unterbrechung. Deshalb erst Region und Zuordnung vorbereiten, dann den Modus umschalten."
+    },
+    {
+        "id":  "slg-st-097",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "In MST configuration mode, the command ___ leaves the mode and discards the pending changes.",
+        "optionen":  [
+                         "abort",
+                         "end",
+                         "exit",
+                         "no instance"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "exit und end übernehmen die ausstehende Konfiguration, abort verwirft sie. Vorher lässt sich mit \u0027show pending\u0027 prüfen, was übernommen würde."
+    },
+    {
+        "id":  "slg-st-098",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In MST configuration mode, which command shows the changes that are not yet applied?",
+        "optionen":  [
+                         "show pending",
+                         "show spanning-tree mst",
+                         "show running-config",
+                         "show current"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027show pending\u0027 zeigt die bearbeitete, noch nicht aktive Konfiguration, \u0027show current\u0027 die gerade gültige. Nach exit/end sind beide gleich."
+    },
+    {
+        "id":  "slg-st-099",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Befehl im MST-Konfigurationsmodus seiner Wirkung zu.",
+        "paare":  [
+                      [
+                          "name CCNP",
+                          "Sets the MST region name"
+                      ],
+                      [
+                          "revision 1",
+                          "Sets the configuration revision number"
+                      ],
+                      [
+                          "instance 2 vlan 4,5",
+                          "Maps VLANs to an MST instance"
+                      ],
+                      [
+                          "show current",
+                          "Displays the MST configuration currently in effect"
+                      ]
+                  ],
+        "erklaerung":  "Name, Revision und VLAN-Zuordnung bilden zusammen die Regionskennung. \u0027show current\u0027 zeigt die aktive, \u0027show pending\u0027 die bearbeitete Version."
+    },
+    {
+        "id":  "slg-st-100",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "SW1 is root for MST 1. On SW3, Et0/3 goes directly to SW1 (cost 2,000,000) and Et0/2 goes to SW2 (cost 2,000,000), and SW2 reaches SW1 over a link with cost 2,000,000. After \u0027spanning-tree mst 1 cost 1000000\u0027 on SW3 Et0/2, Et0/2 is still alternate. Why?",
+        "optionen":  [
+                         "Port cost is ignored in MST; only port priority and port ID count",
+                         "The path via Et0/2 totals 3,000,000, which is higher than 2,000,000 via Et0/3",
+                         "Et0/2 must be shut and re-enabled to apply the cost",
+                         "The cost change only applies to MST 0"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Entscheidend ist die gesamte Root Path Cost: über SW2 sind es 1.000.000 + 2.000.000 = 3.000.000, direkt nur 2.000.000. Selbst Kosten 1 auf Et0/2 ergäben noch 2.000.001 – um den Weg über SW2 zu bevorzugen, müsste man Et0/3 teurer machen."
+    },
+    {
+        "id":  "slg-st-101",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus: Setze die STP-Kosten dieses Ports nur für MST-Instanz 1 auf 1000000.",
+        "bausteine":  [
+                          "spanning-tree",
+                          "mst",
+                          "1",
+                          "cost",
+                          "1000000",
+                          "vlan",
+                          "port-priority"
+                      ],
+        "loesung":  [
+                        "spanning-tree",
+                        "mst",
+                        "1",
+                        "cost",
+                        "1000000"
+                    ],
+        "erklaerung":  "In MST werden Kosten und Port-Priorität pro Instanz gesetzt. So kann derselbe Link in Instanz 1 bevorzugt werden und in Instanz 2 nicht."
+    },
+    {
+        "id":  "slg-st-102",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The MST port priority (spanning-tree mst \u003cinstance\u003e port-priority) can be set from 0 to 240 in increments of ___.",
+        "optionen":  [
+                         "8",
+                         "32",
+                         "16",
+                         "4096"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Port-Priorität ist 4 Bit groß und wird in 16er-Schritten gesetzt (Default 128). Die 4096er-Schritte gelten für die Bridge-Priorität."
+    },
+    {
+        "id":  "slg-st-103",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In \u0027show spanning-tree mst 1\u0027, a 10-Mbps Ethernet port shows a cost of 2000000. Why is the value so large?",
+        "optionen":  [
+                         "The port is a backup port",
+                         "The port is in err-disabled state",
+                         "MST uses the long (32-bit) path-cost method",
+                         "The cost is multiplied by the instance number"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "MST rechnet mit den langen 802.1D-2004-Kosten, dort sind 10 Mbit/s = 2.000.000. Im PVST+-Lab mit Kurzmethode zeigte derselbe Port 100."
+    },
+    {
+        "id":  "slg-st-104",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An MST region runs three instances. How many BPDUs does a switch send per port per hello interval?",
+        "optionen":  [
+                         "One per VLAN mapped to an instance",
+                         "Three, one per instance, each with its own BPDU",
+                         "One BPDU that carries the IST and all MSTI information",
+                         "None on trunk ports"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "MST verschickt nur eine BPDU (die IST-BPDU), in der die Informationen aller MSTIs als zusätzliche Records stecken. Deshalb ist die IST auf jedem Port aktiv."
+    },
+    {
+        "id":  "slg-st-105",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "How does an MST region appear to switches outside the region, such as 802.1D or RSTP bridges?",
+        "optionen":  [
+                         "As a single virtual bridge",
+                         "It is invisible, because MST BPDUs are not sent at the boundary",
+                         "As a separate bridge per VLAN",
+                         "As one bridge per MSTI"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Nach außen spricht die Region nur über die IST/CIST und verhält sich wie eine große Bridge. Interne MSTIs sind außerhalb der Region nicht sichtbar."
+    },
+    {
+        "id":  "slg-st-106",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer configures \u0027spanning-tree mst 2 priority 28672\u0027. Which bridge priority does \u0027show spanning-tree mst 2\u0027 display?",
+        "optionen":  [
+                         "28674",
+                         "30720",
+                         "28674 for MST 2 and 28672 for MST 0",
+                         "28672"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Auch bei MST enthält die BID eine System-ID-Erweiterung – hier die Instanznummer. 28672 + 2 = 28674."
+    },
+    {
+        "id":  "slg-st-107",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Can a Cisco switch run MST and Rapid PVST+ at the same time?",
+        "optionen":  [
+                         "Yes, per interface",
+                         "No, only one spanning tree mode can be active globally",
+                         "Yes, MST for trunks and Rapid PVST+ for access ports",
+                         "Yes, per VLAN"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Modus wird global mit \u0027spanning-tree mode\u0027 gesetzt. Zu Nachbarn mit anderem Modus arbeitet der Switch kompatibel, betreibt selbst aber nur einen Modus."
+    },
+    {
+        "id":  "slg-st-108",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A campus has 800 VLANs and two distribution switches. What is the main benefit of MST compared to Rapid PVST+?",
+        "optionen":  [
+                         "It eliminates the need for redundant links",
+                         "Faster convergence than any RSTP variant, even on shared links",
+                         "Fewer spanning tree instances, so less CPU load and fewer BPDUs",
+                         "No need to configure a root bridge"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Statt 800 Instanzen reichen bei zwei Pfaden zwei MSTIs plus IST. MST konvergiert genauso schnell wie RSTP, spart aber Rechenlast."
+    },
+    {
+        "id":  "slg-st-109",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three statements about the MST IST are true? (Choose three.)",
+        "optionen":  [
+                         "It carries only VLAN 1",
+                         "It is active on all ports in the region, trunk or access",
+                         "VLANs not mapped to any MSTI belong to it",
+                         "Each MSTI sends its own BPDUs separately from the IST",
+                         "It is MST instance 0"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Die IST ist Instanz 0, läuft auf allen Ports und nimmt alle nicht zugeordneten VLANs auf. MSTI-Informationen reisen in der IST-BPDU mit, eigene BPDUs gibt es pro Instanz nicht."
+    },
+    {
+        "id":  "slg-st-110",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "The MST region (configuration) name can be up to ___ characters long.",
+        "optionen":  [
+                         "32",
+                         "8",
+                         "64",
+                         "16"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Name umfasst bis zu 32 Byte, die Revision ist ein 2-Byte-Wert. Beide müssen mit der VLAN-Zuordnung in der Region übereinstimmen."
+    },
+    {
+        "id":  "slg-st-111",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den MST-Begriff seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "IST",
+                          "Instance 0, active on all ports of the region"
+                      ],
+                      [
+                          "MSTI",
+                          "User-defined instance for a group of VLANs"
+                      ],
+                      [
+                          "MST region",
+                          "Switches with the same name, revision and VLAN mapping"
+                      ],
+                      [
+                          "Configuration digest",
+                          "Hash of the VLAN-to-instance table sent in BPDUs"
+                      ]
+                  ],
+        "erklaerung":  "Die Region wird über Name, Revision und Digest erkannt. Darin läuft immer die IST, dazu beliebig viele konfigurierte MSTIs."
+    },
+    {
+        "id":  "slg-st-112",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What does PortFast change on an access port?",
+        "optionen":  [
+                         "The port stops sending BPDUs and ignores received ones",
+                         "The port no longer participates in MAC learning",
+                         "The port moves directly to forwarding without listening and learning",
+                         "The port gets a lower STP cost"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "PortFast überspringt Listening und Learning, damit Endgeräte sofort arbeiten können. Der Port sendet weiterhin BPDUs."
+    },
+    {
+        "id":  "slg-st-113",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Modus (Access-Port zu einem PC): Aktiviere PortFast.",
+        "bausteine":  [
+                          "spanning-tree",
+                          "portfast",
+                          "bpduguard",
+                          "enable",
+                          "default",
+                          "trunk"
+                      ],
+        "loesung":  [
+                        "spanning-tree",
+                        "portfast"
+                    ],
+        "erklaerung":  "\u0027spanning-tree portfast\u0027 im Interface-Modus aktiviert PortFast für diesen Access-Port. \u0027trunk\u0027 wäre nur für Trunks zu Servern/Hypervisoren nötig."
+    },
+    {
+        "id":  "slg-st-114",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus: Aktiviere BPDU Guard auf diesem Port.",
+        "bausteine":  [
+                          "spanning-tree",
+                          "bpduguard",
+                          "enable",
+                          "portfast",
+                          "guard",
+                          "root",
+                          "default"
+                      ],
+        "loesung":  [
+                        "spanning-tree",
+                        "bpduguard",
+                        "enable"
+                    ],
+        "erklaerung":  "\u0027spanning-tree bpduguard enable\u0027 setzt den Port in err-disabled, sobald dort eine BPDU ankommt. Das Interface-Kommando wirkt unabhängig davon, ob PortFast aktiv ist."
+    },
+    {
+        "id":  "slg-st-115",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Aktiviere BPDU Guard für alle Ports, auf denen PortFast aktiv ist.",
+        "bausteine":  [
+                          "spanning-tree",
+                          "portfast",
+                          "bpduguard",
+                          "default",
+                          "enable",
+                          "interface",
+                          "all"
+                      ],
+        "loesung":  [
+                        "spanning-tree",
+                        "portfast",
+                        "bpduguard",
+                        "default"
+                    ],
+        "erklaerung":  "\u0027spanning-tree portfast bpduguard default\u0027 gilt global für alle operativen PortFast-Ports. Für einzelne Ports ohne PortFast braucht man das Interface-Kommando."
+    },
+    {
+        "id":  "slg-st-116",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "PortFast is enabled with \u0027spanning-tree portfast default\u0027. \u0027show running-config interface Gi1/0/5\u0027 does not show PortFast. How do you verify that PortFast is active on Gi1/0/5?",
+        "optionen":  [
+                         "show spanning-tree root",
+                         "show interfaces Gi1/0/5 switchport",
+                         "show running-config | include bpduguard",
+                         "show spanning-tree interface Gi1/0/5 portfast"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Global aktiviertes PortFast erscheint nicht in der Interface-Konfiguration. \u0027show spanning-tree interface ... portfast\u0027 berücksichtigt globale und Interface-Einstellungen."
+    },
+    {
+        "id":  "slg-st-117",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two commands show whether PortFast and BPDU Guard are enabled globally? (Choose two.)",
+        "optionen":  [
+                         "show spanning-tree summary",
+                         "show interfaces status",
+                         "show running-config interface Gi1/0/5",
+                         "show running-config | include portfast",
+                         "show spanning-tree root"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "\u0027show spanning-tree summary\u0027 zeigt \u0027Portfast Default\u0027 und \u0027PortFast BPDU Guard Default\u0027. Der include-Filter auf die running-config zeigt die globalen Zeilen (portfast default, portfast bpduguard default); die Interface-Konfiguration enthält globale Einstellungen dagegen nicht."
+    },
+    {
+        "id":  "slg-st-118",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027spanning-tree portfast bpduguard default\u0027 is configured. Gi1/0/48 is a trunk without PortFast and receives BPDUs from a neighbor switch. What happens?",
+        "optionen":  [
+                         "Gi1/0/48 goes into root-inconsistent state and blocks the VLANs",
+                         "Gi1/0/48 is err-disabled",
+                         "Nothing, because global BPDU Guard applies only to PortFast-enabled ports",
+                         "Gi1/0/48 loses its trunk status"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der globale BPDU Guard greift nur auf Ports, die operativ PortFast haben. Ein normaler Trunk zwischen Switches darf weiter BPDUs empfangen."
+    },
+    {
+        "id":  "slg-st-119",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An access port has \u0027spanning-tree bpduguard enable\u0027 but no PortFast. A BPDU arrives on the port. What happens?",
+        "optionen":  [
+                         "The port goes into loop-inconsistent state",
+                         "The port becomes an alternate port",
+                         "Nothing, because BPDU Guard requires PortFast",
+                         "The port is err-disabled"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Auf Interface-Ebene konfiguriert wirkt BPDU Guard unabhängig von PortFast. Jede empfangene BPDU führt zu err-disabled."
+    },
+    {
+        "id":  "slg-st-120",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The log shows:\n%SPANTREE-2-BLOCK_BPDUGUARD: Received BPDU on port Gi1/0/7 with BPDU Guard enabled. Disabling port.\n%PM-4-ERR_DISABLE: bpduguard error detected on Gi1/0/7, putting Gi1/0/7 in err-disable state\nWhat is the most likely cause?",
+        "optionen":  [
+                         "The PC on Gi1/0/7 has a duplex mismatch",
+                         "A device that sends BPDUs, such as a switch, was connected to Gi1/0/7",
+                         "Gi1/0/7 stopped receiving BPDUs from its designated switch",
+                         "A superior BPDU from the root bridge arrived on a trunk with Root Guard"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "BPDU Guard reagiert auf jede BPDU an einem geschützten Port. Am Benutzerport heißt das: Jemand hat einen Switch (oder ein BPDU sendendes Gerät) angeschlossen."
+    },
+    {
+        "id":  "slg-st-121",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Sorge dafür, dass von BPDU Guard deaktivierte Ports nach Ablauf des Recovery-Intervalls automatisch wieder aktiviert werden.",
+        "bausteine":  [
+                          "errdisable",
+                          "recovery",
+                          "cause",
+                          "bpduguard",
+                          "interval",
+                          "spanning-tree",
+                          "enable"
+                      ],
+        "loesung":  [
+                        "errdisable",
+                        "recovery",
+                        "cause",
+                        "bpduguard"
+                    ],
+        "erklaerung":  "\u0027errdisable recovery cause bpduguard\u0027 schaltet die automatische Wiederherstellung für diesen Grund ein. Ist das Fremdgerät noch dran, wird der Port bei der nächsten BPDU sofort wieder err-disabled."
+    },
+    {
+        "id":  "slg-st-122",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which command lists all ports in err-disabled state together with the reason?",
+        "optionen":  [
+                         "show interfaces status err-disabled",
+                         "show spanning-tree summary",
+                         "show spanning-tree inconsistentports",
+                         "show errdisable recovery"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027show interfaces status err-disabled\u0027 zeigt Port und Ursache (z. B. bpduguard). \u0027inconsistentports\u0027 listet dagegen root- oder loop-inconsistente Ports, die nicht err-disabled sind."
+    },
+    {
+        "id":  "slg-st-123",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does the interface command \u0027switchport host\u0027 configure?",
+        "optionen":  [
+                         "Trunk mode with PortFast trunk",
+                         "Access mode, PortFast and disabled EtherChannel negotiation",
+                         "Access mode with BPDU Guard and Root Guard enabled",
+                         "Port security with one MAC address"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027switchport host\u0027 ist ein Makro für Endgeräteports: switchport mode access, spanning-tree portfast und kein Channeling. BPDU Guard muss man separat aktivieren."
+    },
+    {
+        "id":  "slg-st-124",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three statements about PortFast are true? (Choose three.)",
+        "optionen":  [
+                         "It disables STP completely on the port",
+                         "It is intended for ports connected to hosts and servers",
+                         "In RSTP, a PortFast (edge) port does not generate topology changes",
+                         "\u0027spanning-tree portfast default\u0027 enables it on all trunk ports",
+                         "A PortFast port still sends BPDUs"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "PortFast verkürzt nur den Weg zu Forwarding; STP bleibt aktiv und der Port sendet BPDUs. Edge-Ports lösen keine TCs aus. Der globale Befehl gilt für Nicht-Trunk-Ports."
+    },
+    {
+        "id":  "slg-st-125",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027spanning-tree portfast bpdufilter default\u0027 is configured globally. A PortFast port receives a BPDU. What happens?",
+        "optionen":  [
+                         "The BPDU is silently ignored and the port keeps forwarding",
+                         "The port goes into root-inconsistent state",
+                         "The port is err-disabled",
+                         "The port loses its PortFast status and BPDU filtering and runs normal STP"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Global aktiviert unterdrückt BPDU Filter nur das Senden auf PortFast-Ports. Kommt eine BPDU an, verliert der Port PortFast und Filter und nimmt wieder normal an STP teil."
+    },
+    {
+        "id":  "slg-st-126",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027spanning-tree bpdufilter enable\u0027 is configured on an interface that connects to another switch. What is the risk?",
+        "optionen":  [
+                         "The neighbor becomes root bridge",
+                         "The port neither sends nor processes BPDUs, which works like disabling STP there and can create a loop",
+                         "The port becomes a backup port",
+                         "The port is err-disabled as soon as the neighbor sends its first BPDU on the link"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Auf Interface-Ebene ignoriert BPDU Filter eingehende BPDUs und sendet keine. STP sieht den Nachbarn nicht mehr und kann redundante Pfade nicht blockieren – deshalb rät Cisco davon ab."
+    },
+    {
+        "id":  "slg-st-128",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die STP-Schutzfunktion ihrer Reaktion zu.",
+        "paare":  [
+                      [
+                          "BPDU Guard",
+                          "Err-disables the port when any BPDU arrives"
+                      ],
+                      [
+                          "Root Guard",
+                          "Puts the port in root-inconsistent state on a superior BPDU"
+                      ],
+                      [
+                          "Loop Guard",
+                          "Puts the port in loop-inconsistent state when BPDUs stop arriving"
+                      ],
+                      [
+                          "BPDU Filter",
+                          "Stops sending and processing BPDUs on the port"
+                      ]
+                  ],
+        "erklaerung":  "BPDU Guard schützt Host-Ports, Root Guard die Position der Root, Loop Guard gegen ausbleibende BPDUs (z. B. unidirektionale Links). BPDU Filter ist kein echter Schutz, sondern unterdrückt BPDUs."
+    },
+    {
+        "id":  "slg-st-129",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Users in an office keep plugging small switches into wall ports. Which feature should you enable on these access ports so that the port is shut down when that happens?",
+        "optionen":  [
+                         "Root Guard",
+                         "BPDU Filter",
+                         "Loop Guard",
+                         "BPDU Guard"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein angeschlossener Switch sendet BPDUs. BPDU Guard erkennt das und setzt den Port in err-disabled. Root Guard würde nur bei superioren BPDUs blockieren und den Port nicht abschalten."
+    },
+    {
+        "id":  "slg-st-130",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An attacker connects a device that sends BPDUs with a very low bridge ID. Without protection, what does the attacker gain?",
+        "optionen":  [
+                         "All switch ports are err-disabled",
+                         "The device becomes root, so traffic between switches can flow through it (man-in-the-middle)",
+                         "The attacker learns the VTP password",
+                         "The attacker gets the management IP and VTP domain of every switch in the VLAN"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Wird das Gerät Root, baut STP den Baum um das Gerät herum auf. Verkehr zwischen Switches kann dann darüber laufen und mitgelesen, verändert oder gestört werden."
+    },
+    {
+        "id":  "slg-st-131",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On which ports should Root Guard be configured?",
+        "optionen":  [
+                         "On designated ports facing switches that must never become root, such as distribution ports toward access switches",
+                         "On all ports of the secondary root bridge, including the uplinks toward the primary root switch",
+                         "On the root ports of access switches",
+                         "Only on ports connected to end hosts"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Root Guard gehört an die Stellen, hinter denen nie die Root liegen darf, typischerweise auf Distribution-Ports Richtung Access. So bleibt die Root dort, wo sie geplant ist."
+    },
+    {
+        "id":  "slg-st-132",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Modus: Aktiviere Root Guard auf diesem Port.",
+        "bausteine":  [
+                          "spanning-tree",
+                          "guard",
+                          "root",
+                          "loop",
+                          "bpduguard",
+                          "enable"
+                      ],
+        "loesung":  [
+                        "spanning-tree",
+                        "guard",
+                        "root"
+                    ],
+        "erklaerung":  "\u0027spanning-tree guard root\u0027 verhindert, dass über diesen Port eine neue Root gelernt wird. Superiore BPDUs setzen den Port in root-inconsistent."
+    },
+    {
+        "id":  "slg-st-133",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A Root Guard port receives superior BPDUs for a while; then the BPDUs stop. What happens to the port?",
+        "optionen":  [
+                         "It stays root-inconsistent until shut/no shut",
+                         "It becomes the new root port",
+                         "It recovers automatically and moves through the normal STP states",
+                         "It stays err-disabled until errdisable recovery runs"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Root-inconsistent ist kein err-disabled. Sobald keine superioren BPDUs mehr ankommen, nimmt der Port von selbst wieder normal an STP teil."
+    },
+    {
+        "id":  "slg-st-134",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In which condition is a port in root-inconsistent state?",
+        "optionen":  [
+                         "Forwarding, but only for BPDUs from the root",
+                         "Effectively a listening state: BPDUs are processed but no data is forwarded",
+                         "Blocking for all VLANs and disabled for BPDUs until manually reset",
+                         "Err-disabled: the port is shut down"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Root-inconsistent entspricht praktisch Listening: Der Port leitet keine Daten weiter, verarbeitet aber BPDUs und kann sich so selbst wieder erholen."
+    },
+    {
+        "id":  "slg-st-135",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer enables Root Guard on the uplinks of an access switch that lead to the distribution switches, one of which is the root. What happens?",
+        "optionen":  [
+                         "The access switch becomes the root bridge",
+                         "The uplinks become edge ports",
+                         "Nothing, because Root Guard only acts on access ports facing end hosts and ignores uplinks",
+                         "The uplinks receive superior BPDUs from the root, go root-inconsistent and the access switch loses connectivity"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Über die Uplinks kommen zwangsläufig die BPDUs der Root, die besser sind als die eigenen. Root Guard blockiert genau diese Ports – Root Guard gehört auf die Distribution-Seite, nie auf Root Ports."
+    },
+    {
+        "id":  "slg-st-136",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which command lists ports that are blocked because of Root Guard or Loop Guard?",
+        "optionen":  [
+                         "show interfaces status err-disabled",
+                         "show errdisable detect",
+                         "show spanning-tree root",
+                         "show spanning-tree inconsistentports"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Root- und Loop-Guard setzen Ports in einen inkonsistenten STP-Zustand, nicht in err-disabled. \u0027show spanning-tree inconsistentports\u0027 zeigt diese Ports mit Grund."
+    },
+    {
+        "id":  "slg-st-137",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A fiber link between two switches becomes unidirectional. The alternate port on one side stops receiving BPDUs. With Loop Guard enabled on that port, what happens?",
+        "optionen":  [
+                         "The port becomes designated and forwards after max age expires",
+                         "The port becomes root-inconsistent",
+                         "The port is err-disabled by BPDU Guard",
+                         "The port goes loop-inconsistent instead of becoming designated and forwarding"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne Loop Guard würde der Port nach Ablauf der BPDU-Info designated und forwarding – mit dem defekten Link entsteht eine Schleife. Loop Guard hält ihn stattdessen loop-inconsistent, bis wieder BPDUs kommen."
+    },
+    {
+        "id":  "slg-st-138",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Aktiviere Loop Guard standardmäßig auf allen Point-to-Point-Ports.",
+        "bausteine":  [
+                          "spanning-tree",
+                          "loopguard",
+                          "default",
+                          "guard",
+                          "loop",
+                          "enable"
+                      ],
+        "loesung":  [
+                        "spanning-tree",
+                        "loopguard",
+                        "default"
+                    ],
+        "erklaerung":  "\u0027spanning-tree loopguard default\u0027 aktiviert Loop Guard global; pro Interface heißt der Befehl \u0027spanning-tree guard loop\u0027."
+    },
+    {
+        "id":  "slg-st-139",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Where is Loop Guard most useful?",
+        "optionen":  [
+                         "On ports with BPDU Filter enabled",
+                         "On access ports toward PCs",
+                         "On root and alternate ports of links between switches",
+                         "On designated ports of the root bridge only"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Loop Guard schützt nicht-designated Ports, die normalerweise ständig BPDUs empfangen. Bleiben die BPDUs aus, soll der Port nicht in Forwarding gehen."
+    },
+    {
+        "id":  "slg-st-140",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Can Root Guard and Loop Guard be enabled together on the same interface?",
+        "optionen":  [
+                         "No, the two features are mutually exclusive on a port",
+                         "Yes, Loop Guard is applied first, then Root Guard",
+                         "Yes, but only in MST mode",
+                         "Yes, if BPDU Guard is also enabled"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Root Guard sitzt auf Designated Ports, Loop Guard auf Root/Alternate Ports – die Rollen schließen sich aus. Cisco erlaubt deshalb nur einen der beiden Guards pro Port."
+    },
+    {
+        "id":  "slg-st-141",
+        "topic":  "ENCOR-3.1.c",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Schritt der STP-Berechnung seinem Auswahlkriterium zu.",
+        "paare":  [
+                      [
+                          "Root bridge",
+                          "Lowest bridge ID in the network"
+                      ],
+                      [
+                          "Root port",
+                          "Lowest root path cost on each non-root switch"
+                      ],
+                      [
+                          "Designated port",
+                          "Best BPDU on each segment"
+                      ],
+                      [
+                          "Nondesignated port",
+                          "Neither root nor designated, so it blocks"
+                      ]
+                  ],
+        "erklaerung":  "STP wählt erst die Root, dann je Nonroot-Switch den Root Port, dann pro Segment den Designated Port. Was übrig bleibt, blockiert und bricht die Schleife."
+    }
+]

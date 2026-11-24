@@ -1,0 +1,2099 @@
+[
+    {
+        "id":  "slg-vp-001",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which logical site-to-site VPN topology provides direct any-to-any paths between all sites and the greatest flexibility?",
+        "optionen":  [
+                         "Tiered hub-and-spoke",
+                         "Full mesh",
+                         "Individual point-to-point links",
+                         "Hub-and-spoke"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Im Full Mesh ist jedes Gerät mit jedem anderen verbunden, dadurch gibt es immer einen direkten, optimalen Pfad. Der Preis ist die hohe Zahl an Tunneln (n·(n−1)/2)."
+    },
+    {
+        "id":  "slg-vp-002",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In a hub-and-spoke IPsec VPN, branch A must exchange traffic with branch B. No tunnel exists between the two branches. How can the traffic flow?",
+        "optionen":  [
+                         "Not at all, because spokes in a hub-and-spoke VPN can never communicate with each other",
+                         "Directly over the internet without encryption, because spokes bypass the VPN for each other",
+                         "Through the hub, which relays the traffic between its tunnels to both spokes",
+                         "Through an automatically created full mesh of static tunnels between all spokes"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Spokes haben nur einen Tunnel zum Hub. Der Hub kann aber als Relais dienen und Spoke-zu-Spoke-Verkehr zwischen seinen Tunneln weiterleiten. Direkte Spoke-Tunnel bauen erst Lösungen wie DMVPN dynamisch auf."
+    },
+    {
+        "id":  "slg-vp-003",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Four core sites are fully meshed with VPN tunnels. Twelve smaller branches each connect with one tunnel to one of the core sites. What is this combined topology called?",
+        "optionen":  [
+                         "Partial mesh",
+                         "Joined hub-and-spoke",
+                         "Individual point-to-point",
+                         "Full mesh"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beim Partial Mesh ist nur ein Teil der Geräte voll vermascht, der Rest hängt per Hub-and-Spoke oder Point-to-Point daran. Das ist billiger als ein Full Mesh, bietet aber weniger Redundanz."
+    },
+    {
+        "id":  "slg-vp-004",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A regional router acts as the hub for six local branch offices and at the same time is a spoke toward the headquarters hub. Which VPN topology does this describe?",
+        "optionen":  [
+                         "Partial mesh",
+                         "Full mesh",
+                         "Joined hub-and-spoke",
+                         "Tiered hub-and-spoke"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beim Tiered Hub-and-Spoke ist ein Gerät in einer Topologie Hub und in einer anderen Spoke. Verkehr der Spoke-Gruppen geht zuerst zum nächstgelegenen Hub."
+    },
+    {
+        "id":  "slg-vp-005",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "After a merger, two companies keep their own hub-and-spoke VPNs. The two hub routers are connected to each other with a single point-to-point VPN tunnel. Which topology results?",
+        "optionen":  [
+                         "Full mesh",
+                         "Tiered hub-and-spoke",
+                         "Partial mesh",
+                         "Joined hub-and-spoke"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein Joined Hub-and-Spoke verbindet zwei Topologien über eine Point-to-Point-Verbindung, hier die beiden Hubs als Peers. Beim Tiered-Modell wäre ein Gerät dagegen gleichzeitig Hub und Spoke in einer Hierarchie."
+    },
+    {
+        "id":  "slg-vp-006",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Match each VPN topology to its description.",
+        "paare":  [
+                      [
+                          "Point-to-point",
+                          "Two sites joined by one secure VPN path"
+                      ],
+                      [
+                          "Hub-and-spoke",
+                          "All remote sites peer only with one central site"
+                      ],
+                      [
+                          "Full mesh",
+                          "Every site has a tunnel to every other site"
+                      ],
+                      [
+                          "Partial mesh",
+                          "Some sites fully meshed, others attached by single links"
+                      ]
+                  ],
+        "erklaerung":  "Point-to-Point verbindet genau zwei Standorte, Hub-and-Spoke bündelt alles an einem zentralen Standort. Full Mesh verbindet jeden mit jedem, Partial Mesh mischt einen vermaschten Kern mit angehängten Standorten."
+    },
+    {
+        "id":  "slg-vp-007",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three statements describe typical site-to-site VPNs? (Choose three.)",
+        "optionen":  [
+                         "They frequently use IPsec for cryptographic protection",
+                         "They can run only across a provider\u0027s private MPLS network",
+                         "They authenticate the VPN gateways that serve an entire site",
+                         "They replace or extend a classic routed WAN between sites",
+                         "They require VPN client software on every user\u0027s PC"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Site-to-Site-VPNs ersetzen klassische WAN-Strecken, authentisieren die Gateways eines ganzen Standorts und nutzen meist IPsec. Clients auf jedem PC braucht nur Remote Access, und als Transport eignen sich sowohl MPLS als auch das Internet."
+    },
+    {
+        "id":  "slg-vp-008",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A field engineer must reach internal servers from hotel Wi-Fi with a laptop. The branch offices are already connected with IPsec tunnels between routers. Which VPN type fits the engineer\u0027s need?",
+        "optionen":  [
+                         "A GET VPN group that adds the laptop as a new key server for the branches",
+                         "A remote-access VPN that authenticates the user and runs a client on the laptop",
+                         "An MPLS Layer 3 VPN that places the hotel network into a customer VRF",
+                         "Another site-to-site VPN that authenticates the hotel router as a new peer"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein Remote-Access-VPN verbindet einzelne Benutzer bzw. Endgeräte und authentisiert den Benutzer, z. B. mit einem VPN-Client. Site-to-Site-VPNs verbinden ganze Standorte über Gateways, die man im Hotel nicht kontrolliert."
+    },
+    {
+        "id":  "slg-vp-009",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A company connects its sites through a provider MPLS Layer 3 VPN. A new compliance rule demands that WAN traffic is encrypted. What is the correct assessment?",
+        "optionen":  [
+                         "The MPLS VPN only separates customers with VRFs and labels, so IPsec must be added on top",
+                         "The MPLS VPN already encrypts all customer traffic inside the provider core with label-based keys",
+                         "The route distinguisher in the MPLS VPN acts as an encryption key, so only the RD must be changed",
+                         "The provider must enable ESP on the P routers, because only the core can encrypt the MPLS labels"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein MPLS-VPN trennt Kunden logisch über VRFs und Labels, verschlüsselt aber nicht. Für Vertraulichkeit legt man IPsec darüber, z. B. VTI-Tunnel oder GET VPN."
+    },
+    {
+        "id":  "slg-vp-010",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two branch offices exchange VoIP calls. Today all calls are relayed through the headquarters hub, which adds delay. The company wants direct branch-to-branch IPsec connectivity without maintaining permanent tunnels between all branches. Which solution fits?",
+        "optionen":  [
+                         "DMVPN",
+                         "Static VTIs from every branch to the hub",
+                         "Transport-mode IPsec between the phones",
+                         "A crypto map per branch on the hub"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "DMVPN baut Spoke-zu-Spoke-IPsec-Tunnel nur bei Bedarf dynamisch auf und braucht keine dauerhaften Verbindungen zwischen allen Standorten. So sinken Latenz und Jitter, und die Zentrale wird entlastet."
+    },
+    {
+        "id":  "slg-vp-011",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An engineer protects traffic between two sites with AH only. An auditor captures packets on the WAN. What can the auditor observe?",
+        "optionen":  [
+                         "Only the outer IP header, because AH encrypts the payload but not the header",
+                         "Only garbled data, because AH scrambles the payload with the HMAC key of the SA",
+                         "Nothing useful, because AH encrypts the payload and the original IP header",
+                         "The readable payload, because AH provides integrity and authentication but no encryption"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "AH schützt Integrität, Herkunft und gegen Replays, verschlüsselt aber nichts. Der Inhalt bleibt lesbar, Manipulationen würden jedoch erkannt. Für Vertraulichkeit braucht man ESP."
+    },
+    {
+        "id":  "slg-vp-012",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "RFC 4301 lists the security services that IPsec provides at the IP layer. Which of the following is NOT one of them?",
+        "optionen":  [
+                         "Data origin authentication",
+                         "Protection against replayed packets",
+                         "Limited traffic flow confidentiality",
+                         "Guaranteed bandwidth for protected flows"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "IPsec bietet Zugriffskontrolle, Integrität, Ursprungs-Authentisierung, Anti-Replay, Vertraulichkeit und begrenzte Verkehrsfluss-Vertraulichkeit. Bandbreitengarantien sind Sache von QoS, nicht von IPsec."
+    },
+    {
+        "id":  "slg-vp-013",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three services does ESP provide for user traffic? (Choose three.)",
+        "optionen":  [
+                         "Negotiation of keys between the peers",
+                         "Data integrity of the protected packet",
+                         "Protection against replayed packets",
+                         "Confidentiality through encryption",
+                         "Integrity of the new outer IP header in tunnel mode"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "ESP verschlüsselt, prüft die Integrität und schützt mit Sequenznummern gegen Replays. Den äußeren IP-Header schützt ESP nicht, und die Schlüssel handelt IKE aus, nicht ESP."
+    },
+    {
+        "id":  "slg-vp-014",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Match each IPsec building block to its role.",
+        "paare":  [
+                      [
+                          "IKE",
+                          "Negotiates policies and manages keys"
+                      ],
+                      [
+                          "AH",
+                          "Integrity and authentication without encryption"
+                      ],
+                      [
+                          "ESP",
+                          "Encryption plus integrity and authentication"
+                      ],
+                      [
+                          "Security association",
+                          "Algorithms and keys for one direction of a flow"
+                      ]
+                  ],
+        "erklaerung":  "IKE handelt Policies und Schlüssel aus, AH und ESP kapseln den Benutzerverkehr. Eine SA beschreibt die Schutzparameter für genau eine Richtung eines Verkehrsflusses."
+    },
+    {
+        "id":  "slg-vp-015",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Two gateways protect bidirectional traffic between their LANs with ESP only. What is the minimum number of IPsec SAs that must exist between them?",
+        "optionen":  [
+                         "One",
+                         "Two",
+                         "Three",
+                         "Four"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "IPsec-SAs sind unidirektional. Für Hin- und Rückrichtung braucht man deshalb mindestens zwei SAs, eine pro Richtung. Die IKE-SA zählt nicht dazu."
+    },
+    {
+        "id":  "slg-vp-016",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A legacy design applies both AH and ESP to the same bidirectional traffic between two gateways. How many IPsec SAs are needed at minimum?",
+        "optionen":  [
+                         "Two",
+                         "Four",
+                         "Six",
+                         "Three"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Eine SA gilt für ein Protokoll (AH oder ESP) und eine Richtung. Mit AH und ESP in beiden Richtungen sind es also 2 × 2 = 4 IPsec-SAs."
+    },
+    {
+        "id":  "slg-vp-017",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about the IKE SA is correct?",
+        "optionen":  [
+                         "It is a static SA that must be configured manually with SPI values",
+                         "It is a unidirectional SA that exists once for each traffic direction",
+                         "It is a separate SA that protects the negotiation of the IPsec SAs",
+                         "It is the same SA that later encrypts the user data with ESP"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "IKE baut zuerst eine eigene, authentisierte IKE-SA auf. Über diesen geschützten Kanal handelt IKE dann die IPsec-SAs aus, die den Benutzerverkehr schützen."
+    },
+    {
+        "id":  "slg-vp-018",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "IKE is described as a hybrid protocol. Which protocols does it combine?",
+        "optionen":  [
+                         "RADIUS, TACACS+, and EAP",
+                         "ESP, AH, and GRE",
+                         "TLS, DTLS, and SSH",
+                         "ISAKMP, Oakley, and SKEME"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "IKE nutzt ISAKMP als Rahmen und Paketformat und die Schlüsselaustausch-Verfahren Oakley und SKEME. Deshalb verwendet Cisco IOS die Begriffe ISAKMP und IKE praktisch gleichbedeutend."
+    },
+    {
+        "id":  "slg-vp-019",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "ISAKMP is defined in RFC 2408, while IKE version 1 itself is defined in RFC ___.",
+        "optionen":  [
+                         "2409",
+                         "4301",
+                         "7296",
+                         "2401"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "IKEv1 ist in RFC 2409 beschrieben, ISAKMP in RFC 2408. RFC 4301 ist die IPsec-Architektur und RFC 7296 beschreibt IKEv2."
+    },
+    {
+        "id":  "slg-vp-020",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Why is IKE used instead of manually configured IPsec keys? (Choose three.)",
+        "optionen":  [
+                         "Keys are refreshed automatically",
+                         "Keys are generated automatically",
+                         "Peer authentication becomes unnecessary",
+                         "SA characteristics are negotiated",
+                         "User data no longer needs encryption"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        3
+                    ],
+        "erklaerung":  "IKE erzeugt und erneuert Schlüssel automatisch und handelt die SA-Eigenschaften aus. Das skaliert besser als manuelle Schlüssel. Authentisierung und Verschlüsselung bleiben aber nötig."
+    },
+    {
+        "id":  "slg-vp-021",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which ISAKMP policy parameter determines the strength of the key-determination algorithm from which the encryption and hash keys are derived?",
+        "optionen":  [
+                         "The Diffie-Hellman group",
+                         "The authentication method",
+                         "The lifetime value",
+                         "The hash algorithm"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die DH-Gruppe legt die Stärke des Diffie-Hellman-Austauschs fest. Aus dem gemeinsamen Geheimnis werden die Schlüssel für Verschlüsselung und HMAC abgeleitet."
+    },
+    {
+        "id":  "slg-vp-022",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Match each command in ISAKMP policy configuration mode to its purpose.",
+        "paare":  [
+                      [
+                          "authentication pre-share",
+                          "How the peers prove their identity"
+                      ],
+                      [
+                          "hash sha",
+                          "Integrity and sender check of IKE messages"
+                      ],
+                      [
+                          "group 14",
+                          "Strength of the Diffie-Hellman exchange"
+                      ],
+                      [
+                          "lifetime 3600",
+                          "How long the IKE key is used before rekeying"
+                      ]
+                  ],
+        "erklaerung":  "Die Policy enthält Authentisierung, HMAC-Hash, DH-Gruppe, Lifetime und Verschlüsselung (Merkwort HAGLE). Jeder Parameter schützt einen anderen Aspekt der IKE-Verhandlung."
+    },
+    {
+        "id":  "slg-vp-023",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 has \u0027crypto isakmp policy 10\u0027 with AES 128, SHA, pre-share, and group 14. R2 has \u0027crypto isakmp policy 10\u0027 with AES 128, SHA, pre-share, and group 5. No other policies exist and default policies are disabled. What happens?",
+        "optionen":  [
+                         "IKE phase 1 succeeds and uses the stronger group 14 automatically",
+                         "IKE phase 1 succeeds, but only IPsec phase 2 uses group 14",
+                         "IKE phase 1 succeeds and uses group 5 because the responder decides",
+                         "IKE phase 1 fails because no proposal matches in all parameters"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Eine ISAKMP-Policy passt nur, wenn Verschlüsselung, Hash, Authentisierung und DH-Gruppe übereinstimmen. Unterschiedliche DH-Gruppen bedeuten keinen passenden Vorschlag, Phase 1 scheitert."
+    },
+    {
+        "id":  "slg-vp-024",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Two peers have identical ISAKMP policies except for the lifetime: R1 uses \u0027lifetime 3600\u0027, R2 uses \u0027lifetime 86400\u0027. What is the result on Cisco IOS?",
+        "optionen":  [
+                         "The IKE SA comes up with the longer lifetime of 86400 seconds",
+                         "The IKE SA comes up with the shorter lifetime of 3600 seconds",
+                         "The IKE SA comes up without any lifetime and never rekeys",
+                         "The IKE SA fails, because the lifetime must match exactly"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Cisco IOS verlangt keine identische IKE-Lifetime. Die IKE-SA wird mit dem kürzeren der beiden Werte aufgebaut, hier 3600 Sekunden."
+    },
+    {
+        "id":  "slg-vp-025",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 has ISAKMP policy 10 (AES 256, SHA-256, group 14, pre-share) and policy 20 (AES 128, SHA, group 14, pre-share). R2 has only policy 30 (AES 128, SHA, group 14, pre-share). The keys match. What happens?",
+        "optionen":  [
+                         "Phase 1 fails, because the policy numbers 20 and 30 differ",
+                         "Phase 1 fails, because R1 always offers only policy 10",
+                         "Phase 1 succeeds with the parameters of R1\u0027s policy 20",
+                         "Phase 1 succeeds with the parameters of R1\u0027s policy 10"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Policy-Nummern sind nur lokal und legen die Reihenfolge der Vorschläge fest. Entscheidend ist, dass alle Parameter übereinstimmen. Das ist bei R1s Policy 20 und R2s Policy 30 der Fall."
+    },
+    {
+        "id":  "slg-vp-026",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Since IOS 12.4(20)T, Cisco IOS has built-in default IKE policies. Which parameters does the highest-priority PSK-based default policy (65508) use?",
+        "optionen":  [
+                         "AES, MD5, DH group 5",
+                         "AES, SHA, DH group 5",
+                         "3DES, MD5, DH group 2",
+                         "3DES, SHA, DH group 2"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Policy 65508 nutzt PSK mit AES, SHA und DH-Gruppe 5 und bietet damit den besten Schutz der PSK-Defaults. Die anderen Defaults verwenden MD5 und/oder 3DES mit Gruppe 2."
+    },
+    {
+        "id":  "slg-vp-027",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer enters \u0027show crypto isakmp policy\u0027 on a new router and sees protection suites with priorities 65507 to 65514. What does this tell the engineer?",
+        "optionen":  [
+                         "No IKE policy has been configured manually, and the defaults are not disabled",
+                         "Eight IKE SAs are active, one for each listed protection suite",
+                         "The router failed to negotiate with eight peers and logged the attempts",
+                         "The IPsec transform sets were converted into IKE policies by the router"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Default-Policies erscheinen, solange keine eigene Policy konfiguriert ist und sie nicht mit \u0027no crypto isakmp default policy\u0027 abgeschaltet wurden. Es handelt sich um Konfiguration, nicht um aktive SAs."
+    },
+    {
+        "id":  "slg-vp-028",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Schalte die eingebauten Default-IKE-Policies ab.",
+        "bausteine":  [
+                          "no",
+                          "crypto",
+                          "isakmp",
+                          "default",
+                          "policy",
+                          "ipsec",
+                          "disable",
+                          "all"
+                      ],
+        "loesung":  [
+                        "no",
+                        "crypto",
+                        "isakmp",
+                        "default",
+                        "policy"
+                    ],
+        "erklaerung":  "Mit \u0027no crypto isakmp default policy\u0027 werden die Default-Policies 65507–65514 deaktiviert. Dann gelten nur noch selbst konfigurierte Policies."
+    },
+    {
+        "id":  "slg-vp-029",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why should IKE policies that use DH group 2 be avoided?",
+        "optionen":  [
+                         "Group 2 disables the HMAC check and so removes integrity",
+                         "Group 2 works only with RSA signatures and not with PSKs",
+                         "Group 2 uses only a 1024-bit modulus, which is considered too weak",
+                         "Group 2 is supported only by IKEv2 and fails with IKEv1 peers"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "DH-Gruppe 2 arbeitet mit 1024 Bit und gilt heute als zu schwach. Empfohlen sind mindestens Gruppe 14 (2048 Bit) oder elliptische Gruppen wie 19 und 20."
+    },
+    {
+        "id":  "slg-vp-030",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Match each Diffie-Hellman group to its key size.",
+        "paare":  [
+                      [
+                          "Group 2",
+                          "1024-bit MODP"
+                      ],
+                      [
+                          "Group 5",
+                          "1536-bit MODP"
+                      ],
+                      [
+                          "Group 14",
+                          "2048-bit MODP"
+                      ],
+                      [
+                          "Group 19",
+                          "256-bit elliptic curve"
+                      ]
+                  ],
+        "erklaerung":  "Die klassischen MODP-Gruppen 2, 5 und 14 nutzen 1024, 1536 und 2048 Bit. Gruppe 19 ist eine elliptische Kurve mit 256 Bit, die bei kleinerem Schlüssel ähnlich stark ist wie deutlich größere MODP-Gruppen."
+    },
+    {
+        "id":  "slg-vp-031",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A VPN hub terminates hundreds of spokes that reconnect often. The team considers moving from DH group 14 to group 16. Which side effect should they expect?",
+        "optionen":  [
+                         "Weaker protection, because higher groups use shorter keys",
+                         "Larger ESP packets for every user packet and therefore a lower path MTU",
+                         "More computation at the start of each IKE exchange and a lower tunnel setup rate",
+                         "No effect, because DH is used only once when the router boots"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Höhere DH-Gruppen sind stärker, kosten aber mehr Rechenzeit beim Schlüsselaustausch. Das senkt die Rate, mit der Tunnel aufgebaut werden können. Die Größe der ESP-Pakete ändert sich dadurch nicht."
+    },
+    {
+        "id":  "slg-vp-032",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three peer authentication methods does Cisco IOS support for IKEv1? (Choose three.)",
+        "optionen":  [
+                         "RSA signatures",
+                         "Pre-shared keys",
+                         "RSA-encrypted nonces",
+                         "Kerberos tickets",
+                         "EAP with a RADIUS server"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "IKEv1 unterstützt auf IOS PSK, RSA-Signaturen (Zertifikate) und RSA-encrypted Nonces. EAP gibt es erst mit IKEv2, Kerberos gehört nicht dazu."
+    },
+    {
+        "id":  "slg-vp-033",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege den Pre-Shared Key Br4nch-K3y für den IKE-Peer 203.0.113.9 an.",
+        "bausteine":  [
+                          "crypto",
+                          "isakmp",
+                          "key",
+                          "Br4nch-K3y",
+                          "address",
+                          "203.0.113.9",
+                          "ipsec",
+                          "peer",
+                          "pre-share"
+                      ],
+        "loesung":  [
+                        "crypto",
+                        "isakmp",
+                        "key",
+                        "Br4nch-K3y",
+                        "address",
+                        "203.0.113.9"
+                    ],
+        "erklaerung":  "\u0027crypto isakmp key \u003ckey\u003e address \u003cpeer-ip\u003e\u0027 bindet den PSK an die IP-Adresse des Peers. Die Gegenstelle braucht denselben Schlüssel mit der eigenen Peer-Adresse."
+    },
+    {
+        "id":  "slg-vp-034",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Modus (config-isakmp) von \u0027crypto isakmp policy 10\u0027: Verwende AES mit 256-Bit-Schlüssel für die IKE-Verschlüsselung.",
+        "bausteine":  [
+                          "encryption",
+                          "aes",
+                          "256",
+                          "esp-aes",
+                          "cipher",
+                          "bits"
+                      ],
+        "loesung":  [
+                        "encryption",
+                        "aes",
+                        "256"
+                    ],
+        "erklaerung":  "Im Policy-Modus legt \u0027encryption aes 256\u0027 (in der Konfiguration als \u0027encr aes 256\u0027 angezeigt) die IKE-Verschlüsselung fest. \u0027esp-aes\u0027 ist ein Transform-Set-Schlüsselwort für IPsec."
+    },
+    {
+        "id":  "slg-vp-035",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Modus (config-isakmp) von \u0027crypto isakmp policy 10\u0027: Verwende für den Schlüsselaustausch die DH-Gruppe mit 2048 Bit.",
+        "bausteine":  [
+                          "group",
+                          "14",
+                          "dh",
+                          "2048",
+                          "set",
+                          "5"
+                      ],
+        "loesung":  [
+                        "group",
+                        "14"
+                    ],
+        "erklaerung":  "\u0027group 14\u0027 wählt die 2048-Bit-MODP-Gruppe. Die Bitlänge selbst wird nicht eingegeben, sondern ergibt sich aus der Gruppennummer."
+    },
+    {
+        "id":  "slg-vp-036",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How many messages does IKEv1 phase 1 use in Main Mode?",
+        "optionen":  [
+                         "Three",
+                         "Six",
+                         "Nine",
+                         "Four"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Main Mode braucht sechs Nachrichten: zwei für die Policy, zwei für den DH-Austausch und zwei für die verschlüsselte Authentisierung. Aggressive Mode schafft Phase 1 in drei Nachrichten."
+    },
+    {
+        "id":  "slg-vp-037",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the main security drawback of IKEv1 Aggressive Mode compared to Main Mode?",
+        "optionen":  [
+                         "The Diffie-Hellman exchange is skipped and keys are static",
+                         "The IPsec SAs are created without any encryption algorithm",
+                         "The IKE SA can only use DES instead of AES",
+                         "The peer identities are sent before a protected channel exists"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Aggressive Mode packt alles in drei Nachrichten, deshalb geht die Identität ungeschützt über die Leitung. Main Mode verschlüsselt die Identität in den Nachrichten 5 und 6."
+    },
+    {
+        "id":  "slg-vp-038",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In IKEv1 Main Mode, what happens in messages 5 and 6?",
+        "optionen":  [
+                         "The peers exchange Diffie-Hellman public values and nonces",
+                         "The peers send identities and authentication data, already encrypted",
+                         "The peers exchange their SA proposals in cleartext",
+                         "The peers negotiate the IPsec transform set for user traffic"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Nachrichten 1–2 handeln die Policy aus, 3–4 tauschen DH-Werte und Nonces. In 5–6 authentisieren sich die Peers, und dieser Teil ist mit den frischen DH-Schlüsseln bereits verschlüsselt."
+    },
+    {
+        "id":  "slg-vp-039",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the purpose of IKEv1 Quick Mode?",
+        "optionen":  [
+                         "It discovers NAT devices before any IKE SA exists",
+                         "It replaces ESP for the transport of user data",
+                         "It authenticates the peers for the first time with PSKs",
+                         "It negotiates the IPsec SAs under protection of the IKE SA"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Quick Mode ist IKEv1 Phase 2. Er läuft im Schutz der IKE-SA und handelt die IPsec-SAs aus, also Transform Set, Proxy-IDs und Lifetimes."
+    },
+    {
+        "id":  "slg-vp-040",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show crypto ipsec sa\u0027 on a VTI router contains the line \u0027PFS (Y/N): N, DH group: none\u0027. What does this mean?",
+        "optionen":  [
+                         "The IPsec SA is not encrypted and only uses HMAC integrity",
+                         "The peer does not support DH, so phase 1 used a pre-shared key instead",
+                         "The IKE SA was built without Diffie-Hellman and uses static keys",
+                         "The IPsec keys are derived without an additional Diffie-Hellman exchange in phase 2"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Perfect Forward Secrecy würde in Phase 2 einen neuen DH-Austausch erzwingen, damit die IPsec-Schlüssel unabhängig vom Phase-1-Material sind. Ohne PFS werden sie aus dem Material der IKE-SA abgeleitet."
+    },
+    {
+        "id":  "slg-vp-041",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does IKEv2 set up the IKE SA and the first IPsec (child) SA?",
+        "optionen":  [
+                         "Main Mode with 6 messages followed by Quick Mode with 3 messages",
+                         "Aggressive Mode with 3 messages and no phase 2",
+                         "One INFORMATIONAL exchange of two messages",
+                         "IKE_SA_INIT and IKE_AUTH, four messages in total"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "IKEv2 braucht im Normalfall nur vier Nachrichten: IKE_SA_INIT für Algorithmen, DH und Nonces und IKE_AUTH für die Authentisierung. IKE_AUTH baut gleich die erste Child-SA mit auf."
+    },
+    {
+        "id":  "slg-vp-042",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Match each IKEv2 exchange to its purpose.",
+        "paare":  [
+                      [
+                          "IKE_SA_INIT",
+                          "Agrees on algorithms and runs Diffie-Hellman"
+                      ],
+                      [
+                          "IKE_AUTH",
+                          "Authenticates peers and builds the first child SA"
+                      ],
+                      [
+                          "CREATE_CHILD_SA",
+                          "Adds further child SAs or rekeys"
+                      ],
+                      [
+                          "INFORMATIONAL",
+                          "Carries deletes, errors, and liveness checks"
+                      ]
+                  ],
+        "erklaerung":  "IKE_SA_INIT und IKE_AUTH bilden den Basisaustausch. CREATE_CHILD_SA erzeugt weitere SAs oder erneuert Schlüssel, INFORMATIONAL transportiert Delete-, Fehler- und DPD-Meldungen."
+    },
+    {
+        "id":  "slg-vp-043",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which three are advantages of IKEv2 over IKEv1? (Choose three.)",
+        "optionen":  [
+                         "NAT traversal and dead peer detection are part of the protocol",
+                         "IKEv2 peers can negotiate directly with IKEv1-only peers",
+                         "Built-in support for EAP user authentication",
+                         "IKEv2 replaces UDP with TCP port 500 for reliability",
+                         "Fewer messages are needed to bring up the first IPsec SA"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "IKEv2 bringt EAP, NAT-T und DPD von Haus aus mit und braucht nur vier Nachrichten bis zur ersten Child-SA. Es ist aber nicht rückwärtskompatibel zu IKEv1 und läuft weiter über UDP 500 bzw. 4500."
+    },
+    {
+        "id":  "slg-vp-044",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A FlexVPN headend must authenticate remote users with username and password against a RADIUS server, while the headend itself uses a certificate. Which IKEv2 capabilities make this possible?",
+        "optionen":  [
+                         "GDOI with a central key server",
+                         "Quick Mode with PFS enabled",
+                         "Aggressive Mode with group PSKs",
+                         "EAP and asymmetric authentication"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "IKEv2 kann Benutzer per EAP (z. B. gegen RADIUS) authentisieren, und jede Seite darf eine andere Methode nutzen. In IKEv1 müssen beide Seiten dieselbe Methode verwenden, EAP gibt es dort nicht."
+    },
+    {
+        "id":  "slg-vp-045",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which key management protocol is the foundation of Cisco FlexVPN?",
+        "optionen":  [
+                         "TLS 1.3",
+                         "IKEv2",
+                         "IKEv1 Aggressive Mode",
+                         "GDOI"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "FlexVPN baut auf dem offenen Standard IKEv2 auf und ergänzt ihn um Cisco-Funktionen. Dadurch funktioniert es auch mit IKEv2-Geräten anderer Hersteller."
+    },
+    {
+        "id":  "slg-vp-046",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three are benefits of Cisco FlexVPN? (Choose three.)",
+        "optionen":  [
+                         "One headend accepts site-to-site and remote-access connections at the same time",
+                         "Native IKEv2 VPN clients of Apple iOS and Android devices can connect",
+                         "Inside VRFs and front-door VRFs are supported",
+                         "The transport network must be a private MPLS VPN",
+                         "mGRE and NHRP are mandatory on every spoke"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "FlexVPN vereint Site-to-Site und Remote Access auf einem Headend, spricht mit nativen IKEv2-Clients und ist VRF-aware. Als Transport eignen sich Internet und MPLS, mGRE/NHRP sind DMVPN-Bausteine."
+    },
+    {
+        "id":  "slg-vp-047",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A FlexVPN hub serves many spokes over a transport network that supports native IP multicast. How can the hub reduce its own multicast replication load?",
+        "optionen":  [
+                         "It sends one copy to the first spoke, which then relays it to all other spokes",
+                         "It lets the transport network replicate the multicast packets after IPsec encryption",
+                         "It disables IPsec for multicast groups so the provider can replicate cleartext",
+                         "It converts multicast into broadcast so every spoke receives one copy"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "FlexVPN kann Multicast entweder am Hub pro Spoke replizieren oder, wenn das Transportnetz Multicast kann, die Replikation nach der Verschlüsselung dem Transportnetz überlassen. Die Daten bleiben dabei verschlüsselt."
+    },
+    {
+        "id":  "slg-vp-048",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which of the following is NOT one of the FlexVPN redundancy models?",
+        "optionen":  [
+                         "IKEv2-based route distribution with server clustering",
+                         "VRRP running across the tunnel interfaces of all spokes",
+                         "Dynamic routing protocols over the FlexVPN tunnels",
+                         "IPsec/IKEv2 active/standby stateful failover between two chassis"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "FlexVPN kennt drei Redundanzmodelle: dynamisches Routing über die Tunnel, IKEv2-Routenverteilung mit Clustering und Stateful Failover zwischen zwei Chassis. VRRP über Tunnel gehört nicht dazu."
+    },
+    {
+        "id":  "slg-vp-049",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In a FlexVPN deployment, split-tunnel lists, DNS servers, and VRF selection must be assigned per peer from one central place. Where are these policies kept?",
+        "optionen":  [
+                         "In the NHRP cache of the hub",
+                         "In the transform set of the hub",
+                         "In the ISAKMP policy of every spoke",
+                         "On an AAA/RADIUS server"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "FlexVPN kann dynamische Policies wie Split Tunnel, DNS oder VRF zentral über AAA/RADIUS pro Peer zuweisen. So muss man nicht jeden Router einzeln anpassen."
+    },
+    {
+        "id":  "slg-vp-050",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Two hosts protect their communication with ESP in transport mode. What happens to the original IP header?",
+        "optionen":  [
+                         "It is encrypted and replaced by a new outer header",
+                         "It stays in place unencrypted, and ESP protects the payload",
+                         "It is removed and rebuilt by the receiving gateway",
+                         "It is moved into the ESP trailer and authenticated there"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Im Transport Mode bleibt der Original-IP-Header vorne stehen, ESP wird dahinter eingefügt. Verschlüsselt werden nur die Daten der höheren Schichten."
+    },
+    {
+        "id":  "slg-vp-051",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "When is IPsec tunnel mode required instead of transport mode?",
+        "optionen":  [
+                         "When the peers authenticate with pre-shared keys instead of RSA certificates",
+                         "When both endpoints are hosts that encrypt only their own traffic to each other",
+                         "When AH is used instead of ESP to protect the packets between the peers",
+                         "When the final destination of the packets differs from the device that terminates IPsec"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Verschlüsseln Gateways Verkehr für andere Hosts, ist das Ziel des Pakets nicht der IPsec-Endpunkt. Dann braucht man einen neuen äußeren Header mit den Gateway-Adressen, also Tunnel Mode."
+    },
+    {
+        "id":  "slg-vp-052",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "PC 10.1.1.10 sends a packet to server 10.2.2.20. Gateway 203.0.113.1 encrypts it with ESP in tunnel mode toward gateway 198.51.100.1. Which addresses can the ISP read in the packet?",
+        "optionen":  [
+                         "Both the outer and the inner address pairs in cleartext",
+                         "Source 10.1.1.10 and destination 10.2.2.20 only",
+                         "Source 203.0.113.1 and destination 198.51.100.1 only",
+                         "No addresses, because ESP also encrypts the outer header"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Im Tunnel Mode wird das ganze Originalpaket inklusive innerem IP-Header verschlüsselt. Lesbar bleibt nur der neue äußere Header mit den Adressen der beiden Gateways."
+    },
+    {
+        "id":  "slg-vp-053",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In an ESP tunnel-mode packet, which part is authenticated but NOT encrypted?",
+        "optionen":  [
+                         "The original IP header",
+                         "The ESP header",
+                         "The ESP trailer",
+                         "The new outer IP header"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der ESP-Header mit SPI und Sequenznummer muss lesbar sein, damit der Empfänger die SA findet, er wird aber authentisiert. Original-Header und Trailer sind verschlüsselt, der neue äußere Header ist weder verschlüsselt noch durch ESP authentisiert."
+    },
+    {
+        "id":  "slg-vp-054",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Match each IPsec-related protocol to the protocol number or port it uses.",
+        "paare":  [
+                      [
+                          "ESP",
+                          "IP protocol 50"
+                      ],
+                      [
+                          "AH",
+                          "IP protocol 51"
+                      ],
+                      [
+                          "IKE",
+                          "UDP port 500"
+                      ],
+                      [
+                          "NAT-T",
+                          "UDP port 4500"
+                      ]
+                  ],
+        "erklaerung":  "ESP und AH sind eigene IP-Protokolle (50 und 51) ohne Ports. IKE läuft über UDP 500, und bei erkanntem NAT wechseln IKE und ESP auf UDP 4500."
+    },
+    {
+        "id":  "slg-vp-055",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In the IP header, ESP is identified by protocol number ___.",
+        "optionen":  [
+                         "50",
+                         "41",
+                         "47",
+                         "51"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "ESP hat die IP-Protokollnummer 50. 51 ist AH, 47 ist GRE und 41 ist IPv6-in-IPv4."
+    },
+    {
+        "id":  "slg-vp-056",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Between two VPN routers, \u0027show crypto isakmp sa\u0027 shows QM_IDLE on both. On both routers, \u0027#pkts encaps\u0027 increases while \u0027#pkts decaps\u0027 stays at 0. There is no NAT in the path. What is the most likely cause?",
+        "optionen":  [
+                         "The ISAKMP policies use different Diffie-Hellman groups",
+                         "The pre-shared keys on the two routers do not match",
+                         "The static routes into the tunnel are missing on both routers",
+                         "A firewall in the path permits UDP 500 but drops IP protocol 50"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "QM_IDLE zeigt, dass IKE über UDP 500 funktioniert, PSK und Policy passen also. Beide Seiten verschlüsseln, aber keiner empfängt etwas, das spricht für gefiltertes ESP (IP 50) im Pfad."
+    },
+    {
+        "id":  "slg-vp-057",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A branch VPN router sits behind a home router that performs PAT. Which mechanism allows its IPsec tunnel to the headquarters to work?",
+        "optionen":  [
+                         "Transport mode, because it keeps the original IP header",
+                         "NAT-T, which encapsulates ESP in UDP port 4500",
+                         "Aggressive Mode, because it hides the private address",
+                         "Switching from ESP to AH, because AH carries port numbers"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "NAT-T erkennt die Adressübersetzung und packt ESP in UDP 4500, sodass PAT über die Ports übersetzen kann. AH wäre noch schlechter, weil es den äußeren Header mit prüft."
+    },
+    {
+        "id":  "slg-vp-058",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why can a PAT device not translate plain ESP packets for several internal VPN clients at once?",
+        "optionen":  [
+                         "ESP packets are always larger than the MTU of the PAT device",
+                         "ESP encrypts the outer IP header, so PAT cannot change the address",
+                         "ESP uses TCP, and PAT translates only UDP sessions",
+                         "ESP has no port numbers that PAT could use to tell the sessions apart"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "PAT unterscheidet Sitzungen über Portnummern. ESP ist ein eigenes IP-Protokoll ohne Ports, deshalb kapselt NAT-T es in UDP."
+    },
+    {
+        "id":  "slg-vp-059",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "An internet edge ACL protects a router that terminates static VTIs (tunnel mode ipsec ipv4). Some peers sit behind NAT. Which three entries must the ACL permit from the peers? (Choose three.)",
+        "optionen":  [
+                         "TCP port 443",
+                         "UDP port 500",
+                         "IP protocol 47 (GRE)",
+                         "UDP port 4500",
+                         "IP protocol 50 (ESP)"
+                     ],
+        "richtig":  [
+                        1,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "IKE braucht UDP 500, Peers hinter NAT nutzen UDP 4500, und ohne NAT läuft ESP als IP-Protokoll 50. Ein nativer IPsec-VTI verwendet kein GRE, und TCP 443 gehört zu SSL-VPNs."
+    },
+    {
+        "id":  "slg-vp-060",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An attacker records valid ESP packets of a tunnel and resends them later unchanged. Which IPsec mechanism lets the receiver drop them?",
+        "optionen":  [
+                         "The Diffie-Hellman group of the IKE policy",
+                         "Perfect Forward Secrecy in IKE phase 2",
+                         "Anti-replay protection based on ESP sequence numbers",
+                         "Dead peer detection of the IKE SA"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Jedes ESP-Paket trägt eine Sequenznummer, und der Empfänger verwirft bereits gesehene oder zu alte Nummern. In \u0027show crypto ipsec sa\u0027 steht dafür \u0027replay detection support: Y\u0027."
+    },
+    {
+        "id":  "slg-vp-061",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Compared with ESP transport mode, how much extra header does ESP tunnel mode add for an IPv4 packet?",
+        "optionen":  [
+                         "A 4-byte GRE header in front of ESP",
+                         "An 8-byte UDP header for every packet",
+                         "No additional header at all",
+                         "A new 20-byte outer IPv4 header"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Tunnel Mode setzt vor das ganze Originalpaket einen neuen IPv4-Header mit 20 Byte. Ein UDP-Header kommt nur bei NAT-T dazu, GRE nur bei GRE over IPsec."
+    },
+    {
+        "id":  "slg-vp-062",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In \u0027show crypto ipsec sa\u0027, the line \u0027in use settings ={Tunnel, }\u0027 shows that the SA uses ESP in ___ mode.",
+        "optionen":  [
+                         "aggressive",
+                         "tunnel",
+                         "transport",
+                         "main"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027Tunnel\u0027 bedeutet ESP Tunnel Mode, den Cisco standardmäßig verwendet. Main und Aggressive sind IKEv1-Phase-1-Modi, keine IPsec-Kapselungsmodi."
+    },
+    {
+        "id":  "slg-vp-063",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A DMVPN design uses GRE over IPsec, and the engineer wants to avoid the extra outer IP header of tunnel mode. Where is this changed?",
+        "optionen":  [
+                         "With \u0027mode transport\u0027 in the IPsec transform set",
+                         "With \u0027lifetime 3600\u0027 in the ISAKMP policy",
+                         "With \u0027tunnel mode ipsec ipv4\u0027 on the tunnel",
+                         "With \u0027set pfs group14\u0027 in the IPsec profile"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der IPsec-Modus wird im Transform Set mit \u0027mode transport\u0027 bzw. \u0027mode tunnel\u0027 festgelegt. Bei GRE over IPsec liefert GRE bereits den äußeren Header, Transport Mode spart deshalb 20 Byte."
+    },
+    {
+        "id":  "slg-vp-064",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R3 has a static VTI with \u0027tunnel mode ipsec ipv4\u0027. On R2, the engineer configures Tunnel0 with tunnel source, tunnel destination, and \u0027tunnel protection ipsec profile MYPROFILE\u0027, but forgets the \u0027tunnel mode\u0027 command. What is the result?",
+        "optionen":  [
+                         "R2 sends the traffic in cleartext, because protection needs IPsec mode",
+                         "R2 rejects the tunnel protection command without a tunnel mode",
+                         "R2 runs GRE over IPsec, which does not match R3\u0027s native IPsec VTI",
+                         "R2 automatically detects R3\u0027s mode and switches to native IPsec"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ohne \u0027tunnel mode\u0027 bleibt der Default GRE/IP, mit Tunnel Protection entsteht also GRE over IPsec. Die Gegenseite erwartet aber nativen IPsec-VTI-Verkehr, beide Enden müssen denselben Modus verwenden."
+    },
+    {
+        "id":  "slg-vp-065",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Modus Tunnel0: Lege die Kapselung als nativen IPsec-VTI für IPv4 fest.",
+        "bausteine":  [
+                          "tunnel",
+                          "mode",
+                          "ipsec",
+                          "ipv4",
+                          "gre",
+                          "ip",
+                          "esp",
+                          "ipv6"
+                      ],
+        "loesung":  [
+                        "tunnel",
+                        "mode",
+                        "ipsec",
+                        "ipv4"
+                    ],
+        "erklaerung":  "\u0027tunnel mode ipsec ipv4\u0027 macht aus dem Tunnelinterface einen Static VTI ohne GRE. Der Default wäre \u0027tunnel mode gre ip\u0027."
+    },
+    {
+        "id":  "slg-vp-066",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege das Transform Set TS256 mit ESP-AES-256 als Verschlüsselung und HMAC-SHA-256 als Integritätsschutz an.",
+        "bausteine":  [
+                          "crypto",
+                          "ipsec",
+                          "transform-set",
+                          "TS256",
+                          "esp-aes",
+                          "256",
+                          "esp-sha256-hmac",
+                          "isakmp",
+                          "ah-sha-hmac",
+                          "esp-md5-hmac"
+                      ],
+        "loesung":  [
+                        "crypto",
+                        "ipsec",
+                        "transform-set",
+                        "TS256",
+                        "esp-aes",
+                        "256",
+                        "esp-sha256-hmac"
+                    ],
+        "erklaerung":  "Ein Transform Set legt Verschlüsselung und Integritätsschutz der IPsec-SAs fest. \u0027ah-sha-hmac\u0027 würde AH statt ESP-Integrität wählen, MD5 sollte man meiden."
+    },
+    {
+        "id":  "slg-vp-067",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Modus (ipsec-profile) von \u0027crypto ipsec profile MYPROFILE\u0027: Verweise auf das Transform Set MYSET.",
+        "bausteine":  [
+                          "set",
+                          "transform-set",
+                          "MYSET",
+                          "match",
+                          "profile",
+                          "transform"
+                      ],
+        "loesung":  [
+                        "set",
+                        "transform-set",
+                        "MYSET"
+                    ],
+        "erklaerung":  "Das IPsec-Profil bündelt die Phase-2-Parameter für den VTI. Mit \u0027set transform-set MYSET\u0027 übernimmt es Verschlüsselung und Hash aus dem Transform Set."
+    },
+    {
+        "id":  "slg-vp-068",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Modus (ipsec-profile) von \u0027crypto ipsec profile VPN-PROF\u0027: Erzwinge Perfect Forward Secrecy mit DH-Gruppe 14 für die IPsec-SAs.",
+        "bausteine":  [
+                          "set",
+                          "pfs",
+                          "group14",
+                          "group",
+                          "14",
+                          "pfs-group",
+                          "enable"
+                      ],
+        "loesung":  [
+                        "set",
+                        "pfs",
+                        "group14"
+                    ],
+        "erklaerung":  "\u0027set pfs group14\u0027 erzwingt in Phase 2 einen neuen DH-Austausch. Die Gruppennummer wird dabei ohne Leerzeichen geschrieben."
+    },
+    {
+        "id":  "slg-vp-069",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "On what does the line protocol state of an IPsec static VTI depend?",
+        "optionen":  [
+                         "On the state of the IPsec SAs of the tunnel",
+                         "Only on the state of the physical interface",
+                         "Only on a route to the tunnel destination",
+                         "On GRE keepalives that are enabled by default"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein IPsec-VTI ist nur up/up, wenn die IPsec-SAs stehen. So zeigt der Interfacestatus direkt, ob der verschlüsselte Tunnel funktioniert, und Routing-Protokolle reagieren darauf."
+    },
+    {
+        "id":  "slg-vp-070",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A QoS policy must classify VoIP by its UDP ports before the traffic is encrypted toward a branch over a static VTI. Where should the policy be applied?",
+        "optionen":  [
+                         "On the physical WAN interface, because it sees the inner ports",
+                         "On the ISAKMP policy, because it controls the encryption",
+                         "On the transform set, because it defines the ESP header",
+                         "On the VTI, because it handles the cleartext packets"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Auf dem VTI liegen die Pakete noch im Klartext, dort sind die UDP-Ports sichtbar. Am physischen Interface sieht man nur noch ESP, deshalb gehören Funktionen für verschlüsselte Pakete dorthin."
+    },
+    {
+        "id":  "slg-vp-071",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A crypto map protects 12 subnet pairs between two sites, each defined in its own crypto ACL entry. After migration to a static VTI, \u0027show crypto ipsec sa\u0027 shows local and remote ident 0.0.0.0/0.0.0.0. Why does the VTI scale better?",
+        "optionen":  [
+                         "The VTI protects half of the subnets with AH and the other half with ESP SAs",
+                         "The VTI skips IKE entirely and installs static manual keys for each of the subnets",
+                         "The VTI compresses the traffic of all 12 subnets into a single ESP stream with one key",
+                         "One SA pair now covers all traffic routed into the tunnel instead of one per ACL entry"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beim VTI entscheidet das Routing, was in den Tunnel geht, und die Proxy-IDs lauten any/any. So genügt ein SA-Paar, während eine Crypto Map pro ACL-Eintrag eigene SAs braucht."
+    },
+    {
+        "id":  "slg-vp-072",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which limitation does an IPsec VTI have compared with a GRE tunnel?",
+        "optionen":  [
+                         "It cannot use static routes that point to the tunnel",
+                         "It cannot use AES and is limited to 3DES encryption",
+                         "It carries only IP unicast and multicast, not other protocols",
+                         "It cannot carry multicast and therefore no routing protocols"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein IPsec-VTI transportiert nur IP-Unicast und -Multicast. GRE ist multiprotokollfähig und kann auch andere Layer-3-Protokolle kapseln."
+    },
+    {
+        "id":  "slg-vp-073",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A design requires that IPsec sessions fail over statefully between two head-end routers. The team plans to use static VTIs. What is the correct assessment?",
+        "optionen":  [
+                         "VTIs support stateful failover automatically when HSRP runs on the tunnel",
+                         "IPsec stateful failover works with VTIs once PFS is enabled on both peers",
+                         "IPsec stateful failover is not supported with VTIs, so redundancy must come from routing",
+                         "VTIs support stateful failover only when AH is used instead of ESP"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Cisco IOS unterstützt IPsec Stateful Failover nicht mit VTIs. Ähnliche Ausfallsicherheit erreicht man mit mehreren Tunneln und einem dynamischen Routing-Protokoll."
+    },
+    {
+        "id":  "slg-vp-074",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A company plans a hub-and-spoke VPN with 400 branches using VTIs. Which deployment choice matches the guidelines?",
+        "optionen":  [
+                         "Transport mode on the hub and tunnel mode on the branches",
+                         "Crypto maps on the hub and dynamic VTIs on the branches",
+                         "Dynamic VTIs on the hub, static VTIs on the branches",
+                         "Static VTIs on the hub, one manually configured tunnel per branch"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Für den Hub großer Hub-and-Spoke-Netze empfiehlt sich der dynamische VTI, der Tunnel für eingehende Spokes aus einem Template erzeugt. Die Spokes nutzen statische VTIs zum Hub."
+    },
+    {
+        "id":  "slg-vp-075",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An enterprise with 80 sites needs encrypted partial-mesh and full-mesh connectivity. According to the VTI deployment guidelines, which technologies should be considered?",
+        "optionen":  [
+                         "Crypto maps with one ACL per site pair",
+                         "DMVPN or GET VPN",
+                         "AH in transport mode between all routers",
+                         "Static VTIs between every pair of sites"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "VTIs sind der Standard für einzelne Point-to-Point-Links und Hub-and-Spoke. Für große, teilweise oder voll vermaschte Umgebungen sind DMVPN oder GET VPN gedacht."
+    },
+    {
+        "id":  "slg-vp-076",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An enterprise uses a private MPLS WAN with any-to-any routing and multicast. It must encrypt traffic but keep the original IP addresses visible to the provider for QoS and routing, without building tunnels. Which solution fits?",
+        "optionen":  [
+                         "FlexVPN remote access",
+                         "GET VPN with a key server",
+                         "Static VTIs between all sites",
+                         "DMVPN Phase 3"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "GET VPN ist tunnellos: Gruppenmitglieder erhalten gemeinsame SAs von einem Key Server (GDOI) und behalten den Original-IP-Header. Das passt zu privaten MPLS-WANs mit any-to-any-Verkehr."
+    },
+    {
+        "id":  "slg-vp-077",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In a legacy crypto map configuration, which element decides which traffic is encrypted?",
+        "optionen":  [
+                         "The IPsec profile applied to a tunnel interface",
+                         "The crypto ACL referenced with \u0027match address\u0027",
+                         "The DH group of the ISAKMP policy",
+                         "The routing table entry that points to a tunnel"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei Crypto Maps definiert eine Crypto-ACL den interessanten Verkehr. Beim VTI übernimmt das Routing diese Aufgabe: Was in den Tunnel geroutet wird, wird verschlüsselt."
+    },
+    {
+        "id":  "slg-vp-078",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three are benefits of IPsec VTIs? (Choose three.)",
+        "optionen":  [
+                         "They can encapsulate non-IP protocols like GRE does",
+                         "They provide a routable interface for IP routing protocols",
+                         "Features can be applied to cleartext traffic on the tunnel interface",
+                         "They support IPsec stateful failover natively",
+                         "They can securely carry multicast traffic"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "VTIs sind routbare Interfaces, transportieren Multicast und erlauben Klartext-Features direkt auf dem Tunnel. Nicht-IP-Protokolle kann nur GRE, und Stateful Failover wird mit VTIs nicht unterstützt."
+    },
+    {
+        "id":  "slg-vp-079",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is it discouraged to give a VTI the same IP address as the physical interface when dynamic routing runs over the tunnel?",
+        "optionen":  [
+                         "It causes both IPsec SAs to use the same SPI value",
+                         "It forces ESP to use transport mode instead of tunnel mode",
+                         "It can cause recursive routing and a flapping tunnel",
+                         "It prevents IKE from finding a matching ISAKMP policy"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Wird der Tunnelendpunkt über den Tunnel selbst gelernt, entsteht rekursives Routing, und der Tunnel flappt. Besser sind eine eigene Tunneladresse oder ein Loopback als Quelle."
+    },
+    {
+        "id":  "slg-vp-080",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "\u0027show crypto isakmp sa\u0027 shows a peer with state QM_IDLE and status ACTIVE. What does this mean?",
+        "optionen":  [
+                         "The IPsec SAs failed and IKE is waiting for a new attempt",
+                         "The tunnel is idle because no user traffic was sent yet",
+                         "The peers are still exchanging their phase 1 policy proposals",
+                         "IKE phase 1 is complete, and the IKE SA is ready for quick mode"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "QM_IDLE heißt, die IKE-SA steht und wartet auf weitere Quick-Mode-Verhandlungen. Das ist der normale, gesunde Zustand, auch wenn gerade nichts verhandelt wird."
+    },
+    {
+        "id":  "slg-vp-081",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show crypto isakmp sa\u0027 on R2 shows the peer stuck in state MM_NO_STATE. Which cause is most likely?",
+        "optionen":  [
+                         "The static route into the tunnel is missing on R2",
+                         "The peer never answers or no ISAKMP proposal matches",
+                         "The transform sets differ while the IKE SA is up",
+                         "The pre-shared keys differ while everything else matches"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "MM_NO_STATE bedeutet, dass Main Mode nicht über die erste Nachricht hinauskommt. Typisch sind keine passende Policy, ein unerreichbarer Peer oder gefiltertes UDP 500. Ein falscher PSK fällt erst später auf."
+    },
+    {
+        "id":  "slg-vp-082",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show crypto isakmp sa\u0027 shows the peer stuck in MM_KEY_EXCH, and the log reports IKE messages that failed a sanity check. Which cause is most likely?",
+        "optionen":  [
+                         "Mismatched pre-shared keys",
+                         "Mismatched transform sets",
+                         "UDP port 500 blocked in the path",
+                         "A missing route to the remote LAN"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "In MM_KEY_EXCH ist der DH-Austausch erfolgt, aber die verschlüsselte Authentisierung scheitert. Bei falschem PSK passen die abgeleiteten Schlüssel nicht, und die Nachricht lässt sich nicht korrekt entschlüsseln."
+    },
+    {
+        "id":  "slg-vp-083",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the static VTI lab, R2 shows \u0027#pkts encaps: 10\u0027 and \u0027#pkts decaps: 10\u0027 after PC1 pings PC2. What does the decaps counter prove?",
+        "optionen":  [
+                         "R2 sent 10 packets in cleartext because the tunnel was down",
+                         "R2 dropped 10 packets because the anti-replay check failed",
+                         "R2 received and decrypted 10 ESP packets from R3, so the return path works",
+                         "R2 encrypted 10 packets twice, once for each IPsec SA"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "decaps zählt eingehende ESP-Pakete, die R2 entkapselt hat, encaps die ausgehenden. Steigen beide gleich, funktionieren Hin- und Rückweg durch den Tunnel."
+    },
+    {
+        "id":  "slg-vp-084",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In the static VTI lab, pings from PC1 to PC2 fail. On R3, \u0027#pkts decaps\u0027 increases with every ping, but \u0027#pkts encaps\u0027 stays at 0. Which issue is most likely?",
+        "optionen":  [
+                         "R2 has no route to 10.10.2.0/24 through Tunnel0",
+                         "The ISAKMP policies use different DH groups",
+                         "The pre-shared keys on R2 and R3 do not match",
+                         "R3 has no route to 10.10.1.0/24 through Tunnel0"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "R3 entschlüsselt die Pakete von R2, also stehen IKE- und IPsec-SAs, und R2 routet korrekt. Weil R3 nichts zurück in den Tunnel schickt, fehlt ihm die Route zum LAN von R2 über Tunnel0."
+    },
+    {
+        "id":  "slg-vp-085",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show crypto ipsec sa\u0027 on R2 shows \u0027current_peer 172.18.4.2 port 500\u0027. What can you conclude?",
+        "optionen":  [
+                         "No NAT was detected, so IKE stays on UDP 500 without NAT-T",
+                         "The peer uses IKEv2, because IKEv1 uses UDP port 4500",
+                         "The ESP packets are encapsulated in UDP 500 instead of IP protocol 50",
+                         "The tunnel uses AH, because ESP always uses port 4500"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Port 500 bedeutet, dass IKE ohne NAT-Erkennung arbeitet. Mit NAT-T stünde hier Port 4500, und ESP würde in UDP gekapselt."
+    },
+    {
+        "id":  "slg-vp-086",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On a static VTI, \u0027show crypto ipsec sa\u0027 displays \u0027local ident (addr/mask/prot/port): (0.0.0.0/0.0.0.0/0/0)\u0027 and the same remote ident. What does this mean?",
+        "optionen":  [
+                         "The SA protects traffic to the tunnel\u0027s own IP address only",
+                         "Any IP traffic routed into the tunnel is protected by this SA pair",
+                         "Only traffic to the default route 0.0.0.0/0 is protected",
+                         "No traffic is protected because no crypto ACL is configured"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Beim VTI gibt es keine Crypto-ACL, die Proxy-IDs lauten any/any. Welche Pakete verschlüsselt werden, bestimmt allein das Routing in das Tunnelinterface."
+    },
+    {
+        "id":  "slg-vp-087",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An IPsec SA shows \u0027sa timing: remaining key lifetime (k/sec): (4608000/3537)\u0027. When is the SA rekeyed?",
+        "optionen":  [
+                         "After 3537 IKE keepalives have been exchanged with the peer",
+                         "After 4,608,000 KB of traffic or 3537 more seconds, whichever comes first",
+                         "After 4,608,000 packets, because the time value is only for statistics",
+                         "After 4,608,000 seconds or 3537 KB of traffic, whichever comes last"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die erste Zahl ist das verbleibende Volumen in Kilobyte, die zweite die verbleibende Zeit in Sekunden. Was zuerst abläuft, löst den Rekey aus. Default sind 4 608 000 KB und 3600 s."
+    },
+    {
+        "id":  "slg-vp-088",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show crypto ipsec sa\u0027 shows \u0027plaintext mtu 1438, path mtu 1500\u0027. What does 1438 represent?",
+        "optionen":  [
+                         "The fixed size of every ESP packet on the wire, regardless of the original payload",
+                         "The number of padding bytes that ESP adds to every 1500-byte packet it encrypts",
+                         "The MTU that the peer router has configured on its own physical WAN interface",
+                         "The largest cleartext packet that fits after IPsec overhead within the 1500-byte path"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Von den 1500 Byte des Pfads geht der IPsec-Overhead aus neuem Header, ESP-Header, IV, Padding und ICV ab. Übrig bleiben 1438 Byte für das Klartextpaket. Dieselbe Zahl zeigt \u0027show interface tunnel 0\u0027 als Tunnel transport MTU."
+    },
+    {
+        "id":  "slg-vp-089",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A static VTI is configured without any crypto map, yet \u0027show crypto ipsec sa\u0027 shows \u0027Crypto map tag: Tunnel0-head-0\u0027. Why?",
+        "optionen":  [
+                         "A leftover crypto map from an older configuration is still applied",
+                         "The tunnel was converted to GRE over IPsec by the router",
+                         "IOS automatically generates an internal crypto map for each VTI",
+                         "The peer pushed its crypto map to R2 during IKE phase 1"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Beim VTI erzeugt IOS die Crypto Map intern und automatisch pro Tunnel, deshalb braucht man weniger Konfigurationszeilen. Der Name Tunnel0-head-0 verweist auf das Tunnelinterface."
+    },
+    {
+        "id":  "slg-vp-090",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show interface tunnel 0\u0027 displays \u0027Tunnel protocol/transport IPSEC/IP\u0027 and \u0027Tunnel protection via IPSec (profile \"MYPROFILE\")\u0027. What kind of tunnel is this?",
+        "optionen":  [
+                         "A plain GRE tunnel without encryption",
+                         "An mGRE tunnel used for DMVPN",
+                         "A native IPsec static VTI",
+                         "A GRE tunnel protected by IPsec"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "IPSEC/IP zeigt \u0027tunnel mode ipsec ipv4\u0027, also einen nativen VTI ohne GRE. Bei GRE over IPsec stünde GRE/IP, bei DMVPN multi-GRE/IP."
+    },
+    {
+        "id":  "slg-vp-091",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R2\u0027s routing table shows \u0027S 10.10.2.0/24 is directly connected, Tunnel0\u0027. Which command created this entry?",
+        "optionen":  [
+                         "tunnel destination 10.10.2.0",
+                         "ip route 10.10.2.0 0.0.0.255 Tunnel0",
+                         "ip route 10.10.2.0 255.255.255.0 Tunnel0",
+                         "ip route 10.10.2.0 255.255.255.0 172.18.4.2"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Eine statische Route auf ein Point-to-Point-Interface erscheint als \u0027directly connected\u0027. Mit Next Hop 172.18.4.2 würde der Verkehr am Tunnel vorbei unverschlüsselt ins Internet gehen."
+    },
+    {
+        "id":  "slg-vp-092",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "R2 and R3 are to form a static VTI. Which three items must match or correspond between the two routers? (Choose three.)",
+        "optionen":  [
+                         "The pre-shared key bound to each other\u0027s address",
+                         "The ISAKMP policy sequence number",
+                         "The encryption, hash, DH group, and authentication method of an ISAKMP policy",
+                         "The encryption and hash algorithms of the transform set",
+                         "The tunnel interface number"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Die Policy-Parameter, der PSK und das Transform Set müssen zusammenpassen. Policy-Nummer und Tunnelnummer sind nur lokal und dürfen sich unterscheiden."
+    },
+    {
+        "id":  "slg-vp-093",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Traffic does not pass through a VTI. \u0027show crypto isakmp sa\u0027 shows QM_IDLE, but \u0027show crypto ipsec sa\u0027 lists no ESP SAs for the tunnel. According to the troubleshooting flow, what should be done next?",
+        "optionen":  [
+                         "Add a static route to the remote LAN via the tunnel",
+                         "Disable the default IKE policies on both peers",
+                         "Synchronize the IPsec transform sets on both peers",
+                         "Change the pre-shared key on both peers"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die IKE-SA steht, also passen Policy und PSK. Fehlen die IPsec-SAs, scheitert Phase 2, meist an unterschiedlichen Transform Sets. Routing prüft man erst danach."
+    },
+    {
+        "id":  "slg-vp-094",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which command displays the locally configured IKE parameters such as encryption, hash, DH group, and lifetime of each protection suite?",
+        "optionen":  [
+                         "show crypto ipsec transform-set",
+                         "show crypto ipsec sa",
+                         "show interface tunnel 0",
+                         "show crypto isakmp policy"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027show crypto isakmp policy\u0027 listet jede IKE-Policy mit ihren Parametern. Ist nichts konfiguriert, erscheinen die Default-Policies."
+    },
+    {
+        "id":  "slg-vp-095",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC: Setze die Paketzähler aller IPsec-SAs zurück, bevor du einen neuen Ping-Test startest.",
+        "bausteine":  [
+                          "clear",
+                          "crypto",
+                          "sa",
+                          "counters",
+                          "ipsec",
+                          "isakmp",
+                          "session",
+                          "statistics"
+                      ],
+        "loesung":  [
+                        "clear",
+                        "crypto",
+                        "sa",
+                        "counters"
+                    ],
+        "erklaerung":  "\u0027clear crypto sa counters\u0027 setzt nur die Zähler wie encaps und decaps zurück, die SAs bleiben bestehen. \u0027clear crypto session\u0027 würde dagegen die Tunnel abbauen."
+    },
+    {
+        "id":  "slg-vp-096",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What distinguishes the ISAKMP policy from the IPsec transform set?",
+        "optionen":  [
+                         "The ISAKMP policy is used only with crypto maps, the transform set only with VTIs",
+                         "The ISAKMP policy protects user traffic, the transform set protects the IKE negotiation",
+                         "The ISAKMP policy selects ESP or AH, the transform set selects the DH group",
+                         "The ISAKMP policy protects the IKE negotiation, the transform set protects user traffic"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die ISAKMP-Policy legt fest, wie der IKE-Kanal (Phase 1) geschützt wird. Das Transform Set bestimmt Verschlüsselung und Hash der IPsec-SAs für die Nutzdaten."
+    },
+    {
+        "id":  "slg-vp-097",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A transform set uses \u0027esp-gcm 256\u0027. Why is no separate \u0027esp-sha-hmac\u0027 transform configured?",
+        "optionen":  [
+                         "GCM encrypts only the ESP header, so no integrity check is needed",
+                         "GCM requires AH for integrity, which is added automatically",
+                         "GCM disables anti-replay, so a hash would have no effect",
+                         "GCM is an authenticated encryption mode that already provides integrity"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "AES-GCM ist ein AEAD-Verfahren: Es verschlüsselt und berechnet gleichzeitig einen Integritätswert. Ein zusätzlicher HMAC wäre überflüssig."
+    },
+    {
+        "id":  "slg-vp-098",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which ISAKMP policy follows the security recommendations for new deployments?",
+        "optionen":  [
+                         "encryption des, hash md5, group 1",
+                         "encryption 3des, hash md5, group 2",
+                         "encryption aes 128, hash md5, group 2",
+                         "encryption aes 256, hash sha256, group 14"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "DES, MD5 und die DH-Gruppen 1 und 2 gelten als zu schwach. AES, SHA-2 und mindestens DH-Gruppe 14 sind die empfohlene Kombination."
+    },
+    {
+        "id":  "slg-vp-099",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A hub uses static VTIs, one per branch. Adding a new branch currently requires a new tunnel interface on the hub. Which solution removes this hub change through zero-touch spoke onboarding?",
+        "optionen":  [
+                         "IPsec transport mode",
+                         "DMVPN",
+                         "A longer ISAKMP lifetime",
+                         "Crypto maps with one entry per branch"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei DMVPN registrieren sich neue Spokes dynamisch am Hub, der Hub braucht keine zusätzliche Konfiguration. Mit Crypto Maps müsste man ebenfalls für jeden Peer einen Eintrag anlegen."
+    },
+    {
+        "id":  "slg-vp-100",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Two sites need a simple encrypted link with OSPF between them. Which solution is the recommended default for such an individual point-to-point IPsec VPN?",
+        "optionen":  [
+                         "GET VPN",
+                         "A static VTI",
+                         "DMVPN Phase 3",
+                         "AH in transport mode"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "VTI-basierte VPNs sind die Standardwahl für einzelne Point-to-Point-Verbindungen und Hub-and-Spoke. Sie bieten ein routbares Interface, über das OSPF direkt läuft."
+    },
+    {
+        "id":  "slg-vp-101",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A company wants to use AH between a branch router and a Cisco ASA at headquarters. What is the problem?",
+        "optionen":  [
+                         "AH works only in transport mode",
+                         "AH needs a DH group above 20",
+                         "AH requires IKEv2 on both peers",
+                         "AH is not supported on the Cisco ASA"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Cisco ASA unterstützt AH nicht. AH gilt ohnehin als veraltet, weil es nicht verschlüsselt, deshalb verwendet man ESP."
+    },
+    {
+        "id":  "slg-vp-102",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two statements about IPsec SAs are true? (Choose two.)",
+        "optionen":  [
+                         "Both peers must have exactly equal IPsec SA lifetimes",
+                         "The IKE SA and the IPsec SA are the same object",
+                         "Each IPsec SA protects traffic in one direction only",
+                         "The receiver identifies the SA by the SPI in the ESP header",
+                         "One IPsec SA protects both directions of a flow"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "IPsec-SAs sind unidirektional, und der Empfänger findet die passende SA über den SPI. Die IKE-SA ist davon getrennt, und unterschiedliche Lifetimes werden ausgehandelt statt verboten."
+    },
+    {
+        "id":  "slg-vp-103",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "IKEv1 Aggressive Mode completes phase 1 with ___ messages.",
+        "optionen":  [
+                         "two",
+                         "four",
+                         "three",
+                         "six"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Aggressive Mode braucht drei Nachrichten, Main Mode sechs. Die Ersparnis erkauft man sich mit ungeschützter Identität."
+    },
+    {
+        "id":  "slg-vp-104",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The 32-bit ___ in the ESP header tells the receiver which IPsec SA to use for the packet.",
+        "optionen":  [
+                         "Integrity check value (ICV)",
+                         "Next Header field",
+                         "Security Parameter Index (SPI)",
+                         "Initialization vector (IV)"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der SPI identifiziert zusammen mit der Zieladresse die SA beim Empfänger. In \u0027show crypto ipsec sa\u0027 erscheint er als \u0027spi: 0x…\u0027 bei jeder inbound- und outbound-SA."
+    },
+    {
+        "id":  "slg-vp-105",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the default lifetime of an IKEv1 (ISAKMP) SA on Cisco IOS when the \u0027lifetime\u0027 command is not configured?",
+        "optionen":  [
+                         "86400 seconds",
+                         "28800 seconds",
+                         "3600 seconds",
+                         "43200 seconds"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die IKE-SA lebt ohne Konfiguration 86 400 Sekunden, also 24 Stunden. 3600 Sekunden ist der Default der IPsec-SAs."
+    },
+    {
+        "id":  "slg-vp-106",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "When planning basic IKE peering with pre-shared keys, which three decisions must be made? (Choose three.)",
+        "optionen":  [
+                         "The OSPF area of the tunnel interface",
+                         "The encryption and hash algorithm that protect IKE",
+                         "The peer authentication method",
+                         "The VLAN of the outside interface",
+                         "The Diffie-Hellman group strength"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Für das IKE-Peering legt man Authentisierung, Schutz des IKE-Kanals, DH-Gruppe und Lifetime fest. OSPF-Area und VLAN haben mit der IKE-Policy nichts zu tun."
+    },
+    {
+        "id":  "slg-vp-107",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the lab, Tunnel0 on R2 uses \u0027ip unnumbered Ethernet0/0\u0027. What does this command do?",
+        "optionen":  [
+                         "It assigns a new subnet to Tunnel0 that is derived from Ethernet0/0",
+                         "It lets Tunnel0 borrow the IP address of Ethernet0/0 without a subnet of its own",
+                         "It disables IP on Tunnel0, so only ESP packets are forwarded",
+                         "It removes the IP address from Ethernet0/0 and moves it to Tunnel0"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027ip unnumbered\u0027 leiht sich die Adresse eines anderen Interfaces, ohne eigenes Subnetz. Die Adresse bleibt auf Ethernet0/0, \u0027show interface tunnel 0\u0027 meldet \u0027Interface is unnumbered. Using address of Ethernet0/0\u0027."
+    },
+    {
+        "id":  "slg-vp-108",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A hub uses a dynamic VTI. Why does the hub not need one tunnel interface configured per spoke?",
+        "optionen":  [
+                         "Virtual-access interfaces are cloned from a virtual template when a spoke connects",
+                         "The spokes build GRE tunnels that terminate on the hub\u0027s loopback",
+                         "The hub runs NHRP to map every spoke to the same tunnel interface",
+                         "The hub uses one crypto ACL that lists all spoke networks instead"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beim dynamischen VTI erzeugt der Hub für jede eingehende IPsec-Verbindung ein Virtual-Access-Interface aus einem Virtual Template. Eine feste Tunnel-Destination pro Spoke ist nicht nötig."
+    },
+    {
+        "id":  "slg-vp-109",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R2\u0027s Tunnel0 has a typo: \u0027tunnel destination 172.18.4.3\u0027 instead of 172.18.4.2. No device uses 172.18.4.3. What will the engineer observe on R2?",
+        "optionen":  [
+                         "Tunnel0 is up/up, and R3 accepts the SA because the PSK matches",
+                         "Tunnel0 is up/up and traffic flows in cleartext to R3",
+                         "Tunnel0 stays line protocol down and no IKE SA reaches QM_IDLE",
+                         "Tunnel0 is up/up, because the line protocol ignores IPsec"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Zur falschen Adresse antwortet kein IKE-Peer, also entstehen keine IPsec-SAs. Weil der VTI-Status von den SAs abhängt, bleibt das Line Protocol down."
+    },
+    {
+        "id":  "slg-vp-110",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Match each output detail to its meaning.",
+        "paare":  [
+                      [
+                          "QM_IDLE in show crypto isakmp sa",
+                          "Phase 1 done, IKE SA ready"
+                      ],
+                      [
+                          "MM_NO_STATE in show crypto isakmp sa",
+                          "No accepted proposal or no reply"
+                      ],
+                      [
+                          "encaps rising, decaps at 0",
+                          "Outbound encrypted, nothing comes back"
+                      ],
+                      [
+                          "PFS (Y/N): N",
+                          "No extra DH exchange in phase 2"
+                      ]
+                  ],
+        "erklaerung":  "Die Zustände der IKE-SA zeigen, wie weit Phase 1 gekommen ist. Die Zähler und das PFS-Feld in \u0027show crypto ipsec sa\u0027 beschreiben die IPsec-SAs."
+    },
+    {
+        "id":  "slg-vp-111",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus Tunnel6: Konfiguriere einen nativen IPsec-VTI, der IPv6 über ein IPv6-Transportnetz trägt.",
+        "bausteine":  [
+                          "tunnel",
+                          "mode",
+                          "ipsec",
+                          "ipv6",
+                          "ipv4",
+                          "gre",
+                          "ipv6ip"
+                      ],
+        "loesung":  [
+                        "tunnel",
+                        "mode",
+                        "ipsec",
+                        "ipv6"
+                    ],
+        "erklaerung":  "Für IPv6 lautet der VTI-Modus \u0027tunnel mode ipsec ipv6\u0027. \u0027ipv6ip\u0027 wäre ein unverschlüsselter IPv6-in-IPv4-Tunnel."
+    },
+    {
+        "id":  "slg-vp-112",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two sites must exchange encrypted PIM multicast video streams. The team wants a native IPsec solution without GRE and without crypto ACLs. Which option fits?",
+        "optionen":  [
+                         "IKEv1 Aggressive Mode",
+                         "A crypto map with a multicast ACL",
+                         "AH in transport mode",
+                         "A static IPsec VTI"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein IPsec-VTI transportiert Multicast sicher über ein routbares Interface, ohne GRE. Klassische Crypto Maps eignen sich für Multicast und Routing-Protokolle schlecht."
+    },
+    {
+        "id":  "slg-vp-113",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An inbound ACL is applied to R2\u0027s physical WAN interface Ethernet0/0, which carries the static VTI to R3. Which packets of the tunnel traffic does this ACL see?",
+        "optionen":  [
+                         "GRE packets from 172.18.4.2 to 172.17.1.2",
+                         "ESP packets from 172.18.4.2 to 172.17.1.2",
+                         "Cleartext packets from 10.10.2.0/24 to 10.10.1.0/24",
+                         "Both the ESP packets and a cleartext copy of each"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Am physischen Interface kommen nur die verschlüsselten ESP-Pakete zwischen den Tunnelendpunkten an. Die inneren Adressen werden erst nach der Entschlüsselung auf dem VTI sichtbar."
+    },
+    {
+        "id":  "slg-vp-114",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Match each VPN solution to its key characteristic.",
+        "paare":  [
+                      [
+                          "Static VTI",
+                          "One routable tunnel interface per peer"
+                      ],
+                      [
+                          "DMVPN",
+                          "On-demand spoke-to-spoke tunnels via mGRE and NHRP"
+                      ],
+                      [
+                          "FlexVPN",
+                          "IKEv2-based site-to-site and remote access at one headend"
+                      ],
+                      [
+                          "GET VPN",
+                          "Tunnel-less group encryption keeping the original IP header"
+                      ]
+                  ],
+        "erklaerung":  "Der VTI ist das einfachste Modell für feste Peers, DMVPN skaliert Hub-and-Spoke mit dynamischen Spoke-Tunneln. FlexVPN vereint alle VPN-Arten auf IKEv2-Basis, GET VPN verschlüsselt tunnellos für private WANs."
+    },
+    {
+        "id":  "slg-vp-115",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Following the VTI troubleshooting flow, which two commands verify the IKE peering before the IPsec SAs are checked? (Choose two.)",
+        "optionen":  [
+                         "show crypto ipsec sa",
+                         "show crypto isakmp sa",
+                         "show crypto isakmp policy",
+                         "show interface tunnel 0",
+                         "show ip route"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Zuerst prüft man mit \u0027show crypto isakmp policy\u0027 und \u0027show crypto isakmp sa\u0027 die IKE-Seite. Danach folgen die IPsec-SAs mit \u0027show crypto ipsec sa\u0027 und zuletzt das Routing."
+    },
+    {
+        "id":  "slg-vp-116",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Match each command to the configuration mode in which it is entered.",
+        "paare":  [
+                      [
+                          "authentication pre-share",
+                          "ISAKMP policy configuration"
+                      ],
+                      [
+                          "set transform-set MYSET",
+                          "IPsec profile configuration"
+                      ],
+                      [
+                          "tunnel protection ipsec profile MYPROFILE",
+                          "Tunnel interface configuration"
+                      ],
+                      [
+                          "crypto isakmp key cisco address 172.18.4.2",
+                          "Global configuration"
+                      ]
+                  ],
+        "erklaerung":  "Policy-Parameter stehen unter \u0027crypto isakmp policy\u0027, das Transform Set wird im IPsec-Profil referenziert. Das Profil wird am Tunnelinterface angewendet, der PSK wird global konfiguriert."
+    },
+    {
+        "id":  "slg-vp-117",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Match each verification command from the static VTI lab to what it shows.",
+        "paare":  [
+                      [
+                          "show crypto isakmp sa",
+                          "State of the IKE SA with the peer"
+                      ],
+                      [
+                          "show crypto ipsec sa",
+                          "Encaps and decaps counters per SA"
+                      ],
+                      [
+                          "show interface tunnel 0",
+                          "Tunnel line state and protocol/transport"
+                      ],
+                      [
+                          "show ip route",
+                          "Path to the remote LAN via Tunnel0"
+                      ]
+                  ],
+        "erklaerung":  "Jeder Befehl prüft eine Schicht: IKE-SA, IPsec-SA, Tunnelinterface und Routing. Zusammen bilden sie den Prüfablauf für VTIs."
+    },
+    {
+        "id":  "slg-vp-118",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Cisco IOS has eight default IKE policies with priorities from 65507 (highest) to ___ (lowest).",
+        "optionen":  [
+                         "65515",
+                         "65520",
+                         "65535",
+                         "65514"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die acht Default-Policies belegen die Prioritäten 65507 bis 65514. Je kleiner die Zahl, desto höher die Priorität."
+    },
+    {
+        "id":  "slg-vp-119",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The security architecture for IPsec, which combines IKE, AH, and ESP, is defined in RFC ___.",
+        "optionen":  [
+                         "4301",
+                         "7296",
+                         "2409",
+                         "2784"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "RFC 4301 beschreibt die IPsec-Architektur. RFC 2409 ist IKEv1, RFC 7296 IKEv2 und RFC 2784 GRE."
+    },
+    {
+        "id":  "slg-vp-120",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which configuration approach does a static IPsec VTI replace?",
+        "optionen":  [
+                         "Pre-shared key configuration",
+                         "Crypto map-based IPsec configuration",
+                         "Transform set configuration",
+                         "IKE phase 1 policy configuration"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der VTI ersetzt die Crypto-Map-Konfiguration. ISAKMP-Policy, PSK und Transform Set braucht man weiterhin."
+    },
+    {
+        "id":  "slg-vp-121",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege das IPsec-Profil VTI-PROF an, das später per Tunnel Protection verwendet wird.",
+        "bausteine":  [
+                          "crypto",
+                          "ipsec",
+                          "profile",
+                          "VTI-PROF",
+                          "isakmp",
+                          "transform-set",
+                          "map"
+                      ],
+        "loesung":  [
+                        "crypto",
+                        "ipsec",
+                        "profile",
+                        "VTI-PROF"
+                    ],
+        "erklaerung":  "\u0027crypto ipsec profile VTI-PROF\u0027 öffnet den Modus (ipsec-profile). Dort verweist man auf das Transform Set, und am Tunnel bindet man das Profil mit \u0027tunnel protection ipsec profile\u0027 ein."
+    },
+    {
+        "id":  "slg-vp-122",
+        "topic":  "ENCOR-2.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Modus (config-isakmp) von \u0027crypto isakmp policy 20\u0027: Verwende SHA-256 als Hash-Algorithmus der IKE-Policy.",
+        "bausteine":  [
+                          "hash",
+                          "sha256",
+                          "esp-sha256-hmac",
+                          "integrity",
+                          "sha",
+                          "set"
+                      ],
+        "loesung":  [
+                        "hash",
+                        "sha256"
+                    ],
+        "erklaerung":  "Mit \u0027hash sha256\u0027 nutzt die IKE-Policy SHA-2 statt SHA-1. \u0027esp-sha256-hmac\u0027 ist das passende Schlüsselwort im Transform Set für die IPsec-SAs."
+    }
+]

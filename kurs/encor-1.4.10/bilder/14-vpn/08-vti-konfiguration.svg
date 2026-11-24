@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Static VTI: Konfigurationsbausteine und ihre Verweise</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<defs>
+<marker id="v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker>
+</defs>
+<text x="400" y="30" font-size="17" font-weight="bold" fill="#222" text-anchor="middle">Static VTI – was verweist worauf?</text>
+<g stroke="#222" stroke-width="1.5" font-size="12">
+<rect x="30" y="60" width="330" height="95" rx="8" fill="#b08aff" fill-opacity="0.2"/>
+<rect x="30" y="175" width="330" height="55" rx="8" fill="#b08aff" fill-opacity="0.2"/>
+<rect x="440" y="60" width="330" height="55" rx="8" fill="#39c86a" fill-opacity="0.2"/>
+<rect x="440" y="135" width="330" height="55" rx="8" fill="#39c86a" fill-opacity="0.2"/>
+<rect x="440" y="210" width="330" height="130" rx="8" fill="#4a9cff" fill-opacity="0.2"/>
+<rect x="440" y="360" width="330" height="50" rx="8" fill="#ffd23f" fill-opacity="0.35"/>
+</g>
+<g font-family="monospace" font-size="12" fill="#222">
+<text x="45" y="80">crypto isakmp policy 10</text>
+<text x="55" y="97">authentication pre-share / hash sha</text>
+<text x="55" y="114">encryption aes 128 / group 14</text>
+<text x="55" y="131">lifetime 3600</text>
+<text x="45" y="200">crypto isakmp key KEY address 172.18.4.2</text>
+<text x="455" y="80">crypto ipsec transform-set MYSET</text>
+<text x="465" y="97">esp-aes 128 esp-sha-hmac</text>
+<text x="455" y="155">crypto ipsec profile MYPROFILE</text>
+<text x="465" y="172">set transform-set MYSET</text>
+<text x="455" y="230">interface Tunnel0</text>
+<text x="465" y="247">ip unnumbered Ethernet0/0</text>
+<text x="465" y="264">tunnel source Ethernet0/0</text>
+<text x="465" y="281">tunnel destination 172.18.4.2</text>
+<text x="465" y="298">tunnel mode ipsec ipv4</text>
+<text x="465" y="315">tunnel protection ipsec</text>
+<text x="475" y="331">profile MYPROFILE</text>
+<text x="455" y="390">ip route 10.10.2.0 255.255.255.0 Tunnel0</text>
+</g>
+<g stroke="#222" stroke-width="1.6" fill="none" marker-end="url(#v)">
+<path d="M440 320 L420 320 L420 165 L438 165"/>
+<path d="M600 135 L600 118"/>
+<path d="M605 360 L605 343"/>
+</g>
+<g font-size="12" fill="#222">
+<text x="45" y="148" font-weight="bold">Phase 1 (IKE-SA)</text>
+<text x="45" y="224" font-weight="bold">PSK an Peer-IP gebunden</text>
+<text x="40" y="270">Ablauf: Verkehr wird in Tunnel0 geroutet →</text>
+<text x="40" y="290">Profil fordert SAs an → IKE nutzt Policy + Key →</text>
+<text x="40" y="310">Quick Mode nutzt das Transform Set →</text>
+<text x="40" y="330">IPsec-SAs ACTIVE → Tunnel0 line protocol up.</text>
+<text x="40" y="370">Klartext-Features (QoS, ACL) auf Tunnel0,</text>
+<text x="40" y="390">Features für verschlüsselte Pakete auf dem</text>
+<text x="40" y="410">physischen Außeninterface.</text>
+</g>
+</svg>

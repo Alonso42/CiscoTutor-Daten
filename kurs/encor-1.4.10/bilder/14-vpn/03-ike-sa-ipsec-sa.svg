@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>IKE-SA und IPsec-SAs zwischen zwei Peers</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<defs>
+<marker id="pf" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker>
+</defs>
+<g fill="#ffffff" stroke="#222" stroke-width="2">
+<circle cx="110" cy="220" r="40"/><circle cx="690" cy="220" r="40"/>
+</g>
+<g font-size="18" fill="#222" text-anchor="middle" dominant-baseline="central">
+<text x="110" y="220">R2</text><text x="690" y="220">R3</text>
+</g>
+<rect x="170" y="70" width="460" height="50" rx="8" fill="#b08aff" opacity="0.35" stroke="#b08aff"/>
+<text x="400" y="92" font-size="15" fill="#222" text-anchor="middle" font-weight="bold">IKE-SA (Phase 1) – eine, bidirektional</text>
+<text x="400" y="111" font-size="12" fill="#222" text-anchor="middle">UDP 500 (mit NAT: UDP 4500) · schützt nur die Verhandlung</text>
+<g stroke="#222" stroke-width="2">
+<line x1="170" y1="190" x2="625" y2="190" marker-end="url(#pf)"/>
+<line x1="630" y1="255" x2="175" y2="255" marker-end="url(#pf)"/>
+</g>
+<rect x="250" y="160" width="300" height="22" fill="#39c86a" opacity="0.4"/>
+<text x="400" y="176" font-size="13" fill="#222" text-anchor="middle">IPsec-SA R2 → R3 (ESP, SPI 0x78A2BF51)</text>
+<rect x="250" y="262" width="300" height="22" fill="#4a9cff" opacity="0.4"/>
+<text x="400" y="278" font-size="13" fill="#222" text-anchor="middle">IPsec-SA R3 → R2 (ESP, SPI 0x8A9B29A1)</text>
+<g font-size="13" fill="#222">
+<text x="60" y="330">Jede IPsec-SA enthält: Algorithmen (z. B. esp-aes / esp-sha-hmac), Schlüssel,</text>
+<text x="60" y="350">Traffic-Spezifikation (Proxy-IDs), Lifetime (Sekunden / Kilobyte), SPI, Anti-Replay-Zähler.</text>
+<text x="60" y="380">IPsec-SAs sind unidirektional → mindestens zwei pro Verbindung (je Richtung eine).</text>
+<text x="60" y="400">Die outbound-SA von R2 ist die inbound-SA von R3 (gleicher SPI).</text>
+</g>
+</svg>

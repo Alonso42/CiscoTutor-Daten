@@ -1,0 +1,549 @@
+[
+    {
+        "id":  "slg-ar-001",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Module der Cisco Enterprise Architecture ihrer Aufgabe zu.",
+        "paare":  [
+                      [
+                          "Enterprise Campus",
+                          "Gebäude/Gelände mit Access, Distribution, Core und Data Center"
+                      ],
+                      [
+                          "Enterprise Edge",
+                          "Unternehmensseitige Terminierung von Internet, VPN und WAN"
+                      ],
+                      [
+                          "Service Provider Edge",
+                          "Netze der Provider (ISP, MPLS, Metro Ethernet) zu den entfernten Standorten"
+                      ],
+                      [
+                          "Remote Locations",
+                          "Filialen, Teleworker, entferntes Rechenzentrum"
+                      ]
+                  ],
+        "erklaerung":  "Vier Module: Campus (dreistufig + Data Center), Enterprise Edge (ISP, VPN, WAN), Service Provider Edge (Provider-Verbindungen) und Remote Locations (Branches, Teleworker)."
+    },
+    {
+        "id":  "slg-ar-002",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In which Enterprise Architecture module are site-to-site VPNs and ISP connections typically terminated?",
+        "optionen":  [
+                         "Remote Locations",
+                         "Enterprise Edge",
+                         "Data center submodule",
+                         "Enterprise Campus"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Enterprise Edge verbindet das Unternehmen nach außen: Internet-Anbindung, VPN-Terminierung und WAN-Dienste wie MPLS oder Metro Ethernet."
+    },
+    {
+        "id":  "slg-ar-003",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is a main benefit of building the network from separate functional modules?",
+        "optionen":  [
+                         "Fewer IP subnets are needed because each module shares one large address block",
+                         "All traffic takes the same path, so troubleshooting needs only one set of tools",
+                         "Spanning tree is no longer required because modules never connect at Layer 2",
+                         "A failure stays isolated within its module and changes can be rolled out in a controlled way"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Module isolieren Fehler. Änderungen und Upgrades lassen sich Modul für Modul kontrolliert einführen; Dienste wie Security und QoS werden ebenfalls modular umgesetzt."
+    },
+    {
+        "id":  "slg-ar-004",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Netzwerk-Eigenschaft ihrer Bedeutung zu.",
+        "paare":  [
+                      [
+                          "Self-healing",
+                          "Dauerhaft verfügbar, Ausfälle werden abgefangen"
+                      ],
+                      [
+                          "Self-defending",
+                          "Schützt Nutzer und Organisation vor Angriffen und Bedrohungen"
+                      ],
+                      [
+                          "Self-optimizing",
+                          "Passt sich an Anforderungen über Basis-Standards hinaus an"
+                      ],
+                      [
+                          "Self-aware",
+                          "Liefert Einblick in den Verkehr (z. B. NetFlow, NBAR)"
+                      ]
+                  ],
+        "erklaerung":  "Die vier Design-Ziele: Self-healing (Verfügbarkeit), Self-defending (Schutz), Self-optimizing (Anpassung, z. B. Priorisierung) und Self-aware (Transparenz über NetFlow/NBAR)."
+    },
+    {
+        "id":  "slg-ar-005",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Wi-Fi APs need more than 1 Gbps, but the building has existing Cat5e/Cat6 copper cabling. Which standard allows higher speeds over that cabling?",
+        "optionen":  [
+                         "IEEE 802.1AE",
+                         "IEEE 802.3ad",
+                         "IEEE 802.3bz",
+                         "IEEE 802.3af"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "802.3bz (2.5GBASE-T/5GBASE-T, bei Cisco \u0027Multigigabit\u0027) bringt mehr als 1 Gbit/s über vorhandene Kupferverkabelung. 802.3ad = LACP, 802.1AE = MACsec, 802.3af = PoE."
+    },
+    {
+        "id":  "slg-ar-006",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does Cisco Universal PoE (UPOE) deliver per port?",
+        "optionen":  [
+                         "1 kW",
+                         "30 W",
+                         "60 W",
+                         "15.4 W"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "UPOE liefert bis zu 60 W pro Port. Zum Vergleich: 802.3af 15,4 W, 802.3at (PoE+) 30 W; UPOE+ bzw. 802.3bt Typ 4 bis 90 W."
+    },
+    {
+        "id":  "slg-ar-007",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does perpetual PoE provide on an access switch?",
+        "optionen":  [
+                         "PoE delivered over fiber uplinks using hybrid cabling",
+                         "Unused PoE ports are shut down automatically to save power",
+                         "Power to endpoints continues while the switch reboots or is upgraded",
+                         "PoE runs without any power budget limit on the switch"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Perpetual PoE versorgt Telefone, APs oder Kameras weiter, während der Switch neu startet oder ein Upgrade läuft."
+    },
+    {
+        "id":  "slg-ar-008",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the main drawback of a flat campus network with hundreds of hosts in one subnet?",
+        "optionen":  [
+                         "Every host is in the same broadcast domain and must process every broadcast",
+                         "Hosts cannot reach the internet because NAT does not work in one subnet",
+                         "Each host needs its own VLAN to communicate with the gateway",
+                         "Routing protocols cannot be used at all inside a single subnet"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Flaches Netz = eine Broadcast-Domäne. Jeder Broadcast kostet CPU-Zeit auf jedem Gerät; mit Hunderten Hosts leidet die Leistung. Abhilfe: mit L3-Geräten segmentieren."
+    },
+    {
+        "id":  "slg-ar-009",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which device stops broadcasts from propagating beyond a LAN segment?",
+        "optionen":  [
+                         "Layer 3 switch or router",
+                         "Wireless AP",
+                         "Hub",
+                         "Layer 2 switch"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Broadcasts enden am L3-Gerät (Router oder Layer-3-Switch). L2-Switches fluten Broadcasts im ganzen VLAN."
+    },
+    {
+        "id":  "slg-ar-010",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In a Layer 2 access design with VLANs terminated at the distribution layer and VLANs spanning several access switches, what happens to redundant uplinks?",
+        "optionen":  [
+                         "The uplinks become routed links",
+                         "All uplinks forward and load-share equally",
+                         "Uplinks are bundled automatically",
+                         "About half of the uplinks are blocked by STP"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bei L2-Access terminieren die VLANs an der Distribution. Überspannen VLANs mehrere Access-Switches, entstehen Schleifen; STP blockiert dann etwa die Hälfte der Uplinks. (Ist jedes VLAN auf einen Access-Switch beschränkt, ist das Design schleifenfrei.)"
+    },
+    {
+        "id":  "slg-ar-011",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which statements about a routed (Layer 3) access design are true?",
+        "optionen":  [
+                         "All uplinks can be used without STP blocking",
+                         "VLANs terminate on the access switches",
+                         "Links between access and distribution are routed",
+                         "The same VLAN can easily span several access switches"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Routed Access: L3 bis zum Access-Switch, Uplinks sind geroutete Links, kein STP-Blocking. Nachteil: jedes VLAN ist lokal – dasselbe VLAN kann nicht auf mehreren Access-Switches liegen."
+    },
+    {
+        "id":  "slg-ar-012",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement best describes the relationship between the hierarchical layers and the physical switches?",
+        "optionen":  [
+                         "Every campus needs exactly three physical tiers, one switch per layer",
+                         "The core layer must host user connections to keep latency low",
+                         "The access layer must always be routed, so each switch is its own tier",
+                         "The layers describe roles; a small campus may combine core and distribution in one switch"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Schichten beschreiben Funktionen, nicht die Anzahl der Geräte. Kleiner Campus: Collapsed Core (Core + Distribution in einem Switch); großer Campus: ggf. mehr als drei Stufen."
+    },
+    {
+        "id":  "slg-ar-013",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which devices extend connectivity one level beyond the campus access switch?",
+        "optionen":  [
+                         "WAN edge routers",
+                         "Core and distribution switches",
+                         "IP phones and wireless APs",
+                         "Firewalls and IPS sensors"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "IP-Telefone (PC dahinter) und Access Points erweitern das Netz eine Ebene über den Access-Switch hinaus. Deshalb ist der Access-Layer besonders funktionsreich."
+    },
+    {
+        "id":  "slg-ar-014",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which functions are typically performed at the distribution layer?",
+        "optionen":  [
+                         "Route summarization toward the core",
+                         "Policy enforcement such as QoS and filtering",
+                         "First-hop redundancy (HSRP/VRRP/GLBP) for access VLANs",
+                         "Direct connection of user PCs"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Distribution: Routing-Grenze, Summarization, Policies (QoS, Filter), Terminierung der Access-VLANs und FHRP. Endgeräte hängen am Access-Layer."
+    },
+    {
+        "id":  "slg-ar-015",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which design rule applies to the campus core?",
+        "optionen":  [
+                         "Connect servers directly to the core for the lowest latency and the fewest hops to users",
+                         "Keep it simple: high availability, fast convergence, no complex policies, no direct user or server connections",
+                         "Terminate all access VLANs in the core so every subnet has a single gateway",
+                         "Run complex policies and ACLs here to protect the data center from all user traffic"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Core = schnell und immer verfügbar. Keine komplexen Policies, keine direkt angeschlossenen Nutzer oder Server, minimale Control-Plane-Konfiguration."
+    },
+    {
+        "id":  "slg-ar-016",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Without a core layer, distribution blocks must be fully meshed. With 2 switches per building block, how many links are needed between 5 building blocks?",
+        "optionen":  [
+                         "45",
+                         "10",
+                         "20",
+                         "40"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Formel: Links = B × (N − 2), B = Blöcke, N = Switches gesamt. 5 Blöcke × 2 = 10 Switches → 5 × 8 = 40 Links. Ein dedizierter Core vermeidet dieses Wachstum."
+    },
+    {
+        "id":  "slg-ar-017",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is a sign that a separate physical core layer is needed?",
+        "optionen":  [
+                         "All VLANs are local to their access switch and no VLAN spans the campus",
+                         "Routine configuration changes keep touching the collapsed core devices as the campus grows",
+                         "The campus uses only wireless clients that roam between access points",
+                         "There is only one building with a single access switch and one uplink"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein eigener Core bringt Skalierbarkeit und weniger Risiko bei Änderungen. Wenn Erweiterungen regelmäßig die Core-Geräte betreffen, fehlt Modularität – Zeit, Core und Distribution zu trennen."
+    },
+    {
+        "id":  "slg-ar-018",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Campus-Größe ihrem typischen Design zu.",
+        "paare":  [
+                      [
+                          "Small site",
+                          "Ein Access-Switch oder Switch-Stack"
+                      ],
+                      [
+                          "Medium density",
+                          "Eine Distribution-Schicht, oft als Collapsed Core"
+                      ],
+                      [
+                          "High-density large",
+                          "Mehrere Distribution-Blöcke an einem L3-Core"
+                      ]
+                  ],
+        "erklaerung":  "Klein: ein Switch bzw. Stack. Mittel: eine Distribution-Schicht (Collapsed Core). Groß: mehrere Distribution-Blöcke, verbunden über einen eigenen Layer-3-Core."
+    },
+    {
+        "id":  "slg-ar-019",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which three distribution layer design models does Cisco describe?",
+        "optionen":  [
+                         "Collapsed, three-tier, spine-leaf",
+                         "Spine-leaf, full mesh, hub-and-spoke",
+                         "Flat, star, dual-ring",
+                         "Traditional, simplified, SD-Access"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Traditional (zwei eigenständige Switches + FHRP + STP), Simplified (ein logischer Switch, z. B. Stack oder StackWise Virtual) und SD-Access (Fabric-Overlay)."
+    },
+    {
+        "id":  "slg-ar-020",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In a traditional distribution design, why does Cisco recommend restricting each VLAN to a single access switch?",
+        "optionen":  [
+                         "It allows VTP to work",
+                         "It avoids Layer 2 loops that STP must block",
+                         "It is required for EtherChannel",
+                         "It doubles the number of FHRP groups"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "VLAN pro Access-Switch = schleifenfreies Design ohne von STP blockierte Links. Kleine L2-Domänen begrenzen auch Broadcasts und STP-Fehler."
+    },
+    {
+        "id":  "slg-ar-021",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Under which condition can GLBP actually balance traffic across both distribution uplinks?",
+        "optionen":  [
+                         "Only when both distribution switches are stacked into one logical switch",
+                         "Only when VTP is in transparent mode on all access switches",
+                         "Only with routed access, where GLBP runs on the access switches",
+                         "Only in a non-looped topology where STP does not block an uplink"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "GLBP verteilt Hosts auf mehrere Gateways – das nützt nur, wenn STP keinen Uplink blockiert, also in einer schleifenfreien Topologie."
+    },
+    {
+        "id":  "slg-ar-022",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is a drawback of tuning HSRP/VRRP timers for subsecond convergence?",
+        "optionen":  [
+                         "It breaks IPv6",
+                         "It requires a license",
+                         "It can increase switch CPU load",
+                         "It disables preemption"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Sehr kurze Hello/Hold-Timer sorgen für schnelle Umschaltung, erzeugen aber mehr Pakete und damit CPU-Last."
+    },
+    {
+        "id":  "slg-ar-023",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "What are advantages of a simplified distribution layer (multiple switches acting as one logical switch)?",
+        "optionen":  [
+                         "All access uplinks forward via EtherChannel",
+                         "No FHRP is needed for the default gateway",
+                         "STP blocks half of the uplinks",
+                         "Fewer devices to manage"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Ein logischer Distribution-Switch (Stack/StackWise Virtual): Gateway auf einer logischen Schnittstelle ohne HSRP/VRRP/GLBP, alle Uplinks aktiv per EtherChannel, schnelle Umschaltung, weniger Geräte."
+    },
+    {
+        "id":  "slg-ar-024",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Ein EtherChannel kann bis zu ___ aktive Links bündeln.",
+        "optionen":  [
+                         "4",
+                         "2",
+                         "8",
+                         "16"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bis zu 8 aktive Links pro EtherChannel (bei LACP zusätzlich bis zu 8 im Hot-Standby)."
+    },
+    {
+        "id":  "slg-ar-025",
+        "topic":  "ENCOR-1.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Why is IP multicast more efficient with a simplified (single logical) distribution layer?",
+        "optionen":  [
+                         "Multicast is converted to unicast on the distribution uplinks",
+                         "There is a single logical designated router per access VLAN",
+                         "PIM is replaced by STP for building the distribution tree",
+                         "IGMP snooping is no longer needed on the access switches"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Hub-and-Spoke zum logischen Distribution-Switch: Pro VLAN gibt es genau einen logischen DR, der Multicast ins Access-VLAN weiterleitet."
+    },
+    {
+        "id":  "slg-ar-026",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does SD-Access add to a routed access campus?",
+        "optionen":  [
+                         "A larger STP domain that spans all access switches across the campus",
+                         "Mandatory HSRP on every switch for first-hop redundancy in each VLAN",
+                         "Virtual overlay networks on top of the routed underlay, plus identity-based segmentation",
+                         "Spanning VLANs between buildings via VTP, plus MAC-based segmentation"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "SD-Access legt automatisiert ein Fabric-Overlay über das geroutete Underlay und segmentiert nach Benutzer- bzw. Gruppenidentität (TrustSec/SGT)."
+    },
+    {
+        "id":  "slg-ar-027",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Cloud-Modell seiner Beschreibung zu.",
+        "paare":  [
+                      [
+                          "Private",
+                          "Infrastruktur exklusiv für eine Organisation"
+                      ],
+                      [
+                          "Public",
+                          "Drittanbieter, für alle zugänglich (Abo)"
+                      ],
+                      [
+                          "Hybrid",
+                          "Mischung aus mindestens zwei Modellen"
+                      ],
+                      [
+                          "Community",
+                          "Mehrere Organisationen mit ähnlichen Anforderungen teilen sich die Cloud"
+                      ]
+                  ],
+        "erklaerung":  "Unterscheidung nach Eigentum und Zugang: privat, öffentlich, hybrid oder gemeinschaftlich (z. B. geteilter Disaster-Recovery-Standort)."
+    },
+    {
+        "id":  "slg-ar-028",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Several hospitals jointly operate a shared disaster-recovery cloud. Which deployment model is this?",
+        "optionen":  [
+                         "Public",
+                         "Private",
+                         "Hybrid",
+                         "Community"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Community Cloud: mehrere Organisationen mit gemeinsamen Anforderungen teilen sich die Infrastruktur."
+    },
+    {
+        "id":  "slg-ar-029",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which are benefits of a cloud direct connect compared to an IPsec VPN over the internet?",
+        "optionen":  [
+                         "Typically higher and more consistent speed",
+                         "No contract with the cloud provider needed",
+                         "Private path instead of the public internet",
+                         "More control over reliability"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Direct Connect: privater Pfad zur Public Cloud – mehr Sicherheit, verlässlicher und schneller als VPN über das Internet. Dafür ist ein Vertrag/Port beim Anbieter nötig."
+    },
+    {
+        "id":  "slg-ar-030",
+        "topic":  "ENCOR-1.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A company\u0027s region is not served by its cloud provider\u0027s direct connect. How can it still get a private connection to the cloud?",
+        "optionen":  [
+                         "Use only GRE without IPsec over the public internet",
+                         "Use a community cloud shared with other companies",
+                         "Extend VLANs into the cloud provider with VTP",
+                         "MPLS to a direct connect partner (e.g., Megaport, Equinix)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "MPLS Direct Connect: über die MPLS-Anbindung zu einem Direct-Connect-Partner, der seinerseits direkt mit dem Cloud-Anbieter verbunden ist."
+    },
+    {
+        "id":  "slg-ar-031",
+        "topic":  "ENCOR-1.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Cloud-OnRamp-Anwendungsfall zu.",
+        "paare":  [
+                      [
+                          "Cloud OnRamp for SaaS",
+                          "HTTP-Probes messen Latenz und Verlust (vQoE-Score) und wählen den besten Pfad zur SaaS-App"
+                      ],
+                      [
+                          "Cloud OnRamp for Multicloud",
+                          "Automatischer Aufbau von SD-WAN-Edges im Transit-VPC zum Cloud-Gateway"
+                      ],
+                      [
+                          "Cloud Interconnect",
+                          "Anbindung über Interconnect-Partner wie Megaport oder Equinix"
+                      ],
+                      [
+                          "Cloud OnRamp for Colocation",
+                          "SD-WAN-Hub in einem Colocation-Rechenzentrum nahe den Cloud-Anbietern"
+                      ]
+                  ],
+        "erklaerung":  "Cloud OnRamp automatisiert die Anbindung von SD-WAN an die Cloud: SaaS-Pfadwahl per Probes (vQoE aus Verlust/Latenz), Multicloud-Transit (Transit-VPC/vNet), Interconnect über Partner wie Megaport/Equinix und Colocation-Hubs."
+    },
+    {
+        "id":  "slg-ar-032",
+        "topic":  "ENCOR-1.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "How does Cloud OnRamp for SaaS choose the path to an application like Microsoft 365?",
+        "optionen":  [
+                         "Static priority per site, configured once by the administrator",
+                         "Always the MPLS path, because it has guaranteed SLAs",
+                         "Continuous probes measuring latency and loss on all paths (vQoE score)",
+                         "Lowest OSPF cost toward the SaaS provider edge"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Für SaaS werden alle möglichen Pfade laufend per HTTP-Probe gemessen. Aus Verlust und Latenz entsteht ein vQoE-Score (0–10); der Verkehr nimmt den Pfad mit dem besten Score."
+    }
+]

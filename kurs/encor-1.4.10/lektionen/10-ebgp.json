@@ -1,0 +1,121 @@
+[
+{
+ "id": "ebgp",
+ "titel": "eBGP: Nachbarschaften, Pfadattribute und Best-Path-Auswahl",
+ "topics": ["ENCOR-3.2.c"],
+ "seiten": [
+  {
+   "text": "BGP ist das Exterior Gateway Protocol des Internets: Es tauscht Erreichbarkeit zwischen autonomen Systemen (AS) aus. Ein AS ist eine Menge von Netzen unter einer gemeinsamen technischen Verwaltung und Routing-Policy, wem die Router gehören, ist egal. IGPs wie OSPF und EIGRP routen innerhalb eines AS, BGP zwischen AS. BGP ist ein Path-Vector-Protokoll: Zu jedem Präfix wird die Liste der AS mitgeschickt, die bis zum Ziel durchlaufen werden (AS_PATH), dazu weitere Attribute wie NEXT_HOP und ORIGIN. Sieht ein Router die eigene ASN im AS_PATH, verwirft er das Update, so bleibt BGP zwischen AS schleifenfrei. Jedes AS gibt nur seinen eigenen besten Pfad weiter und bestimmt nur, an welches Nachbar-AS es Traffic übergibt, nicht, wie dieses weiterroutet (Hop-by-hop-Paradigma).",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["ASN-Bereich", "Verwendung"],
+    "zeilen": [
+     ["1–64495", "Öffentliche 16-Bit-ASNs (Vergabe über IANA/RIRs, außer 23456)"],
+     ["64496–64511", "Dokumentation und Beispiele"],
+     ["64512–65534", "Privat (16 Bit)"],
+     ["65535", "Reserviert, nicht verwenden"],
+     ["23456", "AS_TRANS für Peers ohne 4-Byte-Unterstützung"],
+     ["4200000000–4294967294", "Privat (32 Bit); asdot X.Y = X·65536 + Y"]
+    ]
+   }
+  },
+  {
+   "text": "BGP läuft über TCP Port 179 und überlässt Bestätigung und Wiederholung dem TCP. Anders als OSPF oder EIGRP, die praktisch auf jedes ACK warten, kann BGP dank TCP Sliding Window Hunderttausende Präfixe am Stück übertragen. Nach dem ersten Volltausch gehen nur noch inkrementelle Updates raus, und Änderungen werden gebündelt, damit flappende Routen eines AS nicht das ganze Internet belasten. Dafür konvergiert BGP langsamer als ein IGP. Nachbarn werden nie automatisch gefunden, jeder Peer wird mit 'neighbor x remote-as y' konfiguriert. Ein Router hat genau einen BGP-Prozess und damit nur eine ASN.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Nachricht", "Aufgabe"],
+    "zeilen": [
+     ["OPEN", "Version, eigene ASN, Hold Time (kleinerer Wert gilt), Router-ID, Capabilities"],
+     ["KEEPALIVE", "Nur Header; bestätigt OPEN und hält die Session (Default 60 s / Hold 180 s)"],
+     ["UPDATE", "Withdrawn Routes, Pfadattribute, NLRI – ein Attributsatz pro Update"],
+     ["NOTIFICATION", "Fehlercode + Subcode, danach wird die Session sofort geschlossen"],
+     ["ROUTE-REFRESH", "Fordert Updates neu an (soft in), ohne Session-Reset"]
+    ]
+   }
+  },
+  {
+   "text": "Eine Session durchläuft die BGP-Zustandsmaschine. Idle: Der Router wartet auf ein Startereignis. Connect: Der TCP-Handshake läuft. Scheitert er, geht es nach Active, wo der Router es erneut versucht. Hängt ein Nachbar dauerhaft in Active oder pendelt zwischen Idle und Active, klappt TCP nicht: falsche Nachbaradresse, fehlende Route, Port 179 gefiltert oder bei eBGP über Loopbacks fehlendes ebgp-multihop/update-source. OpenSent: eigenes OPEN gesendet, warten auf das OPEN des Nachbarn. Passt dessen ASN nicht zur remote-as, folgt eine NOTIFICATION (OPEN Message Error, Bad Peer AS) und ein Reset. OpenConfirm: OPEN des Nachbarn akzeptiert, warten auf KEEPALIVE. Established: Updates werden ausgetauscht, 'show ip bgp summary' zeigt dann die Zahl empfangener Präfixe statt eines Zustandsnamens. 'Idle (Admin)' heißt neighbor shutdown, 'Idle (PfxCt)' heißt maximum-prefix überschritten.",
+   "diagramm": {
+    "typ": "ablauf",
+    "stufen": ["Idle", "Connect (TCP-Handshake zu Port 179)", "Active (nur wenn TCP scheitert, neuer Versuch)", "OpenSent (OPEN gesendet)", "OpenConfirm (OPEN empfangen, warte auf KEEPALIVE)", "Established (UPDATEs, PfxRcd sichtbar)"]
+   }
+  },
+  {
+   "text": "eBGP verbindet verschiedene AS, iBGP Router im selben AS. Per Default müssen eBGP-Peers direkt verbunden sein, denn eBGP sendet mit TTL 1. Beim Senden an einen eBGP-Peer setzt der Router den Next Hop auf die eigene Adresse und stellt seine ASN dem AS_PATH voran. iBGP ändert beides nicht: Der externe Next Hop bleibt stehen (sonst next-hop-self), und weil der AS_PATH im AS gleich bleibt, kann er Schleifen dort nicht erkennen. Deshalb gilt die iBGP-Split-Horizon-Regel: Von einem iBGP-Peer gelernte Routen gehen nicht an andere iBGP-Peers, also Full Mesh oder Route Reflector. Für eBGP gibt es diese Regel nicht, ein ISP reicht Kundenrouten an andere Kunden weiter.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Eigenschaft", "eBGP", "iBGP"],
+    "zeilen": [
+     ["Nachbar-AS", "anders", "gleich"],
+     ["Default TTL", "1 (direkt verbunden)", "255"],
+     ["Administrative Distance", "20", "200"],
+     ["Next Hop beim Senden", "eigene Adresse", "unverändert"],
+     ["AS_PATH beim Senden", "eigene ASN vorangestellt", "unverändert"],
+     ["Weitergabe an andere Peers", "an alle Peers", "nicht an andere iBGP-Peers"],
+     ["show ip bgp neighbors", "external link", "internal link"]
+    ]
+   }
+  },
+  {
+   "text": "Pfadattribute fallen in vier Klassen. Well-known mandatory (ORIGIN, AS_PATH, NEXT_HOP) muss jedes Update mit NLRI enthalten. Well-known discretionary (LOCAL_PREF, ATOMIC_AGGREGATE) kennt jeder, es ist aber nicht überall Pflicht. Optional transitive (COMMUNITY, AGGREGATOR) wird auch unbekannt weitergegeben, mit gesetztem Partial-Bit. Optional non-transitive (MED) wird entfernt, wenn ein Router es nicht kennt. Weight ist kein Attribut im Update, sondern ein lokaler Cisco-Wert. Origin: i bei network oder Aggregation, ? bei Redistribution, e historisch. Achtung bei den Reichweiten: Weight bleibt auf dem Router, Local Preference im AS, MED geht nur ins Nachbar-AS.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Attribut", "Klasse", "Default", "Besser", "Reichweite"],
+    "zeilen": [
+     ["Weight", "Cisco-lokal", "0, lokal 32768", "höher", "nur dieser Router"],
+     ["LOCAL_PREF", "well-known discretionary", "100", "höher", "eigenes AS (iBGP)"],
+     ["AS_PATH", "well-known mandatory", "leer bei Originierung", "kürzer", "über alle AS"],
+     ["ORIGIN", "well-known mandatory", "i / ?", "i < e < ?", "über alle AS"],
+     ["MED", "optional non-transitive", "fehlt = 0", "niedriger", "nur ins Nachbar-AS"],
+     ["COMMUNITY", "optional transitive", "–", "Policy-Markierung", "über alle AS"]
+    ]
+   }
+  },
+  {
+   "text": "BGP wählt pro Präfix genau einen Best Path nach Policy, nicht nach Bandbreite. Ungültig sind Pfade mit nicht erreichbarem Next Hop. Danach geht es Schritt für Schritt, bis nur ein Pfad übrig ist, die übrigen bleiben als Backup in der BGP-Tabelle. Merkhilfe für die Richtung: Weight und Local Preference hoch, alles andere niedrig bzw. kurz. MED vergleicht IOS nur bei Pfaden aus demselben Nachbar-AS (außer mit bgp always-compare-med). Bei zwei eBGP-Pfaden gewinnt vor der Router-ID der ältere Pfad. Der beste BGP-Pfad konkurriert dann per AD mit anderen Quellen. Verliert er, steht er mit 'r' (RIB-failure) in der Tabelle. Mehrere Pfade installiert BGP nur mit maximum-paths.",
+   "diagramm": {
+    "typ": "ablauf",
+    "stufen": ["Höchstes Weight", "Höchste Local Preference", "Lokal originiert (Next Hop 0.0.0.0)", "Kürzester AS_PATH", "Niedrigster Origin (i < e < ?)", "Niedrigster MED (gleiches Nachbar-AS)", "eBGP vor iBGP", "Niedrigste IGP-Metrik zum Next Hop", "Ältester eBGP-Pfad", "Niedrigste Router-ID", "Niedrigste Nachbar-IP"]
+   }
+  },
+  {
+   "text": "Im Lab ist SP1 (AS 1) der Provider, R1 (AS 100) und R2 (AS 200) sind single-homed Kunden. Auf SP1 genügen 'router bgp 1', 'neighbor 192.168.1.11 remote-as 100', 'neighbor 192.168.2.11 remote-as 200' und 'network 10.0.3.0 mask 255.255.255.0'. Der network-Befehl schaltet BGP auf keinem Interface ein, er originiert ein Präfix, und nur wenn es mit exakt dieser Maske in der RIB steht. Ohne mask gilt die klassenbezogene Maske, also würde 'network 10.0.0.0' hier nichts bewirken. Nach dem Aufbau meldet das Log '%BGP-5-ADJCHANGE: neighbor ... Up'. SP1 gibt die Kundenrouten weiter, deshalb kennt R1 10.0.2.0/24 mit AS_PATH '1 200' und Next Hop 192.168.1.10.",
+   "diagramm": {
+    "typ": "topologie",
+    "knoten": [
+     {"id": "r1", "label": "R1 AS 100 Lo0 10.0.1.1/24", "x": "0.15", "y": "0.7", "art": "router"},
+     {"id": "sp1", "label": "SP1 AS 1 Lo0 10.0.3.1/24", "x": "0.5", "y": "0.25", "art": "router"},
+     {"id": "r2", "label": "R2 AS 200 Lo0 10.0.2.1/24", "x": "0.85", "y": "0.7", "art": "router"}
+    ],
+    "kanten": [
+     {"von": "r1", "nach": "sp1", "label": "192.168.1.0/24 eBGP", "farbe": "39c86a"},
+     {"von": "r2", "nach": "sp1", "label": "192.168.2.0/24 eBGP", "farbe": "39c86a"}
+    ],
+    "schritte": [
+     {"von": "r1", "nach": "sp1", "farbe": "ffd23f", "text": "TCP zu Port 179, OPEN/KEEPALIVE → Established"},
+     {"von": "r2", "nach": "sp1", "farbe": "4a9cff", "text": "UPDATE 10.0.2.0/24, AS_PATH 200, Next Hop 192.168.2.11"},
+     {"von": "sp1", "nach": "r1", "farbe": "b08aff", "text": "SP1 gibt weiter: AS_PATH 1 200, Next Hop 192.168.1.10, ohne MED von R2"},
+     {"von": "sp1", "nach": "r2", "farbe": "ff6b6b", "text": "SP1 originiert 10.0.3.0/24 per network → AS_PATH 1, MED 0"}
+    ]
+   }
+  },
+  {
+   "text": "Für die Kontrolle reichen drei Befehle. 'show ip bgp summary': Router-ID, lokale AS und je Nachbar Version, Remote-AS, Nachrichten, InQ/OutQ, Up/Down und State/PfxRcd. Steht dort eine Zahl, ist die Session Established. 'show ip bgp neighbors x': 'BGP state = Established', 'external link' bzw. 'internal link', ausgehandelte Hold Time und Capabilities (Route Refresh, 4-Byte-ASN). 'show ip bgp': die BGP-Tabelle mit Statuscodes, Next Hop, Metric (MED), LocPrf, Weight und Path mit Origin-Code am Ende. Eine lokal originierte Route hat Next Hop 0.0.0.0 und Weight 32768, ihr AS_PATH ist leer. In der Routing-Tabelle steht danach z. B. 'B 10.0.1.0/24 [20/0] via 192.168.1.11', also AD 20 und MED 0. Single-homed Kunden brauchen oft gar kein BGP. Wenn doch, schickt der ISP meist nur eine Default Route per 'neighbor x default-originate', und eine private Kunden-ASN entfernt er nach oben.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Anzeige", "Bedeutung"],
+    "zeilen": [
+     ["*", "gültiger Pfad"],
+     [">", "Best Path"],
+     ["i (Statusspalte)", "per iBGP gelernt"],
+     ["r", "RIB-failure: bessere AD in der Routing-Tabelle"],
+     ["s / d / h", "suppressed / damped / history"],
+     ["i / ? / e (Ende von Path)", "Origin: network bzw. aggregate / Redistribution / EGP"],
+     ["Next Hop 0.0.0.0, Weight 32768", "lokal originiert"],
+     ["State/PfxRcd = Zahl", "Established, Anzahl empfangener Präfixe"]
+    ]
+   }
+  }
+ ]
+}
+]

@@ -1,0 +1,161 @@
+[
+{
+ "id": "redundancy",
+ "titel": "Netzwerk-Redundanz: HSRP, VRRP, GLBP und Switch-Hochverfügbarkeit",
+ "topics": ["ENCOR-3.3.c", "ENCOR-1.1.b"],
+ "seiten": [
+  {
+   "text": "Ein Host schickt alles, was nicht im eigenen Subnetz liegt, an sein Default Gateway. Diese eine Adresse ist fest eingetragen oder per DHCP gelernt und ändert sich nicht, wenn sich das Netz ändert. Zwei Router am Segment helfen also nichts: Fällt R2 aus, konvergiert zwar das IGP zwischen den Routern, der Host schickt aber weiter an die tote Adresse. Ein First Hop Redundancy Protocol (FHRP) löst das, indem mehrere Router gemeinsam einen virtuellen Router darstellen: eine virtuelle IP und eine virtuelle MAC. Der Host trägt die virtuelle IP als Gateway ein und lernt per ARP die virtuelle MAC. Fällt der aktive Router aus, übernimmt ein anderer IP und MAC – der Host merkt nichts. Die Animation zeigt den Ablauf aus dem Kurslab (VIP 192.168.1.1, R2 .2 aktiv, R1 .3 Standby).",
+   "diagramm": {
+    "typ": "topologie",
+    "knoten": [
+     {"id": "pc1", "label": "PC1 GW 192.168.1.1", "x": "0.08", "y": "0.5", "art": "pc"},
+     {"id": "sw", "label": "Access-Switch", "x": "0.32", "y": "0.5", "art": "switch"},
+     {"id": "r2", "label": "R2 .2 Active (Prio 110)", "x": "0.6", "y": "0.22", "art": "router"},
+     {"id": "r1", "label": "R1 .3 Standby (Prio 100)", "x": "0.6", "y": "0.78", "art": "router"},
+     {"id": "core", "label": "Core / Server", "x": "0.9", "y": "0.5", "art": "cloud"}
+    ],
+    "kanten": [
+     {"von": "pc1", "nach": "sw", "label": "VLAN 1", "farbe": "39c86a"},
+     {"von": "sw", "nach": "r2", "label": "Et0/1", "farbe": "39c86a"},
+     {"von": "sw", "nach": "r1", "label": "Et0/1", "farbe": "39c86a"},
+     {"von": "r2", "nach": "core", "label": "Uplink", "farbe": "4a9cff"},
+     {"von": "r1", "nach": "core", "label": "Uplink", "farbe": "4a9cff"}
+    ],
+    "schritte": [
+     {"von": "pc1", "nach": "sw", "farbe": "ffd23f", "text": "ARP: Wer hat 192.168.1.1? Antwort von R2: 0000.0c07.ac01 (virtuelle MAC)"},
+     {"von": "r2", "nach": "r1", "farbe": "4a9cff", "text": "R2 und R1 tauschen alle 3 s Hellos aus (224.0.0.2, UDP 1985)"},
+     {"von": "sw", "nach": "r2", "farbe": "ffd23f", "text": "Normalbetrieb: Frames an die virtuelle MAC gehen zu R2"},
+     {"von": "r2", "nach": "core", "farbe": "ff6b6b", "text": "R2 fällt aus – Hellos bleiben aus, nach der Hold Time (10 s) übernimmt R1"},
+     {"von": "r1", "nach": "sw", "farbe": "39c86a", "text": "R1 wird Active, sendet Gratuitous ARP – der Switch lernt den neuen Port der virtuellen MAC"},
+     {"von": "sw", "nach": "r1", "farbe": "39c86a", "text": "PC1 sendet unverändert an 192.168.1.1 / 0000.0c07.ac01 – jetzt über R1"}
+    ]
+   }
+  },
+  {
+   "text": "HSRP (Cisco, RFC 2281) bildet pro Gruppe einen Active- und einen Standby-Router, weitere Router warten im Listen-Zustand. Gewählt wird nach Priorität (0–255, Default 100, höher gewinnt), bei Gleichstand nach der höchsten Interface-IP. Wichtig: Ein laufender Active-Router bleibt Active, auch wenn ein Router mit höherer Priorität dazukommt – erst standby <gruppe> preempt auf dem besseren Router erlaubt die Übernahme. Mit preempt delay minimum wartet ein frisch gebooteter Router, bis sein Routing steht (die Verzögerung muss länger sein als die Bootzeit; der Kurs nennt als Faustregel ca. 150 %). Die Timer (Default Hello 3 s, Hold 10 s) lassen sich bis in den Millisekundenbereich senken, die Hold Time sollte mindestens das Dreifache des Hellos sein. Zu schnelle Timer bringen aber wenig, wenn das IGP langsamer konvergiert. Ein Traceroute zeigt übrigens die echte Interface-IP des Active-Routers, nicht die VIP.",
+   "diagramm": {
+    "typ": "ablauf",
+    "stufen": [
+     "Initial: HSRP läuft noch nicht (Konfiguration geändert, Interface kommt hoch)",
+     "Listen: kennt die VIP, hört Hellos von Active und Standby",
+     "Speak: sendet Hellos und nimmt an der Wahl teil",
+     "Standby: nächster Kandidat, überwacht den Active-Router",
+     "Active: beantwortet ARP für die VIP und leitet weiter"
+    ]
+   }
+  },
+  {
+   "text": "Ohne Tracking verliert der Active-Router seine Rolle nur, wenn sein HSRP-Interface oder er selbst ausfällt. Fällt nur sein Uplink aus, bleibt er Active und schickt den Verkehr umständlich über das LAN zum anderen Router. Object Tracking behebt das: global track 1 interface Gi0/0 line-protocol (oder eine Route bzw. eine IP-SLA-Probe) definieren und mit standby 10 track 1 decrement 20 an die Gruppe binden. Geht das Objekt down, sinkt die Priorität um den Wert (Default 10). Rechnen lohnt sich: Der Abzug muss den Prioritätsabstand überwinden, und der andere Router braucht preempt, um zu übernehmen. Mit zwei Track-Objekten kann man die Rolle erst beim Ausfall beider Uplinks abgeben.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Situation", "R1 (Prio 120, 2 × decrement 15)", "R2 (Prio 100, preempt)", "Active"],
+    "zeilen": [
+     ["Beide Uplinks von R1 ok", "120", "100", "R1"],
+     ["Ein Uplink von R1 down", "120 − 15 = 105", "100", "R1 (105 > 100)"],
+     ["Beide Uplinks von R1 down", "120 − 30 = 90", "100", "R2 übernimmt per preempt"],
+     ["Wie oben, aber R2 ohne preempt", "90", "100", "R1 bleibt Active"],
+     ["Uplinks wieder ok, R1 mit preempt", "120", "100", "R1 übernimmt wieder"]
+    ]
+   }
+  },
+  {
+   "text": "HSRP leitet pro Gruppe nur über einen Router. Damit beide Distribution-Switches arbeiten, nutzt man mehrere Gruppen (MHSRP): Switch1 ist mit Priorität 110 Active für Gruppe 10 (VLAN 10), Switch2 mit 110 Active für Gruppe 20 (VLAN 20), jeweils mit preempt. Damit kein Umweg entsteht, sollte derselbe Switch auch STP-Root für das VLAN sein. In einem einzigen VLAN geht es ebenso mit zwei Gruppen und zwei VIPs, auf die die Hosts verteilt werden. Gegen fremde Router hilft Authentifizierung: Klartext (max. 8 Zeichen) oder besser MD5 per key-string oder Key Chain – auf allen Peers identisch. HSRPv2 (standby version 2) erweitert die Gruppen auf 0–4095, nutzt 224.0.0.102 und eine neue virtuelle MAC und ist Pflicht für IPv6. v1 und v2 verstehen sich nicht.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["", "HSRPv1", "HSRPv2"],
+    "zeilen": [
+     ["Default", "ja", "nein (standby version 2)"],
+     ["Gruppen", "0–255", "0–4095"],
+     ["Hello an", "224.0.0.2, UDP 1985", "224.0.0.102, UDP 1985"],
+     ["Virtuelle MAC (IPv4)", "0000.0C07.ACxx (Gruppe hex, 2-stellig)", "0000.0C9F.Fxxx (Gruppe hex, 3-stellig)"],
+     ["IPv6", "nein", "ja (FF02::66, MAC 0005.73A0.0xxx)"],
+     ["Beispiel Gruppe 20", "0000.0C07.AC14", "0000.0C9F.F014"]
+    ]
+   }
+  },
+  {
+   "text": "VRRP ist der offene Standard (v2 RFC 3768, v3 RFC 5798) und funktioniert fast wie HSRP: ein Master, ein oder mehrere Backups, Priorität 1–254 mit Default 100. Unterschiede: Nur der Master sendet Advertisements (224.0.0.18, IP-Protokoll 112, jede Sekunde). Preemption ist standardmäßig an. Die virtuelle IP darf die echte Adresse eines Routers sein – dieser Owner hat Priorität 255 und ist immer Master. Priorität 0 heißt: Der Master tritt zurück. Ein Backup erklärt den Master nach 3 × Intervall + Skew Time ((256 − Priorität)/256) für tot, z. B. 3,609 s bei Priorität 100 – so übernimmt der Backup mit der höchsten Priorität zuerst. Eine Gruppe (1–255) muss immer angegeben werden. Authentifizierung wurde aus dem Standard gestrichen, Cisco IOS kann sie noch (text, md5). Auf IOS XE schaltet fhrp version vrrp v3 auf VRRPv3 um (IPv4 und IPv6, Konfiguration per address-family).",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["", "HSRP", "VRRP", "GLBP"],
+    "zeilen": [
+     ["Standard", "Cisco (RFC 2281)", "IETF (RFC 3768 / 5798)", "Cisco"],
+     ["Rollen", "Active / Standby / Listen", "Master / Backup", "AVG + bis zu 4 AVF"],
+     ["Weiterleitung pro Gruppe", "1 Router", "1 Router", "bis zu 4 Router"],
+     ["Default-Priorität", "100", "100 (Owner 255)", "100"],
+     ["Preempt-Default", "aus", "an", "AVG aus, AVF an"],
+     ["Timer-Default", "Hello 3 s / Hold 10 s", "Advertisement 1 s", "Hello 3 s / Hold 10 s"],
+     ["Nachrichten an", "224.0.0.2 (v1) / 224.0.0.102 (v2)", "224.0.0.18, Protokoll 112", "224.0.0.102, UDP 3222"],
+     ["Virtuelle MAC", "0000.0C07.ACxx / 0000.0C9F.Fxxx", "0000.5E00.01xx", "0007.B400.xxyy"]
+    ]
+   }
+  },
+  {
+   "text": "GLBP (Cisco) kann innerhalb einer Gruppe die Last verteilen. Ein Router wird Active Virtual Gateway (AVG). Er beantwortet alle ARP-Anfragen für die eine virtuelle IP, gibt aber abwechselnd (Default: round-robin) die virtuellen MACs verschiedener Active Virtual Forwarder (AVF) heraus – höchstens vier pro Gruppe. So nutzen die Hosts dasselbe Gateway, ihr Verkehr verteilt sich aber auf mehrere Router. Fällt ein AVF aus, übernimmt ein anderer Router dessen MAC. Achtung im Campus: Bei Layer-2-Designs mit blockierenden STP-Ports bringt GLBP keinen Vorteil, weil der Verkehr ohnehin über einen Pfad läuft.",
+   "diagramm": {
+    "typ": "topologie",
+    "knoten": [
+     {"id": "pca", "label": "PC A", "x": "0.08", "y": "0.25", "art": "pc"},
+     {"id": "pcb", "label": "PC B", "x": "0.08", "y": "0.75", "art": "pc"},
+     {"id": "sw", "label": "Switch", "x": "0.35", "y": "0.5", "art": "switch"},
+     {"id": "ra", "label": "RA: AVG + AVF1 (…0101)", "x": "0.68", "y": "0.22", "art": "router"},
+     {"id": "rb", "label": "RB: AVF2 (…0102)", "x": "0.68", "y": "0.78", "art": "router"},
+     {"id": "net", "label": "Core", "x": "0.92", "y": "0.5", "art": "cloud"}
+    ],
+    "kanten": [
+     {"von": "pca", "nach": "sw", "label": "", "farbe": "39c86a"},
+     {"von": "pcb", "nach": "sw", "label": "", "farbe": "39c86a"},
+     {"von": "sw", "nach": "ra", "label": "", "farbe": "39c86a"},
+     {"von": "sw", "nach": "rb", "label": "", "farbe": "39c86a"},
+     {"von": "ra", "nach": "net", "label": "", "farbe": "4a9cff"},
+     {"von": "rb", "nach": "net", "label": "", "farbe": "4a9cff"}
+    ],
+    "schritte": [
+     {"von": "pca", "nach": "ra", "farbe": "ffd23f", "text": "PC A fragt per ARP nach der VIP – der AVG antwortet mit 0007.B400.0101 (AVF1)"},
+     {"von": "pcb", "nach": "ra", "farbe": "ffd23f", "text": "PC B fragt ebenfalls – der AVG antwortet diesmal mit 0007.B400.0102 (AVF2)"},
+     {"von": "pca", "nach": "ra", "farbe": "39c86a", "text": "Verkehr von PC A läuft über RA"},
+     {"von": "pcb", "nach": "rb", "farbe": "b08aff", "text": "Verkehr von PC B läuft über RB – beide Router arbeiten"}
+    ]
+   }
+  },
+  {
+   "text": "Redundanz gibt es auch innerhalb eines Geräts. Ein modularer Catalyst mit zwei Supervisoren kann unterschiedlich gut vorbereitet sein: Bei RPR ist der Standby nur teilweise gebootet, bei RPR+ gebootet, aber ohne L2/L3-Funktionen. Bei SSO (redundancy, mode sso) sind Startup- und Running-Config, Layer-2-Zustände und Interface-Zustände synchron – Links flappen nicht, der Wechsel ist der schnellste der drei Modi. Voraussetzung ist kompatible Software, sonst fällt das System auf RPR zurück. SSO allein startet aber die Routing-Sitzungen neu. NSF ergänzt: Die Hardware leitet mit der alten FIB weiter, während die Routing-Protokolle per Graceful Restart mit NSF-aware Nachbarn die RIB neu aufbauen. NSR geht weiter und hält die Protokollzustände selbst auf dem Standby, die Nachbarn müssen nichts beitragen. Kontrolle mit show redundancy.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Modus", "Zustand des Standby-Supervisors", "Bei Ausfall", "Failover-Dauer (plattformabhängig)"],
+    "zeilen": [
+     ["RPR", "teilweise gebootet", "alle Module neu laden, Supervisor initialisieren", "am längsten (Minutenbereich)"],
+     ["RPR+", "gebootet, keine L2/L3-Funktionen", "Initialisierung abschließen, Module laufen weiter", "kürzer (Sekundenbereich)"],
+     ["SSO", "voll initialisiert, Konfiguration und Zustände synchron", "übernimmt sofort, Links bleiben oben", "am kürzesten"],
+     ["SSO + NSF", "wie SSO", "Forwarding läuft weiter, RIB per Graceful Restart neu", "minimaler Paketverlust"]
+    ]
+   }
+  },
+  {
+   "text": "Stacking macht aus mehreren Switches einen logischen Switch. StackWise-480 verbindet bis zu acht Catalyst 9300 per Stacking-Kabel. Ein Active-Switch führt die Control Plane, ein Standby-Switch ist per SSO synchron, die übrigen sind Member – alle leiten Daten weiter. Ein neu hinzugefügter Switch mit höherer Priorität verdrängt den laufenden Active nicht. StackWise Virtual koppelt genau zwei Switches (z. B. Catalyst 9500) über normale Ethernet-Ports, den StackWise Virtual Link (SVL). Das Paar hat eine Control Plane und pro VLAN nur ein SVI – ein FHRP ist dann überflüssig. Access-Switches bündeln ihre Uplinks zu beiden Switches als Multichassis EtherChannel, STP blockiert nichts. Dual-Active Detection erkennt, wenn nach einem SVL-Ausfall beide Switches aktiv werden wollen.",
+   "diagramm": {
+    "typ": "topologie",
+    "knoten": [
+     {"id": "core", "label": "Core", "x": "0.5", "y": "0.08", "art": "cloud"},
+     {"id": "d1", "label": "Cat 9500-1 (Active)", "x": "0.28", "y": "0.45", "art": "switch"},
+     {"id": "d2", "label": "Cat 9500-2 (Standby)", "x": "0.72", "y": "0.45", "art": "switch"},
+     {"id": "acc", "label": "Access-Switch", "x": "0.5", "y": "0.82", "art": "switch"}
+    ],
+    "kanten": [
+     {"von": "d1", "nach": "d2", "label": "SVL + DAD-Link", "farbe": "b08aff"},
+     {"von": "acc", "nach": "d1", "label": "MEC", "farbe": "39c86a"},
+     {"von": "acc", "nach": "d2", "label": "MEC", "farbe": "39c86a"},
+     {"von": "d1", "nach": "core", "label": "", "farbe": "4a9cff"},
+     {"von": "d2", "nach": "core", "label": "", "farbe": "4a9cff"}
+    ],
+    "schritte": [
+     {"von": "acc", "nach": "d1", "farbe": "ffd23f", "text": "Ein Port-Channel über beide Chassis – beide Links leiten weiter"},
+     {"von": "acc", "nach": "d2", "farbe": "ffd23f", "text": "Gateway ist ein einziges SVI des logischen Switches, kein HSRP nötig"},
+     {"von": "d1", "nach": "d2", "farbe": "ff6b6b", "text": "Fällt 9500-1 aus, übernimmt 9500-2 per SSO; der MEC läuft auf einem Link weiter"}
+    ]
+   }
+  }
+ ]
+}
+]

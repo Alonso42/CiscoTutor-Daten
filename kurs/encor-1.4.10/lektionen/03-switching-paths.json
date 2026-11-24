@@ -1,0 +1,170 @@
+[
+    {
+        "id":  "switching-paths",
+        "titel":  "Switching-Pfade – CAM, TCAM, FIB und CEF",
+        "topics":  [
+                       "ENCOR-3.1.a",
+                       "ENCOR-3.2.a",
+                       "ENCOR-5.2.b"
+                   ],
+        "seiten":  [
+                       {
+                           "text":  "Ein Switch lernt aus jedem eingehenden Frame die Quell-MAC und merkt sich: diese MAC hängt an diesem Port in diesem VLAN. Kennt er die Ziel-MAC, schickt er den Frame gezielt an genau einen Port. Kennt er sie nicht, flutet er den Frame in das ganze VLAN (Unknown Unicast Flooding).",
+                           "diagramm":  {
+                                            "typ":  "topologie",
+                                            "knoten":  [
+                                                           {
+                                                               "id":  "pca",
+                                                               "label":  "PC A …1111",
+                                                               "x":  "0.1",
+                                                               "y":  "0.3",
+                                                               "art":  "pc"
+                                                           },
+                                                           {
+                                                               "id":  "sw",
+                                                               "label":  "Switch",
+                                                               "x":  "0.5",
+                                                               "y":  "0.5",
+                                                               "art":  "switch"
+                                                           },
+                                                           {
+                                                               "id":  "pcb",
+                                                               "label":  "PC B …5555",
+                                                               "x":  "0.9",
+                                                               "y":  "0.3",
+                                                               "art":  "pc"
+                                                           },
+                                                           {
+                                                               "id":  "pcc",
+                                                               "label":  "PC C …7777",
+                                                               "x":  "0.9",
+                                                               "y":  "0.75",
+                                                               "art":  "pc"
+                                                           }
+                                                       ],
+                                            "kanten":  [
+                                                           {
+                                                               "von":  "pca",
+                                                               "nach":  "sw",
+                                                               "label":  "Port 1",
+                                                               "farbe":  "39c86a"
+                                                           },
+                                                           {
+                                                               "von":  "sw",
+                                                               "nach":  "pcb",
+                                                               "label":  "Port 5",
+                                                               "farbe":  "39c86a"
+                                                           },
+                                                           {
+                                                               "von":  "sw",
+                                                               "nach":  "pcc",
+                                                               "label":  "Port 7",
+                                                               "farbe":  "39c86a"
+                                                           }
+                                                       ],
+                                            "schritte":  [
+                                                             {
+                                                                 "von":  "pca",
+                                                                 "nach":  "sw",
+                                                                 "farbe":  "ffd23f",
+                                                                 "text":  "Switch lernt: …1111 an Port 1"
+                                                             },
+                                                             {
+                                                                 "von":  "sw",
+                                                                 "nach":  "pcb",
+                                                                 "farbe":  "ffd23f",
+                                                                 "text":  "…5555 ist bekannt → nur Port 5"
+                                                             },
+                                                             {
+                                                                 "von":  "sw",
+                                                                 "nach":  "pcc",
+                                                                 "farbe":  "ff6b6b",
+                                                                 "text":  "Ziel unbekannt? → Flooding im VLAN"
+                                                             }
+                                                         ]
+                                        }
+                       },
+                       {
+                           "text":  "Multilayer-Switches entscheiden in Hardware. Die CAM-Tabelle kennt nur exakte Treffer (MAC → Port). Die TCAM kennt zusätzlich ‚egal‘-Bits und kann deshalb Prefixe, ACLs und QoS-Regeln in einem einzigen Lookup prüfen, egal wie lang die Liste ist.",
+                           "diagramm":  {
+                                            "typ":  "tabelle",
+                                            "kopf":  [
+                                                         "",
+                                                         "CAM",
+                                                         "TCAM"
+                                                     ],
+                                            "zeilen":  [
+                                                           [
+                                                               "Vergleich",
+                                                               "binär (0/1), exakt",
+                                                               "ternär (0/1/X), mit Maske"
+                                                           ],
+                                                           [
+                                                               "Inhalt",
+                                                               "MAC → Port + VLAN",
+                                                               "ACL, QoS, L3-Prefixe"
+                                                           ],
+                                                           [
+                                                               "Einsatz",
+                                                               "L2-Forwarding",
+                                                               "L3-Forwarding und Policies"
+                                                           ],
+                                                           [
+                                                               "Lookup",
+                                                               "1 exakter Treffer",
+                                                               "1 Lookup, alle Einträge parallel"
+                                                           ]
+                                                       ]
+                                        }
+                       },
+                       {
+                           "text":  "Cisco-Router kennen drei Switching-Verfahren. Process Switching schickt jedes Paket über die CPU. Fast Switching (heute historisch) schickt nur das erste Paket zu einem Ziel über die CPU und cacht das Ergebnis. CEF baut alles vorab aus Routing- und ARP-Tabelle, ganz ohne Cache. Auf Switches läuft CEF in Hardware. CEF ist der Standard.",
+                           "diagramm":  {
+                                            "typ":  "tabelle",
+                                            "kopf":  [
+                                                         "Verfahren",
+                                                         "CPU sieht…",
+                                                         "Basis",
+                                                         "Tempo"
+                                                     ],
+                                            "zeilen":  [
+                                                           [
+                                                               "Process",
+                                                               "jedes Paket",
+                                                               "Routingtabelle pro Paket",
+                                                               "langsam"
+                                                           ],
+                                                           [
+                                                               "Fast",
+                                                               "erstes Paket",
+                                                               "Route-Cache (bedarfsgesteuert)",
+                                                               "mittel"
+                                                           ],
+                                                           [
+                                                               "CEF",
+                                                               "nur Ausnahmen",
+                                                               "FIB + Adjacency (topologiebasiert)",
+                                                               "schnell"
+                                                           ]
+                                                       ]
+                                        }
+                       },
+                       {
+                           "text":  "Woher CEF seine Tabellen hat: Jedes Routingprotokoll hat eine eigene RIB. Die beste Route pro Ziel (bei mehreren Protokollen entscheidet die AD) kommt in die IP-Routingtabelle, daraus entsteht die FIB. Aus ARP (IPv4) bzw. Neighbor Discovery (IPv6) entsteht die Adjacency-Tabelle mit fertigen L2-Headern. Die Control Plane baut beides auf, die Data Plane nutzt es.",
+                           "diagramm":  {
+                                            "typ":  "ablauf",
+                                            "stufen":  [
+                                                           "OSPF/EIGRP/BGP-RIB",
+                                                           "AD wählt beste Route",
+                                                           "IP-Routingtabelle",
+                                                           "FIB (+ Adjacency aus ARP/ND)",
+                                                           "Forwarding per CEF"
+                                                       ]
+                                        }
+                       },
+                       {
+                           "text":  "Manche Pakete kann die Hardware nicht schalten. Sie gehen an die CPU (Punt): Pakete mit IP-Optionen, ablaufender TTL (z. B. Traceroute), nötiger Fragmentierung oder nicht unterstützter Encapsulation, außerdem Pakete ohne Platz in der TCAM. Bei verteiltem CEF (dCEF) hat jede Linecard eine eigene FIB-Kopie und forwardet selbst. Per IPC hält der Route Processor alle Kopien synchron."
+                       }
+                   ]
+    }
+]
