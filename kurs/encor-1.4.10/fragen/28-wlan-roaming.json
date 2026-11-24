@@ -1,0 +1,1852 @@
+[
+    {
+        "id":  "slg-wr-001",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which roam trigger can make a client roam even when it is idle and not sending any data?",
+        "optionen":  [
+                         "The maximum data retry count is exceeded",
+                         "Too many unicast frames are not acknowledged",
+                         "The received signal strength drops below a threshold",
+                         "The uplink data rate is shifted down repeatedly"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "RSSI (und SNR) misst der Client auch an Beacons, also ohne eigenen Verkehr. Retries, fehlende ACKs und Datenratenwechsel setzen dagegen voraus, dass der Client gerade Daten sendet."
+    },
+    {
+        "id":  "slg-wr-002",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "A handheld scanner sits idle in its cradle and sends no traffic. Which two roam triggers can still cause it to roam? (Choose two.)",
+        "optionen":  [
+                         "RSSI below the client\u0027s roam threshold",
+                         "Data rate shifted down after failed transmissions",
+                         "Maximum data retry count exceeded",
+                         "SNR below the client\u0027s roam threshold",
+                         "Missing ACKs for uplink data frames"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Low RSSI und Low SNR wirken laut Kurs auch ohne aktiven Verkehr, weil der Client Beacons auswertet. Retries, Datenraten-Shift und fehlende ACKs entstehen nur beim Senden."
+    },
+    {
+        "id":  "slg-wr-003",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A client sees a growing number of retries for its frames. What does a typical client driver do before it decides to roam?",
+        "optionen":  [
+                         "It requests a new DHCP lease from the WLC",
+                         "It sends a deauthentication frame to its AP",
+                         "It shifts to a lower data rate first",
+                         "It switches from active to passive scanning"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Hersteller nutzen zwei Retry-Schwellen: Die erste senkt die Datenrate, erst die zweite löst das Roaming aus. Deauthentication oder ein neuer DHCP-Lease gehören nicht zum normalen Roaming-Ablauf."
+    },
+    {
+        "id":  "slg-wr-004",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What does a client do on each channel during an active scan?",
+        "optionen":  [
+                         "It sends a probe request and waits briefly for probe responses",
+                         "It only listens for the periodic beacons of all APs",
+                         "It asks its current AP for the channel list of all neighbors",
+                         "It sends a reassociation request to every AP it can hear"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beim Active Scan wechselt der Client auf den Kanal, sendet einen Probe Request und wartet kurz (typisch ca. 10 ms) auf Antworten. Nur auf Beacons zu warten ist Passive Scanning; die Nachbarliste vom AP wäre 802.11k."
+    },
+    {
+        "id":  "slg-wr-005",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why do most Wi-Fi clients prefer active scanning over passive scanning?",
+        "optionen":  [
+                         "Waiting for a beacon can take up to about 100 ms per channel",
+                         "Passive scanning finds hidden SSIDs only after association",
+                         "Active scanning does not interrupt the client\u0027s data traffic",
+                         "Passive scanning is not permitted on any 5-GHz channel"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "APs senden Beacons standardmäßig nur etwa alle 100 ms, deshalb dauert passives Warten pro Kanal deutlich länger als ein Probe Request mit ca. 10 ms Wartezeit. Auch beim Active Scan kann der Client währenddessen keine Daten übertragen."
+    },
+    {
+        "id":  "slg-wr-006",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A client sends a probe request with a null (empty) SSID. How do the APs on that channel react?",
+        "optionen":  [
+                         "Each AP sends a probe response for every SSID it supports",
+                         "Only the AP that the client is associated with answers",
+                         "The APs ignore it and answer only directed probe requests",
+                         "Only APs with a hidden SSID send a probe response"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein Broadcast Probe (Null-SSID) wird von allen APs beantwortet, die ihn hören – mit einer Probe Response je unterstützter SSID. Beim Directed Probe antworten nur APs mit der angefragten SSID."
+    },
+    {
+        "id":  "slg-wr-007",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "By default, access points send beacons approximately every ___.",
+        "optionen":  [
+                         "100 ms",
+                         "10 ms",
+                         "1 s",
+                         "500 ms"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Das Standard-Beacon-Intervall ist 100 TU (102,4 ms), also rund 100 ms. Deshalb dauert passives Scannen pro Kanal bis zu etwa 100 ms."
+    },
+    {
+        "id":  "slg-wr-008",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A laptop scans one alternate channel at a time during idle periods, long before its signal degrades. What is the benefit of this behavior?",
+        "optionen":  [
+                         "It prevents the AP from lowering the data rate while idle",
+                         "It lets the WLC calculate the next AP\u0027s channel in advance",
+                         "It removes the need to authenticate after the next roam",
+                         "It learns neighbor APs in advance, so a later roam is faster"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Background Scanning baut vorab Wissen über Nachbar-APs auf; ein Kanal pro Durchgang in Verkehrspausen hält den Datenverlust minimal. Die Authentifizierung beim Roaming bleibt trotzdem nötig."
+    },
+    {
+        "id":  "slg-wr-009",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "A voice call is in progress and the handset must roam. Which three scan optimizations do client vendors use in this situation? (Choose three.)",
+        "optionen":  [
+                         "Scan only the channels learned in earlier background scans",
+                         "Switch to passive scanning on every channel",
+                         "Join the first acceptable AP instead of scanning all channels",
+                         "Scan all 2.4- and 5-GHz channels twice for accuracy",
+                         "Wait a shorter time for probe responses on each channel"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Attribute wie \"Voice Call aktiv\" verändern den Scan: Teilmenge der Kanäle, früher Abbruch beim ersten akzeptablen AP und kürzere Scan-Timer. Passives oder doppeltes Scannen würde die Unterbrechung verlängern."
+    },
+    {
+        "id":  "slg-wr-010",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Clients take noticeably longer to roam between APs on 5-GHz DFS channels than between APs on UNII-1 channels. What is a likely reason?",
+        "optionen":  [
+                         "Clients must run a full EAP exchange on every DFS channel",
+                         "DFS channels use a beacon interval of one second by default",
+                         "APs on DFS channels never answer directed probe requests",
+                         "Clients may not probe on a DFS channel until they hear a beacon there"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Auf DFS-Kanälen darf ein Client erst senden, wenn er dort einen AP (Beacon) gehört hat; das Scannen wird dadurch faktisch passiv und dauert bis zu ca. 100 ms pro Kanal. Beacon-Intervall und Authentifizierung ändern sich durch DFS nicht."
+    },
+    {
+        "id":  "slg-wr-011",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An AireOS WLC defines client roaming parameters per band, such as minimum RSSI, hysteresis, scan threshold, and transition time. Which clients use these values?",
+        "optionen":  [
+                         "Clients that support Cisco Compatible Extensions (CCX)",
+                         "Only clients that connect through FlexConnect APs",
+                         "Only clients that negotiate 802.11r Fast Transition",
+                         "Every Wi-Fi 6 client that associates to the WLAN"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Roaming-Parameter sind Cisco-Compatible-Extensions-Werte, die der WLC an CCX-fähige Clients übergibt; diese übernehmen sie als Roaming-Schwellen. Andere Clients nutzen ihre eigenen Herstellerschwellen. CCX ist heute Legacy."
+    },
+    {
+        "id":  "slg-wr-012",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeden CCX-Roaming-Parameter seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "Minimum RSSI",
+                          "Weakest signal a client still accepts from a target AP"
+                      ],
+                      [
+                          "Hysteresis",
+                          "How much stronger the new AP must be than the current one"
+                      ],
+                      [
+                          "Scan threshold",
+                          "RSSI below which the client starts looking for another AP"
+                      ],
+                      [
+                          "Transition time",
+                          "Maximum time to find a new AP once scanning has started"
+                      ]
+                  ],
+        "erklaerung":  "Die Hysterese verhindert Ping-Pong-Roaming, die Scan-Schwelle startet die Suche, Minimum RSSI filtert zu schwache Ziel-APs und die Transition Time begrenzt die Suchdauer."
+    },
+    {
+        "id":  "slg-wr-013",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why does every roam cause at least a short interruption of the client\u0027s traffic?",
+        "optionen":  [
+                         "While scanning and reassociating, the client cannot send or receive data",
+                         "The client must obtain a new IP address after every single roam",
+                         "The WLC drops all frames until RRM has recalculated the channels",
+                         "The new AP must restart its radio before it accepts the client"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Während der Client andere Kanäle scannt, sich reassoziiert und authentifiziert, ist er nicht auf seinem Datenkanal erreichbar. Eine neue IP-Adresse ist nur nötig, wenn der Roam nicht innerhalb der Mobility Group/Domain abgefangen wird."
+    },
+    {
+        "id":  "slg-wr-014",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the maximum number of controllers in a single AireOS mobility group?",
+        "optionen":  [
+                         "48",
+                         "12",
+                         "72",
+                         "24"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Eine Mobility Group umfasst bis zu 24 WLCs, die Client-Kontext und Lastinformationen teilen. 72 ist die Obergrenze der Mobility List (Mobility Domain) eines Controllers, z. B. 3 Gruppen × 24 WLCs."
+    },
+    {
+        "id":  "slg-wr-015",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The mobility list of an AireOS controller can contain up to ___ controllers, with at most 24 of them in the same mobility group.",
+        "optionen":  [
+                         "72",
+                         "48",
+                         "24",
+                         "96"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Mobility List (Mobility Domain) fasst bis zu 72 Controller, davon höchstens 24 in derselben Gruppe – z. B. 3 × 24, 12 × 6 oder 72 × 1. Roaming zwischen den Gruppen ist möglich, aber ohne geteilten Key-Cache."
+    },
+    {
+        "id":  "slg-wr-016",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "WLC1 and WLC2 use different mobility group names but list each other as mobility peers. A WPA2-Enterprise client roams from WLC1 to WLC2. What happens?",
+        "optionen":  [
+                         "The roam fails, and the client gets a new IP address from WLC2",
+                         "WLC2 rejects the client until both mobility group names match",
+                         "The roam is seamless with cached keys, because both share a domain",
+                         "The roam works, but the client runs a full 802.1X authentication"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Innerhalb einer Mobility Domain ist Roaming zwischen Gruppen möglich, der Schlüssel-Cache für Fast Secure Roaming wird aber nur innerhalb derselben Mobility Group geteilt. Deshalb sollen alle WLCs, zwischen denen schnell geroamt wird, in derselben Gruppe sein."
+    },
+    {
+        "id":  "slg-wr-017",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer adds WLC2 as a mobility peer on WLC1 but forgets to add WLC1 on WLC2. What is the result?",
+        "optionen":  [
+                         "The peering does not come up, because both WLCs must know each other",
+                         "WLC2 becomes the anchor controller for all WLC1 clients",
+                         "Roaming works both ways after WLC2 learns WLC1 dynamically",
+                         "Roaming works only in the direction from WLC1 to WLC2"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mobility-Peering ist beidseitig statisch: Jeder Controller braucht MAC-Adresse und Management-IP des anderen. Fehlt der Eintrag auf einer Seite, bleibt der Tunnel down und Inter-Controller-Roaming funktioniert in keiner Richtung."
+    },
+    {
+        "id":  "slg-wr-018",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two values must be configured on a WLC for each of its mobility peers? (Choose two.)",
+        "optionen":  [
+                         "The peer\u0027s built-in MAC address",
+                         "The peer\u0027s RF group name",
+                         "The peer\u0027s virtual interface IP",
+                         "The peer\u0027s chassis serial number",
+                         "The peer\u0027s management IP address"
+                     ],
+        "richtig":  [
+                        0,
+                        4
+                    ],
+        "erklaerung":  "Für ein Mobility-Peering trägt man die eingebaute (Mobility-)MAC-Adresse und die Management-IP des Partners ein, auf 9800 zusätzlich den Gruppennamen. Die Virtual IP muss zwar gleich sein, wird aber nicht pro Peer konfiguriert."
+    },
+    {
+        "id":  "slg-wr-019",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A client roams from WLC-A to WLC-B. WLC-B is not a mobility peer of WLC-A. What does the client experience?",
+        "optionen":  [
+                         "It keeps its IP address through an automatic tunnel to WLC-A",
+                         "It is placed on the guest anchor until the peering is configured",
+                         "It keeps its session because both WLCs broadcast the same SSID",
+                         "It must reauthenticate, reassociate, and obtain new IP information"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Kennt der neue Controller den alten nicht (andere Mobility Domain), gibt es keine Kontextübergabe: Der Client startet komplett neu mit Authentifizierung, Association und DHCP. Eine gleiche SSID allein reicht nicht."
+    },
+    {
+        "id":  "slg-wr-020",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three settings should be identical on all AireOS controllers of a mobility group so that clients roam without reauthentication? (Choose three.)",
+        "optionen":  [
+                         "The controller hostname",
+                         "The WLAN/SSID and its security settings",
+                         "The mobility group name",
+                         "The management interface IP address",
+                         "The virtual interface IP address"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Gleicher Gruppenname, gleiche Virtual IP und gleiche WLAN-Konfiguration (inkl. Security, ACLs) sind Voraussetzung für nahtloses Roaming. Management-IP und Hostname sind pro Controller eindeutig."
+    },
+    {
+        "id":  "slg-wr-021",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Clients must roam between a legacy AireOS controller and a new Catalyst 9800 during a migration. Which statement is correct?",
+        "optionen":  [
+                         "It works if the AireOS release supports the CAPWAP-based secure mobility tunnel",
+                         "It requires both controllers to run exactly the same software version",
+                         "It requires EoIP tunnels, because the 9800 does not support CAPWAP mobility",
+                         "It is impossible; the AireOS controller must be replaced before roaming works"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Inter-Release Controller Mobility (IRCM) erlaubt Roaming zwischen AireOS und 9800, wenn AireOS die CAPWAP-basierte (Secure/New) Mobility nutzt. Der 9800 unterstützt kein EoIP; identische Versionen sind nicht nötig."
+    },
+    {
+        "id":  "slg-wr-022",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which statement about Catalyst 9800 mobility tunnels is true?",
+        "optionen":  [
+                         "Control on UDP 16666 is always DTLS-encrypted; data on UDP 16667 can be encrypted optionally",
+                         "Data on UDP 16667 is always encrypted, while control on UDP 16666 is plain text",
+                         "Control uses TCP 16666, and data uses an EtherIP tunnel with IP protocol 97",
+                         "Control and data share UDP 5246 and cannot be encrypted between the controllers"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der 9800 baut einen CAPWAP-basierten Mobility-Tunnel: Control (UDP 16666) ist immer per DTLS gesichert, die Data-Link-Verschlüsselung (UDP 16667) ist optional. EoIP mit IP-Protokoll 97 gibt es nur bei altem AireOS."
+    },
+    {
+        "id":  "slg-wr-023",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On an AireOS WLC, \u0027mping 10.10.20.2\u0027 to a mobility peer succeeds, but \u0027eping 10.10.20.2\u0027 fails. What does this indicate?",
+        "optionen":  [
+                         "The peer\u0027s management IP address is not reachable at all",
+                         "The two controllers use different mobility group names",
+                         "The mobility control path works, but the mobility data path is blocked",
+                         "The peer runs an incompatible controller software release"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "mping testet den Mobility-Control-Pfad (UDP 16666), eping den Mobility-Datenpfad. Läuft nur mping, filtert meist eine Firewall den Datentunnel (EoIP bzw. CAPWAP-Data)."
+    },
+    {
+        "id":  "slg-wr-024",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A client associates to WLC2, which has no database entry for it. How does WLC2 find out whether another controller already knows this client?",
+        "optionen":  [
+                         "It sends a mobile announce message to its mobility peers",
+                         "It waits until the client sends a new DHCP discover message",
+                         "It asks the RADIUS server which authenticator was used last",
+                         "It sends an ARP request for the client into every VLAN"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit dem Mobile Announce fragt der neue WLC alle Mobility-Peers, ob sie den Client kennen; der bisherige WLC antwortet und übergibt per Handoff den Kontext. Danach entscheidet sich, ob L2- oder L3-Roaming vorliegt."
+    },
+    {
+        "id":  "slg-wr-025",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, globale Konfiguration: Setze den Mobility-Group-Namen auf CAMPUS.",
+        "bausteine":  [
+                          "wireless",
+                          "mobility",
+                          "group",
+                          "name",
+                          "CAMPUS",
+                          "domain",
+                          "member",
+                          "rf-group"
+                      ],
+        "loesung":  [
+                        "wireless",
+                        "mobility",
+                        "group",
+                        "name",
+                        "CAMPUS"
+                    ],
+        "erklaerung":  "Der Gruppenname muss auf allen Peers derselben Mobility Group identisch sein; Default auf dem 9800 ist \u0027default\u0027. Die Peers selbst werden mit wireless mobility group member eingetragen."
+    },
+    {
+        "id":  "slg-wr-026",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, globale Konfiguration: Trage den Mobility-Peer mit MAC 001e.bd02.0002 und IP 10.10.20.2 in der Gruppe CAMPUS ein.",
+        "bausteine":  [
+                          "wireless",
+                          "mobility",
+                          "group",
+                          "member",
+                          "mac-address",
+                          "001e.bd02.0002",
+                          "ip",
+                          "10.10.20.2",
+                          "group",
+                          "CAMPUS",
+                          "peer",
+                          "anchor",
+                          "domain"
+                      ],
+        "loesung":  [
+                        "wireless",
+                        "mobility",
+                        "group",
+                        "member",
+                        "mac-address",
+                        "001e.bd02.0002",
+                        "ip",
+                        "10.10.20.2",
+                        "group",
+                        "CAMPUS"
+                    ],
+        "erklaerung":  "Ein Peer wird mit Mobility-MAC, IP und Gruppenname eingetragen (optional public-ip bei NAT). Beide Controller brauchen den jeweils anderen als Member, sonst kommt der Tunnel nicht hoch."
+    },
+    {
+        "id":  "slg-wr-027",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, Privileged EXEC: Zeige Gruppenname, eigene Mobility-MAC und den Status aller Mobility-Peers.",
+        "bausteine":  [
+                          "show",
+                          "wireless",
+                          "mobility",
+                          "summary",
+                          "client",
+                          "peer",
+                          "detail"
+                      ],
+        "loesung":  [
+                        "show",
+                        "wireless",
+                        "mobility",
+                        "summary"
+                    ],
+        "erklaerung":  "show wireless mobility summary listet die lokale Mobility-Konfiguration und alle Peers mit IP, MAC, Gruppe und Status (z. B. Up oder Data Path Down)."
+    },
+    {
+        "id":  "slg-wr-028",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "AireOS-WLC (Legacy-CLI): Setze den Namen der eigenen Mobility Group auf CAMPUS.",
+        "bausteine":  [
+                          "config",
+                          "mobility",
+                          "group",
+                          "domain",
+                          "CAMPUS",
+                          "member",
+                          "add",
+                          "wireless"
+                      ],
+        "loesung":  [
+                        "config",
+                        "mobility",
+                        "group",
+                        "domain",
+                        "CAMPUS"
+                    ],
+        "erklaerung":  "Auf AireOS heißt der Befehl trotz des Wortes \u0027domain\u0027 config mobility group domain und setzt den Mobility-Group-Namen. Mitglieder werden mit config mobility group member add ergänzt."
+    },
+    {
+        "id":  "slg-wr-029",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "AireOS-WLC (Legacy-CLI): Füge den Peer mit MAC 00:1a:2b:3c:4d:5e und IP 10.10.20.2 als Mitglied der Gruppe CAMPUS hinzu.",
+        "bausteine":  [
+                          "config",
+                          "mobility",
+                          "group",
+                          "member",
+                          "add",
+                          "00:1a:2b:3c:4d:5e",
+                          "10.10.20.2",
+                          "CAMPUS",
+                          "domain",
+                          "peer",
+                          "wireless"
+                      ],
+        "loesung":  [
+                        "config",
+                        "mobility",
+                        "group",
+                        "member",
+                        "add",
+                        "00:1a:2b:3c:4d:5e",
+                        "10.10.20.2",
+                        "CAMPUS"
+                    ],
+        "erklaerung":  "config mobility group member add \u003cMAC\u003e \u003cIP\u003e [Gruppe] trägt einen Peer ein; ohne Gruppenname gilt die eigene Gruppe, mit anderem Namen entsteht ein Domain-Mitglied. Der Partner braucht den umgekehrten Eintrag."
+    },
+    {
+        "id":  "slg-wr-030",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "AireOS-WLC (Legacy-CLI): Teste den Mobility-Control-Pfad zum Peer 10.10.20.2.",
+        "bausteine":  [
+                          "mping",
+                          "10.10.20.2",
+                          "eping",
+                          "ping",
+                          "debug",
+                          "mobility"
+                      ],
+        "loesung":  [
+                        "mping",
+                        "10.10.20.2"
+                    ],
+        "erklaerung":  "mping prüft die Mobility-Control-Kommunikation (UDP 16666), eping den Mobility-Datenpfad. Ein normales ping testet nur die IP-Erreichbarkeit."
+    },
+    {
+        "id":  "slg-wr-031",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A client roams between two APs that are joined to the same WLC, in the same VLAN. What does the WLC do?",
+        "optionen":  [
+                         "It copies the client entry to a foreign controller",
+                         "It forces the client to request a new IP address",
+                         "It marks the entry as anchor and tunnels the traffic",
+                         "It updates the client\u0027s database entry with the new AP"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beim Intra-Controller-Roaming aktualisiert der WLC nur den zugeordneten AP im Client-Eintrag, bei Bedarf mit neuem Security-Kontext. PoP und PoA bleiben auf demselben Controller."
+    },
+    {
+        "id":  "slg-wr-032",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A client roams from an AP on WLC1 to an AP on WLC2. Both WLCs map the SSID to the same VLAN and subnet. What happens to the client database entry?",
+        "optionen":  [
+                         "It stays on WLC1 as anchor, WLC2 adds a foreign copy",
+                         "It is copied to every controller of the mobility domain",
+                         "It is deleted, and the client authenticates from scratch",
+                         "It is moved to WLC2, which becomes PoP and PoA"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beim Inter-Controller-L2-Roaming wird der gesamte Mobility-Kontext verschoben: PoP und PoA wandern zu WLC2, der Verkehr nimmt den neuen Pfad. Anchor/Foreign entsteht nur bei unterschiedlichen Subnetzen (L3)."
+    },
+    {
+        "id":  "slg-wr-033",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "An inter-controller Layer 2 roam is normally transparent to the user. Which two events break this transparency? (Choose two.)",
+        "optionen":  [
+                         "The client changes its power-save mode",
+                         "The WLC sends an 802.11v transition request",
+                         "The client sends a DHCP discover request",
+                         "RRM moves the new AP to another channel",
+                         "The client\u0027s session timeout is exceeded"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Laut Kurs bleibt L2-Roaming unsichtbar, solange der Client keinen DHCP Discover sendet und kein Session Timeout abläuft (dann folgt eine neue Authentifizierung). Kanalwechsel oder Power Save betreffen die Mobility-Übergabe nicht."
+    },
+    {
+        "id":  "slg-wr-034",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "When does an inter-controller roam become a Layer 3 roam?",
+        "optionen":  [
+                         "When the APs of the two controllers use different channels",
+                         "When the client moves from the 2.4-GHz to the 5-GHz radio",
+                         "When the SSID maps to a different VLAN and subnet on the new controller",
+                         "When the new controller belongs to a different mobility group"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Entscheidend ist das Client-Subnetz: Gleiche SSID, aber auf dem neuen WLC anderes VLAN/Subnetz → L3-Roaming mit Anchor und Foreign. Eine andere Mobility Group beeinflusst nur den Key-Cache, nicht die Roaming-Art."
+    },
+    {
+        "id":  "slg-wr-035",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After a Layer 3 roam with symmetric tunneling, where does the client\u0027s traffic enter the wired network?",
+        "optionen":  [
+                         "At both controllers, load-shared per traffic flow",
+                         "At the anchor WLC, in the client\u0027s original VLAN",
+                         "At the guest anchor WLC in the DMZ network",
+                         "At the foreign WLC, in the foreign WLC\u0027s VLAN"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Foreign-WLC tunnelt den Verkehr in beide Richtungen zum Anchor, der ihn im ursprünglichen VLAN ins Netz bringt. So behält der Client IP-Adresse und Policy."
+    },
+    {
+        "id":  "slg-wr-036",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An old AireOS network uses asymmetric mobility tunneling. After a Layer 3 roam, the distribution router drops the client\u0027s upstream traffic. What is the most likely reason?",
+        "optionen":  [
+                         "The anchor WLC deletes the client entry right after the handoff to the foreign WLC",
+                         "The foreign WLC translates the client address to its own management IP address",
+                         "Downstream traffic is no longer tunneled, so the client never receives any replies",
+                         "Upstream traffic leaves the foreign WLC with an anchor-subnet source IP, and uRPF drops it"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bei asymmetrischem Tunneling geht nur der Downstream über den Anchor; upstream verlässt der Verkehr den Foreign direkt mit einer Quell-IP aus dem Anchor-Subnetz. uRPF oder stateful Firewalls verwerfen ihn, deshalb ist heute symmetrisches Tunneling Standard."
+    },
+    {
+        "id":  "slg-wr-037",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why do current Cisco controllers (recent AireOS releases and Catalyst 9800) use symmetric mobility tunneling?",
+        "optionen":  [
+                         "Mobility control messages are no longer needed after the first handoff",
+                         "The client gets a new IP address from the foreign WLC after each roam",
+                         "Only downstream traffic is tunneled, which halves the tunnel overhead",
+                         "Both directions pass the anchor, so firewalls and uRPF see one consistent path"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beim symmetrischen Tunneling laufen Up- und Downstream über den Anchor; damit funktionieren source-basierte Firewalls und uRPF. Der Kurs fordert für L3-Roaming genau deshalb keine source-basierten Routing- oder Firewall-Regeln."
+    },
+    {
+        "id":  "slg-wr-038",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about Layer 3 inter-controller roaming are true? (Choose two.)",
+        "optionen":  [
+                         "The foreign WLC becomes the point of presence",
+                         "The client must send a new DHCP discover",
+                         "The original WLC deletes the client entry",
+                         "Client traffic is tunneled to the anchor WLC",
+                         "The client keeps its original IP address"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Beim L3-Roaming wird der Eintrag kopiert und als Anchor/Foreign markiert; der PoP bleibt am Anchor, der Client behält seine IP, und sein Verkehr wird zum Anchor getunnelt. Ein DHCP Discover ist nicht nötig."
+    },
+    {
+        "id":  "slg-wr-039",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On WLC1, \u0027show client detail\u0027 for a client shows Mobility State \u0027Anchor\u0027 and a mobility peer IP of 10.20.20.2. Where is the client associated right now?",
+        "optionen":  [
+                         "To no AP; the entry is a stale leftover",
+                         "To a FlexConnect AP in standalone mode",
+                         "To an AP joined to the controller 10.20.20.2",
+                         "To an AP joined to WLC1 in another VLAN"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Anchor bedeutet: WLC1 hält PoP und IP-Anbindung, der Client hängt aber über einen AP am Foreign-WLC (hier 10.20.20.2). Auf dem Foreign zeigt derselbe Client den Zustand \u0027Foreign\u0027."
+    },
+    {
+        "id":  "slg-wr-040",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three goals does auto-anchor mobility (guest tunneling) achieve? (Choose three.)",
+        "optionen":  [
+                         "Switch guest traffic locally at each AP to save bandwidth",
+                         "Force guest traffic through the corporate firewall",
+                         "Avoid L3 roaming issues caused by firewalls in the path",
+                         "Keep a WLAN\u0027s traffic in one subnet wherever the client is",
+                         "Reduce the number of SSIDs that the APs must broadcast"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Der Kurs nennt drei Zwecke: Gastzugang über die Firewall begrenzen, eine geografische Zugriffsregel (fester Ausgangspunkt im Netz) und geändertes Roamingverhalten, wenn eine Firewall L3-Roaming stört. Lokales Switching ist das Gegenteil von Anchoring."
+    },
+    {
+        "id":  "slg-wr-041",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A guest roams from an AP on WLC1 to an AP on WLC2. Both are foreign controllers for the same guest anchor. What changes for the guest?",
+        "optionen":  [
+                         "Only the point of attachment moves to WLC2",
+                         "The anchor role moves from the DMZ to WLC2",
+                         "The guest gets a new IP address from WLC2",
+                         "WLC1 becomes the new anchor for this guest"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beim Auto-Anchor bleiben IP-Adresse, Authentifizierung und PoP fest am Guest Anchor; nur der PoA wechselt zum Foreign-WLC, an dem der AP hängt."
+    },
+    {
+        "id":  "slg-wr-042",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The guest anchor WLC in the DMZ is in mobility group \u0027DMZ\u0027, while the campus WLCs are in mobility group \u0027CAMPUS\u0027. Can auto-anchoring work?",
+        "optionen":  [
+                         "Only if the tunnel uses EoIP instead of the CAPWAP-based tunnel",
+                         "No, auto-anchor requires all controllers in one mobility group",
+                         "Yes, the anchor only needs a mobility peering with the foreign WLCs",
+                         "Only if the anchor also has its own APs joined in the campus"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Für Auto-Anchor muss der Anchor nur Mobility-Peer (in der Mobility List) der Foreign-WLCs sein; eine eigene Gruppe in der DMZ ist üblich. Der Kurs nennt es vereinfacht eine Teilmenge der Mobility Group."
+    },
+    {
+        "id":  "slg-wr-043",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Does a guest anchor WLC need its own access points?",
+        "optionen":  [
+                         "No, but every campus AP must be in a FlexConnect group",
+                         "Yes, at least one AP in local mode must join it",
+                         "Yes, it needs a monitor-mode AP for web authentication",
+                         "No, it only terminates the tunnels from foreign WLCs"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Guest Anchor terminiert nur die Mobility-Tunnel, vergibt per DHCP die Gast-Adressen und führt die WebAuth aus. Die APs hängen an den Foreign-WLCs im Campus."
+    },
+    {
+        "id":  "slg-wr-044",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "AireOS-WLC (Legacy-CLI) als Foreign: Lege für WLAN 3 den Guest-Anchor 10.50.1.10 fest.",
+        "bausteine":  [
+                          "config",
+                          "wlan",
+                          "mobility",
+                          "anchor",
+                          "add",
+                          "3",
+                          "10.50.1.10",
+                          "create",
+                          "foreign",
+                          "export"
+                      ],
+        "loesung":  [
+                        "config",
+                        "wlan",
+                        "mobility",
+                        "anchor",
+                        "add",
+                        "3",
+                        "10.50.1.10"
+                    ],
+        "erklaerung":  "config wlan mobility anchor add \u003cWLAN-ID\u003e \u003cAnchor-IP\u003e verweist das WLAN auf den Anchor (das WLAN muss dafür deaktiviert sein). Auf dem Anchor selbst wird für dasselbe WLAN die eigene IP als Anchor eingetragen."
+    },
+    {
+        "id":  "slg-wr-045",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Mobility-Rolle in der Client-Detailanzeige ihrer Bedeutung zu.",
+        "paare":  [
+                      [
+                          "Local",
+                          "Client is served by this WLC without any mobility tunnel"
+                      ],
+                      [
+                          "Anchor",
+                          "Original WLC that keeps the client\u0027s IP after an L3 roam"
+                      ],
+                      [
+                          "Foreign",
+                          "WLC where the client is now attached after an L3 roam"
+                      ],
+                      [
+                          "Export Anchor",
+                          "WLC that terminates a guest WLAN for other controllers"
+                      ]
+                  ],
+        "erklaerung":  "Local = normaler Client ohne Tunnel, Anchor/Foreign entstehen beim L3-Roaming, Export Anchor/Export Foreign beim statischen Auto-Anchor für Gast-WLANs."
+    },
+    {
+        "id":  "slg-wr-046",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedem Szenario die Roaming-Art zu.",
+        "paare":  [
+                      [
+                          "Client moves between two APs on WLC1",
+                          "Intra-controller roaming"
+                      ],
+                      [
+                          "Client moves to WLC2, SSID in the same VLAN on both",
+                          "Inter-controller Layer 2 roaming"
+                      ],
+                      [
+                          "Client moves to WLC2, SSID in a different subnet there",
+                          "Inter-controller Layer 3 roaming"
+                      ],
+                      [
+                          "Guest SSID traffic always exits at a DMZ controller",
+                          "Auto-anchor mobility"
+                      ]
+                  ],
+        "erklaerung":  "Gleicher WLC → Intra-Controller; anderer WLC im selben Subnetz → L2 (Eintrag verschoben); anderer WLC mit anderem Subnetz → L3 (Anchor/Foreign); fester Ausgang für ein WLAN → Auto-Anchor."
+    },
+    {
+        "id":  "slg-wr-047",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which design assumption does Layer 2 inter-controller roaming make?",
+        "optionen":  [
+                         "The WLCs share the client VLAN and subnet and are in one mobility group",
+                         "The WLCs are in different mobility domains with separate SSIDs",
+                         "A guest anchor terminates all traffic of the roaming clients",
+                         "Each WLC maps the SSID to its own VLAN behind a routed core"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "L2-Roaming setzt L2-Adjazenz voraus: gleiche VLAN-/Subnetz-Zuordnung der SSID, gleiche Mobility Group und kompatible Software. Unterschiedliche VLANs hinter einem gerouteten Core führen zu L3-Roaming."
+    },
+    {
+        "id":  "slg-wr-048",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "SSID CORP maps to 10.1.10.0/24 on WLC-A in building A and to 10.2.20.0/24 on WLC-B in building B, with a routed core in between. Both WLCs are in one mobility group. A user walks from A to B during a video call. What happens?",
+        "optionen":  [
+                         "The call continues because WLC-B translates the client into VLAN 20",
+                         "The call drops because L3 roaming always needs a guest anchor",
+                         "The call drops briefly while the client renews into 10.2.20.0/24",
+                         "The call continues; the client keeps 10.1.10.x, tunneled via WLC-A"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Das ist ein L3-Inter-Controller-Roam: WLC-A wird Anchor, WLC-B Foreign, der Verkehr läuft symmetrisch durch den Tunnel. Der Client behält seine IP, der Anruf läuft weiter."
+    },
+    {
+        "id":  "slg-wr-049",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which three items does a WLC store in its client database entry after association? (Choose three.)",
+        "optionen":  [
+                         "The security context and key associations",
+                         "The client\u0027s local DNS cache",
+                         "The access-switch port of the client",
+                         "The associated AP and the WLAN",
+                         "The client\u0027s MAC and IP addresses"
+                     ],
+        "richtig":  [
+                        0,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Der Eintrag enthält MAC/IP, Security-Kontext, QoS-Kontext, WLAN und zugeordneten AP; damit leitet der WLC Frames weiter. Beim Roaming wird genau dieser Eintrag aktualisiert, verschoben oder kopiert."
+    },
+    {
+        "id":  "slg-wr-050",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which roaming delay is commonly targeted for voice over WLAN to avoid audible gaps?",
+        "optionen":  [
+                         "Below 500 ms, ideally around 300 ms",
+                         "Below 2 s, ideally around 1 s or less",
+                         "Below 150 ms, ideally around 50 ms or less",
+                         "Below 1 s, ideally around 500 ms or less"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Als Richtwert für Voice gilt eine Roaming-Unterbrechung unter 150 ms (angelehnt an das 150-ms-Einwegbudget), ideal unter 50 ms. Laut Cisco erreichen 802.11r/CCKM typisch 4–50 ms, OKC 8–100 ms, eine volle 802.1X-Authentifizierung dagegen 120 ms bis einige Sekunden."
+    },
+    {
+        "id":  "slg-wr-051",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Only PMK caching (sticky key caching) is enabled on a WPA2-Enterprise WLAN. A client roams to an AP that it has never associated with before. What happens?",
+        "optionen":  [
+                         "The client falls back to the pre-shared key for the first association",
+                         "The WLC pushes the PMK to the new AP with an 802.11r action frame",
+                         "The client derives the PMKID for the new AP and skips the EAP exchange",
+                         "A full 802.1X/EAP exchange runs, because no PMK is cached for this AP"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Reines PMK Caching hilft nur bei der Rückkehr zu einem bereits besuchten AP. Für einen neuen AP braucht es OKC oder 802.11r, sonst folgt die vollständige EAP-Authentifizierung."
+    },
+    {
+        "id":  "slg-wr-052",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "How does Opportunistic Key Caching (OKC) avoid a full EAP exchange when a client roams to a new AP of the same WLC?",
+        "optionen":  [
+                         "The PMK is shared with the other APs, and the client computes the PMKID for the new BSSID",
+                         "The new AP requests the existing PTK from the previous AP directly over the air",
+                         "The client sends its RADIUS credentials inside the reassociation request to the new AP",
+                         "The WLC skips the 4-way handshake and lets the client reuse its previous PTK"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bei OKC verteilt der WLC den PMK an alle APs (bzw. die Mobility Group); der Client berechnet die PMKID für den neuen BSSID und sendet sie im Reassociation Request. Danach folgt nur noch der 4-Way Handshake mit neuem PTK."
+    },
+    {
+        "id":  "slg-wr-053",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about Opportunistic Key Caching (OKC) is accurate?",
+        "optionen":  [
+                         "It is widely supported but not defined in an IEEE 802.11 amendment",
+                         "It works only on WPA2-Personal networks with a shared passphrase",
+                         "It is the IEEE 802.11r method used for Over-the-DS transitions",
+                         "It is a Cisco-proprietary method that requires CCX-capable clients"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "OKC ist eine verbreitete, aber nicht standardisierte Erweiterung des PMK Caching. Das IEEE-Verfahren ist 802.11r, das Cisco-proprietäre CCKM."
+    },
+    {
+        "id":  "slg-wr-054",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A hospital still uses old Cisco phones that roam with CCKM. Which statement applies to CCKM?",
+        "optionen":  [
+                         "It is the IEEE name for 802.11r Over-the-Air transitions",
+                         "It replaces the 4-way handshake with a SAE key exchange",
+                         "It is a Cisco-proprietary fast roaming method for CCX clients",
+                         "It is supported by every Wi-Fi Alliance certified client"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "CCKM (Cisco Centralized Key Management) ist ein Legacy-Verfahren aus Cisco Compatible Extensions; der WLC verwaltet die Schlüssel. Moderne Clients nutzen stattdessen 802.11r oder OKC."
+    },
+    {
+        "id":  "slg-wr-055",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In an 802.11r deployment with centrally switched APs on a Cisco WLC, which component acts as the R0 key holder (R0KH) that stores PMK-R0?",
+        "optionen":  [
+                         "The WLC",
+                         "The client only",
+                         "The RADIUS server",
+                         "Each AP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der WLC ist R0KH: Er erhält den PMK aus der EAP-Authentifizierung, leitet PMK-R0 ab und daraus PMK-R1 für die APs/BSSIDs. Der RADIUS-Server liefert nur das Ausgangsmaterial (MSK)."
+    },
+    {
+        "id":  "slg-wr-056",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does 802.11r Fast Transition change compared with a normal WPA2-Enterprise reassociation?",
+        "optionen":  [
+                         "The 4-way handshake is replaced by an EAP-TLS exchange with ISE",
+                         "Encryption is paused during the first second after each roam",
+                         "The client keeps one and the same PTK on all APs of the WLAN",
+                         "The key exchange is folded into FT authentication and reassociation"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bei FT werden die PTK-Parameter in den Authentication- und Reassociation-Frames ausgehandelt (4 Frames), ein separater 4-Way Handshake entfällt. Jeder AP bekommt trotzdem einen eigenen PTK."
+    },
+    {
+        "id":  "slg-wr-057",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "With 802.11r Fast Transition over-the-___, the client sends the FT request to its current AP, which forwards it to the target AP through the wired network.",
+        "optionen":  [
+                         "wire",
+                         "WLC",
+                         "air",
+                         "DS"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Over-the-DS nutzt das Distribution System: FT Action Request an den aktuellen AP, Weiterleitung zum Ziel-AP, danach Reassociation. Bei Over-the-Air spricht der Client den Ziel-AP direkt per FT-Authentication an."
+    },
+    {
+        "id":  "slg-wr-058",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedes Fast-Roaming-Verfahren seiner Eigenschaft zu.",
+        "paare":  [
+                      [
+                          "PMK caching",
+                          "Helps only when returning to a previously visited AP"
+                      ],
+                      [
+                          "OKC",
+                          "Shared PMK; client computes the PMKID for a new AP"
+                      ],
+                      [
+                          "CCKM",
+                          "Cisco-proprietary; requires CCX-capable clients"
+                      ],
+                      [
+                          "802.11r",
+                          "IEEE standard with PMK-R0/PMK-R1 key hierarchy"
+                      ]
+                  ],
+        "erklaerung":  "PMK Caching wirkt nur bei bekannten APs, OKC verteilt den PMK opportunistisch, CCKM ist Cisco-Legacy und 802.11r der IEEE-Standard mit eigener Schlüsselhierarchie."
+    },
+    {
+        "id":  "slg-wr-059",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "After an SSID is changed to FT-802.1X as its only AKM, several older barcode scanners can no longer connect. Which fix keeps fast roaming for capable clients?",
+        "optionen":  [
+                         "Offer FT and non-FT 802.1X AKMs together, or use a separate SSID",
+                         "Change the cipher from AES-CCMP to TKIP for the older scanners",
+                         "Disable 802.11k neighbor reports on the SSID for all clients",
+                         "Switch from FT over-the-air to FT over-the-DS for all clients"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ältere Treiber erkennen die FT-AKM nicht und verbinden sich nicht. Mixed Mode (FT- und normale 802.1X-AKM) oder eine eigene SSID für alte Geräte löst das; TKIP wäre ein Sicherheitsrückschritt."
+    },
+    {
+        "id":  "slg-wr-060",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What is Cisco Adaptive 802.11r?",
+        "optionen":  [
+                         "FT is enabled only when the client\u0027s RSSI drops below a configured value",
+                         "FT is used by supported devices (e.g., iOS) without advertising the FT AKM to all",
+                         "FT is enabled only for clients that negotiate WPA3-Enterprise security",
+                         "FT switches automatically between over-the-air and over-the-DS mode"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei Adaptive 802.11r enthält das RSN-IE keine FT-AKM, nur die Mobility Domain wird angekündigt; unterstützte Partnergeräte (z. B. aktuelle iOS- und Samsung-Geräte) handeln trotzdem FT aus. Auf dem 9800 ist Adaptive FT Default, Cisco empfiehlt heute aber Mixed Mode (FT- und Nicht-FT-AKM)."
+    },
+    {
+        "id":  "slg-wr-061",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is fast secure roaming less critical on a WPA2-Personal SSID than on a WPA2-Enterprise SSID?",
+        "optionen":  [
+                         "PSK clients never roam between APs that belong to different controllers",
+                         "WPA2-Personal always uses 802.11r Fast Transition as a default setting",
+                         "The PMK comes from the passphrase, so a roam needs only the 4-way handshake",
+                         "PSK networks pause encryption while a client is roaming between two APs"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei PSK ist der PMK aus Passphrase und SSID bereits bekannt; beim Roaming genügt der 4-Way Handshake. Bei 802.1X müsste ohne Key-Caching jedes Mal die komplette EAP-Authentifizierung laufen."
+    },
+    {
+        "id":  "slg-wr-062",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The ISE server is 80 ms round-trip time away from the WLC. An EAP-TLS authentication needs about 8 round trips to ISE. Without fast roaming, roughly how long does reauthentication take at each roam, and is that acceptable for voice?",
+        "optionen":  [
+                         "About 80 ms, which fits well into the voice budget",
+                         "About 640 ms or more, which exceeds the voice budget",
+                         "About 10 ms, because only the 4-way handshake runs",
+                         "About 160 ms, which is just within the voice budget"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "8 × 80 ms = 640 ms allein für die RADIUS-Runden, plus Verarbeitung und 4-Way Handshake – weit über dem Voice-Budget von ca. 150 ms. Deshalb braucht man 802.11r oder OKC."
+    },
+    {
+        "id":  "slg-wr-063",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two features shorten the time a client spends finding and choosing a new AP, rather than the authentication time? (Choose two.)",
+        "optionen":  [
+                         "PMK caching",
+                         "Opportunistic Key Caching",
+                         "802.11k neighbor reports",
+                         "802.11r Fast Transition",
+                         "802.11v BSS transition management"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "802.11k liefert eine Nachbarliste (weniger Kanäle scannen), 802.11v empfiehlt Ziel-APs. 802.11r, OKC und PMK Caching verkürzen dagegen die Schlüsselaushandlung nach der Entscheidung."
+    },
+    {
+        "id":  "slg-wr-064",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What does an 802.11k neighbor report give a client?",
+        "optionen":  [
+                         "A list of nearby APs and their channels, so it scans fewer channels",
+                         "A forced disassociation from its current AP to a better AP",
+                         "A cached PMK for every neighbor AP, so it skips authentication",
+                         "The RSSI values at which the neighbor APs currently hear the client"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit dem Neighbor Report muss der Client nur noch die genannten Kanäle gezielt scannen statt aller Kanäle. Schlüsselmaterial liefert 802.11k nicht; erzwungene Übergänge gehören zu 802.11v."
+    },
+    {
+        "id":  "slg-wr-065",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An AP sends an 802.11v BSS Transition Management request with the Disassociation Imminent bit set. What does this mean for the client?",
+        "optionen":  [
+                         "The client must roam within 10 ms or is placed on the exclusion list",
+                         "The client receives a new IP address from the target AP\u0027s VLAN",
+                         "The AP transfers the client\u0027s encryption keys to the target AP",
+                         "The AP recommends target APs and warns that it will disconnect it soon"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein BTM Request enthält eine Kandidatenliste; mit Disassociation Imminent kündigt der AP an, den Client bald zu trennen. Die Entscheidung bleibt beim Client, die Trennung erhöht nur den Druck."
+    },
+    {
+        "id":  "slg-wr-066",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "IEEE 802.11v BSS ___ Management lets an AP suggest better APs to a client.",
+        "optionen":  [
+                         "Roaming",
+                         "Steering",
+                         "Mobility",
+                         "Transition"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "BSS Transition Management (BTM) ist die 802.11v-Funktion für Roaming-Empfehlungen der Infrastruktur. Der Client darf die Empfehlung annehmen oder ablehnen."
+    },
+    {
+        "id":  "slg-wr-067",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "In 802.11r, the WLC derives a ___ from PMK-R0 for each AP, from which the PTK for the client session is computed.",
+        "optionen":  [
+                         "PMK-R1",
+                         "MSK",
+                         "PSK",
+                         "GTK"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Hierarchie: MSK aus EAP → PMK-R0 (R0KH) → PMK-R1 (R1KH, pro AP) → PTK. Der GTK ist der Gruppenschlüssel für Broadcast/Multicast."
+    },
+    {
+        "id":  "slg-wr-068",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, WLAN-Konfigurationsmodus (wlan CORP 1 CORP): Aktiviere 802.11r Fast Transition.",
+        "bausteine":  [
+                          "security",
+                          "ft",
+                          "over-the-ds",
+                          "dot1x",
+                          "akm",
+                          "enable"
+                      ],
+        "loesung":  [
+                        "security",
+                        "ft"
+                    ],
+        "erklaerung":  "security ft aktiviert Fast Transition auf dem 9800-WLAN; security ft over-the-ds würde zusätzlich Over-the-DS erlauben. Passend dazu muss eine FT-AKM (z. B. ft dot1x) gesetzt sein."
+    },
+    {
+        "id":  "slg-wr-069",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, WLAN-Konfigurationsmodus: Aktiviere die Schlüsselverwaltung FT-802.1X (Fast Transition mit 802.1X).",
+        "bausteine":  [
+                          "security",
+                          "wpa",
+                          "akm",
+                          "ft",
+                          "dot1x",
+                          "psk",
+                          "sae",
+                          "cckm"
+                      ],
+        "loesung":  [
+                        "security",
+                        "wpa",
+                        "akm",
+                        "ft",
+                        "dot1x"
+                    ],
+        "erklaerung":  "security wpa akm ft dot1x bietet die FT-802.1X-AKM an; zusammen mit security wpa akm dot1x entsteht Mixed Mode für ältere Clients. ft psk wäre die FT-Variante für Pre-Shared Keys."
+    },
+    {
+        "id":  "slg-wr-070",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, WLAN-Konfigurationsmodus: Aktiviere 802.11k-Neighbor-Lists für die Clients.",
+        "bausteine":  [
+                          "assisted-roaming",
+                          "neighbor-list",
+                          "dot11k",
+                          "bss-transition",
+                          "neighbor-report"
+                      ],
+        "loesung":  [
+                        "assisted-roaming",
+                        "neighbor-list"
+                    ],
+        "erklaerung":  "assisted-roaming neighbor-list lässt das WLAN 802.11k-Neighbor-Reports beantworten. bss-transition ist dagegen die 802.11v-Funktion."
+    },
+    {
+        "id":  "slg-wr-071",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "AireOS-WLC (Legacy-CLI): Aktiviere 802.11r Fast Transition für WLAN 2.",
+        "bausteine":  [
+                          "config",
+                          "wlan",
+                          "security",
+                          "ft",
+                          "enable",
+                          "2",
+                          "over-the-ds",
+                          "disable",
+                          "wireless"
+                      ],
+        "loesung":  [
+                        "config",
+                        "wlan",
+                        "security",
+                        "ft",
+                        "enable",
+                        "2"
+                    ],
+        "erklaerung":  "config wlan security ft enable \u003cWLAN-ID\u003e schaltet FT ein; Over-the-DS wird separat mit config wlan security ft over-the-ds gesteuert. Das WLAN braucht zusätzlich eine FT-AKM."
+    },
+    {
+        "id":  "slg-wr-072",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Cisco Optimized Roaming is enabled on a WLAN. What does the controller do with a client whose RSSI falls below the configured threshold?",
+        "optionen":  [
+                         "It disassociates the client and ignores its low-signal associations",
+                         "It moves the client permanently from 5 GHz to the 2.4-GHz radio",
+                         "It sends the client an 802.11r request to a neighboring AP",
+                         "It raises the AP transmit power for this client to the maximum"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Optimized Roaming trennt Clients unterhalb der RSSI-/Datenratenschwelle aktiv und lässt sie bei zu schwachem Signal nicht wieder assoziieren. So wird Sticky-Client-Verhalten verhindert, die Entscheidung über das Ziel trifft weiterhin der Client."
+    },
+    {
+        "id":  "slg-wr-073",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which statement about 802.11r roaming between Cisco controllers is correct?",
+        "optionen":  [
+                         "FT works only between APs that are joined to one and the same controller",
+                         "FT requires EoIP tunnels between the controllers instead of CAPWAP tunnels",
+                         "FT keys are shared within the mobility group, so inter-controller FT works there",
+                         "FT requires the two controllers to be in different mobility groups to work"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Controller einer Mobility Group verteilen das FT-Schlüsselmaterial an ihre Peers, sodass auch Inter-Controller-Roams schnell bleiben. Über Gruppengrenzen hinweg folgt eine volle Authentifizierung."
+    },
+    {
+        "id":  "slg-wr-074",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jede IEEE-802.11-Erweiterung ihrer Roaming-relevanten Funktion zu.",
+        "paare":  [
+                      [
+                          "802.11k",
+                          "Neighbor reports that shorten the channel scan"
+                      ],
+                      [
+                          "802.11v",
+                          "BSS transition management suggestions"
+                      ],
+                      [
+                          "802.11r",
+                          "Fast BSS transition key handling"
+                      ],
+                      [
+                          "802.11w",
+                          "Protection of management frames"
+                      ]
+                  ],
+        "erklaerung":  "k = Radio Resource Measurement (Nachbarliste), v = Wireless Network Management (BTM), r = Fast BSS Transition (Schlüssel), w = Protected Management Frames (PMF)."
+    },
+    {
+        "id":  "slg-wr-075",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeden Scan-Begriff seiner Beschreibung zu.",
+        "paare":  [
+                      [
+                          "Active scan",
+                          "Probe request sent, responses awaited for a short time"
+                      ],
+                      [
+                          "Passive scan",
+                          "Radio listens only for beacons on the channel"
+                      ],
+                      [
+                          "Background scan",
+                          "Channels checked before a roam is needed"
+                      ],
+                      [
+                          "On-roam scan",
+                          "Channels checked only when a roam is required"
+                      ]
+                  ],
+        "erklaerung":  "Active/Passive beschreibt, wie ein Kanal abgefragt wird; Background/On-Roam beschreibt, wann gescannt wird. Background Scanning beschleunigt spätere Roams, On-Roam Scanning spart Unterbrechungen im Normalbetrieb."
+    },
+    {
+        "id":  "slg-wr-076",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeden Verkehr dem verwendeten Protokoll bzw. Port zu.",
+        "paare":  [
+                      [
+                          "Legacy AireOS mobility data (EoIP)",
+                          "IP protocol 97"
+                      ],
+                      [
+                          "Catalyst 9800 mobility control",
+                          "UDP 16666"
+                      ],
+                      [
+                          "Catalyst 9800 mobility data",
+                          "UDP 16667"
+                      ],
+                      [
+                          "NMSP between WLC and location server",
+                          "TCP 16113"
+                      ]
+                  ],
+        "erklaerung":  "Alte AireOS-Mobility nutzte EtherIP (IP 97) für Daten; der 9800 nutzt einen CAPWAP-basierten Tunnel mit UDP 16666 (Control) und 16667 (Data). NMSP liefert RSSI- und Client-Daten an MSE/CMX bzw. den Spaces Connector."
+    },
+    {
+        "id":  "slg-wr-077",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jede Ortungstechnik ihrem Prinzip zu.",
+        "paare":  [
+                      [
+                          "RSSI trilateration",
+                          "Distance estimates from the signal strength at three or more APs"
+                      ],
+                      [
+                          "RF fingerprinting",
+                          "Comparison of measurements with a calibrated RF model of the floor"
+                      ],
+                      [
+                          "Angle of arrival",
+                          "Direction of the signal measured with an antenna array"
+                      ],
+                      [
+                          "FastLocate",
+                          "RSSI taken from data frames by monitor radios on all channels"
+                      ]
+                  ],
+        "erklaerung":  "Trilateration nutzt Entfernungsschätzungen, Fingerprinting den Abgleich mit einer kalibrierten RF-Karte, AoA (Hyperlocation) Richtungsmessung und FastLocate häufigere RSSI-Werte aus Datenframes."
+    },
+    {
+        "id":  "slg-wr-078",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A hotel wants to send a welcome offer to returning loyalty members when they enter the lobby. Which Cisco CMX function fits this requirement?",
+        "optionen":  [
+                         "Detect",
+                         "Connect",
+                         "Presence",
+                         "Engage"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Engage liefert kontextabhängige Inhalte wie Coupons oder Loyalty-Vorteile an erkannte Besucher. Detect erkennt Geräte, Connect stellt das Gast-Portal bereit."
+    },
+    {
+        "id":  "slg-wr-079",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jede Cisco-CMX-Funktion ihrer Aufgabe zu.",
+        "paare":  [
+                      [
+                          "Detect",
+                          "Presence or location of devices based on their Wi-Fi signal"
+                      ],
+                      [
+                          "Connect",
+                          "Customized captive portal for guest onboarding"
+                      ],
+                      [
+                          "Engage",
+                          "Context-aware content or offers sent to visitors"
+                      ]
+                  ],
+        "erklaerung":  "CMX gliedert sich in Detect, Connect und Engage. Diese Funktionen leben heute in Cisco Spaces weiter (z. B. Captive Portal, Engagements, Detect \u0026 Locate)."
+    },
+    {
+        "id":  "slg-wr-080",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In presence analytics, what does dwell time describe?",
+        "optionen":  [
+                         "The lease time of the guest IP address",
+                         "The time a client needs to roam",
+                         "The time between two probe requests",
+                         "The time a device spends in the venue"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Dwell Time ist die Verweildauer eines Geräts im Venue bzw. in einer Zone. Sie lässt sich nach neuen und wiederkehrenden Besuchern oder über Tage und Wochen vergleichen."
+    },
+    {
+        "id":  "slg-wr-081",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A retailer launches a new shop-window campaign. Which presence metric best shows whether the campaign draws people into the store?",
+        "optionen":  [
+                         "The average dwell time of store employees",
+                         "The busiest hour of each day of the week",
+                         "The conversion rate from passersby to visitors",
+                         "The number of repeat visitors per month"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Conversion Rate vom Passanten (Gerät nur kurz/schwach gehört) zum Besucher zeigt, ob mehr Leute hereinkommen. Laut Kurs ist sie bei neuen Marketingplänen die wichtigste Kennzahl."
+    },
+    {
+        "id":  "slg-wr-082",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A small shop has a single AP and wants visitor counts and dwell time. Which location level is sufficient?",
+        "optionen":  [
+                         "Presence, with roughly 20 m accuracy",
+                         "FastLocate, with higher refresh rates",
+                         "Basic location, with x/y coordinates",
+                         "Hyperlocation, with about 1 m accuracy"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Für Besucherzahlen und Verweildauer genügt Presence mit einem AP (In-Zone-Erkennung, ca. 20 m). x/y-Koordinaten bräuchten mindestens drei APs, die den Client hören."
+    },
+    {
+        "id":  "slg-wr-083",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jede Location-Stufe ihrer typischen Genauigkeit und Anforderung zu.",
+        "paare":  [
+                      [
+                          "Presence",
+                          "About 20 m, one AP is enough"
+                      ],
+                      [
+                          "Basic location",
+                          "About 7 m, at least three APs and maps"
+                      ],
+                      [
+                          "FastLocate",
+                          "About 5 m, denser APs and data-frame RSSI"
+                      ],
+                      [
+                          "Hyperlocation",
+                          "About 1 m, antenna array module on the AP"
+                      ]
+                  ],
+        "erklaerung":  "Mehr APs und bessere Messverfahren erhöhen die Genauigkeit: Presence (20 m), Basic (7 m, x/y), FastLocate (5 m, höhere Refresh-Rate) und Hyperlocation (1 m, AoA)."
+    },
+    {
+        "id":  "slg-wr-084",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A museum wants to trigger content when a visitor stands in front of a specific exhibit. The exhibits are about 2 m apart. Which approach from the course fits best?",
+        "optionen":  [
+                         "Hyperlocation with an AoA antenna module, plus BLE",
+                         "Presence analytics with one AP per exhibition hall",
+                         "Basic location with three APs per floor and maps",
+                         "FastLocate with standard APs at normal density"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Nur Hyperlocation erreicht laut Kurs etwa 1 m; Presence (20 m), Basic (7 m) und FastLocate (5 m) können benachbarte Exponate nicht unterscheiden."
+    },
+    {
+        "id":  "slg-wr-085",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does RSSI taken from data frames improve location compared with RSSI from probe requests alone?",
+        "optionen":  [
+                         "Probes are sent rarely, while data frames give frequent RSSI samples",
+                         "Probe requests are encrypted, so APs cannot read their RSSI value",
+                         "Data frames are sent at higher power, so their RSSI is more stable",
+                         "Data frames carry the client\u0027s GPS position in a vendor element"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Clients proben unregelmäßig und selten (Stromsparen); Datenframes liefern viel mehr Messpunkte und damit aktuellere Positionen. Probes sind nicht verschlüsselt und enthalten keine GPS-Daten."
+    },
+    {
+        "id":  "slg-wr-086",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "How do FastLocate-capable APs measure a client\u0027s data frames on other channels without hurting client service?",
+        "optionen":  [
+                         "The WLC asks each client to repeat its data frames on all neighbor channels",
+                         "The serving radios leave their channel briefly during every beacon interval",
+                         "A separate monitor module scans all channels while the serving radios keep serving",
+                         "The neighbor APs temporarily change to the channel of the client\u0027s own AP"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "FastLocate nutzt ein zusätzliches Monitor-Modul (WSM) im AP, das alle Kanäle gleichzeitig abhört. Die 2,4- und 5-GHz-Radios bedienen weiter Clients ohne Leistungseinbuße."
+    },
+    {
+        "id":  "slg-wr-087",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which technique allows Cisco Hyperlocation to locate devices with about 1 m accuracy?",
+        "optionen":  [
+                         "Time difference of arrival with GPS-synced clocks",
+                         "Counting probe requests per minute in each zone",
+                         "Angle of arrival measured with an antenna array",
+                         "RSSI trilateration from three neighboring APs"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das Hyperlocation-Modul besitzt ein Antennenarray und bestimmt den Einfallswinkel (AoA) des Signals; mehrere Winkel ergeben eine genaue Position. RSSI allein erreicht typischerweise nur 5–10 m."
+    },
+    {
+        "id":  "slg-wr-088",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "RSSI-based location results are off by several meters near thick concrete walls. Which step most improves accuracy without new hardware?",
+        "optionen":  [
+                         "Increase the transmit power of all APs to the maximum level",
+                         "Remove some APs so that fewer cells overlap at the walls",
+                         "Disable the 2.4-GHz radios so that only 5 GHz is measured",
+                         "Calibrate the floor by collecting RSSI samples at known points"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Eine Kalibrierung (RF Fingerprinting) misst reale Pegel an bekannten Punkten und erfasst so Wanddämpfung, die ein reines Pfadverlustmodell nicht kennt. Weniger APs oder höhere Leistung verschlechtern die Ortung eher."
+    },
+    {
+        "id":  "slg-wr-089",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does RSSI-based location need at least three APs that hear the client?",
+        "optionen":  [
+                         "Each AP only yields a distance estimate; three are needed to fix one point",
+                         "Each AP measures the angle of the signal; three angles give the position",
+                         "Three APs are needed to decrypt the client\u0027s probe requests together",
+                         "Location licenses are counted per floor and require three APs per floor"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Aus dem RSSI ergibt sich pro AP nur ein ungefährer Abstand (Kreis um den AP); erst drei Kreise schneiden sich in einem Punkt. Winkelmessung wäre AoA mit Antennenarray."
+    },
+    {
+        "id":  "slg-wr-090",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which AP placement is recommended for location services in a large rectangular hall?",
+        "optionen":  [
+                         "APs only at the entrances, where most visitors walk in",
+                         "APs along the perimeter and corners, plus some in the middle",
+                         "All APs in a single straight line down the center of the hall",
+                         "All APs clustered tightly together in the middle of the hall"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "APs am Rand und in den Ecken (gestaffelt), bei Bedarf ergänzt in der Mitte, sorgen dafür, dass jeder Client von mindestens drei APs aus verschiedenen Richtungen gehört wird."
+    },
+    {
+        "id":  "slg-wr-091",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Location accuracy is good in the center of a floor but poor near the outer walls. All APs are mounted in a ring around the middle of the floor. What is the cause?",
+        "optionen":  [
+                         "Clients near the walls use 5 GHz instead of 2.4 GHz",
+                         "The channel plan around the walls uses DFS channels",
+                         "The APs are spaced more than 20 m apart from each other",
+                         "Clients near the walls are outside the convex hull of the APs"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Linie um die äußersten APs (Convex Hull) muss die ganze Fläche umschließen. Liegt ein Client außerhalb, hören ihn alle APs nur aus einer Richtung, und die Position wird ungenau."
+    },
+    {
+        "id":  "slg-wr-092",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three guidelines from the course apply when you design a WLAN for location services? (Choose three.)",
+        "optionen":  [
+                         "At least three APs hear each client at -75 dBm or better",
+                         "Place APs along the perimeter and stagger them",
+                         "Mount all APs in one straight line in the middle",
+                         "Keep cell overlap below 5 percent to avoid errors",
+                         "Start with about one AP per 2500 sq ft and verify by survey"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Der Kurs nennt mindestens drei APs mit ≥ −75 dBm, Perimeter- und versetzte Platzierung, ca. 2500 sq ft pro AP (Site Survey entscheidet) und rund 20 % Zellüberlappung."
+    },
+    {
+        "id":  "slg-wr-093",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "For good location results, each client should be heard by at least three APs on the same floor with a signal of ___ or better.",
+        "optionen":  [
+                         "-85 dBm",
+                         "-95 dBm",
+                         "-90 dBm",
+                         "-75 dBm"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Location-Designregel verlangt mindestens drei APs mit einem Pegel von −75 dBm oder stärker. Schwächere Signale schwanken zu stark für eine brauchbare Entfernungsschätzung."
+    },
+    {
+        "id":  "slg-wr-094",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A warehouse floor of 30,000 sq ft must support location services. Using the course\u0027s rule of thumb, how many APs are a reasonable starting point before the site survey?",
+        "optionen":  [
+                         "3",
+                         "12",
+                         "6",
+                         "24"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "30.000 sq ft / 2500 sq ft pro AP = 12 APs. Die endgültige Zahl legt der Site Survey fest, etwa wegen Regalen und fehlender Sichtverbindung."
+    },
+    {
+        "id":  "slg-wr-095",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Cisco CMX and the MSE appliances are end-of-life. Which Cisco product provides location and presence analytics today?",
+        "optionen":  [
+                         "Cisco Prime Infrastructure",
+                         "Cisco Spaces",
+                         "Cisco ISE",
+                         "Cisco Secure Firewall"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Cisco Spaces (früher Cisco DNA Spaces) ist die cloudbasierte Nachfolgeplattform von CMX für Presence, Location, Captive Portal und IoT. Prime Infrastructure ist ebenfalls Legacy."
+    },
+    {
+        "id":  "slg-wr-096",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does a Catalyst 9800 deliver its location and client data to Cisco Spaces?",
+        "optionen":  [
+                         "Through SNMP traps that every AP sends to the cloud on its own",
+                         "Only through Catalyst Center Assurance as an intermediary",
+                         "Directly from the controller or via the on-premises Spaces Connector",
+                         "Only through an MSE appliance that runs the CMX software"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der 9800 kann direkt an Cisco Spaces angebunden werden oder über den lokal installierten Spaces Connector; ein MSE/CMX ist nicht mehr nötig."
+    },
+    {
+        "id":  "slg-wr-097",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Cisco WLCs send RSSI measurements and client information to MSE/CMX location servers by using the ___ protocol.",
+        "optionen":  [
+                         "LWAPP",
+                         "NMSP",
+                         "CAPWAP",
+                         "NETCONF"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "NMSP (Network Mobility Services Protocol) verbindet WLC und Location-Server bzw. Spaces Connector. CAPWAP läuft zwischen AP und WLC."
+    },
+    {
+        "id":  "slg-wr-098",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "WLC (Privileged EXEC, 9800 und AireOS gleich): Zeige den Status der NMSP-Verbindungen zu Location-Servern.",
+        "bausteine":  [
+                          "show",
+                          "nmsp",
+                          "status",
+                          "cmx",
+                          "location",
+                          "summary"
+                      ],
+        "loesung":  [
+                        "show",
+                        "nmsp",
+                        "status"
+                    ],
+        "erklaerung":  "show nmsp status zeigt pro Location-Server (MSE/CMX/Spaces Connector) die IP, den Zustand und Zähler der NMSP-Nachrichten. Bei fehlenden Location-Daten ist das der erste Prüfschritt am Controller."
+    },
+    {
+        "id":  "slg-wr-099",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After a smartphone OS update, presence analytics suddenly reports many more new visitors, although actual footfall did not change. What is the most likely reason?",
+        "optionen":  [
+                         "The dwell-time thresholds were reset to zero by the update",
+                         "The WLC switched the venue from presence mode to FastLocate",
+                         "The APs stopped hearing probe requests on the 5-GHz channels",
+                         "Phones now use randomized MAC addresses, so known devices look new"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Presence-Analysen identifizieren Geräte über die MAC-Adresse. Randomisierte (private) MACs lassen dasselbe Gerät als neuen Besucher erscheinen und verfälschen Zählungen."
+    },
+    {
+        "id":  "slg-wr-100",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What does Bluetooth Low Energy (BLE) based location require in the venue?",
+        "optionen":  [
+                         "BLE modules or beacons installed in the venue",
+                         "802.11r enabled on every WLAN of the site",
+                         "Hyperlocation antenna arrays on every AP",
+                         "An RFID reader installed in every room"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Für BLE-Ortung müssen BLE-Module bzw. Beacons im Venue installiert sein, die Geräte per BLE erkennen oder für sie senden. Hyperlocation kombiniert Wi-Fi-AoA zusätzlich mit BLE."
+    },
+    {
+        "id":  "slg-wr-101",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In which ways could the legacy Cisco CMX software be deployed?",
+        "optionen":  [
+                         "Only on Catalyst 9300 switches in the access layer",
+                         "Only as a software module inside the AireOS WLC",
+                         "On an MSE appliance, as a VM, or as CMX Cloud",
+                         "Only as a container running on each access point"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "CMX lief on-premises auf einer MSE-Appliance oder als VM (z. B. auf UCS) oder als Cloud-Dienst mit zwei SaaS-Lizenzstufen. Heute übernimmt Cisco Spaces diese Rolle."
+    },
+    {
+        "id":  "slg-wr-102",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A mall operator wants to know where visitors go after they leave the food court. Which analytics function fits?",
+        "optionen":  [
+                         "Conversion rate from passerby to visitor",
+                         "Dwell time per building over a month",
+                         "Visitor counting per floor in presence",
+                         "Path correlation in location analytics"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Correlation verfolgt mit Location-Daten die Wege von Besuchern zwischen Zonen. Presence-Kennzahlen zählen nur, wie viele und wie lange, nicht wohin."
+    },
+    {
+        "id":  "slg-wr-103",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two use cases need location accuracy in the 1–5 m range instead of presence detection? (Choose two.)",
+        "optionen":  [
+                         "Comparing new and repeat visitors per week",
+                         "Product placement and asset management",
+                         "Counting visitors per building and day",
+                         "Turn-by-turn wayfinding between subzones",
+                         "Measuring dwell time for the whole venue"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Subzonen-Navigation (5 m) und Produktplatzierung/Asset-Management (1 m) brauchen präzise Positionen. Zählungen, Verweildauer und Wiederkehrer gehen schon mit Presence (ca. 20 m)."
+    },
+    {
+        "id":  "slg-wr-104",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Besides marketing analytics, which IT operations task benefits directly from Wi-Fi location services?",
+        "optionen":  [
+                         "Locating rogue APs and interferers on the floor map",
+                         "Assigning IP addresses to wireless clients via DHCP",
+                         "Calculating the EIRP of each access point antenna",
+                         "Load-balancing CAPWAP tunnels across controllers"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Location-Engines zeigen nicht nur Clients, sondern auch Rogue-APs, Rogue-Clients und Störquellen auf der Karte, was die Suche vor Ort stark verkürzt."
+    },
+    {
+        "id":  "slg-wr-105",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "A client that sends a probe request containing a specific SSID is sending a ___ probe.",
+        "optionen":  [
+                         "passive",
+                         "directed",
+                         "broadcast",
+                         "null"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Beim Directed Probe antworten nur APs mit genau dieser SSID. Ein Broadcast Probe enthält eine Null-SSID und wird von allen APs je SSID beantwortet."
+    }
+]

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Mobility Group und Mobility Domain</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Mobility Group vs. Mobility Domain (AireOS)</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="55" width="760" height="290" rx="12" fill="none" stroke="#b08aff" stroke-width="2" stroke-dasharray="8 5"/>
+<text x="35" y="78" font-weight="bold" fill="#7a55d0">Mobility Domain: bis 72 WLCs, max. 24 je Gruppe (z. B. 3 × 24), MAC + IP gegenseitig</text>
+<rect x="40" y="95" width="230" height="230" rx="10" fill="#4a9cff" fill-opacity="0.1" stroke="#4a9cff"/>
+<text x="155" y="118" text-anchor="middle" font-weight="bold">Mobility Group "CAMPUS-A"</text>
+<rect x="280" y="95" width="230" height="230" rx="10" fill="#39c86a" fill-opacity="0.1" stroke="#39c86a"/>
+<text x="395" y="118" text-anchor="middle" font-weight="bold">Mobility Group "CAMPUS-B"</text>
+<rect x="520" y="95" width="240" height="230" rx="10" fill="#ffd23f" fill-opacity="0.15" stroke="#ffd23f"/>
+<text x="640" y="118" text-anchor="middle" font-weight="bold">Mobility Group "DMZ"</text>
+<g fill="#4a9cff"><rect x="65" y="140" width="70" height="30" rx="5"/><rect x="175" y="140" width="70" height="30" rx="5"/><rect x="65" y="220" width="70" height="30" rx="5"/><rect x="175" y="220" width="70" height="30" rx="5"/></g>
+<g fill="#fff" text-anchor="middle"><text x="100" y="160">WLC1</text><text x="210" y="160">WLC2</text><text x="100" y="240">WLC3</text><text x="210" y="240">WLC4</text></g>
+<g fill="#39c86a"><rect x="305" y="140" width="70" height="30" rx="5"/><rect x="415" y="140" width="70" height="30" rx="5"/></g>
+<g fill="#fff" text-anchor="middle"><text x="340" y="160">WLC5</text><text x="450" y="160">WLC6</text></g>
+<rect x="600" y="140" width="80" height="30" rx="5" fill="#ffd23f"/><text x="640" y="160" text-anchor="middle">Anchor</text>
+<text x="155" y="280" text-anchor="middle">bis 24 WLCs, gleicher Name,</text><text x="155" y="298" text-anchor="middle">gleiche Virtual IP</text>
+<text x="395" y="280" text-anchor="middle">Roaming A↔B möglich,</text><text x="395" y="298" text-anchor="middle">aber volle Re-Auth</text>
+<text x="640" y="280" text-anchor="middle">Guest Anchor nur als</text><text x="640" y="298" text-anchor="middle">Mobility-Peer nötig</text>
+<line x1="135" y1="155" x2="175" y2="155" stroke="#222"/><line x1="100" y1="170" x2="100" y2="220" stroke="#222"/><line x1="210" y1="170" x2="210" y2="220" stroke="#222"/><line x1="135" y1="235" x2="175" y2="235" stroke="#222"/>
+<line x1="245" y1="155" x2="305" y2="155" stroke="#b08aff" stroke-width="2"/>
+</g>
+<g font-size="13" fill="#222">
+<rect x="20" y="360" width="370" height="75" rx="8" fill="#39c86a" fill-opacity="0.15"/>
+<text x="35" y="383" font-weight="bold">Innerhalb der Gruppe</text>
+<text x="35" y="405">Key-Cache geteilt → Fast Secure Roaming</text>
+<text x="35" y="425">Client-Kontext wird übergeben</text>
+<rect x="410" y="360" width="370" height="75" rx="8" fill="#ff6b6b" fill-opacity="0.15"/>
+<text x="425" y="383" font-weight="bold">Unbekannter WLC (andere Domain)</text>
+<text x="425" y="405">neue Authentifizierung, neue Association,</text>
+<text x="425" y="425">neue IP-Adresse</text>
+</g>
+</svg>

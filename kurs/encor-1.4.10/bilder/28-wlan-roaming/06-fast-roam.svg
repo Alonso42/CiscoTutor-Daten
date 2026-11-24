@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Fast Secure Roaming im Zeitvergleich</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Was passiert beim Roaming? (WPA2/WPA3-Enterprise)</text>
+<g font-size="13" fill="#222">
+<line x1="200" y1="70" x2="200" y2="330" stroke="#999"/>
+<line x1="560" y1="60" x2="560" y2="330" stroke="#ff6b6b" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="565" y="72" fill="#c03030">Voice-Budget ≈ 150 ms</text>
+<text x="20" y="110" font-weight="bold">Ohne Fast Roaming</text>
+<rect x="200" y="92" width="60" height="26" fill="#b08aff"/><text x="230" y="110" text-anchor="middle" fill="#fff">Reassoc</text>
+<rect x="260" y="92" width="460" height="26" fill="#ff6b6b"/><text x="490" y="110" text-anchor="middle" fill="#fff">volle 802.1X/EAP mit RADIUS (100e ms … &gt;1 s)</text>
+<rect x="720" y="92" width="60" height="26" fill="#ffd23f"/><text x="750" y="110" text-anchor="middle">4-Way</text>
+<text x="20" y="170" font-weight="bold">PMK Caching</text><text x="20" y="186">(AP schon besucht)</text>
+<rect x="200" y="152" width="60" height="26" fill="#b08aff"/><text x="230" y="170" text-anchor="middle" fill="#fff">Reassoc</text>
+<rect x="260" y="152" width="60" height="26" fill="#ffd23f"/><text x="290" y="170" text-anchor="middle">4-Way</text>
+<text x="335" y="170">PMKID im Reassoc Request</text>
+<text x="20" y="230" font-weight="bold">OKC</text><text x="20" y="246">(auch neuer AP)</text>
+<rect x="200" y="212" width="60" height="26" fill="#b08aff"/><text x="230" y="230" text-anchor="middle" fill="#fff">Reassoc</text>
+<rect x="260" y="212" width="60" height="26" fill="#ffd23f"/><text x="290" y="230" text-anchor="middle">4-Way</text>
+<text x="335" y="230">PMK an alle APs/WLCs der Gruppe verteilt</text>
+<text x="20" y="290" font-weight="bold">802.11r FT</text><text x="20" y="306">(IEEE-Standard)</text>
+<rect x="200" y="272" width="110" height="26" fill="#39c86a"/><text x="255" y="290" text-anchor="middle" fill="#fff">FT Auth+Reassoc</text>
+<text x="325" y="290">Schlüssel in 4 Frames, kein separater 4-Way</text>
+</g>
+<g font-size="13" fill="#222">
+<rect x="20" y="350" width="760" height="85" rx="8" fill="#4a9cff" fill-opacity="0.1" stroke="#4a9cff"/>
+<text x="35" y="373">Schlüsselhierarchie 802.11r: PMK-R0 (R0KH = WLC) → PMK-R1 (R1KH) → PTK pro AP</text>
+<text x="35" y="395">Key-Caches gelten innerhalb der Mobility Group; WPA-Personal braucht ohnehin nur den 4-Way Handshake</text>
+<text x="35" y="417">802.11k (Neighbor Report) verkürzt zusätzlich das Scannen, 802.11v (BTM) gibt Roaming-Empfehlungen</text>
+</g>
+</svg>

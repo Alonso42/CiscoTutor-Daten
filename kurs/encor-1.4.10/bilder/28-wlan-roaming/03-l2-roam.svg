@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Layer-2-Roaming intra und inter Controller</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Layer-2-Roaming: gleiches VLAN / Subnetz</text>
+<g font-size="13" fill="#222">
+<rect x="60" y="60" width="680" height="40" rx="6" fill="#4a9cff" fill-opacity="0.15" stroke="#4a9cff"/>
+<text x="400" y="85" text-anchor="middle">VLAN 20 / 10.20.0.0/24 auf beiden WLCs (L2-adjazent, gleiche Mobility Group)</text>
+<rect x="150" y="130" width="120" height="40" rx="6" fill="#4a9cff"/><text x="210" y="155" text-anchor="middle" fill="#fff">WLC1</text>
+<rect x="530" y="130" width="120" height="40" rx="6" fill="#39c86a"/><text x="590" y="155" text-anchor="middle" fill="#fff">WLC2</text>
+<line x1="270" y1="150" x2="530" y2="150" stroke="#b08aff" stroke-width="2" stroke-dasharray="7 4"/>
+<text x="400" y="142" text-anchor="middle">Mobility-Nachrichten</text>
+<g fill="#ffd23f"><rect x="90" y="220" width="60" height="26" rx="4"/><rect x="270" y="220" width="60" height="26" rx="4"/><rect x="560" y="220" width="60" height="26" rx="4"/></g>
+<text x="120" y="238" text-anchor="middle">AP-A</text><text x="300" y="238" text-anchor="middle">AP-B</text><text x="590" y="238" text-anchor="middle">AP-C</text>
+<line x1="120" y1="220" x2="190" y2="170" stroke="#999"/><line x1="300" y1="220" x2="230" y2="170" stroke="#999"/><line x1="590" y1="220" x2="590" y2="170" stroke="#999"/>
+<text x="120" y="285" text-anchor="middle">t1</text><text x="300" y="285" text-anchor="middle">t2</text><text x="590" y="285" text-anchor="middle">t3</text>
+<line x1="135" y1="280" x2="280" y2="280" stroke="#222" stroke-width="2"/><polygon points="280,275 292,280 280,285" fill="#222"/>
+<line x1="315" y1="280" x2="570" y2="280" stroke="#222" stroke-width="2"/><polygon points="570,275 582,280 570,285" fill="#222"/>
+<rect x="40" y="310" width="330" height="125" rx="8" fill="#4a9cff" fill-opacity="0.1" stroke="#4a9cff"/>
+<text x="55" y="333" font-weight="bold">Intra-Controller (t1 → t2)</text>
+<text x="55" y="356">WLC1 aktualisiert nur den Eintrag:</text>
+<text x="55" y="376">"zugeordneter AP = AP-B"</text>
+<text x="55" y="396">ggf. neuer Security-Kontext</text>
+<text x="55" y="418">PoP und PoA bleiben auf WLC1</text>
+<rect x="410" y="310" width="350" height="125" rx="8" fill="#39c86a" fill-opacity="0.1" stroke="#39c86a"/>
+<text x="425" y="333" font-weight="bold">Inter-Controller L2 (t2 → t3)</text>
+<text x="425" y="356">Client-Eintrag wird zu WLC2 verschoben</text>
+<text x="425" y="376">PoP und PoA wandern zu WLC2</text>
+<text x="425" y="396">Client behält IP (gleiches Subnetz)</text>
+<text x="425" y="418">bricht nur bei DHCP Discover/Session Timeout</text>
+</g>
+</svg>

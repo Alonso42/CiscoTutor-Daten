@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Campus-Größen: Small, Medium, Large</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Campus-Designs nach Größe</text>
+<!-- small -->
+<rect x="20" y="50" width="240" height="380" rx="8" fill="#39c86a" fill-opacity="0.12" stroke="#222"/>
+<text x="140" y="75" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">Small Site</text>
+<rect x="95" y="110" width="90" height="22" rx="3" fill="#39c86a" fill-opacity="0.4" stroke="#222"/>
+<rect x="95" y="134" width="90" height="22" rx="3" fill="#39c86a" fill-opacity="0.4" stroke="#222"/>
+<text x="140" y="175" text-anchor="middle" font-size="11" fill="#222">ein Access-Switch / Stack</text>
+<text x="35" y="230" font-size="12" fill="#222">• Ports: Dutzende</text>
+<text x="35" y="252" font-size="12" fill="#222">• APs: weniger als 25</text>
+<text x="35" y="274" font-size="12" fill="#222">• Ziel: Kosten minimieren,</text>
+<text x="35" y="292" font-size="12" fill="#222">  wenige Komponenten</text>
+<!-- medium -->
+<rect x="280" y="50" width="240" height="380" rx="8" fill="#4a9cff" fill-opacity="0.12" stroke="#222"/>
+<text x="400" y="75" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">Medium Density</text>
+<rect x="340" y="95" width="120" height="26" rx="3" fill="#4a9cff" fill-opacity="0.4" stroke="#222"/><text x="400" y="113" text-anchor="middle" font-size="11" fill="#222">Collapsed Core</text>
+<g fill="#39c86a" fill-opacity="0.4" stroke="#222"><rect x="300" y="160" width="50" height="20" rx="3"/><rect x="375" y="160" width="50" height="20" rx="3"/><rect x="450" y="160" width="50" height="20" rx="3"/></g>
+<g stroke="#222"><line x1="325" y1="160" x2="380" y2="121"/><line x1="400" y1="160" x2="400" y2="121"/><line x1="475" y1="160" x2="420" y2="121"/></g>
+<text x="400" y="200" text-anchor="middle" font-size="11" fill="#222">eine Distribution-Schicht</text>
+<text x="295" y="230" font-size="12" fill="#222">• Ports: Hunderte</text>
+<text x="295" y="252" font-size="12" fill="#222">• APs: wenige Gruppen</text>
+<text x="295" y="270" font-size="12" fill="#222">  mit je max. 50</text>
+<text x="295" y="292" font-size="12" fill="#222">• eigenständig oder als</text>
+<text x="295" y="310" font-size="12" fill="#222">  Collapsed Core, z. B. am</text>
+<text x="295" y="328" font-size="12" fill="#222">  WAN-Router eines großen</text>
+<text x="295" y="346" font-size="12" fill="#222">  Remote-Standorts</text>
+<!-- large -->
+<rect x="540" y="50" width="240" height="380" rx="8" fill="#ffd23f" fill-opacity="0.15" stroke="#222"/>
+<text x="660" y="75" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">High-Density Large</text>
+<rect x="600" y="88" width="120" height="24" rx="3" fill="#ffd23f" fill-opacity="0.6" stroke="#222"/><text x="660" y="105" text-anchor="middle" font-size="11" fill="#222">L3 LAN Core</text>
+<g fill="#4a9cff" fill-opacity="0.4" stroke="#222"><rect x="555" y="140" width="60" height="20" rx="3"/><rect x="630" y="140" width="60" height="20" rx="3"/><rect x="705" y="140" width="60" height="20" rx="3"/></g>
+<g stroke="#222"><line x1="585" y1="140" x2="640" y2="112"/><line x1="660" y1="140" x2="660" y2="112"/><line x1="735" y1="140" x2="680" y2="112"/></g>
+<g fill="#39c86a" fill-opacity="0.4" stroke="#222"><rect x="560" y="172" width="22" height="14"/><rect x="588" y="172" width="22" height="14"/><rect x="635" y="172" width="22" height="14"/><rect x="663" y="172" width="22" height="14"/><rect x="710" y="172" width="22" height="14"/><rect x="738" y="172" width="22" height="14"/></g>
+<text x="660" y="205" text-anchor="middle" font-size="11" fill="#222">mehrere Distribution-Blöcke</text>
+<text x="555" y="230" font-size="12" fill="#222">• über 15.000 Nutzer/Geräte</text>
+<text x="555" y="252" font-size="12" fill="#222">• ab 3 Distributions: L3-Core</text>
+<text x="555" y="274" font-size="12" fill="#222">• hohe Verfügbarkeit,</text>
+<text x="555" y="292" font-size="12" fill="#222">  NetFlow, Virtualisierung,</text>
+<text x="555" y="310" font-size="12" fill="#222">  Segmentierung</text>
+<text x="555" y="332" font-size="12" fill="#222">• auch bei geringerer Dichte,</text>
+<text x="555" y="350" font-size="12" fill="#222">  wenn Business Continuity</text>
+<text x="555" y="368" font-size="12" fill="#222">  kritisch ist</text>
+</svg>

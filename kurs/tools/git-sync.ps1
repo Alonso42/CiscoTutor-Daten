@@ -3,8 +3,12 @@
 # Aufruf:  .\tools\git-sync.ps1 -Repo <pfad-zum-klon> -Nachricht "Text"
 param(
   [Parameter(Mandatory)] [string] $Repo,
-  [Parameter(Mandatory)] [string] $Nachricht
+  [Parameter(Mandatory)] [string] $Nachricht,
+  # Kapitel, die gerade bearbeitet werden und NICHT übertragen werden sollen (z. B. '03-switching-paths')
+  [string[]] $Ausschliessen = @()
 )
+$xf = @(); $xd = @()
+foreach ($k in $Ausschliessen) { $xf += "$k.*"; $xd += $k }
 $ErrorActionPreference = 'Stop'
 $root = Split-Path $PSScriptRoot -Parent
 $ziel = Join-Path $Repo 'kurs'
@@ -13,7 +17,9 @@ New-Item -ItemType Directory -Force $ziel | Out-Null
 # encor-1.4.10 (ohne Arbeitsreste) spiegeln
 $quelle = Join-Path $root 'encor-1.4.10'
 $zielKurs = Join-Path $ziel 'encor-1.4.10'
-robocopy $quelle $zielKurs /MIR /NFL /NDL /NJH /NJS /NP | Out-Null
+$rcArgs = @($quelle, $zielKurs, '/MIR', '/NFL', '/NDL', '/NJH', '/NJS', '/NP')
+if ($xf.Count) { $rcArgs += '/XF'; $rcArgs += $xf; $rcArgs += '/XD'; $rcArgs += $xd }
+& robocopy @rcArgs | Out-Null
 # Werkzeuge
 robocopy (Join-Path $root 'tools') (Join-Path $ziel 'tools') pruefen.ps1 ANLEITUNG-KAPITEL.md git-sync.ps1 /NFL /NDL /NJH /NJS /NP | Out-Null
 # Prüfprotokolle und Faktencheck-Bericht

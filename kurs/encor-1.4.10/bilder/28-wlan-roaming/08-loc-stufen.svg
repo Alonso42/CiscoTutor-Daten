@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Genauigkeitsstufen der Wi-Fi-Ortung</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Location Services: je mehr Aufwand, desto genauer</text>
+<g font-size="13" fill="#222" text-anchor="middle">
+<circle cx="110" cy="140" r="80" fill="#999" fill-opacity="0.12" stroke="#999"/><circle cx="110" cy="140" r="5" fill="#222"/>
+<circle cx="300" cy="140" r="56" fill="#4a9cff" fill-opacity="0.15" stroke="#4a9cff"/><circle cx="300" cy="140" r="5" fill="#222"/>
+<circle cx="490" cy="140" r="40" fill="#39c86a" fill-opacity="0.18" stroke="#39c86a"/><circle cx="490" cy="140" r="5" fill="#222"/>
+<circle cx="680" cy="140" r="14" fill="#ffd23f" fill-opacity="0.5" stroke="#e0a800"/><circle cx="680" cy="140" r="4" fill="#222"/>
+<text x="110" y="250" font-weight="bold">Presence</text><text x="300" y="250" font-weight="bold">Basic Location</text><text x="490" y="250" font-weight="bold">FastLocate</text><text x="680" y="250" font-weight="bold">Hyperlocation</text>
+<text x="110" y="272">≈ 20 m</text><text x="300" y="272">≈ 7 m</text><text x="490" y="272">≈ 5 m</text><text x="680" y="272">≈ 1 m</text>
+<text x="110" y="300">≥ 1 AP</text><text x="300" y="300">≥ 3 APs + Karte</text><text x="490" y="300">dichtere APs</text><text x="680" y="300">Modul + Antennen-</text>
+<text x="110" y="318">In-Zone</text><text x="300" y="318">x/y, RSSI</text><text x="490" y="318">RSSI aus Daten</text><text x="680" y="318">array, AoA + BLE</text>
+<text x="110" y="346">Besucher, Dwell</text><text x="300" y="346">Zonen-Korrelation</text><text x="490" y="346">Subzonen-</text><text x="680" y="346">Produktplatzierung,</text>
+<text x="110" y="364">Time</text><text x="300" y="364">Heatmaps</text><text x="490" y="364">Navigation</text><text x="680" y="364">Asset Tracking</text>
+</g>
+<g font-size="13" fill="#222">
+<rect x="20" y="385" width="760" height="50" rx="8" fill="#b08aff" fill-opacity="0.12" stroke="#b08aff"/>
+<text x="35" y="406">Engine früher: CMX auf MSE/VM (Detect · Connect · Engage) – heute: Cisco Spaces (Cloud,</text>
+<text x="35" y="425">ehem. DNA Spaces), Anbindung des 9800 direkt oder über den Spaces Connector</text>
+</g>
+</svg>

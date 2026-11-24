@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>AP-Platzierung für Location</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">AP-Platzierung für Ortung: Perimeter + Convex Hull</text>
+<g font-size="13" fill="#222">
+<text x="200" y="62" text-anchor="middle" font-weight="bold" fill="#2a9a50">empfohlen</text>
+<rect x="40" y="75" width="320" height="170" fill="none" stroke="#222"/>
+<polygon points="50,85 350,85 350,235 50,235" fill="#39c86a" fill-opacity="0.12" stroke="#39c86a" stroke-dasharray="6 4"/>
+<g fill="#4a9cff"><circle cx="50" cy="85" r="7"/><circle cx="200" cy="85" r="7"/><circle cx="350" cy="85" r="7"/><circle cx="50" cy="235" r="7"/><circle cx="200" cy="235" r="7"/><circle cx="350" cy="235" r="7"/><circle cx="130" cy="160" r="7"/><circle cx="270" cy="160" r="7"/></g>
+<rect x="85" y="190" width="10" height="10" fill="#b08aff"/><text x="100" y="200">Client: ≥ 3 APs hören ihn</text>
+<text x="600" y="62" text-anchor="middle" font-weight="bold" fill="#c03030">nicht empfohlen</text>
+<rect x="440" y="75" width="320" height="170" fill="none" stroke="#222"/>
+<polygon points="520,110 680,110 680,190 520,190" fill="#ff6b6b" fill-opacity="0.12" stroke="#ff6b6b" stroke-dasharray="6 4"/>
+<g fill="#4a9cff"><circle cx="520" cy="110" r="7"/><circle cx="680" cy="110" r="7"/><circle cx="520" cy="190" r="7"/><circle cx="680" cy="190" r="7"/><circle cx="600" cy="150" r="7"/></g>
+<rect x="455" y="222" width="10" height="10" fill="#b08aff"/><text x="470" y="232">Client außerhalb der Hull: ungenau</text>
+<text x="200" y="272" text-anchor="middle">langer Flur: versetzt an beiden Wänden</text>
+<rect x="40" y="282" width="320" height="50" fill="none" stroke="#222"/>
+<g fill="#4a9cff"><circle cx="50" cy="290" r="6"/><circle cx="130" cy="324" r="6"/><circle cx="210" cy="290" r="6"/><circle cx="290" cy="324" r="6"/><circle cx="350" cy="290" r="6"/></g>
+<text x="600" y="272" text-anchor="middle">langer Flur: eine Linie in der Mitte</text>
+<rect x="440" y="282" width="320" height="50" fill="none" stroke="#222"/>
+<g fill="#4a9cff"><circle cx="470" cy="307" r="6"/><circle cx="540" cy="307" r="6"/><circle cx="610" cy="307" r="6"/><circle cx="680" cy="307" r="6"/><circle cx="740" cy="307" r="6"/></g>
+<rect x="20" y="350" width="760" height="88" rx="8" fill="#ffd23f" fill-opacity="0.18" stroke="#ffd23f"/>
+<text x="35" y="372">• mind. 3 APs hören den Client mit ≥ −75 dBm (gleiche Etage) · ideal 4 APs mit Sichtverbindung</text>
+<text x="35" y="394">• Faustregel 1 AP pro 2500 sq ft (≈ 230 m²), Abstand ca. 12–20 m, Site Survey entscheidet</text>
+<text x="35" y="416">• APs an Außenwänden und Ecken, versetzt; bei hoher Dichte zusätzlich in der Mitte · ca. 20 % Überlappung</text>
+</g>
+</svg>

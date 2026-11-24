@@ -46,7 +46,7 @@ Topics: ENCOR-LEGACY-WLAN (Wireless ist im ENCOR-Blueprint v1.2 kein eigenes The
 
 - **Mobility Group**: Gruppe von Mobility Controllern (MCs), zwischen denen nahtloses Roaming laufen soll; AireOS: **bis 24 WLCs**. Sie teilen Client-Kontext/-Zustand und Lastinformationen und leiten Daten untereinander weiter (Inter-Controller-Roaming, Redundanz).
 - Roaming innerhalb der Mobility Group ohne erneute Authentifizierung (Schlüssel-Cache wird geteilt); liegt der neue AP an einem anderen WLC, werden die Client-Informationen übertragen.
-- **Mobility Domain**: Ein WLC kennt auch Controller anderer Mobility Groups (in seiner Mobility List). Bis zu **3 Mobility Groups → bis 72 Controller**. Roaming zwischen Gruppen innerhalb der Domain ist möglich, Fast Secure Roaming (Key Caching) aber nur innerhalb derselben Gruppe → bei Gruppenwechsel volle Re-Authentifizierung.
+- **Mobility Domain**: Ein WLC kennt auch Controller anderer Mobility Groups (in seiner Mobility List). Die Mobility List fasst bis zu **72 Controller**, davon max. 24 in derselben Gruppe (Cisco-FAQ: Kombinationen 3 × 24, 12 × 6, 24 × 3, 72 × 1; der Kurs vereinfacht zu "3 Gruppen = 72"). Mobile Announce geht zuerst an die eigene Gruppe, dann an die übrigen Einträge der Liste. Roaming zwischen Gruppen innerhalb der Domain ist möglich, Fast Secure Roaming (Key Caching) aber nur innerhalb derselben Gruppe → bei Gruppenwechsel volle Re-Authentifizierung.
 - Voraussetzung: Jeder WLC muss die **eingebaute MAC-Adresse und Management-IP** des anderen eingetragen haben (gegenseitig!).
 - Roamt ein Client zu einem WLC, der den alten WLC nicht kennt (andere Domain) → neue Authentifizierung, neue Association, neue IP-Adresse.
 - Gemeinsamkeiten innerhalb einer Mobility Group (lt. Kurs): Mobility-(Gruppen-)Name, Controller-Code-Version, CAPWAP-Modus, ACLs, WLANs (SSIDs). Eigenes Wissen ergänzt: gleiche **Virtual Interface IP** (z. B. 192.0.2.1) auf allen WLCs, IP-Erreichbarkeit der Management-Interfaces, identische WLAN-Security-Einstellungen.
@@ -54,11 +54,11 @@ Topics: ENCOR-LEGACY-WLAN (Wireless ist im ENCOR-Blueprint v1.2 kein eigenes The
 ### Mobility-Nachrichten und Ports
 | Verkehr | AireOS (Legacy) | Catalyst 9800 |
 |---|---|---|
-| Mobility Control | UDP 16666 (ältere Releases: 16667 für verschlüsselte Control-Nachrichten) | UDP 16666, immer DTLS-verschlüsselt |
-| Mobility Data | EoIP = EtherIP, IP-Protokoll 97 (alt) oder CAPWAP-basiert ("New Mobility") | CAPWAP-basiert, UDP 16667 (Data-Link-Verschlüsselung optional) |
+| Mobility Control | UDP 16666 (auch Ziel des mping) | UDP 16666, immer DTLS-verschlüsselt |
+| Mobility Data | EoIP = EtherIP, IP-Protokoll 97 (alt); mit Verschlüsselung bzw. CAPWAP-basierter Secure/New Mobility UDP 16667 | CAPWAP-basiert, UDP 16667 (Data-Link-Verschlüsselung optional) |
 | AP ↔ WLC | CAPWAP UDP 5246 Control, 5247 Data | gleich |
 
-- 9800 unterstützt **kein EoIP**; Inter-Release-Mobility mit AireOS nur mit AireOS-"Secure/New Mobility" (CAPWAP-Tunnel).
+- 9800 unterstützt **kein EoIP**; Inter-Release Controller Mobility (IRCM) mit AireOS nur über den CAPWAP-basierten Secure-Mobility-Tunnel (AireOS 8.10 MR1 oder neuer bzw. spezielle IRCM-8.5-Images; AireOS-seitig `config mobility group member add <MAC> <IP> <Gruppe> encrypt enable`, bei 9800-CL zusätzlich `config mobility group member hash`). 9800-Default-Gruppenname: `default`.
 - Wichtige Mobility-Nachrichten (eigenes Wissen): **Mobile Announce** (neuer WLC fragt die Peers, wer den Client kennt), **Handoff Request/Reply** (Kontextübergabe), Keepalives für Control- und Data-Pfad.
 
 ### CLI
@@ -100,7 +100,7 @@ Bei Association legt der WLC einen Eintrag an: MAC- und IP-Adresse, Security-Kon
 ### Layer 3 Roaming (Inter-Subnet)
 - Gleiche SSID, aber am neuen WLC einem anderen VLAN/Subnetz zugeordnet (z. B. Distribution getrennt durch gerouteten Core).
 - Ablauf: Mobility-Nachrichten; alter WLC markiert den Client als **Anchor**, Eintrag wird zum neuen WLC **kopiert** und dort als **Foreign** markiert. PoA → Foreign, PoP bleibt am Anchor. Client **behält seine IP-Adresse**, Policy bleibt konsistent.
-- **Symmetric Mobility Tunneling**: Verkehr in beide Richtungen läuft Foreign ↔ Anchor durch den Mobility-Tunnel; Anchor bringt ihn ins Netz. Default seit AireOS 5.2, auf 9800 einzige Variante.
+- **Symmetric Mobility Tunneling**: Verkehr in beide Richtungen läuft Foreign ↔ Anchor durch den Mobility-Tunnel; Anchor bringt ihn ins Netz. In aktuellen AireOS-Releases Default und nicht mehr abschaltbar (Umstellung um Release 5.2, laut älteren Cisco-Guides; online nicht mehr direkt belegbar), auf 9800 einzige Variante.
 - **Asymmetric Tunneling** (Legacy): nur Downstream über den Anchor, Upstream verlässt der Verkehr den Foreign direkt mit einer Quell-IP aus dem Anchor-Subnetz → scheitert an uRPF/Anti-Spoofing und stateful/source-basierten Firewalls. Deshalb fordert der Kurs gleiche Zugriffsrechte und keine source-basierten Routing-/Firewall-Regeln.
 - Rollen im Client-Detail: Local, Anchor, Foreign (bzw. Export Anchor / Export Foreign beim Auto-Anchor).
 
@@ -113,7 +113,7 @@ Bei Association legt der WLC einen Eintrag an: MAC- und IP-Adresse, Security-Kon
 ## Fast Secure Roaming und 802.11k/v (eigenes Wissen, im Kurs nur angedeutet)
 
 ### Zeitbudget
-- Voice: Gesamt-Roaming-Unterbrechung **< 150 ms** (orientiert am Budget für Einweg-Verzögerung), ideal < 50 ms. Volle 802.1X/EAP-Authentifizierung mit entferntem RADIUS dauert typischerweise mehrere hundert ms bis > 1 s → hörbare Lücken.
+- Voice: Gesamt-Roaming-Unterbrechung **< 150 ms** (orientiert am Budget für Einweg-Verzögerung), ideal < 50 ms. Typische Roam-Zeiten laut Cisco (9800 Roaming Primer): volle Authentifizierung 120 ms bis einige Sekunden, OKC 8–100 ms, CCKM/802.11r/Adaptive 11r 4–50 ms.
 - WPA2/WPA3-Personal: beim Roaming nur 4-Way Handshake (PMK aus Passphrase bekannt) → schnell, aber kein Enterprise-Schutz.
 
 ### Verfahren
@@ -126,7 +126,7 @@ Bei Association legt der WLC einen Eintrag an: MAC- und IP-Adresse, Security-Kon
 
 - **FT Over-the-Air**: Client spricht den Ziel-AP direkt mit FT-Authentication-Frames an, dann Reassociation.
 - **FT Over-the-DS**: Client sendet FT Action Request an den **aktuellen** AP, der ihn über das Distribution System zum Ziel-AP weiterreicht; erst danach Reassociation beim Ziel-AP. Cisco empfiehlt meist Over-the-Air.
-- FT-AKMs: FT-802.1X, FT-PSK, FT-SAE. Ältere Clients erkennen FT-AKM evtl. nicht → Mixed-Mode/Adaptive 802.11r (Cisco: FT nur für bestimmte Apple-Geräte ohne FT-AKM im Beacon).
+- FT-AKMs: FT-802.1X, FT-PSK, FT-SAE. Ältere Clients erkennen FT-AKM evtl. nicht → Mixed Mode (FT- und Nicht-FT-AKM auf einem WLAN, von Cisco empfohlen) oder Adaptive 802.11r (9800-Default: RSN-IE ohne FT-AKM, nur Mobility Domain wird angekündigt; unterstützte Partnergeräte wie aktuelle iOS-/Samsung-Geräte nutzen trotzdem FT). FT-only sperrt Nicht-FT-Clients aus. Over-the-Air ist Default, Over-the-DS laut Best Practices deaktiviert lassen. OKC ist auf dem 9800 Default.
 - 802.11r-Beacons enthalten das Mobility Domain Information Element (MDID) – nicht zu verwechseln mit der Cisco-Mobility-Domain.
 - Key-Caches werden innerhalb der Mobility Group geteilt; über Gruppengrenzen → volle Authentifizierung. FlexConnect: Key-Sharing per FlexConnect-Gruppe/Site-Tag.
 
@@ -158,7 +158,7 @@ wlan CORP 1 CORP
   - **Engage**: Inhalte/Angebote an Besucher (Coupon für Wiederkehrer, Loyalty-Stufen, besserer Wi-Fi-Service für Top-Kunden).
 - Deployment: on-prem auf **MSE**-Appliance oder als VM (z. B. UCS), oder CMX Cloud (zwei SaaS-Lizenzstufen).
 - Analytics-Tools: **Presence Analytics** (Zählung pro Etage/Gebäude, neu vs. wiederkehrend, Besucher vs. Passant, Conversion Rate, Dwell Time, Spitzenzeiten → Personalplanung), **Location Analytics** (Heatmaps live und Playback, Correlation = Wegeverfolgung, z. B. Food Court).
-- **Aktuell**: CMX und MSE sind End-of-Life; Nachfolger ist **Cisco Spaces** (vorher Cisco DNA Spaces), cloudbasiert, Anbindung des 9800 direkt oder über den **Spaces Connector**; Meraki nativ. Lizenzstufen SEE, EXTEND, ACT. Controller ↔ Location-Engine historisch per **NMSP** (Network Mobility Services Protocol, TCP 16113); `show nmsp status`.
+- **Aktuell**: CMX und MSE sind End-of-Life; Nachfolger ist **Cisco Spaces** (vorher Cisco DNA Spaces), cloudbasiert, Anbindung des 9800 direkt oder über den **Spaces Connector**; Meraki nativ. Lizenzstufen historisch SEE, EXTEND, ACT; aktuell laut Spaces-FAQ Extend, ACT und Smart Spaces. Controller ↔ Location-Engine historisch per **NMSP** (Network Mobility Services Protocol, TCP 16113); `show nmsp status`.
 
 ### Genauigkeitsstufen (Kurstabelle)
 | Stufe | Genauigkeit | Ergebnis | Use Case | AP-Anforderung |
@@ -192,20 +192,20 @@ Nur Video-Verweis.
 
 ## Fehler/Ungenauigkeiten im Kurs
 1. Seite 307: "User data ... via EoIP (IP protocol 97) or CAPWAP (UDP port 5246)". UDP 5246 ist CAPWAP-**Control** zwischen AP und WLC. CAPWAP-basierte Mobility-Daten laufen über **UDP 16667** (Control UDP 16666). Quelle: Cisco Catalyst 9800 Configuration Guide, Kapitel "Mobility"; Cisco WLC Mobility Groups FAQ.
-2. Seite 307: "UDP 16666 for unencrypted traffic" – für den 9800 veraltet: dort ist der Control-Kanal immer DTLS-verschlüsselt (UDP 16666), 16667 ist Data. In alten AireOS-Releases war 16667 der verschlüsselte Control-Port.
+2. Seite 307: "UDP 16666 for unencrypted traffic" – für den 9800 veraltet: dort ist der Control-Kanal immer DTLS-verschlüsselt (UDP 16666), 16667 ist Data. Auch bei altem AireOS diente 16667 laut Cisco Mobility Groups FAQ für verschlüsselte Mobility-**Daten** (statt EoIP), nicht für Control.
 3. Seite 307: Gemeinsame Eigenschaft "Mobility domain name" – gemeint ist der **Mobility-Group-Name**; "Version of controller code" ist zu streng, Inter-Release Controller Mobility (IRCM) zwischen unterschiedlichen Releases wird unterstützt. Wichtig fehlt: gleiche **Virtual-Interface-IP**.
 4. Seite 308: Inter-Controller L2 – einmal "copied", später "moved". Korrekt: Bei L2 wird der Eintrag **verschoben** (neuer WLC wird Local), bei L3 **kopiert** (Anchor + Foreign).
 5. Seite 308: Auto-Anchor als "subset of a mobility group" – der Anchor muss nur Mobility-Peer sein, häufig in eigener Gruppe (DMZ).
 6. Seite 308/309: Durchgängig AireOS/CMX-Terminologie; aktuell 9800 und Cisco Spaces (CMX, MSE, DNA Spaces abgelöst). "Mocular APs" in der Tabelle = Tippfehler für "Modular APs".
-7. Seite 309: FastLocate per WSM-Modul und Hyperlocation-Modul betreffen AP-Generationen (3600/3700/4800), die End-of-Life sind; heutige Catalyst-9100-APs nutzen andere Ortungsfunktionen (z. B. FTM/802.11mc, BLE/IoT-Radio) über Cisco Spaces.
+7. Seite 309: Die beschriebene Hardware ist abgekündigt: Hyperlocation-Modul/-Antenne End-of-Sale 30.04.2019 (Support-Ende 30.04.2024), AP 4800 (Hyperlocation integriert) End-of-Sale 31.10.2022, Support-Ende 31.10.2027; WSM-Modul der 3600/3700 ebenfalls Legacy. FastLocate und Hyperlocation werden im Spaces-Datenblatt noch als Funktionen über den Spaces Connector geführt; heutige Catalyst-9100-APs bringen zusätzlich BLE/IoT-Radio für Spaces mit.
 
 ## Bilder
 - `bilder/28-wlan-roaming/01-roam-ausl.svg` – Roaming-Auslöser (Retries, RSSI, SNR, Load Balancing) und Active vs. Passive Scan.
-- `bilder/28-wlan-roaming/02-mob-gruppe.svg` – Mobility Group (bis 24 WLCs) vs. Mobility Domain (3 Gruppen, 72 WLCs), Fast Roaming nur in der Gruppe.
+- `bilder/28-wlan-roaming/02-mob-gruppe.svg` – Mobility Group (bis 24 WLCs) vs. Mobility Domain/Mobility List (bis 72 WLCs, max. 24 je Gruppe), Fast Roaming nur in der Gruppe.
 - `bilder/28-wlan-roaming/03-l2-roam.svg` – Intra-Controller und Inter-Controller L2: Eintrag wird aktualisiert bzw. verschoben, PoP+PoA wandern.
 - `bilder/28-wlan-roaming/04-l3-roam.svg` – L3-Roaming: Anchor (PoP) / Foreign (PoA), symmetrischer Tunnel, Client behält IP.
 - `bilder/28-wlan-roaming/05-auto-anchor.svg` – Guest Auto-Anchor: Foreign-WLCs tunneln das Gast-WLAN zum Anchor in der DMZ.
-- `bilder/28-wlan-roaming/06-fast-roam.svg` – Zeitvergleich volle EAP-Authentifizierung vs. PMK-Cache/OKC vs. 802.11r (Voice-Budget 150 ms).
+- `bilder/28-wlan-roaming/06-fast-roam.svg` – Zeitvergleich volle EAP-Authentifizierung vs. PMK-Cache vs. OKC vs. 802.11r (Voice-Budget 150 ms).
 - `bilder/28-wlan-roaming/07-ft-ota-ds.svg` – 802.11r Over-the-Air vs. Over-the-DS.
 - `bilder/28-wlan-roaming/08-loc-stufen.svg` – Location-Genauigkeitsstufen Presence/Basic/FastLocate/Hyperlocation.
 - `bilder/28-wlan-roaming/09-ap-platz.svg` – AP-Platzierung für Location: Perimeter + Mitte, Convex Hull, empfohlen vs. nicht empfohlen.

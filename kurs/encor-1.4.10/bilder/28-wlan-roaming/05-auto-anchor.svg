@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Auto-Anchor Mobility für Gäste</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Auto-Anchor (Guest Tunneling)</text>
+<g font-size="13" fill="#222">
+<rect x="250" y="50" width="300" height="120" rx="10" fill="#ffd23f" fill-opacity="0.15" stroke="#ffd23f"/>
+<text x="400" y="70" text-anchor="middle" font-weight="bold">DMZ</text>
+<rect x="330" y="80" width="140" height="44" rx="6" fill="#ffd23f"/><text x="400" y="99" text-anchor="middle">Guest Anchor WLC</text><text x="400" y="116" text-anchor="middle">Export Anchor (PoP)</text>
+<text x="400" y="145" text-anchor="middle">DHCP, WebAuth, Gast-VLAN</text>
+<rect x="620" y="85" width="120" height="34" rx="6" fill="#ff6b6b" fill-opacity="0.3" stroke="#ff6b6b"/><text x="680" y="107" text-anchor="middle">Firewall → Internet</text>
+<line x1="470" y1="102" x2="620" y2="102" stroke="#222" stroke-width="2"/>
+<rect x="80" y="260" width="140" height="44" rx="6" fill="#4a9cff"/><text x="150" y="279" text-anchor="middle" fill="#fff">WLC1</text><text x="150" y="296" text-anchor="middle" fill="#fff">Export Foreign</text>
+<rect x="580" y="260" width="140" height="44" rx="6" fill="#39c86a"/><text x="650" y="279" text-anchor="middle" fill="#fff">WLC2</text><text x="650" y="296" text-anchor="middle" fill="#fff">Export Foreign</text>
+<line x1="180" y1="260" x2="360" y2="124" stroke="#b08aff" stroke-width="3" stroke-dasharray="8 4"/>
+<line x1="620" y1="260" x2="440" y2="124" stroke="#b08aff" stroke-width="3" stroke-dasharray="8 4"/>
+<text x="190" y="190">Mobility-Tunnel</text><text x="530" y="190">Mobility-Tunnel</text>
+<rect x="120" y="340" width="60" height="26" rx="4" fill="#ffd23f"/><text x="150" y="358" text-anchor="middle">AP</text>
+<rect x="620" y="340" width="60" height="26" rx="4" fill="#ffd23f"/><text x="650" y="358" text-anchor="middle">AP</text>
+<line x1="150" y1="340" x2="150" y2="304" stroke="#999"/><line x1="650" y1="340" x2="650" y2="304" stroke="#999"/>
+<rect x="250" y="370" width="20" height="28" rx="3" fill="#b08aff"/><text x="260" y="415" text-anchor="middle">Gast</text>
+<line x1="280" y1="384" x2="500" y2="384" stroke="#222" stroke-width="2"/><polygon points="500,379 512,384 500,389" fill="#222"/>
+<text x="390" y="375" text-anchor="middle">Roaming: nur PoA wechselt</text>
+<text x="400" y="438" text-anchor="middle">IP-Adresse, PoP und Anchor bleiben gleich – Gast-VLAN existiert nur in der DMZ</text>
+</g>
+</svg>

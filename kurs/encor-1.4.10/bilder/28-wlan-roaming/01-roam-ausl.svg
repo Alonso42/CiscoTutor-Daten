@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Roaming-Auslöser und Scan-Arten</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Der Client entscheidet: Wann und wie wird gescannt?</text>
+<g font-size="13" fill="#222">
+<circle cx="170" cy="150" r="95" fill="#4a9cff" fill-opacity="0.12" stroke="#4a9cff"/>
+<circle cx="350" cy="150" r="95" fill="#39c86a" fill-opacity="0.12" stroke="#39c86a"/>
+<rect x="140" y="80" width="60" height="26" rx="5" fill="#4a9cff"/><text x="170" y="98" text-anchor="middle" fill="#fff">AP1</text>
+<rect x="320" y="80" width="60" height="26" rx="5" fill="#39c86a"/><text x="350" y="98" text-anchor="middle" fill="#fff">AP2</text>
+<text x="170" y="125" text-anchor="middle">Kanal 36</text><text x="350" y="125" text-anchor="middle">Kanal 52</text>
+<rect x="190" y="160" width="20" height="30" rx="3" fill="#b08aff"/><text x="200" y="210" text-anchor="middle">Client</text>
+<line x1="215" y1="175" x2="300" y2="175" stroke="#222" stroke-width="2" stroke-dasharray="6 4"/><polygon points="300,170 312,175 300,180" fill="#222"/>
+<text x="20" y="280" font-weight="bold">Auslöser (Schwellen je Hersteller)</text>
+<rect x="20" y="292" width="240" height="26" rx="4" fill="#ff6b6b" fill-opacity="0.2"/><text x="30" y="310">Max. Retries überschritten (Datenverkehr)</text>
+<rect x="20" y="324" width="240" height="26" rx="4" fill="#ffd23f" fill-opacity="0.35"/><text x="30" y="342">Low RSSI (auch ohne Verkehr)</text>
+<rect x="20" y="356" width="240" height="26" rx="4" fill="#ffd23f" fill-opacity="0.35"/><text x="30" y="374">Low SNR (auch ohne Verkehr)</text>
+<rect x="20" y="388" width="240" height="26" rx="4" fill="#b08aff" fill-opacity="0.25"/><text x="30" y="406">Proprietäres Load Balancing (Infrastruktur)</text>
+<rect x="470" y="60" width="310" height="150" rx="8" fill="#4a9cff" fill-opacity="0.1" stroke="#4a9cff"/>
+<text x="485" y="85" font-weight="bold">Active Scan</text>
+<text x="485" y="108">Kanal wechseln → Probe Request senden</text>
+<text x="485" y="128">→ ca. 10 ms auf Probe Responses warten</text>
+<text x="485" y="153">Directed Probe: nur passende SSID antwortet</text>
+<text x="485" y="173">Broadcast Probe (Null-SSID): alle APs</text>
+<text x="485" y="193">antworten je SSID</text>
+<rect x="470" y="225" width="310" height="90" rx="8" fill="#39c86a" fill-opacity="0.1" stroke="#39c86a"/>
+<text x="485" y="250" font-weight="bold">Passive Scan</text>
+<text x="485" y="273">Kanal wechseln → auf Beacon warten</text>
+<text x="485" y="293">Beacon-Intervall ≈ 100 ms → langsamer</text>
+<rect x="470" y="330" width="310" height="95" rx="8" fill="#ffd23f" fill-opacity="0.2" stroke="#ffd23f"/>
+<text x="485" y="353" font-weight="bold">Strategien</text>
+<text x="485" y="375">Background Scan: vorab, Kanal für Kanal</text>
+<text x="485" y="395">On-Roam Scan: erst bei Bedarf</text>
+<text x="485" y="415">Voice aktiv: wenige Kanäle, früh abbrechen</text>
+</g>
+</svg>

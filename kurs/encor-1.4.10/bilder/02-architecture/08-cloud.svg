@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Cloud-Deployment-Modelle und Cloud-Anbindung</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Cloud: Modelle und Anbindung</text>
+<!-- models -->
+<g font-size="12" fill="#222" text-anchor="middle">
+<rect x="20" y="50" width="180" height="90" rx="8" fill="#39c86a" fill-opacity="0.2" stroke="#222"/>
+<text x="110" y="72" font-size="14" font-weight="bold">Private</text><text x="110" y="92">eine Organisation</text><text x="110" y="108">meist on-prem,</text><text x="110" y="124">auch ausgelagert</text>
+<rect x="215" y="50" width="180" height="90" rx="8" fill="#4a9cff" fill-opacity="0.2" stroke="#222"/>
+<text x="305" y="72" font-size="14" font-weight="bold">Public</text><text x="305" y="92">Drittanbieter</text><text x="305" y="108">öffentlich, Abo</text>
+<rect x="410" y="50" width="180" height="90" rx="8" fill="#ffd23f" fill-opacity="0.3" stroke="#222"/>
+<text x="500" y="72" font-size="14" font-weight="bold">Hybrid</text><text x="500" y="92">mind. zwei Modelle</text><text x="500" y="108">oft Private + Public</text>
+<rect x="605" y="50" width="175" height="90" rx="8" fill="#b08aff" fill-opacity="0.25" stroke="#222"/>
+<text x="692" y="72" font-size="14" font-weight="bold">Community</text><text x="692" y="92">mehrere Organisationen</text><text x="692" y="108">gleiche Anforderungen</text><text x="692" y="124">z. B. DR-Standort</text>
+</g>
+<text x="400" y="162" text-anchor="middle" font-size="12" fill="#222">Auswahl nach Sicherheit, Komplexität und Kosten – die Anbindung hängt vom Modell ab.</text>
+<!-- connectivity -->
+<rect x="20" y="190" width="110" height="200" rx="8" fill="#ffffff" stroke="#222"/>
+<text x="75" y="215" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">Unternehmen</text>
+<circle cx="75" cy="250" r="18" fill="#ffffff" stroke="#222"/><text x="75" y="255" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">R</text>
+<circle cx="75" cy="310" r="18" fill="#ffffff" stroke="#222"/><text x="75" y="315" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">R</text>
+<circle cx="75" cy="365" r="18" fill="#ffffff" stroke="#222"/><text x="75" y="369" text-anchor="middle" font-size="10" font-weight="bold" fill="#222">Edge</text>
+<ellipse cx="700" cy="310" rx="80" ry="70" fill="#4a9cff" fill-opacity="0.15" stroke="#222"/>
+<text x="700" y="300" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Public Cloud</text>
+<text x="700" y="318" text-anchor="middle" font-size="11" fill="#222">AWS, Azure,</text>
+<text x="700" y="333" text-anchor="middle" font-size="11" fill="#222">Google Cloud</text>
+<!-- direct connect -->
+<line x1="93" y1="250" x2="625" y2="270" stroke="#39c86a" stroke-width="3"/>
+<text x="360" y="245" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">Direct Connect: private Leitung statt VPN übers Internet</text>
+<!-- mpls dc -->
+<ellipse cx="270" cy="310" rx="55" ry="22" fill="#ffffff" stroke="#222"/><text x="270" y="315" text-anchor="middle" font-size="12" fill="#222">MPLS</text>
+<rect x="400" y="292" width="140" height="36" rx="6" fill="#b08aff" fill-opacity="0.3" stroke="#222"/>
+<text x="470" y="308" text-anchor="middle" font-size="11" fill="#222">Direct Connect Partner</text><text x="470" y="322" text-anchor="middle" font-size="11" fill="#222">z. B. Megaport</text>
+<g stroke="#b08aff" stroke-width="3"><line x1="93" y1="310" x2="215" y2="310"/><line x1="325" y1="310" x2="400" y2="310"/><line x1="540" y1="310" x2="620" y2="310"/></g>
+<text x="360" y="345" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">MPLS Direct Connect (wenn Region kein Direct Connect hat)</text>
+<!-- onramp -->
+<line x1="93" y1="365" x2="630" y2="345" stroke="#ffd23f" stroke-width="3" stroke-dasharray="8,4"/>
+<text x="360" y="385" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">Cloud OnRamp: SD-WAN automatisiert die Anbindung</text>
+<text x="400" y="430" text-anchor="middle" font-size="12" fill="#222">Direct Connect: mehr Sicherheit, eigene Kontrolle über Zuverlässigkeit, höhere Geschwindigkeit</text>
+</svg>

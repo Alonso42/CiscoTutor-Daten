@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Cisco SD-WAN Cloud OnRamp: Use Cases</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">SD-WAN Cloud OnRamp – Use Cases</text>
+<rect x="320" y="190" width="160" height="70" rx="10" fill="#4a9cff" fill-opacity="0.3" stroke="#222"/>
+<text x="400" y="218" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">SD-WAN Manager</text>
+<text x="400" y="238" text-anchor="middle" font-size="11" fill="#222">(vManage) automatisiert</text>
+<g stroke="#222" stroke-width="1.5">
+<line x1="320" y1="205" x2="270" y2="120"/><line x1="480" y1="205" x2="530" y2="120"/>
+<line x1="320" y1="245" x2="270" y2="320"/><line x1="480" y1="245" x2="530" y2="320"/><line x1="400" y1="260" x2="400" y2="330"/>
+</g>
+<!-- interconnect -->
+<rect x="20" y="50" width="260" height="90" rx="8" fill="#b08aff" fill-opacity="0.2" stroke="#222"/>
+<text x="150" y="72" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Cloud Interconnect</text>
+<text x="150" y="92" text-anchor="middle" font-size="11" fill="#222">SD-WAN über Interconnect-Provider</text>
+<text x="150" y="108" text-anchor="middle" font-size="11" fill="#222">(Megaport, Equinix) zur Cloud –</text>
+<text x="150" y="124" text-anchor="middle" font-size="11" fill="#222">automatisierter MPLS-Direct-Connect</text>
+<!-- cloud hub -->
+<rect x="520" y="50" width="260" height="90" rx="8" fill="#39c86a" fill-opacity="0.2" stroke="#222"/>
+<text x="650" y="72" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Cloud Hub (Google Cloud)</text>
+<text x="650" y="92" text-anchor="middle" font-size="11" fill="#222">Site-to-Cloud zu Google-Workloads</text>
+<text x="650" y="108" text-anchor="middle" font-size="11" fill="#222">Site-to-Site über Googles Backbone</text>
+<text x="650" y="124" text-anchor="middle" font-size="11" fill="#222">App-Profile aus Service Directory</text>
+<!-- multicloud -->
+<rect x="20" y="300" width="260" height="110" rx="8" fill="#ffd23f" fill-opacity="0.25" stroke="#222"/>
+<text x="150" y="322" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Multicloud</text>
+<text x="150" y="342" text-anchor="middle" font-size="11" fill="#222">z. B. AWS: 2 virtuelle SD-WAN-Edges</text>
+<text x="150" y="358" text-anchor="middle" font-size="11" fill="#222">in einer Transit-VPC + Transit Gateway</text>
+<text x="150" y="374" text-anchor="middle" font-size="11" fill="#222">IPsec-Tunnel automatisch</text>
+<text x="150" y="390" text-anchor="middle" font-size="11" fill="#222">(analog Azure, Google Cloud)</text>
+<!-- saas -->
+<rect x="300" y="330" width="200" height="90" rx="8" fill="#4a9cff" fill-opacity="0.15" stroke="#222"/>
+<text x="400" y="352" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">SaaS</text>
+<text x="400" y="372" text-anchor="middle" font-size="11" fill="#222">Probes auf allen Pfaden,</text>
+<text x="400" y="388" text-anchor="middle" font-size="11" fill="#222">Verlust/Latenz → vQoE 0–10,</text>
+<text x="400" y="404" text-anchor="middle" font-size="11" fill="#222">bester Pfad zur SaaS-App</text>
+<!-- secure -->
+<rect x="520" y="300" width="260" height="110" rx="8" fill="#ff6b6b" fill-opacity="0.15" stroke="#222"/>
+<text x="650" y="322" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Secure SD-WAN (Umbrella)</text>
+<text x="650" y="342" text-anchor="middle" font-size="11" fill="#222">DNS-Layer Security, SWG,</text>
+<text x="650" y="358" text-anchor="middle" font-size="11" fill="#222">Cloud-delivered Firewall, CASB,</text>
+<text x="650" y="374" text-anchor="middle" font-size="11" fill="#222">Threat Intelligence (Talos)</text>
+<text x="650" y="390" text-anchor="middle" font-size="11" fill="#222">→ SASE-Ansatz</text>
+<text x="400" y="170" text-anchor="middle" font-size="12" fill="#222">Nutzen: Multicloud-Automatisierung · Unified Security · Consumption Flexibility · App Experience</text>
+</svg>

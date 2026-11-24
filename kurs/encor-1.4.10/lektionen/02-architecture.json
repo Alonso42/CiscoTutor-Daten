@@ -27,6 +27,20 @@
    }
   },
   {
+   "text": "Ein gutes Netz ist self-healing (immer verfügbar), self-defending (schützt Nutzer, z. B. mit TrustSec und Rogue-Erkennung), self-optimizing (priorisiert wichtige Anwendungen) und self-aware (macht Verkehr mit NetFlow und NBAR sichtbar). Für die Zukunft plant man Multigigabit-Ports für schnelle Access Points, genug PoE-Leistung, Perpetual PoE, MACsec und Uplinks, die von 10 auf 40 und 100 Gbit/s wachsen können.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Anforderung", "Technik", "Kennzahl"],
+    "zeilen": [
+     ["APs brauchen mehr als 1 Gbit/s über altes Kupfer", "Multigigabit (IEEE 802.3bz)", "2,5 / 5 Gbit/s"],
+     ["Kameras, VDI, Beleuchtung am Port", "Cisco UPOE", "60 W pro Port"],
+     ["Strom bleibt beim Switch-Reload", "Perpetual PoE", "keine Unterbrechung"],
+     ["Verschlüsselung auf Layer 2", "MACsec (802.1AE)", "Link-Verschlüsselung"],
+     ["IoT-Geräte trennen", "TrustSec-Segmentierung", "Gruppen-Policy"]
+    ]
+   }
+  },
+  {
    "text": "Im Campus hat jede Schicht eine Rolle. Die Schichten beschreiben Funktionen, nicht die Anzahl der Geräte: Kleine Standorte legen Core und Distribution zusammen (Collapsed Core), große Standorte haben einen eigenen Core.",
    "diagramm": {
     "typ": "tabelle",
@@ -39,7 +53,35 @@
    }
   },
   {
-   "text": "Warum ein eigener Core? Ohne Core müssen alle Distribution-Blöcke vollvermascht sein. Mit 2 Switches pro Block gilt: Links = B × (N − 2), wobei B die Zahl der Blöcke und N die Zahl aller Switches ist. Die Zahl der Links wächst sehr schnell, ein Core hält sie konstant.",
+   "text": "Wo endet Layer 2? Beim Layer-2-Access liegt das Gateway auf der Distribution. Überspannt ein VLAN mehrere Access-Switches, blockiert STP etwa die Hälfte der Uplinks. Beim Routed Access ist jeder Access-Switch selbst Gateway, die Uplinks sind geroutet und werden per ECMP beide genutzt – dafür bleibt jedes VLAN lokal, und die Trennung von Gast und intern muss man z. B. mit VRFs planen. Größenordnungen: Small Site = ein Switch oder Stack (unter 25 APs), Medium = eine Distribution als Collapsed Core, Large = mehrere Distribution-Blöcke an einem L3-Core (über 15.000 Nutzer).",
+   "diagramm": {
+    "typ": "topologie",
+    "knoten": [
+     {"id": "d1", "label": "Distribution 1", "x": "0.3", "y": "0.2", "art": "switch"},
+     {"id": "d2", "label": "Distribution 2", "x": "0.7", "y": "0.2", "art": "switch"},
+     {"id": "a1", "label": "Access 1 (Gateway VLAN 10)", "x": "0.3", "y": "0.65", "art": "switch"},
+     {"id": "a2", "label": "Access 2 (Gateway VLAN 20)", "x": "0.7", "y": "0.65", "art": "switch"},
+     {"id": "pc1", "label": "PC VLAN 10", "x": "0.3", "y": "0.92", "art": "pc"},
+     {"id": "pc2", "label": "PC VLAN 20", "x": "0.7", "y": "0.92", "art": "pc"}
+    ],
+    "kanten": [
+     {"von": "a1", "nach": "d1", "label": "L3", "farbe": "39c86a"},
+     {"von": "a1", "nach": "d2", "label": "L3", "farbe": "39c86a"},
+     {"von": "a2", "nach": "d1", "label": "L3", "farbe": "39c86a"},
+     {"von": "a2", "nach": "d2", "label": "L3", "farbe": "39c86a"},
+     {"von": "d1", "nach": "d2", "label": "L3", "farbe": "4a9cff"},
+     {"von": "pc1", "nach": "a1", "label": "VLAN 10", "farbe": "b08aff"},
+     {"von": "pc2", "nach": "a2", "label": "VLAN 20", "farbe": "b08aff"}
+    ],
+    "schritte": [
+     {"von": "pc1", "nach": "a1", "farbe": "ffd23f", "text": "PC sendet an sein Gateway – das ist der Access-Switch selbst"},
+     {"von": "a1", "nach": "d1", "farbe": "ffd23f", "text": "ECMP: ein Teil der Flows geht über Distribution 1 ..."},
+     {"von": "a1", "nach": "d2", "farbe": "ffd23f", "text": "... der andere über Distribution 2 – kein Uplink blockiert"}
+    ]
+   }
+  },
+  {
+   "text": "Warum ein eigener Core? Ohne Core müssen alle Distribution-Blöcke vollvermascht sein. Mit 2 Switches pro Block gilt: Links = B × (N − 2), wobei B die Zahl der Blöcke und N die Zahl aller Switches ist. Die Zahl der Links wächst quadratisch; mit Core braucht jeder Distribution-Switch nur Links zu den Core-Switches, das Wachstum bleibt linear.",
    "diagramm": {
     "typ": "tabelle",
     "kopf": ["Gebäude (B)", "Switches (N)", "Links Full Mesh"],
@@ -68,6 +110,20 @@
    "diagramm": {
     "typ": "ablauf",
     "stufen": ["Filiale (SD-WAN Edge)", "Probes messen Latenz/Verlust (vQoE)", "bester Pfad gewählt", "SaaS / Public Cloud"]
+   }
+  },
+  {
+   "text": "Cloud OnRamp deckt mehrere Fälle ab, alle aus dem SD-WAN Manager (vManage) automatisiert. Je nach Ziel wählt man den passenden Use Case: Anbindung über einen Interconnect-Partner, Googles Backbone, automatisch gebaute Transit-Router in AWS, beste Pfade zu SaaS oder Cloud-Security mit Umbrella für den lokalen Internet-Ausbruch.",
+   "diagramm": {
+    "typ": "tabelle",
+    "kopf": ["Use Case", "Was passiert"],
+    "zeilen": [
+     ["Cloud Interconnect", "SD-WAN über Megaport/Equinix zur Cloud"],
+     ["Cloud Hub (Google)", "Site-to-Cloud und Site-to-Site über Googles Backbone"],
+     ["Multicloud", "2 virtuelle SD-WAN-Edges in Transit-VPC, IPsec zum AWS Transit Gateway"],
+     ["SaaS", "Probes auf allen Pfaden, bester Pfad zur SaaS-App"],
+     ["Secure SD-WAN", "Umbrella: DNS-Security, SWG, Cloud-Firewall, CASB, Talos"]
+    ]
    }
   }
  ]
