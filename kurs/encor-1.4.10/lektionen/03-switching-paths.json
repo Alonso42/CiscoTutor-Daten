@@ -85,6 +85,38 @@
                                         }
                        },
                        {
+                           "text":  "Die MAC-Tabelle muss gepflegt werden. Dynamische Einträge verfallen nach 300 Sekunden ohne Frame vom Host (Aging). Der ARP-Eintrag im Router hält dagegen 4 Stunden. Ein Host, der lange nur empfängt, ist deshalb irgendwann im Switch unbekannt und sein Verkehr wird ins ganze VLAN geflutet. Abhilfe: MAC-Aging erhöhen oder ARP-Timeout senken. MAC-Einträge lassen sich nicht zusammenfassen. Ist die Tabelle voll, werden Frames an neue Hosts geflutet. Taucht eine MAC abwechselnd an zwei Ports auf (MAC-Flapping), deutet das auf eine Schleife oder einen doppelt angebundenen Host hin.",
+                           "diagramm":  {
+                                            "typ":  "tabelle",
+                                            "kopf":  [
+                                                         "Befehl",
+                                                         "Zweck"
+                                                     ],
+                                            "zeilen":  [
+                                                           [
+                                                               "show mac address-table [interface | address | vlan]",
+                                                               "Einträge anzeigen und filtern"
+                                                           ],
+                                                           [
+                                                               "show mac address-table aging-time",
+                                                               "Aging global und pro VLAN (Default 300 s)"
+                                                           ],
+                                                           [
+                                                               "mac address-table aging-time 600 [vlan 10]",
+                                                               "Aging ändern (0 = kein Aging)"
+                                                           ],
+                                                           [
+                                                               "clear mac address-table dynamic [address | interface]",
+                                                               "dynamische Einträge löschen"
+                                                           ],
+                                                           [
+                                                               "show mac address-table count",
+                                                               "Anzahl gelernter Adressen"
+                                                           ]
+                                                       ]
+                                        }
+                       },
+                       {
                            "text":  "Multilayer-Switches entscheiden in Hardware. Die CAM-Tabelle kennt nur exakte Treffer (MAC → Port). Die TCAM kennt zusätzlich ‚egal‘-Bits und kann deshalb Prefixe, ACLs und QoS-Regeln in einem einzigen Lookup prüfen, egal wie lang die Liste ist.",
                            "diagramm":  {
                                             "typ":  "tabelle",
@@ -163,7 +195,115 @@
                                         }
                        },
                        {
+                           "text":  "Im CEF-Lab sieht man, wie sich die Tabellen füllen. Direkt nach dem Start enthält die FIB schon alle angeschlossenen Netze. Dazu kommen receive-Einträge für eigene Adressen sowie Netz- und Broadcastadressen und drop-Einträge für Bereiche wie 127.0.0.0/8. Die Adjacency-Tabelle ist noch leer. Ein Ping zum Nachbarn verliert das erste Paket, weil ARP läuft. Danach gibt es eine Adjacency und einen /32-Eintrag mit „attached“. Lernt der Router per EIGRP ein neues Netz über denselben Nachbarn, kommt nur ein FIB-Eintrag hinzu, die Adjacency bleibt gleich.",
+                           "diagramm":  {
+                                            "typ":  "topologie",
+                                            "knoten":  [
+                                                           {
+                                                               "id":  "lan1",
+                                                               "label":  "LAN 192.168.100.0/24",
+                                                               "x":  "0.08",
+                                                               "y":  "0.5",
+                                                               "art":  "pc"
+                                                           },
+                                                           {
+                                                               "id":  "hq",
+                                                               "label":  "HQ .1",
+                                                               "x":  "0.35",
+                                                               "y":  "0.5",
+                                                               "art":  "router"
+                                                           },
+                                                           {
+                                                               "id":  "br1",
+                                                               "label":  "BR1 .2",
+                                                               "x":  "0.65",
+                                                               "y":  "0.5",
+                                                               "art":  "router"
+                                                           },
+                                                           {
+                                                               "id":  "lan2",
+                                                               "label":  "LAN 192.168.110.0/24",
+                                                               "x":  "0.92",
+                                                               "y":  "0.5",
+                                                               "art":  "pc"
+                                                           }
+                                                       ],
+                                            "kanten":  [
+                                                           {
+                                                               "von":  "lan1",
+                                                               "nach":  "hq",
+                                                               "label":  "Et0/1",
+                                                               "farbe":  "39c86a"
+                                                           },
+                                                           {
+                                                               "von":  "hq",
+                                                               "nach":  "br1",
+                                                               "label":  "10.10.10.0/30",
+                                                               "farbe":  "39c86a"
+                                                           },
+                                                           {
+                                                               "von":  "br1",
+                                                               "nach":  "lan2",
+                                                               "label":  "Et0/1",
+                                                               "farbe":  "39c86a"
+                                                           }
+                                                       ],
+                                            "schritte":  [
+                                                             {
+                                                                 "von":  "hq",
+                                                                 "nach":  "br1",
+                                                                 "farbe":  "ff6b6b",
+                                                                 "text":  "Ping: erstes Paket wartet auf ARP → \u0027.!!!!\u0027"
+                                                             },
+                                                             {
+                                                                 "von":  "br1",
+                                                                 "nach":  "hq",
+                                                                 "farbe":  "ffd23f",
+                                                                 "text":  "ARP-Antwort → Adjacency 10.10.10.2 + FIB 10.10.10.2/32 attached"
+                                                             },
+                                                             {
+                                                                 "von":  "br1",
+                                                                 "nach":  "hq",
+                                                                 "farbe":  "4a9cff",
+                                                                 "text":  "EIGRP: 192.168.110.0/24 → neuer FIB-Eintrag, Adjacency unverändert"
+                                                             }
+                                                         ]
+                                        }
+                       },
+                       {
                            "text":  "Manche Pakete kann die Hardware nicht schalten. Sie gehen an die CPU (Punt): Pakete mit IP-Optionen, ablaufender TTL (z. B. Traceroute), nötiger Fragmentierung oder nicht unterstützter Encapsulation, außerdem Pakete ohne Platz in der TCAM. Bei verteiltem CEF (dCEF) hat jede Linecard eine eigene FIB-Kopie und forwardet selbst. Per IPC hält der Route Processor alle Kopien synchron."
+                       },
+                       {
+                           "text":  "Hat der Router mehrere gleichwertige Routen, verteilt CEF den Verkehr per Hash. Standard ist Per Destination: Alle Pakete eines Quell-Ziel-Paares nehmen denselben Pfad, nichts wird umsortiert. Per Packet verteilt gleichmäßiger, bringt aber Pakete durcheinander, was TCP und Sprache stört. Rechnen alle Router in mehreren Ebenen mit demselben Hash, bleiben Pfade in der zweiten Ebene leer (CEF-Polarisation). Dagegen hilft der universal-Algorithmus mit eigener ID pro Router. Welchen Pfad ein bestimmtes Paar nimmt, zeigt show ip cef exact-route.",
+                           "diagramm":  {
+                                            "typ":  "tabelle",
+                                            "kopf":  [
+                                                         "Verfahren",
+                                                         "Verhalten",
+                                                         "Vorteil",
+                                                         "Nachteil"
+                                                     ],
+                                            "zeilen":  [
+                                                           [
+                                                               "Per Destination (Default)",
+                                                               "Hash über Quelle/Ziel",
+                                                               "keine Umsortierung",
+                                                               "ungleich bei wenigen Flows"
+                                                           ],
+                                                           [
+                                                               "Per Packet",
+                                                               "abwechselnd pro Paket",
+                                                               "gleichmäßige Last",
+                                                               "Reordering"
+                                                           ],
+                                                           [
+                                                               "universal + ID",
+                                                               "eigener Hash-Startwert",
+                                                               "mindert Polarisation",
+                                                               "–"
+                                                           ]
+                                                       ]
+                                        }
                        }
                    ]
     }

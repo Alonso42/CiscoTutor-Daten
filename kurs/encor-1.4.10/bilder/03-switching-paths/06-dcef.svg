@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Distributed CEF mit Route Processor und Linecards</title>
+<rect width="800" height="450" fill="#fff"/>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">dCEF: jede Linecard forwardet mit eigener FIB-Kopie</text>
+<rect x="280" y="50" width="240" height="95" rx="10" fill="#f6f1ff" stroke="#b08aff" stroke-width="2"/>
+<text x="400" y="75" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">Route Processor</text>
+<text x="400" y="97" text-anchor="middle" font-size="12" fill="#222">Routingprotokolle, RIB, rekursive Routen</text>
+<text x="400" y="117" text-anchor="middle" font-size="12" fill="#222">Master-FIB + Adjacency,</text>
+<text x="400" y="135" text-anchor="middle" font-size="12" fill="#222">Kopie jeder Linecard-FIB</text>
+<rect x="60" y="195" width="680" height="40" rx="6" fill="#f5f5f5" stroke="#222"/>
+<text x="400" y="220" text-anchor="middle" font-size="14" fill="#222">Switching Fabric (VOQ + Scheduler-Grant)</text>
+<line x1="400" y1="145" x2="400" y2="190" stroke="#b08aff" stroke-width="3" marker-end="url(#a)"/>
+<text x="410" y="172" font-size="12" fill="#b08aff">IPC: FIB-/Adjacency-Updates</text>
+<g>
+<rect x="60" y="280" width="190" height="80" rx="8" fill="#eef5ff" stroke="#4a9cff" stroke-width="2"/><text x="155" y="305" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Linecard 1 (Rx)</text><text x="155" y="328" text-anchor="middle" font-size="12" fill="#222">FIB + Adj-Kopie</text><text x="155" y="346" text-anchor="middle" font-size="12" fill="#222">Lookup → Ziel-Linecard</text>
+<rect x="305" y="280" width="190" height="80" rx="8" fill="#eef5ff" stroke="#4a9cff" stroke-width="2"/><text x="400" y="305" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Linecard 2</text><text x="400" y="328" text-anchor="middle" font-size="12" fill="#222">FIB + Adj-Kopie</text>
+<rect x="550" y="280" width="190" height="80" rx="8" fill="#eefaf2" stroke="#39c86a" stroke-width="2"/><text x="645" y="305" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Linecard 3 (Tx)</text><text x="645" y="328" text-anchor="middle" font-size="12" fill="#222">L2-Header anhängen,</text><text x="645" y="346" text-anchor="middle" font-size="12" fill="#222">senden</text>
+</g>
+<line x1="155" y1="280" x2="155" y2="240" stroke="#ffd23f" stroke-width="3" marker-end="url(#a)"/>
+<line x1="645" y1="240" x2="645" y2="275" stroke="#ffd23f" stroke-width="3" marker-end="url(#a)"/>
+<text x="165" y="265" font-size="12" fill="#222">Datenpaket</text>
+<line x1="20" y1="320" x2="55" y2="320" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<line x1="740" y1="320" x2="785" y2="320" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<text x="400" y="395" text-anchor="middle" font-size="13" fill="#222">Datenpakete laufen Linecard → Fabric → Linecard, der RP ist nicht beteiligt (außer bei Punts).</text>
+<text x="400" y="420" text-anchor="middle" font-size="13" fill="#222">Neue Linecard: RP lädt ihr beim Aktivwerden die aktuelle FIB herunter. Central CEF: FIB nur auf dem RP.</text>
+</svg>

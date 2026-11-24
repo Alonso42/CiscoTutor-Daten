@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Von den Protokoll-RIBs zu FIB und Adjacency</title>
+<rect width="800" height="450" fill="#fff"/>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Woher CEF seine Tabellen bekommt</text>
+<g font-size="13" fill="#222">
+<rect x="30" y="55" width="150" height="40" rx="6" fill="#f6f1ff" stroke="#b08aff"/><text x="105" y="80" text-anchor="middle">OSPF-DB (AD 110)</text>
+<rect x="30" y="105" width="150" height="40" rx="6" fill="#f6f1ff" stroke="#b08aff"/><text x="105" y="130" text-anchor="middle">EIGRP-Topo (AD 90)</text>
+<rect x="30" y="155" width="150" height="40" rx="6" fill="#f6f1ff" stroke="#b08aff"/><text x="105" y="180" text-anchor="middle">BGP-Tabelle (20/200)</text>
+</g>
+<line x1="180" y1="125" x2="245" y2="125" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<text x="212" y="112" text-anchor="middle" font-size="11" fill="#222">AD</text>
+<rect x="250" y="80" width="250" height="95" rx="8" fill="#fffbe6" stroke="#ffd23f" stroke-width="2"/>
+<text x="375" y="102" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">IP-Routingtabelle (RIB)</text>
+<text x="265" y="125" font-size="12" fill="#222">D 10.0.0.0/8 [90/…] via 172.16.1.2</text>
+<text x="265" y="145" font-size="12" fill="#222">C 172.16.1.0/24 Ethernet0</text>
+<text x="265" y="165" font-size="11" fill="#222">beste Route pro Prefix</text>
+<line x1="375" y1="175" x2="375" y2="225" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<text x="385" y="205" font-size="11" fill="#222">sofort gespiegelt</text>
+<rect x="250" y="230" width="250" height="110" rx="8" fill="#eef5ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="375" y="252" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">FIB</text>
+<text x="265" y="275" font-size="12" fill="#222">10.1.1.0/24 → Adj 172.16.1.9</text>
+<text x="265" y="295" font-size="12" fill="#222">10.0.0.0/8  → Adj 172.16.1.2</text>
+<text x="265" y="315" font-size="11" fill="#222">spezifischste zuerst → erster Treffer</text>
+<text x="265" y="331" font-size="11" fill="#222">= Longest Match, rekursiv aufgelöst</text>
+<rect x="560" y="80" width="210" height="70" rx="8" fill="#f5f5f5" stroke="#222"/>
+<text x="665" y="102" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">ARP (IPv4) / ND (IPv6)</text>
+<text x="575" y="125" font-size="12" fill="#222">172.16.1.2 → 0c00.1122.3344</text>
+<line x1="665" y1="150" x2="665" y2="225" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<rect x="560" y="230" width="210" height="110" rx="8" fill="#eefaf2" stroke="#39c86a" stroke-width="2"/>
+<text x="665" y="252" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Adjacency</text>
+<text x="575" y="275" font-size="12" fill="#222">172.16.1.2, Ethernet0</text>
+<text x="575" y="295" font-size="12" fill="#222">Rewrite: Ziel-MAC | Quell-</text>
+<text x="575" y="313" font-size="12" fill="#222">MAC | Ethertype 0800</text>
+<line x1="500" y1="295" x2="555" y2="295" stroke="#39c86a" stroke-width="2" marker-end="url(#a)"/>
+<text x="400" y="385" text-anchor="middle" font-size="13" fill="#222">Control Plane baut RIB, FIB und Adjacency – die Data Plane nutzt FIB + Adjacency pro Paket.</text>
+<text x="400" y="410" text-anchor="middle" font-size="12" fill="#222">TCAM voll → Wildcard-Eintrag schickt nicht programmierte Ziele an die L3-Engine (Software, langsam).</text>
+</svg>

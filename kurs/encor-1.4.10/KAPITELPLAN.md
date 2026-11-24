@@ -4,8 +4,8 @@ Status: ✅ fertig · ⏳ in Arbeit · ☐ offen · ⚠ nicht mehr in ENCOR v1.2
 
 | Nr | Kapitel | Seiten | Datei | Status |
 |---|---|---|---|---|
-| 02 | Examining Cisco Enterprise Network Architecture | 11–19 | 02-architecture | ✅ (32 Fragen) |
-| 03 | Exploring Cisco Switching Paths | 20–29 | 03-switching-paths | ✅ |
+| 02 | Examining Cisco Enterprise Network Architecture | 11–19 | 02-architecture | ✅ 122 Fragen + Wissen + 9 SVGs, geprüft |
+| 03 | Exploring Cisco Switching Paths | 20–29 | 03-switching-paths | ✅ 116 Fragen + Wissen + 8 SVGs, geprüft |
 | 04 | Implementing Campus LAN Connectivity | 30–37 | 04-campus-lan | ✅ (32 Fragen) |
 | 05 | Building Redundant Switched Topology (STP/MST) | 38–49 | 05-stp | ✅ 139 Fragen, geprüft (7 korr., 1 entf.) |
 | 06 | Implementing Layer 2 Port Aggregation (+PBR) | 50–60 | 06-etherchannel | ✅ 111 Fragen, geprüft (4 korr.) |

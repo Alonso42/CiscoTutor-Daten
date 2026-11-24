@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Control Plane und Data Plane</title>
+<rect width="800" height="450" fill="#fff"/>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<text x="400" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Control Plane baut – Data Plane forwardet</text>
+<rect x="150" y="55" width="500" height="150" rx="10" fill="#f6f1ff" stroke="#b08aff" stroke-width="2"/>
+<text x="170" y="80" font-size="15" font-weight="bold" fill="#b08aff">Control Plane (Route Processor / CPU)</text>
+<rect x="180" y="95" width="170" height="40" rx="6" fill="#fff" stroke="#b08aff"/><text x="265" y="120" text-anchor="middle" font-size="13" fill="#222">OSPF · EIGRP · BGP</text>
+<rect x="450" y="95" width="170" height="40" rx="6" fill="#fff" stroke="#b08aff"/><text x="535" y="120" text-anchor="middle" font-size="13" fill="#222">RIB · ARP/ND</text>
+<line x1="350" y1="115" x2="445" y2="115" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<text x="400" y="160" text-anchor="middle" font-size="12" fill="#222">rekursive Routen auflösen, FIB/Adjacency berechnen,</text>
+<text x="400" y="178" text-anchor="middle" font-size="12" fill="#222">Statistiken der Module einsammeln</text>
+<line x1="535" y1="205" x2="535" y2="255" stroke="#39c86a" stroke-width="3" marker-end="url(#a)"/>
+<text x="545" y="235" font-size="12" fill="#222">FIB-/Adjacency-Updates</text>
+<line x1="265" y1="255" x2="265" y2="205" stroke="#ff6b6b" stroke-width="3" marker-end="url(#a)"/>
+<text x="120" y="235" font-size="12" fill="#ff6b6b">Punt: Routing-Updates,</text>
+<text x="120" y="250" font-size="12" fill="#ff6b6b">Ausnahmepakete</text>
+<rect x="150" y="260" width="500" height="120" rx="10" fill="#eef5ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="170" y="285" font-size="15" font-weight="bold" fill="#4a9cff">Data Plane (Linecards, ASICs, Fabric)</text>
+<rect x="330" y="300" width="140" height="50" rx="6" fill="#fff" stroke="#4a9cff"/><text x="400" y="322" text-anchor="middle" font-size="13" fill="#222">FIB + Adjacency</text><text x="400" y="340" text-anchor="middle" font-size="11" fill="#222">(TCAM / Speicher)</text>
+<line x1="30" y1="325" x2="325" y2="325" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<text x="40" y="315" font-size="13" fill="#222">eingehende Pakete</text>
+<line x1="470" y1="325" x2="770" y2="325" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<text x="640" y="315" font-size="13" fill="#222">ausgehende Pakete</text>
+<text x="400" y="415" text-anchor="middle" font-size="13" fill="#222">Transitverkehr bleibt in der Data Plane; nur Control-Traffic und Ausnahmen erreichen die CPU.</text>
+</svg>

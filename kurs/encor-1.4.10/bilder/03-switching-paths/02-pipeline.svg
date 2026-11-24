@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Frame-Pipeline im Switch: Queues, CAM und TCAM</title>
+<rect width="800" height="450" fill="#fff"/>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<text x="400" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Was passiert mit einem Frame im Switch?</text>
+<!-- ingress -->
+<rect x="30" y="160" width="140" height="120" rx="8" fill="#f5f8ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="100" y="185" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">Ingress-Queues</text>
+<rect x="50" y="200" width="100" height="18" fill="#ff6b6b"/><text x="100" y="214" text-anchor="middle" font-size="11" fill="#fff">hohe Priorität</text>
+<rect x="50" y="225" width="100" height="18" fill="#ffd23f"/><text x="100" y="239" text-anchor="middle" font-size="11" fill="#222">mittel</text>
+<rect x="50" y="250" width="100" height="18" fill="#39c86a"/><text x="100" y="264" text-anchor="middle" font-size="11" fill="#fff">normal</text>
+<line x1="170" y1="220" x2="225" y2="220" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<!-- parallel lookups -->
+<rect x="230" y="60" width="330" height="330" rx="10" fill="#fafafa" stroke="#b08aff" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="395" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#b08aff">parallele Lookups (je 1 Lookup)</text>
+<rect x="250" y="105" width="290" height="80" rx="8" fill="#eef5ff" stroke="#4a9cff"/>
+<text x="395" y="130" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">Wohin?  →  CAM</text>
+<text x="395" y="152" text-anchor="middle" font-size="12" fill="#222">Ziel-MAC + VLAN → Ausgangsport</text>
+<text x="395" y="170" text-anchor="middle" font-size="12" fill="#222">kein Treffer → Flooding im VLAN</text>
+<rect x="250" y="195" width="290" height="80" rx="8" fill="#fff4f4" stroke="#ff6b6b"/>
+<text x="395" y="220" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">Überhaupt?  →  TCAM (ACL)</text>
+<text x="395" y="242" text-anchor="middle" font-size="12" fill="#222">permit/deny, alle ACEs gleichzeitig</text>
+<text x="395" y="260" text-anchor="middle" font-size="12" fill="#222">eigene TCAM für In-/Out-ACL möglich</text>
+<rect x="250" y="285" width="290" height="80" rx="8" fill="#fffbe6" stroke="#ffd23f"/>
+<text x="395" y="310" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">Wie?  →  TCAM (QoS)</text>
+<text x="395" y="332" text-anchor="middle" font-size="12" fill="#222">klassifizieren, markieren, policen</text>
+<text x="395" y="350" text-anchor="middle" font-size="12" fill="#222">bestimmt die Egress-Queue</text>
+<line x1="560" y1="220" x2="615" y2="220" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<!-- egress -->
+<rect x="620" y="160" width="150" height="120" rx="8" fill="#eefaf2" stroke="#39c86a" stroke-width="2"/>
+<text x="695" y="185" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">Egress-Queues</text>
+<text x="695" y="210" text-anchor="middle" font-size="12" fill="#222">am Ausgangsport</text>
+<text x="695" y="232" text-anchor="middle" font-size="12" fill="#222">Auswahl per QoS:</text>
+<text x="695" y="254" text-anchor="middle" font-size="12" fill="#222">Wichtiges zuerst</text>
+<text x="400" y="425" text-anchor="middle" font-size="13" fill="#222">Weil CAM- und TCAM-Lookups parallel laufen, kosten ACLs und QoS keine Forwarding-Leistung.</text>
+</svg>
