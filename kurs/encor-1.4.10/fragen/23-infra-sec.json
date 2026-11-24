@@ -1,0 +1,2545 @@
+[
+    {
+        "id":  "slg-is-001",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An engineer creates \u0027access-list 1350 permit 10.1.1.0 0.0.0.255\u0027. What type of ACL is ACL 1350?",
+        "optionen":  [
+                         "A MAC (Layer 2) access list",
+                         "An IPv6 traffic filter",
+                         "An extended IPv4 ACL",
+                         "A standard IPv4 ACL"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "1300–1999 ist der erweiterte Nummernbereich für Standard-IPv4-ACLs (neben 1–99). Standard-ACLs prüfen nur die Quelladresse – genau das tut dieser Eintrag."
+    },
+    {
+        "id":  "slg-is-002",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "IOS rejects the command \u0027access-list 2050 permit 10.1.1.0 0.0.0.255\u0027. What is the reason?",
+        "optionen":  [
+                         "2050 is outside every valid IPv4 ACL range and is reserved for IPv6",
+                         "The wildcard mask must be written as a subnet mask in this range",
+                         "2050 is an extended ACL number, so IOS expects a protocol keyword first",
+                         "Numbered ACLs above 1999 can only be created in named ACL mode"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "2000–2699 ist der erweiterte Bereich für Extended-ACLs. Die Nummer bestimmt die Syntax: Nach permit/deny erwartet IOS ein Protokoll (ip, tcp, udp …), dann Quelle und Ziel."
+    },
+    {
+        "id":  "slg-is-003",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which ACL number can be used to create a numbered extended IPv4 ACL?",
+        "optionen":  [
+                         "2500",
+                         "1300",
+                         "1999",
+                         "99"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Extended-IPv4-ACLs nutzen 100–199 und 2000–2699. 99, 1300 und 1999 liegen in den Standard-Bereichen (1–99, 1300–1999)."
+    },
+    {
+        "id":  "slg-is-004",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Interface Gi0/0 already has \u0027ip access-group 10 in\u0027. The engineer now enters \u0027ip access-group 20 in\u0027 on the same interface. What is the result?",
+        "optionen":  [
+                         "Both ACLs are evaluated, ACL 10 first and then ACL 20",
+                         "Both ACLs are merged into one ACL with combined entries",
+                         "IOS rejects the command until ACL 10 is removed manually",
+                         "ACL 20 replaces ACL 10 as the inbound IPv4 filter"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Pro Interface, pro Richtung und pro Layer-3-Protokoll ist nur eine ACL erlaubt. Ein neues \u0027ip access-group … in\u0027 überschreibt die bisherige Zuordnung."
+    },
+    {
+        "id":  "slg-is-005",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Hosts in 10.1.1.0/24 must be allowed to send email to server 10.2.2.25, but FTP from the same subnet to the same server must be denied. Which ACL type is required?",
+        "optionen":  [
+                         "Named standard ACL with separate permit and deny entries",
+                         "Extended ACL, because it can match protocol and port numbers",
+                         "Standard ACL, because it can match the source subnet",
+                         "Standard ACL applied in both directions on the server port"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Beide Verkehre haben dieselbe Quelle und dasselbe Ziel – sie unterscheiden sich nur im Zielport (25 vs. 21). Nur eine Extended-ACL kann nach Protokoll und Port filtern."
+    },
+    {
+        "id":  "slg-is-006",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Host 10.1.1.101 must be blocked from the server LAN behind R1 Ethernet0/1 but must still reach all other networks. A standard ACL is used. Where should it be applied?",
+        "optionen":  [
+                         "Outbound on the WAN interface toward the internet service provider",
+                         "Inbound on Ethernet0/1, the interface toward the server LAN",
+                         "Inbound on the LAN interface where host 10.1.1.101 is connected",
+                         "Outbound on Ethernet0/1, the interface toward the server LAN"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Standard-ACLs kennen nur die Quelle. Nahe am Ziel (out Richtung Server-LAN) platziert, betreffen sie nur den Verkehr zum Server-LAN; inbound am Host-LAN würde der Host überall gesperrt."
+    },
+    {
+        "id":  "slg-is-007",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is it best practice to place extended ACLs as close as possible to the source of the traffic that is denied?",
+        "optionen":  [
+                         "Extended ACLs can only be applied inbound on interfaces facing end hosts",
+                         "Routers process extended ACLs only before the routing table lookup",
+                         "Unwanted packets are dropped before they consume bandwidth and router resources",
+                         "Extended ACLs placed near the destination would ignore the source address"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Extended-ACLs können Quelle und Ziel genau bestimmen, filtern also nicht zu viel. Nahe der Quelle verworfen, belastet der Verkehr keine weiteren Links und Router."
+    },
+    {
+        "id":  "slg-is-008",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "ACL 1 (\u0027deny host 10.1.1.101\u0027, \u0027permit 10.1.1.0 0.0.0.255\u0027) is meant to block internet access for PC2 (10.1.1.101). Instead of outbound on the internet interface Gi0/1, it is applied inbound on the LAN interface Gi0/0. What additional effect does this have?",
+        "optionen":  [
+                         "PC2 is still able to reach the internet through Gi0/1",
+                         "Return traffic from the internet to all LAN hosts is dropped",
+                         "PC2 can no longer communicate with the router itself either",
+                         "PC1 and all other LAN hosts also lose internet access"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Inbound am LAN-Interface wird jedes Paket von PC2 verworfen – auch Pakete an den Router selbst (Gateway-Ping, Telnet usw.). Outbound an Gi0/1 würde nur den Internetverkehr treffen."
+    },
+    {
+        "id":  "slg-is-009",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which wildcard mask matches all addresses of the subnet 10.20.30.0/27?",
+        "optionen":  [
+                         "255.255.255.224",
+                         "0.0.0.27",
+                         "0.0.0.31",
+                         "0.0.0.32"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "/27 = Maske 255.255.255.224. Wildcard = 255.255.255.255 − 255.255.255.224 = 0.0.0.31 (die 5 Hostbits sind \u0027egal\u0027)."
+    },
+    {
+        "id":  "slg-is-010",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which ACE matches exactly the source range 172.16.32.0 through 172.16.47.255?",
+        "optionen":  [
+                         "permit 172.16.32.0 0.0.15.255",
+                         "permit 172.16.32.0 0.0.31.255",
+                         "permit 172.16.32.0 0.0.16.255",
+                         "permit 172.16.32.0 255.255.240.0"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Bereich umfasst 16 Werte im 3. Oktett (32–47) = /20. Wildcard 0.0.15.255. 0.0.31.255 würde bis 172.16.63.255 reichen, 255.255.240.0 ist eine Subnetzmaske."
+    },
+    {
+        "id":  "slg-is-011",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A single ACE must match the four subnets 10.10.8.0/24, 10.10.9.0/24, 10.10.10.0/24 and 10.10.11.0/24, and nothing else. Which entry is correct?",
+        "optionen":  [
+                         "permit 10.10.8.0 0.0.4.255",
+                         "permit 10.10.8.0 0.0.3.255",
+                         "permit 10.10.0.0 0.0.11.255",
+                         "permit 10.10.8.0 0.0.7.255"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Vier /24 ab 8 (durch 4 teilbar) = 10.10.8.0/22 → Wildcard 0.0.3.255. 0.0.7.255 würde bis 10.10.15.255 reichen; 0.0.4.255 und 0.0.11.255 sind keine sauberen Blöcke."
+    },
+    {
+        "id":  "slg-is-012",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An ACL contains \u0027permit 172.16.32.0 0.0.15.255\u0027. Does a packet from 172.16.50.1 match this entry?",
+        "optionen":  [
+                         "Yes, the entry covers 172.16.32.0 through 172.16.63.255",
+                         "Yes, because the wildcard ignores the whole third octet",
+                         "No, the entry covers only 172.16.32.0 through 172.16.47.255",
+                         "No, because the wildcard requires all host bits to be zero"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "0.0.15.255 ignoriert nur die unteren 4 Bits des 3. Oktetts: 32 bis 47. 50 liegt außerhalb (50 = 0011 0010; die oberen 4 Bits 0011 ≠ 0010 bei 32)."
+    },
+    {
+        "id":  "slg-is-013",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which source addresses match \u0027access-list 5 permit 192.168.1.1 0.0.0.254\u0027?",
+        "optionen":  [
+                         "Only the single host address 192.168.1.1",
+                         "All odd host addresses in 192.168.1.0/24",
+                         "All even host addresses in 192.168.1.0/24",
+                         "Only the hosts 192.168.1.1 through 192.168.1.254"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Wildcard 0.0.0.254 = letztes Oktett 11111110: nur das niedrigste Bit muss passen, und das ist 1 (wegen .1). Alle Adressen mit ungeradem letzten Oktett matchen – Wildcards müssen nicht zusammenhängend sein."
+    },
+    {
+        "id":  "slg-is-014",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer configures \u0027access-list 1 permit 10.1.1.0 255.255.255.0\u0027 by mistake. Which source address is permitted by this entry?",
+        "optionen":  [
+                         "10.1.2.1",
+                         "10.1.1.200",
+                         "172.20.5.0",
+                         "10.1.1.25"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Als Wildcard gelesen bedeutet 255.255.255.0: die ersten drei Oktette sind egal, das letzte muss 0 sein. Also matcht jede Adresse x.x.x.0 – z. B. 172.20.5.0, aber nicht die Hosts in 10.1.1.0/24."
+    },
+    {
+        "id":  "slg-is-015",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What does \u0027access-list 1 permit 10.1.1.10\u0027 match when no wildcard mask is entered?",
+        "optionen":  [
+                         "Every source address",
+                         "All hosts in 10.1.1.0/24",
+                         "All hosts in 10.0.0.0/8",
+                         "Only the host 10.1.1.10"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bei Standard-ACLs ist die Default-Wildcard 0.0.0.0 – der Eintrag entspricht \u0027permit host 10.1.1.10\u0027."
+    },
+    {
+        "id":  "slg-is-016",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which source address matches \u0027permit 10.0.5.0 0.255.0.255\u0027?",
+        "optionen":  [
+                         "11.0.5.1",
+                         "10.5.0.5",
+                         "10.0.6.5",
+                         "10.77.5.9"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Geprüft werden nur das 1. Oktett (10) und das 3. Oktett (5); 2. und 4. Oktett sind egal. Nur 10.77.5.9 erfüllt beides."
+    },
+    {
+        "id":  "slg-is-017",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "ACL 1 is applied outbound toward the internet: \u002710 permit 10.1.1.0 0.0.0.255\u0027 and \u002720 deny host 10.1.1.101\u0027. Host 10.1.1.101 can still browse the internet. Why?",
+        "optionen":  [
+                         "The implicit deny overrides the explicit deny of line 20",
+                         "Host entries are always evaluated after network entries",
+                         "Deny entries in standard ACLs only apply to inbound traffic",
+                         "Line 10 matches the host first, so line 20 is never evaluated"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "ACLs werden von oben nach unten geprüft, der erste Treffer entscheidet. 10.1.1.101 liegt im Netz von Zeile 10 und wird dort erlaubt. Spezifische Einträge gehören vor allgemeine."
+    },
+    {
+        "id":  "slg-is-018",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show access-lists\u0027 on Branch shows:\n\nStandard IP access list INET\n    10 permit 10.1.1.0, wildcard bits 0.0.0.255 (1243 matches)\n    20 deny   10.1.1.101\n\nHow can the engineer block 10.1.1.101 with the least effort while keeping the ACL applied?",
+        "optionen":  [
+                         "In \u0027ip access-list standard INET\u0027, add \u00275 deny host 10.1.1.101\u0027",
+                         "Reverse the order with \u0027ip access-list resequence INET 20 -10\u0027",
+                         "Remove the ACL and recreate it with \u0027access-list INET\u0027 commands",
+                         "In \u0027ip access-list standard INET\u0027, add \u002725 deny host 10.1.1.101\u0027"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit einer Sequenznummer kleiner als 10 wird der Host-Eintrag vor die Netz-Zeile eingefügt und matcht zuerst. Zeile 25 käme zu spät; resequence ändert nur die Nummerierung, nicht die Reihenfolge."
+    },
+    {
+        "id":  "slg-is-019",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After applying an ACL that contains only \u0027deny host 10.1.1.101\u0027 outbound on the internet interface, all LAN users lose internet access. \u0027show access-lists\u0027 shows \u002710 deny 10.1.1.101 (15 matches)\u0027. What is missing?",
+        "optionen":  [
+                         "A matching ACL with the same number on the LAN interface",
+                         "The \u0027in\u0027 direction instead of \u0027out\u0027 on the interface",
+                         "A permit statement after the deny, such as \u0027permit any\u0027",
+                         "A \u0027log\u0027 keyword at the end of the deny statement"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Jede ACL endet mit einem impliziten \u0027deny any\u0027. Ohne explizites permit wird jeder Verkehr, der nicht auf Zeile 10 passt, verworfen."
+    },
+    {
+        "id":  "slg-is-020",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An administrator wants to see how many packets are dropped at the end of ACL TRAFFIC-FILTER because they matched no entry. What should be done?",
+        "optionen":  [
+                         "Add an explicit \u0027deny ip any any\u0027 as the last entry and check its counter",
+                         "Use \u0027show ip interface\u0027 to read the implicit deny hit counter",
+                         "Enable \u0027debug ip packet\u0027 because ACL counters do not exist",
+                         "Use \u0027show access-lists implicit\u0027 to display the hidden deny counter"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Das implizite deny ist unsichtbar und hat keinen Zähler. Ein explizites \u0027deny ip any any\u0027 (optional mit log) am Ende erzeugt Treffer-Zähler in \u0027show access-lists\u0027."
+    },
+    {
+        "id":  "slg-is-021",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why is an inbound ACL generally more efficient than an outbound ACL for packets that will be denied?",
+        "optionen":  [
+                         "Denied packets are dropped before the routing table lookup is performed",
+                         "Outbound ACLs must be checked twice, before and after switching",
+                         "Inbound ACLs are processed in hardware, while outbound ACLs use the CPU",
+                         "Inbound ACLs skip the implicit deny and stop at the first permit"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Inbound wird vor dem Routing geprüft. Wird das Paket verworfen, spart der Router den Routing-Lookup; bei outbound wird erst geroutet und dann gefiltert."
+    },
+    {
+        "id":  "slg-is-022",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A router has outbound ACLs on all interfaces. A packet arrives for a destination for which no route exists. What happens?",
+        "optionen":  [
+                         "It is checked against all outbound ACLs and then dropped",
+                         "It is dropped by the routing process and no outbound ACL is checked",
+                         "It is checked against the outbound ACL of the ingress interface",
+                         "It is forwarded if the first outbound ACL contains \u0027permit ip any any\u0027"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei outbound-ACLs bestimmt zuerst der Routing-Lookup das Ausgangsinterface. Ohne Route wird verworfen, bevor eine Outbound-ACL überhaupt ins Spiel kommt."
+    },
+    {
+        "id":  "slg-is-023",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After ACL 1 is applied on R1, PC1 pings SRV1 and gets \u0027U.U.U\u0027. What does the \u0027U\u0027 indicate?",
+        "optionen":  [
+                         "SRV1 answered with ICMP echo replies that were then filtered",
+                         "The ping timed out because SRV1 is not reachable at Layer 2",
+                         "R1 returned ICMP destination unreachable messages for denied packets",
+                         "PC1 received TTL exceeded messages from an intermediate router"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Verwirft ein Router ein Paket per ACL, sendet er ICMP Destination Unreachable an die Quelle – der Ping zeigt \u0027U\u0027. Die Punkte dazwischen entstehen, weil IOS Unreachables ratenbegrenzt verschickt."
+    },
+    {
+        "id":  "slg-is-024",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "ACL 1 is applied outbound on Gi0/1. What is the recommended way to remove it completely from the router?",
+        "optionen":  [
+                         "Enter \u0027no ip access-group 1\u0027 globally to remove both binding and entries",
+                         "Enter \u0027shutdown\u0027 on Gi0/1, then \u0027no access-list 1\u0027 and \u0027no shutdown\u0027",
+                         "Enter \u0027no access-list 1\u0027 globally; the interface command is removed with it",
+                         "Enter \u0027no ip access-group 1 out\u0027 on Gi0/1, then \u0027no access-list 1\u0027 globally"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Erst die Bindung am Interface entfernen (no ip access-group), dann die ACL selbst global löschen. So bleibt keine Referenz auf eine nicht existierende ACL zurück."
+    },
+    {
+        "id":  "slg-is-025",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer creates extended ACL 110 but types \u0027ip access-group 111 in\u0027 on the WAN interface. ACL 111 does not exist. How does IOS filter traffic on that interface?",
+        "optionen":  [
+                         "ACL 110 is used automatically because it is the closest number",
+                         "The interface is placed in err-disabled state until fixed",
+                         "All traffic is denied by the implicit deny of the empty ACL 111",
+                         "Not at all; a reference to an undefined ACL permits all traffic"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Auf IOS wird eine per \u0027ip access-group\u0027 referenzierte, aber nicht definierte IPv4-ACL wie \u0027permit any\u0027 behandelt – es wird nichts gefiltert. Deshalb fällt der Tippfehler oft erst spät auf."
+    },
+    {
+        "id":  "slg-is-026",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Named ACL Subnet_ONLY contains only \u002710 permit 10.1.1.0 0.0.0.255\u0027. An engineer enters \u0027deny host 10.1.1.25\u0027 (without a sequence number) in ACL configuration mode. What is the effect on host 10.1.1.25?",
+        "optionen":  [
+                         "None; IOS rejects entries without a sequence number",
+                         "The host is blocked because deny entries are placed first",
+                         "The host is blocked because host entries are evaluated first",
+                         "None; the entry is added as line 20 after the permit"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne Sequenznummer wird der Eintrag mit +10 ans Ende gehängt (Zeile 20). Der Host matcht vorher Zeile 10 und wird erlaubt. Richtig wäre z. B. \u00275 deny host 10.1.1.25\u0027."
+    },
+    {
+        "id":  "slg-is-027",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In global configuration mode, an engineer enters \u0027no access-list 101 deny tcp 172.16.4.0 0.0.0.255 172.16.3.0 0.0.0.255 eq 21\u0027 to remove one line of ACL 101. What happens?",
+        "optionen":  [
+                         "The entire ACL 101 is deleted",
+                         "Only the matching line is deleted",
+                         "Only the line\u0027s hit counter is reset",
+                         "The line is disabled but kept in the ACL"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bei nummerierten ACLs löscht ein \u0027no access-list \u003cnr\u003e …\u0027 im globalen Modus immer die gesamte ACL – egal, was hinter der Nummer steht."
+    },
+    {
+        "id":  "slg-is-028",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On a current IOS XE router, how can line 20 be deleted from numbered ACL 101 without removing the rest of the ACL?",
+        "optionen":  [
+                         "\u0027no access-list 101 20\u0027 in global configuration mode",
+                         "\u0027ip access-list extended 101\u0027, then \u0027no 20\u0027",
+                         "\u0027access-list 101 remove 20\u0027 in global configuration mode",
+                         "\u0027clear access-list 101 line 20\u0027 in privileged EXEC mode"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Nummerierte ACLs lassen sich im ACL-Konfigurationsmodus bearbeiten – mit der Nummer statt eines Namens. Dort entfernt \u0027no \u003cseq\u003e\u0027 genau eine Zeile."
+    },
+    {
+        "id":  "slg-is-029",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is a key advantage of named ACLs over classic numbered ACLs?",
+        "optionen":  [
+                         "Named ACLs are processed faster because they are compiled",
+                         "Individual entries can be inserted or deleted using sequence numbers",
+                         "Named ACLs can be applied to several directions at once",
+                         "Named ACLs do not end with an implicit deny statement"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Named ACLs haben einen sprechenden Namen und Sequenznummern, über die man Einträge gezielt einfügt oder löscht. Implizites deny und \u0027eine ACL pro Richtung\u0027 gelten weiterhin."
+    },
+    {
+        "id":  "slg-is-030",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Users behind R1 cannot open web pages. The inbound ACL on the LAN interface contains \u0027permit tcp 10.1.1.0 0.0.0.255 eq 80 any\u0027. What is wrong?",
+        "optionen":  [
+                         "TCP port 80 can only be matched in a standard ACL with \u0027host\u0027",
+                         "\u0027eq 80\u0027 follows the source, so it matches source port 80 instead of destination port 80",
+                         "\u0027eq 80\u0027 must be replaced by \u0027eq www\u0027 because numbers are not accepted",
+                         "The wildcard 0.0.0.255 must be 0.0.0.0 when a port number is specified"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Port-Angabe gehört zu der Adresse, hinter der sie steht. Hinter der Quelle bedeutet sie Quellport – Clients nutzen aber zufällige hohe Quellports und Zielport 80. Richtig: \u0027permit tcp 10.1.1.0 0.0.0.255 any eq 80\u0027."
+    },
+    {
+        "id":  "slg-is-031",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "ACL TRAFFIC-FILTER is applied inbound on R1\u0027s internet interface and ends with \u0027deny ip any any\u0027. PCs in 10.10.1.0/24 can no longer resolve names via DNS server 203.0.113.30. Which entry must be added before the deny?",
+        "optionen":  [
+                         "permit udp host 203.0.113.30 eq domain 10.10.1.0 0.0.0.255",
+                         "permit udp 10.10.1.0 0.0.0.255 host 203.0.113.30 eq domain",
+                         "permit udp host 203.0.113.30 10.10.1.0 0.0.0.255 eq domain",
+                         "permit tcp host 203.0.113.30 10.10.1.0 0.0.0.255 established"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Inbound kommen die DNS-Antworten: Quelle ist der Server mit Quellport 53, Ziel das LAN mit zufälligem Port. Also \u0027eq domain\u0027 hinter der Quelle. Die anderen Varianten prüfen den falschen Port bzw. die falsche Richtung."
+    },
+    {
+        "id":  "slg-is-032",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which TCP segments match an ACE that ends with the keyword \u0027established\u0027?",
+        "optionen":  [
+                         "Segments with the ACK or RST flag set",
+                         "Segments that belong to an entry in the NAT table",
+                         "Segments that the router has seen in both directions",
+                         "Segments with only the SYN flag set"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027established\u0027 prüft nur die TCP-Flags: ACK oder RST gesetzt bedeutet \u0027gehört zu einer bestehenden Verbindung\u0027. Ein reines SYN (Verbindungsaufbau) matcht nicht."
+    },
+    {
+        "id":  "slg-is-033",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Why does the \u0027established\u0027 keyword not provide the same protection as a stateful firewall?",
+        "optionen":  [
+                         "It matches only UDP return traffic, so TCP floods are never filtered",
+                         "It is evaluated after the implicit deny and therefore never matches",
+                         "An attacker can craft segments with the ACK flag set that match without any real session",
+                         "It requires NAT to be enabled on the same interface to track sessions"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027established\u0027 hält keinen Sitzungsstatus, sondern schaut nur auf ACK/RST. Gefälschte Segmente mit gesetztem ACK passieren die ACL, obwohl keine Verbindung existiert."
+    },
+    {
+        "id":  "slg-is-034",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "TRAFFIC-FILTER (inbound on the internet interface) contains \u002750 permit tcp any eq www 10.10.1.0 0.0.0.255 established\u0027 and \u002770 deny ip any any\u0027. An outside host sends a TCP SYN with source port 80 to 10.10.1.10. Which line handles the packet?",
+        "optionen":  [
+                         "Line 70, because a SYN without ACK does not match \u0027established\u0027",
+                         "No line; segments with SYN are always permitted by IOS",
+                         "Line 50, because the source port 80 matches \u0027eq www\u0027",
+                         "Line 50, because the destination is inside 10.10.1.0/24"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Zeile 50 verlangt zusätzlich ACK oder RST. Ein Verbindungsaufbau von außen (nur SYN) passt nicht und fällt auf das explizite deny in Zeile 70 – genau das ist der Zweck von \u0027established\u0027."
+    },
+    {
+        "id":  "slg-is-035",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which ACE matches all TCP traffic except Telnet?",
+        "optionen":  [
+                         "permit tcp any any lt 23",
+                         "permit tcp any any neq 23",
+                         "permit tcp any any gt 23",
+                         "permit tcp any neq 23 any"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027neq 23\u0027 am Ziel matcht jeden Zielport außer 23. gt/lt würden nur einen Teilbereich treffen; \u0027neq 23\u0027 hinter der Quelle prüft den Quellport."
+    },
+    {
+        "id":  "slg-is-036",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An engineer enters \u0027access-list 101 deny tcp 172.16.4.0 0.0.0.255 172.16.3.0 0.0.0.255 eq 21\u0027. \u0027show access-lists\u0027 displays \u0027eq ftp\u0027. Why?",
+        "optionen":  [
+                         "IOS converted the entry to an FTP inspection rule",
+                         "The entry now also matches FTP data on port 20",
+                         "The ACL was rewritten as a named ACL called ftp",
+                         "IOS displays well-known port numbers by their keyword names"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "IOS ersetzt bekannte Portnummern in der Anzeige durch Namen (21 → ftp, 80 → www). Die Funktion bleibt identisch: nur Zielport 21."
+    },
+    {
+        "id":  "slg-is-037",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "TRAFFIC-FILTER permits \u0027icmp any 10.10.1.0 0.0.0.255 echo-reply\u0027 inbound on R1\u0027s internet interface. PC1 (10.10.1.10) can ping SRV2 on the internet, but PC2 on the internet cannot ping PC1. Why?",
+        "optionen":  [
+                         "Only echo replies are permitted inbound; PC2\u0027s echo requests hit the deny",
+                         "PC1 does not reply because the ACL also filters outgoing echo replies",
+                         "The ACL entry is evaluated outbound only, so PC2\u0027s packets are dropped",
+                         "PC2\u0027s echo requests are permitted, but R1 drops the replies by routing"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Inbound sind nur echo-reply-Nachrichten erlaubt (Antworten auf Pings von innen). Ein echo-request von außen passt auf keine permit-Zeile und wird verworfen – R1 meldet \u0027U\u0027."
+    },
+    {
+        "id":  "slg-is-038",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does the CoPP ACL for VRRP use \u0027permit 112 any host 224.0.0.18\u0027 instead of a TCP or UDP entry?",
+        "optionen":  [
+                         "VRRP runs directly over IP as protocol 112 and sends to 224.0.0.18",
+                         "VRRP uses TCP, but CoPP ACLs only support protocol numbers",
+                         "VRRP is a Layer 2 protocol, so only a protocol number can match it",
+                         "VRRP uses UDP port 112 and the router cannot match UDP in CoPP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "VRRP ist weder TCP noch UDP, sondern hat die IP-Protokollnummer 112 (wie OSPF 89, EIGRP 88). Seine Advertisements gehen an die Multicast-Adresse 224.0.0.18."
+    },
+    {
+        "id":  "slg-is-039",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why should the \u0027log\u0027 keyword be used with care on ACL entries in a production network?",
+        "optionen":  [
+                         "Logged entries are skipped by hardware and therefore always permit",
+                         "The log keyword disables the hit counters of the whole ACL",
+                         "Matching packets are process-switched and log messages consume CPU",
+                         "Only one entry per ACL may use log, so others go unmonitored"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Pakete, die auf eine log-Zeile passen, werden über die CPU verarbeitet, und das Erzeugen/Senden der Syslog-Meldungen kostet zusätzlich CPU. Bei hohem Verkehr belastet das den Router stark."
+    },
+    {
+        "id":  "slg-is-040",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "ACL VTY-ACCESS contains \u0027permit host 10.10.1.10\u0027 and \u0027deny any log\u0027. Why is the explicit \u0027deny any log\u0027 added, although every ACL ends with an implicit deny?",
+        "optionen":  [
+                         "To make the deny apply to outbound sessions started from the router",
+                         "To deny also IPv6 sources, which the implicit deny does not cover",
+                         "To generate syslog messages and hit counters for denied attempts",
+                         "To make the ACL usable on vty lines, which require an explicit deny"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das implizite deny kann weder loggen noch zählen. Erst ein explizites \u0027deny any log\u0027 zeigt in Syslog und \u0027show access-lists\u0027, wer abgewiesen wurde."
+    },
+    {
+        "id":  "slg-is-041",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "PC2 (203.0.113.40) gets \u0027% Connection refused by remote host\u0027 when using Telnet to R1. R1 logs \u0027%SEC-6-IPACCESSLOGNP: list VTY-ACCESS denied 0 203.0.113.40 -\u003e 0.0.0.0, 1 packet\u0027. What is the cause?",
+        "optionen":  [
+                         "An inbound interface ACL on R1 blocks TCP port 23 from PC2",
+                         "The ACL applied with access-class on the vty lines denies PC2",
+                         "R1 has no free vty lines because all sessions are in use",
+                         "Telnet is disabled with \u0027transport input ssh\u0027 on the vty lines"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Meldung nennt die Liste VTY-ACCESS, die per \u0027access-class VTY-ACCESS in\u0027 an den vty-Lines hängt. Sie erlaubt nur PC1; PC2 trifft das \u0027deny any log\u0027."
+    },
+    {
+        "id":  "slg-is-042",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Why is \u0027access-class\u0027 on the vty lines a better way to restrict Telnet/SSH access to a router than interface ACLs?",
+        "optionen":  [
+                         "It applies to all vty sessions regardless of interface or destination address",
+                         "It also filters transit Telnet and SSH sessions passing through the router",
+                         "It automatically encrypts the permitted sessions with SSH",
+                         "It is processed in hardware, while interface ACLs always use the CPU"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "access-class prüft jede eingehende Verbindung zu den vty-Lines – egal über welches Interface und an welche Router-IP. Interface-ACLs müssten auf jedem Interface gepflegt werden und betreffen auch Transitverkehr."
+    },
+    {
+        "id":  "slg-is-043",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 shows:\n\nExtended IP access list TRAFFIC-FILTER\n    10 permit tcp any host 10.10.2.20 eq www (13 matches)\n    20 permit tcp any host 10.10.2.20 eq 443 (12 matches)\n    30 permit icmp any 10.10.1.0 0.0.0.255 echo-reply (5 matches)\n    70 deny ip any any (5 matches)\n\nWhat does \u0027(5 matches)\u0027 on line 70 indicate?",
+        "optionen":  [
+                         "Five packets matched no permit entry and were dropped by line 70",
+                         "Five entries of the ACL were skipped because of hardware limits",
+                         "Five packets were permitted after being checked against line 70",
+                         "Five sessions are currently blocked and will be retried by R1"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Zähler zeigen, wie viele Pakete auf eine Zeile gepasst haben. Zeile 70 ist das explizite deny – fünf Pakete wurden also verworfen (im Lab z. B. die Pings von PC2 zu PC1)."
+    },
+    {
+        "id":  "slg-is-044",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "TRAFFIC-FILTER ends with \u002770 deny ip any any\u0027. An engineer adds \u0027permit tcp host 203.0.113.40 host 10.10.2.20 eq 22\u0027 without a sequence number. PC2 still cannot use SSH to SRV1. Why?",
+        "optionen":  [
+                         "SSH return traffic is not permitted because \u0027established\u0027 is missing",
+                         "Port 22 must be written as \u0027eq ssh\u0027 to be recognized by IOS",
+                         "The entry was added as line 80, after the deny that matches first",
+                         "The new entry is applied only after the ACL is re-bound to the interface"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ohne Sequenznummer landet der Eintrag am Ende (80) – hinter dem expliziten deny, das vorher trifft. Im Lab wurde deshalb gezielt Zeile 65 verwendet."
+    },
+    {
+        "id":  "slg-is-045",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In Discovery 25, ACL 1 (\u0027deny host 10.10.1.10\u0027, \u0027permit any\u0027) is applied outbound on R1 Ethernet0/1 toward SRV1. PC1 can still resolve names via DNS server SRV2 on the internet. Why?",
+        "optionen":  [
+                         "Standard ACLs ignore UDP traffic such as DNS queries",
+                         "Traffic from PC1 to SRV2 never leaves through Ethernet0/1",
+                         "DNS replies are always permitted by the implicit permit",
+                         "Outbound standard ACLs only filter TCP connections"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Eine Outbound-ACL prüft nur Pakete, die das Interface verlassen. Verkehr von PC1 ins Internet geht über E0/3, nicht über E0/1. Darum blockiert die ziel-nahe Standard-ACL nur den Zugriff auf 10.10.2.0/24."
+    },
+    {
+        "id":  "slg-is-046",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Branch applies ACL 101 inbound on LAN interface Gi0/0: \u0027deny ip host 10.1.1.101 any\u0027 and \u0027permit ip 10.1.1.0 0.0.0.255 any\u0027. Which statement about PC2 (10.1.1.101) is correct?",
+        "optionen":  [
+                         "It cannot reach anything via Branch, not even the Gi0/0 address of Branch",
+                         "It can still ping Gi0/0 because router-destined traffic bypasses ACLs",
+                         "It can no longer reach other hosts in its own VLAN on the LAN switch",
+                         "It is blocked from the internet only, but not from other internal subnets"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027deny ip host 10.1.1.101 any\u0027 inbound verwirft jedes Paket von PC2, das den Router erreicht – auch an den Router selbst. Verkehr zu Hosts im selben LAN läuft über den Switch und berührt die ACL nicht."
+    },
+    {
+        "id":  "slg-is-047",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the Branch example, a standard ACL outbound on Gi0/1 and an extended ACL inbound on Gi0/0 both block PC2\u0027s internet access. What is the advantage of the inbound extended ACL?",
+        "optionen":  [
+                         "It also blocks traffic between PC2 and other hosts in the same VLAN",
+                         "PC2\u0027s packets are discarded before the router performs a routing lookup",
+                         "It needs no permit statement because extended ACLs end with permit any",
+                         "It filters PC2\u0027s traffic even if PC2 changes its IP address"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die inbound Extended-ACL verwirft PC2-Verkehr direkt beim Eintritt – der Routing-Lookup entfällt. Weil sie Ziel \u0027any\u0027 durch ein konkretes Ziel ersetzen kann, ließe sie sich zudem auf den Internetverkehr beschränken."
+    },
+    {
+        "id":  "slg-is-048",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which ACE permits TCP traffic to the destination ports 20 and 21 only?",
+        "optionen":  [
+                         "permit tcp any any range 20 21",
+                         "permit tcp any any gt 19",
+                         "permit tcp any any lt 22",
+                         "permit tcp any range 20 21 any"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027range 20 21\u0027 am Ziel ist inklusiv und matcht genau die Zielports 20 und 21. Hinter der Quelle würde es Quellports prüfen; \u0027lt 22\u0027 trifft 0–21, \u0027gt 19\u0027 20–65535."
+    },
+    {
+        "id":  "slg-is-049",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A router receives SNMP polls from a network management station. To which traffic plane does this traffic belong?",
+        "optionen":  [
+                         "Management plane",
+                         "Services plane",
+                         "Control plane",
+                         "Data plane"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "SNMP, SSH, Telnet, TFTP, FTP und NTP dienen der Verwaltung von Gerät und Netz – Management Plane. Ihr Ziel ist der Router selbst (receive), die CPU verarbeitet sie."
+    },
+    {
+        "id":  "slg-is-050",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "From the local perspective of a router, which packets are called receive packets?",
+        "optionen":  [
+                         "Packets with IP options that are forwarded in the fast path",
+                         "Control and management plane packets destined to the router itself",
+                         "Packets received on an interface with an inbound ACL applied",
+                         "Data plane packets forwarded by CEF to another interface"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Receive-Pakete sind an das Gerät selbst adressiert (z. B. OSPF, BGP, SSH, SNMP). Sie müssen vom Route Processor verarbeitet werden, weil die Anwendungen dort auf Prozessebene laufen."
+    },
+    {
+        "id":  "slg-is-051",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does the term \u0027punt\u0027 describe on a Cisco router?",
+        "optionen":  [
+                         "Copying a packet to a SPAN destination for later analysis",
+                         "Moving a packet from the fast path to the slower path in the route processor",
+                         "Sending a packet back out of the interface on which it arrived",
+                         "Dropping a packet in hardware because an ACL entry denies it"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Pakete, die die CPU braucht (receive, exception, non-IP), werden aus dem schnellen CEF-/Hardware-Pfad an den Route Processor \u0027gepuntet\u0027. Dieser Pfad schafft deutlich weniger Pakete pro Sekunde."
+    },
+    {
+        "id":  "slg-is-052",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A router terminates an IPsec VPN tunnel. How are the ESP packets that are addressed to the router\u0027s own WAN address classified?",
+        "optionen":  [
+                         "Data plane packets with a transit destination",
+                         "Services plane packets with a receive destination",
+                         "Control plane packets used to build the routing table",
+                         "Management plane packets with a transit destination"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Verschlüsselung/Entschlüsselung ist \u0027high-touch\u0027 Verarbeitung der Services Plane. Am Tunnelendpunkt sind diese Pakete an den Router selbst gerichtet – also Ziel \u0027receive\u0027."
+    },
+    {
+        "id":  "slg-is-053",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which event is a non-malicious cause that can overwhelm a router\u0027s route processor?",
+        "optionen":  [
+                         "A flood of crafted packets aimed at the router\u0027s address",
+                         "Routing reconvergence after a major network failure",
+                         "A high rate of SSH login attempts from a botnet",
+                         "A spoofed BGP session reset from an external attacker"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Neben Angriffen können auch Fehlkonfiguration, Softwarefehler oder Rekonvergenz nach Ausfällen die CPU überlasten. Für den Router ist die Ursache egal – deshalb muss die Control Plane immer geschützt werden."
+    },
+    {
+        "id":  "slg-is-054",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is the punt path of a router much less capable than the fast path?",
+        "optionen":  [
+                         "The route processor is built for control tasks, not for forwarding high packet rates",
+                         "Punted packets must be fragmented to fit the route processor buffer size",
+                         "The punt path uses process switching only for IPv6 packets",
+                         "The punt path forwards packets only after a full ACL check on every interface"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Fast Path (CEF, Hardware) ist auf hohe Datenraten optimiert. Der Route Processor verarbeitet normalerweise nur wenige Control-/Management-Pakete und ist nicht für Weiterleitung großer Paketmengen ausgelegt."
+    },
+    {
+        "id":  "slg-is-055",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is a drawback of protecting the route processor only with interface ACLs?",
+        "optionen":  [
+                         "They cannot be applied inbound, so packets reach the route processor first",
+                         "They are ignored for packets that are destined to the router itself",
+                         "They can only match the source address and cannot identify routing protocols",
+                         "They must be configured on every interface and inspect all traffic, not only CPU-bound packets"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Interface-ACLs wirken auf jedes Paket aller Planes und müssen auf jedem Interface einzeln gepflegt werden – auf großen Routern mühsam. CoPP greift zentral nur Verkehr zur Control Plane ab."
+    },
+    {
+        "id":  "slg-is-056",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which traffic is affected by \u0027service-policy input COPP_policy\u0027 configured under \u0027control-plane\u0027?",
+        "optionen":  [
+                         "Only packets that leave the router on its WAN interfaces",
+                         "Only transit packets that are forwarded by CEF",
+                         "All packets that enter any interface of the router",
+                         "Only packets that are punted to the route processor"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Policy hängt an der virtuellen Control-Plane-Schnittstelle in Eingangsrichtung. Sie trifft nur Verkehr, der zur CPU geht (Receive-, Exception-, Non-IP-Pakete), nicht den Transitverkehr."
+    },
+    {
+        "id":  "slg-is-057",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In a CoPP policy, which packets end up in class-default?",
+        "optionen":  [
+                         "Only packets that are explicitly denied by an ACL in an earlier class",
+                         "No packets, because class-default must be configured with a match first",
+                         "Only transit packets, because CoPP classes match receive traffic",
+                         "All CPU-bound packets that match no earlier class, including non-IP packets"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "class-default steht automatisch am Ende und hat ein implizites \u0027match any\u0027. Alles zur CPU, was keine vorherige Klasse trifft, landet dort – auch Layer-2-Keepalives oder IS-IS."
+    },
+    {
+        "id":  "slg-is-058",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer configures \u0027class class-default\u0027 with \u0027police 8000 conform-action drop exceed-action drop\u0027 in the CoPP policy of an IS-IS router. What is the most likely consequence?",
+        "optionen":  [
+                         "IS-IS adjacencies and Layer 2 keepalives fail because those packets are all dropped",
+                         "Only traffic above 8 kbps in class-default is dropped, so routing stays stable",
+                         "Only transit traffic is dropped, while CPU-bound traffic is unaffected",
+                         "The policy is rejected because class-default cannot be policed in CoPP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Non-IP-Verkehr wie IS-IS und L2-Keepalives fällt in class-default. Mit drop für conform UND exceed wird alles verworfen – Nachbarschaften brechen weg. Daher class-default nie so policen."
+    },
+    {
+        "id":  "slg-is-059",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show policy-map\u0027 displays \u0027police cir 300000 bc 9375\u0027 although only \u0027police 300000\u0027 was configured. How was the burst value derived?",
+        "optionen":  [
+                         "Default Bc = CIR/32 in bytes, which equals 250 ms of traffic at the CIR",
+                         "Default Bc = CIR/1000 × 31.25, fixed for all control-plane policies",
+                         "Default Bc = CIR/32 in bits, which equals 32 ms of traffic at the CIR",
+                         "Default Bc = CIR/8 in bytes, which equals one second of traffic at the CIR"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beim Single-Rate-Policer setzt IOS Bc standardmäßig auf CIR/32 Byte (= 250 ms Verkehr): 300000/32 = 9375 Byte. Die Kursausgaben 100000→3125 und 50000→1562 bestätigen das."
+    },
+    {
+        "id":  "slg-is-060",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A CoPP class is configured with \u0027police 64000 conform-action transmit exceed-action drop\u0027. Which burst size will \u0027show policy-map\u0027 most likely display?",
+        "optionen":  [
+                         "bc 8000",
+                         "bc 640",
+                         "bc 1500",
+                         "bc 2000"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Default-Bc = CIR/32 in Byte = 64000/32 = 2000 Byte. Das liegt über dem Minimum von 1500 Byte, also bleibt es bei 2000."
+    },
+    {
+        "id":  "slg-is-061",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "For \u0027police 8000\u0027, \u0027show policy-map\u0027 shows \u0027bc 1500\u0027 instead of 250 bytes (8000/32). Why?",
+        "optionen":  [
+                         "IOS enforces a minimum default burst of 1500 bytes",
+                         "The burst equals the size of the first packet that was policed",
+                         "IOS rounds every burst up to the interface MTU of the slowest port",
+                         "The burst is always 1500 bytes for ICMP classes in CoPP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein Burst kleiner als ein volles Paket wäre unbrauchbar. Deshalb setzt IOS beim Default-Bc mindestens 1500 Byte – im Lab bei 8000 und 12000 bps sichtbar."
+    },
+    {
+        "id":  "slg-is-062",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "During a ping flood from PC1, \u0027show policy-map control-plane\u0027 shows for COPP-MAP-ICMP: \u0027conformed 508 packets … actions: transmit\u0027 and \u0027exceeded 39 packets … actions: drop\u0027. What happened to the 39 packets?",
+        "optionen":  [
+                         "They were remarked and processed with lower CPU priority",
+                         "CoPP dropped them before they reached the route processor",
+                         "They were forwarded in the fast path instead of the CPU",
+                         "They were delayed in a queue and sent to the CPU later"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Pakete über der Rate (8 kbps) werden per exceed-action drop verworfen – sie erreichen die CPU nie. Ein Policer puffert nicht. PC1 sieht dafür einzelne \u0027.\u0027 im Ping."
+    },
+    {
+        "id":  "slg-is-063",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A CoPP class COPP-MGMT references an ACL with \u002710 deny tcp host 10.1.1.50 any eq 22\u0027 and \u002720 permit tcp any any eq 22\u0027. How is an SSH packet from 10.1.1.50 to the router handled?",
+        "optionen":  [
+                         "It matches COPP-MGMT, but its police action is skipped for this host",
+                         "It does not match COPP-MGMT and is evaluated against the following classes",
+                         "It bypasses CoPP and all later classes and goes straight to the CPU",
+                         "It is dropped by CoPP because the ACL entry for this host is a deny"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "In MQC bedeutet ein ACL-deny nur \u0027gehört nicht zu dieser Klasse\u0027. Das Paket wird gegen die nächsten Klassen geprüft und landet notfalls in class-default (und wird dort ggf. gepolict). Der Kurs formuliert hier ungenau \u0027ungepolict zur CPU\u0027."
+    },
+    {
+        "id":  "slg-is-064",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Right after CoPP is enabled on R1, \u0027show access-lists\u0027 shows hits on COPP-OSPF and COPP-VRRP, but none on COPP-ICMP and COPP-TELNET. What explains this?",
+        "optionen":  [
+                         "Counters for ICMP and Telnet appear only after \u0027clear counters\u0027",
+                         "CoPP processes routing protocols first and other classes only later",
+                         "The ICMP and Telnet ACLs are wrong and can never match any packet",
+                         "OSPF and VRRP hellos from R2 arrive continuously without any test traffic"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "OSPF und VRRP laufen bereits zwischen R1 und R2 und senden periodisch Hellos/Advertisements an R1. ICMP und Telnet entstehen erst, wenn PC1 Testverkehr erzeugt."
+    },
+    {
+        "id":  "slg-is-065",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In the CoPP lab, class-default shows a large number of matching packets. What is the recommended way to find out what this traffic is?",
+        "optionen":  [
+                         "Apply the CoPP policy as an output policy to the busiest interface",
+                         "Remove class-default from the policy so that the traffic becomes visible",
+                         "Police class-default with conform and exceed drop and see which protocol fails",
+                         "Add a catch-all class with its own ACL before class-default and watch its counters"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Eine Catch-all-Klasse (ACL mit permit tcp/udp/icmp/ip any any) vor class-default macht den Rest sichtbar. Mit \u0027clear access-list counters\u0027 und \u0027show access-lists\u0027 lässt sich der Verkehr analysieren und klassifizieren."
+    },
+    {
+        "id":  "slg-is-066",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On a Catalyst 9300 switch without any user CoPP configuration, \u0027show policy-map control-plane\u0027 displays the policy \u0027system-cpp-policy\u0027. Why?",
+        "optionen":  [
+                         "It is a placeholder that does not police any traffic until edited",
+                         "The policy appears only after a CPU overload has been detected",
+                         "CoPP is enabled by default with a system-defined policy on this platform",
+                         "The switch inherited the policy from Cisco Catalyst Center automatically"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Auf Catalyst-9000-Switches ist CoPP ab Werk mit der System-Policy \u0027system-cpp-policy\u0027 aktiv und schützt die CPU. Die Raten der Systemklassen lassen sich anpassen."
+    },
+    {
+        "id":  "slg-is-067",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show class-map\u0027 lists \u0027Class Map match-all COPP-MAP-ICMP\u0027 with one line \u0027Match access-group name COPP-ICMP\u0027. Why does the match-all setting have no special effect here?",
+        "optionen":  [
+                         "match-all is ignored in CoPP because only ACLs can be referenced",
+                         "With only one match statement, match-all and match-any behave the same",
+                         "The ACL overrides the class-map setting and uses match-any logic",
+                         "match-all applies only to class-default in control-plane policies"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "match-all verknüpft mehrere match-Zeilen mit UND, match-any mit ODER. Bei nur einer Bedingung ist das Ergebnis identisch. Ohne Angabe ist match-all der Default."
+    },
+    {
+        "id":  "slg-is-068",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which capability does CoPP offer that a simple interface ACL does not?",
+        "optionen":  [
+                         "Logging denied packets with a syslog message per flow",
+                         "Matching packets by source and destination port numbers",
+                         "Rate-limiting permitted traffic that goes to the route processor",
+                         "Filtering packets in both the inbound and outbound direction"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "CoPP kann erwünschten, aber niedrig priorisierten Verkehr erlauben und gleichzeitig per Policer begrenzen. So werden Floods abgeschwächt, ohne den Dienst ganz zu sperren. Ports, Logging und Richtungen beherrschen ACLs auch."
+    },
+    {
+        "id":  "slg-is-069",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In the CoPP lab, which configuration mode is used to attach the policy map ROUTER-COPP-POLICY?",
+        "optionen":  [
+                         "Policy-map configuration mode, entered with \u0027policy-map\u0027",
+                         "Control-plane configuration mode, entered with \u0027control-plane\u0027",
+                         "Line configuration mode, entered with \u0027line vty 0 4\u0027",
+                         "Interface configuration mode of every routed interface"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit \u0027control-plane\u0027 gelangt man in den Modus (config-cp), in dem \u0027service-policy input ROUTER-COPP-POLICY\u0027 die Policy an die virtuelle Control-Plane-Schnittstelle bindet."
+    },
+    {
+        "id":  "slg-is-070",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the CoPP lab, PC1 runs \u0027ping 10.1.1.1 repeat 1000\u0027 and sees \u0027.!!!!!!!!!!!!!.!!!!\u0027 with a 92 percent success rate, while a Telnet session to R1 works normally. What explains the result?",
+        "optionen":  [
+                         "ICMP is policed to 8 kbps; Telnet has its own class with 100 kbps",
+                         "R1 rate-limits all traffic to 8 kbps, but Telnet uses TCP retransmits",
+                         "The ping is dropped by an interface ACL, and Telnet bypasses it",
+                         "The VRRP backup role of R1 causes it to answer only some pings"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die ICMP-Klasse ist mit 8 kbps sehr knapp gepolict; Überschuss wird verworfen (\u0027.\u0027). Telnet fällt in eine eigene Klasse mit 100 kbps und bleibt ohne Drops."
+    },
+    {
+        "id":  "slg-is-071",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which statement describes control plane packets according to the course?",
+        "optionen":  [
+                         "They require high-touch handling such as encryption or GRE encapsulation",
+                         "They are used to manage devices, for example with SSH or SNMP",
+                         "They are user-generated packets that are forwarded between end stations",
+                         "They are generated or received by network devices to build and operate the network"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Control-Plane-Pakete (z. B. ARP, OSPF, BGP) \u0027kleben\u0027 das Netz zusammen. Endgeräteverkehr ist Data Plane, Verschlüsselung/GRE Services Plane, SSH/SNMP Management Plane."
+    },
+    {
+        "id":  "slg-is-072",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which command applies the named ACL WWW-ACCESS to filter traffic entering interface Gi0/0?",
+        "optionen":  [
+                         "ip access-class WWW-ACCESS in",
+                         "service-policy input WWW-ACCESS",
+                         "ip access-group WWW-ACCESS in",
+                         "access-group WWW-ACCESS input"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Named und nummerierte ACLs werden gleich angewendet: \u0027ip access-group \u003cname|nr\u003e in|out\u0027 im Interface-Modus. access-class gilt für Lines, service-policy für MQC-Policies."
+    },
+    {
+        "id":  "slg-is-073",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The wildcard mask 0.0.0.3 is used with the address 198.51.100.0. Which addresses are matched?",
+        "optionen":  [
+                         "198.51.100.3 only",
+                         "198.51.100.0 through 198.51.100.252",
+                         "198.51.100.0 through 198.51.100.3",
+                         "198.51.100.0 and 198.51.100.3 only"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "0.0.0.3 ignoriert die letzten 2 Bits: vier Adressen .0 bis .3 – passend für ein /30-Transfernetz wie zwischen R1 und R2 im Lab."
+    },
+    {
+        "id":  "slg-is-074",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An inbound extended ACL on R1\u0027s internet interface permits web replies with \u0027permit tcp any eq www 10.10.1.0 0.0.0.255 established\u0027 and ends with \u0027deny ip any any\u0027. Users can open HTTP sites but HTTPS sites time out. What is the fix?",
+        "optionen":  [
+                         "Add \u0027permit tcp 10.10.1.0 0.0.0.255 any eq 443\u0027 before the deny",
+                         "Replace \u0027eq www\u0027 with \u0027range www 443\u0027 on the existing entry",
+                         "Add \u0027permit tcp any eq 443 10.10.1.0 0.0.0.255 established\u0027 before the deny",
+                         "Add \u0027permit udp any eq 443 10.10.1.0 0.0.0.255\u0027 before the deny"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Inbound kommen die HTTPS-Antworten mit Quellport 443 an. Dafür braucht es eine eigene established-Zeile mit \u0027eq 443\u0027 hinter der Quelle. \u0027range www 443\u0027 würde auch alle Ports dazwischen öffnen."
+    },
+    {
+        "id":  "slg-is-075",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Before applying ACLs in Discovery 25, the engineer uses \u0027telnet srv1 80\u0027 and \u0027telnet srv1 443\u0027 from PC1. Why?",
+        "optionen":  [
+                         "To create entries in the ACL counters that serve as a baseline for \u0027established\u0027",
+                         "To verify that the TCP services work before filtering, so later failures can be attributed to the ACL",
+                         "To check whether the router translates the port numbers into keywords",
+                         "To configure the web server ports on SRV1 remotely before the ACL is applied"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Vor dem Filtern wird die Grundfunktion geprüft. Telnet auf Port 80/443 ist ein einfacher TCP-Porttest (\u0027Open\u0027). So weiß man später, dass ein Ausfall an der ACL liegt und nicht am Netz."
+    },
+    {
+        "id":  "slg-is-076",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "How are sequence numbers assigned when entries are added to a named ACL without specifying numbers?",
+        "optionen":  [
+                         "Starting at 10 and incrementing by 10",
+                         "Starting at 5 and incrementing by 5",
+                         "Starting at 100 and incrementing by 100",
+                         "Starting at 1 and incrementing by 1"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "IOS vergibt automatisch 10, 20, 30 … So bleibt Platz, um später Einträge wie 5 oder 15 dazwischen einzufügen."
+    },
+    {
+        "id":  "slg-is-077",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Named ACL Subnet_ONLY has entries numbered 5, 6, 7 and 10 after several insertions. The engineer wants to renumber them to 10, 20, 30 and 40 without a reload. Which command is used?",
+        "optionen":  [
+                         "ip access-list standard Subnet_ONLY renumber 10",
+                         "clear access-list Subnet_ONLY sequence 10 10",
+                         "access-list Subnet_ONLY sequence 10 increment 10",
+                         "ip access-list resequence Subnet_ONLY 10 10"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027ip access-list resequence \u003cacl\u003e \u003cstart\u003e \u003cincrement\u003e\u0027 (globaler Modus) nummeriert die Einträge neu, ohne ihre Reihenfolge zu ändern."
+    },
+    {
+        "id":  "slg-is-078",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does CoPP model the control plane of a router?",
+        "optionen":  [
+                         "As an additional VLAN that carries only routing protocol traffic",
+                         "As a hardware queue on each line card that holds punted packets",
+                         "As a separate entity with its own virtual ingress and egress ports",
+                         "As a loopback interface that receives a copy of every packet"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "CoPP behandelt die Control Plane wie ein eigenes Gerät mit virtueller Ein- und Ausgangsschnittstelle. Darauf wird eine MQC-Policy angewendet, die für alle physischen Interfaces gemeinsam gilt."
+    },
+    {
+        "id":  "slg-is-079",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A router shows \u0027%CP-5-FEATURE: Control-plane Policing feature enabled on Control plane aggregate path\u0027. Which command triggered this message?",
+        "optionen":  [
+                         "policy-map ROUTER-COPP-POLICY in global configuration mode",
+                         "class-map COPP-MAP-ICMP in global configuration mode",
+                         "service-policy input ROUTER-COPP-POLICY in control-plane mode",
+                         "ip access-group COPP-ICMP in on the physical interface"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "CoPP ist erst aktiv, wenn die Policy mit \u0027service-policy input\u0027 unter \u0027control-plane\u0027 angewendet wird. Dann meldet IOS die Aktivierung auf dem aggregierten Control-Plane-Pfad."
+    },
+    {
+        "id":  "slg-is-080",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the course example, ACL 100 permits SNMP, HTTP, HTTPS and SSH and is used in COPP_class with \u0027police 300000\u0027. \u0027show access-lists 100\u0027 shows matches only on the SNMP and SSH lines. What does this indicate?",
+        "optionen":  [
+                         "SNMP and SSH exceeded the 300-kbps rate and were counted as violations",
+                         "SNMP and SSH were dropped, while HTTP and HTTPS were permitted to the CPU",
+                         "Only SNMP and SSH are valid in CoPP; the HTTP lines are ignored by IOS",
+                         "SNMP polls and an SSH session reached R1 and were subject to the 300-kbps policer"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "ACL-Treffer zeigen, welcher Verkehr in COPP_class klassifiziert wurde: ein SNMP-Manager hat gepollt, eine SSH-Sitzung wurde aufgebaut. Ob conform oder exceed, zeigt erst \u0027show policy-map control-plane\u0027."
+    },
+    {
+        "id":  "slg-is-081",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which police statement limits CoPP class-default to 50 packets per second and drops the excess?",
+        "optionen":  [
+                         "police rate 50 pps conform-action transmit exceed-action transmit",
+                         "police 50 conform-action transmit exceed-action drop",
+                         "police rate 50 pps conform-action transmit exceed-action drop",
+                         "police rate 50 bps conform-action drop exceed-action transmit"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027police rate \u003cn\u003e pps\u0027 begrenzt nach Paketen pro Sekunde. Ohne \u0027rate … pps\u0027 wäre der Wert 50 bps. Conform muss transmit, exceed drop sein – mit exceed transmit würde nichts verworfen."
+    },
+    {
+        "id":  "slg-is-082",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What happens to a packet that is checked against an ACL and matches an entry in the middle of the list?",
+        "optionen":  [
+                         "The packet is checked against the implicit deny as a final step",
+                         "The packet is permitted only if no later entry denies it",
+                         "The action of that entry is applied and no further entries are checked",
+                         "The remaining entries are checked to find a more specific match"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "First Match: Sobald eine Zeile passt, wird ihre Aktion (permit/deny) ausgeführt und die Prüfung endet. Es gibt keine \u0027Longest Match\u0027-Logik wie beim Routing."
+    },
+    {
+        "id":  "slg-is-083",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Hosts in 10.1.1.0/24 must reach web servers anywhere, and all other traffic from this subnet must be blocked. An extended ACL is applied inbound on the LAN interface. Which ACL achieves this?",
+        "optionen":  [
+                         "permit tcp any eq 80 10.1.1.0 0.0.0.255 / permit tcp any eq 443 10.1.1.0 0.0.0.255",
+                         "permit ip 10.1.1.0 0.0.0.255 any / deny tcp 10.1.1.0 0.0.0.255 any neq 80",
+                         "permit tcp 10.1.1.0 0.0.0.255 eq 80 any / permit tcp 10.1.1.0 0.0.0.255 eq 443 any",
+                         "permit tcp 10.1.1.0 0.0.0.255 any eq 80 / permit tcp 10.1.1.0 0.0.0.255 any eq 443"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Inbound am LAN kommen die Anfragen der Clients: Quelle 10.1.1.0/24, Zielport 80/443. Alles andere fällt auf das implizite deny. Die anderen Varianten prüfen den Quellport oder erlauben zuerst allen IP-Verkehr."
+    },
+    {
+        "id":  "slg-is-084",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Why is it considered best practice not to rate-limit class-default in a CoPP policy, even though the lab does it as an example?",
+        "optionen":  [
+                         "class-default carries only transit traffic, so policing it has no benefit",
+                         "IOS automatically polices class-default to the lowest class rate",
+                         "Required traffic such as Layer 2 keepalives and non-IP packets falls into it",
+                         "Policing class-default disables the counters of all other classes"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Was keine Klasse trifft – u. a. L2-Keepalives oder IS-IS – landet in class-default. Ein zu knapper Policer dort gefährdet den Netzbetrieb, deshalb wird class-default meist nicht oder nur großzügig begrenzt."
+    },
+    {
+        "id":  "slg-is-085",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In global configuration mode, an engineer enters \u0027ip access-list standard 10\u0027. What happens?",
+        "optionen":  [
+                         "IOS converts ACL 10 into an extended ACL and enters config-ext-nacl",
+                         "IOS creates a second, independent ACL called \u002710\u0027 next to numbered ACL 10",
+                         "IOS rejects the command because named ACLs must not start with a digit",
+                         "IOS enters ACL configuration mode to edit numbered ACL 10 with sequence numbers"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Auch nummerierte ACLs können im ACL-Konfigurationsmodus angelegt und bearbeitet werden – die Nummer steht dann an Stelle des Namens. So kann man Einzelzeilen mit Sequenznummern einfügen oder löschen."
+    },
+    {
+        "id":  "slg-is-086",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "When implementing CoPP, which MQC action is used in the policy map to control how much traffic of a class reaches the CPU?",
+        "optionen":  [
+                         "shape",
+                         "priority",
+                         "police",
+                         "bandwidth"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei CoPP ist Policing die maßgebliche Aktion: Rate (bps oder pps) plus conform-/exceed-Aktion. Shaping und Queuing (bandwidth, priority) sind für die Control Plane nicht gedacht."
+    },
+    {
+        "id":  "slg-is-087",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which ACL entry type should be placed first when an ACL contains both a host entry and a network entry that includes this host?",
+        "optionen":  [
+                         "Either one, because IOS sorts entries by prefix length",
+                         "The host entry, because the first matching entry wins",
+                         "The network entry, because IOS checks the broadest match first",
+                         "Either one, because deny entries are always evaluated first"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "IOS prüft streng in der Reihenfolge der Sequenznummern. Steht der Netzeintrag zuerst, greift der Host-Eintrag nie. Daher spezifisch vor allgemein."
+    },
+    {
+        "id":  "slg-is-088",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A CoPP policy contains a class for ICMP policed at 8000 bps with exceed-action drop. \u0027show policy-map control-plane\u0027 shows for this class \u0027exceeded 0 packets\u0027 and \u00270 packets, 0 bytes\u0027, but users report that R1 answers no pings at all. Where should the engineer look first?",
+        "optionen":  [
+                         "At an interface ACL or another filter that drops ICMP before CoPP sees it",
+                         "At class-default, because ICMP is always policed there first",
+                         "At the policer, because exceeded counters are only updated every 5 minutes",
+                         "At the VRRP configuration, because the backup router ignores ICMP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Zählt die ICMP-Klasse gar keine Pakete, erreichen die Pings die Control Plane nicht. Inbound-Interface-ACLs werden vorher ausgewertet – dort (oder auf dem Pfad) liegt die Ursache, nicht beim Policer."
+    },
+    {
+        "id":  "slg-is-089",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which statement about the implicit deny at the end of an ACL is correct?",
+        "optionen":  [
+                         "It is shown as the last line with its own hit counter",
+                         "It is not shown in \u0027show access-lists\u0027 and has no hit counter",
+                         "It can be disabled with \u0027no deny any\u0027 in ACL configuration mode",
+                         "It applies only to extended ACLs, not to standard ACLs"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Das implizite deny gilt für jede ACL, ist aber unsichtbar und zählt nichts. Wer Treffer sehen will, setzt ein explizites deny ans Ende."
+    },
+    {
+        "id":  "slg-is-090",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which pair of packets are both examples of exception IP packets that must be handled by the route processor?",
+        "optionen":  [
+                         "CDP advertisements and PPP LCP frames on serial links",
+                         "Packets with IP options and packets with expired TTL",
+                         "CEF-switched transit packets and GRE-encapsulated packets",
+                         "SNMP polls and SSH sessions sent to the router itself"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Exception-IP-Pakete sind z. B. Pakete mit IP-Optionen, abgelaufener TTL oder unerreichbarem Ziel. CDP/LCP sind Non-IP, SNMP/SSH sind normale Receive-Pakete."
+    },
+    {
+        "id":  "slg-is-091",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which three statements describe how IOS processes an IPv4 ACL? (Choose three.)",
+        "optionen":  [
+                         "Entries are evaluated from the top down in sequence-number order",
+                         "All entries are evaluated and deny entries take precedence",
+                         "The entry with the longest matching prefix is selected",
+                         "Packets that match no entry are denied",
+                         "Processing stops at the first entry that matches the packet"
+                     ],
+        "richtig":  [
+                        0,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Top-down, first match, implizites deny am Ende. Es gibt weder Longest Match noch eine Bevorzugung von deny – allein die Reihenfolge zählt."
+    },
+    {
+        "id":  "slg-is-092",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two commands create valid standard ACL entries? (Choose two.)",
+        "optionen":  [
+                         "access-list 1 deny 10.0.0.0 0.255.255.255 any",
+                         "access-list 100 permit 10.0.0.0 0.255.255.255",
+                         "access-list 1 permit host 192.168.1.10",
+                         "access-list 1 permit tcp any any eq 22",
+                         "access-list 99 deny 10.0.0.0 0.255.255.255"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Standard-ACLs (1–99, 1300–1999) nehmen nur eine Quelle mit Wildcard bzw. \u0027host\u0027/\u0027any\u0027. 100 ist Extended und verlangt ein Protokoll; Protokoll- und Zielangaben sind in Standard-ACLs nicht erlaubt."
+    },
+    {
+        "id":  "slg-is-093",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which three are non-IP packets that a router must still process in its route processor? (Choose three.)",
+        "optionen":  [
+                         "SNMP get requests",
+                         "IS-IS hello packets",
+                         "OSPF hello packets",
+                         "PPP LCP packets",
+                         "CDP advertisements"
+                     ],
+        "richtig":  [
+                        1,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "CDP, IS-IS und PPP LCP laufen nicht über IP (ebenso L2-Keepalives) und müssen vom RP verarbeitet werden. OSPF (IP-Protokoll 89) und SNMP (UDP) sind IP-basierte Receive-Pakete."
+    },
+    {
+        "id":  "slg-is-094",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about inbound and outbound ACLs are true? (Choose two.)",
+        "optionen":  [
+                         "Inbound ACLs are processed before the routing lookup",
+                         "Outbound ACLs are processed before the routing lookup",
+                         "Only one direction can be filtered per interface",
+                         "Outbound ACLs are processed after the exit interface is chosen",
+                         "Inbound ACLs can only be standard ACLs"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Inbound: Prüfung vor dem Routing. Outbound: erst Routing-Lookup, dann ACL des Ausgangsinterfaces. Pro Interface ist je eine ACL für in und für out möglich, Standard wie Extended."
+    },
+    {
+        "id":  "slg-is-095",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "An inbound named ACL on R1\u0027s internet interface currently permits only HTTP replies to 10.10.1.0/24 and ends with \u0027deny ip any any\u0027. Users must also be able to browse HTTPS sites by name using DNS server 203.0.113.30. Which two entries must be added before the deny? (Choose two.)",
+        "optionen":  [
+                         "permit udp host 203.0.113.30 eq domain 10.10.1.0 0.0.0.255",
+                         "permit tcp any eq 443 10.10.1.0 0.0.0.255 established",
+                         "permit tcp any 10.10.1.0 0.0.0.255 eq 443",
+                         "permit tcp 10.10.1.0 0.0.0.255 any eq 443",
+                         "permit udp 10.10.1.0 0.0.0.255 host 203.0.113.30 eq domain"
+                     ],
+        "richtig":  [
+                        0,
+                        1
+                    ],
+        "erklaerung":  "Inbound kommen nur Antworten an: HTTPS mit Quellport 443 (established) und DNS mit Quellport 53 vom Server. Einträge mit Quelle 10.10.1.0/24 passen inbound nie; \u0027eq 443\u0027 am Ziel würde neue Verbindungen zu Port 443 im LAN erlauben."
+    },
+    {
+        "id":  "slg-is-096",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about class-default in a CoPP policy map are true? (Choose two.)",
+        "optionen":  [
+                         "It implicitly matches all packets that no other class matched",
+                         "It can reference an ACL with \u0027match access-group\u0027",
+                         "It must be configured explicitly before the policy can be applied",
+                         "It is automatically added as the last class of the policy",
+                         "It drops all packets unless a police action is configured"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "class-default steht immer automatisch am Ende und hat ein implizites \u0027match any\u0027. Ohne Aktion wird sein Verkehr einfach durchgelassen; eigene Match-Kriterien sind nicht möglich."
+    },
+    {
+        "id":  "slg-is-097",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "According to the course, which three protocols are management plane traffic? (Choose three.)",
+        "optionen":  [
+                         "ARP",
+                         "SSH",
+                         "SNMP",
+                         "OSPF",
+                         "NTP"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Management Plane: Telnet, SSH, TFTP, SNMP, FTP, NTP – Protokolle zur Verwaltung. OSPF und ARP gehören zur Control Plane."
+    },
+    {
+        "id":  "slg-is-098",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "\u0027show policy-map control-plane\u0027 on R1 shows:\n\nClass-map: COPP-MAP-ICMP (match-all)\n  547 packets, 62358 bytes\n  police: cir 8000 bps, bc 1500 bytes\n    conformed 508 packets; actions: transmit\n    exceeded 39 packets; actions: drop\nClass-map: COPP-MAP-TELNET (match-all)\n  18 packets, 1089 bytes\n  police: cir 100000 bps, bc 3125 bytes\n    conformed 18 packets; actions: transmit\n    exceeded 0 packets; actions: drop\n\nWhich two statements are correct? (Choose two.)",
+        "optionen":  [
+                         "508 ICMP packets were dropped because they conformed",
+                         "The ICMP class has a burst of 8000 bytes",
+                         "39 ICMP packets were dropped before reaching the CPU",
+                         "The Telnet class dropped 18 packets because of the policer",
+                         "All Telnet packets were delivered to the control plane"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Exceeded-Pakete der ICMP-Klasse (39) wurden verworfen, conformed (508) gesendet. Telnet hat 0 exceeded – alle 18 Pakete kamen an. Der Burst der ICMP-Klasse ist 1500 Byte."
+    },
+    {
+        "id":  "slg-is-099",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two are advantages of CoPP compared to protecting the route processor with interface ACLs? (Choose two.)",
+        "optionen":  [
+                         "It also filters transit traffic before it reaches the fast path",
+                         "One policy protects the control plane regardless of the ingress interface",
+                         "It replaces the need for any routing protocol authentication",
+                         "Allowed control plane traffic can be rate-limited instead of only permitted",
+                         "It works without classifying traffic into classes"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "CoPP wird einmal an der Control Plane angewendet und kann erlaubten Verkehr zusätzlich begrenzen. Transitverkehr bleibt unberührt, und ohne Klassifizierung über class-maps geht es nicht."
+    },
+    {
+        "id":  "slg-is-100",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "R1 shows:\n\nStandard IP access list VTY-ACCESS\n    10 permit 10.10.1.10 (2 matches)\n    20 deny   any log (1 match)\n\nThe ACL is applied with \u0027access-class VTY-ACCESS in\u0027 on \u0027line vty 0 4\u0027. Which two statements are correct? (Choose two.)",
+        "optionen":  [
+                         "One vty connection attempt from another source was refused",
+                         "Host 10.10.1.10 has opened vty sessions to R1",
+                         "Line 20 is redundant because it has the same effect without counting",
+                         "Two connections from 10.10.1.10 were denied and logged",
+                         "The ACL also filters transit Telnet traffic through R1"
+                     ],
+        "richtig":  [
+                        0,
+                        1
+                    ],
+        "erklaerung":  "Zeile 10 hat Treffer von PC1, Zeile 20 einen Treffer (abgewiesener Versuch, z. B. PC2). access-class filtert nur Verbindungen zu den vty-Lines. Zeile 20 wirkt zwar wie das implizite deny, liefert aber Log und Zähler."
+    },
+    {
+        "id":  "slg-is-101",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Client 10.1.1.10 opens a web connection (TCP source port 51000) to server 203.0.113.80 on port 80. Which two ACEs match the first segment (SYN) of this connection? (Choose two.)",
+        "optionen":  [
+                         "permit tcp any eq 80 any",
+                         "permit tcp 10.1.1.0 0.0.0.255 any established",
+                         "permit tcp 10.1.1.0 0.0.0.255 any eq www",
+                         "permit udp any any eq 80",
+                         "permit tcp host 10.1.1.10 gt 1023 any eq 80"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Der SYN hat Quellport 51000 (\u003e 1023) und Zielport 80 – beide ersten Einträge passen. \u0027established\u0027 verlangt ACK/RST, \u0027eq 80\u0027 hinter der Quelle prüft den Quellport, und UDP passt nicht zu TCP."
+    },
+    {
+        "id":  "slg-is-102",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three standard ACL entries match only the single host 10.1.1.10? (Choose three.)",
+        "optionen":  [
+                         "access-list 1 permit host 10.1.1.10",
+                         "access-list 1 permit 10.1.1.10",
+                         "access-list 1 permit 10.1.1.10 0.0.0.255",
+                         "access-list 1 permit 10.1.1.10 0.0.0.0",
+                         "access-list 1 permit 10.1.1.10 255.255.255.255"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        3
+                    ],
+        "erklaerung":  "\u0027host x\u0027, \u0027x 0.0.0.0\u0027 und – nur bei Standard-ACLs – \u0027x\u0027 ohne Wildcard sind gleichwertig. Wildcard 255.255.255.255 entspricht \u0027any\u0027, 0.0.0.255 dem ganzen /24."
+    },
+    {
+        "id":  "slg-is-103",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about the \u0027established\u0027 keyword are true? (Choose two.)",
+        "optionen":  [
+                         "It matches the initial SYN segment of a new connection",
+                         "It matches TCP segments that have the ACK or RST bit set",
+                         "It keeps a session table of all connections through the router",
+                         "It can also be used with UDP to permit DNS replies",
+                         "It is used to permit return traffic of connections started from inside"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "\u0027established\u0027 prüft nur TCP-Flags (ACK/RST) und eignet sich für Rückverkehr. Es führt keine Sitzungstabelle, gilt nicht für UDP und trifft ein reines SYN nicht."
+    },
+    {
+        "id":  "slg-is-104",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two commands help an engineer tune the ACLs used for CoPP classification? (Choose two.)",
+        "optionen":  [
+                         "show interfaces trunk",
+                         "clear access-list counters",
+                         "show access-lists",
+                         "show ip ospf neighbor",
+                         "show ip route"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Zähler zurücksetzen und dann mit \u0027show access-lists\u0027 beobachten, welcher Verkehr welche CoPP-ACL trifft – vor allem die Catch-all-ACL zeigt übersehenen Verkehr."
+    },
+    {
+        "id":  "slg-is-105",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Traffic falling into a new CoPP catch-all class should be investigated. Which three outcomes are possible? (Choose three.)",
+        "optionen":  [
+                         "It is legitimate traffic that is acceptable in the catch-all class",
+                         "It is IPv6 traffic that CoPP cannot classify at all",
+                         "It is legitimate receive traffic that was overlooked in the other class ACLs",
+                         "It is transit traffic that CoPP will forward in the fast path",
+                         "It is attack traffic that should be dropped"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Der Kurs nennt drei Fälle: übersehener legitimer Receive-Verkehr (eigene Klasse anlegen), Angriffsverkehr (verwerfen) oder legitimer Rest (im Catch-all lassen)."
+    },
+    {
+        "id":  "slg-is-106",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The keyword \u0027any\u0027 in an ACL is equivalent to the address 0.0.0.0 with the wildcard mask ___.",
+        "optionen":  [
+                         "0.0.0.255",
+                         "255.255.255.0",
+                         "255.255.255.255",
+                         "0.0.0.0"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Wildcard 255.255.255.255 = alle Bits egal → jede Adresse. \u0027host x\u0027 entspricht dagegen x 0.0.0.0."
+    },
+    {
+        "id":  "slg-is-107",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "To match the subnet 192.168.50.8/29, an ACE uses \u0027192.168.50.8 ___\u0027.",
+        "optionen":  [
+                         "0.0.0.7",
+                         "0.0.0.29",
+                         "0.0.0.8",
+                         "0.0.0.3"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "/29 = Maske 255.255.255.248 → Wildcard 0.0.0.7 (8 Adressen, .8 bis .15)."
+    },
+    {
+        "id":  "slg-is-108",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "After entering \u0027ip access-list extended WWW-ACCESS\u0027, the prompt changes to Branch(___)#.",
+        "optionen":  [
+                         "config-acl",
+                         "config-if",
+                         "config-std-nacl",
+                         "config-ext-nacl"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Extended Named ACLs werden im Modus config-ext-nacl bearbeitet, Standard Named ACLs in config-std-nacl."
+    },
+    {
+        "id":  "slg-is-109",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "VRRP advertisements are sent to the multicast address ___.",
+        "optionen":  [
+                         "224.0.0.10",
+                         "224.0.0.5",
+                         "224.0.0.18",
+                         "224.0.0.102"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "VRRP nutzt 224.0.0.18 (IP-Protokoll 112). 224.0.0.5 ist OSPF, 224.0.0.10 EIGRP, 224.0.0.102 HSRPv2."
+    },
+    {
+        "id":  "slg-is-110",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The \u0027established\u0027 keyword matches TCP segments in which the ACK or the ___ flag is set.",
+        "optionen":  [
+                         "RST",
+                         "SYN",
+                         "URG",
+                         "FIN"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "ACK oder RST zeigen, dass das Segment zu einer bestehenden Verbindung gehört. Ein reines SYN (Verbindungsaufbau) wird nicht erfasst."
+    },
+    {
+        "id":  "slg-is-111",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "For \u0027police 100000\u0027 without an explicit burst, \u0027show policy-map\u0027 displays \u0027cir 100000 bc ___\u0027.",
+        "optionen":  [
+                         "12500",
+                         "1500",
+                         "3125",
+                         "100000"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Default-Bc = CIR/32 Byte = 100000/32 = 3125 Byte (250 ms Verkehr) – so auch in der Lab-Ausgabe für die Telnet-Klasse."
+    },
+    {
+        "id":  "slg-is-112",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The ACE \u0027permit tcp any any ___ 1023\u0027 matches all TCP destination ports from 1024 to 65535.",
+        "optionen":  [
+                         "lt",
+                         "eq",
+                         "gt",
+                         "neq"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "gt (greater than) 1023 = 1024 bis 65535. lt 1023 wäre 0–1022, neq 1023 alles außer 1023."
+    },
+    {
+        "id":  "slg-is-113",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Moving a packet from the fast path to the route processor for processing is called a ___.",
+        "optionen":  [
+                         "drop",
+                         "punt",
+                         "glean",
+                         "bypass"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027Punt\u0027 bezeichnet das Weiterreichen eines Pakets aus dem CEF-/Hardware-Pfad an die CPU des Route Processors."
+    },
+    {
+        "id":  "slg-is-114",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "To police a CoPP class by packet rate instead of bit rate, the command \u0027police rate 50 ___\u0027 is used.",
+        "optionen":  [
+                         "kbps",
+                         "cps",
+                         "pps",
+                         "bps"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027police rate \u003cn\u003e pps\u0027 begrenzt Pakete pro Sekunde – sinnvoll für die CPU, deren Last eher von der Paketanzahl als von der Bitrate abhängt."
+    },
+    {
+        "id":  "slg-is-115",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Without a reload, the entries of a named ACL are renumbered with \u0027ip access-list ___ NAME 10 10\u0027.",
+        "optionen":  [
+                         "renumber",
+                         "resequence",
+                         "reorder",
+                         "sequence"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027ip access-list resequence \u003cacl\u003e \u003cstart\u003e \u003cincrement\u003e\u0027 vergibt neue Sequenznummern bei unveränderter Reihenfolge."
+    },
+    {
+        "id":  "slg-is-116",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die ACL-Nummer dem ACL-Typ zu.",
+        "paare":  [
+                      [
+                          "50",
+                          "Standard (Basisbereich)"
+                      ],
+                      [
+                          "150",
+                          "Extended (Basisbereich)"
+                      ],
+                      [
+                          "1500",
+                          "Standard (erweiterter Bereich)"
+                      ],
+                      [
+                          "2500",
+                          "Extended (erweiterter Bereich)"
+                      ]
+                  ],
+        "erklaerung":  "Standard: 1–99 und 1300–1999. Extended: 100–199 und 2000–2699."
+    },
+    {
+        "id":  "slg-is-117",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Präfixlänge der passenden Wildcard-Maske zu.",
+        "paare":  [
+                      [
+                          "/24",
+                          "0.0.0.255"
+                      ],
+                      [
+                          "/26",
+                          "0.0.0.63"
+                      ],
+                      [
+                          "/20",
+                          "0.0.15.255"
+                      ],
+                      [
+                          "/30",
+                          "0.0.0.3"
+                      ]
+                  ],
+        "erklaerung":  "Wildcard = 255.255.255.255 − Subnetzmaske: /26 = 255.255.255.192 → 0.0.0.63; /20 = 255.255.240.0 → 0.0.15.255."
+    },
+    {
+        "id":  "slg-is-118",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Port-Operator den gematchten TCP-Zielports zu.",
+        "paare":  [
+                      [
+                          "eq 23",
+                          "nur Port 23"
+                      ],
+                      [
+                          "lt 1024",
+                          "Ports 0–1023"
+                      ],
+                      [
+                          "gt 1023",
+                          "Ports 1024–65535"
+                      ],
+                      [
+                          "range 20 21",
+                          "Ports 20 und 21"
+                      ]
+                  ],
+        "erklaerung":  "eq = gleich, lt = kleiner als, gt = größer als, range = inklusiver Bereich (neq = ungleich)."
+    },
+    {
+        "id":  "slg-is-119",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Protokoll seiner IP-Protokollnummer zu (für Extended-ACL-Einträge).",
+        "paare":  [
+                      [
+                          "OSPF",
+                          "89"
+                      ],
+                      [
+                          "EIGRP",
+                          "88"
+                      ],
+                      [
+                          "VRRP",
+                          "112"
+                      ],
+                      [
+                          "GRE",
+                          "47"
+                      ]
+                  ],
+        "erklaerung":  "Diese Protokolle laufen direkt über IP. In ACLs kann man sie per Name (ospf, eigrp, gre) oder Nummer angeben; VRRP im Lab als \u0027112\u0027."
+    },
+    {
+        "id":  "slg-is-120",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Traffic Plane einem typischen Beispiel zu.",
+        "paare":  [
+                      [
+                          "Data Plane",
+                          "Benutzerverkehr zwischen zwei Endgeräten"
+                      ],
+                      [
+                          "Control Plane",
+                          "OSPF-Hellos und ARP"
+                      ],
+                      [
+                          "Management Plane",
+                          "SSH- und SNMP-Zugriffe auf den Router"
+                      ],
+                      [
+                          "Services Plane",
+                          "GRE-Kapselung und IPsec-Verschlüsselung"
+                      ]
+                  ],
+        "erklaerung":  "Data: Transit-Benutzerverkehr. Control: Protokolle, die das Netz aufbauen. Management: Geräteverwaltung. Services: \u0027high-touch\u0027 Verarbeitung über die reine Weiterleitung hinaus."
+    },
+    {
+        "id":  "slg-is-121",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Pakettyp (Sicht des Routers) seiner Verarbeitung bzw. einem Beispiel zu.",
+        "paare":  [
+                      [
+                          "Transit",
+                          "CEF-Weiterleitung im Fast Path"
+                      ],
+                      [
+                          "Receive",
+                          "an den Router adressiert, Punt zur CPU"
+                      ],
+                      [
+                          "Exception IP",
+                          "TTL abgelaufen oder IP-Optionen"
+                      ],
+                      [
+                          "Non-IP",
+                          "CDP, IS-IS, Layer-2-Keepalives"
+                      ]
+                  ],
+        "erklaerung":  "Nur Transitpakete bleiben im Fast Path. Receive-, Exception-IP- und Non-IP-Pakete müssen vom Route Processor verarbeitet werden."
+    },
+    {
+        "id":  "slg-is-122",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den show-Befehl der Information zu, die er bei der CoPP-Prüfung liefert.",
+        "paare":  [
+                      [
+                          "show access-lists",
+                          "Trefferzähler je ACE"
+                      ],
+                      [
+                          "show class-map",
+                          "Match-Kriterien der Klassen"
+                      ],
+                      [
+                          "show policy-map",
+                          "konfigurierte Police-Raten und Aktionen"
+                      ],
+                      [
+                          "show policy-map control-plane",
+                          "laufende conformed/exceeded-Zähler"
+                      ]
+                  ],
+        "erklaerung":  "ACL-Zähler zeigen die Klassifizierung, class-map die Zuordnung, policy-map die Konfiguration und \u0027show policy-map control-plane\u0027 die dynamischen Policer-Statistiken."
+    },
+    {
+        "id":  "slg-is-123",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den CoPP-Baustein seiner Rolle zu.",
+        "paare":  [
+                      [
+                          "ACL",
+                          "beschreibt per permit den Verkehr einer Klasse"
+                      ],
+                      [
+                          "class-map",
+                          "bindet die ACL an eine Verkehrsklasse"
+                      ],
+                      [
+                          "policy-map",
+                          "legt Rate und conform/exceed-Aktion fest"
+                      ],
+                      [
+                          "control-plane",
+                          "Ort, an dem die service-policy input hängt"
+                      ]
+                  ],
+        "erklaerung":  "Reihenfolge der Konfiguration: ACL → class-map (match access-group) → policy-map (police) → control-plane / service-policy input."
+    },
+    {
+        "id":  "slg-is-124",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Port-Schlüsselwort der Portnummer zu, die IOS in ACLs dafür einsetzt.",
+        "paare":  [
+                      [
+                          "www",
+                          "80"
+                      ],
+                      [
+                          "domain",
+                          "53"
+                      ],
+                      [
+                          "telnet",
+                          "23"
+                      ],
+                      [
+                          "ftp",
+                          "21"
+                      ]
+                  ],
+        "erklaerung":  "IOS akzeptiert Namen und zeigt bekannte Nummern als Namen an (z. B. 80 → www, 21 → ftp)."
+    },
+    {
+        "id":  "slg-is-125",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Anforderung (Inbound-ACL am Internet-Interface von R1, Lab) dem passenden Eintrag zu.",
+        "paare":  [
+                      [
+                          "Web-Zugriff aus dem Internet auf SRV1",
+                          "permit tcp any host 10.10.2.20 eq www"
+                      ],
+                      [
+                          "Ping-Antworten an das PC1-Netz",
+                          "permit icmp any 10.10.1.0 0.0.0.255 echo-reply"
+                      ],
+                      [
+                          "DNS-Antworten von SRV2",
+                          "permit udp host 203.0.113.30 eq domain 10.10.1.0 0.0.0.255"
+                      ],
+                      [
+                          "Antworten von Webservern an das PC1-Netz",
+                          "permit tcp any eq www 10.10.1.0 0.0.0.255 established"
+                      ]
+                  ],
+        "erklaerung":  "Neue Verbindungen: Port am Ziel. Rückverkehr: Port an der Quelle, bei TCP zusätzlich \u0027established\u0027. Ping-Antworten: ICMP-Typ echo-reply."
+    },
+    {
+        "id":  "slg-is-126",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Befehl dem Konfigurationsmodus zu, in den er wechselt.",
+        "paare":  [
+                      [
+                          "ip access-list standard VTY-ACCESS",
+                          "config-std-nacl"
+                      ],
+                      [
+                          "ip access-list extended TRAFFIC-FILTER",
+                          "config-ext-nacl"
+                      ],
+                      [
+                          "control-plane",
+                          "config-cp"
+                      ],
+                      [
+                          "line vty 0 4",
+                          "config-line"
+                      ]
+                  ],
+        "erklaerung":  "Named ACLs haben eigene Modi (std/ext-nacl); \u0027control-plane\u0027 führt in config-cp, wo die CoPP-Policy angewendet wird; access-class wird in config-line gesetzt."
+    },
+    {
+        "id":  "slg-is-127",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die police-Rate dem Default-Burst (bc) zu, den IOS anzeigt.",
+        "paare":  [
+                      [
+                          "police 300000",
+                          "bc 9375"
+                      ],
+                      [
+                          "police 100000",
+                          "bc 3125"
+                      ],
+                      [
+                          "police 50000",
+                          "bc 1562"
+                      ],
+                      [
+                          "police 8000",
+                          "bc 1500"
+                      ]
+                  ],
+        "erklaerung":  "Default-Bc = CIR/32 in Byte (250 ms), mindestens 1500 Byte: 300000/32 = 9375, 100000/32 = 3125, 50000/32 ≈ 1562, 8000/32 = 250 → Minimum 1500."
+    },
+    {
+        "id":  "slg-is-128",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Filterziel der besten ACL-Platzierung zu.",
+        "paare":  [
+                      [
+                          "Standard-ACL soll einen Host nur vom Server-LAN fernhalten",
+                          "outbound am Interface zum Server-LAN"
+                      ],
+                      [
+                          "Extended-ACL soll Internetverkehr eines Hosts verwerfen",
+                          "inbound am LAN-Interface des Hosts"
+                      ],
+                      [
+                          "Nur PC1 darf per SSH/Telnet auf den Router",
+                          "access-class in auf den vty-Lines"
+                      ],
+                      [
+                          "Verkehr aus dem Internet filtern",
+                          "inbound am Internet-Interface"
+                      ]
+                  ],
+        "erklaerung":  "Standard nahe Ziel, Extended nahe Quelle, Gerätezugriff über access-class, Internetverkehr so früh wie möglich – also inbound am Außeninterface."
+    },
+    {
+        "id":  "slg-is-129",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Füge der nummerierten Standard-ACL 1 einen Eintrag hinzu, der den Host 10.1.1.101 sperrt.",
+        "bausteine":  [
+                          "access-list",
+                          "1",
+                          "deny",
+                          "host",
+                          "10.1.1.101",
+                          "permit",
+                          "0.0.0.255",
+                          "ip"
+                      ],
+        "loesung":  [
+                        "access-list",
+                        "1",
+                        "deny",
+                        "host",
+                        "10.1.1.101"
+                    ],
+        "erklaerung":  "\u0027access-list 1 deny host 10.1.1.101\u0027 – \u0027host\u0027 ersetzt die Wildcard 0.0.0.0. Danach braucht die ACL noch ein permit für die übrigen Hosts."
+    },
+    {
+        "id":  "slg-is-130",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Verbiete in ACL 101 FTP (Port 21) vom Netz 172.16.4.0/24 zum Netz 172.16.3.0/24.",
+        "bausteine":  [
+                          "access-list",
+                          "101",
+                          "deny",
+                          "tcp",
+                          "172.16.4.0",
+                          "0.0.0.255",
+                          "172.16.3.0",
+                          "0.0.0.255",
+                          "eq",
+                          "21",
+                          "udp",
+                          "255.255.255.0",
+                          "gt"
+                      ],
+        "loesung":  [
+                        "access-list",
+                        "101",
+                        "deny",
+                        "tcp",
+                        "172.16.4.0",
+                        "0.0.0.255",
+                        "172.16.3.0",
+                        "0.0.0.255",
+                        "eq",
+                        "21"
+                    ],
+        "erklaerung":  "Reihenfolge: Protokoll, Quelle mit Wildcard, Ziel mit Wildcard, dann Zielport. FTP-Steuerung nutzt TCP 21."
+    },
+    {
+        "id":  "slg-is-131",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus (Gi0/0): Wende ACL 101 auf eingehenden Verkehr an.",
+        "bausteine":  [
+                          "ip",
+                          "access-group",
+                          "101",
+                          "in",
+                          "access-class",
+                          "out",
+                          "service-policy"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "access-group",
+                        "101",
+                        "in"
+                    ],
+        "erklaerung":  "\u0027ip access-group 101 in\u0027 filtert Pakete, die über Gi0/0 hereinkommen – vor dem Routing-Lookup."
+    },
+    {
+        "id":  "slg-is-132",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Konfigurationsmodus der Named ACL Subnet_ONLY (config-std-nacl): Füge VOR Zeile 10 einen Eintrag ein, der den Host 10.1.1.25 sperrt.",
+        "bausteine":  [
+                          "5",
+                          "deny",
+                          "host",
+                          "10.1.1.25",
+                          "15",
+                          "permit",
+                          "any"
+                      ],
+        "loesung":  [
+                        "5",
+                        "deny",
+                        "host",
+                        "10.1.1.25"
+                    ],
+        "erklaerung":  "Eine Sequenznummer kleiner als 10 setzt den Eintrag vor die bestehende permit-Zeile, sodass der Host zuerst geprüft wird."
+    },
+    {
+        "id":  "slg-is-133",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Nummeriere die Einträge der Named ACL Subnet_ONLY neu, beginnend bei 10 in 10er-Schritten.",
+        "bausteine":  [
+                          "ip",
+                          "access-list",
+                          "resequence",
+                          "Subnet_ONLY",
+                          "10",
+                          "10",
+                          "standard",
+                          "renumber"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "access-list",
+                        "resequence",
+                        "Subnet_ONLY",
+                        "10",
+                        "10"
+                    ],
+        "erklaerung":  "\u0027ip access-list resequence Subnet_ONLY 10 10\u0027 – Startwert, dann Schrittweite. Die Reihenfolge der Einträge bleibt erhalten."
+    },
+    {
+        "id":  "slg-is-134",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Line-Konfigurationsmodus (line vty 0 4): Erlaube eingehende Sitzungen nur gemäß der Named ACL VTY-ACCESS.",
+        "bausteine":  [
+                          "access-class",
+                          "VTY-ACCESS",
+                          "in",
+                          "ip",
+                          "access-group",
+                          "out"
+                      ],
+        "loesung":  [
+                        "access-class",
+                        "VTY-ACCESS",
+                        "in"
+                    ],
+        "erklaerung":  "Auf Lines wird mit \u0027access-class … in\u0027 gefiltert, nicht mit \u0027ip access-group\u0027. Die ACL gilt für alle vty-Verbindungen, egal über welches Interface."
+    },
+    {
+        "id":  "slg-is-135",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Konfigurationsmodus der Extended Named ACL TRAFFIC-FILTER: Erlaube DNS-Antworten vom Server 203.0.113.30 an das Netz 10.10.1.0/24.",
+        "bausteine":  [
+                          "permit",
+                          "udp",
+                          "host",
+                          "203.0.113.30",
+                          "eq",
+                          "domain",
+                          "10.10.1.0",
+                          "0.0.0.255",
+                          "tcp",
+                          "established",
+                          "any"
+                      ],
+        "loesung":  [
+                        "permit",
+                        "udp",
+                        "host",
+                        "203.0.113.30",
+                        "eq",
+                        "domain",
+                        "10.10.1.0",
+                        "0.0.0.255"
+                    ],
+        "erklaerung":  "Antworten kommen vom Server mit Quellport 53 – daher steht \u0027eq domain\u0027 hinter der Quelle. \u0027established\u0027 gibt es nur für TCP."
+    },
+    {
+        "id":  "slg-is-136",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Konfigurationsmodus der Extended Named ACL TRAFFIC-FILTER: Erlaube HTTPS-Antworten (Port 443) von beliebigen Servern an das Netz 10.10.1.0/24, aber keine neuen Verbindungen von außen.",
+        "bausteine":  [
+                          "permit",
+                          "tcp",
+                          "any",
+                          "eq",
+                          "443",
+                          "10.10.1.0",
+                          "0.0.0.255",
+                          "established",
+                          "udp",
+                          "gt",
+                          "log"
+                      ],
+        "loesung":  [
+                        "permit",
+                        "tcp",
+                        "any",
+                        "eq",
+                        "443",
+                        "10.10.1.0",
+                        "0.0.0.255",
+                        "established"
+                    ],
+        "erklaerung":  "Quellport 443 an der Quelle \u0027any\u0027 und \u0027established\u0027 am Ende: Nur Segmente mit ACK/RST – also Antworten auf intern gestartete Verbindungen – passen."
+    },
+    {
+        "id":  "slg-is-137",
+        "topic":  "ENCOR-5.2.a",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Konfigurationsmodus der Extended Named ACL TRAFFIC-FILTER: Füge als Zeile 65 einen Eintrag ein, der SSH von Host 203.0.113.40 zu Host 10.10.2.20 erlaubt.",
+        "bausteine":  [
+                          "65",
+                          "permit",
+                          "tcp",
+                          "host",
+                          "203.0.113.40",
+                          "host",
+                          "10.10.2.20",
+                          "eq",
+                          "22",
+                          "udp",
+                          "80",
+                          "any"
+                      ],
+        "loesung":  [
+                        "65",
+                        "permit",
+                        "tcp",
+                        "host",
+                        "203.0.113.40",
+                        "host",
+                        "10.10.2.20",
+                        "eq",
+                        "22"
+                    ],
+        "erklaerung":  "Die Sequenznummer 65 platziert den Eintrag zwischen 60 und dem expliziten deny in Zeile 70. SSH nutzt TCP-Zielport 22."
+    },
+    {
+        "id":  "slg-is-138",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Class-map-Konfigurationsmodus (class-map COPP-MAP-ICMP): Ordne der Klasse den Verkehr zu, den die Named ACL COPP-ICMP erlaubt.",
+        "bausteine":  [
+                          "match",
+                          "access-group",
+                          "name",
+                          "COPP-ICMP",
+                          "ip",
+                          "class",
+                          "any"
+                      ],
+        "loesung":  [
+                        "match",
+                        "access-group",
+                        "name",
+                        "COPP-ICMP"
+                    ],
+        "erklaerung":  "Für Named ACLs lautet der Befehl \u0027match access-group name \u003cACL\u003e\u0027; nummerierte ACLs werden mit \u0027match access-group \u003cnr\u003e\u0027 referenziert."
+    },
+    {
+        "id":  "slg-is-139",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Policy-map-Klassenmodus (class COPP-MAP-ICMP): Begrenze die Klasse auf 8000 bps; konformer Verkehr wird gesendet, Überschuss verworfen.",
+        "bausteine":  [
+                          "police",
+                          "8000",
+                          "conform-action",
+                          "transmit",
+                          "exceed-action",
+                          "drop",
+                          "shape",
+                          "average"
+                      ],
+        "loesung":  [
+                        "police",
+                        "8000",
+                        "conform-action",
+                        "transmit",
+                        "exceed-action",
+                        "drop"
+                    ],
+        "erklaerung":  "Bei CoPP wird gepolict, nicht geformt. \u0027police 8000\u0027 bedeutet 8 kbps; der Default-Burst wird auf 1500 Byte gesetzt."
+    },
+    {
+        "id":  "slg-is-140",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Policy-map-Klassenmodus (class class-default): Begrenze auf 50 Pakete pro Sekunde; konformer Verkehr wird gesendet, Überschuss verworfen.",
+        "bausteine":  [
+                          "police",
+                          "rate",
+                          "50",
+                          "pps",
+                          "conform-action",
+                          "transmit",
+                          "exceed-action",
+                          "drop",
+                          "bps",
+                          "priority"
+                      ],
+        "loesung":  [
+                        "police",
+                        "rate",
+                        "50",
+                        "pps",
+                        "conform-action",
+                        "transmit",
+                        "exceed-action",
+                        "drop"
+                    ],
+        "erklaerung":  "\u0027police rate 50 pps\u0027 begrenzt nach Paketen statt Bits – passend für die CPU-Last."
+    },
+    {
+        "id":  "slg-is-141",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Control-Plane-Konfigurationsmodus (config-cp): Wende die policy-map ROUTER-COPP-POLICY auf den Verkehr zur Control Plane an.",
+        "bausteine":  [
+                          "service-policy",
+                          "input",
+                          "ROUTER-COPP-POLICY",
+                          "output",
+                          "ip",
+                          "access-group"
+                      ],
+        "loesung":  [
+                        "service-policy",
+                        "input",
+                        "ROUTER-COPP-POLICY"
+                    ],
+        "erklaerung":  "CoPP filtert Verkehr, der in die Control Plane hineingeht – daher \u0027service-policy input\u0027."
+    },
+    {
+        "id":  "slg-is-142",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Konfigurationsmodus der Extended Named ACL COPP-VRRP: Erlaube VRRP-Advertisements (IP-Protokoll 112) von beliebiger Quelle an die VRRP-Multicast-Adresse.",
+        "bausteine":  [
+                          "permit",
+                          "112",
+                          "any",
+                          "host",
+                          "224.0.0.18",
+                          "udp",
+                          "224.0.0.5",
+                          "eq"
+                      ],
+        "loesung":  [
+                        "permit",
+                        "112",
+                        "any",
+                        "host",
+                        "224.0.0.18"
+                    ],
+        "erklaerung":  "VRRP ist weder TCP noch UDP – es wird über seine Protokollnummer 112 gematcht. Ziel ist die Gruppe 224.0.0.18."
+    },
+    {
+        "id":  "slg-is-143",
+        "topic":  "ENCOR-5.2.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC: Setze die Trefferzähler aller ACLs zurück, um CoPP-ACLs neu zu beobachten.",
+        "bausteine":  [
+                          "clear",
+                          "access-list",
+                          "counters",
+                          "show",
+                          "ip",
+                          "statistics"
+                      ],
+        "loesung":  [
+                        "clear",
+                        "access-list",
+                        "counters"
+                    ],
+        "erklaerung":  "\u0027clear access-list counters\u0027 setzt die Zähler zurück; anschließend zeigt \u0027show access-lists\u0027, welcher Verkehr aktuell welche Klasse trifft."
+    },
+    {
+        "id":  "slg-is-144",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Konfigurationsmodus der Named ACL VTY-ACCESS (config-std-nacl): Füge am Ende einen Eintrag hinzu, der alle übrigen Quellen sperrt und jeden Treffer protokolliert.",
+        "bausteine":  [
+                          "deny",
+                          "any",
+                          "log",
+                          "permit",
+                          "host",
+                          "established"
+                      ],
+        "loesung":  [
+                        "deny",
+                        "any",
+                        "log"
+                    ],
+        "erklaerung":  "Das explizite \u0027deny any log\u0027 wirkt wie das implizite deny, erzeugt aber Syslog-Meldungen und Zähler für abgewiesene Versuche."
+    }
+]

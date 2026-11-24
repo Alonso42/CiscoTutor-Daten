@@ -25,8 +25,8 @@ Status: ✅ fertig · ⏳ in Arbeit · ☐ offen · ⚠ nicht mehr in ENCOR v1.2
 | 20 | Multicast | 210–220 | 20-multicast | ✅ 139 Fragen + Wissen + 11 SVGs, geprüft (2 korr.) |
 | 21 | QoS | 221–227 | 21-qos | ✅ 130 Fragen + Wissen + 9 SVGs, geprüft (Bild + Wissen korr.) |
 | 22 | Network Analysis Tools (IP SLA, SPAN) | 228–242 | 22-analysis | ✅ 149 Fragen + Wissen + 9 SVGs, geprüft (1 korr., 1 entf.) |
-| 23 | Infrastructure Security (ACL, CoPP) | 243–254 | 23-infra-sec | ⏳ Writer läuft |
-| 24 | Secure Access Control (AAA) | 255–267 | 24-aaa | ☐ |
+| 23 | Infrastructure Security (ACL, CoPP) | 243–254 | 23-infra-sec | ✅ 144 Fragen + Wissen + 7 SVGs, geprüft (3 korr.) |
+| 24 | Secure Access Control (AAA) | 255–267 | 24-aaa | ⏳ Writer läuft |
 | 25 | Python Basics | 268–277 | 25-python | ☐ |
 | 26 | Network Programmability (JSON, YANG, NETCONF, RESTCONF) | 278–294 | 26-programmability | ☐ |
 | 27 | Wireless Principles (RF) | 295–304 | 27-wlan-rf | ⚠ |

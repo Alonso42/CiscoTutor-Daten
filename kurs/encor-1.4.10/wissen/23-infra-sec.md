@@ -94,7 +94,7 @@ Branch(config-if)# ip access-group 101 in
 ```
 - Ablauf: ACL anlegen → Interface wählen → `ip access-group <nr|name> {in|out}`.
 - Entfernen: `no ip access-group ...` am Interface, danach ggf. `no access-list <nr>` global.
-- Standard-ACL inbound auf dem LAN-Interface würde zusätzlich **jede** Kommunikation PC2 ↔ Router unterbinden (auch Gateway-Ping, DHCP-Relay usw.).
+- Standard-ACL inbound auf dem LAN-Interface würde zusätzlich **jede** Kommunikation PC2 ↔ Router unterbinden (auch Gateway-Ping, Telnet/SSH zum Router usw.).
 - Platzierung: Standard **nahe Ziel** (filtert sonst zu viel, da nur Quelle bekannt), Extended **nahe Quelle** (verwirft unerwünschten Verkehr früh, spart Bandbreite).
 - *(Ergänzung)* Wird mit `ip access-group` eine **nicht existierende** ACL referenziert, filtert IOS nicht (alles erlaubt). Outbound-ACLs filtern **keinen vom Router selbst erzeugten** Verkehr.
 
@@ -240,7 +240,7 @@ Verifikation:
 | `show policy-map` | konfigurierte Aktionen (z. B. `police cir 300000 bc 9375`) |
 | `show policy-map control-plane` | **dynamische** Zähler: conformed/exceeded Pakete/Bytes, Raten, Drops |
 
-*(Ergänzung)* Default-Bc beim Single-Rate-Policer = CIR/32 in Byte (= 250 ms Verkehr), mindestens 1500 Byte: 300000 → 9375, 100000 → 3125, 50000 → 1562, 8000 und 12000 → 1500 (deckt sich mit den Kursausgaben).
+*(Ergänzung)* Default-Bc beim Single-Rate-Policer = CIR/32 in Byte (= 250 ms Verkehr), mindestens 1500 Byte: 300000 → 9375, 100000 → 3125, 50000 → 1562, 8000 und 12000 → 1500 (deckt sich mit den Kursausgaben). Die 250-ms-Regel ist im Cisco IOS XE QoS MQC Configuration Guide („QoS Packet Policing“) dokumentiert; das 1500-Byte-Minimum ist aus den Kursausgaben abgeleitet und kann je Plattform abweichen.
 
 ## 9. Discovery 26 – CoPP
 

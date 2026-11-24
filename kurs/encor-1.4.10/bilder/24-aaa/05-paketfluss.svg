@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Nachrichtenfolge RADIUS und TACACS+</title>
+<defs><marker id="m" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="200" y="32" text-anchor="middle" font-size="18" font-weight="bold" fill="#222">RADIUS (UDP)</text>
+<text x="600" y="32" text-anchor="middle" font-size="18" font-weight="bold" fill="#222">TACACS+ (TCP 49)</text>
+<line x1="400" y1="20" x2="400" y2="440" stroke="#cccccc" stroke-width="2"/>
+<g font-size="13" fill="#222" text-anchor="middle">
+<text x="70" y="62" font-weight="bold">NAS</text><text x="330" y="62" font-weight="bold">Server</text>
+<text x="470" y="62" font-weight="bold">NAS</text><text x="730" y="62" font-weight="bold">Server</text>
+</g>
+<g stroke="#999999" stroke-dasharray="4 4"><line x1="70" y1="70" x2="70" y2="430"/><line x1="330" y1="70" x2="330" y2="430"/><line x1="470" y1="70" x2="470" y2="430"/><line x1="730" y1="70" x2="730" y2="430"/></g>
+<g stroke-width="2" font-size="12" fill="#222">
+<line x1="70" y1="100" x2="328" y2="100" stroke="#4a9cff" marker-end="url(#m)"/><text x="200" y="93" text-anchor="middle">Access-Request (User, Passwort verschleiert)</text>
+<line x1="330" y1="150" x2="72" y2="150" stroke="#39c86a" marker-end="url(#m)"/><text x="200" y="143" text-anchor="middle">Access-Accept + AV-Paare</text>
+<text x="200" y="168" text-anchor="middle" font-size="11">(oder Access-Reject / Access-Challenge)</text>
+<rect x="85" y="190" width="230" height="40" rx="6" fill="#ffd23f" fill-opacity="0.3"/>
+<text x="200" y="208" text-anchor="middle">Authentication + Authorization</text>
+<text x="200" y="223" text-anchor="middle">in EINEM Austausch</text>
+<line x1="70" y1="290" x2="328" y2="290" stroke="#b08aff" marker-end="url(#m)"/><text x="200" y="283" text-anchor="middle">Accounting-Request (Start/Stop)</text>
+<line x1="330" y1="330" x2="72" y2="330" stroke="#b08aff" marker-end="url(#m)"/><text x="200" y="323" text-anchor="middle">Accounting-Response</text>
+<line x1="470" y1="95" x2="728" y2="95" stroke="#4a9cff" marker-end="url(#m)"/><text x="600" y="88" text-anchor="middle">AUTHEN START (Benutzer)</text>
+<line x1="730" y1="130" x2="472" y2="130" stroke="#4a9cff" marker-end="url(#m)"/><text x="600" y="123" text-anchor="middle">REPLY: GETPASS</text>
+<line x1="470" y1="165" x2="728" y2="165" stroke="#4a9cff" marker-end="url(#m)"/><text x="600" y="158" text-anchor="middle">CONTINUE (Passwort)</text>
+<line x1="730" y1="200" x2="472" y2="200" stroke="#39c86a" marker-end="url(#m)"/><text x="600" y="193" text-anchor="middle">REPLY: PASS (oder FAIL)</text>
+<line x1="470" y1="245" x2="728" y2="245" stroke="#ff6b6b" marker-end="url(#m)"/><text x="600" y="238" text-anchor="middle">AUTHOR REQUEST (service shell / Befehl)</text>
+<line x1="730" y1="280" x2="472" y2="280" stroke="#ff6b6b" marker-end="url(#m)"/><text x="600" y="273" text-anchor="middle">RESPONSE: PASS_ADD priv-lvl=15</text>
+<line x1="470" y1="325" x2="728" y2="325" stroke="#b08aff" marker-end="url(#m)"/><text x="600" y="318" text-anchor="middle">ACCT REQUEST (start/stop, cmd)</text>
+<line x1="730" y1="360" x2="472" y2="360" stroke="#b08aff" marker-end="url(#m)"/><text x="600" y="353" text-anchor="middle">ACCT REPLY: SUCCESS</text>
+<text x="600" y="410" text-anchor="middle" font-size="13">jede Funktion mit eigenem Austausch</text>
+<text x="200" y="410" text-anchor="middle" font-size="13">nur das Passwort-Attribut ist geschützt</text>
+</g>
+</svg>

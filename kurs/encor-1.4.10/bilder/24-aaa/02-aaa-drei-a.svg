@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Die drei A: Authentication, Authorization, Accounting</title>
+<defs><marker id="p" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">AAA – drei getrennte Funktionen</text>
+<rect x="30" y="80" width="220" height="230" rx="12" fill="#4a9cff" fill-opacity="0.2" stroke="#4a9cff" stroke-width="2"/>
+<rect x="290" y="80" width="220" height="230" rx="12" fill="#b08aff" fill-opacity="0.2" stroke="#b08aff" stroke-width="2"/>
+<rect x="550" y="80" width="220" height="230" rx="12" fill="#39c86a" fill-opacity="0.2" stroke="#39c86a" stroke-width="2"/>
+<g fill="#222" text-anchor="middle">
+<text x="140" y="115" font-size="18" font-weight="bold">Authentication</text>
+<text x="140" y="142" font-size="16" font-style="italic">Wer bist du?</text>
+<text x="140" y="180" font-size="13">Benutzername + Passwort,</text>
+<text x="140" y="198" font-size="13">Zertifikat, Biometrie</text>
+<text x="140" y="230" font-size="13">Ergebnis: PASS / FAIL</text>
+<text x="140" y="270" font-size="12">aaa authentication login ...</text>
+<text x="400" y="115" font-size="18" font-weight="bold">Authorization</text>
+<text x="400" y="142" font-size="16" font-style="italic">Was darfst du?</text>
+<text x="400" y="180" font-size="13">Shell erlaubt? priv-lvl?</text>
+<text x="400" y="198" font-size="13">einzelne Befehle (TACACS+)</text>
+<text x="400" y="230" font-size="13">AV-Paare vom Server</text>
+<text x="400" y="270" font-size="12">aaa authorization exec ...</text>
+<text x="660" y="115" font-size="18" font-weight="bold">Accounting</text>
+<text x="660" y="142" font-size="16" font-style="italic">Was hast du getan?</text>
+<text x="660" y="180" font-size="13">Login/Logout, Dauer,</text>
+<text x="660" y="198" font-size="13">eingegebene Befehle</text>
+<text x="660" y="230" font-size="13">Audit, Billing, Reports</text>
+<text x="660" y="270" font-size="12">aaa accounting exec ...</text>
+</g>
+<line x1="250" y1="195" x2="288" y2="195" stroke="#222" stroke-width="2" marker-end="url(#p)"/>
+<line x1="510" y1="195" x2="548" y2="195" stroke="#222" stroke-width="2" marker-end="url(#p)"/>
+<rect x="110" y="345" width="580" height="70" rx="10" fill="#ffd23f" fill-opacity="0.3" stroke="#ffd23f"/>
+<text x="400" y="373" text-anchor="middle" font-size="15" fill="#222">Authentication funktioniert allein.</text>
+<text x="400" y="398" text-anchor="middle" font-size="15" fill="#222">Authorization und Accounting setzen eine Authentifizierung voraus.</text>
+</svg>

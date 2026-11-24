@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Rollen bei AAA: Benutzer, NAS und AAA-Server</title>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="36" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Client-Server-Modell: der NAS fragt den AAA-Server</text>
+<rect x="40" y="150" width="90" height="60" rx="6" fill="#ffffff" stroke="#222" stroke-width="2"/>
+<text x="85" y="187" text-anchor="middle" font-size="16" fill="#222">PC</text>
+<text x="85" y="235" text-anchor="middle" font-size="14" fill="#222">Benutzer</text>
+<circle cx="380" cy="180" r="42" fill="#4a9cff" fill-opacity="0.25" stroke="#4a9cff" stroke-width="2"/>
+<text x="380" y="187" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">R</text>
+<text x="380" y="245" text-anchor="middle" font-size="14" fill="#222">NAS = AAA-Client</text>
+<text x="380" y="263" text-anchor="middle" font-size="12" fill="#222">Router, Switch, Firewall, AP</text>
+<rect x="640" y="130" width="100" height="110" rx="6" fill="#b08aff" fill-opacity="0.25" stroke="#b08aff" stroke-width="2"/>
+<text x="690" y="180" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">AAA-</text>
+<text x="690" y="198" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">Server</text>
+<text x="690" y="262" text-anchor="middle" font-size="12" fill="#222">z. B. Cisco ISE</text>
+<rect x="320" y="340" width="120" height="50" rx="8" fill="#39c86a" fill-opacity="0.3" stroke="#39c86a" stroke-width="2"/>
+<text x="380" y="362" text-anchor="middle" font-size="13" fill="#222">geschützte</text>
+<text x="380" y="380" text-anchor="middle" font-size="13" fill="#222">Ressource</text>
+<line x1="132" y1="170" x2="334" y2="170" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<text x="230" y="160" text-anchor="middle" font-size="14" fill="#222">1 Login-Anfrage</text>
+<line x1="424" y1="165" x2="636" y2="165" stroke="#ffd23f" stroke-width="3" marker-end="url(#a)"/>
+<text x="530" y="155" text-anchor="middle" font-size="14" fill="#222">2 RADIUS / TACACS+</text>
+<line x1="636" y1="200" x2="424" y2="200" stroke="#ffd23f" stroke-width="3" marker-end="url(#a)"/>
+<text x="530" y="222" text-anchor="middle" font-size="14" fill="#222">3 Accept / Reject</text>
+<line x1="334" y1="195" x2="132" y2="195" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<text x="230" y="215" text-anchor="middle" font-size="14" fill="#222">4 Zugang erteilt</text>
+<line x1="110" y1="212" x2="318" y2="360" stroke="#39c86a" stroke-width="2" marker-end="url(#a)"/>
+<text x="175" y="320" font-size="14" fill="#222">5 Zugriff</text>
+<text x="400" y="430" text-anchor="middle" font-size="13" fill="#222">Der Benutzer spricht nie direkt mit dem AAA-Server – nur der NAS.</text>
+</svg>

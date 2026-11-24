@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>SSH auf einem IOS-Gerät einrichten</title>
+<defs><marker id="s" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">SSH-Zugang in sechs Schritten</text>
+<g font-size="14" fill="#222">
+<rect x="30" y="60" width="360" height="52" rx="8" fill="#4a9cff" fill-opacity="0.2"/>
+<text x="45" y="83" font-weight="bold">1 hostname Rtr-1</text><text x="45" y="102" font-size="12">nicht der Default "Router"</text>
+<rect x="30" y="122" width="360" height="52" rx="8" fill="#4a9cff" fill-opacity="0.2"/>
+<text x="45" y="145" font-weight="bold">2 ip domain-name cisco.com</text><text x="45" y="164" font-size="12">Schlüsselname = Hostname.Domain</text>
+<rect x="30" y="184" width="360" height="52" rx="8" fill="#ffd23f" fill-opacity="0.35"/>
+<text x="45" y="207" font-weight="bold">3 crypto key generate rsa modulus 2048</text><text x="45" y="226" font-size="12">mind. 768 Bit für SSHv2; danach ist SSH aktiv</text>
+<rect x="30" y="246" width="360" height="52" rx="8" fill="#b08aff" fill-opacity="0.25"/>
+<text x="45" y="269" font-weight="bold">4 ip ssh version 2</text><text x="45" y="288" font-size="12">sonst "1.99" = v2 und v1 erlaubt</text>
+<rect x="30" y="308" width="360" height="52" rx="8" fill="#39c86a" fill-opacity="0.25"/>
+<text x="45" y="331" font-weight="bold">5 username admin algorithm-type</text><text x="45" y="350" font-size="12">scrypt secret ... (Benutzer anlegen)</text>
+<rect x="30" y="370" width="360" height="62" rx="8" fill="#39c86a" fill-opacity="0.25"/>
+<text x="45" y="392" font-weight="bold">6 line vty 0 4</text><text x="60" y="410">transport input ssh</text><text x="60" y="426">login local (oder AAA)</text>
+</g>
+<line x1="400" y1="245" x2="440" y2="245" stroke="#222" stroke-width="2" marker-end="url(#s)"/>
+<rect x="450" y="60" width="320" height="372" rx="10" fill="#ffffff" stroke="#cccccc"/>
+<g font-size="13" fill="#222">
+<text x="465" y="88" font-weight="bold" font-size="15">Prüfen</text>
+<text x="465" y="118" font-family="monospace">show ip ssh</text>
+<text x="475" y="138" font-size="12">Version, Timeout 120 s, Retries 3</text>
+<text x="465" y="173" font-family="monospace">show ssh</text>
+<text x="475" y="193" font-size="12">aktive Sitzungen, Cipher, HMAC, User</text>
+<text x="465" y="228" font-family="monospace">show crypto key mypubkey rsa</text>
+<text x="475" y="248" font-size="12">Schlüsselpaar und Größe</text>
+<text x="465" y="290" font-weight="bold" font-size="15">Client-Seite</text>
+<text x="465" y="315" font-size="12">Erste Verbindung: Fingerprint des</text>
+<text x="465" y="333" font-size="12">Server-Schlüssels prüfen und akzeptieren</text>
+<text x="465" y="351" font-size="12">→ Schutz vor Man-in-the-Middle</text>
+<text x="465" y="390" font-size="12">crypto key zeroize rsa löscht die Schlüssel</text>
+<text x="465" y="408" font-size="12">→ SSH wird deaktiviert</text>
+</g>
+</svg>
