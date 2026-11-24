@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>IP SLA Source, Responder und Tracking</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<defs><marker id="a" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#222"/></marker></defs>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">IP SLA: Source, Responder und Tracking</text>
+<circle cx="90" cy="90" r="28" fill="#ffffff" stroke="#222" stroke-width="2"/><text x="90" y="95" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">HQ</text>
+<text x="90" y="135" text-anchor="middle" font-size="12" fill="#222">IP SLA Source</text>
+<circle cx="710" cy="90" r="28" fill="#ffffff" stroke="#222" stroke-width="2"/><text x="710" y="95" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">BR</text>
+<text x="710" y="135" text-anchor="middle" font-size="12" fill="#222">ip sla responder</text>
+<line x1="125" y1="70" x2="675" y2="70" stroke="#b08aff" stroke-width="2" marker-end="url(#a)"/>
+<text x="400" y="64" text-anchor="middle" font-size="12" fill="#222">1 Control: „öffne UDP-Port X“ an UDP 1967</text>
+<line x1="675" y1="90" x2="125" y2="90" stroke="#b08aff" stroke-width="2" marker-end="url(#a)"/>
+<text x="400" y="104" text-anchor="middle" font-size="12" fill="#222">2 Responder: OK, lausche auf Port X</text>
+<line x1="125" y1="125" x2="675" y2="125" stroke="#4a9cff" stroke-width="3" marker-end="url(#a)"/>
+<line x1="675" y1="140" x2="125" y2="140" stroke="#4a9cff" stroke-width="3" marker-end="url(#a)"/>
+<text x="400" y="160" text-anchor="middle" font-size="12" fill="#222">3 Probing auf Port X – Responder setzt Zeitstempel (Verarbeitungszeit wird herausgerechnet)</text>
+<rect x="30" y="180" width="370" height="250" rx="8" fill="#f2f2f2" stroke="#999"/>
+<g font-family="monospace" font-size="12" fill="#222">
+<text x="42" y="202">ip sla 1</text>
+<text x="42" y="220"> icmp-echo 172.16.22.254</text>
+<text x="42" y="238"> frequency 30</text>
+<text x="42" y="256">ip sla schedule 1 life forever</text>
+<text x="42" y="274">                 start-time now</text>
+<text x="42" y="298">track 1 ip sla 1 reachability</text>
+<text x="42" y="316"> delay up 30 down 10</text>
+<text x="42" y="340">ip route 0.0.0.0 0.0.0.0 ISP1 track 1</text>
+<text x="42" y="358">ip route 0.0.0.0 0.0.0.0 ISP2 10</text>
+<text x="42" y="382">interface Gi0/1</text>
+<text x="42" y="400"> standby 1 track 1 decrement 20</text>
+</g>
+<rect x="420" y="180" width="350" height="250" rx="8" fill="#39c86a" opacity="0.12" stroke="#39c86a"/>
+<g font-size="13" fill="#222">
+<text x="435" y="203" font-weight="bold">Defaults und Regeln</text>
+<text x="435" y="226">frequency 60 s · timeout 5000 ms</text>
+<text x="435" y="246">life 3600 s ohne „life forever“</text>
+<text x="435" y="266">ohne start-time → pending</text>
+<text x="435" y="286">udp-jitter: 10 Pakete, 20 ms Abstand</text>
+<text x="435" y="306">udp-jitter braucht Responder</text>
+<text x="435" y="326">One-Way-Werte brauchen NTP</text>
+<text x="435" y="352" font-weight="bold">Track-Zustand</text>
+<text x="435" y="374">reachability: up bei OK / Over threshold</text>
+<text x="435" y="394">state: up nur bei OK</text>
+<text x="435" y="416">Track down → Route weg, Floating übernimmt</text>
+</g>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>CPU-Auslastung lesen</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">show processes cpu richtig lesen</text>
+<rect x="40" y="50" width="720" height="40" rx="6" fill="#f2f2f2" stroke="#999"/>
+<text x="55" y="76" font-family="monospace" font-size="15" fill="#222">CPU utilization for five seconds: 30%/26%; one minute: 12%; five minutes: 9%</text>
+<text x="60" y="125" font-size="14" fill="#222">Balken = 5-Sekunden-Wert 30 %</text>
+<rect x="60" y="135" width="600" height="40" fill="#eeeeee" stroke="#999"/>
+<rect x="60" y="135" width="312" height="40" fill="#ff6b6b"/>
+<rect x="372" y="135" width="48" height="40" fill="#4a9cff"/>
+<text x="216" y="160" text-anchor="middle" font-size="14" fill="#222">26 % Interrupt (Pakete)</text>
+<text x="396" y="160" text-anchor="middle" font-size="12" fill="#222">4 %</text>
+<text x="540" y="160" text-anchor="middle" font-size="13" fill="#222">70 % frei</text>
+<text x="420" y="195" font-size="12" fill="#4a9cff">Prozesse = 30 − 26 = 4 %</text>
+<text x="60" y="195" font-size="12" fill="#ff6b6b">zweite Zahl = Interrupt-Anteil</text>
+<rect x="40" y="220" width="350" height="210" rx="8" fill="#ffd23f" opacity="0.2" stroke="#ffd23f"/>
+<text x="215" y="243" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Gründe für Punting zur CPU</text>
+<g font-size="13" fill="#222">
+<text x="55" y="268">• Fragmentierung, IP Options</text>
+<text x="55" y="290">• TTL = 1 (Time Exceeded erzeugen)</text>
+<text x="55" y="312">• ACL-Einträge mit log</text>
+<text x="55" y="334">• Multicast-RPF-Drops, Pfadaufbau</text>
+<text x="55" y="356">• Verkehr an den Router selbst</text>
+<text x="55" y="378">• Forwarding-Probleme (kein HW-Eintrag)</text>
+<text x="55" y="406" font-weight="bold">ASIC/NP kann es nicht → CPU</text>
+</g>
+<rect x="410" y="220" width="350" height="210" rx="8" fill="#39c86a" opacity="0.15" stroke="#39c86a"/>
+<text x="585" y="243" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Faustwerte (Kurs)</text>
+<g font-size="13" fill="#222">
+<text x="425" y="268">Gesamt dauerhaft &gt; 70–80 % → untersuchen</text>
+<text x="425" y="290">kurze Spitzen → meist harmlos</text>
+<text x="425" y="316">Interrupt 0–5 % → normal</text>
+<text x="425" y="338">Interrupt 5–10 % → akzeptabel</text>
+<text x="425" y="360">Interrupt &gt; 10 % → untersuchen</text>
+<text x="425" y="390" font-family="monospace">show processes cpu sorted 5sec</text>
+<text x="425" y="410" font-family="monospace">show processes cpu history</text>
+</g>
+</svg>

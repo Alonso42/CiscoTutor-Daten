@@ -1,0 +1,2597 @@
+[
+    {
+        "id":  "slg-an-001",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A help desk ticket says: \u0027Email has been slow since this morning.\u0027 Before running any tests, what should the engineer do first?",
+        "optionen":  [
+                         "Clarify the symptoms with the user and try to reproduce the problem",
+                         "Compare the running configuration with last week\u0027s backup",
+                         "Assume the WAN link is congested and start testing it",
+                         "Reload the mail server to clear a possible memory leak"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Prozess beginnt mit der Problemdefinition: genaue Symptombeschreibung einholen und das Problem möglichst reproduzieren. Erst danach folgen Informationssammlung und Hypothesen."
+    },
+    {
+        "id":  "slg-an-002",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The DHCP server hands out a wrong DNS server address. To get a user working again, the engineer sets the correct DNS server statically on the user\u0027s laptop. How is this action classified?",
+        "optionen":  [
+                         "A solution, because the user can browse the internet again",
+                         "A root-cause fix, because the DNS address is now correct",
+                         "A rollback, because it restores the documented configuration",
+                         "A workaround, because only the symptom on one host is removed"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein Workaround lindert nur die Symptome; die Ursache (falscher DNS-Eintrag im DHCP-Pool) bleibt bestehen. Die echte Lösung ist die Korrektur des DHCP-Pools – danach den Laptop wieder auf DHCP stellen."
+    },
+    {
+        "id":  "slg-an-003",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "During analysis, comparing the gathered symptoms against the network ___ helps to separate normal from abnormal behavior.",
+        "optionen":  [
+                         "baseline",
+                         "routing table",
+                         "service contract",
+                         "change window"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Eine Baseline dokumentiert das normale Verhalten (Auslastung, Fehlerzähler, Pfade). Nur im Vergleich damit lässt sich erkennen, was tatsächlich abnormal ist."
+    },
+    {
+        "id":  "slg-an-004",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Testing a hypothesis by implementing the proposed fix would require reloading a core switch during business hours. What should the engineer do according to the diagnostic principles?",
+        "optionen":  [
+                         "Discard the hypothesis and restart with the problem definition",
+                         "Apply the change on all access switches first to compare results",
+                         "Implement the change anyway, because every hypothesis must be tested",
+                         "Strengthen or invalidate the hypothesis by gathering more information"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ist der direkte Test zu disruptiv, wird die Hypothese durch weitere Informationssammlung und Analyse gestützt oder widerlegt. Erst danach wird die Änderung in einem passenden Fenster umgesetzt."
+    },
+    {
+        "id":  "slg-an-005",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Users report that one specific web application fails, while email, file shares, and all other applications work normally. Which troubleshooting approach is the most efficient starting point?",
+        "optionen":  [
+                         "Swap components, starting with the user NIC",
+                         "Follow the path, starting at the ISP edge",
+                         "Bottom-up, starting at the physical layer",
+                         "Top-down, starting at the application layer"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Da alle anderen Anwendungen funktionieren, sind die unteren Schichten offensichtlich in Ordnung. Top-down beginnt bei der Anwendung und ist hier am schnellsten."
+    },
+    {
+        "id":  "slg-an-006",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "After a wiring-closet renovation, several PCs show no link light on their NICs. Which troubleshooting approach fits best?",
+        "optionen":  [
+                         "Compare configurations of two routers",
+                         "Top-down, starting with the applications",
+                         "Divide and conquer, starting with ping tests",
+                         "Bottom-up, starting with cables and ports"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Fehlendes Link-Licht deutet klar auf Schicht 1 hin. Bottom-up beginnt bei Kabeln und Ports und arbeitet sich nach oben."
+    },
+    {
+        "id":  "slg-an-007",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer first pings the remote server. The ping succeeds, so the engineer next tests TCP port reachability and then the application itself. Which troubleshooting method is being used?",
+        "optionen":  [
+                         "Divide and conquer",
+                         "Bottom-up",
+                         "Swap components",
+                         "Spot the differences"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Divide and conquer startet in der Mitte des OSI-Modells (typisch Schicht 3 per Ping). Bei Erfolg geht es nach oben weiter, bei Misserfolg nach unten."
+    },
+    {
+        "id":  "slg-an-008",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An engineer checks the routing table, ARP entries, and ACLs on each router between the client and the server, one device after another. Which method is this?",
+        "optionen":  [
+                         "Top-down",
+                         "Follow the traffic path",
+                         "Swap components",
+                         "Divide and conquer"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Beim Follow-the-path-Ansatz wird der Weg des Pakets Gerät für Gerät verfolgt und an jedem Hop geprüft, ob es korrekt weitergeleitet wird."
+    },
+    {
+        "id":  "slg-an-009",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A newly installed branch router cannot reach headquarters, while 20 other branches built on the same template work fine. The engineer has little experience with this router platform. Which method is most practical?",
+        "optionen":  [
+                         "Compare the configuration with a working branch router",
+                         "Swap the headquarters router for a spare unit first",
+                         "Run top-down tests with each application at the branch",
+                         "Start bottom-up and replace every cable at the branch"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Gibt es eine funktionierende Referenz, ist der Vergleich (spot the differences) effizient – auch ohne tiefe Plattformkenntnis. Abweichungen in der Konfiguration führen schnell zur Ursache."
+    },
+    {
+        "id":  "slg-an-010",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is a typical limitation of the swap-components troubleshooting method?",
+        "optionen":  [
+                         "It requires access to the configuration of all devices in the path",
+                         "It may fix the symptom without revealing why the part failed",
+                         "It requires a documented baseline of all interface counters",
+                         "It can only be used for problems above the transport layer"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Durch Tausch gegen bekannt gute Teile lässt sich ein Hardwarefehler isolieren. Warum das Teil ausgefallen ist (z. B. Überspannung, Konfiguration), bleibt dabei oft unklar."
+    },
+    {
+        "id":  "slg-an-011",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Troubleshooting-Methode ihrem Vorgehen zu.",
+        "paare":  [
+                      [
+                          "Top-down",
+                          "Starts at the application layer and moves down"
+                      ],
+                      [
+                          "Bottom-up",
+                          "Starts at the physical layer and moves up"
+                      ],
+                      [
+                          "Divide and conquer",
+                          "Starts at a middle layer, direction depends on the result"
+                      ],
+                      [
+                          "Follow the traffic path",
+                          "Checks each device between source and destination"
+                      ]
+                  ],
+        "erklaerung":  "Top-down und bottom-up arbeiten den OSI-Stapel von oben bzw. unten ab, divide and conquer startet in der Mitte. Follow the path orientiert sich am Weg des Verkehrs statt an den Schichten."
+    },
+    {
+        "id":  "slg-an-012",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On a user\u0027s PC, \u0027nslookup www.cisco.com\u0027 times out against server 209.165.201.5, while the documentation lists 10.1.1.53 as the DNS server. The PC is set to obtain all addresses automatically, and pings to public IP addresses succeed. Which hypothesis is most likely?",
+        "optionen":  [
+                         "The DNS server 10.1.1.53 is down and must be restarted",
+                         "The PC\u0027s gateway has no default route to the internet",
+                         "The DHCP pool hands out a wrong DNS server address",
+                         "The PC has a wrong DNS server configured manually"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Manuelle Fehlkonfiguration ist ausgeschlossen (PC auf DHCP), Internet-Routing funktioniert (Ping auf öffentliche IP). Der PC fragt gar nicht 10.1.1.53, also liegt der Fehler in der DNS-Option des DHCP-Pools."
+    },
+    {
+        "id":  "slg-an-013",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why is a structured troubleshooting approach preferred over randomly jumping between tests?",
+        "optionen":  [
+                         "It removes the need to gather information before testing",
+                         "It guarantees that the first hypothesis is the correct one",
+                         "It allows the documentation of the solution to be skipped",
+                         "Progress can be handed over to a colleague or resumed later"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein strukturiertes Vorgehen liefert vorhersagbarere Ergebnisse und macht den Stand nachvollziehbar – man kann pausieren, fortsetzen oder an Kollegen übergeben, ohne den Fortschritt zu verlieren."
+    },
+    {
+        "id":  "slg-an-014",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "The engineer corrected the DNS server in the DHCP pool, and the user can browse again. What is still required to complete the troubleshooting process?",
+        "optionen":  [
+                         "Reload the DHCP server so the change takes effect",
+                         "Clear the DHCP bindings of all other address pools",
+                         "Save the configuration and document the change",
+                         "Set the DNS server statically on all accounting PCs"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der letzte Schritt ist Solve and Document: Konfiguration sichern und die Änderung dokumentieren. Das hilft bei künftigen ähnlichen Problemen."
+    },
+    {
+        "id":  "slg-an-015",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Element der Diagnosephase seiner Tätigkeit zu.",
+        "paare":  [
+                      [
+                          "Gather information",
+                          "Observe symptoms directly or run tests"
+                      ],
+                      [
+                          "Analyze",
+                          "Compare symptoms with the baseline and expected behavior"
+                      ],
+                      [
+                          "Eliminate",
+                          "Rule out causes that do not match the observations"
+                      ],
+                      [
+                          "Propose hypothesis",
+                          "Select the most likely remaining cause"
+                      ]
+                  ],
+        "erklaerung":  "Die Diagnose läuft iterativ: Informationen sammeln, gegen Baseline analysieren, unpassende Ursachen ausschließen und die wahrscheinlichste verbleibende Ursache als Hypothese testen."
+    },
+    {
+        "id":  "slg-an-016",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A router shows \u0027CPU utilization for five seconds: 45%/40%\u0027. How is the five-second load split?",
+        "optionen":  [
+                         "5 % by processes, 40 % by interrupt-level packet handling",
+                         "45 % by processes, 40 % by interrupt-level packet handling",
+                         "40 % by processes, 5 % by interrupt-level packet handling",
+                         "85 % in total, of which 40 % is interrupt-level handling"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die erste Zahl ist die Gesamtlast, die zweite der Interrupt-Anteil (Paketverarbeitung). Die Prozesse verbrauchen die Differenz: 45 − 40 = 5 %."
+    },
+    {
+        "id":  "slg-an-017",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show processes cpu\u0027 reports \u0027five seconds: 92%/85%\u0027, and \u0027show processes cpu sorted\u0027 lists no process above 3 percent. What is the most likely cause?",
+        "optionen":  [
+                         "Much traffic is punted to the CPU instead of being switched in hardware",
+                         "The router has run out of I/O memory and the scheduler is blocked",
+                         "A debug command is printing large amounts of output to the console",
+                         "A routing process such as OSPF is recalculating SPF continuously"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "85 % Interrupt-Anteil bedeutet, dass die CPU fast nur mit Paketen beschäftigt ist, die zu ihr gepuntet werden (z. B. TTL-Ablauf, IP Options, ACL log). Ein Prozess wie OSPF oder Debug-Ausgabe würde in der Prozessliste auftauchen."
+    },
+    {
+        "id":  "slg-an-018",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three conditions typically cause packets to be punted to the route processor CPU instead of being forwarded in hardware? (Choose three.)",
+        "optionen":  [
+                         "Frames switched between two ports of the same VLAN",
+                         "Packets with a TTL of 1 that must expire",
+                         "Traffic matching an ACL entry with the log keyword",
+                         "Packets that carry IP options",
+                         "Transit packets that match a complete CEF adjacency"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "IP Options, TTL-Ablauf (ICMP Time Exceeded erzeugen) und ACL-Logging erfordern Software-Verarbeitung. Normale Transitpakete mit vollständiger CEF-Adjacency und L2-Switching bleiben in der Hardware."
+    },
+    {
+        "id":  "slg-an-019",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "According to common guidance, which CPU pattern on a router requires troubleshooting?",
+        "optionen":  [
+                         "Short spikes to 90 percent during configuration changes",
+                         "A five-minute average of about 20 percent",
+                         "An interrupt utilization of about 3 percent",
+                         "A constant utilization above 70 to 80 percent"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Dauerhaft 70–80 % und mehr deutet auf ein Problem hin. Kurze Spitzen sind normal, und ein Interrupt-Anteil unter 5 % gilt als unkritisch."
+    },
+    {
+        "id":  "slg-an-020",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "According to the course guideline, an interrupt percentage in \u0027show processes cpu\u0027 above ___ should be investigated.",
+        "optionen":  [
+                         "1 percent",
+                         "10 percent",
+                         "50 percent",
+                         "80 percent"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "0–5 % Interrupt-Anteil gilt als normal, 5–10 % als akzeptabel, über 10 % sollte untersucht werden – dann wird zu viel Verkehr zur CPU gepuntet."
+    },
+    {
+        "id":  "slg-an-021",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On a hardware-based router, what happens to a packet that the forwarding ASIC cannot handle?",
+        "optionen":  [
+                         "It is dropped and counted as an input error",
+                         "It is sent to a network processor for forwarding",
+                         "It is queued until the ASIC tables are refreshed",
+                         "It is punted to the CPU for software processing"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Hardware-basierte Router trennen Control und Data Plane; das ASIC leitet schnell weiter. Was es nicht verarbeiten kann, wird an die CPU gepuntet – das erhöht die Interrupt-Last."
+    },
+    {
+        "id":  "slg-an-022",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Router-Kategorie ihrer Architektur zu.",
+        "paare":  [
+                      [
+                          "Software-based router",
+                          "Shared control and data plane, one CPU forwards all packets"
+                      ],
+                      [
+                          "Hardware-based router",
+                          "Separate planes, an ASIC forwards packets"
+                      ],
+                      [
+                          "Hardware-assisted router",
+                          "Separate planes, a network processor raises throughput"
+                      ]
+                  ],
+        "erklaerung":  "Software-Router erledigen alles auf einer CPU. Hardware-basierte Router nutzen ein ASIC, hardware-assisted Router einen Network Processor; beide punten Sonderfälle an die CPU."
+    },
+    {
+        "id":  "slg-an-023",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A router logs \u0027%SYS-2-MALLOCFAIL\u0027. What does this message indicate?",
+        "optionen":  [
+                         "The flash file system has no space for the image",
+                         "The startup configuration exceeds the NVRAM size",
+                         "A memory module failed the power-on self-test",
+                         "A process could not allocate the memory it requested"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "MALLOCFAIL bedeutet eine fehlgeschlagene Speicherzuweisung (memory allocation failure) – zu wenig freier oder zu fragmentierter Speicher. Mit \u0027show memory\u0027 den freien Speicher prüfen."
+    },
+    {
+        "id":  "slg-an-024",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "\u0027show memory\u0027 lists two memory pools. Which pool is used for temporary packet buffering?",
+        "optionen":  [
+                         "I/O memory",
+                         "NVRAM",
+                         "Bootflash",
+                         "Processor memory"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027show memory\u0027 zeigt Processor- und I/O-Memory. Der I/O-Speicher dient als Puffer für Pakete, der Processor-Speicher für IOS-Prozesse und Tabellen."
+    },
+    {
+        "id":  "slg-an-025",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show memory\u0027 displays for the processor pool: Total 920385632, Used 107682552, Free 812703080, Lowest 802714184, Largest 799891248. What does the \u0027Largest\u0027 value represent?",
+        "optionen":  [
+                         "The maximum memory the platform can address",
+                         "The largest contiguous free memory block",
+                         "The highest memory usage since the last boot",
+                         "The size of the biggest process currently running"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Largest ist der größte zusammenhängende freie Block; liegt er weit unter Free, ist der Speicher fragmentiert. Lowest ist der niedrigste freie Wert seit dem Boot."
+    },
+    {
+        "id":  "slg-an-026",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "SW1 Gi0/1 shows increasing CRC errors and runts. The neighbor\u0027s connected port shows late collisions. The link is up/up but slow. What is the most likely cause?",
+        "optionen":  [
+                         "Speed mismatch: SW1 runs at 1 Gbps and the neighbor at 100 Mbps",
+                         "MTU mismatch: the neighbor sends frames larger than 1518 bytes",
+                         "Duplex mismatch: SW1 runs half duplex and the neighbor full duplex",
+                         "Duplex mismatch: SW1 runs full duplex and the neighbor half duplex"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Half-Duplex-Seite erkennt Kollisionen und zählt late collisions; die Full-Duplex-Seite sendet einfach und empfängt abgebrochene Frames als CRC-Fehler und runts. Ein Speed-Mismatch würde den Link gar nicht hochbringen."
+    },
+    {
+        "id":  "slg-an-027",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The giants counter increases on a switch port that connects to a storage server. What is the most likely cause?",
+        "optionen":  [
+                         "The server sends jumbo frames larger than the port allows",
+                         "The server NIC runs in half duplex and causes collisions",
+                         "The switch CPU cannot process the server\u0027s traffic",
+                         "The cable is too long and frames arrive too late"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Giants sind Frames über der zulässigen Größe. Typisch ist ein MTU-/Jumbo-Frame-Mismatch: der Server nutzt Jumbo Frames, der Switchport ist nicht dafür konfiguriert."
+    },
+    {
+        "id":  "slg-an-028",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show interfaces Gi0/2\u0027 shows \u0027Total output drops: 48231\u0027, the value keeps rising, and there are no input or output errors. What does this indicate?",
+        "optionen":  [
+                         "The egress link is congested and the output queue overflows",
+                         "The neighbor uses a different duplex setting than Gi0/2",
+                         "The cable is damaged and frames fail the FCS check",
+                         "The CPU cannot process the packets arriving on Gi0/2"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Output drops entstehen, wenn die Ausgangsqueue voll ist – also bei Stau auf dem Link. Kabel- oder Duplex-Probleme würden sich in Fehlerzählern zeigen."
+    },
+    {
+        "id":  "slg-an-029",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show interfaces\u0027 displays \u0027Input queue: 75/75/1596/0 (size/max/drops/flushes)\u0027. What does this mean?",
+        "optionen":  [
+                         "The input queue is full and 1596 packets for the CPU were dropped",
+                         "The interface was reset 1596 times since counters were cleared",
+                         "75 packets wait in the output queue and 1596 were transmitted",
+                         "75 of the last 1596 received packets had CRC errors"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Input Queue (Default max. 75) hält Pakete, die zur CPU müssen. 75/75 bedeutet voll, 1596 Drops – der Router erhält mehr prozessvermittelten Verkehr, als er verarbeiten kann."
+    },
+    {
+        "id":  "slg-an-030",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "A late collision is a collision that is detected after the first ___ bytes of a frame have been transmitted.",
+        "optionen":  [
+                         "32",
+                         "1518",
+                         "128",
+                         "64"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Innerhalb der ersten 64 Byte (Slot Time) sind Kollisionen in Half-Duplex normal. Spätere Kollisionen deuten auf Duplex-Mismatch oder zu lange Kabel hin."
+    },
+    {
+        "id":  "slg-an-031",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three counters are included in the \u0027input errors\u0027 total of \u0027show interfaces\u0027? (Choose three.)",
+        "optionen":  [
+                         "collisions",
+                         "giants",
+                         "runts",
+                         "output drops",
+                         "CRC"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Input errors fasst Empfangsfehler zusammen: runts, giants, no buffer, CRC, frame, overrun und ignored. Collisions und output drops gehören zur Sendeseite."
+    },
+    {
+        "id":  "slg-an-032",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show interfaces\u0027 shows 1203 CRC errors. \u0027Last clearing of show interface counters\u0027 says \u0027never\u0027, and the router has been up for two years. What is the best next step?",
+        "optionen":  [
+                         "Set the interface to half duplex to stop further CRC errors",
+                         "Replace the cable immediately because CRC errors mean damage",
+                         "Clear the counters and check whether the errors still increase",
+                         "Open a TAC case and attach the output of show platform"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ohne Bezugszeitraum sagt ein absoluter Zählerstand wenig – die Fehler können Jahre alt sein. Nach \u0027clear counters\u0027 zeigt sich, ob das Problem aktuell ist."
+    },
+    {
+        "id":  "slg-an-033",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which command shows whether a DTE or a DCE cable is attached to a serial interface?",
+        "optionen":  [
+                         "show controllers serial 0/0/0",
+                         "show platform",
+                         "show ip interface brief",
+                         "show interfaces serial 0/0/0"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027show controllers\u0027 liefert hardwarenahe Informationen zum Interface-Controller, bei seriellen Interfaces auch den Kabeltyp (DTE/DCE) und ob ein Kabel steckt."
+    },
+    {
+        "id":  "slg-an-034",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A router reloaded unexpectedly. Which command output is especially helpful to collect for a TAC case about the reload?",
+        "optionen":  [
+                         "show ip route",
+                         "show ip interface brief",
+                         "show platform",
+                         "show cdp neighbors"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027show platform\u0027 liefert plattform- und hardwarenahe Daten, die bei Reload-Analysen helfen. Der Kurs empfiehlt, sie vor dem Öffnen eines TAC-Cases zu sammeln."
+    },
+    {
+        "id":  "slg-an-035",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC: Zeige die Prozesse absteigend sortiert nach ihrer CPU-Last der letzten Minute.",
+        "bausteine":  [
+                          "show",
+                          "processes",
+                          "cpu",
+                          "sorted",
+                          "1min",
+                          "memory",
+                          "history",
+                          "5sec"
+                      ],
+        "loesung":  [
+                        "show",
+                        "processes",
+                        "cpu",
+                        "sorted",
+                        "1min"
+                    ],
+        "erklaerung":  "\u0027show processes cpu sorted 1min\u0027 sortiert nach dem 1-Minuten-Wert; ebenso möglich sind 5sec und 5min. So stehen die größten Verbraucher oben."
+    },
+    {
+        "id":  "slg-an-036",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC: Zeige den Verlauf der CPU-Auslastung als ASCII-Grafik (letzte 60 Sekunden, 60 Minuten und 72 Stunden).",
+        "bausteine":  [
+                          "show",
+                          "processes",
+                          "cpu",
+                          "history",
+                          "platform",
+                          "sorted",
+                          "memory"
+                      ],
+        "loesung":  [
+                        "show",
+                        "processes",
+                        "cpu",
+                        "history"
+                    ],
+        "erklaerung":  "\u0027show processes cpu history\u0027 zeigt die Auslastung grafisch über drei Zeiträume – gut, um zu erkennen, ob eine hohe Last dauerhaft ist oder nur eine Spitze."
+    },
+    {
+        "id":  "slg-an-037",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two findings together indicate a duplex mismatch on a point-to-point Ethernet link? (Choose two.)",
+        "optionen":  [
+                         "Late collisions on one side",
+                         "Output drops counted on both sides",
+                         "Interfaces in the down/down state",
+                         "CRC errors and runts on the other side",
+                         "Giants counted on both sides"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Die Half-Duplex-Seite zählt late collisions, die Full-Duplex-Seite CRC-Fehler und runts. Bei Duplex-Mismatch bleibt der Link up/up."
+    },
+    {
+        "id":  "slg-an-038",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Interface-Zähler seiner typischen Ursache zu.",
+        "paare":  [
+                      [
+                          "late collisions",
+                          "Duplex mismatch seen on the half-duplex side"
+                      ],
+                      [
+                          "giants",
+                          "Frames above the allowed maximum size"
+                      ],
+                      [
+                          "output drops",
+                          "Congestion on the egress link"
+                      ],
+                      [
+                          "input queue drops",
+                          "CPU receives more packets than it can process"
+                      ]
+                  ],
+        "erklaerung":  "Late collisions → Duplex, giants → MTU/Jumbo, output drops → Stau, input queue drops → überlastete CPU bei prozessvermittelten Paketen."
+    },
+    {
+        "id":  "slg-an-039",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "A router responds slowly to commands and drops routing adjacencies. Which two commands help to determine whether resource exhaustion is the cause? (Choose two.)",
+        "optionen":  [
+                         "show clock detail",
+                         "show ip route summary",
+                         "show cdp neighbors detail",
+                         "show memory statistics",
+                         "show processes cpu sorted"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "CPU und Speicher sind die typischen Ressourcen, deren Erschöpfung Router träge macht. \u0027show processes cpu sorted\u0027 und \u0027show memory statistics\u0027 zeigen beides direkt."
+    },
+    {
+        "id":  "slg-an-040",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which command displays only the lines of the routing table that contain the next hop 10.1.12.2?",
+        "optionen":  [
+                         "show ip route | include 10.1.12.2",
+                         "show ip route | begin 10.1.12.2",
+                         "show ip route | section 10.1.12.2",
+                         "show ip route | exclude 10.1.12.2"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027include\u0027 zeigt nur Zeilen, auf die das Muster passt. \u0027begin\u0027 würde ab dem ersten Treffer alles anzeigen, \u0027exclude\u0027 genau diese Zeilen ausblenden."
+    },
+    {
+        "id":  "slg-an-041",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which command shows every interface section of the running configuration, each together with its indented subcommands?",
+        "optionen":  [
+                         "show running-config | section interface",
+                         "show running-config | begin interface",
+                         "show running-config | exclude interface",
+                         "show running-config | include interface"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027section\u0027 zeigt die passenden Abschnittsköpfe inklusive aller eingerückten Unterbefehle. \u0027include\u0027 würde nur die Zeilen \u0027interface ...\u0027 selbst zeigen."
+    },
+    {
+        "id":  "slg-an-042",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer wants to view the running configuration starting at the \u0027router bgp\u0027 line through the end of the configuration. Which command does this?",
+        "optionen":  [
+                         "show running-config | include router bgp",
+                         "show running-config | section router bgp",
+                         "show running-config | begin router bgp",
+                         "show running-config | exclude router bgp"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027begin\u0027 überspringt alles bis zum ersten Treffer und zeigt danach die gesamte restliche Ausgabe. \u0027section\u0027 würde nur den BGP-Abschnitt zeigen."
+    },
+    {
+        "id":  "slg-an-043",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does \u0027show ip interface brief | exclude unassigned\u0027 display?",
+        "optionen":  [
+                         "Only the interfaces that are in the up/up state",
+                         "Only the interfaces without an IP address configured",
+                         "The header and all interfaces that have an IP address",
+                         "All interfaces, with unassigned addresses masked"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027exclude\u0027 blendet alle Zeilen aus, die \u0027unassigned\u0027 enthalten. Übrig bleiben die Kopfzeile und die Interfaces mit IP-Adresse – unabhängig vom Status."
+    },
+    {
+        "id":  "slg-an-044",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does \u0027show interfaces | include ^Gi\u0027 display?",
+        "optionen":  [
+                         "Only lines that begin with \u0027Gi\u0027, such as GigabitEthernet status lines",
+                         "The complete output of GigabitEthernet interfaces only",
+                         "All lines that contain the string \u0027Gi\u0027 anywhere in the line",
+                         "All lines except those that begin with the string \u0027Gi\u0027"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027^\u0027 verankert das Muster am Zeilenanfang. Damit erscheinen nur die Statuszeilen wie \u0027GigabitEthernet0/0 is up, line protocol is up\u0027, nicht die Detailzeilen."
+    },
+    {
+        "id":  "slg-an-045",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In a Cisco IOS regular expression, what does the pattern 2345* match?",
+        "optionen":  [
+                         "Only strings that consist of exactly 2345",
+                         "2345 followed by any characters until line end",
+                         "234 followed by zero or more \u00275\u0027 characters",
+                         "The string 2345 repeated zero or more times"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027*\u0027 wiederholt nur das unmittelbar vorangehende Zeichen (hier die 5) null- oder mehrmals: 234, 2345, 23455 … Der Kurs stellt das falsch dar (als Wiederholung von \u00272345\u0027); dafür bräuchte man Klammern."
+    },
+    {
+        "id":  "slg-an-046",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "\u0027show interfaces | include gigabit\u0027 returns no output, although the router has GigabitEthernet interfaces. Why?",
+        "optionen":  [
+                         "Matching is case-sensitive and the output uses \u0027GigabitEthernet\u0027",
+                         "The include filter requires the pattern to start with ^",
+                         "Filters cannot be applied to the show interfaces command",
+                         "The keyword must be quoted because it contains only letters"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Filter in IOS unterscheiden Groß- und Kleinschreibung. Interfacenamen beginnen in der Ausgabe groß, daher passt \u0027gigabit\u0027 nicht."
+    },
+    {
+        "id":  "slg-an-047",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In \u0027show interfaces Gi0/0 | include ^Giga|errors|packets\u0027, the \u0027|\u0027 characters between the words act as a logical ___.",
+        "optionen":  [
+                         "NOT",
+                         "AND",
+                         "XOR",
+                         "OR"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Innerhalb des regulären Ausdrucks bedeutet \u0027|\u0027 ODER: angezeigt wird jede Zeile, die mit \u0027Giga\u0027 beginnt oder \u0027errors\u0027 oder \u0027packets\u0027 enthält."
+    },
+    {
+        "id":  "slg-an-048",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show running-config | include 10.1.1.1\u0027 also displays the line \u0027ip address 10.1.101.1 255.255.255.0\u0027. Why?",
+        "optionen":  [
+                         "Include matches all lines with at least four equal digits",
+                         "The filter compares the binary values of the addresses",
+                         "The include filter ignores the dots in IP addresses",
+                         "The dot is a wildcard that matches any single character"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Im regulären Ausdruck steht \u0027.\u0027 für ein beliebiges Zeichen. \u002710.1.1.1\u0027 passt deshalb auch auf den Teilstring \u002710.1.101\u0027 in \u002710.1.101.1\u0027."
+    },
+    {
+        "id":  "slg-an-049",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC: Zeige aus \u0027show ip interface brief\u0027 nur die Zeilen, die das Wort \u0027down\u0027 NICHT enthalten.",
+        "bausteine":  [
+                          "show",
+                          "ip",
+                          "interface",
+                          "brief",
+                          "|",
+                          "exclude",
+                          "down",
+                          "include",
+                          "begin",
+                          "section"
+                      ],
+        "loesung":  [
+                        "show",
+                        "ip",
+                        "interface",
+                        "brief",
+                        "|",
+                        "exclude",
+                        "down"
+                    ],
+        "erklaerung":  "\u0027| exclude down\u0027 blendet alle Zeilen mit \u0027down\u0027 aus, sodass nur die betriebsbereiten Interfaces übrig bleiben."
+    },
+    {
+        "id":  "slg-an-050",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Show-Filter seiner Wirkung zu.",
+        "paare":  [
+                      [
+                          "include",
+                          "Shows only the matching lines"
+                      ],
+                      [
+                          "exclude",
+                          "Hides the matching lines"
+                      ],
+                      [
+                          "begin",
+                          "Starts the output at the first matching line"
+                      ],
+                      [
+                          "section",
+                          "Shows matching sections with their indented lines"
+                      ]
+                  ],
+        "erklaerung":  "Alle Filter werden mit \u0027|\u0027 angehängt und akzeptieren reguläre Ausdrücke. \u0027section\u0027 ist vor allem für die Running-Config gedacht."
+    },
+    {
+        "id":  "slg-an-051",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Ping-Ausgabezeichen seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "Q",
+                          "Source quench, destination too busy"
+                      ],
+                      [
+                          "M",
+                          "Could not fragment"
+                      ],
+                      [
+                          "?",
+                          "Unknown packet type"
+                      ],
+                      [
+                          "\u0026",
+                          "Packet lifetime exceeded"
+                      ]
+                  ],
+        "erklaerung":  "Neben ! (Reply), . (Timeout) und U (Unreachable) kennt IOS Q, M, ? und \u0026. \u0027M\u0027 tritt typischerweise bei gesetztem DF-Bit und zu kleiner MTU auf."
+    },
+    {
+        "id":  "slg-an-052",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The first ping from R1 to a directly connected neighbor shows \u0027.!!!!\u0027. What is the most likely reason for the first timeout?",
+        "optionen":  [
+                         "The first echo was lost while R1 resolved the neighbor\u0027s MAC via ARP",
+                         "The neighbor rate-limits ICMP and drops every fifth echo request",
+                         "The neighbor\u0027s interface was flapping during the first second",
+                         "The first echo exceeded the MTU and had to be fragmented"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Fehlt der ARP-Eintrag, verwirft IOS das erste Paket, während ARP aufgelöst wird. Alle weiteren Echos kommen an – 80 % Erfolg ist hier unkritisch."
+    },
+    {
+        "id":  "slg-an-053",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 can ping PC2 (10.10.50.2). \u0027ping 10.10.50.2 source e0/0\u0027, using R1\u0027s LAN address 10.10.10.2, fails. What is the most likely cause?",
+        "optionen":  [
+                         "R1 has no route to 10.10.50.0/24 in its routing table",
+                         "PC2 drops ICMP echo requests from every source address",
+                         "Interface e0/0 on R1 uses a wrong subnet mask for the LAN",
+                         "The routers toward PC2 have no route back to 10.10.10.0/24"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne Quellangabe nutzt R1 die IP des ausgehenden Interfaces, zu der eine Rückroute existiert. Mit der LAN-Adresse als Quelle fehlt den anderen Routern die Rückroute zu 10.10.10.0/24."
+    },
+    {
+        "id":  "slg-an-054",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which source IP address does a Cisco router use by default for a ping it originates?",
+        "optionen":  [
+                         "The highest IP address configured on the router",
+                         "The IP address of the Loopback0 interface",
+                         "The IP address used as the OSPF router ID",
+                         "The IP address of the outgoing interface"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Standardmäßig steht im IP-Header die Adresse des ausgehenden Interfaces. Eine andere Quelle wählt man mit \u0027source\u0027 oder im Extended Ping."
+    },
+    {
+        "id":  "slg-an-055",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three are default values of the Cisco IOS ping command? (Choose three.)",
+        "optionen":  [
+                         "Data pattern 0x0000",
+                         "Repeat count of 5",
+                         "DF bit set in the IP header",
+                         "Timeout of 2 seconds",
+                         "Datagram size of 100 bytes"
+                     ],
+        "richtig":  [
+                        1,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "IOS sendet standardmäßig 5 Echos à 100 Byte mit 2 s Timeout. Das DF-Bit ist nicht gesetzt, das Default-Datenmuster ist 0xABCD."
+    },
+    {
+        "id":  "slg-an-056",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "From R1, \u0027ping 10.10.50.2 size 1476 df-bit\u0027 succeeds, while \u0027ping 10.10.50.2 size 1477 df-bit\u0027 returns \u0027M.M.M\u0027. What is the maximum packet size along the path?",
+        "optionen":  [
+                         "1504 bytes",
+                         "1500 bytes",
+                         "1476 bytes",
+                         "1448 bytes"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Mit gesetztem DF-Bit darf kein Router fragmentieren. 1476 geht durch, 1477 nicht (\u0027M\u0027 = could not fragment) – die Pfad-MTU beträgt also 1476 Byte."
+    },
+    {
+        "id":  "slg-an-057",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An extended ping with the DF bit set sweeps sizes from 1300 to 1500 bytes (sweep interval 1, repeat count 1). The result is \u0027Success rate is 89 percent (179/201)\u0027. What is the largest packet size that passed?",
+        "optionen":  [
+                         "1389 bytes",
+                         "1479 bytes",
+                         "1489 bytes",
+                         "1478 bytes"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Sweep-Pakete haben 1300, 1301 … 1500 Byte (201 Stück). 179 erfolgreiche bedeuten 1300 bis 1300 + 178 = 1478 Byte."
+    },
+    {
+        "id":  "slg-an-058",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is a path MTU of 1476 bytes commonly seen in enterprise networks?",
+        "optionen":  [
+                         "MPLS adds 24 bytes because it pushes six labels",
+                         "A GRE tunnel adds 24 bytes of overhead to a 1500-byte MTU",
+                         "An 802.1Q tag adds 24 bytes to every 1500-byte frame",
+                         "IPsec transport mode always adds exactly 24 bytes"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "GRE kapselt mit 20 Byte neuem IP-Header plus 4 Byte GRE-Header = 24 Byte. Bei 1500 Byte physischer MTU bleiben 1476 Byte für das innere Paket."
+    },
+    {
+        "id":  "slg-an-059",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which extended ping option shows the hops of both the forward and the return path?",
+        "optionen":  [
+                         "Timestamp",
+                         "Record",
+                         "Verbose",
+                         "Strict"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Record-Route-Option trägt die Adressen der besuchten Hops in den IP-Header ein – auf Hin- und Rückweg. Traceroute zeigt dagegen nur den Hinweg."
+    },
+    {
+        "id":  "slg-an-060",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The Record option of an extended ping can store the addresses of up to ___ hops.",
+        "optionen":  [
+                         "9",
+                         "30",
+                         "15",
+                         "255"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Platz für IP Options im Header ist auf 40 Byte begrenzt; für Record Route reicht das für 9 Adressen."
+    },
+    {
+        "id":  "slg-an-061",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die IP-Header-Option des Extended Ping ihrer Wirkung zu.",
+        "paare":  [
+                      [
+                          "Record",
+                          "Lists the hops of the forward and return path"
+                      ],
+                      [
+                          "Strict",
+                          "Only the listed hops may be used"
+                      ],
+                      [
+                          "Loose",
+                          "Listed hops must be visited, other hops are allowed"
+                      ],
+                      [
+                          "Timestamp",
+                          "Records times to measure delay to hosts"
+                      ]
+                  ],
+        "erklaerung":  "Loose und Strict sind Source-Routing-Varianten, Record protokolliert den Weg, Timestamp misst Zeiten. Verbose wird mit jeder Option automatisch gewählt."
+    },
+    {
+        "id":  "slg-an-062",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In which mode can the interactive extended ping (\u0027ping\u0027 entered without arguments) be used on a Cisco router?",
+        "optionen":  [
+                         "Privileged EXEC mode",
+                         "Global configuration mode",
+                         "User EXEC mode",
+                         "Interface configuration mode"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der interaktive Extended Ping steht nur im privileged EXEC Mode zur Verfügung. Im User EXEC Mode gibt es nur den einfachen Ping."
+    },
+    {
+        "id":  "slg-an-063",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC: Pinge 10.1.1.1 mit Loopback0 als Quelle, 1500 Byte Paketgröße und gesetztem DF-Bit.",
+        "bausteine":  [
+                          "ping",
+                          "10.1.1.1",
+                          "source",
+                          "loopback0",
+                          "size",
+                          "1500",
+                          "df-bit",
+                          "repeat",
+                          "timeout",
+                          "record"
+                      ],
+        "loesung":  [
+                        "ping",
+                        "10.1.1.1",
+                        "source",
+                        "loopback0",
+                        "size",
+                        "1500",
+                        "df-bit"
+                    ],
+        "erklaerung":  "Die Optionen source, size und df-bit lassen sich direkt an den Ping anhängen, ohne den interaktiven Dialog. So testet man MTU und Rückroute zur Loopback in einem Schritt."
+    },
+    {
+        "id":  "slg-an-064",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Pings to an interface of R2 show occasional timeouts and high RTT values, while traffic through R2 to servers behind it shows no loss. What is the most likely explanation?",
+        "optionen":  [
+                         "R2 drops pings because they arrive with a TTL value of 1",
+                         "R2 forwards transit traffic in software but pings in hardware",
+                         "R2 answers pings as a low-priority task when its CPU is busy",
+                         "The echo replies from R2 exceed the MTU of the return path"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein Router beantwortet Pings an sich selbst in Software mit niedriger Priorität, Transitverkehr wird in Hardware/CEF weitergeleitet. Verzögerte Ping-Antworten bedeuten daher nicht unbedingt ein Weiterleitungsproblem."
+    },
+    {
+        "id":  "slg-an-065",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the purpose of changing the data pattern in an extended ping?",
+        "optionen":  [
+                         "To troubleshoot framing or clocking problems on serial lines",
+                         "To mark the echo packets with a specific DSCP value",
+                         "To select the payload compression used by the router",
+                         "To authenticate the echo requests at the destination"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bestimmte Bitmuster (z. B. 0x0000 oder 0xFFFF) können Framing- oder Taktprobleme auf seriellen Leitungen sichtbar machen. Default ist 0xABCD."
+    },
+    {
+        "id":  "slg-an-066",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What does Cisco IOS traceroute send by default to discover the path?",
+        "optionen":  [
+                         "UDP datagrams to high ports starting at 33434",
+                         "TCP SYN segments to port 80 with increasing TTL",
+                         "UDP datagrams to port 53 with a fixed TTL of 30",
+                         "ICMP echo requests with increasing TTL values"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "IOS-Traceroute sendet UDP-Probes an hohe Ports ab 33434, je Probe um eins erhöht, beginnend mit TTL 1. Windows tracert nutzt dagegen ICMP Echo."
+    },
+    {
+        "id":  "slg-an-067",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does the source of a Cisco IOS traceroute recognize that the probes have reached the final destination?",
+        "optionen":  [
+                         "The destination returns an ICMP port unreachable message",
+                         "The destination returns an ICMP echo reply message",
+                         "The destination returns an ICMP time exceeded message",
+                         "The last router returns an ICMP redirect message"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Am Ziel läuft kein Dienst auf dem hohen UDP-Port, also antwortet es mit ICMP Port Unreachable. Zwischenrouter senden ICMP Time Exceeded."
+    },
+    {
+        "id":  "slg-an-068",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A traceroute probe is sent with TTL 3. It passes R4 and R3 and then arrives at R2. What does R2 do?",
+        "optionen":  [
+                         "Forwards the probe with TTL 0 and lets the next hop drop it",
+                         "Answers with ICMP port unreachable because the TTL reached 1",
+                         "Drops the probe silently and only logs a TTL-expiry message",
+                         "Decrements the TTL to 0, drops the probe and sends ICMP time exceeded"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "R4 und R3 senken die TTL auf 1. R2 senkt sie auf 0, verwirft das Paket und meldet sich mit ICMP Time Exceeded – so erscheint R2 als dritter Hop."
+    },
+    {
+        "id":  "slg-an-069",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A traceroute shows hop 3 as \u002710.1.3.1  !A  *  !A\u0027. What does this indicate?",
+        "optionen":  [
+                         "10.1.3.1 has no route to the destination network",
+                         "10.1.3.1 filters the probes with an ACL and reports it",
+                         "The destination host behind 10.1.3.1 is powered off",
+                         "10.1.3.1 is too busy and sends source quench messages"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "!A steht für administratively prohibited – ein Filter (meist eine ACL) verwirft die Probes und meldet das per ICMP. Das \u0027*\u0027 zeigt eine Probe ohne Antwort, z. B. durch ICMP-Rate-Limiting."
+    },
+    {
+        "id":  "slg-an-070",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The last line of a traceroute is \u00276  10.1.50.1  !H  !H  !H\u0027. What does this mean?",
+        "optionen":  [
+                         "The probes to 10.1.50.1 timed out three times at hop 6",
+                         "Router 10.1.50.1 reports that it cannot reach the destination host",
+                         "The destination host 10.1.50.1 answered all probes successfully",
+                         "Router 10.1.50.1 blocks the probes with an access control list"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "!H bedeutet Host unreachable: Der Router 10.1.50.1 kennt das Netz, erreicht aber den Zielhost nicht (z. B. keine ARP-Antwort). Zeitüberschreitungen würden als * erscheinen."
+    },
+    {
+        "id":  "slg-an-071",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Traffic between sites A and B suffers high latency only in one direction. Why does a traceroute from A not necessarily reveal the problem?",
+        "optionen":  [
+                         "Traceroute hides hops whose RTT is above the 3-second timeout",
+                         "Traceroute measures only the first probe and ignores later ones",
+                         "Traceroute shows only the forward path; replies may take another path",
+                         "Traceroute skips routers that use the same routing protocol"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Traceroute zeigt nur den Hinweg. Der Rückweg kann asymmetrisch über andere Router laufen – dafür braucht man einen Traceroute von B oder die Record-Option des Extended Ping."
+    },
+    {
+        "id":  "slg-an-072",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "By default, Cisco IOS traceroute sends ___ probes for each TTL value.",
+        "optionen":  [
+                         "1",
+                         "30",
+                         "3",
+                         "5"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Pro TTL-Wert gehen drei Probes raus; daher zeigt jede Zeile drei RTT-Werte oder Sternchen. 30 ist der Default für die maximale TTL."
+    },
+    {
+        "id":  "slg-an-073",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Traceroute output alternates between 10.1.12.1 and 10.1.12.2 from hop 3 until hop 30. What does this indicate?",
+        "optionen":  [
+                         "An ACL that blocks probes at every second hop",
+                         "A duplex mismatch on the link between the routers",
+                         "Per-packet load balancing over two equal links",
+                         "A routing loop between the two routers"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Pendeln die Hops zwischen zwei Adressen bis zur maximalen TTL, schicken sich die Router das Paket gegenseitig zu – eine Routing-Schleife. Load Balancing würde verschiedene Pfade zum Ziel zeigen, nicht bis Hop 30 pendeln."
+    },
+    {
+        "id":  "slg-an-074",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An ACL permits only UDP ports 33434–33534 and ICMP time-exceeded/port-unreachable for path tracing. A traceroute from a Cisco router works, but \u0027tracert\u0027 from a Windows PC fails. Why?",
+        "optionen":  [
+                         "Windows tracert starts with TTL 2 and skips the first router",
+                         "Windows tracert sends only one probe per hop instead of three",
+                         "Windows tracert uses ICMP echo requests, IOS uses UDP probes",
+                         "Windows tracert uses TCP port 80, IOS uses ICMP echo requests"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Windows tracert schickt ICMP Echo Requests mit steigender TTL; das Ziel antwortet mit Echo Reply. Erlaubt die ACL keine ICMP Echos, scheitert tracert, während der UDP-basierte IOS-Traceroute funktioniert."
+    },
+    {
+        "id":  "slg-an-075",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Traceroute-Ausgabezeichen seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "*",
+                          "The probe timed out"
+                      ],
+                      [
+                          "!N",
+                          "Network unreachable"
+                      ],
+                      [
+                          "!A",
+                          "Administratively prohibited"
+                      ],
+                      [
+                          "U",
+                          "Port unreachable"
+                      ]
+                  ],
+        "erklaerung":  "* steht für keine Antwort, !N/!H/!P für Netz-/Host-/Protokoll-unerreichbar, !A für einen Filter. U (Port unreachable) liefert das Ziel selbst."
+    },
+    {
+        "id":  "slg-an-076",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027debug ip packet\u0027 is enabled on R3, but no output appears for traffic flowing between two hosts through R3. Why?",
+        "optionen":  [
+                         "debug ip packet works only with logging buffered enabled",
+                         "Transit packets are CEF-switched and never reach the CPU",
+                         "debug ip packet shows only packets dropped by an ACL",
+                         "terminal monitor must be entered on the console line"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027debug ip packet\u0027 zeigt nur prozessvermittelte Pakete – also Pakete an oder vom Router selbst. Per CEF oder Fast Switching weitergeleiteter Transitverkehr erreicht die CPU nicht."
+    },
+    {
+        "id":  "slg-an-077",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "To see transit traffic with \u0027debug ip packet\u0027, what must be configured, and what is the main risk?",
+        "optionen":  [
+                         "logging buffered debugging globally; the buffer can overflow",
+                         "no ip route-cache on the interfaces; CPU load can rise sharply",
+                         "ip route-cache flow on the interfaces; exports can be lost",
+                         "ip cef distributed on the interfaces; memory use can rise sharply"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit \u0027no ip route-cache\u0027 wird der Verkehr prozessvermittelt und damit für das Debug sichtbar. Dadurch kann die CPU stark ansteigen; auf MPLS-Routern darf man das nicht tun."
+    },
+    {
+        "id":  "slg-an-078",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R3 has \u0027access-list 10 permit 10.10.30.1\u0027, and the engineer enters \u0027debug ip packet 10\u0027. Which packets are displayed?",
+        "optionen":  [
+                         "Only packets with the destination address 10.10.30.1",
+                         "Process-switched packets with source address 10.10.30.1",
+                         "Only packets received on the interface with 10.10.30.1",
+                         "All packets to or from 10.10.30.1, including CEF-switched"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Eine Standard-ACL prüft die Quelladresse. Das Debug zeigt damit nur prozessvermittelte Pakete von 10.10.30.1 – CEF-Transitverkehr bleibt weiter unsichtbar."
+    },
+    {
+        "id":  "slg-an-079",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC: Aktiviere \u0027debug ip packet\u0027 nur für Pakete, die ACL 101 erlaubt, mit Detailinformationen.",
+        "bausteine":  [
+                          "debug",
+                          "ip",
+                          "packet",
+                          "101",
+                          "detail",
+                          "condition",
+                          "all",
+                          "terminal"
+                      ],
+        "loesung":  [
+                        "debug",
+                        "ip",
+                        "packet",
+                        "101",
+                        "detail"
+                    ],
+        "erklaerung":  "Die ACL-Nummer begrenzt die Ausgabe auf passende Pakete, \u0027detail\u0027 zeigt zusätzlich z. B. Protokoll und Ports. Eine erweiterte ACL erlaubt Filter auf Quelle, Ziel und Ports."
+    },
+    {
+        "id":  "slg-an-080",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which command lists the debug functions that are currently enabled on a router?",
+        "optionen":  [
+                         "show logging",
+                         "show monitor",
+                         "show processes",
+                         "show debugging"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027show debugging\u0027 (kurz \u0027show debug\u0027) zeigt alle aktiven Debugs, z. B. \u0027IP packet debugging is on\u0027. \u0027show logging\u0027 zeigt Log-Ziele und den Puffer."
+    },
+    {
+        "id":  "slg-an-081",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Two debug conditions are set on R3: \u0027debug condition interface Gi0/0\u0027 and \u0027debug condition ip 10.1.1.1\u0027. When is conditional debug output generated?",
+        "optionen":  [
+                         "Only for the condition that was configured first",
+                         "Never, because only one condition can be active",
+                         "When at least one of the two conditions matches",
+                         "Only when both conditions match the same packet"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei mehreren Debug-Bedingungen genügt es, wenn eine davon zutrifft – sie werden ODER-verknüpft. Mit \u0027show debug condition\u0027 sieht man alle gesetzten Bedingungen."
+    },
+    {
+        "id":  "slg-an-082",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC: Entferne alle gesetzten Debug-Bedingungen, damit Debugs wieder für alle Interfaces ausgegeben werden.",
+        "bausteine":  [
+                          "no",
+                          "debug",
+                          "condition",
+                          "all",
+                          "interface",
+                          "undebug",
+                          "terminal"
+                      ],
+        "loesung":  [
+                        "no",
+                        "debug",
+                        "condition",
+                        "all"
+                    ],
+        "erklaerung":  "\u0027no debug condition all\u0027 entfernt sämtliche Bedingungen; einzelne entfernt man über ihre Condition-ID. Danach gilt die Debug-Ausgabe wieder ohne Einschränkung."
+    },
+    {
+        "id":  "slg-an-083",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Log and debug messages keep interrupting the command an engineer is typing on the console. Which line configuration command solves this?",
+        "optionen":  [
+                         "logging buffered",
+                         "no logging console",
+                         "logging synchronous",
+                         "terminal monitor"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027logging synchronous\u0027 unter line con/vty gibt die Eingabezeile nach einer Meldung neu aus, sodass der Befehl nicht zerrissen wird. Die Meldungen bleiben sichtbar."
+    },
+    {
+        "id":  "slg-an-084",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two commands turn off all active debugs on a Cisco router? (Choose two.)",
+        "optionen":  [
+                         "clear logging",
+                         "no debug condition all",
+                         "terminal no monitor",
+                         "undebug all",
+                         "no debug all"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "\u0027undebug all\u0027 und \u0027no debug all\u0027 deaktivieren alle Debugs. \u0027no debug condition all\u0027 entfernt nur Filterbedingungen, \u0027terminal no monitor\u0027 blendet die Ausgabe nur in der Session aus."
+    },
+    {
+        "id":  "slg-an-085",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "An engineer plans to run \u0027debug ip packet\u0027 on a busy production router. Which two precautions are recommended? (Choose two.)",
+        "optionen":  [
+                         "Check the CPU load with show processes cpu first",
+                         "Disable CEF globally so that all packets are shown",
+                         "Enable logging console debugging for full output",
+                         "Limit the output with an ACL or a debug condition",
+                         "Reload the router first to reset all counters"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Vorher die CPU-Reserve prüfen und die Ausgabe per ACL oder Condition eng begrenzen. CEF abzuschalten oder alles auf die Console zu schicken, kann den Router lahmlegen."
+    },
+    {
+        "id":  "slg-an-086",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027debug ip packet\u0027 on R3 shows: \u0027IP: s=10.10.30.1 (Ethernet0/0), d=224.0.0.5, len 80, rcvd 0\u0027. What does this line describe?",
+        "optionen":  [
+                         "R3 dropped a packet from 10.10.30.1 because its TTL was 0",
+                         "R3 received a multicast packet from 10.10.30.1, such as an OSPF hello",
+                         "R3 sent a packet sourced from 10.10.30.1 out of Ethernet0/0",
+                         "R3 received a unicast packet for its own address 224.0.0.5"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "s= ist die Quelle mit Eingangsinterface, d= das Ziel. 224.0.0.5 ist die Multicast-Adresse für alle OSPF-Router; \u0027rcvd\u0027 bedeutet empfangen."
+    },
+    {
+        "id":  "slg-an-087",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does an IP SLA responder improve the accuracy of measurements?",
+        "optionen":  [
+                         "It synchronizes the source clock with its own internal clock",
+                         "It marks the probes with DSCP EF so that they bypass all queues",
+                         "It time-stamps the probes so its processing delay can be removed",
+                         "It retransmits lost probes so that no loss is counted in results"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Responder setzt Zeitstempel beim Empfang und beim Senden. Die Source zieht die Verarbeitungszeit auf dem Responder ab und misst so die echte Netzverzögerung."
+    },
+    {
+        "id":  "slg-an-088",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Before probing, an IP SLA source sends control messages to the responder on UDP port ___ to request that a test port be opened.",
+        "optionen":  [
+                         "514",
+                         "33434",
+                         "161",
+                         "1967"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Control Phase läuft über UDP 1967. Der Responder öffnet daraufhin den angefragten Testport und schließt ihn nach dem Test wieder."
+    },
+    {
+        "id":  "slg-an-089",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which statement about an IP SLA icmp-echo operation is true?",
+        "optionen":  [
+                         "Any IP device that answers pings can be the target",
+                         "The target must be configured with ip sla responder",
+                         "The source and target must be synchronized by NTP",
+                         "It measures jitter separately for each direction"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "icmp-echo misst Erreichbarkeit und RTT mit normalen Echo Requests, daher funktioniert jedes Ziel, das auf Ping antwortet. Responder und NTP sind dafür nicht nötig."
+    },
+    {
+        "id":  "slg-an-090",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which three are valid Cisco IOS IP SLA operation types? (Choose three.)",
+        "optionen":  [
+                         "ospf-hello",
+                         "tcp-connect",
+                         "udp-jitter",
+                         "stp-bpdu",
+                         "http"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "IP SLA kennt u. a. icmp-echo, udp-echo, udp-jitter, tcp-connect, http, ftp, dns, dhcp, path-echo und path-jitter. OSPF-Hellos oder BPDUs sind keine IP-SLA-Operationen."
+    },
+    {
+        "id":  "slg-an-091",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "If no frequency is configured, an IP SLA operation repeats every ___ seconds.",
+        "optionen":  [
+                         "30",
+                         "60",
+                         "300",
+                         "5"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Default-Frequenz beträgt 60 s, sichtbar in \u0027show ip sla configuration\u0027 als \u0027Operation frequency (seconds): 60\u0027. Mit \u0027frequency\u0027 lässt sie sich ändern."
+    },
+    {
+        "id":  "slg-an-092",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer configures \u0027ip sla schedule 7 life forever\u0027 without a start-time keyword. What is the state of operation 7?",
+        "optionen":  [
+                         "Pending; it waits for a start time",
+                         "Active; it starts at once with life forever",
+                         "Rejected; the command is incomplete",
+                         "Active; it starts at the next full hour"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ohne start-time bleibt die Operation im Zustand pending und sammelt keine Daten. Erst \u0027start-time now\u0027 (oder eine Uhrzeit bzw. \u0027after\u0027) startet sie."
+    },
+    {
+        "id":  "slg-an-093",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "IP SLA 5 is already scheduled and running. The engineer wants to change its frequency from 60 to 10 seconds. How can this be done?",
+        "optionen":  [
+                         "Use \u0027ip sla reaction-configuration 5\u0027 to override the frequency",
+                         "Use \u0027ip sla restart 5 frequency 10\u0027 from privileged EXEC mode",
+                         "Enter the operation and change the frequency; it applies at once",
+                         "Remove the schedule or operation, change it, then reschedule it"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Eine laufende IP-SLA-Operation lässt sich nicht ändern. Man entfernt Schedule bzw. Operation, passt sie an und plant sie neu ein."
+    },
+    {
+        "id":  "slg-an-094",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Plane IP-SLA-Operation 3 so, dass sie täglich um 08:00 Uhr startet und jeweils 3600 Sekunden läuft.",
+        "bausteine":  [
+                          "ip",
+                          "sla",
+                          "schedule",
+                          "3",
+                          "life",
+                          "3600",
+                          "start-time",
+                          "08:00",
+                          "recurring",
+                          "forever",
+                          "now",
+                          "ageout"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "sla",
+                        "schedule",
+                        "3",
+                        "life",
+                        "3600",
+                        "start-time",
+                        "08:00",
+                        "recurring"
+                    ],
+        "erklaerung":  "\u0027life 3600\u0027 begrenzt die Laufzeit, \u0027start-time 08:00\u0027 setzt die Startzeit und \u0027recurring\u0027 wiederholt den Start täglich zur gleichen Uhrzeit."
+    },
+    {
+        "id":  "slg-an-095",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "IP-SLA-Konfigurationsmodus (nach \u0027ip sla 2\u0027): Konfiguriere einen UDP-Jitter-Test zu 172.16.22.254, Zielport 16384, mit 25 Paketen im Abstand von 20 ms.",
+        "bausteine":  [
+                          "udp-jitter",
+                          "172.16.22.254",
+                          "16384",
+                          "num-packets",
+                          "25",
+                          "interval",
+                          "20",
+                          "icmp-echo",
+                          "source-port",
+                          "frequency"
+                      ],
+        "loesung":  [
+                        "udp-jitter",
+                        "172.16.22.254",
+                        "16384",
+                        "num-packets",
+                        "25",
+                        "interval",
+                        "20"
+                    ],
+        "erklaerung":  "Syntax: udp-jitter \u003cziel-ip\u003e \u003cport\u003e [num-packets n] [interval ms]. Ohne diese Angaben sendet IOS 10 Pakete im Abstand von 20 ms."
+    },
+    {
+        "id":  "slg-an-096",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027udp-jitter 10.1.1.1 5000\u0027 is configured without num-packets or interval. What does each operation send?",
+        "optionen":  [
+                         "20 packets spaced 10 ms apart",
+                         "5 packets spaced 2 seconds apart",
+                         "100 packets spaced 1 ms apart",
+                         "10 packets spaced 20 ms apart"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Default bei udp-jitter sind 10 Pakete im Abstand von 20 ms pro Operation. Mit num-packets und interval lässt sich das anpassen."
+    },
+    {
+        "id":  "slg-an-097",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "IP SLA 2 is configured with \u0027udp-jitter 172.16.22.254 65051 num-packets 20\u0027, \u0027request-data-size 160\u0027, and \u0027frequency 30\u0027. What happens?",
+        "optionen":  [
+                         "Every 30 s, 160 packets with 20-byte payload are sent 20 ms apart",
+                         "Every 30 s, 20 packets with 160-byte payload are sent 20 ms apart",
+                         "Every 20 s, 30 packets with 160-byte payload are sent 20 ms apart",
+                         "Every 160 s, 20 packets with 30-byte payload are sent 30 ms apart"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "num-packets legt die Anzahl fest, request-data-size die Nutzlast und frequency den Abstand der Operationen. Der Paketabstand bleibt beim Default von 20 ms."
+    },
+    {
+        "id":  "slg-an-098",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which udp-jitter results are only meaningful if the source and the responder are synchronized with NTP?",
+        "optionen":  [
+                         "Round-trip time minimum, average, and maximum",
+                         "Number of successes and failures of the operation",
+                         "One-way latency from source to destination and back",
+                         "Packet loss counted from source to destination"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "One-Way-Latenz vergleicht Sende- und Empfangszeitstempel zweier Geräte – das geht nur mit synchronen Uhren. RTT, Erfolgszähler und Verlust (über Sequenznummern) brauchen kein NTP."
+    },
+    {
+        "id":  "slg-an-099",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show ip sla statistics 2\u0027 shows \u0027Number of successes: 6\u0027, \u0027Number of failures: 1\u0027, and \u0027Operation time to live: 3125 sec\u0027. What can you conclude?",
+        "optionen":  [
+                         "It was scheduled with life forever and has failed in 1 of 7 runs",
+                         "It will be deleted after 3125 seconds because one run failed",
+                         "It runs every 3125 seconds and has failed in one of seven runs",
+                         "It was scheduled without life forever and stops in about 52 minutes"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Time to live zählt die verbleibende Laufzeit; ohne \u0027life forever\u0027 gilt der Default von 3600 s. 3125 s ≈ 52 min bis zum Stopp – bei life forever stünde dort \u0027Forever\u0027."
+    },
+    {
+        "id":  "slg-an-100",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Voice packets leave the source exactly 20 ms apart and arrive at the destination 23 ms apart. Which jitter value results?",
+        "optionen":  [
+                         "+3 ms (positive jitter)",
+                         "43 ms (round-trip time)",
+                         "−3 ms (negative jitter)",
+                         "23 ms (one-way delay)"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Jitter ist die Abweichung der Paketabstände. Kommen Pakete weiter auseinander an als gesendet, ist der Jitter positiv – hier 23 − 20 = +3 ms."
+    },
+    {
+        "id":  "slg-an-101",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "IP SLA 1 returns \u0027Over threshold\u0027. Track 1 is configured as \u0027track 1 ip sla 1 reachability\u0027 and track 2 as \u0027track 2 ip sla 1 state\u0027. What is the state of the tracks?",
+        "optionen":  [
+                         "Track 1 is down and track 2 is up",
+                         "Both tracks are down",
+                         "Track 1 is up and track 2 is down",
+                         "Both tracks are up"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027reachability\u0027 ist up bei OK oder Over threshold – das Ziel antwortet ja. \u0027state\u0027 ist nur bei OK up; Over threshold führt zu down."
+    },
+    {
+        "id":  "slg-an-102",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 has \u0027ip route 0.0.0.0 0.0.0.0 203.0.113.1 track 1\u0027 and \u0027ip route 0.0.0.0 0.0.0.0 198.51.100.1 5\u0027. Track 1 went down and later comes back up. What happens?",
+        "optionen":  [
+                         "Both default routes are installed and traffic is load-balanced",
+                         "The route via 203.0.113.1 (AD 1) replaces the route via 198.51.100.1",
+                         "Track 1 must be cleared manually before the route returns",
+                         "The route via 198.51.100.1 stays because it was installed first"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ist der Track wieder up, wird die getrackte Route mit AD 1 erneut installiert und verdrängt die Floating Static Route mit AD 5. Das passiert automatisch."
+    },
+    {
+        "id":  "slg-an-103",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 tracks its primary default route via ISP1 with an icmp-echo to 8.8.8.8. When ISP1 fails, the probes follow the backup default route via ISP2, still succeed, and the primary route flaps back. What is the best fix?",
+        "optionen":  [
+                         "Change the track from reachability to state so failures are detected",
+                         "Increase the frequency of the probe to one second so it detects failures",
+                         "Raise the administrative distance of the primary route above the backup",
+                         "Bind the probe to the ISP1 interface and add a host route to 8.8.8.8 via ISP1"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Probe muss zwingend über ISP1 laufen, sonst testet sie den Backup-Pfad. Mit source-interface und einer Host-Route zum Probe-Ziel über ISP1 scheitert sie bei einem ISP1-Ausfall wie gewünscht."
+    },
+    {
+        "id":  "slg-an-104",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An icmp-echo operation has \u0027threshold 100\u0027. A probe receives its reply after 150 ms, well within the timeout. Which return code is reported?",
+        "optionen":  [
+                         "Timeout",
+                         "Over threshold",
+                         "No connection",
+                         "OK"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Antwortet das Ziel innerhalb des Timeouts, aber langsamer als der Threshold, meldet IP SLA \u0027Over threshold\u0027. \u0027Timeout\u0027 gäbe es erst nach Ablauf des Timeouts (Default 5000 ms)."
+    },
+    {
+        "id":  "slg-an-105",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Erzeuge Track-Objekt 10, das den Zustand (state) von IP-SLA-Operation 5 überwacht.",
+        "bausteine":  [
+                          "track",
+                          "10",
+                          "ip",
+                          "sla",
+                          "5",
+                          "state",
+                          "reachability",
+                          "rtr",
+                          "interface"
+                      ],
+        "loesung":  [
+                        "track",
+                        "10",
+                        "ip",
+                        "sla",
+                        "5",
+                        "state"
+                    ],
+        "erklaerung":  "\u0027track 10 ip sla 5 state\u0027 ist nur bei Return Code OK up. Mit \u0027reachability\u0027 wäre der Track auch bei Over threshold up."
+    },
+    {
+        "id":  "slg-an-106",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A tracked default route flaps every minute because single probes are lost now and then. Which track subcommand reduces the flapping?",
+        "optionen":  [
+                         "timeout 15000",
+                         "threshold 15",
+                         "delay up 60 down 15",
+                         "frequency 60"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027delay up/down\u0027 verzögert die Meldung von Zustandswechseln des Track-Objekts; ein einzelner Verlust schaltet die Route nicht sofort ab. timeout, threshold und frequency sind Parameter der IP-SLA-Operation, nicht des Track-Objekts (threshold gibt es beim Tracking nur für Track-Listen)."
+    },
+    {
+        "id":  "slg-an-107",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Befehl der Information zu, die er liefert.",
+        "paare":  [
+                      [
+                          "show ip sla statistics",
+                          "Latest RTT, return code, successes and failures"
+                      ],
+                      [
+                          "show ip sla configuration",
+                          "Operation type, frequency, timeout and schedule"
+                      ],
+                      [
+                          "show ip sla application",
+                          "Supported operation types and number of operations"
+                      ],
+                      [
+                          "show track",
+                          "Up or down state of tracked objects"
+                      ]
+                  ],
+        "erklaerung":  "statistics zeigt Ergebnisse, configuration die Parameter und den Zeitplan, application die Fähigkeiten der Plattform. \u0027show track\u0027 zeigt den Zustand der Track-Objekte."
+    },
+    {
+        "id":  "slg-an-108",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two metrics does a udp-jitter operation report that an icmp-echo operation does not? (Choose two.)",
+        "optionen":  [
+                         "Packet loss for each direction",
+                         "Number of successes",
+                         "Jitter for each direction",
+                         "Round-trip time",
+                         "Reachability of the target"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "udp-jitter liefert Jitter, Verlust und One-Way-Werte getrennt nach Richtung sowie MOS/ICPIF. RTT, Erreichbarkeit und Erfolgszähler liefert auch icmp-echo."
+    },
+    {
+        "id":  "slg-an-109",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which IP SLA operation measures how long it takes to set up a session to TCP port 443 on a server, without downloading any content?",
+        "optionen":  [
+                         "icmp-echo",
+                         "tcp-connect",
+                         "http",
+                         "udp-echo"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "tcp-connect misst die Zeit für den TCP-Verbindungsaufbau zu einem Port. Die http-Operation würde zusätzlich eine Seite abrufen."
+    },
+    {
+        "id":  "slg-an-110",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "How do IP SLAs help to reduce the mean time to repair (MTTR)?",
+        "optionen":  [
+                         "They mirror user traffic to a central analyzer for every fault",
+                         "They detect degradation proactively, often before users report it",
+                         "They automatically correct the misconfigured routers they detect",
+                         "They replace syslog so that fewer messages must be analyzed"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "IP SLA misst kontinuierlich mit synthetischem Verkehr. Verschlechterungen fallen so früh auf und lassen sich eingrenzen – das verkürzt die Zeit bis zur Behebung."
+    },
+    {
+        "id":  "slg-an-111",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Where does the IP SLA source keep its results so that a network management system can retrieve them?",
+        "optionen":  [
+                         "In a MIB that an NMS can poll with SNMP",
+                         "In a NetFlow cache exported every minute",
+                         "In NVRAM as part of the startup configuration",
+                         "In a syslog file stored on the responder"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Source speichert die Ergebnisse in einer MIB. Reporting-Tools lesen sie per SNMP aus; IP SLA kann auch per SNMP konfiguriert werden."
+    },
+    {
+        "id":  "slg-an-112",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A udp-jitter operation from HQ to BR fails on every run, while an icmp-echo operation to the same address succeeds. What is the most likely cause?",
+        "optionen":  [
+                         "NTP is not synchronized between HQ and BR",
+                         "The request-data-size exceeds the default value",
+                         "ip sla responder is not configured on BR",
+                         "The frequency is shorter than the 60-s default"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "udp-jitter braucht einen Responder, der die Control-Nachricht auf UDP 1967 beantwortet und den Testport öffnet. Fehlendes NTP verfälscht nur One-Way-Werte, lässt die Operation aber nicht scheitern."
+    },
+    {
+        "id":  "slg-an-113",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "To force an icmp-echo probe out of a specific interface, configure \u0027icmp-echo 8.8.8.8 ___ GigabitEthernet0/0\u0027 under the IP SLA operation.",
+        "optionen":  [
+                         "source-ip",
+                         "egress",
+                         "interface",
+                         "source-interface"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "source-interface legt das Quellinterface und damit die Quelladresse fest. source-ip erwartet eine IP-Adresse, keinen Interfacenamen."
+    },
+    {
+        "id":  "slg-an-114",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about the \u0027ip sla schedule\u0027 command are true? (Choose two.)",
+        "optionen":  [
+                         "The recurring keyword starts the operation at the same time every day",
+                         "Without the life keyword, the operation runs for 24 hours",
+                         "The ageout keyword controls how long the data is kept while inactive",
+                         "The start-time now keyword can only be combined with life forever",
+                         "Only one operation can be scheduled on a router at the same time"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "recurring wiederholt den Start täglich, ageout bestimmt, wie lange die Operation und ihre Daten im inaktiven Zustand erhalten bleiben. Default-Laufzeit ist 3600 s, und mehrere Operationen können parallel laufen."
+    },
+    {
+        "id":  "slg-an-115",
+        "topic":  "ENCOR-4.4",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die IP-SLA-Operation ihrem typischen Einsatz zu.",
+        "paare":  [
+                      [
+                          "icmp-echo",
+                          "Reachability and RTT to any IP device"
+                      ],
+                      [
+                          "udp-jitter",
+                          "Jitter, loss and MOS for voice traffic"
+                      ],
+                      [
+                          "tcp-connect",
+                          "Time to open a TCP session to a port"
+                      ],
+                      [
+                          "dns",
+                          "Time to resolve a host name"
+                      ]
+                  ],
+        "erklaerung":  "icmp-echo ist der einfachste Erreichbarkeitstest, udp-jitter der Standard für Echtzeitverkehr. tcp-connect und dns messen gezielt Verbindungsaufbau bzw. Namensauflösung."
+    },
+    {
+        "id":  "slg-an-116",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A sniffer connected to a free switch port captures only broadcasts and its own traffic. Why?",
+        "optionen":  [
+                         "The switch encrypts unicast frames between the other two ports",
+                         "The sniffer port is in a different VLAN than every other port",
+                         "The switch forwards known unicast frames only to the destination port",
+                         "The switch drops all frames that the sniffer did not request first"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein Switch lernt Quell-MACs und leitet bekannte Unicasts nur an den passenden Port. Um fremden Verkehr zu sehen, braucht man SPAN."
+    },
+    {
+        "id":  "slg-an-117",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "If no direction keyword is given, a SPAN source port is monitored in the ___ direction.",
+        "optionen":  [
+                         "tx",
+                         "both",
+                         "rx",
+                         "ingress"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ohne rx/tx werden empfangener und gesendeter Verkehr gespiegelt (both ist Default). \u0027show monitor\u0027 zeigt das als \u0027Both: Gi0/1\u0027."
+    },
+    {
+        "id":  "slg-an-118",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A SPAN session mirrors Gi1/0/1 (1 Gbps, full duplex) in both directions to a 1-Gbps destination port. Each direction carries about 700 Mbps. The sniffer misses packets. Why?",
+        "optionen":  [
+                         "Up to 1.4 Gbps of copies must fit into a 1-Gbps destination port",
+                         "The source port drops user traffic to protect the SPAN session",
+                         "SPAN mirrors only every second packet once a link exceeds 50 %",
+                         "The destination must be configured for full duplex explicitly"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bei \u0027both\u0027 addieren sich beide Richtungen: 2 × 700 Mbps = 1,4 Gbps für einen 1-Gbps-Zielport. Die überzähligen Kopien werden verworfen; der Originalverkehr ist nicht betroffen."
+    },
+    {
+        "id":  "slg-an-119",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Gi0/1 is the destination of SPAN session 1. The engineer tries to add Gi0/1 as a source of SPAN session 2. What happens?",
+        "optionen":  [
+                         "It is rejected because a destination port cannot be a source port",
+                         "It is accepted and Gi0/1 mirrors its copies into session 2",
+                         "It is accepted only if session 2 monitors the rx direction",
+                         "It is accepted, but session 1 is shut down automatically"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein SPAN-Zielport kann nicht gleichzeitig Quellport sein und umgekehrt. Das verhindert Schleifen beim Kopieren."
+    },
+    {
+        "id":  "slg-an-120",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Session 1 already has \u0027monitor session 1 source interface Gi0/1\u0027. The engineer adds \u0027monitor session 1 source vlan 10\u0027. What is the result?",
+        "optionen":  [
+                         "Both sources are accepted and their traffic is merged",
+                         "It is rejected; a session uses either ports or VLANs as sources",
+                         "The VLAN source replaces the port source automatically",
+                         "The port source is converted into a member of VLAN 10"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Eine SPAN-Session darf entweder Quellports oder Quell-VLANs haben, nicht beides gemischt. Für beides braucht man getrennte Sessions."
+    },
+    {
+        "id":  "slg-an-121",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show monitor\u0027 shows \u0027Destination ports: Gi0/2\u0027, \u0027Encapsulation: Native\u0027, and \u0027Ingress: Disabled\u0027. What does \u0027Ingress: Disabled\u0027 mean?",
+        "optionen":  [
+                         "Only traffic leaving the switch is copied to Gi0/2",
+                         "Traffic received on the source port is not monitored",
+                         "Gi0/2 does not accept incoming traffic from the attached sniffer",
+                         "Gi0/2 discards all mirrored frames until it is enabled"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Ingress-Option erlaubt, dass ein Gerät am Zielport selbst Verkehr ins Netz sendet. \u0027Disabled\u0027 betrifft nur das; gespiegelt werden weiter die konfigurierten Richtungen. Der Kurs deutet das fälschlich als \u0027nur ausgehender Verkehr\u0027."
+    },
+    {
+        "id":  "slg-an-122",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer mirrors a trunk port and needs the sniffer to see the 802.1Q tags and Layer 2 protocol frames exactly as on the source. What should be configured?",
+        "optionen":  [
+                         "Mirror the source only in the tx direction to keep tags",
+                         "Configure the destination port as an 802.1Q trunk port",
+                         "Add filter vlan 1-4094 to the SPAN session configuration",
+                         "Add encapsulation replicate to the SPAN destination command"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Mit \u0027encapsulation replicate\u0027 übernimmt der Zielport die Kapselung des Quellports inklusive Tags. Ohne die Option ist die Encapsulation \u0027Native\u0027."
+    },
+    {
+        "id":  "slg-an-123",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Trunk Gi1/0/48 carrying VLANs 10–50 is a SPAN source, but only VLAN 20 traffic should reach the sniffer. What should be added?",
+        "optionen":  [
+                         "switchport trunk allowed vlan 20 on Gi1/0/48",
+                         "monitor session 1 destination vlan 20",
+                         "monitor session 1 filter vlan 20",
+                         "monitor session 1 source vlan 20 rx"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027filter vlan\u0027 begrenzt das Spiegeln eines Trunk-Quellports auf bestimmte VLANs. Die trunk allowed-Liste zu ändern würde den Produktivverkehr beeinträchtigen."
+    },
+    {
+        "id":  "slg-an-124",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Spiegle in SPAN-Session 1 nur den auf Gi1/0/1 empfangenen Verkehr.",
+        "bausteine":  [
+                          "monitor",
+                          "session",
+                          "1",
+                          "source",
+                          "interface",
+                          "gi1/0/1",
+                          "rx",
+                          "tx",
+                          "both",
+                          "destination"
+                      ],
+        "loesung":  [
+                        "monitor",
+                        "session",
+                        "1",
+                        "source",
+                        "interface",
+                        "gi1/0/1",
+                        "rx"
+                    ],
+        "erklaerung":  "Die Richtung steht am Ende: rx = empfangen, tx = gesendet, both = beides (Default)."
+    },
+    {
+        "id":  "slg-an-125",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege Gi1/0/24 als Zielport der SPAN-Session 1 fest.",
+        "bausteine":  [
+                          "monitor",
+                          "session",
+                          "1",
+                          "destination",
+                          "interface",
+                          "gi1/0/24",
+                          "source",
+                          "remote",
+                          "vlan"
+                      ],
+        "loesung":  [
+                        "monitor",
+                        "session",
+                        "1",
+                        "destination",
+                        "interface",
+                        "gi1/0/24"
+                    ],
+        "erklaerung":  "Quelle und Ziel werden über dieselbe Session-Nummer verbunden. Der Zielport verliert danach seine normale Switchport-Funktion."
+    },
+    {
+        "id":  "slg-an-126",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "\u0027show monitor\u0027 displays \u0027Type: Local Session\u0027, \u0027Source Ports: Both: Gi0/1\u0027, \u0027Destination Ports: Gi0/2\u0027. Which statement is true?",
+        "optionen":  [
+                         "Traffic sent and received on Gi0/2 is copied to Gi0/1",
+                         "Traffic sent and received on Gi0/1 is copied to Gi0/2",
+                         "Only traffic between Gi0/1 and Gi0/2 is being copied",
+                         "Gi0/1 and Gi0/2 are monitored by a remote switch"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Local Session bedeutet Quelle und Ziel auf demselben Switch. \u0027Both\u0027 heißt, Rx- und Tx-Verkehr von Gi0/1 wird an Gi0/2 kopiert."
+    },
+    {
+        "id":  "slg-an-127",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about local SPAN are true? (Choose two.)",
+        "optionen":  [
+                         "Both Layer 2 and Layer 3 ports can be source ports",
+                         "The destination port must be in the same VLAN as the source",
+                         "One session can mix source ports and source VLANs",
+                         "Source and destination ports may be on different switches",
+                         "The destination port does not take part in normal switching"
+                     ],
+        "richtig":  [
+                        0,
+                        4
+                    ],
+        "erklaerung":  "Quellports können L2- oder L3-Ports sein; der Zielport transportiert nur gespiegelten Verkehr. Verschiedene Switches erfordern RSPAN/ERSPAN, und Ports und VLANs lassen sich nicht in einer Session mischen."
+    },
+    {
+        "id":  "slg-an-128",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "RSPAN mirrors traffic from SW1 to a sniffer on SW2 through the transit switch SW-T. The sniffer receives nothing. Which two conditions must be met on the path? (Choose two.)",
+        "optionen":  [
+                         "The RSPAN VLAN exists with remote-span on SW-T",
+                         "SW1 and SW2 have IP reachability to each other",
+                         "The RSPAN VLAN is allowed on all trunks in the path",
+                         "SW-T is configured with a matching ERSPAN ID",
+                         "All switches use the same SPAN session number"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "Das RSPAN-VLAN muss auf allen Switches im Pfad als remote-span-VLAN existieren und auf den Trunks erlaubt sein. Session-Nummern sind lokal, IP-Erreichbarkeit und ERSPAN-ID betreffen nur ERSPAN."
+    },
+    {
+        "id":  "slg-an-129",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus auf dem Quell-Switch: Sende die gespiegelten Daten der Session 2 in das RSPAN-VLAN 100.",
+        "bausteine":  [
+                          "monitor",
+                          "session",
+                          "2",
+                          "destination",
+                          "remote",
+                          "vlan",
+                          "100",
+                          "source",
+                          "interface"
+                      ],
+        "loesung":  [
+                        "monitor",
+                        "session",
+                        "2",
+                        "destination",
+                        "remote",
+                        "vlan",
+                        "100"
+                    ],
+        "erklaerung":  "Auf dem Quell-Switch ist das RSPAN-VLAN das Ziel der Session; auf dem Ziel-Switch ist es die Quelle (\u0027source remote vlan\u0027)."
+    },
+    {
+        "id":  "slg-an-130",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus auf dem Ziel-Switch: Nutze das RSPAN-VLAN 100 als Quelle der Session 3.",
+        "bausteine":  [
+                          "monitor",
+                          "session",
+                          "3",
+                          "source",
+                          "remote",
+                          "vlan",
+                          "100",
+                          "destination",
+                          "interface"
+                      ],
+        "loesung":  [
+                        "monitor",
+                        "session",
+                        "3",
+                        "source",
+                        "remote",
+                        "vlan",
+                        "100"
+                    ],
+        "erklaerung":  "Der Ziel-Switch liest die Kopien aus dem RSPAN-VLAN (\u0027source remote vlan 100\u0027) und gibt sie über \u0027destination interface\u0027 an den Sniffer-Port."
+    },
+    {
+        "id":  "slg-an-131",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "For RSPAN, SW1 uses session 2 as the source session and SW2 uses session 3 as the destination session. Is this a problem?",
+        "optionen":  [
+                         "Yes, the destination must use a lower session number",
+                         "No, but only if the RSPAN VLAN number is also 2 or 3",
+                         "No, session numbers are locally significant on each switch",
+                         "Yes, both switches must use the same session number"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Session-Nummern gelten nur lokal. Verbunden werden die Sessions über das gemeinsame RSPAN-VLAN."
+    },
+    {
+        "id":  "slg-an-132",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On some older switch platforms, RSPAN requires a reflector port. What is its role?",
+        "optionen":  [
+                         "It forwards the mirrored copies to the sniffer on the remote switch",
+                         "It reflects BPDUs so that the RSPAN VLAN stays loop-free",
+                         "It duplicates the copies so that two sniffers can receive them",
+                         "It acts as an internal loopback to place copies into the RSPAN VLAN"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Wegen einer Hardware-Einschränkung brauchen manche Plattformen einen physischen Port als Loopback, der die Kopien ins RSPAN-VLAN einspeist. Er sendet nichts nach außen und dient nur einer Session."
+    },
+    {
+        "id":  "slg-an-133",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which command verifies that VLAN 100 is configured as an RSPAN VLAN on a switch?",
+        "optionen":  [
+                         "show mac address-table vlan 100",
+                         "show spanning-tree vlan 100",
+                         "show interfaces trunk",
+                         "show vlan remote-span"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027show vlan remote-span\u0027 listet die als remote-span konfigurierten VLANs. Das sollte auf allen beteiligten Switches geprüft werden, zusätzlich zu \u0027show monitor\u0027."
+    },
+    {
+        "id":  "slg-an-134",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die SPAN-Variante ihrem Transport zu.",
+        "paare":  [
+                      [
+                          "Local SPAN",
+                          "Source and destination on the same switch"
+                      ],
+                      [
+                          "RSPAN",
+                          "Copies carried in a dedicated VLAN over Layer 2 trunks"
+                      ],
+                      [
+                          "ERSPAN",
+                          "Copies encapsulated in GRE and routed over Layer 3"
+                      ]
+                  ],
+        "erklaerung":  "Local SPAN bleibt auf einem Switch, RSPAN nutzt ein RSPAN-VLAN über Trunks, ERSPAN kapselt in GRE und ist damit routbar."
+    },
+    {
+        "id":  "slg-an-135",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which values must match between an ERSPAN source session and the corresponding ERSPAN destination session?",
+        "optionen":  [
+                         "The RSPAN VLAN and the ERSPAN ID",
+                         "The ERSPAN ID and the destination IP address",
+                         "The session number and the origin IP address",
+                         "The session number and the source interface"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Beide Seiten nutzen dieselbe ERSPAN-ID und dieselbe Ziel-IP (die auf dem Termination-Gerät lokal existiert). Session-Nummern sind lokal."
+    },
+    {
+        "id":  "slg-an-136",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does \u0027origin ip address 1.1.1.1\u0027 define in an ERSPAN source session?",
+        "optionen":  [
+                         "The source IP of the GRE packets that carry the mirrored traffic",
+                         "The IP address of the sniffer that receives the mirrored traffic",
+                         "The IP address that the destination switch must configure",
+                         "The IP address of the host whose traffic should be mirrored"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die origin IP ist die Quelladresse der GRE-gekapselten ERSPAN-Pakete. Die Zieladresse wird mit \u0027ip address\u0027 gesetzt und muss auf dem Ziel-Switch lokal sein."
+    },
+    {
+        "id":  "slg-an-137",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The ERSPAN destination session on Switch-2 is configured with \u0027ip address 2.2.2.2\u0027, but no interface on Switch-2 has this address. The source session points to 2.2.2.2. What is the result?",
+        "optionen":  [
+                         "The source switch falls back to RSPAN with the default VLAN 1",
+                         "Switch-2 does not terminate the GRE traffic, so the sniffer gets nothing",
+                         "Switch-2 assigns 2.2.2.2 to a loopback interface automatically",
+                         "Switch-2 forwards the GRE packets unchanged to the sniffer port"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die IP der Destination-Session muss einer lokalen Interface-Adresse entsprechen, sonst werden die GRE-Pakete nicht entkapselt. Der Sniffer erhält dann keine Kopien."
+    },
+    {
+        "id":  "slg-an-138",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "ERSPAN-Source-Destination-Modus (config-mon-erspan-src-dst): Setze die ERSPAN-ID 10 und die Ziel-IP 10.2.2.2.",
+        "bausteine":  [
+                          "erspan-id",
+                          "10",
+                          "ip",
+                          "address",
+                          "10.2.2.2",
+                          "origin",
+                          "source",
+                          "vlan"
+                      ],
+        "loesung":  [
+                        "erspan-id",
+                        "10",
+                        "ip",
+                        "address",
+                        "10.2.2.2"
+                    ],
+        "erklaerung":  "Im destination-Untermodus der Source-Session stehen erspan-id, Ziel-IP (\u0027ip address\u0027) und optional \u0027origin ip address\u0027 für die Quell-IP der GRE-Pakete."
+    },
+    {
+        "id":  "slg-an-140",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An ERSPAN source session is configured completely, but \u0027show monitor session 1\u0027 displays \u0027Status: Admin Disabled\u0027. What is missing?",
+        "optionen":  [
+                         "The encapsulation replicate keyword",
+                         "The ip sla responder on the destination",
+                         "The no shutdown command in the session",
+                         "The remote-span command on the VLAN"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "ERSPAN-Sessions sind nach dem Anlegen administrativ deaktiviert und müssen mit \u0027no shutdown\u0027 aktiviert werden. Die Kursbeispiele lassen diesen Schritt weg."
+    },
+    {
+        "id":  "slg-an-141",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two statements about ERSPAN source sessions are true? (Choose two.)",
+        "optionen":  [
+                         "The destination must be in the same Layer 2 domain as the source",
+                         "Locally sourced ERSPAN GRE traffic from source ports is not copied",
+                         "The ERSPAN ID may differ between the source and the destination",
+                         "An RSPAN VLAN must exist on every transit switch in the path",
+                         "A session uses either source ports or source VLANs, not both"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Wie bei SPAN gilt Ports oder VLANs, und lokal erzeugter ERSPAN-GRE-Verkehr wird nicht erneut kopiert (sonst Schleife). ERSPAN ist routbar, braucht kein RSPAN-VLAN, und die ID muss übereinstimmen."
+    },
+    {
+        "id":  "slg-an-142",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Where does Embedded Packet Capture store the captured packets, and what happens after a reload?",
+        "optionen":  [
+                         "In NVRAM; the capture survives every reload",
+                         "In a DRAM buffer; the capture is lost after a reload",
+                         "In the startup configuration; it is kept until erased",
+                         "In bootflash; the capture is deleted after export"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Pakete liegen in einem Puffer im DRAM und sind daher nicht persistent. Wer sie behalten will, exportiert sie vorher als PCAP-Datei."
+    },
+    {
+        "id":  "slg-an-143",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC: Exportiere den Mitschnitt CAP als PCAP-Datei nach flash:cap.pcap.",
+        "bausteine":  [
+                          "monitor",
+                          "capture",
+                          "CAP",
+                          "export",
+                          "flash:cap.pcap",
+                          "start",
+                          "stop",
+                          "buffer"
+                      ],
+        "loesung":  [
+                        "monitor",
+                        "capture",
+                        "CAP",
+                        "export",
+                        "flash:cap.pcap"
+                    ],
+        "erklaerung":  "Mit \u0027export\u0027 wird der Puffer als PCAP-Datei geschrieben und kann z. B. in Wireshark analysiert werden. Alle monitor capture-Befehle laufen im privileged EXEC."
+    },
+    {
+        "id":  "slg-an-144",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer must capture a rare event that may occur at any time during the next hours. The capture buffer should always hold the most recent packets. Which buffer type fits?",
+        "optionen":  [
+                         "A circular buffer",
+                         "A linear buffer",
+                         "A persistent buffer",
+                         "A shared SPAN buffer"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein zirkulärer Puffer überschreibt die ältesten Pakete, sodass immer die jüngsten vorhanden sind. Ein linearer Puffer stoppt, wenn er voll ist."
+    },
+    {
+        "id":  "slg-an-145",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer entered \u0027monitor capture CAP interface Gi1/0/1 both\u0027 and \u0027monitor capture CAP match ipv4 any any\u0027, but \u0027show monitor capture CAP buffer brief\u0027 shows no packets. What is missing?",
+        "optionen":  [
+                         "monitor session 1 destination interface",
+                         "monitor capture CAP export",
+                         "monitor capture CAP buffer size 10",
+                         "monitor capture CAP start"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Definition allein startet keinen Mitschnitt. Erst \u0027monitor capture CAP start\u0027 füllt den Puffer; \u0027stop\u0027 beendet ihn."
+    },
+    {
+        "id":  "slg-an-146",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In which mode are \u0027monitor capture\u0027 commands for Embedded Packet Capture entered on Cisco IOS XE?",
+        "optionen":  [
+                         "Global configuration mode",
+                         "Interface configuration mode",
+                         "Privileged EXEC mode",
+                         "Monitor session configuration mode"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Capture-Tools nutzen EXEC-Befehle zum Definieren, Starten, Stoppen und Exportieren. Dadurch wird die Running-Config nicht verändert."
+    },
+    {
+        "id":  "slg-an-147",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Cisco-Capture-Werkzeug seiner Beschreibung zu.",
+        "paare":  [
+                      [
+                          "Embedded Packet Capture",
+                          "Captures in the CEF path of a router"
+                      ],
+                      [
+                          "Embedded Wireshark",
+                          "Captures on Catalyst 3850 and 4500 Sup7E switches"
+                      ],
+                      [
+                          "Mini Protocol Analyzer",
+                          "Uses a SPAN session on Catalyst 6500 and 7600"
+                      ]
+                  ],
+        "erklaerung":  "EPC arbeitet auf Routern im CEF-Pfad, Embedded Wireshark auf Catalyst-Switches (3850, 4500 Sup7E; heute Catalyst 9000) und MPA auf Hardware-Plattformen über eine SPAN-Session."
+    },
+    {
+        "id":  "slg-an-148",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An Embedded Wireshark capture in the egress direction shows the original DSCP value, although a policy on the switch remarks the packets. Why?",
+        "optionen":  [
+                         "The policy is applied only after the capture buffer is exported",
+                         "Egress captures may not reflect the switch\u0027s rewrite of header fields",
+                         "Embedded Wireshark always captures before ingress classification",
+                         "DSCP values are not decoded by Embedded Wireshark captures"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Laut Cisco spiegeln ausgehend mitgeschnittene Pakete die Rewrites des Switches (TTL, VLAN-Tag, CoS, DSCP, MAC usw.) nicht unbedingt wider. Für die Prüfung der Markierung besser am nächsten Gerät eingehend mitschneiden."
+    },
+    {
+        "id":  "slg-an-149",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In which situation is an embedded packet capture tool more useful than SPAN with an external sniffer?",
+        "optionen":  [
+                         "The capture must survive a reload of the device for later analysis",
+                         "A sniffer is already connected to the switch and needs more source ports",
+                         "No sniffer can be attached on site and the device is only reachable remotely",
+                         "The traffic must be mirrored to several sniffers at the same time"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Embedded Capture braucht kein externes Gerät vor Ort und lässt sich remote bedienen. Mehrere Sniffer oder Persistenz über Reloads bietet es nicht."
+    },
+    {
+        "id":  "slg-an-150",
+        "topic":  "ENCOR-4.3",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "An engineer runs an Embedded Packet Capture on a busy router. Which two actions limit the impact on the device? (Choose two.)",
+        "optionen":  [
+                         "Use the largest possible linear buffer",
+                         "Limit the capture by duration or by packet count",
+                         "Disable CEF for the duration of the capture",
+                         "Filter the capture with a match statement or an access list",
+                         "Capture on all interfaces in both directions"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Filter und Limits begrenzen, wie viele Pakete kopiert werden. Mehr Interfaces, riesige Puffer oder abgeschaltetes CEF erhöhen die Last."
+    }
+]

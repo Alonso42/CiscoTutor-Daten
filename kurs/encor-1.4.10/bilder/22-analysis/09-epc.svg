@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Embedded Packet Capture</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<defs><marker id="a" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#222"/></marker></defs>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Embedded Packet Capture (IOS XE) – Ablauf</text>
+<rect x="20" y="60" width="140" height="80" rx="8" fill="#4a9cff" opacity="0.2" stroke="#4a9cff"/>
+<text x="90" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">1 Definieren</text>
+<text x="90" y="105" text-anchor="middle" font-size="11" fill="#222">Capture-Punkt,</text>
+<text x="90" y="120" text-anchor="middle" font-size="11" fill="#222">Filter, Puffer</text>
+<line x1="160" y1="100" x2="178" y2="100" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<rect x="180" y="60" width="140" height="80" rx="8" fill="#39c86a" opacity="0.25" stroke="#39c86a"/>
+<text x="250" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">2 start</text>
+<text x="250" y="112" text-anchor="middle" font-size="11" fill="#222">Pakete → DRAM-Puffer</text>
+<line x1="320" y1="100" x2="338" y2="100" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<rect x="340" y="60" width="140" height="80" rx="8" fill="#ff6b6b" opacity="0.2" stroke="#ff6b6b"/>
+<text x="410" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">3 stop</text>
+<text x="410" y="112" text-anchor="middle" font-size="11" fill="#222">oder Limit erreicht</text>
+<line x1="480" y1="100" x2="498" y2="100" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<rect x="500" y="60" width="130" height="80" rx="8" fill="#ffd23f" opacity="0.3" stroke="#ffd23f"/>
+<text x="565" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">4 anzeigen</text>
+<text x="565" y="112" text-anchor="middle" font-size="11" fill="#222">brief / detailed</text>
+<line x1="630" y1="100" x2="648" y2="100" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<rect x="650" y="60" width="130" height="80" rx="8" fill="#b08aff" opacity="0.25" stroke="#b08aff"/>
+<text x="715" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">5 export</text>
+<text x="715" y="112" text-anchor="middle" font-size="11" fill="#222">.pcap → Wireshark</text>
+<rect x="20" y="165" width="500" height="200" rx="8" fill="#f2f2f2" stroke="#999"/>
+<g font-family="monospace" font-size="13" fill="#222">
+<text x="35" y="190">monitor capture CAP interface Gi1/0/1 both</text>
+<text x="35" y="212">monitor capture CAP match ipv4 any any</text>
+<text x="35" y="234">monitor capture CAP buffer size 10 circular</text>
+<text x="35" y="256">monitor capture CAP limit duration 60</text>
+<text x="35" y="278">monitor capture CAP start</text>
+<text x="35" y="300">monitor capture CAP stop</text>
+<text x="35" y="322">show monitor capture CAP buffer brief</text>
+<text x="35" y="344">monitor capture CAP export flash:cap.pcap</text>
+</g>
+<rect x="540" y="165" width="240" height="200" rx="8" fill="#39c86a" opacity="0.12" stroke="#39c86a"/>
+<g font-size="12" fill="#222">
+<text x="555" y="188" font-weight="bold">Merken</text>
+<text x="555" y="210">alles im privileged EXEC</text>
+<text x="555" y="230">Puffer im DRAM → Reload löscht</text>
+<text x="555" y="250">linear: stoppt wenn voll</text>
+<text x="555" y="270">circular: überschreibt Älteste</text>
+<text x="555" y="290">Filter (match/ACL) begrenzt Last</text>
+<text x="555" y="310">Punkt auch control-plane</text>
+<text x="555" y="330">Router: EPC im CEF-Pfad</text>
+<text x="555" y="350">Cat6500/7600: MPA nutzt SPAN</text>
+</g>
+<text x="400" y="400" text-anchor="middle" font-size="13" fill="#222">Nutzen: Mitschnitt direkt auf dem Gerät, wenn kein externer Sniffer angeschlossen werden kann</text>
+<text x="400" y="422" text-anchor="middle" font-size="13" fill="#222">oder das Gerät nur remote erreichbar ist.</text>
+</svg>

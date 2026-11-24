@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>ACL-Abarbeitung: top-down, first match, implizites deny</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<defs><marker id="p" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<text x="400" y="34" font-size="22" text-anchor="middle" fill="#222" font-weight="bold">Paket von 10.1.1.101 trifft ACL 1</text>
+<g font-size="15" fill="#222">
+<rect x="60" y="70" width="440" height="50" rx="6" fill="#ffecec" stroke="#ff6b6b" stroke-width="3"/>
+<text x="80" y="101" font-family="monospace">10 deny host 10.1.1.101</text>
+<rect x="60" y="150" width="440" height="50" rx="6" fill="#f4f4f4" stroke="#999"/>
+<text x="80" y="181" font-family="monospace">20 permit 10.1.1.0 0.0.0.255</text>
+<rect x="60" y="230" width="440" height="50" rx="6" fill="#f4f4f4" stroke="#999" stroke-dasharray="6 4"/>
+<text x="80" y="261" font-family="monospace">(implizit) deny any</text>
+</g>
+<line x1="280" y1="120" x2="280" y2="148" stroke="#999" stroke-width="2" marker-end="url(#p)"/>
+<line x1="280" y1="200" x2="280" y2="228" stroke="#999" stroke-width="2" marker-end="url(#p)"/>
+<line x1="500" y1="95" x2="590" y2="95" stroke="#ff6b6b" stroke-width="3" marker-end="url(#p)"/>
+<text x="600" y="90" font-size="15" fill="#222" font-weight="bold">Treffer → deny</text>
+<text x="600" y="110" font-size="13" fill="#222">Prüfung endet hier</text>
+<text x="520" y="180" font-size="13" fill="#222">wird nicht mehr geprüft</text>
+<g font-size="14" fill="#222">
+<rect x="60" y="310" width="680" height="116" rx="8" fill="#eaf3ff" stroke="#4a9cff"/>
+<text x="80" y="338">• ACEs werden von oben nach unten geprüft; der erste Treffer entscheidet.</text>
+<text x="80" y="362">• Spezifische Einträge (host) vor allgemeinen (Netz) – sonst greifen sie nie.</text>
+<text x="80" y="386">• Am Ende steht ein unsichtbares deny any – ohne permit wird alles verworfen.</text>
+<text x="80" y="410">• Das implizite deny zählt keine Treffer; für Zähler/Log: explizites deny any log.</text>
+</g>
+</svg>

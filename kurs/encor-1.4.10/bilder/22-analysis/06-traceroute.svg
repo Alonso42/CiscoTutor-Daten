@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Traceroute-Mechanik</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<defs><marker id="a" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#222"/></marker>
+<marker id="r" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#ff6b6b"/></marker>
+<marker id="g" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#39c86a"/></marker></defs>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">traceroute (Cisco IOS): UDP-Probes mit steigender TTL</text>
+<rect x="40" y="55" width="60" height="36" fill="#ffffff" stroke="#222"/><text x="70" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">PC2</text>
+<circle cx="250" cy="73" r="20" fill="#ffffff" stroke="#222"/><text x="250" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">R4</text>
+<circle cx="430" cy="73" r="20" fill="#ffffff" stroke="#222"/><text x="430" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">R3</text>
+<rect x="680" y="55" width="60" height="36" fill="#ffffff" stroke="#222"/><text x="710" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">PC1</text>
+<line x1="100" y1="73" x2="230" y2="73" stroke="#999"/><line x1="270" y1="73" x2="410" y2="73" stroke="#999"/><line x1="450" y1="73" x2="680" y2="73" stroke="#999" stroke-dasharray="5 4"/>
+<line x1="100" y1="120" x2="245" y2="120" stroke="#4a9cff" stroke-width="2" marker-end="url(#a)"/>
+<text x="105" y="114" font-size="12" fill="#4a9cff">UDP TTL=1, Port 33434</text>
+<line x1="245" y1="140" x2="100" y2="140" stroke="#ff6b6b" stroke-width="2" marker-end="url(#r)"/>
+<text x="110" y="156" font-size="12" fill="#ff6b6b">ICMP Time Exceeded (Hop 1)</text>
+<line x1="100" y1="190" x2="425" y2="190" stroke="#4a9cff" stroke-width="2" marker-end="url(#a)"/>
+<text x="105" y="184" font-size="12" fill="#4a9cff">UDP TTL=2 (R4 senkt auf 1)</text>
+<line x1="425" y1="210" x2="100" y2="210" stroke="#ff6b6b" stroke-width="2" marker-end="url(#r)"/>
+<text x="110" y="226" font-size="12" fill="#ff6b6b">ICMP Time Exceeded (Hop 2)</text>
+<line x1="100" y1="260" x2="705" y2="260" stroke="#4a9cff" stroke-width="2" marker-end="url(#a)"/>
+<text x="105" y="254" font-size="12" fill="#4a9cff">UDP TTL=n, hoher Port</text>
+<line x1="705" y1="280" x2="100" y2="280" stroke="#39c86a" stroke-width="2" marker-end="url(#g)"/>
+<text x="110" y="296" font-size="12" fill="#39c86a">ICMP Port Unreachable → Ziel erreicht, Ende</text>
+<rect x="30" y="315" width="360" height="120" rx="8" fill="#ffd23f" opacity="0.2" stroke="#ffd23f"/>
+<g font-size="13" fill="#222">
+<text x="45" y="338" font-weight="bold">Ausgabe</text>
+<text x="45" y="360"><tspan font-family="monospace">*</tspan>  Probe-Timeout (Hop antwortet nicht)</text>
+<text x="45" y="380"><tspan font-family="monospace">!H !N !P</tspan>  Host/Netz/Protokoll unreachable</text>
+<text x="45" y="400"><tspan font-family="monospace">!A</tspan>  administratively prohibited (ACL)</text>
+<text x="45" y="420"><tspan font-family="monospace">U</tspan>  Port unreachable · <tspan font-family="monospace">Q</tspan> Source Quench</text>
+</g>
+<rect x="410" y="315" width="360" height="120" rx="8" fill="#4a9cff" opacity="0.12" stroke="#4a9cff"/>
+<g font-size="13" fill="#222">
+<text x="425" y="338" font-weight="bold">Merken</text>
+<text x="425" y="360">3 Probes pro TTL, Default-Timeout 3 s, max. TTL 30</text>
+<text x="425" y="380">zeigt nur den Hinweg, Rückweg kann anders sein</text>
+<text x="425" y="400">2 Hops pendeln bis TTL 30 → Routing-Schleife</text>
+<text x="425" y="420">Abbruch: Ctrl+Shift+6, dann X</text>
+</g>
+</svg>

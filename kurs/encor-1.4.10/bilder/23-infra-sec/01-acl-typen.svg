@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Standard- vs. Extended-ACL: geprüfte Felder und Nummernbereiche</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="34" font-size="22" text-anchor="middle" fill="#222" font-weight="bold">Welche Felder prüft die ACL?</text>
+<text x="40" y="92" font-size="14" fill="#222">IPv4-Paket:</text>
+<g font-size="13" text-anchor="middle" fill="#222">
+<rect x="130" y="70" width="110" height="36" fill="#ffffff" stroke="#222"/><text x="185" y="93">Protokoll</text>
+<rect x="240" y="70" width="130" height="36" fill="#39c86a" stroke="#222"/><text x="305" y="93">Quell-IP</text>
+<rect x="370" y="70" width="130" height="36" fill="#ffffff" stroke="#222"/><text x="435" y="93">Ziel-IP</text>
+<rect x="500" y="70" width="110" height="36" fill="#ffffff" stroke="#222"/><text x="555" y="93">Quellport</text>
+<rect x="610" y="70" width="110" height="36" fill="#ffffff" stroke="#222"/><text x="665" y="93">Zielport</text>
+</g>
+<rect x="40" y="130" width="340" height="150" rx="10" fill="#e9f8ef" stroke="#39c86a" stroke-width="2"/>
+<text x="210" y="158" font-size="18" text-anchor="middle" font-weight="bold" fill="#222">Standard-ACL</text>
+<text x="60" y="186" font-size="14" fill="#222">• prüft nur die Quell-IP (grün)</text>
+<text x="60" y="210" font-size="14" fill="#222">• permit/deny für die ganze IP-Suite</text>
+<text x="60" y="234" font-size="14" fill="#222">• Nummern 1–99, 1300–1999</text>
+<text x="60" y="258" font-size="14" fill="#222">• Platzierung: nahe am Ziel</text>
+<rect x="420" y="130" width="340" height="150" rx="10" fill="#eaf3ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="590" y="158" font-size="18" text-anchor="middle" font-weight="bold" fill="#222">Extended-ACL</text>
+<text x="440" y="186" font-size="14" fill="#222">• Protokoll, Quelle, Ziel, Ports</text>
+<text x="440" y="210" font-size="14" fill="#222">• gezielt einzelne Anwendungen</text>
+<text x="440" y="234" font-size="14" fill="#222">• Nummern 100–199, 2000–2699</text>
+<text x="440" y="258" font-size="14" fill="#222">• Platzierung: nahe an der Quelle</text>
+<rect x="40" y="305" width="720" height="120" rx="10" fill="#f6f0ff" stroke="#b08aff" stroke-width="2"/>
+<text x="400" y="332" font-size="16" text-anchor="middle" font-weight="bold" fill="#222">Kennzeichnung: nummeriert oder benannt</text>
+<text x="60" y="360" font-size="13" fill="#222" font-family="monospace">access-list 1 permit 172.16.0.0 0.0.255.255</text>
+<text x="60" y="384" font-size="13" fill="#222" font-family="monospace">access-list 101 deny tcp 172.16.4.0 0.0.0.255 172.16.3.0 0.0.0.255 eq 21</text>
+<text x="60" y="408" font-size="13" fill="#222" font-family="monospace">ip access-list extended WWW-ACCESS   (Name, Modus config-ext-nacl)</text>
+</svg>

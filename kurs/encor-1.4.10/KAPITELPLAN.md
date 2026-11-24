@@ -24,8 +24,8 @@ Status: ✅ fertig · ⏳ in Arbeit · ☐ offen · ⚠ nicht mehr in ENCOR v1.2
 | 19 | Network Services (NTP, PTP, Syslog, SNMP, NetFlow, EEM) | 198–209 | 19-services | ✅ 143 Fragen + Wissen + 10 SVGs, geprüft (2 präzisiert) |
 | 20 | Multicast | 210–220 | 20-multicast | ✅ 139 Fragen + Wissen + 11 SVGs, geprüft (2 korr.) |
 | 21 | QoS | 221–227 | 21-qos | ✅ 130 Fragen + Wissen + 9 SVGs, geprüft (Bild + Wissen korr.) |
-| 22 | Network Analysis Tools (IP SLA, SPAN) | 228–242 | 22-analysis | ⏳ Writer läuft |
-| 23 | Infrastructure Security (ACL, CoPP) | 243–254 | 23-infra-sec | ☐ |
+| 22 | Network Analysis Tools (IP SLA, SPAN) | 228–242 | 22-analysis | ✅ 149 Fragen + Wissen + 9 SVGs, geprüft (1 korr., 1 entf.) |
+| 23 | Infrastructure Security (ACL, CoPP) | 243–254 | 23-infra-sec | ⏳ Writer läuft |
 | 24 | Secure Access Control (AAA) | 255–267 | 24-aaa | ☐ |
 | 25 | Python Basics | 268–277 | 25-python | ☐ |
 | 26 | Network Programmability (JSON, YANG, NETCONF, RESTCONF) | 278–294 | 26-programmability | ☐ |

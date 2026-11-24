@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Ping-Zeichen und MTU-Test</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">ping: Ausgabezeichen und MTU-Test mit DF-Bit</text>
+<g font-size="14" fill="#222">
+<rect x="30" y="50" width="300" height="250" rx="8" fill="#4a9cff" opacity="0.12" stroke="#4a9cff"/>
+<text x="45" y="78" font-family="monospace" font-weight="bold">!</text><text x="80" y="78">Echo Reply erhalten</text>
+<text x="45" y="106" font-family="monospace" font-weight="bold">.</text><text x="80" y="106">Timeout (Default 2 s)</text>
+<text x="45" y="134" font-family="monospace" font-weight="bold">U</text><text x="80" y="134">Destination Unreachable</text>
+<text x="45" y="162" font-family="monospace" font-weight="bold">Q</text><text x="80" y="162">Source Quench</text>
+<text x="45" y="190" font-family="monospace" font-weight="bold">M</text><text x="80" y="190">Could not fragment (DF)</text>
+<text x="45" y="218" font-family="monospace" font-weight="bold">?</text><text x="80" y="218">Unbekannter Pakettyp</text>
+<text x="45" y="246" font-family="monospace" font-weight="bold">&amp;</text><text x="80" y="246">Packet lifetime exceeded</text>
+<text x="45" y="282" font-size="12">Default: 5 Echos, 100 Byte, Quelle = Out-IF</text>
+</g>
+<rect x="360" y="50" width="34" height="34" rx="17" fill="#ffffff" stroke="#222"/><text x="377" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">R1</text>
+<rect x="540" y="50" width="34" height="34" rx="17" fill="#ffffff" stroke="#222"/><text x="557" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">R2</text>
+<rect x="720" y="50" width="34" height="34" rx="17" fill="#ffffff" stroke="#222"/><text x="737" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">R3</text>
+<line x1="394" y1="67" x2="540" y2="67" stroke="#39c86a" stroke-width="3"/>
+<line x1="574" y1="67" x2="720" y2="67" stroke="#b08aff" stroke-width="6"/>
+<text x="467" y="100" text-anchor="middle" font-size="12" fill="#222">MTU 1500</text>
+<text x="647" y="100" text-anchor="middle" font-size="12" fill="#222">GRE-Tunnel: 1476</text>
+<g font-family="monospace" font-size="13" fill="#222">
+<text x="360" y="140">ping R3 size 1476 df-bit</text>
+<text x="600" y="140" fill="#39c86a">!!!!!</text>
+<text x="360" y="165">ping R3 size 1477 df-bit</text>
+<text x="600" y="165" fill="#ff6b6b">M.M.M</text>
+</g>
+<rect x="360" y="190" width="410" height="110" rx="8" fill="#ffd23f" opacity="0.2" stroke="#ffd23f"/>
+<text x="375" y="212" font-size="13" font-weight="bold" fill="#222">Sweep (Extended ping)</text>
+<text x="375" y="232" font-size="12" fill="#222">Repeat 1, DF yes, Sweep 1400…1500 → 101 Pakete</text>
+<text x="375" y="252" font-size="12" fill="#222">77 × ! (1400…1476), danach M → Pfad-MTU 1476</text>
+<text x="375" y="272" font-size="12" fill="#222">size = gesamtes IP-Paket (inkl. 20 B IP + 8 B ICMP)</text>
+<text x="375" y="290" font-size="12" fill="#222">1500 − 24 B GRE = 1476</text>
+<rect x="30" y="320" width="740" height="110" rx="8" fill="#39c86a" opacity="0.12" stroke="#39c86a"/>
+<text x="45" y="344" font-size="14" font-weight="bold" fill="#222">Quelle beachten</text>
+<text x="45" y="368" font-size="13" fill="#222">ping 10.10.50.2 → Quelle = IP des Out-Interfaces (Router-Transfernetz) → klappt</text>
+<text x="45" y="390" font-size="13" fill="#222">ping 10.10.50.2 source e0/0 → Quelle = Client-LAN → schlägt fehl ⇒ Rückroute zum LAN fehlt</text>
+<text x="45" y="414" font-size="13" fill="#222">Extended: Record (9 Hops hin+zurück), Loose/Strict Source Route, ToS, Data pattern 0xABCD</text>
+</svg>
