@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Vergleich HSRP, VRRP und GLBP</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="32" font-size="17" font-weight="bold" fill="#222" text-anchor="middle">FHRPs im Vergleich</text>
+<rect x="10" y="50" width="780" height="36" fill="#eeeeee"/>
+<rect x="160" y="50" width="210" height="36" fill="#4a9cff"/>
+<rect x="370" y="50" width="210" height="36" fill="#39c86a"/>
+<rect x="580" y="50" width="210" height="36" fill="#b08aff"/>
+<g font-size="14" font-weight="bold" fill="#222" text-anchor="middle">
+<text x="85" y="73">Merkmal</text>
+<text x="265" y="73" fill="#ffffff">HSRP</text>
+<text x="475" y="73" fill="#ffffff">VRRP</text>
+<text x="685" y="73" fill="#ffffff">GLBP</text>
+</g>
+<g stroke="#bbbbbb" stroke-width="1">
+<line x1="10" y1="126" x2="790" y2="126"/>
+<line x1="10" y1="166" x2="790" y2="166"/>
+<line x1="10" y1="206" x2="790" y2="206"/>
+<line x1="10" y1="246" x2="790" y2="246"/>
+<line x1="10" y1="286" x2="790" y2="286"/>
+<line x1="10" y1="326" x2="790" y2="326"/>
+<line x1="10" y1="366" x2="790" y2="366"/>
+<line x1="160" y1="86" x2="160" y2="406"/>
+<line x1="370" y1="86" x2="370" y2="406"/>
+<line x1="580" y1="86" x2="580" y2="406"/>
+</g>
+<rect x="10" y="50" width="780" height="356" fill="none" stroke="#222" stroke-width="1"/>
+<g font-size="12" fill="#222">
+<text x="18" y="111" font-weight="bold">Standard</text>
+<text x="168" y="111">Cisco, RFC 2281</text>
+<text x="378" y="111">IETF, RFC 3768 / 5798 / 9568</text>
+<text x="588" y="111">Cisco</text>
+<text x="18" y="151" font-weight="bold">Rollen</text>
+<text x="168" y="151">Active / Standby / Listen</text>
+<text x="378" y="151">Master / Backup</text>
+<text x="588" y="151">AVG + bis zu 4 AVF</text>
+<text x="18" y="191" font-weight="bold">Forwarder/Gruppe</text>
+<text x="168" y="191">1 Router</text>
+<text x="378" y="191">1 Router</text>
+<text x="588" y="191">bis zu 4 Router</text>
+<text x="18" y="231" font-weight="bold">Default-Prio</text>
+<text x="168" y="231">100 (0–255)</text>
+<text x="378" y="231">100 (1–254, Owner 255)</text>
+<text x="588" y="231">100</text>
+<text x="18" y="271" font-weight="bold">Preempt-Default</text>
+<text x="168" y="271">aus</text>
+<text x="378" y="271">an</text>
+<text x="588" y="271">AVG aus, AVF an</text>
+<text x="18" y="311" font-weight="bold">Timer-Default</text>
+<text x="168" y="311">Hello 3 s / Hold 10 s</text>
+<text x="378" y="311">Advertisement 1 s</text>
+<text x="588" y="311">Hello 3 s / Hold 10 s</text>
+<text x="18" y="351" font-weight="bold">Nachrichten</text>
+<text x="168" y="351">224.0.0.2 / .102, UDP 1985</text>
+<text x="378" y="351">224.0.0.18, IP-Prot. 112</text>
+<text x="588" y="351">224.0.0.102, UDP 3222</text>
+<text x="18" y="391" font-weight="bold">vMAC</text>
+<text x="168" y="391">0000.0c07.acXX (v1)</text>
+<text x="378" y="391">0000.5e00.01XX</text>
+<text x="588" y="391">0007.b400.XXYY</text>
+</g>
+<text x="400" y="432" font-size="12" fill="#222" text-anchor="middle">HSRPv2: 0000.0c9f.fXXX · GLBP: der AVG verteilt per ARP reihum die vMACs der AVFs (Default round-robin)</text>
+</svg>

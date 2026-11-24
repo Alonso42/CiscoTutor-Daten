@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>HSRP-Zustände von Initial bis Active</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="40" font-size="18" font-weight="bold" fill="#222" text-anchor="middle">HSRP-Zustände</text>
+<g stroke="#222" stroke-width="2">
+<rect x="20" y="120" width="140" height="60" fill="#eeeeee"/>
+<rect x="175" y="120" width="140" height="60" fill="#e8f2ff"/>
+<rect x="330" y="120" width="140" height="60" fill="#e8f2ff"/>
+<rect x="485" y="120" width="140" height="60" fill="#fff6cc"/>
+<rect x="640" y="120" width="140" height="60" fill="#e3f7ea"/>
+</g>
+<g stroke="#222" stroke-width="2">
+<line x1="160" y1="150" x2="168" y2="150"/>
+<line x1="315" y1="150" x2="323" y2="150"/>
+<line x1="470" y1="150" x2="478" y2="150"/>
+<line x1="625" y1="150" x2="633" y2="150"/>
+</g>
+<g fill="#222">
+<polygon points="175,150 167,145 167,155"/>
+<polygon points="330,150 322,145 322,155"/>
+<polygon points="485,150 477,145 477,155"/>
+<polygon points="640,150 632,145 632,155"/>
+</g>
+<g font-size="16" font-weight="bold" fill="#222" text-anchor="middle" dominant-baseline="central">
+<text x="90" y="150">Initial</text>
+<text x="245" y="150">Listen</text>
+<text x="400" y="150">Speak</text>
+<text x="555" y="150">Standby</text>
+<text x="710" y="150">Active</text>
+</g>
+<g font-size="12" fill="#222" text-anchor="middle">
+<text x="90" y="210">HSRP läuft noch</text>
+<text x="90" y="226">nicht (Konfig</text>
+<text x="90" y="242">geändert oder</text>
+<text x="90" y="258">Interface kommt</text>
+<text x="90" y="274">gerade hoch)</text>
+<text x="245" y="210">kennt die VIP,</text>
+<text x="245" y="226">hört Hellos von</text>
+<text x="245" y="242">Active/Standby,</text>
+<text x="245" y="258">sendet selbst</text>
+<text x="245" y="274">keine Hellos</text>
+<text x="400" y="210">sendet Hellos,</text>
+<text x="400" y="226">nimmt an der</text>
+<text x="400" y="242">Wahl teil</text>
+<text x="555" y="210">nächster Kandidat,</text>
+<text x="555" y="226">überwacht den</text>
+<text x="555" y="242">Active, sendet</text>
+<text x="555" y="258">Hellos</text>
+<text x="710" y="210">leitet weiter,</text>
+<text x="710" y="226">beantwortet ARP</text>
+<text x="710" y="242">für die VIP,</text>
+<text x="710" y="258">sendet Hellos</text>
+</g>
+<line x1="20" y1="300" x2="780" y2="300" stroke="#b08aff" stroke-width="1"/>
+<g font-size="14" fill="#222">
+<text x="20" y="330">Router A startet allein: Initial → Listen → Speak → Standby → Active (kein anderer da).</text>
+<text x="20" y="356">Router B startet später, hört den Active → wird Standby (ohne preempt kein Wechsel).</text>
+<text x="20" y="382">Wahl: höchste Priorität (0–255, Default 100), bei Gleichstand die höchste Interface-IP.</text>
+<text x="20" y="408">Nur Active und Standby senden regelmäßig Hellos; weitere Router bleiben in Listen.</text>
+</g>
+</svg>

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Static NAT: Verbindung von außen zu einem inneren Server</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="20" y="30" font-size="17" font-weight="bold" fill="#222">Static NAT: Host im Internet erreicht einen inneren Server</text>
+<line x1="110" y1="160" x2="374" y2="160" stroke="#222" stroke-width="2"/>
+<line x1="426" y1="160" x2="690" y2="160" stroke="#222" stroke-width="2"/>
+<rect x="60" y="140" width="50" height="40" fill="#eefaf2" stroke="#222" stroke-width="2"/>
+<rect x="690" y="140" width="50" height="40" fill="#eef5ff" stroke="#222" stroke-width="2"/>
+<circle cx="400" cy="160" r="26" fill="#ffd23f" stroke="#222" stroke-width="2"/>
+<g font-size="12" fill="#222" text-anchor="middle" dominant-baseline="central">
+<text x="85" y="160">Srv B</text>
+<text x="715" y="160">Host A</text>
+<text x="400" y="160" font-weight="bold">NAT</text>
+</g>
+<g font-size="12" fill="#222" text-anchor="middle">
+<text x="85" y="200">10.1.1.101</text>
+<text x="715" y="200">209.165.202.131</text>
+<text x="250" y="152">inside</text>
+<text x="560" y="152">outside</text>
+</g>
+<g stroke="#4a9cff" stroke-width="3">
+<line x1="690" y1="110" x2="440" y2="110"/>
+<line x1="360" y1="110" x2="120" y2="110"/>
+</g>
+<g stroke="#b08aff" stroke-width="3">
+<line x1="120" y1="215" x2="360" y2="215"/>
+<line x1="440" y1="215" x2="690" y2="215"/>
+</g>
+<g fill="#4a9cff">
+<polygon points="430,110 440,105 440,115"/>
+<polygon points="110,110 120,105 120,115"/>
+</g>
+<g fill="#b08aff">
+<polygon points="370,215 360,210 360,220"/>
+<polygon points="700,215 690,210 690,220"/>
+</g>
+<g font-size="12" fill="#222" text-anchor="middle">
+<text x="565" y="98">1  Ziel 209.165.201.5 (Inside Global)</text>
+<text x="240" y="98">2  Ziel 10.1.1.101 (Inside Local)</text>
+<text x="240" y="236">3  Antwort: Quelle 10.1.1.101</text>
+<text x="565" y="236">4  Quelle 209.165.201.5</text>
+</g>
+<text x="400" y="272" font-size="13" font-weight="bold" fill="#222" text-anchor="middle">NAT-Tabelle (statischer Eintrag)</text>
+<rect x="190" y="282" width="420" height="30" fill="#eeeeee"/>
+<g stroke="#222" stroke-width="1" fill="none">
+<rect x="190" y="282" width="420" height="60"/>
+<line x1="190" y1="312" x2="610" y2="312"/>
+<line x1="330" y1="282" x2="330" y2="342"/>
+<line x1="470" y1="282" x2="470" y2="342"/>
+</g>
+<g font-size="12" fill="#222" text-anchor="middle">
+<text x="260" y="302" font-weight="bold">Inside Local</text>
+<text x="400" y="302" font-weight="bold">Inside Global</text>
+<text x="540" y="302" font-weight="bold">Outside Global</text>
+<text x="260" y="332">10.1.1.101</text>
+<text x="400" y="332">209.165.201.5</text>
+<text x="540" y="332">209.165.202.131</text>
+</g>
+<g font-size="13" fill="#222">
+<text x="20" y="378">Lookup von außen: Schlüssel ist die Inside Global (Zieladresse des Pakets).</text>
+<text x="20" y="402">Der statische Eintrag steht sofort und dauerhaft in der Tabelle (Protokoll "---").</text>
+<text x="20" y="426">Konfiguration: ip nat inside source static 10.1.1.101 209.165.201.5 (lokal zuerst)</text>
+</g>
+</svg>

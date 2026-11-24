@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Supervisor-Redundanzmodi RPR, RPR+, SSO und NSF</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" font-size="17" font-weight="bold" fill="#222" text-anchor="middle">Redundante Supervisoren: je bereiter der Standby, desto kürzer der Failover</text>
+<g font-size="13" font-weight="bold" fill="#222">
+<text x="85" y="58" text-anchor="middle">Modus</text>
+<text x="165" y="58">Zustand des Standby-Supervisors</text>
+<text x="480" y="58">Bei Ausfall des Active</text>
+</g>
+<g stroke="#222" stroke-width="1">
+<rect x="20" y="70" width="760" height="70" fill="#fff0f0"/>
+<rect x="20" y="150" width="760" height="70" fill="#fff9e0"/>
+<rect x="20" y="230" width="760" height="70" fill="#eef6ff"/>
+<rect x="20" y="310" width="760" height="70" fill="#e6f8ec"/>
+<line x1="150" y1="70" x2="150" y2="140"/>
+<line x1="470" y1="70" x2="470" y2="140"/>
+<line x1="150" y1="150" x2="150" y2="220"/>
+<line x1="470" y1="150" x2="470" y2="220"/>
+<line x1="150" y1="230" x2="150" y2="300"/>
+<line x1="470" y1="230" x2="470" y2="300"/>
+<line x1="150" y1="310" x2="150" y2="380"/>
+<line x1="470" y1="310" x2="470" y2="380"/>
+</g>
+<g font-size="16" font-weight="bold" fill="#222" text-anchor="middle" dominant-baseline="central">
+<text x="85" y="105">RPR</text>
+<text x="85" y="185">RPR+</text>
+<text x="85" y="265">SSO</text>
+<text x="85" y="345">SSO + NSF</text>
+</g>
+<g font-size="12" fill="#222">
+<text x="160" y="98">nur teilweise gebootet und</text>
+<text x="160" y="116">initialisiert</text>
+<text x="480" y="92">alle Module neu laden, Supervisor-</text>
+<text x="480" y="110">Funktionen initialisieren</text>
+<text x="480" y="128">Kurswert: unter 2 min</text>
+<text x="160" y="178">gebootet, Supervisor und Route Engine</text>
+<text x="160" y="196">initialisiert, keine L2/L3-Funktionen</text>
+<text x="480" y="172">Initialisierung abschließen,</text>
+<text x="480" y="190">Module werden nicht neu geladen</text>
+<text x="480" y="208">Kurswert: unter 30 s</text>
+<text x="160" y="258">voll initialisiert; Startup-/Running-</text>
+<text x="160" y="276">Config, L2-Infos, Interface-Zustände synchron</text>
+<text x="480" y="252">übernimmt sofort, Hardware-Switching</text>
+<text x="480" y="270">läuft weiter, Links flappen nicht</text>
+<text x="480" y="288">Kurswert: unter 1 s</text>
+<text x="160" y="338">wie SSO; Routingprotokolle bauen die RIB</text>
+<text x="160" y="356">per Graceful Restart neu (Nachbarn NSF-aware)</text>
+<text x="480" y="332">Hardware leitet mit alter FIB/CEF weiter,</text>
+<text x="480" y="350">kaum Paketverlust</text>
+<text x="480" y="368">Cat 9400 (Kurs): Switchover ≤ 150 ms</text>
+</g>
+<g font-size="12" fill="#222">
+<text x="20" y="408">Zeiten sind Kurswerte und real plattformabhängig. SSO braucht kompatible Images, sonst Fallback auf RPR.</text>
+<text x="20" y="430">Konfiguration: redundancy → mode sso · Kontrolle: show redundancy · NSR hält Protokollzustände selbst synchron.</text>
+</g>
+</svg>

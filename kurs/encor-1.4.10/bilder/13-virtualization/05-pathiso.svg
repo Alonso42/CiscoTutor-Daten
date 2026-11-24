@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Data Path Virtualization: Hop-by-Hop mit 802.1Q, Multihop mit GRE oder MPLS</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="20" y="28" font-size="16" font-weight="bold" fill="#222">VRFs zwischen Geräten getrennt halten</text>
+<g stroke-width="4">
+<line x1="150" y1="86" x2="650" y2="86" stroke="#4a9cff"/>
+<line x1="150" y1="100" x2="650" y2="100" stroke="#ffd23f"/>
+<line x1="150" y1="114" x2="650" y2="114" stroke="#39c86a"/>
+<line x1="150" y1="206" x2="290" y2="206" stroke="#4a9cff"/>
+<line x1="150" y1="220" x2="290" y2="220" stroke="#ffd23f"/>
+<line x1="150" y1="234" x2="290" y2="234" stroke="#39c86a"/>
+<line x1="510" y1="206" x2="650" y2="206" stroke="#4a9cff"/>
+<line x1="510" y1="220" x2="650" y2="220" stroke="#ffd23f"/>
+<line x1="510" y1="234" x2="650" y2="234" stroke="#39c86a"/>
+<line x1="150" y1="326" x2="290" y2="326" stroke="#4a9cff"/>
+<line x1="150" y1="340" x2="290" y2="340" stroke="#ffd23f"/>
+<line x1="150" y1="354" x2="290" y2="354" stroke="#39c86a"/>
+<line x1="510" y1="326" x2="650" y2="326" stroke="#4a9cff"/>
+<line x1="510" y1="340" x2="650" y2="340" stroke="#ffd23f"/>
+<line x1="510" y1="354" x2="650" y2="354" stroke="#39c86a"/>
+</g>
+<ellipse cx="400" cy="220" rx="115" ry="36" fill="#f2f2f2" stroke="#222" stroke-width="2"/>
+<ellipse cx="400" cy="340" rx="115" ry="36" fill="#f2f2f2" stroke="#222" stroke-width="2"/>
+<g stroke-width="3" stroke-dasharray="7 4" fill="none">
+<line x1="290" y1="206" x2="510" y2="206" stroke="#4a9cff"/>
+<line x1="290" y1="220" x2="510" y2="220" stroke="#ffd23f"/>
+<line x1="290" y1="234" x2="510" y2="234" stroke="#39c86a"/>
+</g>
+<g stroke="#222" stroke-width="3">
+<line x1="290" y1="326" x2="510" y2="326"/>
+<line x1="290" y1="340" x2="510" y2="340"/>
+<line x1="290" y1="354" x2="510" y2="354"/>
+</g>
+<g fill="#ffffff" stroke="#222" stroke-width="2">
+<rect x="140" y="70" width="26" height="60" rx="5"/>
+<rect x="634" y="70" width="26" height="60" rx="5"/>
+<rect x="140" y="190" width="26" height="60" rx="5"/>
+<rect x="634" y="190" width="26" height="60" rx="5"/>
+<rect x="140" y="310" width="26" height="60" rx="5"/>
+<rect x="634" y="310" width="26" height="60" rx="5"/>
+</g>
+<g font-size="14" font-weight="bold" fill="#222">
+<text x="20" y="96">Hop-by-Hop</text>
+<text x="20" y="216">Multihop</text>
+<text x="20" y="336">Multihop</text>
+</g>
+<g font-size="12" fill="#222">
+<text x="20" y="114">VRF-Lite, EVN</text>
+<text x="20" y="234">VRF-Lite + GRE</text>
+<text x="20" y="354">MPLS VPN</text>
+<text x="668" y="96">Campus, eigenes</text>
+<text x="668" y="114">IGP (OSPF/EIGRP)</text>
+<text x="668" y="216">über fremdes WAN</text>
+<text x="668" y="234">oder fremder Core</text>
+<text x="668" y="336">groß, über 32 VNs,</text>
+<text x="668" y="354">TE/FRR, Any-to-Any</text>
+</g>
+<g font-size="12" fill="#222" text-anchor="middle">
+<text x="400" y="72">direkt verbunden: ein 802.1Q-VLAN bzw. VNET-Tag pro VRF</text>
+<text x="400" y="176">IP-Netz ohne VRFs dazwischen: ein GRE-Tunnel pro VRF</text>
+<text x="400" y="296">MPLS-Netz: das Label trennt die VRFs</text>
+</g>
+<g font-size="12" fill="#222">
+<text x="20" y="408">Device Virtualization = VLAN (L2) und VRF (L3) im Gerät · Data Path Virtualization = Verbindung dazwischen.</text>
+<text x="20" y="430">Pro VRF eigene Control Plane (Routingprozess, RIB) und Forwarding Plane (FIB).</text>
+</g>
+</svg>

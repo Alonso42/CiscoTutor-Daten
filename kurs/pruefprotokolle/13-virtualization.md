@@ -26,3 +26,9 @@ Entfernt: keine.
 - 073: Die "~20 s" sind aus der Zählerlogik abgeleitet. Ein exakter Sekundenwert steht nicht im Doc, die Antwortoptionen (5/9/20/40) bleiben aber eindeutig.
 - 079/081: Die Tunnel-Default-Bandbreite (100 kbit/s) und den Default-Netzwerktyp p2p belegen nur Community- und Trainingsquellen, kein offizieller Config Guide. Sie decken sich aber mit der Lab-Ausgabe aus dem Kurs.
 - 033 (Virtual Firewall, "Layers 2 to 4 plus services") stammt aus der Kurssicht und wurde unverändert gelassen.
+
+## Wissen & Bilder (Checker 2026-11-24)
+Geprüft: wissen/13-virtualization.md, bilder/13-virtualization/01–10 (Inhalt, [xml], kein BOM, Skript-Check: alle OK). Rechnungen: GRE-MTU/MSS 1476/1436, 1472/1432, 1464/1424, 1400/1360; OSPF 100000/100 = 1000, +10 = 1010, +1 = 1001; 9 kbit/s → 11111; Konsolidierung 20+40+10 = 70 %; vCPU 20+2+2 = 24.
+- Wissen: Tunnel-Default-Bandbreite ergänzt: 100 kbit/s auf aktuellem IOS/IOS XE, alte IOS-Versionen 9 kbit/s (Änderung ca. 2007, CSCse69736, nur Community-Beleg). Der Wert dient nur als Metrik, er bremst nicht. Quellen: https://community.cisco.com/t5/routing/default-bw-value-on-vpn-tunnel-is-100-kbit/td-p/2278321 , https://community.cisco.com/t5/routing/default-delay-value-on-tunnel-interfaces-differing-values-on/td-p/1604557
+- Ohne Änderung belegt: GRE-Header RFC 2784 (C-Bit, Reserved0, Ver, Protocol Type) und RFC 2890 (K-/S-Bit), Overhead 24 Byte, Keepalive-Defaults, RECURDOWN, tunnel vrf vs. vrf forwarding (Quellen siehe oben). Die Bilder 07–10 stimmen mit Wissen, Lektion und Fragen überein (Traceroute-Hop 172.16.99.2, FULL/-).
+Offen: Für die 100-kbit/s- bzw. 9-kbit/s-Defaults gibt es keinen offiziellen Config-Guide-Beleg, nur Community-Quellen und die Lab-Ausgabe.

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>FHRP-Prinzip: virtueller Router mit VIP und vMAC</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<rect x="30" y="50" width="440" height="170" fill="#f5f9ff" stroke="#4a9cff" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="45" y="72" font-size="13" font-weight="bold" fill="#222">HSRP-Gruppe 1</text>
+<g stroke="#222" stroke-width="2">
+<line x1="235" y1="270" x2="112" y2="171"/>
+<line x1="265" y1="270" x2="388" y2="171"/>
+<line x1="250" y1="296" x2="250" y2="350"/>
+</g>
+<g stroke="#b08aff" stroke-width="2" stroke-dasharray="4 4">
+<line x1="124" y1="150" x2="226" y2="150"/>
+<line x1="274" y1="150" x2="376" y2="150"/>
+</g>
+<circle cx="100" cy="150" r="24" fill="#39c86a" stroke="#222" stroke-width="2"/>
+<circle cx="250" cy="150" r="24" fill="#ffffff" stroke="#b08aff" stroke-width="2" stroke-dasharray="5 3"/>
+<circle cx="400" cy="150" r="24" fill="#ffd23f" stroke="#222" stroke-width="2"/>
+<rect x="220" y="270" width="60" height="26" fill="#39c86a" stroke="#222" stroke-width="2"/>
+<rect x="230" y="350" width="40" height="28" fill="#ffffff" stroke="#222" stroke-width="2"/>
+<g font-size="14" fill="#222" text-anchor="middle" dominant-baseline="central">
+<text x="100" y="150" font-weight="bold">R1</text>
+<text x="250" y="150" font-weight="bold">V</text>
+<text x="400" y="150" font-weight="bold">R2</text>
+<text x="250" y="283" font-size="12">SW</text>
+<text x="250" y="364" font-size="12">PC</text>
+</g>
+<g font-size="13" fill="#222" text-anchor="middle">
+<text x="100" y="103" font-weight="bold">R1 · Active</text>
+<text x="100" y="120">Prio 110 · .3</text>
+<text x="250" y="103" font-weight="bold">virtueller Router</text>
+<text x="250" y="120">VIP 192.168.1.1</text>
+<text x="250" y="195">vMAC 0000.0c07.ac01</text>
+<text x="400" y="103" font-weight="bold">R2 · Standby</text>
+<text x="400" y="120">Prio 100 · .2</text>
+</g>
+<g font-size="13" fill="#222">
+<text x="285" y="362">Host: GW = 192.168.1.1</text>
+<text x="285" y="380">ARP liefert die vMAC</text>
+</g>
+<text x="510" y="70" font-size="15" font-weight="bold" fill="#222">Ablauf bei Ausfall von R1</text>
+<g font-size="13" fill="#222">
+<text x="510" y="105">1. Normalbetrieb: Frames an die vMAC</text>
+<text x="528" y="123">gehen zu R1 (Active).</text>
+<text x="510" y="153">2. R1 und R2 tauschen Hellos aus</text>
+<text x="528" y="171">(Default alle 3 s).</text>
+<text x="510" y="201">3. R1 fällt aus, Hellos bleiben aus.</text>
+<text x="510" y="231">4. Nach der Hold Time (Default 10 s)</text>
+<text x="528" y="249">wird R2 Active.</text>
+<text x="510" y="279">5. R2 übernimmt VIP und vMAC und</text>
+<text x="528" y="297">sendet Gratuitous ARP.</text>
+<text x="510" y="327">6. Die Switches lernen den neuen</text>
+<text x="528" y="345">Port der vMAC – der Host merkt</text>
+<text x="528" y="363">nichts, sein ARP-Eintrag bleibt.</text>
+</g>
+<text x="400" y="425" font-size="12" fill="#222" text-anchor="middle">Traceroute zeigt die reale Interface-IP des Active-Routers, nicht die VIP.</text>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>show ip nat statistics lesen</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="20" y="30" font-size="17" font-weight="bold" fill="#222">show ip nat statistics lesen</text>
+<rect x="15" y="48" width="465" height="320" fill="#f5f5f5" stroke="#222" stroke-width="1"/>
+<g font-size="11" fill="#222" font-family="monospace">
+<text x="22" y="75">Total active translations: 3 (1 static,</text>
+<text x="22" y="91">  2 dynamic; 2 extended)</text>
+<text x="22" y="120">Outside interfaces: Ethernet0/3</text>
+<text x="22" y="150">Inside interfaces: Et0/0, Et0/1, Et0/2</text>
+<text x="22" y="180">Hits: 389  Misses: 0</text>
+<text x="22" y="210">CEF Translated packets: 389, CEF Punted: 0</text>
+<text x="22" y="240">Expired translations: 4</text>
+<text x="22" y="270">[Id: 1] access-list 10 pool NatPool refcount 0</text>
+<text x="22" y="300"> start 198.51.100.100 end 198.51.100.149</text>
+<text x="22" y="330"> total addresses 50, allocated 2 (4%), misses 0</text>
+<text x="22" y="360">[Id: 2] access-list 20 interface Et0/3 refcount 2</text>
+</g>
+<g font-size="12" fill="#222">
+<text x="495" y="75">Einträge gesamt; extended = mit Ports</text>
+<text x="495" y="120">Rolle ip nat outside</text>
+<text x="495" y="150">Rolle ip nat inside – vollständig?</text>
+<text x="495" y="180">Lookups mit / ohne Eintrag (Miss = neu)</text>
+<text x="495" y="210">in CEF übersetzt, nichts an die CPU</text>
+<text x="495" y="240">per Timeout entfernte Einträge</text>
+<text x="495" y="270">Regel: ACL 10 → Pool, refcount = Nutzer</text>
+<text x="495" y="300">Pool-Bereich: 149 − 100 + 1 = 50</text>
+<text x="495" y="330">2 / 50 = 4 %; misses = Pool erschöpft</text>
+<text x="495" y="360">PAT-Regel (overload) auf Interface-IP</text>
+</g>
+<g font-size="13" fill="#222">
+<text x="20" y="398">Pool-misses steigen → overload ergänzen oder Pool vergrößern.</text>
+<text x="20" y="420">Keine "Dynamic mappings" → die Regel ip nat inside source … fehlt.</text>
+<text x="20" y="442">clear ip nat translation * löscht dynamische Einträge, statische bleiben.</text>
+</g>
+</svg>

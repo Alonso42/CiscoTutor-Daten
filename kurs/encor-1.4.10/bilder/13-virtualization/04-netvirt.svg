@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Netzwerkvirtualisierung: Access Control, Path Isolation, Services Edge</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" font-size="17" font-weight="bold" fill="#222" text-anchor="middle">Drei Bausteine der Netzwerkvirtualisierung</text>
+<rect x="20" y="50" width="240" height="44" fill="#39c86a"/>
+<rect x="280" y="50" width="240" height="44" fill="#4a9cff"/>
+<rect x="540" y="50" width="240" height="44" fill="#b08aff"/>
+<g stroke="#222" stroke-width="1" fill="none">
+<rect x="20" y="50" width="240" height="210"/>
+<rect x="280" y="50" width="240" height="210"/>
+<rect x="540" y="50" width="240" height="210"/>
+</g>
+<g font-size="15" font-weight="bold" fill="#ffffff" text-anchor="middle">
+<text x="140" y="78">Access Control</text>
+<text x="400" y="78">Path Isolation</text>
+<text x="660" y="78">Services Edge</text>
+</g>
+<g font-size="12" fill="#222">
+<text x="30" y="118" font-weight="bold">Ort: Branch / Campus (Rand)</text>
+<text x="30" y="142">• Gerät/Benutzer authentisieren</text>
+<text x="30" y="164">• in eine Partition einordnen</text>
+<text x="42" y="182">(meist VLAN, ACL)</text>
+<text x="30" y="204">• Unbefugte abweisen</text>
+<text x="290" y="118" font-weight="bold">Ort: WAN / MAN / Campus</text>
+<text x="290" y="142">• Verkehr über L3 getrennt halten</text>
+<text x="290" y="164">• VRF-Lite, GRE/mGRE, MPLS VPN</text>
+<text x="290" y="186">• L3-Pfade auf VLANs abbilden</text>
+<text x="550" y="118" font-weight="bold">Ort: DC / Internet Edge</text>
+<text x="550" y="142">• Zugang zu gemeinsamen und</text>
+<text x="562" y="160">dedizierten Diensten</text>
+<text x="550" y="182">• zentrale Policy pro Partition</text>
+<text x="550" y="204">• isolierte Anwendungsumgebungen</text>
+</g>
+<g stroke-width="6">
+<line x1="130" y1="300" x2="600" y2="300" stroke="#ffd23f"/>
+<line x1="130" y1="335" x2="600" y2="335" stroke="#4a9cff"/>
+<line x1="130" y1="370" x2="600" y2="370" stroke="#39c86a"/>
+</g>
+<g font-size="13" fill="#222">
+<text x="20" y="305" font-weight="bold">Gäste</text>
+<text x="20" y="340" font-weight="bold">Partner</text>
+<text x="20" y="375" font-weight="bold">Mitarbeiter</text>
+<text x="615" y="305">nur Internet</text>
+<text x="615" y="340">Internet + Teilressourcen</text>
+<text x="615" y="375">volles internes Netz</text>
+</g>
+<text x="400" y="415" font-size="13" fill="#222" text-anchor="middle">Eine physische Infrastruktur, logisch getrennte Partitionen mit eigenem Routing und eigenen Policies.</text>
+<text x="400" y="438" font-size="13" fill="#222" text-anchor="middle">Neue Nutzer kommen in die passende Partition – die zentral durchgesetzte Policy bleibt unverändert.</text>
+</svg>

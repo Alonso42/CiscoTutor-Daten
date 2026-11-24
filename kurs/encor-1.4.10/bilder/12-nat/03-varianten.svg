@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>NAT-Varianten: Static, Dynamic und PAT</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" font-size="17" font-weight="bold" fill="#222" text-anchor="middle">Drei NAT-Varianten</text>
+<g font-size="15" font-weight="bold" fill="#222">
+<text x="20" y="98">Static NAT</text>
+<text x="20" y="220">Dynamic NAT</text>
+<text x="20" y="352">PAT (overload)</text>
+</g>
+<g font-size="12" fill="#222">
+<text x="20" y="116">1:1, fest</text>
+<text x="20" y="238">n:m aus einem Pool</text>
+<text x="20" y="370">n:1 über Ports</text>
+</g>
+<g stroke="#222" stroke-width="2">
+<rect x="220" y="80" width="140" height="40" fill="#eefaf2"/>
+<rect x="460" y="80" width="160" height="40" fill="#eef5ff"/>
+<rect x="220" y="180" width="140" height="80" fill="#eefaf2"/>
+<rect x="460" y="180" width="160" height="80" fill="#eef5ff"/>
+<rect x="220" y="310" width="140" height="80" fill="#eefaf2"/>
+<rect x="460" y="310" width="160" height="80" fill="#eef5ff"/>
+</g>
+<g stroke="#222" stroke-width="2">
+<line x1="360" y1="100" x2="450" y2="100"/>
+<line x1="360" y1="220" x2="450" y2="220"/>
+<line x1="360" y1="350" x2="450" y2="350"/>
+</g>
+<g fill="#222">
+<polygon points="460,100 450,95 450,105"/>
+<polygon points="460,220 450,215 450,225"/>
+<polygon points="460,350 450,345 450,355"/>
+</g>
+<g font-size="12" fill="#222" text-anchor="middle">
+<text x="290" y="105">10.1.1.100</text>
+<text x="540" y="105">209.165.201.5</text>
+<text x="290" y="203">10.1.1.100</text>
+<text x="290" y="223">10.1.1.101</text>
+<text x="290" y="243">10.1.1.102</text>
+<text x="540" y="203">209.165.201.5</text>
+<text x="540" y="223">209.165.201.6</text>
+<text x="540" y="243">209.165.201.7</text>
+<text x="290" y="333">10.1.1.100:1723</text>
+<text x="290" y="353">10.1.1.101:1927</text>
+<text x="290" y="373">10.1.1.101:1723</text>
+<text x="540" y="333">209.165.201.5:1723</text>
+<text x="540" y="353">209.165.201.5:1927</text>
+<text x="540" y="373">209.165.201.5:1024</text>
+<text x="290" y="70" font-weight="bold">Inside Local</text>
+<text x="540" y="70" font-weight="bold">Inside Global</text>
+</g>
+<g font-size="12" fill="#222">
+<text x="640" y="96">Server von außen</text>
+<text x="640" y="112">erreichbar, Eintrag</text>
+<text x="640" y="128">dauerhaft</text>
+<text x="640" y="208">freie Pool-Adresse</text>
+<text x="640" y="224">beim ersten Paket,</text>
+<text x="640" y="240">"simple entry"</text>
+<text x="640" y="338">Ports unterscheiden</text>
+<text x="640" y="354">die Sessions,</text>
+<text x="640" y="370">"extended entry"</text>
+</g>
+<text x="400" y="430" font-size="13" fill="#222" text-anchor="middle">Static: ip nat inside source static … · Dynamic: … list 10 pool NAME · PAT: … list 20 interface X overload</text>
+</svg>

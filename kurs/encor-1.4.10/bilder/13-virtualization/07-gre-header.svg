@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>GRE-Kapselung und GRE-Header nach RFC 2784 und RFC 2890</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="20" y="28" font-size="16" font-weight="bold" fill="#222">GRE-Kapselung</text>
+<g font-size="12" fill="#222" text-anchor="middle">
+<text x="160" y="56">20 Byte</text>
+<text x="340" y="56">4 Byte (+ je 4 optional)</text>
+<text x="580" y="56">originales Paket</text>
+</g>
+<g stroke="#222" stroke-width="2">
+<rect x="40" y="66" width="240" height="44" fill="#dceaff"/>
+<rect x="280" y="66" width="120" height="44" fill="#ffd23f"/>
+<rect x="400" y="66" width="360" height="44" fill="#e3f7ea"/>
+</g>
+<g font-size="13" fill="#222" text-anchor="middle" dominant-baseline="central">
+<text x="160" y="88" font-weight="bold">neuer IP-Header</text>
+<text x="340" y="88" font-weight="bold">GRE</text>
+<text x="580" y="88" font-weight="bold">Passagier: IPv4 / IPv6 + Daten</text>
+</g>
+<g font-size="12" fill="#222" text-anchor="middle">
+<text x="160" y="130">Transport / Delivery</text>
+<text x="160" y="146">IP-Protokoll 47</text>
+<text x="340" y="130">Carrier</text>
+<text x="340" y="146">Protocol Type</text>
+<text x="580" y="130">Passenger</text>
+<text x="580" y="146">bleibt unverändert</text>
+</g>
+<text x="20" y="182" font-size="14" font-weight="bold" fill="#222">GRE-Header (32 Bit pro Zeile)</text>
+<g stroke="#222" stroke-width="1">
+<rect x="40" y="195" width="22" height="34" fill="#ffd23f"/>
+<rect x="62" y="195" width="22" height="34" fill="#eeeeee"/>
+<rect x="84" y="195" width="22" height="34" fill="#ffd23f"/>
+<rect x="106" y="195" width="22" height="34" fill="#ffd23f"/>
+<rect x="128" y="195" width="202" height="34" fill="#eeeeee"/>
+<rect x="330" y="195" width="70" height="34" fill="#eeeeee"/>
+<rect x="400" y="195" width="360" height="34" fill="#ffd23f"/>
+<rect x="40" y="229" width="360" height="34" fill="#fff6cc"/>
+<rect x="400" y="229" width="360" height="34" fill="#f5f5f5"/>
+<rect x="40" y="263" width="720" height="34" fill="#fff6cc"/>
+<rect x="40" y="297" width="720" height="34" fill="#fff6cc"/>
+</g>
+<g font-size="12" fill="#222" text-anchor="middle" dominant-baseline="central">
+<text x="51" y="212" font-weight="bold">C</text>
+<text x="95" y="212" font-weight="bold">K</text>
+<text x="117" y="212" font-weight="bold">S</text>
+<text x="229" y="212">Reserved0</text>
+<text x="365" y="212">Ver = 0</text>
+<text x="580" y="212" font-weight="bold">Protocol Type (0x0800 IPv4, 0x86DD IPv6)</text>
+<text x="220" y="246">Checksum (nur wenn C = 1)</text>
+<text x="580" y="246">Reserved1</text>
+<text x="400" y="280">Key (nur wenn K = 1, RFC 2890)</text>
+<text x="400" y="314">Sequence Number (nur wenn S = 1, RFC 2890)</text>
+</g>
+<g font-size="12" fill="#222">
+<text x="40" y="358">RFC 2784: nur C-Bit; Key/Sequence kamen mit RFC 2890 (RFC 1701/1702 = ältere Fassungen).</text>
+<text x="40" y="380">Overhead: mindestens 24 Byte (20 IP + 4 GRE); jedes optionale Feld kostet weitere 4 Byte.</text>
+<text x="40" y="402">GRE ist zustandslos, verschlüsselt nicht und transportiert Multicast → Routingprotokolle durch den Tunnel.</text>
+<text x="40" y="424">Für Vertraulichkeit: GRE over IPsec (meist Hub-and-Spoke über unsichere WANs).</text>
+</g>
+</svg>

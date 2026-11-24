@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Discovery 14: drei Subnetze mit drei NAT-Varianten</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="20" y="30" font-size="16" font-weight="bold" fill="#222">Discovery 14: drei Subnetze, drei NAT-Varianten</text>
+<line x1="490" y1="45" x2="490" y2="330" stroke="#999999" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="482" y="58" font-size="12" fill="#222" text-anchor="end">privat</text>
+<text x="498" y="58" font-size="12" fill="#222">öffentlich</text>
+<g stroke-width="3">
+<line x1="80" y1="96" x2="180" y2="108" stroke="#39c86a"/>
+<line x1="80" y1="136" x2="180" y2="116" stroke="#39c86a"/>
+<line x1="230" y1="112" x2="382" y2="184" stroke="#39c86a"/>
+<line x1="80" y1="210" x2="180" y2="210" stroke="#ffd23f"/>
+<line x1="230" y1="210" x2="376" y2="210" stroke="#ffd23f"/>
+<line x1="80" y1="290" x2="180" y2="304" stroke="#b08aff"/>
+<line x1="80" y1="330" x2="180" y2="312" stroke="#b08aff"/>
+<line x1="230" y1="308" x2="382" y2="226" stroke="#b08aff"/>
+</g>
+<g stroke="#222" stroke-width="2">
+<line x1="424" y1="210" x2="556" y2="210"/>
+<line x1="604" y1="210" x2="690" y2="210"/>
+</g>
+<g stroke="#222" stroke-width="2" fill="#ffffff">
+<rect x="40" y="85" width="40" height="22"/>
+<rect x="40" y="125" width="40" height="22"/>
+<rect x="40" y="199" width="40" height="22"/>
+<rect x="40" y="279" width="40" height="22"/>
+<rect x="40" y="319" width="40" height="22"/>
+<rect x="180" y="100" width="50" height="24" fill="#e3f7ea"/>
+<rect x="180" y="198" width="50" height="24" fill="#e3f7ea"/>
+<rect x="180" y="296" width="50" height="24" fill="#e3f7ea"/>
+<rect x="690" y="199" width="60" height="22"/>
+</g>
+<circle cx="400" cy="210" r="24" fill="#ffd23f" stroke="#222" stroke-width="2"/>
+<circle cx="580" cy="210" r="24" fill="#4a9cff" stroke="#222" stroke-width="2"/>
+<g font-size="11" fill="#222" text-anchor="middle" dominant-baseline="central">
+<text x="60" y="96">PC1</text>
+<text x="60" y="136">PC2</text>
+<text x="60" y="210">SRV1</text>
+<text x="60" y="290">PC3</text>
+<text x="60" y="330">PC4</text>
+<text x="205" y="112">SW1</text>
+<text x="205" y="210">SW2</text>
+<text x="205" y="308">SW4</text>
+<text x="720" y="210">SRV2</text>
+<text x="400" y="210" font-size="13" font-weight="bold">R1</text>
+<text x="580" y="210" font-size="13" font-weight="bold" fill="#ffffff">R2</text>
+</g>
+<g font-size="12" fill="#222" text-anchor="middle">
+<text x="400" y="252">R1 (NAT)</text>
+<text x="580" y="252">R2 (ISP)</text>
+<text x="720" y="242">203.0.113.30</text>
+<text x="105" y="78">10.10.1.0/24</text>
+<text x="105" y="190">10.10.2.0/24</text>
+<text x="105" y="270">10.10.3.0/24</text>
+</g>
+<rect x="20" y="355" width="760" height="85" fill="#f7f7f7" stroke="#222" stroke-width="1"/>
+<g stroke-width="5">
+<line x1="35" y1="373" x2="65" y2="373" stroke="#39c86a"/>
+<line x1="35" y1="399" x2="65" y2="399" stroke="#ffd23f"/>
+<line x1="35" y1="425" x2="65" y2="425" stroke="#b08aff"/>
+</g>
+<g font-size="12" fill="#222">
+<text x="75" y="378">Et0/0, 10.10.1.0/24 (PC1, PC2) → Dynamic NAT: Pool NatPool 198.51.100.100–149 (ACL 10)</text>
+<text x="75" y="404">Et0/1, 10.10.2.0/24 (SRV1 .20) → Static NAT: 10.10.2.20 ↔ 198.51.100.20</text>
+<text x="75" y="430">Et0/2, 10.10.3.0/24 (PC3, PC4) → PAT auf Et0/3 = outside, 198.51.100.2 (ACL 20)</text>
+</g>
+</svg>

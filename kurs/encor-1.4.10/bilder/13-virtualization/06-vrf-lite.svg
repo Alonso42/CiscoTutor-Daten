@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Discovery 15: VRF-Lite am ISP-Router mit zwei Kunden</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="20" y="28" font-size="16" font-weight="bold" fill="#222">Discovery 15: VRF-Lite am ISP-Router</text>
+<g stroke-width="4">
+<line x1="172" y1="99" x2="372" y2="183" stroke="#39c86a"/>
+<line x1="628" y1="99" x2="428" y2="183" stroke="#39c86a"/>
+<line x1="172" y1="291" x2="372" y2="207" stroke="#b08aff"/>
+<line x1="628" y1="291" x2="428" y2="207" stroke="#b08aff"/>
+</g>
+<g stroke="#222" stroke-width="2">
+<circle cx="150" cy="90" r="24" fill="#e3f7ea"/>
+<circle cx="650" cy="90" r="24" fill="#e3f7ea"/>
+<circle cx="150" cy="300" r="24" fill="#efe8ff"/>
+<circle cx="650" cy="300" r="24" fill="#efe8ff"/>
+<circle cx="400" cy="195" r="30" fill="#ffd23f"/>
+</g>
+<g font-size="12" fill="#222" text-anchor="middle" dominant-baseline="central">
+<text x="150" y="90" font-weight="bold">A1</text>
+<text x="650" y="90" font-weight="bold">A2</text>
+<text x="150" y="300" font-weight="bold">B1</text>
+<text x="650" y="300" font-weight="bold">B2</text>
+<text x="400" y="195" font-weight="bold">ISP</text>
+</g>
+<g font-size="12" fill="#222" text-anchor="middle" font-weight="bold">
+<text x="150" y="55">CUST-A-SITE1</text>
+<text x="650" y="55">CUST-A-SITE2</text>
+<text x="150" y="345">CUST-B-SITE1</text>
+<text x="650" y="345">CUST-B-SITE2</text>
+</g>
+<g font-size="12" fill="#222" text-anchor="end">
+<text x="118" y="86">10.0.1.17/28</text>
+<text x="118" y="102">10.0.1.49/32</text>
+<text x="118" y="296">10.0.2.17/28</text>
+<text x="118" y="312">10.0.2.49/32</text>
+</g>
+<g font-size="12" fill="#222">
+<text x="682" y="86">10.0.1.33/28</text>
+<text x="682" y="102">10.0.1.50/32</text>
+<text x="682" y="296">10.0.2.33/28</text>
+<text x="682" y="312">10.0.2.50/32</text>
+</g>
+<g font-size="12" fill="#222" text-anchor="middle">
+<text x="345" y="160">Et0/0</text>
+<text x="455" y="160">Et0/1</text>
+<text x="345" y="240">Et0/2</text>
+<text x="455" y="240">Et0/3</text>
+</g>
+<text x="400" y="80" font-size="13" font-weight="bold" fill="#39c86a" text-anchor="middle">VRF CUST-A · OSPF 100</text>
+<text x="400" y="318" font-size="13" font-weight="bold" fill="#8a5cd6" text-anchor="middle">VRF CUST-B · OSPF 200</text>
+<g font-size="12" fill="#222">
+<text x="20" y="375">Nur der ISP hat VRFs (ip vrf CUST-A, ip vrf forwarding CUST-A, IP neu setzen); Kunden fahren normales OSPF.</text>
+<text x="20" y="395">router ospf 100 vrf CUST-A (router-id 0.0.0.100) · router ospf 200 vrf CUST-B (router-id 0.0.0.200)</text>
+<text x="20" y="415">show ip route → global leer · show ip route vrf CUST-A ospf → O IA 10.0.1.x · ping vrf CUST-A 10.0.1.49</text>
+<text x="20" y="435">Ping von Kunde A an 10.0.2.50: keine Route in VRF CUST-A → verworfen. Kundennetze in Area 1/2, Transit Area 0.</text>
+</g>
+</svg>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>PAT-Tabelle mit Portwechsel und Portgruppen</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="20" y="30" font-size="17" font-weight="bold" fill="#222">PAT: eine Inside-Global-Adresse, Sessions über Ports</text>
+<rect x="20" y="50" width="760" height="34" fill="#eeeeee"/>
+<g stroke="#222" stroke-width="1" fill="none">
+<rect x="20" y="50" width="760" height="154"/>
+<line x1="20" y1="84" x2="780" y2="84"/>
+<line x1="20" y1="124" x2="780" y2="124"/>
+<line x1="20" y1="164" x2="780" y2="164"/>
+<line x1="70" y1="50" x2="70" y2="204"/>
+<line x1="210" y1="50" x2="210" y2="204"/>
+<line x1="370" y1="50" x2="370" y2="204"/>
+<line x1="540" y1="50" x2="540" y2="204"/>
+</g>
+<rect x="371" y="165" width="168" height="38" fill="#fff6cc"/>
+<g font-size="12" fill="#222">
+<text x="28" y="72" font-weight="bold">Pro</text>
+<text x="78" y="72" font-weight="bold">Inside Local</text>
+<text x="218" y="72" font-weight="bold">Inside Global</text>
+<text x="378" y="72" font-weight="bold">Outside Global</text>
+<text x="548" y="72" font-weight="bold">Hinweis</text>
+<text x="28" y="109">tcp</text>
+<text x="78" y="109">10.1.1.100:1723</text>
+<text x="218" y="109">209.165.201.5:1723</text>
+<text x="378" y="109">209.165.202.131:23</text>
+<text x="548" y="109">Originalport behalten</text>
+<text x="28" y="149">tcp</text>
+<text x="78" y="149">10.1.1.101:1927</text>
+<text x="218" y="149">209.165.201.5:1927</text>
+<text x="378" y="149">209.165.202.131:23</text>
+<text x="548" y="149">Originalport behalten</text>
+<text x="28" y="189">tcp</text>
+<text x="78" y="189">10.1.1.101:1723</text>
+<text x="218" y="189" font-weight="bold">209.165.201.5:1024</text>
+<text x="378" y="189">209.165.202.131:23</text>
+<text x="548" y="189">belegt → erster freier ab 1024</text>
+</g>
+<text x="20" y="240" font-size="14" font-weight="bold" fill="#222">Portgruppen (nicht maßstäblich)</text>
+<rect x="20" y="252" width="150" height="34" fill="#ffd23f" stroke="#222" stroke-width="1"/>
+<rect x="170" y="252" width="150" height="34" fill="#b08aff" stroke="#222" stroke-width="1"/>
+<rect x="320" y="252" width="460" height="34" fill="#39c86a" stroke="#222" stroke-width="1"/>
+<g font-size="13" fill="#222" text-anchor="middle" font-weight="bold">
+<text x="95" y="274">0–511</text>
+<text x="245" y="274">512–1023</text>
+<text x="550" y="274">1024–65535</text>
+</g>
+<g font-size="13" fill="#222">
+<text x="20" y="320">1. PAT versucht den Originalport zu behalten.</text>
+<text x="20" y="342">2. Ist er belegt: erster freier Port ab Beginn derselben Portgruppe (Cisco NAT FAQ).</text>
+<text x="20" y="364">3. Gruppe voll und weitere Pool-Adressen vorhanden: nächste Adresse, wieder mit dem Originalport.</text>
+<text x="20" y="394">Rückweg: Lookup über Inside Global + Port und Outside Global + Port (connection tracking).</text>
+<text x="20" y="416">ICMP: der Query-Identifier zählt als Port. 16-bit-Ports → theoretisch 65 536 pro Adresse.</text>
+<text x="20" y="438">Von außen initiierte Verbindungen finden ohne statischen Eintrag kein Ziel.</text>
+</g>
+</svg>

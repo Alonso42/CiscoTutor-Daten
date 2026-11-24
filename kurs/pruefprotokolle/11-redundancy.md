@@ -29,3 +29,15 @@ Geprüft: 131 Fragen, Lektion (8 Seiten, alle Tabellenzellen), Notizen. Danach 1
 ## Unsichere Punkte
 - 101: Das genaue Logformat `%VRRP-4-BADAUTHTYPE … type 0, expected 254` stammt aus dem Kurslab und wurde nicht online verifiziert. Die Antwortlogik (R2 ohne Auth, beide werden Master) ist plausibel.
 - 115: Für Catalyst 9400 gibt es keine wörtliche Aussage im 9400-HA-Guide, belegt ist das Verhalten aber allgemein für IOS SSO.
+
+## Wissen & Bilder (Checker 2026-11-24)
+Geprüft: wissen/11-redundancy.md (alle Abschnitte), bilder/11-redundancy/01–10 (Inhalt jeder Beschriftung, [xml] wohlgeformt, kein BOM, Skript-Check Text/Text, Text/Linie, viewBox: alle OK). Rechnungen mit `python -I` nachgerechnet: Skew/MDI (254→3,008; 200→3,219; 110→3,570; 100→3,609; 1→3,996 s; Balkenlängen im Bild passen), VRRPv3 156×100/256 = 60,9 cs, Tracking 110−20=90, 110−10=100, 120−15/−30, vMACs v1/v2/VRRP (ac01, ac14, ac32, acff, f001, f014, f12c, ffff, 0101, 010a).
+Korrekturen:
+- Wissen: RFC 9568 (ersetzt 5798, "Active Router") ergänzt; VRRPv3-Skew präzisiert (60,9 cs, ganzzahlig 60), Defaults aus RFC 9568 (100 cs, Preempt True, vMAC IPv4/IPv6). Quelle: https://www.rfc-editor.org/rfc/rfc9568.html
+- Wissen: HSRP-Timerbereich "1–255" → Hello 1–254, Hold bis 255. Quelle: Cisco-Konfigurationsguides (3825, 6500; CLI `<1-254>`/`<2-255>`), vgl. https://networklessons.com/ip-services/hsrp-timers
+- Wissen: HSRP-Priorität präzisiert (8-Bit-Feld 0–255; IOS-Guides nennen konfigurierbar 1–255).
+- Wissen: SVL-DAD präzisiert (Recovery Mode schaltet alle Ports außer SVL/DAD ab, Reload nach SVL-Wiederherstellung). Quelle: Cat9500 SVL Config Guide (zitiert in https://community.cisco.com/t5/switching/9500-stackwise-virtual-recovery-mode/td-p/4409124)
+- Bild 02-fhrp-idee: Interface-Endungen getauscht (R1 .3, R2 .2), passend zur Lab-Adressierung R1 = .3, R2 = .2.
+- Bild 08-fhrp-vergl: VRRP-Standard um RFC 9568 ergänzt.
+Belegt ohne Änderung: HSRP Default 100, track decrement 10, preempt aus, v1 0000.0C07.ACxy/224.0.0.2, v2 0000.0C9F.F000–FFF/224.0.0.102, Gruppen 0–255/0–4095 (https://www.cisco.com/en/US/docs/ios-xml/ios/ipapp_fhrp/configuration/15-0s/fhp-hsrp.html); VRRP 1–254/255/0, Preempt Default (RFC 9568).
+Offen: Die HSRP-Prioritätsuntergrenze (0 oder 1) ist uneinheitlich dokumentiert (IOS-Guides 1–255, NX-OS/Literatur 0–255); Lektion und Bilder 03/08 nennen weiter "0–255" – prüfungsrelevant ist nur Default 100/höher gewinnt. Command Reference fhp-s2 war per WebFetch nicht abrufbar (504).

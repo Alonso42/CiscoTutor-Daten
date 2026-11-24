@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>NAT-Fehlersuche in fünf Schritten</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="20" y="30" font-size="17" font-weight="bold" fill="#222">NAT-Fehlersuche in fünf Schritten</text>
+<text x="410" y="30" font-size="13" font-weight="bold" fill="#222">typischer Befund → Lösung</text>
+<g stroke="#222" stroke-width="2">
+<rect x="20" y="45" width="370" height="62" fill="#eef5ff"/>
+<rect x="20" y="122" width="370" height="62" fill="#eef5ff"/>
+<rect x="20" y="199" width="370" height="62" fill="#eef5ff"/>
+<rect x="20" y="276" width="370" height="62" fill="#eef5ff"/>
+<rect x="20" y="353" width="370" height="62" fill="#eef5ff"/>
+<line x1="205" y1="107" x2="205" y2="115"/>
+<line x1="205" y1="184" x2="205" y2="192"/>
+<line x1="205" y1="261" x2="205" y2="269"/>
+<line x1="205" y1="338" x2="205" y2="346"/>
+</g>
+<g fill="#222">
+<polygon points="205,122 200,114 210,114"/>
+<polygon points="205,199 200,191 210,191"/>
+<polygon points="205,276 200,268 210,268"/>
+<polygon points="205,353 200,345 210,345"/>
+</g>
+<g font-size="13" fill="#222">
+<text x="32" y="70" font-weight="bold">1. show ip nat statistics</text>
+<text x="32" y="92">Interfaces inside/outside richtig? Regel da?</text>
+<text x="32" y="147" font-weight="bold">2. show ip nat translations</text>
+<text x="32" y="169">Entstehen überhaupt Einträge?</text>
+<text x="32" y="224" font-weight="bold">3. ACL prüfen</text>
+<text x="32" y="246">Wildcard statt Maske? Subnetz enthalten?</text>
+<text x="32" y="301" font-weight="bold">4. Routing prüfen</text>
+<text x="32" y="323">Default-Route? Route zum Pool beim ISP?</text>
+<text x="32" y="378" font-weight="bold">5. clear ip nat translation *</text>
+<text x="32" y="400">alte dynamische Einträge entfernen</text>
+</g>
+<g font-size="12" fill="#222">
+<text x="410" y="70">Rollen vertauscht oder fehlend →</text>
+<text x="410" y="88">ip nat inside / outside korrigieren</text>
+<text x="410" y="147">Pool voll (Pool-misses) →</text>
+<text x="410" y="165">overload ergänzen oder Pool vergrößern</text>
+<text x="410" y="224">nicht erfasster Verkehr wird unübersetzt</text>
+<text x="410" y="242">geroutet und stirbt erst beim ISP</text>
+<text x="410" y="301">inside → outside: Routing vor NAT,</text>
+<text x="410" y="319">ohne Route entsteht kein Eintrag</text>
+<text x="410" y="378">statische Einträge bleiben stehen;</text>
+<text x="410" y="396">debug ip nat nur vorsichtig einsetzen</text>
+</g>
+<text x="20" y="440" font-size="12" fill="#222">Router-eigener Verkehr (Quelle = WAN-Adresse) wird von ip nat inside source nicht übersetzt.</text>
+</svg>

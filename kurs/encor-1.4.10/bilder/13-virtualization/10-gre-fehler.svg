@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Typische GRE-Fehlerbilder und ihre Lösung</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" font-size="17" font-weight="bold" fill="#222" text-anchor="middle">Typische GRE-Fehlerbilder</text>
+<g stroke-width="2">
+<rect x="20" y="45" width="370" height="190" fill="#fff0f0" stroke="#ff6b6b"/>
+<rect x="410" y="45" width="370" height="190" fill="#fff9e0" stroke="#ffd23f"/>
+<rect x="20" y="250" width="370" height="190" fill="#eef5ff" stroke="#4a9cff"/>
+<rect x="410" y="250" width="370" height="190" fill="#efe8ff" stroke="#b08aff"/>
+</g>
+<g font-size="14" font-weight="bold" fill="#222">
+<text x="32" y="70">Rekursives Routing</text>
+<text x="422" y="70">Line protocol up, trotzdem kein Verkehr</text>
+<text x="32" y="275">Key- oder Ziel-Mismatch</text>
+<text x="422" y="275">MTU / Fragmentierung</text>
+</g>
+<g font-size="12" fill="#222">
+<text x="32" y="96">%TUN-5-RECURDOWN … recursive routing</text>
+<text x="32" y="120">Ursache: Das Tunnelziel wird über den Tunnel</text>
+<text x="32" y="138">selbst gelernt (Underlay im Tunnel-IGP).</text>
+<text x="32" y="162">Folge: Tunnel wird abgeschaltet und flappt.</text>
+<text x="32" y="186">Lösung: Underlay aus dem Tunnel-IGP heraus-</text>
+<text x="32" y="204">halten, spezifische statische Route zum Ziel.</text>
+<text x="422" y="96">Ohne Keepalive ist der Tunnel up, sobald die</text>
+<text x="422" y="114">Quelle up ist und eine Route zum Ziel existiert –</text>
+<text x="422" y="132">auch bei falscher oder fehlender Gegenseite.</text>
+<text x="422" y="162">Lösung: keepalive 10 3 (Default aus,</text>
+<text x="422" y="180">10 s Periode, 3 Retries); die Gegenseite</text>
+<text x="422" y="198">braucht dafür keine eigene Konfiguration.</text>
+<text x="32" y="301">tunnel source/destination nicht spiegelbildlich</text>
+<text x="32" y="319">oder tunnel key ungleich → Pakete verworfen.</text>
+<text x="32" y="349">Prüfen: show interface tunnel 0</text>
+<text x="32" y="367">(Tunnel source/destination, key, protocol)</text>
+<text x="32" y="397">VRF: tunnel vrf = Underlay-Tabelle,</text>
+<text x="32" y="415">vrf forwarding = Overlay des Tunnels.</text>
+<text x="422" y="301">Overhead mindestens 24 Byte → Pakete mit</text>
+<text x="422" y="319">1500 Byte passen nicht mehr durch.</text>
+<text x="422" y="349">Kleiner Ping klappt, große Transfers hängen.</text>
+<text x="422" y="379">Lösung: ip mtu 1400 + ip tcp adjust-mss 1360</text>
+<text x="422" y="397">(reines GRE: 1476 / 1436).</text>
+</g>
+</svg>

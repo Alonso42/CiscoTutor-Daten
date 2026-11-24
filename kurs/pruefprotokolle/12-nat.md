@@ -29,3 +29,13 @@ Ergebnis: 0 korrigiert, 1 entfernt, 117 verbleibend. pruefen.ps1 (ohne -Mischen)
 - 068 `show ip nat nvi translations`: Die Command Reference belegt `show ip nat nvi statistics` (12.3(14)T). Die translations-Variante steht nur in Cisco-Schulungsmaterial. Ich halte sie für sicher.
 - 083 vom Router selbst erzeugter Verkehr (Quelle = WAN-Adresse) wird nicht per inside source übersetzt: Folgt aus der Regel inside→outside. Ein expliziter Doku-Satz fehlt.
 - 067 Meldung NVI0 up beim ersten ip nat inside: aus dem Kurs, nicht separat belegt.
+
+## Wissen & Bilder (Checker 2026-11-24)
+Geprüft: wissen/12-nat.md, bilder/12-nat/01–09 (Inhalt, [xml], kein BOM, Skript-Check: alle OK). Rechnungen: Pool 149−100+1 = 50, 2/50 = 4 %, 3/50 = 6 %, 2^16 = 65 536 Ports.
+PAT-Portwahl geklärt: Die Cisco NAT FAQ sagt, IOS behält nach Möglichkeit den Originalport, sonst sucht es **vom Anfang** der Portgruppe (0–511, 512–1023, 1024–65535) den ersten freien Port. Danach kommt die nächste Pool-Adresse mit dem Originalport, sonst Drop; die FAQ nennt eine Ausnahme für 12.2S. Das Kursbeispiel 1723 → 1724 widerspricht dieser Regel. Quelle: https://www.cisco.com/c/en/us/support/docs/ip/network-address-translation-nat/26704-nat-faq-00.html
+- Lektion (Seite PAT): Sie sagt bereits "ersten freien Port in derselben Gruppe" und ist damit korrekt, keine Änderung. Die Fragen 037–039 sind konsistent.
+- Wissen: Regel präzisiert ("vom Anfang der Gruppe", "nicht Originalport + 1", Drop, 12.2S/IOS-XE-Hinweis), Kursbeispiel als Abweichung markiert, Fehlerliste auf "geklärt" gesetzt.
+- Bild 05-pat-tabelle: 209.165.201.5:1724 → :1024, Hinweis "belegt → erster freier ab 1024", Regel 2 präzisiert. Bild 03-varianten: 1724 → 1024.
+- Erstes Paket CEF vs. process-switched: Laut FAQ unterstützt IOS-NAT CEF-, Fast- und Process-Switching, Fast Switching gibt es ab 12.4T nicht mehr. Zum ersten Paket sagt die FAQ nichts. Die Wissens-Aussage "pauschal veraltet" bleibt, belegt durch die Lab-Ausgabe "CEF Punted packets: 0"; FAQ-Satz ergänzt.
+- NVI auf IOS XE nicht unterstützt: bestätigt (IOS XE NAT Config Guide 3S, siehe oben im Protokoll).
+- Hinweis: Laut FAQ übersetzt NAT ab 12.4(20)T auch lokal erzeugte HSRP-/Routing-Pakete, die zum Outside-Interface hinausgehen. Die Wissens-Aussage "Router-eigener Verkehr (Quelle = WAN-Adresse) wird nicht übersetzt" gilt weiterhin, weil es dabei um die ACL-Quelle geht. Nicht geändert.

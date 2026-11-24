@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>HSRPv1 und HSRPv2 im Vergleich mit vMAC-Berechnung</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" font-size="17" font-weight="bold" fill="#222" text-anchor="middle">HSRPv1 und HSRPv2</text>
+<rect x="20" y="50" width="370" height="36" fill="#4a9cff"/>
+<rect x="410" y="50" width="370" height="36" fill="#b08aff"/>
+<text x="205" y="74" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">HSRPv1 (Default)</text>
+<text x="595" y="74" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">HSRPv2 (standby version 2)</text>
+<g font-size="13" fill="#222">
+<text x="35" y="112">nur IPv4</text>
+<text x="35" y="136">Gruppen 0–255</text>
+<text x="35" y="160">Hello an 224.0.0.2, UDP 1985</text>
+<text x="35" y="184">vMAC 0000.0c07.acXX (2 Hex-Stellen)</text>
+<text x="425" y="112">IPv4 und IPv6 (IPv6 nur mit v2)</text>
+<text x="425" y="136">Gruppen 0–4095 (Gruppe = VLAN möglich)</text>
+<text x="425" y="160">Hello an 224.0.0.102, UDP 1985</text>
+<text x="425" y="184">vMAC 0000.0c9f.fXXX (3 Hex-Stellen)</text>
+<text x="425" y="208">6-Byte-Identifier = MAC des Senders</text>
+</g>
+<line x1="20" y1="228" x2="780" y2="228" stroke="#222" stroke-width="1"/>
+<text x="20" y="254" font-size="14" font-weight="bold" fill="#222">vMAC berechnen: Gruppennummer in Hex anhängen</text>
+<g font-size="13" fill="#222" font-family="monospace">
+<text x="35" y="284">Gruppe   1 → 0000.0c07.ac01</text>
+<text x="35" y="306">Gruppe  20 → 0000.0c07.ac14</text>
+<text x="35" y="328">Gruppe  50 → 0000.0c07.ac32</text>
+<text x="35" y="350">Gruppe 255 → 0000.0c07.acff</text>
+<text x="425" y="284">Gruppe    1 → 0000.0c9f.f001</text>
+<text x="425" y="306">Gruppe   20 → 0000.0c9f.f014</text>
+<text x="425" y="328">Gruppe  300 → 0000.0c9f.f12c</text>
+<text x="425" y="350">Gruppe 4095 → 0000.0c9f.ffff</text>
+</g>
+<g font-size="13" fill="#222">
+<text x="20" y="392">v1 und v2 verstehen sich nicht: alle Router einer Gruppe brauchen dieselbe Version.</text>
+<text x="20" y="414">Befehl ohne Gruppennummer am Interface: standby version 2</text>
+<text x="20" y="436">Zum Vergleich VRRP: 0000.5e00.01XX (Gruppe 1–255), GLBP: 0007.b400.XXYY</text>
+</g>
+</svg>

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Server-Konsolidierung und vCPU-Sizing ohne Überbuchung</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="20" y="30" font-size="16" font-weight="bold" fill="#222">Konsolidierung</text>
+<text x="430" y="30" font-size="16" font-weight="bold" fill="#222">Sizing: 24 Kerne (2 × 12)</text>
+<g stroke="#222" stroke-width="1">
+<rect x="20" y="55" width="160" height="54" fill="#f2f2f2"/>
+<rect x="20" y="125" width="160" height="54" fill="#f2f2f2"/>
+<rect x="20" y="195" width="160" height="54" fill="#f2f2f2"/>
+<rect x="230" y="75" width="170" height="160" fill="#fff6cc"/>
+<rect x="240" y="85" width="150" height="30" fill="#dceaff"/>
+<rect x="240" y="120" width="150" height="30" fill="#dceaff"/>
+<rect x="240" y="155" width="150" height="30" fill="#dceaff"/>
+</g>
+<g font-size="12" fill="#222">
+<text x="30" y="77" font-weight="bold">E-Mail · Windows</text>
+<text x="30" y="97">eigener Server, 20 %</text>
+<text x="30" y="147" font-weight="bold">Web · Linux</text>
+<text x="30" y="167">eigener Server, 40 %</text>
+<text x="30" y="217" font-weight="bold">Datenbank · Linux</text>
+<text x="30" y="237">eigener Server, 10 %</text>
+</g>
+<g font-size="12" fill="#222" text-anchor="middle" dominant-baseline="central">
+<text x="315" y="100">VM E-Mail</text>
+<text x="315" y="135">VM Web</text>
+<text x="315" y="170">VM Datenbank</text>
+<text x="315" y="205" font-weight="bold">Hypervisor-Host</text>
+<text x="315" y="222">Last 20 + 40 + 10 = 70 %</text>
+</g>
+<line x1="185" y1="152" x2="222" y2="152" stroke="#222" stroke-width="2"/>
+<polygon points="230,152 222,147 222,157" fill="#222"/>
+<g stroke="#222" stroke-width="1">
+<rect x="430" y="55" width="26" height="26" fill="#4a9cff"/>
+<rect x="459" y="55" width="26" height="26" fill="#4a9cff"/>
+<rect x="488" y="55" width="26" height="26" fill="#4a9cff"/>
+<rect x="517" y="55" width="26" height="26" fill="#4a9cff"/>
+<rect x="546" y="55" width="26" height="26" fill="#4a9cff"/>
+<rect x="575" y="55" width="26" height="26" fill="#4a9cff"/>
+<rect x="604" y="55" width="26" height="26" fill="#4a9cff"/>
+<rect x="633" y="55" width="26" height="26" fill="#4a9cff"/>
+<rect x="662" y="55" width="26" height="26" fill="#4a9cff"/>
+<rect x="691" y="55" width="26" height="26" fill="#4a9cff"/>
+<rect x="720" y="55" width="26" height="26" fill="#4a9cff"/>
+<rect x="749" y="55" width="26" height="26" fill="#4a9cff"/>
+<rect x="430" y="84" width="26" height="26" fill="#4a9cff"/>
+<rect x="459" y="84" width="26" height="26" fill="#4a9cff"/>
+<rect x="488" y="84" width="26" height="26" fill="#4a9cff"/>
+<rect x="517" y="84" width="26" height="26" fill="#4a9cff"/>
+<rect x="546" y="84" width="26" height="26" fill="#4a9cff"/>
+<rect x="575" y="84" width="26" height="26" fill="#4a9cff"/>
+<rect x="604" y="84" width="26" height="26" fill="#4a9cff"/>
+<rect x="633" y="84" width="26" height="26" fill="#4a9cff"/>
+<rect x="662" y="84" width="26" height="26" fill="#39c86a"/>
+<rect x="691" y="84" width="26" height="26" fill="#39c86a"/>
+<rect x="720" y="84" width="26" height="26" fill="#b08aff"/>
+<rect x="749" y="84" width="26" height="26" fill="#b08aff"/>
+</g>
+<g stroke="#222" stroke-width="1">
+<rect x="430" y="130" width="16" height="16" fill="#4a9cff"/>
+<rect x="430" y="155" width="16" height="16" fill="#39c86a"/>
+<rect x="430" y="180" width="16" height="16" fill="#b08aff"/>
+</g>
+<g font-size="12" fill="#222">
+<text x="455" y="143">VM 1: 20 vCPU</text>
+<text x="455" y="168">VM 2: 2 vCPU</text>
+<text x="455" y="193">VM 3: 2 vCPU</text>
+<text x="600" y="143">20 + 2 + 2 = 24</text>
+<text x="600" y="168">→ alle Kerne belegt,</text>
+<text x="600" y="193">keine vierte VM</text>
+<text x="430" y="225">Alternative: 24 VMs mit je 1 vCPU.</text>
+<text x="430" y="243">Collaboration-Vorgabe: nicht überbuchen.</text>
+</g>
+<line x1="20" y1="275" x2="780" y2="275" stroke="#dddddd" stroke-width="1"/>
+<g font-size="13" fill="#222">
+<text x="20" y="305">• Ein Server pro Anwendung ist stabil, läuft aber oft unter 20 % CPU – 80 % liegen brach.</text>
+<text x="20" y="330">• Jeder zusätzliche Server kostet Platz, Strom, Kühlung und Verwaltung.</text>
+<text x="20" y="355">• Hypervisor teilt CPU, RAM, Disk und Netzwerk auf; zwölf und mehr VMs pro Host sind üblich.</text>
+<text x="20" y="380">• vCPU/vRAM = Anteil der Host-Ressourcen, virtuelle Disk = Datei auf dem Datastore.</text>
+<text x="20" y="405">• Gleiche virtuelle Hardware auf Servern verschiedener Hersteller → VMs sind portabel.</text>
+<text x="20" y="430">• vCenter verwaltet viele Hosts zentral und ist Voraussetzung für vMotion und Distributed Switch.</text>
+</g>
+</svg>

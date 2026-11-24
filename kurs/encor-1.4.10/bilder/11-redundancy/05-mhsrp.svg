@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>MHSRP: eine HSRP-Gruppe pro VLAN, abwechselnd Active</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="20" y="30" font-size="16" font-weight="bold" fill="#222">MHSRP: Lastverteilung mit einer Gruppe pro VLAN</text>
+<line x1="270" y1="170" x2="345" y2="110" stroke="#4a9cff" stroke-width="5"/>
+<line x1="270" y1="200" x2="380" y2="300" stroke="#4a9cff" stroke-width="5"/>
+<line x1="530" y1="170" x2="455" y2="110" stroke="#b08aff" stroke-width="5"/>
+<line x1="530" y1="200" x2="420" y2="300" stroke="#b08aff" stroke-width="5"/>
+<line x1="290" y1="185" x2="510" y2="185" stroke="#222" stroke-width="2"/>
+<line x1="385" y1="326" x2="300" y2="380" stroke="#4a9cff" stroke-width="3"/>
+<line x1="415" y1="326" x2="500" y2="380" stroke="#b08aff" stroke-width="3"/>
+<ellipse cx="400" cy="95" rx="70" ry="25" fill="#eeeeee" stroke="#222" stroke-width="2"/>
+<g stroke="#222" stroke-width="2">
+<rect x="220" y="170" width="70" height="30" fill="#39c86a"/>
+<rect x="510" y="170" width="70" height="30" fill="#39c86a"/>
+<rect x="365" y="300" width="70" height="26" fill="#ffffff"/>
+<rect x="280" y="380" width="40" height="26" fill="#e8f2ff"/>
+<rect x="480" y="380" width="40" height="26" fill="#f3f0ff"/>
+</g>
+<g font-size="13" fill="#222" text-anchor="middle" dominant-baseline="central">
+<text x="400" y="95" font-weight="bold">Core</text>
+<text x="255" y="185" font-weight="bold">SW1</text>
+<text x="545" y="185" font-weight="bold">SW2</text>
+<text x="400" y="313" font-size="12">Access</text>
+<text x="300" y="393" font-size="11">PC</text>
+<text x="500" y="393" font-size="11">PC</text>
+</g>
+<text x="400" y="178" font-size="12" fill="#222" text-anchor="middle">Trunk</text>
+<g font-size="12" fill="#222" text-anchor="end">
+<text x="210" y="160" font-weight="bold">Switch1</text>
+<text x="210" y="177">Gruppe 10: Active, Prio 110</text>
+<text x="210" y="194">Gruppe 20: Standby, Prio 90</text>
+<text x="210" y="211">STP-Root für VLAN 10</text>
+</g>
+<g font-size="12" fill="#222">
+<text x="590" y="160" font-weight="bold">Switch2</text>
+<text x="590" y="177">Gruppe 20: Active, Prio 110</text>
+<text x="590" y="194">Gruppe 10: Standby, Prio 90</text>
+<text x="590" y="211">STP-Root für VLAN 20</text>
+</g>
+<g font-size="12" fill="#222" text-anchor="middle">
+<text x="300" y="425">VLAN 10 → GW 10.1.10.1</text>
+<text x="500" y="425">VLAN 20 → GW 10.1.20.1</text>
+</g>
+<line x1="600" y1="300" x2="635" y2="300" stroke="#4a9cff" stroke-width="5"/>
+<text x="645" y="305" font-size="12" fill="#222">VLAN 10 über SW1</text>
+<line x1="600" y1="325" x2="635" y2="325" stroke="#b08aff" stroke-width="5"/>
+<text x="645" y="330" font-size="12" fill="#222">VLAN 20 über SW2</text>
+<g font-size="12" fill="#222">
+<text x="20" y="290">Beide Uplinks werden genutzt.</text>
+<text x="20" y="308">Preempt auf beiden Switches.</text>
+<text x="20" y="326">STP-Root = HSRP-Active,</text>
+<text x="20" y="344">sonst Umweg über den Trunk.</text>
+</g>
+</svg>
