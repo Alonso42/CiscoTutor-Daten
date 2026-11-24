@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Daten, Voice, Video: Charakter und Anforderungen</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Drei Verkehrsarten – drei Anforderungsprofile</text>
+<!-- Daten -->
+<rect x="25" y="55" width="240" height="370" rx="10" fill="#fff" stroke="#4a9cff" stroke-width="3"/>
+<text x="145" y="85" text-anchor="middle" font-size="18" font-weight="bold" fill="#4a9cff">Daten</text>
+<polyline points="45,160 65,110 80,150 95,100 115,155 130,125 150,158 170,105 185,150 205,130 225,157 245,115" fill="none" stroke="#4a9cff" stroke-width="2"/>
+<line x1="45" y1="162" x2="245" y2="162" stroke="#222"/>
+<text x="45" y="195" font-size="14" fill="#222">• bursty, „greedy"</text>
+<text x="45" y="218" font-size="14" fill="#222">• verlustunempfindlich</text>
+<text x="45" y="241" font-size="14" fill="#222">• meist delay-unempfindlich</text>
+<text x="45" y="264" font-size="14" fill="#222">• TCP: Retransmits</text>
+<text x="45" y="310" font-size="14" font-weight="bold" fill="#222">Anforderung:</text>
+<text x="45" y="333" font-size="14" fill="#222">je nach Anwendung –</text>
+<text x="45" y="356" font-size="14" fill="#222">interaktiv (DB) &gt; Batch (FTP)</text>
+<text x="45" y="379" font-size="14" fill="#222">+ geschäftliche Wichtigkeit</text>
+<!-- Voice -->
+<rect x="280" y="55" width="240" height="370" rx="10" fill="#fff" stroke="#39c86a" stroke-width="3"/>
+<text x="400" y="85" text-anchor="middle" font-size="18" font-weight="bold" fill="#39c86a">Voice</text>
+<polyline points="300,130 320,130 320,150 340,150 340,130 360,130 360,150 380,150 380,130 400,130 400,150 420,150 420,130 440,130 440,150 460,150 460,130 480,130 480,150 500,150" fill="none" stroke="#39c86a" stroke-width="2"/>
+<line x1="300" y1="162" x2="500" y2="162" stroke="#222"/>
+<text x="300" y="195" font-size="14" fill="#222">• glatt, vorhersehbar</text>
+<text x="300" y="218" font-size="14" fill="#222">• kleine Pakete, konstante Rate</text>
+<text x="300" y="241" font-size="14" fill="#222">• verlust- und delay-empfindlich</text>
+<text x="300" y="264" font-size="14" fill="#222">• UDP/RTP: kein Retransmit</text>
+<text x="300" y="310" font-size="14" font-weight="bold" fill="#222">One-Way:</text>
+<text x="300" y="333" font-size="14" fill="#222">Latenz ≤ 150 ms (G.114)</text>
+<text x="300" y="356" font-size="14" fill="#222">Jitter ≤ 30 ms · Verlust ≤ 1 %</text>
+<text x="300" y="379" font-size="14" fill="#222">30–128 kbps pro Anruf</text>
+<!-- Video -->
+<rect x="535" y="55" width="240" height="370" rx="10" fill="#fff" stroke="#ff6b6b" stroke-width="3"/>
+<text x="655" y="85" text-anchor="middle" font-size="18" font-weight="bold" fill="#ff6b6b">Video (interaktiv)</text>
+<polyline points="555,150 575,140 590,105 605,150 625,145 645,100 660,150 680,142 700,110 715,150 735,145 755,120" fill="none" stroke="#ff6b6b" stroke-width="2"/>
+<line x1="555" y1="162" x2="755" y2="162" stroke="#222"/>
+<text x="555" y="195" font-size="14" fill="#222">• bursty, „greedy"</text>
+<text x="555" y="218" font-size="14" fill="#222">• variable Paketgröße/Rate</text>
+<text x="555" y="241" font-size="14" fill="#222">• verlust- und delay-empfindlich</text>
+<text x="555" y="264" font-size="14" fill="#222">• +20 % Overhead einplanen</text>
+<text x="555" y="310" font-size="14" font-weight="bold" fill="#222">One-Way:</text>
+<text x="555" y="333" font-size="14" fill="#222">Latenz ≤ 150 ms · Jitter ≤ 30 ms</text>
+<text x="555" y="356" font-size="14" fill="#222">Verlust ≤ 0,1–1 %</text>
+<text x="555" y="379" font-size="14" fill="#222">384 kbps bis &gt; 20 Mbps</text>
+<text x="555" y="410" font-size="12" fill="#b08aff">Streaming: Verlust ≤ 5 %, Delay ≤ 4–5 s</text>
+</svg>

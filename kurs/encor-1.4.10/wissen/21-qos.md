@@ -251,8 +251,8 @@ interface Serial0/0
 !
 access-list 100 permit ip any any precedence 5
 access-list 100 permit ip any any dscp ef
-access-list 101 permit tcp any host 10.1.1.20
-access-list 101 permit tcp any host 10.1.1.40
+access-list 101 permit tcp any host 10.1.10.20
+access-list 101 permit tcp any host 10.1.10.40
 ```
 - Voice: Priorität, niedrige Verzögerung, konstante Bandbreite → `priority`. Interaktiver Verkehr: Bandbreite und niedrige Verzögerung → `bandwidth`.
 - *(Ergänzung)* Da `class-map VoIP` ohne Schlüsselwort `match-all` ist, aber nur ein `match` enthält, spielt die Logik hier keine Rolle; die ODER-Verknüpfung entsteht durch die zwei ACEs in ACL 100.
@@ -294,11 +294,12 @@ interface GigabitEthernet0/0/1
 ### *(Ergänzung)* `show policy-map interface` lesen
 ```
 R1# show policy-map interface GigabitEthernet0/0/1 output
+! Beispiel: Policy liegt als Child unter einem 10-Mbps-Shaper (daher 20 % = 2000 kbps)
  GigabitEthernet0/0/1
   Service-policy output: WAN-OUT
     Class-map: VOICE (match-any)
       52310 packets, 10462000 bytes
-      30 second offered rate 1180000 bps, drop rate 21000 bps
+      30 second offered rate 2180000 bps, drop rate 180000 bps
       Match: dscp ef (46)
       Priority: 20% (2000 kbps), burst bytes 50000, b/w exceed drops: 812
     Class-map: BULK (match-all)

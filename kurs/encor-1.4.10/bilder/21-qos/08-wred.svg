@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Tail Drop, TCP Global Synchronization und WRED</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Congestion Avoidance: Tail Drop vs. WRED</text>
+<!-- global sync -->
+<text x="200" y="62" text-anchor="middle" font-size="15" font-weight="bold" fill="#ff6b6b">Tail Drop → TCP Global Synchronization</text>
+<line x1="30" y1="230" x2="370" y2="230" stroke="#222"/><line x1="30" y1="80" x2="30" y2="230" stroke="#222"/>
+<line x1="30" y1="95" x2="370" y2="95" stroke="#222" stroke-dasharray="5 4"/>
+<text x="372" y="99" font-size="11" fill="#222">Link</text>
+<path d="M30 220 Q 90 90 120 95 L 125 200 Q 190 90 220 95 L 225 200 Q 290 90 320 95 L 325 200" fill="none" stroke="#4a9cff" stroke-width="2"/>
+<path d="M30 225 Q 90 110 120 110 L 125 210 Q 190 110 220 110 L 225 210 Q 290 110 320 110 L 325 210" fill="none" stroke="#39c86a" stroke-width="2"/>
+<path d="M30 228 Q 90 125 120 125 L 125 218 Q 190 125 220 125 L 225 218 Q 290 125 320 125 L 325 218" fill="none" stroke="#b08aff" stroke-width="2"/>
+<text x="200" y="252" text-anchor="middle" font-size="12" fill="#222">Queue voll → alle Flows verlieren gleichzeitig →</text>
+<text x="200" y="268" text-anchor="middle" font-size="12" fill="#222">alle bremsen gleichzeitig → Link zeitweise leer</text>
+<!-- WRED curve -->
+<text x="600" y="62" text-anchor="middle" font-size="15" font-weight="bold" fill="#39c86a">WRED-Profil pro DSCP/IPP</text>
+<line x1="440" y1="230" x2="770" y2="230" stroke="#222"/><line x1="440" y1="80" x2="440" y2="230" stroke="#222"/>
+<text x="425" y="95" text-anchor="end" font-size="11" fill="#222">100 %</text>
+<text x="425" y="196" text-anchor="end" font-size="11" fill="#222">1/MPD</text>
+<line x1="440" y1="192" x2="770" y2="192" stroke="#ccc" stroke-dasharray="3 3"/>
+<polyline points="440,230 530,230 660,192 660,90 770,90" fill="none" stroke="#ff6b6b" stroke-width="2.5"/>
+<polyline points="440,230 590,230 700,192 700,90 770,90" fill="none" stroke="#39c86a" stroke-width="2.5"/>
+<text x="530" y="246" text-anchor="middle" font-size="11" fill="#ff6b6b">Min AF13</text>
+<text x="600" y="246" text-anchor="middle" font-size="11" fill="#39c86a">Min AF11</text>
+<text x="660" y="262" text-anchor="middle" font-size="11" fill="#222">Max</text>
+<text x="700" y="262" text-anchor="middle" font-size="11" fill="#222">Max</text>
+<text x="605" y="282" text-anchor="middle" font-size="12" fill="#222">Ø-Queue-Tiefe →</text>
+<text x="450" y="122" font-size="11" fill="#222">Drop-</text><text x="450" y="136" font-size="11" fill="#222">Wahrsch.</text>
+<!-- legend -->
+<rect x="30" y="305" width="740" height="130" rx="8" fill="#f6f6f6" stroke="#ccc"/>
+<text x="50" y="330" font-size="13" fill="#222">• unter Min-Threshold: kein Drop · zwischen Min und Max: linear steigende Zufalls-Drops</text>
+<text x="50" y="352" font-size="13" fill="#222">• über Max-Threshold: alle Pakete dieses Werts werden verworfen (wie Tail Drop)</text>
+<text x="50" y="374" font-size="13" fill="#222">• höhere Drop-Precedence (AF13) = niedrigere Schwellen → wird zuerst verworfen</text>
+<text x="50" y="396" font-size="13" fill="#222">• wirkt nur bei TCP (reagiert auf Verlust) – für Voice/UDP in der PQ sinnlos</text>
+<text x="50" y="418" font-size="13" fill="#222">• Queuing verwaltet den Anfang der Queue, Congestion Avoidance das Ende</text>
+</svg>

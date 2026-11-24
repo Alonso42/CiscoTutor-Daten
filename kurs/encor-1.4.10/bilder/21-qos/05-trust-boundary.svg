@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Trust Boundary: untrusted und trusted Domain</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Trust Boundary – wo Markierungen gesetzt bzw. akzeptiert werden</text>
+<rect x="15" y="60" width="200" height="300" rx="10" fill="#ff6b6b" opacity="0.12" stroke="#ff6b6b"/>
+<text x="115" y="82" text-anchor="middle" font-size="14" font-weight="bold" fill="#ff6b6b">Untrusted Domain</text>
+<rect x="240" y="60" width="380" height="300" rx="10" fill="#39c86a" opacity="0.12" stroke="#39c86a"/>
+<text x="430" y="82" text-anchor="middle" font-size="14" font-weight="bold" fill="#39c86a">Trusted Domain (Admin-Geräte)</text>
+<!-- devices -->
+<rect x="40" y="120" width="56" height="34" fill="#fff" stroke="#222"/><text x="68" y="142" text-anchor="middle" font-size="12" fill="#222">PC</text>
+<text x="68" y="172" text-anchor="middle" font-size="11" fill="#ff6b6b">setzt selbst EF?</text>
+<rect x="40" y="250" width="56" height="34" fill="#fff" stroke="#222"/><text x="68" y="272" text-anchor="middle" font-size="12" fill="#222">Drucker</text>
+<rect x="140" y="185" width="56" height="34" fill="#fff" stroke="#222"/><text x="168" y="207" text-anchor="middle" font-size="12" fill="#222">IP-Phone</text>
+<line x1="96" y1="137" x2="150" y2="185" stroke="#222"/>
+<rect x="260" y="180" width="70" height="44" fill="#fff" stroke="#222" stroke-width="2"/><text x="295" y="207" text-anchor="middle" font-size="13" fill="#222">SW Access</text>
+<line x1="196" y1="202" x2="260" y2="202" stroke="#222"/>
+<line x1="96" y1="267" x2="260" y2="215" stroke="#222"/>
+<rect x="380" y="180" width="70" height="44" fill="#fff" stroke="#222" stroke-width="2"/><text x="415" y="207" text-anchor="middle" font-size="13" fill="#222">SW Dist</text>
+<line x1="330" y1="202" x2="380" y2="202" stroke="#222"/>
+<circle cx="540" cy="202" r="24" fill="#fff" stroke="#222" stroke-width="2"/><text x="540" y="207" text-anchor="middle" font-size="14" fill="#222">R</text>
+<line x1="450" y1="202" x2="516" y2="202" stroke="#222"/>
+<ellipse cx="715" cy="202" rx="60" ry="38" fill="#fff" stroke="#222"/><text x="715" y="207" text-anchor="middle" font-size="14" fill="#222">Provider</text>
+<line x1="564" y1="202" x2="655" y2="202" stroke="#222"/>
+<!-- boundaries -->
+<line x1="230" y1="50" x2="230" y2="380" stroke="#ffd23f" stroke-width="4" stroke-dasharray="10 6"/>
+<line x1="635" y1="50" x2="635" y2="380" stroke="#ffd23f" stroke-width="4" stroke-dasharray="10 6"/>
+<text x="230" y="400" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">Trust Boundary am Access-Port</text>
+<text x="635" y="400" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">Enterprise ↔ SP</text>
+<text x="230" y="420" text-anchor="middle" font-size="12" fill="#222">klassifizieren + (re-)markieren;</text>
+<text x="230" y="436" text-anchor="middle" font-size="12" fill="#222">IP-Phone ggf. per Conditional Trust</text>
+<text x="635" y="420" text-anchor="middle" font-size="12" fill="#222">Re-Marking auf SP-Klassen</text>
+<text x="430" y="290" text-anchor="middle" font-size="13" fill="#222">Innen: DSCP wird vertraut –</text>
+<text x="430" y="310" text-anchor="middle" font-size="13" fill="#222">kein erneutes aufwendiges Klassifizieren</text>
+<text x="115" y="330" text-anchor="middle" font-size="12" fill="#222">Markierungen ignorieren</text>
+<text x="115" y="346" text-anchor="middle" font-size="12" fill="#222">bzw. neu setzen</text>
+</svg>

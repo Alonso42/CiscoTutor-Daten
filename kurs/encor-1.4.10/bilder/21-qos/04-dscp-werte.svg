@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>DSCP-Werte: AF-Matrix, EF und Class Selector</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">DSCP-Werte und PHBs</text>
+<text x="40" y="65" font-size="15" font-weight="bold" fill="#222">Assured Forwarding: AFxy = 8x + 2y  (binär xxx yy0)</text>
+<g font-size="14" fill="#222" text-anchor="middle">
+<rect x="40" y="80" width="110" height="34" fill="#eee" stroke="#222"/><text x="95" y="102">Klasse x</text>
+<rect x="150" y="80" width="120" height="34" fill="#39c86a" opacity="0.35" stroke="#222"/><text x="210" y="102">y=1 (low drop)</text>
+<rect x="270" y="80" width="120" height="34" fill="#ffd23f" opacity="0.5" stroke="#222"/><text x="330" y="102">y=2 (medium)</text>
+<rect x="390" y="80" width="120" height="34" fill="#ff6b6b" opacity="0.4" stroke="#222"/><text x="450" y="102">y=3 (high drop)</text>
+<rect x="40" y="114" width="110" height="32" fill="#fff" stroke="#222"/><text x="95" y="135">AF4</text>
+<rect x="150" y="114" width="120" height="32" fill="#fff" stroke="#222"/><text x="210" y="135">AF41 = 34</text>
+<rect x="270" y="114" width="120" height="32" fill="#fff" stroke="#222"/><text x="330" y="135">AF42 = 36</text>
+<rect x="390" y="114" width="120" height="32" fill="#fff" stroke="#222"/><text x="450" y="135">AF43 = 38</text>
+<rect x="40" y="146" width="110" height="32" fill="#fff" stroke="#222"/><text x="95" y="167">AF3</text>
+<rect x="150" y="146" width="120" height="32" fill="#fff" stroke="#222"/><text x="210" y="167">AF31 = 26</text>
+<rect x="270" y="146" width="120" height="32" fill="#fff" stroke="#222"/><text x="330" y="167">AF32 = 28</text>
+<rect x="390" y="146" width="120" height="32" fill="#fff" stroke="#222"/><text x="450" y="167">AF33 = 30</text>
+<rect x="40" y="178" width="110" height="32" fill="#fff" stroke="#222"/><text x="95" y="199">AF2</text>
+<rect x="150" y="178" width="120" height="32" fill="#fff" stroke="#222"/><text x="210" y="199">AF21 = 18</text>
+<rect x="270" y="178" width="120" height="32" fill="#fff" stroke="#222"/><text x="330" y="199">AF22 = 20</text>
+<rect x="390" y="178" width="120" height="32" fill="#fff" stroke="#222"/><text x="450" y="199">AF23 = 22</text>
+<rect x="40" y="210" width="110" height="32" fill="#fff" stroke="#222"/><text x="95" y="231">AF1</text>
+<rect x="150" y="210" width="120" height="32" fill="#fff" stroke="#222"/><text x="210" y="231">AF11 = 10</text>
+<rect x="270" y="210" width="120" height="32" fill="#fff" stroke="#222"/><text x="330" y="231">AF12 = 12</text>
+<rect x="390" y="210" width="120" height="32" fill="#fff" stroke="#222"/><text x="450" y="231">AF13 = 14</text>
+</g>
+<text x="275" y="265" text-anchor="middle" font-size="13" fill="#ff6b6b">→ bei Stau wird innerhalb einer Klasse zuerst y=3 verworfen</text>
+<!-- EF / CS -->
+<rect x="545" y="80" width="225" height="70" rx="8" fill="#39c86a" opacity="0.2" stroke="#39c86a" stroke-width="2"/>
+<text x="657" y="106" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">EF = 46 (101110)</text>
+<text x="657" y="130" text-anchor="middle" font-size="13" fill="#222">Voice → Priority Queue (LLQ)</text>
+<rect x="545" y="165" width="225" height="70" rx="8" fill="#eee" stroke="#222"/>
+<text x="657" y="191" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">DF/Default = 0</text>
+<text x="657" y="215" text-anchor="middle" font-size="13" fill="#222">Best Effort</text>
+<text x="40" y="305" font-size="15" font-weight="bold" fill="#222">Class Selector CSx = 8x (kompatibel zu IP Precedence x)</text>
+<g font-size="13" fill="#222" text-anchor="middle">
+<rect x="40" y="320" width="90" height="50" fill="#fff" stroke="#222"/><text x="85" y="340">CS1 = 8</text><text x="85" y="360">Scavenger</text>
+<rect x="135" y="320" width="90" height="50" fill="#fff" stroke="#222"/><text x="180" y="340">CS2 = 16</text><text x="180" y="360">Netz-Mgmt</text>
+<rect x="230" y="320" width="90" height="50" fill="#fff" stroke="#222"/><text x="275" y="340">CS3 = 24</text><text x="275" y="360">Signaling</text>
+<rect x="325" y="320" width="90" height="50" fill="#fff" stroke="#222"/><text x="370" y="340">CS4 = 32</text><text x="370" y="360">Streaming</text>
+<rect x="420" y="320" width="90" height="50" fill="#fff" stroke="#222"/><text x="465" y="340">CS5 = 40</text><text x="465" y="360">(Broadcast)</text>
+<rect x="515" y="320" width="90" height="50" fill="#b08aff" opacity="0.35" stroke="#222"/><text x="560" y="340">CS6 = 48</text><text x="560" y="360">Routing</text>
+<rect x="610" y="320" width="90" height="50" fill="#fff" stroke="#222"/><text x="655" y="340">CS7 = 56</text><text x="655" y="360">reserviert</text>
+</g>
+<text x="40" y="405" font-size="13" fill="#222">Kursempfehlung: Video-Konferenz AF41 · Mission-Critical AF31 · Transaktional AF21 · Bulk AF11</text>
+</svg>

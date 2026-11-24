@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>MQC: class-map, policy-map, service-policy</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Modular QoS CLI in drei Schritten</text>
+<rect x="20" y="55" width="240" height="70" rx="8" fill="#4a9cff" opacity="0.25" stroke="#4a9cff" stroke-width="2"/>
+<text x="140" y="82" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">1. class-map</text>
+<text x="140" y="105" text-anchor="middle" font-size="13" fill="#222">Welcher Traffic?</text>
+<rect x="280" y="55" width="240" height="70" rx="8" fill="#b08aff" opacity="0.25" stroke="#b08aff" stroke-width="2"/>
+<text x="400" y="82" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">2. policy-map</text>
+<text x="400" y="105" text-anchor="middle" font-size="13" fill="#222">Was passiert damit?</text>
+<rect x="540" y="55" width="240" height="70" rx="8" fill="#39c86a" opacity="0.25" stroke="#39c86a" stroke-width="2"/>
+<text x="660" y="82" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">3. service-policy</text>
+<text x="660" y="105" text-anchor="middle" font-size="13" fill="#222">Wo (Interface + Richtung)?</text>
+<g font-family="monospace" font-size="13" fill="#222">
+<text x="25" y="160">class-map VoIP</text>
+<text x="25" y="178"> match access-group 100</text>
+<text x="25" y="196">class-map Application</text>
+<text x="25" y="214"> match access-group 101</text>
+<text x="25" y="250">access-list 100 permit ip</text>
+<text x="25" y="268">  any any precedence 5</text>
+<text x="25" y="286">access-list 100 permit ip</text>
+<text x="25" y="304">  any any dscp ef</text>
+<text x="285" y="160">policy-map QoS-Policy</text>
+<text x="285" y="178"> class VoIP</text>
+<text x="285" y="196">  priority 100</text>
+<text x="285" y="214"> class Application</text>
+<text x="285" y="232">  bandwidth 25</text>
+<text x="285" y="250"> class class-default</text>
+<text x="285" y="268">  fair-queue</text>
+<text x="545" y="160">interface Serial0/0</text>
+<text x="545" y="178"> service-policy output</text>
+<text x="545" y="196">   QoS-Policy</text>
+</g>
+<text x="25" y="340" font-size="12" fill="#222">match-all (Default) = UND</text>
+<text x="25" y="358" font-size="12" fill="#222">match-any = ODER</text>
+<text x="285" y="300" font-size="12" fill="#39c86a">priority → LLQ (100 kbps, strikt)</text>
+<text x="285" y="318" font-size="12" fill="#4a9cff">bandwidth → CBWFQ (min. 25 kbps)</text>
+<text x="285" y="336" font-size="12" fill="#222">Rest → class-default (WFQ)</text>
+<text x="545" y="230" font-size="12" fill="#222">eine Policy pro Richtung;</text>
+<text x="545" y="248" font-size="12" fill="#222">Queuing nur output</text>
+<line x1="260" y1="90" x2="280" y2="90" stroke="#222" stroke-width="2"/>
+<line x1="520" y1="90" x2="540" y2="90" stroke="#222" stroke-width="2"/>
+<rect x="20" y="380" width="760" height="50" rx="8" fill="#ffd23f" opacity="0.2" stroke="#ffd23f"/>
+<text x="400" y="402" text-anchor="middle" font-size="13" fill="#222">Prüfen: show policy-map interface Serial0/0 → Zähler pro Klasse, Offered Rate,</text>
+<text x="400" y="421" text-anchor="middle" font-size="13" fill="#222">Drops, Queue-Tiefe, b/w exceed drops der Priority-Klasse</text>
+</svg>

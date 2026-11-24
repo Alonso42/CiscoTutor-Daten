@@ -1,0 +1,2196 @@
+[
+    {
+        "id":  "slg-qs-001",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A user selects a set of files and starts a TFTP download, then walks away. How is this application categorized from a QoS perspective?",
+        "optionen":  [
+                         "Real-time application",
+                         "Batch application",
+                         "Interactive application",
+                         "Network control application"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "FTP/TFTP sind Batch-Anwendungen: Nach dem Start ist keine Interaktion mehr nötig. Bandbreite bestimmt nur, wie schnell der Transfer fertig wird – er wird auch bei wenig Bandbreite irgendwann abgeschlossen."
+    },
+    {
+        "id":  "slg-qs-002",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is sufficient bandwidth alone not enough for real-time voice and video, so that QoS is required in addition?",
+        "optionen":  [
+                         "Lost real-time packets are not retransmitted and late packets are useless",
+                         "Real-time traffic cannot be routed without a reserved RSVP path",
+                         "Voice packets are larger than the MTU and must be fragmented",
+                         "Real-time applications use TCP windowing that collapses under load"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Echtzeitanwendungen übertragen verlorene Daten nicht neu, und verspätete Pakete sind für die Wiedergabe wertlos. Deshalb müssen Verzögerung, Jitter und Verlust durch QoS aktiv begrenzt werden – reine Bandbreite verhindert Staus nicht."
+    },
+    {
+        "id":  "slg-qs-003",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement correctly describes how interactive video differs from voice traffic?",
+        "optionen":  [
+                         "Interactive video is drop-insensitive because TCP retransmits frames",
+                         "Interactive video needs constant bandwidth with fixed packet sizes",
+                         "Similar delay, jitter and loss needs, but larger and variable bandwidth",
+                         "Interactive video tolerates up to 4–5 seconds of one-way delay"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Videokonferenzen haben dieselben Delay-, Jitter- und Verlustanforderungen wie Voice. Der Unterschied liegt in der Bandbreite: Voice nutzt kleine Pakete mit konstanter Rate, Video variable Paketgrößen und Raten."
+    },
+    {
+        "id":  "slg-qs-004",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which one-way bandwidth range per call does the course list as the requirement for voice?",
+        "optionen":  [
+                         "384 kbps–20 Mbps",
+                         "30–128 kbps",
+                         "8–16 kbps",
+                         "1–2 Mbps"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Für Voice werden 30–128 kbps pro Gespräch genannt (abhängig vom Codec und Overhead). 384 kbps bis über 20 Mbps ist der Bereich für interaktives Video."
+    },
+    {
+        "id":  "slg-qs-005",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Employees watch on-demand training videos that buffer for a few seconds before playing. Which requirements apply to this streaming video traffic?",
+        "optionen":  [
+                         "No loss at all and delay below 50 ms",
+                         "Jitter below 30 ms and loss below 0.1 percent",
+                         "Loss below 1 percent and delay below 150 ms",
+                         "Loss up to 5 percent and delay up to 4–5 seconds"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Streaming-Video ist deutlich toleranter als interaktives Video: bis 5 % Verlust und 4–5 s Verzögerung. Der Player gleicht Schwankungen durch Pufferung aus."
+    },
+    {
+        "id":  "slg-qs-006",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer sizes a WAN link for video conferencing. According to the general guideline, how much bandwidth should be provisioned?",
+        "optionen":  [
+                         "Exactly the nominal video data rate",
+                         "About 20 percent more than the video data rate",
+                         "About 5 percent less, since video compresses",
+                         "Twice the nominal video data rate"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Als Faustregel für Overhead werden etwa 20 % mehr Bandbreite eingeplant, als die Videodaten selbst benötigen. Video hat variable Paketgrößen und Raten, daher reicht der Nominalwert nicht."
+    },
+    {
+        "id":  "slg-qs-007",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which pair of attributes best characterizes voice traffic on the network?",
+        "optionen":  [
+                         "Smooth and predictable, tolerant of high jitter",
+                         "Bursty and greedy, drop- and delay-sensitive",
+                         "Smooth and predictable, drop- and delay-sensitive",
+                         "Bursty and greedy, drop- and delay-insensitive"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Voice hat konstante, vorhersehbare Raten mit kleinen Paketen (smooth/benign), ist aber sehr empfindlich gegenüber Verlust, Verzögerung und Jitter. Bursty/greedy und empfindlich beschreibt interaktives Video."
+    },
+    {
+        "id":  "slg-qs-008",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the difference between QoS and QoE?",
+        "optionen":  [
+                         "QoS is configured on routers; QoE is configured on IP phones",
+                         "QoS applies to Layer 2 only; QoE applies to Layer 3 and above",
+                         "QoS is a subjective score; QoE is measured in ms of latency and jitter",
+                         "QoS is measurable network metrics; QoE is the user\u0027s subjective perception"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "QoS beschreibt messbare technische Werte wie Latenz, Jitter, Verlust und Bandbreite. QoE ist die subjektive Wahrnehmung des Nutzers; QoS wird eingesetzt, um die QoE zu maximieren."
+    },
+    {
+        "id":  "slg-qs-009",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "QoS is deployed carefully on the campus LAN, but not on the congested WAN link between two sites. Calls between the sites still sound poor. Why?",
+        "optionen":  [
+                         "Perceived quality is limited by the worst-performing segment",
+                         "LAN QoS is disabled automatically when the WAN is congested",
+                         "QoS only works when RSVP is enabled on every hop",
+                         "Campus QoS markings are always reset by the WAN interface"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die QoE entspricht der Beeinträchtigung des schlechtesten Segments im Pfad. QoS nur auf einem Teilstück ist daher fast wertlos – sie muss Ende-zu-Ende umgesetzt werden, besonders am Engpass."
+    },
+    {
+        "id":  "slg-qs-010",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "When do queuing mechanisms on an interface actually change the order in which packets are transmitted?",
+        "optionen":  [
+                         "Only when a policer marks traffic down",
+                         "Only when the interface is congested",
+                         "Whenever a packet carries a DSCP value",
+                         "At all times, even on an idle link"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ohne Stau werden Pakete sofort gesendet. Erst wenn mehr Pakete ankommen, als das Interface senden kann, werden sie gepuffert und vom Queuing umsortiert."
+    },
+    {
+        "id":  "slg-qs-011",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why should traffic be classified once at the network edge and then marked, instead of being classified on every hop?",
+        "optionen":  [
+                         "Markings are required for routing protocols to calculate the best path",
+                         "Classifying on every hop would change the DSCP value at each hop",
+                         "Classification is resource-intensive; later devices can act on the marking",
+                         "Core devices cannot read Layer 3 headers and need a Layer 2 tag"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Klassifizieren (z. B. per ACL oder NBAR) kostet Zeit und CPU. Die Markierung konserviert die Entscheidung, sodass nachfolgende Geräte nur noch die Markierung lesen und ihre Policy anwenden."
+    },
+    {
+        "id":  "slg-qs-012",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In a typical enterprise campus network, where is the trust boundary almost always located?",
+        "optionen":  [
+                         "At the edge (access) switch",
+                         "At the internet edge router",
+                         "At the core switches",
+                         "At the data center firewall"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Im Campus liegt die Trust Boundary praktisch immer am Access-Switch (bzw. am IP-Phone, dem der Switch vertraut). Dort wird klassifiziert und markiert, bevor der Verkehr in die Trusted Domain gelangt."
+    },
+    {
+        "id":  "slg-qs-013",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why are QoS markings that arrive from PCs in an untrusted domain usually ignored or rewritten?",
+        "optionen":  [
+                         "To stop users from granting their own traffic unfair priority",
+                         "To reduce the CPU load of the access switch",
+                         "Because PC network cards cannot set a valid DSCP value",
+                         "Because markings from PCs break the IP header checksum"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Sonst könnte jede Anwendung ihren Verkehr selbst als EF markieren und Priorität erschleichen. Darum werden Markierungen aus der untrusted Domain an der Trust Boundary ignoriert und neu gesetzt."
+    },
+    {
+        "id":  "slg-qs-014",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An access port connects a Cisco IP phone with a PC behind it. The port is configured with \u0027trust device cisco-phone\u0027. What is the effect?",
+        "optionen":  [
+                         "All markings are rewritten to EF for the voice VLAN",
+                         "Markings are always trusted, the command only logs phones",
+                         "Markings are trusted only while CDP detects a Cisco phone",
+                         "Markings are trusted for every device that sends CDP"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Conditional Trust: Der Switch vertraut den Markierungen nur, solange er per CDP ein Cisco-IP-Phone erkennt. Wird stattdessen direkt ein PC angeschlossen, gilt der Port als untrusted."
+    },
+    {
+        "id":  "slg-qs-015",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which QoS tool category includes fragmentation of large packets on slow WAN links?",
+        "optionen":  [
+                         "Link-specific tools",
+                         "Policing and shaping tools",
+                         "Congestion avoidance tools",
+                         "Classification and marking tools"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Fragmentierung (mit Interleaving) gehört zu den link-spezifischen Tools für bestimmte Verbindungen wie langsame WAN-Links. Große Datenpakete würden sonst kleine Voice-Pakete zu lange blockieren."
+    },
+    {
+        "id":  "slg-qs-016",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why was IP Precedence largely replaced by DSCP?",
+        "optionen":  [
+                         "IP Precedence offers only eight values to describe classes",
+                         "IP Precedence cannot be read by Layer 3 switches",
+                         "IP Precedence is lost whenever a packet is routed",
+                         "IP Precedence is not carried in IPv4 packets"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "IP Precedence hat nur 3 Bit, also 8 Werte, von denen einige für Netzkontrolle reserviert sind. DSCP bietet 64 Werte und bleibt über die Class-Selector-Werte rückwärtskompatibel."
+    },
+    {
+        "id":  "slg-qs-017",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is a DSCP Class Selector value?",
+        "optionen":  [
+                         "A DSCP value reserved for traffic that is policed by the provider",
+                         "A DSCP value whose upper 3 bits match IP Precedence and lower 3 bits are 0",
+                         "A CoS value that is copied from the 802.1Q tag into the IP header",
+                         "A DSCP value that selects one of the four Assured Forwarding classes"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Class Selector (CSx) belegt dieselben 3 Bit wie IP Precedence, die übrigen DSCP-Bits sind 0 (CSx = 8x). Dadurch versteht ein IPP-Gerät CS-markierte Pakete weiterhin."
+    },
+    {
+        "id":  "slg-qs-018",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which marking field is carried in the QoS Control field of an 802.11 MAC frame?",
+        "optionen":  [
+                         "CoS",
+                         "EXP",
+                         "DSCP",
+                         "TID"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Traffic Identifier (TID, 3 Bit) steht im QoS-Control-Feld von WLAN-Frames. Er entspricht ungefähr, aber nicht exakt den Ethernet-CoS-Werten."
+    },
+    {
+        "id":  "slg-qs-019",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is Layer 3 marking (DSCP) the most widely deployed marking option?",
+        "optionen":  [
+                         "It does not require an IP header and works on any frame",
+                         "It has end-to-end significance across routed hops",
+                         "It is the only marking that switches can read in hardware",
+                         "It is the only marking that IP phones are able to set"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "DSCP steht im IP-Header und bleibt beim Routing erhalten. CoS steht im 802.1Q-Tag, das an jedem Router-Hop neu gebaut wird; L3-Markierungen lassen sich zudem leicht auf L2 abbilden."
+    },
+    {
+        "id":  "slg-qs-020",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A switch sends a frame with CoS 5 on an 802.1Q trunk to a router, which routes the packet out a different VLAN toward another switch. What happens to the original CoS value?",
+        "optionen":  [
+                         "It is lost with the old L2 header unless the router derives a new CoS",
+                         "It is copied unchanged into the new 802.1Q tag by default",
+                         "It is preserved because CoS is stored in the IP options field",
+                         "It is moved into the IP Precedence bits by the routing process"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "CoS lebt im 802.1Q-Tag des Ethernet-Headers, der beim Routing verworfen und neu aufgebaut wird. Nur eine L3-Markierung (DSCP) überlebt Ende-zu-Ende; eine neue CoS muss bei Bedarf aus DSCP abgeleitet werden."
+    },
+    {
+        "id":  "slg-qs-021",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the decimal DSCP value of AF23?",
+        "optionen":  [
+                         "26",
+                         "18",
+                         "20",
+                         "22"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "AFxy = 8x + 2y → AF23 = 8·2 + 2·3 = 22. 18 ist AF21, 20 ist AF22, 26 ist AF31."
+    },
+    {
+        "id":  "slg-qs-022",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the 6-bit binary DSCP value of AF32?",
+        "optionen":  [
+                         "011010",
+                         "011110",
+                         "110010",
+                         "011100"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "AF32 = 8·3 + 2·2 = 28 = 011100. Das Muster ist xxx yy0: Klasse 3 = 011, Drop-Precedence 2 = 10, letztes Bit 0."
+    },
+    {
+        "id":  "slg-qs-023",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A packet capture shows the DSCP bits as 101110. Which PHB is this?",
+        "optionen":  [
+                         "CS5",
+                         "AF43",
+                         "AF41",
+                         "EF"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "101110 = 32 + 8 + 4 + 2 = 46 = Expedited Forwarding. CS5 wäre 101000 (40), AF41 100010 (34), AF43 100110 (38)."
+    },
+    {
+        "id":  "slg-qs-024",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A capture shows the full IPv4 ToS byte as 0x68 with ECN bits 00. Which DSCP value does the packet carry?",
+        "optionen":  [
+                         "AF21 (18)",
+                         "AF13 (14)",
+                         "AF31 (26)",
+                         "CS3 (24)"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "0x68 = 0110 1000. Die oberen 6 Bit 011010 = 26 = AF31 (alternativ 104 / 4 = 26). CS3 wäre 0x60."
+    },
+    {
+        "id":  "slg-qs-025",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A capture shows the full IPv4 ToS byte as 0x28. Which traffic class does this marking represent according to the common recommendations?",
+        "optionen":  [
+                         "Scavenger (CS1)",
+                         "Call signaling (CS3)",
+                         "Bulk data (AF11)",
+                         "Transactional data (AF21)"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "0x28 = 0010 1000 → DSCP 001010 = 10 = AF11, empfohlen für Bulk Data. CS1 (Scavenger) wäre 0x20, AF21 0x48, CS3 0x60."
+    },
+    {
+        "id":  "slg-qs-026",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A legacy device only understands IP Precedence. Which IP Precedence value does it derive from a packet marked AF41?",
+        "optionen":  [
+                         "4",
+                         "5",
+                         "3",
+                         "1"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "IP Precedence entspricht den oberen 3 Bit des DSCP: 34 = 100010 → 100 = 4. Rechnerisch DSCP ÷ 8 abgerundet."
+    },
+    {
+        "id":  "slg-qs-027",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "During congestion, which marking within AF class 2 has the highest probability of being dropped?",
+        "optionen":  [
+                         "AF20",
+                         "AF21",
+                         "AF23",
+                         "AF22"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei AFxy gibt y die Drop-Precedence an: 3 = hoch. AF23 wird innerhalb der Klasse 2 zuerst verworfen. AF20 existiert nicht."
+    },
+    {
+        "id":  "slg-qs-028",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Mission-critical traffic is marked AF31. A policer should keep excess traffic but make it the first candidate for drops later. Which exceed action fits best?",
+        "optionen":  [
+                         "set-dscp-transmit af32",
+                         "set-dscp-transmit cs6",
+                         "set-dscp-transmit ef",
+                         "set-dscp-transmit af41"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beim Markdown wird überschüssiger Verkehr in dieselbe AF-Klasse mit höherer Drop-Precedence verschoben (AF31 → AF32/AF33). Höhere Klassen wie AF41, EF oder CS6 würden den Überschuss sogar bevorzugen."
+    },
+    {
+        "id":  "slg-qs-029",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Wireshark displays \u0027Differentiated Services Codepoint: 0x2e\u0027. Which value is this?",
+        "optionen":  [
+                         "AF41 (34)",
+                         "AF31 (26)",
+                         "CS4 (32)",
+                         "EF (46)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "0x2e = 2·16 + 14 = 46 = Expedited Forwarding. Wireshark zeigt hier den 6-Bit-DSCP-Wert, nicht das ganze ToS-Byte (das wäre 0xB8)."
+    },
+    {
+        "id":  "slg-qs-030",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A packet capture shows the full IPv4 ToS byte as 0x60. According to the common marking recommendations, which traffic is this most likely?",
+        "optionen":  [
+                         "Voice bearer",
+                         "Bulk data",
+                         "Network management",
+                         "Call signaling"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "0x60 = 0110 0000 → DSCP 011000 = 24 = CS3, empfohlen für Call Signaling. Voice wäre EF (0xB8), Netzwerkmanagement CS2 (0x40), Bulk AF11 (0x28)."
+    },
+    {
+        "id":  "slg-qs-031",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "According to the course marking recommendations, which DSCP value should streaming video receive?",
+        "optionen":  [
+                         "CS4 (32)",
+                         "AF21 (18)",
+                         "AF41 (34)",
+                         "EF (46)"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Streaming-Video wird mit CS4 (32) markiert, interaktive Videokonferenzen mit AF41 (34). EF bleibt für Voice reserviert."
+    },
+    {
+        "id":  "slg-qs-032",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Peer-to-peer file sharing should still work, but only with bandwidth no other class needs. Which marking fits this \u0027less than best effort\u0027 treatment?",
+        "optionen":  [
+                         "CS1 (Scavenger)",
+                         "DF (Best Effort)",
+                         "CS2 (Management)",
+                         "AF11 (Bulk)"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "CS1 ist die Scavenger-Klasse für unerwünschten oder unwichtigen Verkehr, der schlechter als Best Effort behandelt wird. AF11 ist für geschäftlich legitime Bulk-Daten gedacht."
+    },
+    {
+        "id":  "slg-qs-033",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "According to the course recommendations, which DSCP value should be used for SNMP and other network management traffic?",
+        "optionen":  [
+                         "CS6 (48)",
+                         "AF21 (18)",
+                         "CS3 (24)",
+                         "CS2 (16)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Netzwerkmanagement wird mit CS2 (16) markiert. CS6 ist für Routing-Protokolle, AF21 für transaktionale Daten, CS3 für Call Signaling."
+    },
+    {
+        "id":  "slg-qs-034",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An engineer classifies traffic with an ACL that matches the destination TCP port. What does this kind of classification identify?",
+        "optionen":  [
+                         "The Layer 2 priority of the frame",
+                         "The group of devices sending it",
+                         "The trust level of the sender",
+                         "The traffic type or application"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Klassifizierung über Portnummern identifiziert den Verkehrstyp (Anwendung), Klassifizierung über IP-Adressen eine Gruppe von Geräten. Beides fällt unter die Methode Addressing."
+    },
+    {
+        "id":  "slg-qs-035",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A peer-to-peer application negotiates random TCP ports for each session. Which classification approach can reliably identify it?",
+        "optionen":  [
+                         "An extended ACL matching well-known ports",
+                         "Matching the incoming CoS value",
+                         "Matching the IP Precedence value",
+                         "NBAR deep packet inspection"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Anwendungen mit dynamisch ausgehandelten Ports lassen sich über L3/L4-Kriterien nicht sicher erkennen. NBAR untersucht die Payload (L4–L7) und vergleicht sie mit Anwendungssignaturen."
+    },
+    {
+        "id":  "slg-qs-036",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Against which database does NBAR match packet payloads to recognize applications?",
+        "optionen":  [
+                         "Cisco Discovery Protocol cache",
+                         "Packet Description Language Module (PDLM)",
+                         "Management Information Base (MIB)",
+                         "Application Visibility Flow Cache"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "NBAR vergleicht die Payload mit PDLMs, einer Datenbank von Anwendungssignaturen. In NBAR2 werden diese Signaturen als Protocol Packs aktualisiert."
+    },
+    {
+        "id":  "slg-qs-037",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer only wants per-protocol bit rate, packet and byte statistics on an interface, without applying any QoS policy. Which NBAR mode is used?",
+        "optionen":  [
+                         "Active mode",
+                         "Protocol pack mode",
+                         "Signature learning mode",
+                         "Passive mode"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Im Passive Mode liefert NBAR nur Statistiken pro Protokoll bzw. Interface (bidirektional). Active Mode klassifiziert Verkehr, damit QoS-Policies darauf angewendet werden können."
+    },
+    {
+        "id":  "slg-qs-038",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is a disadvantage of NBAR compared to classification by ACLs or existing markings?",
+        "optionen":  [
+                         "It cannot identify HTTP traffic",
+                         "It is more CPU-intensive",
+                         "It cannot be used inside a class-map",
+                         "It only works on Layer 2 interfaces"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Deep Packet Inspection bis Layer 7 kostet deutlich mehr CPU als das Prüfen von Adressen, Ports oder Markierungen. Darum wird NBAR möglichst nur einmal am Rand eingesetzt und dann markiert."
+    },
+    {
+        "id":  "slg-qs-039",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why are policers optimally deployed in the ingress direction?",
+        "optionen":  [
+                         "Policers can only buffer traffic on ingress interfaces",
+                         "Policing is not supported in the egress direction on routers",
+                         "Ingress policing adds a smoothing delay that protects voice",
+                         "Traffic that will be dropped anyway does not waste resources first"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Policer entscheiden sofort. Wenn ein Paket ohnehin verworfen wird, dann besser früh, bevor dafür Bandbreite und CPU verbraucht werden. Egress-Policing ist dennoch möglich, etwa wenn die Entscheidung erst am Ausgang feststeht."
+    },
+    {
+        "id":  "slg-qs-040",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A branch has a 1-Gbps physical link to the provider but a contract for 200 Mbps, enforced by the provider. Without any QoS on the branch router, what happens during bursts above 200 Mbps?",
+        "optionen":  [
+                         "The provider polices and likely drops the excess",
+                         "The provider re-marks the excess to EF and forwards it",
+                         "The provider buffers the excess and sends it later",
+                         "The branch interface automatically limits itself to 200 Mbps"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Provider setzt den Vertrag meist per Policing durch und verwirft Überschuss. Deshalb shapet das Unternehmen am Egress auf die Vertragsrate, damit Überschuss gepuffert statt beim Provider verworfen wird."
+    },
+    {
+        "id":  "slg-qs-041",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which effect does shaping have that policing does not?",
+        "optionen":  [
+                         "It inspects application payloads for signatures",
+                         "It re-marks excess traffic to a lower class",
+                         "It drops all traffic above the configured rate",
+                         "It adds delay and jitter to the traffic stream"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Shaping puffert Überschuss und sendet ihn später – dadurch entstehen Verzögerung und Jitter. Policing verwirft oder re-markiert sofort und verzögert nichts."
+    },
+    {
+        "id":  "slg-qs-042",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "More voice calls are placed across a WAN link than its priority queue can carry, degrading all calls. Which tool is recommended instead of policing the voice traffic?",
+        "optionen":  [
+                         "Shaping the voice class to the CIR",
+                         "NBAR protocol discovery on the WAN",
+                         "Call Admission Control (CAC)",
+                         "Weighted RED on the priority queue"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Policing oder Shaping von Echtzeitverkehr ist kontraproduktiv, weil jedes Gespräch leidet. CAC lässt zusätzliche Anrufe gar nicht erst ins Netz und schützt so die bestehenden Gespräche."
+    },
+    {
+        "id":  "slg-qs-043",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In which direction can a traffic shaper be applied on a Cisco router interface?",
+        "optionen":  [
+                         "Outbound only",
+                         "Only on subinterfaces",
+                         "Inbound only",
+                         "Inbound and outbound"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Shaping braucht eine Ausgangswarteschlange, in die Überschuss gepuffert wird; es ist daher nur outbound möglich. Policing funktioniert in beide Richtungen."
+    },
+    {
+        "id":  "slg-qs-044",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A token bucket is configured with a CIR of 64 kbps and a Bc of 8000 bits. What is the resulting Tc?",
+        "optionen":  [
+                         "8 ms",
+                         "250 ms",
+                         "64 ms",
+                         "125 ms"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "CIR = Bc / Tc → Tc = Bc / CIR = 8000 / 64 000 s = 0,125 s = 125 ms."
+    },
+    {
+        "id":  "slg-qs-045",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A shaper must send at an average of 10 Mbps using a Tc of 10 ms. How large is Bc?",
+        "optionen":  [
+                         "100,000 bits",
+                         "10,000 bits",
+                         "1,000,000 bits",
+                         "12,500 bits"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bc = CIR · Tc = 10 000 000 bit/s · 0,01 s = 100 000 Bit pro Intervall (= 12 500 Byte)."
+    },
+    {
+        "id":  "slg-qs-046",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A two-rate three-color policer uses a CIR of 10 Mbps and a PIR of 15 Mbps. A flow momentarily sends at 12 Mbps. How is the traffic above 10 Mbps classified?",
+        "optionen":  [
+                         "Conform",
+                         "Violate",
+                         "Exceed",
+                         "Discard-eligible"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bis zur CIR gilt conform, zwischen CIR und PIR exceed, oberhalb der PIR violate. 12 Mbps liegt zwischen 10 und 15 Mbps, der Anteil über 10 Mbps ist also exceed."
+    },
+    {
+        "id":  "slg-qs-047",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A policer is used as a marker instead of a dropper. Conforming traffic keeps AF11. Which markings would typically be applied to exceeding and violating traffic?",
+        "optionen":  [
+                         "AF21 for exceed, AF31 for violate",
+                         "AF13 for exceed, AF12 for violate",
+                         "AF12 for exceed, AF13 for violate",
+                         "EF for exceed, CS1 for violate"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Markdown bleibt in derselben AF-Klasse und erhöht die Drop-Precedence schrittweise: conform AF11, exceed AF12, violate AF13. So wird Überschuss bei späterem Stau zuerst verworfen."
+    },
+    {
+        "id":  "slg-qs-048",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does queuing differ from scheduling?",
+        "optionen":  [
+                         "Queuing drops packets early; scheduling marks them with a new DSCP",
+                         "Queuing always picks the next packet; scheduling buffers during congestion",
+                         "Queuing buffers only during congestion; scheduling always picks the next packet",
+                         "Queuing applies to ingress traffic; scheduling applies to egress traffic"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Queuing (Puffern und Umsortieren) wird nur bei Stau aktiv. Scheduling – die Entscheidung, welches Paket als nächstes gesendet wird – findet immer statt, auch ohne Stau."
+    },
+    {
+        "id":  "slg-qs-049",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On a router interface, at which point do the Layer 3 QoS software queues start to be used?",
+        "optionen":  [
+                         "When the hardware Tx-ring is full",
+                         "When a packet with DSCP EF arrives",
+                         "When the CPU exceeds 50 percent load",
+                         "As soon as a service-policy is attached"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Tx-Ring ist die letzte Hardware-FIFO-Queue (Layer 1). Erst wenn er voll ist, werden Pakete in die Layer-3-Queues zurückgedrückt – dann greift die konfigurierte Queuing-Policy."
+    },
+    {
+        "id":  "slg-qs-050",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why is CBWFQ alone not suitable for a network carrying voice?",
+        "optionen":  [
+                         "It supports only four traffic classes",
+                         "It cannot classify traffic by DSCP",
+                         "It guarantees bandwidth but not low latency",
+                         "It cannot guarantee bandwidth per class"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "CBWFQ garantiert Klassen eine Mindestbandbreite, aber keine geringe Verzögerung. Für Echtzeitverkehr braucht es die strikte Priority-Queue von LLQ."
+    },
+    {
+        "id":  "slg-qs-051",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An LLQ policy has a priority class for voice and several bandwidth classes. If the priority class is removed, which mechanism remains?",
+        "optionen":  [
+                         "PQ",
+                         "CBWFQ",
+                         "CQ",
+                         "WFQ"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "LLQ ist CBWFQ plus eine Strict-Priority-Queue. Ohne die Priority-Queue bleibt reines CBWFQ – geeignet nur für Datenverkehr."
+    },
+    {
+        "id":  "slg-qs-052",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A class is configured with \u0027priority 2000\u0027. The egress link is NOT congested and the class briefly sends 3 Mbps. What happens?",
+        "optionen":  [
+                         "All 3 Mbps is sent; the implicit policer acts only during congestion",
+                         "1 Mbps is dropped immediately by the implicit priority policer",
+                         "1 Mbps is buffered in the priority queue and sent later",
+                         "1 Mbps is re-marked to best effort and sent via class-default"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der implizite Policer der LLQ-Priority-Queue greift nur bei Stau. Ohne Stau darf die Klasse mehr als die konfigurierte Rate senden, weil sie niemandem Bandbreite wegnimmt."
+    },
+    {
+        "id":  "slg-qs-053",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is tail drop?",
+        "optionen":  [
+                         "Dropping the oldest packet at the head of the queue",
+                         "Dropping random packets before the queue fills",
+                         "Dropping packets that exceed a policer\u0027s CIR",
+                         "Dropping arriving packets when the queue is full"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Tail Drop ist das Standardverhalten: Ist die Queue voll, werden neu ankommende Pakete am Ende der Queue verworfen – unabhängig von ihrer Wichtigkeit."
+    },
+    {
+        "id":  "slg-qs-054",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Link utilization on a congested WAN link oscillates in waves between nearly full and nearly empty. Most traffic is TCP and the queue uses tail drop. What is happening?",
+        "optionen":  [
+                         "TCP global synchronization",
+                         "TCP starvation by UDP flows",
+                         "Priority queue starvation",
+                         "Policer burst exhaustion"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Tail Drop trifft viele TCP-Flows gleichzeitig, alle reduzieren gleichzeitig ihre Rate und steigern sie dann wieder gemeinsam. Das Wellenmuster mit schlechter Auslastung heißt TCP Global Synchronization."
+    },
+    {
+        "id":  "slg-qs-055",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does RED avoid TCP global synchronization?",
+        "optionen":  [
+                         "It reserves a fixed share of the queue for every TCP flow",
+                         "It delays all TCP acknowledgments by a random interval",
+                         "It drops random packets once a minimum queue depth is exceeded",
+                         "It gives TCP flows strict priority over UDP flows"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "RED überwacht die Queue-Tiefe und verwirft ab einer Mindestschwelle zufällig einzelne Pakete. So bremsen nur einzelne Flows zeitversetzt, statt alle gleichzeitig."
+    },
+    {
+        "id":  "slg-qs-056",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "With DSCP-based WRED configured in a class, the queue begins to fill. Which packets are dropped first?",
+        "optionen":  [
+                         "All three equally",
+                         "AF11 packets",
+                         "AF12 packets",
+                         "AF13 packets"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "WRED hat pro DSCP ein eigenes Profil. AF13 (hohe Drop-Precedence) hat die niedrigste Mindestschwelle und wird daher zuerst verworfen, AF11 zuletzt."
+    },
+    {
+        "id":  "slg-qs-057",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In a WRED profile, the average queue depth rises above the maximum threshold for a given DSCP. What happens to new packets with that DSCP?",
+        "optionen":  [
+                         "None of them are dropped",
+                         "They are dropped with probability 1/MPD",
+                         "All of them are dropped",
+                         "They are re-marked to a lower class"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Unter der Mindestschwelle wird nichts verworfen, dazwischen steigt die Wahrscheinlichkeit linear bis 1/MPD. Über der Maximalschwelle werden alle Pakete dieses Werts verworfen (wie Tail Drop)."
+    },
+    {
+        "id":  "slg-qs-058",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A WRED profile uses a mark probability denominator of 10. What is the drop probability when the average queue depth reaches the maximum threshold?",
+        "optionen":  [
+                         "10 percent",
+                         "100 percent",
+                         "50 percent",
+                         "1 percent"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Drop-Wahrscheinlichkeit an der Maximalschwelle beträgt 1/MPD, bei MPD 10 also 10 %. Erst oberhalb der Maximalschwelle wird alles verworfen."
+    },
+    {
+        "id":  "slg-qs-059",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is it pointless to enable WRED on the voice priority class?",
+        "optionen":  [
+                         "Voice runs over UDP and does not slow down after drops",
+                         "Priority queues are never congested by definition",
+                         "WRED only works on input service policies",
+                         "WRED cannot read the EF value in the DSCP field"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "WRED soll Sender durch einzelne Drops zum Bremsen bringen – das funktioniert nur bei TCP. Voice/RTP über UDP reagiert nicht, ein Drop verschlechtert nur das Gespräch."
+    },
+    {
+        "id":  "slg-qs-060",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which part of a queue does congestion avoidance manage, compared to queuing algorithms?",
+        "optionen":  [
+                         "The front (head) of the queue",
+                         "The hardware Tx-ring only",
+                         "The ingress classification stage",
+                         "The back (tail) of the queue"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Queuing-/Scheduling-Algorithmen entscheiden, was vorne aus der Queue gesendet wird. Congestion Avoidance entscheidet, was hinten überhaupt in die Queue darf."
+    },
+    {
+        "id":  "slg-qs-061",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A packet does not match any class-map referenced in the policy-map. How is it treated?",
+        "optionen":  [
+                         "It is dropped by the policy",
+                         "It bypasses the policy unmarked",
+                         "It is handled by class-default",
+                         "It is sent in the priority queue"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Pakete, die keine definierte Klasse treffen, gehören zur Klasse class-default, die in jeder policy-map implizit existiert. Dort kann man z. B. fair-queue oder eine Markierung konfigurieren."
+    },
+    {
+        "id":  "slg-qs-062",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A class-map is configured as \u0027class-map match-all VIDEO\u0027 with two lines: \u0027match dscp af41\u0027 and \u0027match dscp cs4\u0027. Video packets are marked AF41 or CS4, yet the class counters stay at zero. Why?",
+        "optionen":  [
+                         "CS4 is not a valid keyword in the match dscp command",
+                         "The DSCP keywords must be given as decimal values",
+                         "match-all requires both DSCP values at once, which is impossible",
+                         "Only one match statement is allowed per class-map"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "match-all verknüpft die Zeilen mit UND; ein Paket hat aber nur einen DSCP-Wert. Richtig wäre \u0027class-map match-any\u0027 oder beide Werte in einer Zeile (\u0027match dscp af41 cs4\u0027)."
+    },
+    {
+        "id":  "slg-qs-063",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In the course policy, the class VoIP contains \u0027priority 100\u0027. What does this configure?",
+        "optionen":  [
+                         "A policer that drops above 100 Mbps",
+                         "A strict-priority queue of 100 kbps",
+                         "A minimum guarantee of 100 percent",
+                         "A queue limit of 100 packets"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027priority 100\u0027 legt eine LLQ-Priority-Queue mit 100 kbps an. Die Angabe ohne \u0027percent\u0027 ist in kbps."
+    },
+    {
+        "id":  "slg-qs-064",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the course policy, the class Application is configured with \u0027bandwidth 25\u0027. What does it receive during congestion?",
+        "optionen":  [
+                         "A guaranteed minimum of 25 kbps",
+                         "A maximum of 25 kbps, excess dropped",
+                         "25 percent of the interface bandwidth",
+                         "Strict priority up to 25 kbps"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027bandwidth\u0027 konfiguriert eine CBWFQ-Klasse mit garantierter Mindestbandbreite (hier 25 kbps) bei Stau. Ungenutzte Bandbreite anderer Klassen darf sie zusätzlich verwenden; es ist keine Obergrenze."
+    },
+    {
+        "id":  "slg-qs-065",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the course example, ACL 100 contains \u0027permit ip any any precedence 5\u0027 and \u0027permit ip any any dscp ef\u0027. Which packets match class VoIP?",
+        "optionen":  [
+                         "Only packets with both Precedence 5 and EF",
+                         "Packets with IP Precedence 5 but not EF",
+                         "Only packets with DSCP EF from voice VLANs",
+                         "Packets with IP Precedence 5 or DSCP EF"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die ACEs einer ACL werden mit ODER ausgewertet: Jedes Paket, das eine der Zeilen trifft, passt. EF (101110) hat übrigens ohnehin IP Precedence 5."
+    },
+    {
+        "id":  "slg-qs-066",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In the course example, ACL 101 permits TCP to hosts 10.1.10.20 and 10.1.10.40. An unmarked UDP stream to 10.1.10.20 crosses Serial0/0 outbound. Which class handles it?",
+        "optionen":  [
+                         "None; it is dropped",
+                         "class-default",
+                         "Application",
+                         "VoIP"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "ACL 101 erlaubt nur TCP, ACL 100 prüft Precedence 5/EF. Ein unmarkierter UDP-Strom trifft keine Klasse und landet in class-default (dort fair-queue)."
+    },
+    {
+        "id":  "slg-qs-067",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which QoS implementation method is described as the fastest way to deploy QoS?",
+        "optionen":  [
+                         "Legacy per-interface CLI",
+                         "Cisco SDM QoS Wizard",
+                         "Cisco AutoQoS",
+                         "Modular QoS CLI"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "AutoQoS erzeugt automatisch eine empfohlene QoS-Konfiguration und ist damit am schnellsten. MQC ist die beste Methode für Feintuning."
+    },
+    {
+        "id":  "slg-qs-068",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the main advantage of MQC over the legacy QoS CLI?",
+        "optionen":  [
+                         "One modular policy can be reused on many interfaces",
+                         "It replaces DSCP with a simpler marking field",
+                         "It applies QoS without any interface command",
+                         "It needs no classification of traffic at all"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beim Legacy-CLI musste jedes Interface einzeln konfiguriert werden. MQC trennt Klassen, Policy und Anwendung; dieselbe policy-map lässt sich per service-policy an viele Interfaces binden."
+    },
+    {
+        "id":  "slg-qs-069",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer attaches a policy-map containing \u0027priority percent 20\u0027 with \u0027service-policy input\u0027 on a router interface. What is the result?",
+        "optionen":  [
+                         "It is accepted but converted into a 20 percent policer",
+                         "It is rejected; queuing actions need an output policy",
+                         "It is accepted and applied to both directions",
+                         "It is accepted and prioritizes voice as it arrives"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Queuing-Aktionen wie priority, bandwidth oder shape setzen eine Ausgangswarteschlange voraus und sind nur in Output-Policies erlaubt. Input-Policies eignen sich für Klassifizierung, Markierung und Policing."
+    },
+    {
+        "id":  "slg-qs-070",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer wants to apply a marking policy and a separate queuing policy to traffic leaving Gi0/0/1. How many service-policy statements can be attached to the interface in the output direction?",
+        "optionen":  [
+                         "Two, applied in the order they were configured",
+                         "One; combine the logic in one (hierarchical) policy",
+                         "Two, if one of them contains only set commands",
+                         "Up to four, one for each type of QoS action"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Pro Interface und Richtung ist genau eine service-policy erlaubt. Mehrere Funktionen kombiniert man in einer policy-map oder über eine hierarchische Policy (service-policy innerhalb einer Klasse)."
+    },
+    {
+        "id":  "slg-qs-071",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A policy has \u0027priority percent 30\u0027 for voice and \u0027bandwidth remaining percent 50\u0027 for video on a 100-Mbps interface. If voice uses its full allocation during congestion, how much bandwidth is guaranteed to video?",
+        "optionen":  [
+                         "50 Mbps",
+                         "35 Mbps",
+                         "30 Mbps",
+                         "15 Mbps"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "bandwidth remaining percent bezieht sich auf die Bandbreite, die nach der Priority-Queue übrig bleibt: 100 − 30 = 70 Mbps, davon 50 % = 35 Mbps."
+    },
+    {
+        "id":  "slg-qs-072",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Output of \u0027show policy-map interface Gi0/0/1 output\u0027: class VOICE shows \u00270 packets, 0 bytes\u0027 and \u0027Match: dscp ef (46)\u0027, while calls are active across the interface. What is the most likely cause?",
+        "optionen":  [
+                         "WRED is dropping the voice packets before counting",
+                         "The interface is not congested, so counters stay 0",
+                         "The voice packets do not carry DSCP EF at this point",
+                         "The priority queue is too small for the call volume"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Klassenzähler zählen jedes passende Paket, auch ohne Stau. Bleiben sie bei 0, trifft das Match nicht – typischerweise ist der Verkehr nicht (mehr) mit EF markiert, z. B. weil die Trust Boundary ihn zurückgesetzt hat."
+    },
+    {
+        "id":  "slg-qs-073",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Output for class BULK shows \u0027(queue depth/total drops/no-buffer drops) 0/1532/0\u0027 and \u0027bandwidth remaining 10%\u0027. What does this indicate?",
+        "optionen":  [
+                         "BULK was congested earlier and lost packets to queue drops",
+                         "BULK is congested now and its queue holds 1532 packets",
+                         "BULK has run out of system buffers 1532 times",
+                         "BULK exceeded a policer and 1532 packets were re-marked"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "total drops = 1532 heißt, dass in dieser Klasse Pakete verworfen wurden (Tail Drop oder WRED). queue depth 0 zeigt, dass gerade kein Stau herrscht; no-buffer drops 0 schließt Puffermangel aus."
+    },
+    {
+        "id":  "slg-qs-074",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A policer in class SCAVENGER shows \u0027conformed 2000000 bps, exceeded 450000 bps\u0027 with \u0027exceeded … actions: drop\u0027. What happens to the traffic?",
+        "optionen":  [
+                         "About 450 kbps is re-marked and forwarded",
+                         "All 2.45 Mbps is forwarded but delayed",
+                         "The policer is inactive until congestion occurs",
+                         "About 450 kbps above the CIR is being dropped"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Ausgabe zeigt die Raten pro Ergebnis: 2 Mbps conform werden gesendet, 450 kbps exceed werden laut Aktion verworfen. Policer greifen immer, unabhängig von Stau."
+    },
+    {
+        "id":  "slg-qs-075",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A 1-Gbps interface connects to a provider service limited to 100 Mbps. An LLQ policy on the interface never shows queuing, yet voice suffers. What is the recommended design?",
+        "optionen":  [
+                         "Raise the priority class to 100 percent of the interface",
+                         "Apply the LLQ policy as an input policy on the interface",
+                         "Parent policy shapes to 100 Mbps, child policy holds the LLQ",
+                         "Replace the LLQ policy with WRED in class-default"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das 1-Gbps-Interface ist nie überlastet, also greift Queuing nie – gedroppt wird beim Provider. Ein Parent-Shaper auf 100 Mbps erzeugt den Stau lokal, und die Child-Policy (LLQ) entscheidet, was zuerst gesendet wird."
+    },
+    {
+        "id":  "slg-qs-076",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which QoS model uses RSVP signaling to reserve resources for each flow along the end-to-end path?",
+        "optionen":  [
+                         "DiffServ",
+                         "AutoQoS",
+                         "IntServ",
+                         "Best Effort"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Integrated Services reserviert per RSVP Ressourcen pro Flow auf jedem Hop. Das liefert harte Garantien, skaliert aber wegen des Flow-Zustands auf jedem Router schlecht."
+    },
+    {
+        "id":  "slg-qs-077",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does DiffServ scale better than IntServ in large networks?",
+        "optionen":  [
+                         "DiffServ forwards all packets in one FIFO queue per hop",
+                         "DiffServ drops all traffic that is not explicitly marked",
+                         "Routers signal each flow once and cache the reservation",
+                         "Routers keep no per-flow state and act on class markings"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "DiffServ fasst Verkehr in wenige Klassen zusammen, die per DSCP markiert sind. Jeder Hop wendet ein Per-Hop Behavior an, ohne Signalisierung und ohne Zustand pro Flow."
+    },
+    {
+        "id":  "slg-qs-078",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A 1500-byte packet is sent over a 1-Mbps link. What is its serialization delay?",
+        "optionen":  [
+                         "1.5 ms",
+                         "12 ms",
+                         "1.2 ms",
+                         "120 ms"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Serialization Delay = Paketgröße in Bit / Linkrate = 12 000 Bit / 1 000 000 bit/s = 0,012 s = 12 ms. Auf langsamen Links blockiert ein großes Paket ein Voice-Paket also merklich."
+    },
+    {
+        "id":  "slg-qs-079",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which delay component can QoS mechanisms such as LLQ directly reduce for voice packets?",
+        "optionen":  [
+                         "Serialization delay",
+                         "Propagation delay",
+                         "Codec delay",
+                         "Queuing delay"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Queuing-Mechanismen bestimmen, wie lange ein Paket in Ausgangspuffern wartet. Propagation hängt von der Entfernung ab, Serialization von Paketgröße und Linkrate."
+    },
+    {
+        "id":  "slg-qs-080",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How do IP phones compensate for jitter, and what is the trade-off?",
+        "optionen":  [
+                         "Retransmission of late packets, adding bandwidth",
+                         "A de-jitter buffer smooths arrival but adds delay",
+                         "A de-jitter buffer removes delay but adds loss",
+                         "Dropping early packets, adding jitter downstream"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der De-Jitter-Puffer sammelt Pakete und gibt sie gleichmäßig aus. Er gleicht Schwankungen aus, erhöht aber die Gesamtverzögerung – zu viel Jitter führt zu Drops im Puffer."
+    },
+    {
+        "id":  "slg-qs-081",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Traffic leaves the enterprise and enters a service provider network. What commonly happens at this handoff?",
+        "optionen":  [
+                         "All traffic is re-marked to EF to guarantee priority",
+                         "Markings are removed because providers only use CoS",
+                         "Traffic is reclassified and re-marked to the provider\u0027s classes",
+                         "All markings are copied unchanged into an MPLS label stack"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "An Übergängen zwischen Netzen (z. B. Enterprise → SP) ist erneutes Klassifizieren und Re-Marking üblich, weil der Provider meist weniger bzw. eigene Klassen anbietet."
+    },
+    {
+        "id":  "slg-qs-082",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which 2 bits of the IPv4 ToS byte are not part of the DSCP, and what are they used for?",
+        "optionen":  [
+                         "The two highest bits, used for ECN",
+                         "The two lowest bits, used for ECN",
+                         "The two highest bits, used for TID",
+                         "The two lowest bits, used for CoS"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "DSCP belegt die oberen 6 Bit des ToS-Bytes. Die unteren 2 Bit sind das ECN-Feld (Explicit Congestion Notification, RFC 3168)."
+    },
+    {
+        "id":  "slg-qs-083",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "NBAR2 has which capability that classic port-based classification lacks?",
+        "optionen":  [
+                         "It can mark traffic without any class-map or policy",
+                         "It can classify traffic without inspecting any packets",
+                         "It can classify non-TCP/UDP and dynamic-port protocols",
+                         "It can identify traffic using only the Layer 2 header"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "NBAR2 (Next Generation NBAR) erkennt eine sehr große Zahl von Protokollen, auch Nicht-TCP/UDP-Protokolle und solche mit dynamisch zugewiesenen Ports."
+    },
+    {
+        "id":  "slg-qs-084",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A Catalyst 9300 access port connects directly to a PC that marks all its traffic DSCP EF. No QoS is configured on the switch. How does the switch treat these markings?",
+        "optionen":  [
+                         "They are reset to 0, since ports are untrusted by default",
+                         "They are dropped because the PC is not an IP phone",
+                         "They are mapped to CoS 0 and the DSCP is cleared",
+                         "They are trusted and kept, since ports trust DSCP by default"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Catalyst-9000-Switches (IOS XE) vertrauen eingehenden Markierungen standardmäßig. Darum muss am Access-Port eine Ingress-Policy die Markierung untrusted Geräte zurücksetzen – anders als bei alten Switches mit \u0027mls qos\u0027."
+    },
+    {
+        "id":  "slg-qs-085",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An egress shaper on a WAN interface shows rising \u0027queue depth\u0027 values but no drops, and users report slower file transfers. What is the correct interpretation?",
+        "optionen":  [
+                         "Excess traffic is buffered and delayed, which is expected",
+                         "The shaper is inactive because no drops are counted",
+                         "The queue depth counts packets re-marked by the shaper",
+                         "The shaper is policing traffic and dropping silently"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein Shaper puffert Verkehr oberhalb der konfigurierten Rate. Steigende Queue-Tiefe ohne Drops bedeutet: Überschuss wird verzögert statt verworfen – Durchsatz ist auf die Shape-Rate begrenzt."
+    },
+    {
+        "id":  "slg-qs-086",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two actions can a policer take on traffic that exceeds the configured rate? (Choose two.)",
+        "optionen":  [
+                         "Delay the packets until tokens refill",
+                         "Drop the excess packets",
+                         "Buffer the excess packets",
+                         "Fragment the excess packets",
+                         "Re-mark the excess packets"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Ein Policer prüft gegen eine Rate und verwirft oder re-markiert Überschuss. Puffern bzw. Verzögern ist das Verhalten eines Shapers."
+    },
+    {
+        "id":  "slg-qs-087",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three statements describe voice traffic? (Choose three.)",
+        "optionen":  [
+                         "Bursty and greedy",
+                         "Recovers lost packets through retransmission",
+                         "Sensitive to delay and jitter",
+                         "Constant, predictable bandwidth",
+                         "Sensitive to packet loss"
+                     ],
+        "richtig":  [
+                        2,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Voice ist glatt und vorhersehbar, aber empfindlich gegenüber Verlust, Verzögerung und Jitter. Bursty/greedy beschreibt Daten und Video; Retransmits gibt es bei RTP/UDP nicht."
+    },
+    {
+        "id":  "slg-qs-088",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about traffic shaping are true? (Choose two.)",
+        "optionen":  [
+                         "Excess traffic is buffered rather than dropped",
+                         "It re-marks excess traffic to a higher drop class",
+                         "It never needs a buffer",
+                         "It introduces delay and jitter",
+                         "It is typically applied inbound on the provider edge"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Shaper puffern Überschuss und senden ihn später, was Verzögerung und Jitter verursacht. Re-Marking ist eine Policer-Funktion; Shaping erfolgt outbound auf der Enterprise-Seite."
+    },
+    {
+        "id":  "slg-qs-089",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two devices are typically part of the untrusted domain? (Choose two.)",
+        "optionen":  [
+                         "Distribution switches",
+                         "WAN edge routers",
+                         "User PCs",
+                         "Network printers",
+                         "Core routers"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Zur untrusted Domain gehören Geräte, die nicht vom Netzwerkteam verwaltet werden und auf die Nutzer zugreifen, z. B. PCs und Drucker. Switches und Router sind Teil der trusted Domain."
+    },
+    {
+        "id":  "slg-qs-090",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three methods are commonly used to classify traffic? (Choose three.)",
+        "optionen":  [
+                         "The current output queue depth",
+                         "Existing Layer 2 or Layer 3 markings",
+                         "Addresses, interfaces, and port numbers",
+                         "The packet\u0027s remaining TTL value",
+                         "Application signatures in the payload"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Die drei gängigen Wege sind vorhandene Markierungen, Adressierung (Interfaces, L2/L3-Adressen, L4-Ports) und Anwendungssignaturen (Deep Packet Inspection, NBAR)."
+    },
+    {
+        "id":  "slg-qs-091",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which three policy-map actions are valid only in an output service policy on a router? (Choose three.)",
+        "optionen":  [
+                         "police cir",
+                         "bandwidth remaining percent",
+                         "shape average",
+                         "priority",
+                         "set dscp"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "priority, bandwidth und shape benötigen eine Ausgangsqueue und sind nur output erlaubt. set dscp und police funktionieren in beide Richtungen."
+    },
+    {
+        "id":  "slg-qs-092",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about LLQ are true? (Choose two.)",
+        "optionen":  [
+                         "It is only suitable for pure data networks",
+                         "The priority queue is policed during congestion",
+                         "The priority queue may use all bandwidth unlimited",
+                         "It offers no bandwidth guarantee to the data classes",
+                         "It adds a strict-priority queue to CBWFQ"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "LLQ = CBWFQ + Strict-Priority-Queue und bietet Latenz- und Bandbreitengarantien. Damit die PQ andere Klassen nicht aushungert, wird sie bei Stau implizit auf ihre Rate gepolicet."
+    },
+    {
+        "id":  "slg-qs-093",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about WRED are true? (Choose two.)",
+        "optionen":  [
+                         "It manages the front of the queue like a scheduler",
+                         "Markings make some packets less likely to be dropped",
+                         "It only drops packets after the queue is full",
+                         "It protects UDP voice from loss in the priority queue",
+                         "It drops packets randomly before the queue is full"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "WRED verwirft zufällig, bevor die Queue voll ist, und gewichtet nach IPP/DSCP. Es arbeitet am Ende der Queue und hilft nur bei TCP."
+    },
+    {
+        "id":  "slg-qs-094",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three DSCP values are Class Selector values? (Choose three.)",
+        "optionen":  [
+                         "24",
+                         "8",
+                         "26",
+                         "48",
+                         "46"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Class Selector = 8x mit unteren 3 Bit 0: 8 (CS1), 24 (CS3), 48 (CS6). 26 ist AF31, 46 ist EF."
+    },
+    {
+        "id":  "slg-qs-095",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements describe the IntServ model? (Choose two.)",
+        "optionen":  [
+                         "It scales best of all QoS models",
+                         "Every router keeps state for each flow",
+                         "Each hop applies a PHB based on DSCP only",
+                         "Resources are reserved with RSVP signaling",
+                         "Applications need no signaling at all"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "IntServ reserviert per RSVP pro Flow, und jeder Router hält dafür Zustand. Genau das macht es schlecht skalierbar; PHB auf Basis von DSCP ist DiffServ."
+    },
+    {
+        "id":  "slg-qs-096",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three are typical locations for a QoS trust boundary? (Choose three.)",
+        "optionen":  [
+                         "A Cisco IP phone at the user desk",
+                         "The NIC driver of a user\u0027s laptop",
+                         "The link between enterprise and service provider",
+                         "A link between two core routers in one campus",
+                         "The access switch port at the campus edge"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Trust Boundaries liegen an IP-Phones, an Access-Switches und an Übergängen zu anderen Organisationen (z. B. Service Provider). Zwischen Core-Routern innerhalb der Trusted Domain gibt es keine; ein Nutzer-Laptop ist untrusted."
+    },
+    {
+        "id":  "slg-qs-097",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two are consequences of TCP global synchronization? (Choose two.)",
+        "optionen":  [
+                         "Voice packets are re-marked to best effort",
+                         "The Tx-ring is permanently disabled",
+                         "Link bandwidth is poorly utilized in waves",
+                         "UDP flows are throttled by the routers",
+                         "Many flows reduce their rate at the same time"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Bei Tail Drop bremsen viele TCP-Flows gleichzeitig und steigern dann gemeinsam wieder. Die Auslastung schwankt in Wellen, der Link bleibt zeitweise ungenutzt."
+    },
+    {
+        "id":  "slg-qs-098",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two DSCP values carry the highest drop precedence within their AF class? (Choose two.)",
+        "optionen":  [
+                         "46",
+                         "38",
+                         "14",
+                         "18",
+                         "26"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Hohe Drop-Precedence = y = 3: AF13 = 14 und AF43 = 38. 26 ist AF31, 18 AF21 (beide niedrig), 46 ist EF."
+    },
+    {
+        "id":  "slg-qs-099",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about NBAR are true? (Choose two.)",
+        "optionen":  [
+                         "It requires RSVP to reserve bandwidth",
+                         "It is more CPU-intensive than ACL-based matching",
+                         "It works only in passive mode on routers",
+                         "It classifies only by well-known port numbers",
+                         "It inspects traffic from Layer 4 up to Layer 7"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "NBAR ist ein DPI-Klassifizierer für L4–L7 und dadurch CPU-intensiver als ACLs oder Markierungen. Im Active Mode klassifiziert es für QoS-Policies."
+    },
+    {
+        "id":  "slg-qs-100",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In IPv6, the 8-bit header field that carries the DSCP is called the ___ field.",
+        "optionen":  [
+                         "Service Type",
+                         "Flow Label",
+                         "Priority Code Point",
+                         "Traffic Class"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "IPv6 nennt das Pendant zum IPv4-ToS-Byte Traffic Class; die oberen 6 Bit sind der DSCP. Das Flow Label ist ein separates 20-Bit-Feld."
+    },
+    {
+        "id":  "slg-qs-101",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Using the formula DSCP = 8x + 2y, AF33 corresponds to decimal DSCP ___.",
+        "optionen":  [
+                         "33",
+                         "30",
+                         "26",
+                         "28"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "AF33 = 8·3 + 2·3 = 24 + 6 = 30. 26 ist AF31, 28 ist AF32."
+    },
+    {
+        "id":  "slg-qs-102",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "For voice, the course lists a maximum one-way jitter of ___.",
+        "optionen":  [
+                         "5 ms",
+                         "300 ms",
+                         "150 ms",
+                         "30 ms"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Für Voice und interaktives Video gelten One-Way Latenz ≤ 150 ms, Jitter ≤ 30 ms und Verlust ≤ 1 % (Video 0,1–1 %)."
+    },
+    {
+        "id":  "slg-qs-103",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The final hardware FIFO queue on an interface, which must fill before the software QoS queues are used, is called the ___.",
+        "optionen":  [
+                         "Tx-ring",
+                         "input queue",
+                         "hold queue",
+                         "software queue"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Tx-Ring ist die Layer-1-Queue der Hardware. Erst wenn er voll ist, werden Pakete in die Layer-3-Queues zurückgedrückt und QoS-Queuing wird aktiv."
+    },
+    {
+        "id":  "slg-qs-104",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "In a token bucket, ___ = Bc / Tc.",
+        "optionen":  [
+                         "Be",
+                         "CIR",
+                         "MPD",
+                         "PIR"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Committed Information Rate ergibt sich aus Committed Burst pro Zeitintervall: CIR = Bc / Tc. PIR ist die Peak-Rate eines Two-Rate-Policers."
+    },
+    {
+        "id":  "slg-qs-105",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Dropping packets randomly before a queue fills is called congestion ___, while queuing and scheduling are called congestion management.",
+        "optionen":  [
+                         "shaping",
+                         "control",
+                         "prevention",
+                         "avoidance"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Congestion Avoidance (RED/WRED) verwirft selektiv, während sich die Queue füllt. Congestion Management (Queuing/Scheduling) entscheidet, in welcher Reihenfolge gesendet wird."
+    },
+    {
+        "id":  "slg-qs-106",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "A \u0027show policy-map interface\u0027 output for the priority class shows a non-zero \u0027b/w ___ drops\u0027 counter when voice exceeds its priority rate during congestion.",
+        "optionen":  [
+                         "no-buffer",
+                         "conform",
+                         "violate",
+                         "exceed"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027b/w exceed drops\u0027 zählt Pakete, die der implizite Policer der Priority-Queue bei Stau verworfen hat. Abhilfe: mehr Priority-Bandbreite oder CAC."
+    },
+    {
+        "id":  "slg-qs-107",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Application recognition by inspecting the packet payload is also called ___ packet inspection.",
+        "optionen":  [
+                         "deep",
+                         "shallow",
+                         "header",
+                         "stateful"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Klassifizierung über Anwendungssignaturen in der Payload heißt Deep Packet Inspection – das Verfahren von NBAR."
+    },
+    {
+        "id":  "slg-qs-108",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die MQC-Bausteine der Frage zu, die sie beantworten.",
+        "paare":  [
+                      [
+                          "class-map",
+                          "Which traffic do we care about?"
+                      ],
+                      [
+                          "policy-map",
+                          "What will be done to this traffic?"
+                      ],
+                      [
+                          "service-policy",
+                          "Where will the policy be applied?"
+                      ]
+                  ],
+        "erklaerung":  "MQC in drei Schritten: class-map klassifiziert, policy-map definiert Aktionen pro Klasse, service-policy bindet die Policy mit Richtung an ein Interface."
+    },
+    {
+        "id":  "slg-qs-109",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die QoS-Modelle ihrer Arbeitsweise zu.",
+        "paare":  [
+                      [
+                          "Best Effort",
+                          "No differentiation, all packets in FIFO"
+                      ],
+                      [
+                          "IntServ",
+                          "Per-flow reservation signaled with RSVP"
+                      ],
+                      [
+                          "DiffServ",
+                          "Per-hop behavior based on packet marking"
+                      ]
+                  ],
+        "erklaerung":  "Best Effort behandelt alles gleich, IntServ reserviert pro Flow per RSVP, DiffServ markiert Klassen und wendet pro Hop ein PHB an."
+    },
+    {
+        "id":  "slg-qs-110",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die älteren Queuing-Verfahren ihrer Arbeitsweise zu.",
+        "paare":  [
+                      [
+                          "FIFO",
+                          "Single queue in order of arrival"
+                      ],
+                      [
+                          "PQ",
+                          "Four queues served in strict priority"
+                      ],
+                      [
+                          "CQ",
+                          "Sixteen queues served round-robin"
+                      ],
+                      [
+                          "WFQ",
+                          "Bandwidth divided among active flows"
+                      ]
+                  ],
+        "erklaerung":  "FIFO: eine Queue. PQ: vier strikte Prioritäten (Starvation-Gefahr). CQ: 16 Queues Round-Robin. WFQ: faire Aufteilung auf die Flows ohne Garantie pro Flow."
+    },
+    {
+        "id":  "slg-qs-111",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Anwendungen der empfohlenen DSCP-Markierung zu.",
+        "paare":  [
+                      [
+                          "Call signaling",
+                          "CS3 (24)"
+                      ],
+                      [
+                          "Mission-critical data",
+                          "AF31 (26)"
+                      ],
+                      [
+                          "Transactional data",
+                          "AF21 (18)"
+                      ],
+                      [
+                          "Bulk data",
+                          "AF11 (10)"
+                      ]
+                  ],
+        "erklaerung":  "Empfehlungen aus der Kurstabelle: Call Signaling CS3, Mission-Critical AF31, Transactional AF21, Bulk AF11."
+    },
+    {
+        "id":  "slg-qs-112",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Markierungsfelder dem Ort zu, an dem sie transportiert werden.",
+        "paare":  [
+                      [
+                          "CoS",
+                          "802.1Q tag of an Ethernet frame"
+                      ],
+                      [
+                          "DSCP",
+                          "ToS / Traffic Class byte of the IP header"
+                      ],
+                      [
+                          "TID",
+                          "QoS Control field of an 802.11 frame"
+                      ],
+                      [
+                          "EXP / TC",
+                          "MPLS label"
+                      ]
+                  ],
+        "erklaerung":  "CoS (PCP) steht im 802.1Q-Tag, DSCP im IP-Header, TID im QoS-Control-Feld von WLAN-Frames, EXP/TC im MPLS-Label – jeweils 3 Bit außer DSCP (6 Bit)."
+    },
+    {
+        "id":  "slg-qs-113",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Scheduler-Grundtypen ihrem typischen Nachteil zu.",
+        "paare":  [
+                      [
+                          "Strict priority",
+                          "Lower queues can starve"
+                      ],
+                      [
+                          "Round-robin",
+                          "Real-time traffic suffers delay"
+                      ],
+                      [
+                          "Weighted fair",
+                          "No fixed bandwidth guarantee per flow"
+                      ]
+                  ],
+        "erklaerung":  "Strict Priority führt zu Starvation, Round-Robin verzögert Echtzeitverkehr, Weighted Fair gibt keine festen Garantien. Moderne Verfahren wie LLQ kombinieren die Ansätze."
+    },
+    {
+        "id":  "slg-qs-114",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Ergebnisse eines Two-Rate-Three-Color-Policers dem Verkehrsanteil zu.",
+        "paare":  [
+                      [
+                          "Conform",
+                          "Traffic up to the CIR"
+                      ],
+                      [
+                          "Exceed",
+                          "Traffic between CIR and PIR"
+                      ],
+                      [
+                          "Violate",
+                          "Traffic above the PIR"
+                      ]
+                  ],
+        "erklaerung":  "Ein trTCM (RFC 2698) arbeitet mit zwei Raten: bis CIR conform, zwischen CIR und PIR exceed, über PIR violate. Jedem Ergebnis wird eine Aktion (transmit, set-dscp-transmit, drop) zugewiesen."
+    },
+    {
+        "id":  "slg-qs-115",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Klassifizierungsmethode dem passenden MQC-Match zu.",
+        "paare":  [
+                      [
+                          "Existing markings",
+                          "match dscp af41"
+                      ],
+                      [
+                          "Addressing",
+                          "match access-group 101"
+                      ],
+                      [
+                          "Application signatures",
+                          "match protocol http"
+                      ]
+                  ],
+        "erklaerung":  "match dscp nutzt vorhandene Markierungen, match access-group Adressen und Ports per ACL, match protocol die NBAR-Signaturerkennung."
+    },
+    {
+        "id":  "slg-qs-116",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Verzögerungsarten ihrer Ursache zu.",
+        "paare":  [
+                      [
+                          "Serialization delay",
+                          "Packet size divided by link rate"
+                      ],
+                      [
+                          "Propagation delay",
+                          "Signal travel time over the distance"
+                      ],
+                      [
+                          "Queuing delay",
+                          "Waiting in an output buffer"
+                      ],
+                      [
+                          "Processing delay",
+                          "Forwarding decision inside the device"
+                      ]
+                  ],
+        "erklaerung":  "Serialization hängt von Paketgröße und Linkrate ab, Propagation von der Entfernung, Queuing von der Pufferwartezeit (durch QoS steuerbar), Processing von der Weiterleitungsentscheidung."
+    },
+    {
+        "id":  "slg-qs-117",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Anwendungsklassen einem Beispiel zu.",
+        "paare":  [
+                      [
+                          "Batch application",
+                          "FTP file download"
+                      ],
+                      [
+                          "Interactive application",
+                          "Inventory lookup"
+                      ],
+                      [
+                          "Real-time application",
+                          "VoIP call"
+                      ]
+                  ],
+        "erklaerung":  "Batch: Transfer ohne weitere Interaktion. Interaktiv: Nutzer wartet auf eine Antwort. Echtzeit: Mensch-zu-Mensch-Kommunikation, bei der Verzögerung kritisch ist."
+    },
+    {
+        "id":  "slg-qs-118",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den vollständigen ToS-Byte-Wert (ECN = 00) der DSCP-Markierung zu.",
+        "paare":  [
+                      [
+                          "0xB8",
+                          "EF"
+                      ],
+                      [
+                          "0x88",
+                          "AF41"
+                      ],
+                      [
+                          "0xC0",
+                          "CS6"
+                      ],
+                      [
+                          "0x48",
+                          "AF21"
+                      ]
+                  ],
+        "erklaerung":  "ToS-Byte = DSCP × 4: EF 46 → 184 = 0xB8, AF41 34 → 136 = 0x88, CS6 48 → 192 = 0xC0, AF21 18 → 72 = 0x48."
+    },
+    {
+        "id":  "slg-qs-119",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege eine Klasse VOICE an, die Pakete aufnimmt, wenn mindestens EINES ihrer Match-Kriterien zutrifft.",
+        "bausteine":  [
+                          "class-map",
+                          "match-any",
+                          "VOICE",
+                          "match-all",
+                          "policy-map",
+                          "class"
+                      ],
+        "loesung":  [
+                        "class-map",
+                        "match-any",
+                        "VOICE"
+                    ],
+        "erklaerung":  "\u0027class-map match-any VOICE\u0027 verknüpft die folgenden match-Zeilen mit ODER. Ohne Schlüsselwort gilt match-all (UND)."
+    },
+    {
+        "id":  "slg-qs-120",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Class-map-Konfigurationsmodus: Ordne Pakete mit DSCP Expedited Forwarding dieser Klasse zu.",
+        "bausteine":  [
+                          "match",
+                          "dscp",
+                          "ef",
+                          "set",
+                          "cos",
+                          "46-ef",
+                          "precedence"
+                      ],
+        "loesung":  [
+                        "match",
+                        "dscp",
+                        "ef"
+                    ],
+        "erklaerung":  "\u0027match dscp ef\u0027 klassifiziert nach dem vorhandenen DSCP-Wert 46. \u0027set\u0027 würde markieren statt klassifizieren."
+    },
+    {
+        "id":  "slg-qs-121",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Policy-map-Klassenmodus (class VOICE): Gib der Klasse eine Strict-Priority-Queue mit 20 % der Interfacebandbreite.",
+        "bausteine":  [
+                          "priority",
+                          "percent",
+                          "20",
+                          "bandwidth",
+                          "remaining",
+                          "police"
+                      ],
+        "loesung":  [
+                        "priority",
+                        "percent",
+                        "20"
+                    ],
+        "erklaerung":  "\u0027priority percent 20\u0027 erzeugt die LLQ-Priority-Queue mit 20 % der Interfacebandbreite, die bei Stau implizit auf diesen Wert gepolicet wird."
+    },
+    {
+        "id":  "slg-qs-122",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Policy-map-Klassenmodus (class VIDEO): Garantiere der Klasse 40 % der Bandbreite, die nach der Priority-Queue übrig bleibt.",
+        "bausteine":  [
+                          "bandwidth",
+                          "remaining",
+                          "percent",
+                          "40",
+                          "priority",
+                          "shape"
+                      ],
+        "loesung":  [
+                        "bandwidth",
+                        "remaining",
+                        "percent",
+                        "40"
+                    ],
+        "erklaerung":  "\u0027bandwidth remaining percent 40\u0027 bezieht sich auf die nach der Priority-Queue verbleibende Bandbreite und garantiert bei Stau diesen Mindestanteil."
+    },
+    {
+        "id":  "slg-qs-123",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Policy-map-Klassenmodus (class BULK): Begrenze die Klasse per Policer auf 2 Mbps; konformer Verkehr wird gesendet, Überschuss verworfen.",
+        "bausteine":  [
+                          "police",
+                          "cir",
+                          "2000000",
+                          "conform-action",
+                          "transmit",
+                          "exceed-action",
+                          "drop",
+                          "shape",
+                          "average",
+                          "set-dscp-transmit"
+                      ],
+        "loesung":  [
+                        "police",
+                        "cir",
+                        "2000000",
+                        "conform-action",
+                        "transmit",
+                        "exceed-action",
+                        "drop"
+                    ],
+        "erklaerung":  "\u0027police cir 2000000 conform-action transmit exceed-action drop\u0027 erzeugt einen Single-Rate-Policer: bis 2 Mbps senden, Überschuss verwerfen. Statt drop wäre set-dscp-transmit ein Markdown."
+    },
+    {
+        "id":  "slg-qs-124",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Policy-map-Klassenmodus (class class-default einer Parent-Policy): Forme den gesamten Verkehr auf durchschnittlich 50 Mbps.",
+        "bausteine":  [
+                          "shape",
+                          "average",
+                          "50000000",
+                          "police",
+                          "cir",
+                          "50",
+                          "peak"
+                      ],
+        "loesung":  [
+                        "shape",
+                        "average",
+                        "50000000"
+                    ],
+        "erklaerung":  "\u0027shape average 50000000\u0027 (Angabe in bps) glättet den Verkehr auf 50 Mbps. In einer hierarchischen Policy folgt darunter \u0027service-policy \u003cchild\u003e\u0027 mit der Queuing-Policy."
+    },
+    {
+        "id":  "slg-qs-125",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus: Wende die policy-map WAN-OUT auf den ausgehenden Verkehr an.",
+        "bausteine":  [
+                          "service-policy",
+                          "output",
+                          "WAN-OUT",
+                          "input",
+                          "policy-map",
+                          "apply"
+                      ],
+        "loesung":  [
+                        "service-policy",
+                        "output",
+                        "WAN-OUT"
+                    ],
+        "erklaerung":  "\u0027service-policy output WAN-OUT\u0027 bindet die Policy in Senderichtung. Queuing-Aktionen funktionieren nur output."
+    },
+    {
+        "id":  "slg-qs-126",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Policy-map-Klassenmodus (class VIDEO-CONF in einer Ingress-Marking-Policy): Markiere die Pakete mit AF41.",
+        "bausteine":  [
+                          "set",
+                          "dscp",
+                          "af41",
+                          "match",
+                          "cos",
+                          "4",
+                          "ip"
+                      ],
+        "loesung":  [
+                        "set",
+                        "dscp",
+                        "af41"
+                    ],
+        "erklaerung":  "\u0027set dscp af41\u0027 schreibt DSCP 34 in den IP-Header. So müssen nachfolgende Geräte nicht erneut klassifizieren."
+    },
+    {
+        "id":  "slg-qs-127",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC: Zeige die Zähler, Raten und Drops aller Klassen der Policies auf GigabitEthernet0/0/1.",
+        "bausteine":  [
+                          "show",
+                          "policy-map",
+                          "interface",
+                          "GigabitEthernet0/0/1",
+                          "class-map",
+                          "running-config",
+                          "queue"
+                      ],
+        "loesung":  [
+                        "show",
+                        "policy-map",
+                        "interface",
+                        "GigabitEthernet0/0/1"
+                    ],
+        "erklaerung":  "\u0027show policy-map interface \u003cif\u003e\u0027 zeigt pro Klasse Pakete, Offered Rate, Drop Rate, Queue-Tiefe, Drops und Policer-Statistiken. \u0027show class-map\u0027 zeigt nur die Definitionen."
+    },
+    {
+        "id":  "slg-qs-128",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Policy-map-Klassenmodus (class BULK): Aktiviere WRED, das die Drop-Profile anhand des DSCP-Werts statt der IP Precedence wählt.",
+        "bausteine":  [
+                          "random-detect",
+                          "dscp-based",
+                          "precedence-based",
+                          "fair-queue",
+                          "queue-limit",
+                          "ecn"
+                      ],
+        "loesung":  [
+                        "random-detect",
+                        "dscp-based"
+                    ],
+        "erklaerung":  "\u0027random-detect\u0027 allein arbeitet IP-Precedence-basiert. Mit \u0027dscp-based\u0027 gelten getrennte Profile je DSCP, sodass etwa AF13 vor AF11 verworfen wird."
+    },
+    {
+        "id":  "slg-qs-129",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Class-map-Konfigurationsmodus: Klassifiziere HTTP-Verkehr mit NBAR.",
+        "bausteine":  [
+                          "match",
+                          "protocol",
+                          "http",
+                          "access-group",
+                          "port",
+                          "80",
+                          "dscp"
+                      ],
+        "loesung":  [
+                        "match",
+                        "protocol",
+                        "http"
+                    ],
+        "erklaerung":  "\u0027match protocol \u003cname\u003e\u0027 nutzt NBAR (Active Mode) zur Erkennung über Anwendungssignaturen statt über Portnummern."
+    },
+    {
+        "id":  "slg-qs-130",
+        "topic":  "ENCOR-1.4",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus (Access-Port): Wende die Markierungs-Policy MARK-IN auf eingehenden Verkehr an.",
+        "bausteine":  [
+                          "service-policy",
+                          "input",
+                          "MARK-IN",
+                          "output",
+                          "class",
+                          "ingress"
+                      ],
+        "loesung":  [
+                        "service-policy",
+                        "input",
+                        "MARK-IN"
+                    ],
+        "erklaerung":  "Klassifizierung und Markierung erfolgen am Eingang der Trust Boundary: \u0027service-policy input MARK-IN\u0027."
+    }
+]
