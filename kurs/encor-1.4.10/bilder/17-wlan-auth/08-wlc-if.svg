@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>WLC-Initialisierung und Interfaces</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">WLC-Initialisierung und Interfaces</text>
+<g font-size="12" fill="#222">
+<rect x="20" y="50" width="760" height="100" rx="8" fill="none" stroke="#b08aff" stroke-width="2"/>
+<text x="35" y="72" font-weight="bold" font-size="14">Day 0 (nur ohne Startup-Config: neu oder nach write erase)</text>
+<rect x="35" y="82" width="235" height="58" rx="5" fill="#b08aff" opacity="0.3"/><text x="45" y="100" font-weight="bold">CLI-Wizard</text><text x="45" y="116">Console 9600 8N1, keine Flussk.</text><text x="45" y="132">'setup' startet ihn erneut</text>
+<rect x="282" y="82" width="235" height="58" rx="5" fill="#b08aff" opacity="0.3"/><text x="292" y="100" font-weight="bold">GUI-Wizard (9800-HW)</text><text x="292" y="116">https://IP, User webui</text><text x="292" y="132">Passwort = Seriennummer</text>
+<rect x="529" y="82" width="240" height="58" rx="5" fill="#b08aff" opacity="0.3"/><text x="539" y="100" font-weight="bold">EWC auf Catalyst-AP</text><text x="539" y="116">SSID CiscoAirProvision</text><text x="539" y="132">mywifi.cisco.com, webui/cisco</text>
+
+<rect x="20" y="165" width="120" height="30" rx="4" fill="#b08aff"/><text x="80" y="185" text-anchor="middle" font-weight="bold">Funktion</text>
+<rect x="145" y="165" width="300" height="30" rx="4" fill="#4a9cff"/><text x="295" y="185" text-anchor="middle" font-weight="bold" fill="#fff">Catalyst 9800 (IOS XE)</text>
+<rect x="450" y="165" width="330" height="30" rx="4" fill="#ffd23f"/><text x="615" y="185" text-anchor="middle" font-weight="bold">AireOS (Legacy)</text>
+
+<text x="25" y="218">CAPWAP/Mgmt</text><text x="150" y="218">Wireless Management Interface (SVI)</text><text x="455" y="218">Management Interface (+ AP-Manager)</text>
+<line x1="20" y1="228" x2="780" y2="228" stroke="#ddd"/>
+<text x="25" y="250">Out-of-Band</text><text x="150" y="250">Service Port Gi0 (VRF Mgmt-intf)</text><text x="455" y="250">Service Port (eigenes Subnetz)</text>
+<line x1="20" y1="260" x2="780" y2="260" stroke="#ddd"/>
+<text x="25" y="282">WebAuth-Portal</text><text x="150" y="282">virtual-ip im Parameter-Map global</text><text x="455" y="282">Virtual Interface (192.0.2.1 empf.)</text>
+<line x1="20" y1="292" x2="780" y2="292" stroke="#ddd"/>
+<text x="25" y="314">Client-VLANs</text><text x="150" y="314">VLAN im Policy Profile, Trunk</text><text x="455" y="314">Dynamic Interfaces</text>
+<line x1="20" y1="324" x2="780" y2="324" stroke="#ddd"/>
+<text x="25" y="346">HA/SSO</text><text x="150" y="346">RP-Port, Redundancy Mgmt Interface</text><text x="455" y="346">Redundancy Port / RMI</text>
+
+<text x="20" y="385">Virtual IP: nicht routbar, auf allen WLCs einer Mobility-Gruppe gleich (sonst Probleme bei WebAuth nach Roaming).</text>
+<text x="20" y="405">GUI: HTTP 80 und HTTPS 443 per Default aktiv – HTTP für die Verwaltung abschalten.</text>
+<text x="20" y="425">Pflichtangaben im Wizard u. a.: Management-IP/Route, Credentials, Wireless Mgmt Interface, Country Code, Zeit/NTP.</text>
+</g>
+</svg>

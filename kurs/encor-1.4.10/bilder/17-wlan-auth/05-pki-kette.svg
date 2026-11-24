@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>PKI-Vertrauenskette und Widerruf</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">PKI: Vertrauenskette für 802.1X</text>
+<g font-size="13" fill="#222" text-anchor="middle">
+<rect x="300" y="50" width="200" height="50" rx="6" fill="#b08aff"/><text x="400" y="72">Root-CA</text><text x="400" y="90" font-size="11">selbstsigniert, im Trust Store</text>
+<rect x="300" y="140" width="200" height="50" rx="6" fill="#4a9cff" opacity="0.6"/><text x="400" y="162">Issuing CA</text><text x="400" y="180" font-size="11">signiert von Root</text>
+<rect x="90" y="240" width="230" height="70" rx="6" fill="#39c86a" opacity="0.5"/><text x="205" y="262">Server-Zertifikat (ISE)</text><text x="205" y="280" font-size="11">EKU: Server Authentication</text><text x="205" y="296" font-size="11">Subject/SAN = ISE-Name</text>
+<rect x="480" y="240" width="230" height="70" rx="6" fill="#39c86a" opacity="0.5"/><text x="595" y="262">Client-Zertifikat (EAP-TLS)</text><text x="595" y="280" font-size="11">EKU: Client Authentication</text><text x="595" y="296" font-size="11">per SCEP / MDM / GPO</text>
+</g>
+<g stroke="#222" stroke-width="2">
+<line x1="400" y1="100" x2="400" y2="138"/><polygon points="395,132 400,140 405,132" fill="#222"/>
+<line x1="360" y1="190" x2="230" y2="238"/><polygon points="236,230 228,240 240,239" fill="#222"/>
+<line x1="440" y1="190" x2="570" y2="238"/><polygon points="560,239 572,240 564,230" fill="#222"/>
+</g>
+<g font-size="12" fill="#222">
+<text x="410" y="124">signiert</text>
+<text x="20" y="345" font-weight="bold" font-size="14">Prüfung durch die Gegenseite</text>
+<text x="20" y="366">1. Signatur jedes Glieds mit dem Public Key des Ausstellers prüfen – bis zur vertrauten Root-CA</text>
+<text x="20" y="384">2. Gültigkeitszeitraum (notBefore/notAfter) – falsche Uhr = Fehler (NTP!)</text>
+<text x="20" y="402">3. Verwendungszweck (EKU) und Name (Supplicant: erwarteter Servername)</text>
+<text x="20" y="420">4. Widerruf: CRL (Liste, periodisch geladen) oder OCSP (Echtzeitabfrage)</text>
+<text x="20" y="438">Die CA selbst ist bei der Authentifizierung nicht online beteiligt.</text>
+</g>
+<rect x="560" y="50" width="225" height="110" rx="6" fill="none" stroke="#ffd23f" stroke-width="3"/>
+<g font-size="12" fill="#222"><text x="572" y="72" font-weight="bold">Enrollment</text><text x="572" y="92">Schlüsselpaar erzeugen</text><text x="572" y="110">CSR (PKCS#10) signiert</text><text x="572" y="128">mit eigenem Private Key</text><text x="572" y="146">CA signiert → Zertifikat</text></g>
+</svg>

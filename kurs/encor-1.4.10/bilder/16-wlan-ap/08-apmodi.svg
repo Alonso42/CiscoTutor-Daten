@@ -15,7 +15,7 @@
 <text x="597" y="80" text-anchor="middle" font-size="16" font-weight="bold" fill="#b08aff">Keine Clients (Sensor/Spezial)</text>
 <g font-size="13" fill="#222">
 <text x="425" y="112" font-weight="bold">Monitor</text><text x="545" y="112">Location, Rogue, IDS/wIPS;</text><text x="545" y="128">Submodi wIPS / RFID-Tracking</text>
-<text x="425" y="162" font-weight="bold">Rogue Detector</text><text x="545" y="178">Radio aus, lauscht auf dem</text><text x="545" y="194">Kabel nach ARP (9800: entfallen)</text>
+<text x="425" y="162" font-weight="bold">Rogue Detector</text><text x="545" y="178">Radio aus, lauscht auf dem</text><text x="545" y="194">Kabel nach ARP (AireOS)</text>
 <text x="425" y="228" font-weight="bold">Sniffer</text><text x="545" y="228">Capture eines Kanals inkl.</text><text x="545" y="244">RSSI/Timing → Analyzer-PC</text>
 <text x="425" y="278" font-weight="bold">SE-Connect</text><text x="545" y="278">Spektrumsensor (CleanAir),</text><text x="545" y="294">Rohdaten → Chanalyzer</text>
 </g>

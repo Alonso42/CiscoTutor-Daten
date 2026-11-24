@@ -18,8 +18,8 @@ Status: ✅ fertig · ⏳ in Arbeit · ☐ offen · ⚠ nicht mehr in ENCOR v1.2
 | 13 | Virtualization Protocols (VRF, GRE) | 127–137 | 13-virtualization | ✅ 120 Fragen, geprüft (2 korr.) |
 | 14 | VPNs and Interfaces (IPsec, VTI) | 138–148 | 14-vpn | ✅ 122 Fragen + Wissen + 10 SVGs, geprüft (3 korr.) |
 | 15 | Wireless Deployment Options | 149–158 | 15-wlan-deploy | ⚠ ✅ 117 Fragen + Wissen + 9 SVGs, geprüft (7 korr., 1 entf.) |
-| 16 | Wireless AP Operation | 159–167 | 16-wlan-ap | ⚠ ⏳ Writer läuft |
-| 17 | Wireless Client Authentication | 168–183 | 17-wlan-auth | ⚠ |
+| 16 | Wireless AP Operation | 159–167 | 16-wlan-ap | ⚠ ✅ 108 Fragen + Wissen + 9 SVGs, geprüft (11 korr., 2 entf.) |
+| 17 | Wireless Client Authentication | 168–183 | 17-wlan-auth | ⚠ ⏳ Writer läuft |
 | 18 | Troubleshooting Wireless Client Connectivity | 184–197 | 18-wlan-ts | ⚠ |
 | 19 | Network Services (NTP, PTP, Syslog, SNMP, NetFlow, EEM) | 198–209 | 19-services | ✅ 143 Fragen + Wissen + 10 SVGs, geprüft (2 präzisiert) |
 | 20 | Multicast | 210–220 | 20-multicast | ✅ 139 Fragen + Wissen + 11 SVGs, geprüft (2 korr.) |

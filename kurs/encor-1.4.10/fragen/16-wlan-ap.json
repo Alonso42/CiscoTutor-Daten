@@ -1,0 +1,1844 @@
+[
+    {
+        "id":  "slg-wa-001",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What do the regulatory domain and country configuration of an access point determine?",
+        "optionen":  [
+                         "The CAPWAP ports the AP uses toward the WLC",
+                         "The WLC the AP must join after discovery",
+                         "The SSIDs and security methods the AP may broadcast",
+                         "The valid channels and allowed transmit power levels"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Regulatory Domain und Country legen fest, welche Kanäle und Sendeleistungen am Standort erlaubt sind. SSIDs, WLC-Auswahl und CAPWAP-Ports haben damit nichts zu tun."
+    },
+    {
+        "id":  "slg-wa-002",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "During manual priming of a Cisco Universal AP, how does the Cisco AirProvision app determine the AP\u0027s country?",
+        "optionen":  [
+                         "From the country code that the WLC returns in its CAPWAP discovery response",
+                         "From the country code in the beacons of neighboring non-Cisco access points",
+                         "From the public IP address of the AP and a geolocation lookup in the Cisco cloud",
+                         "From the GPS position of the phone and the mobile country code of nearby cell towers"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "AirProvision kombiniert die GPS-Koordinaten des Smartphones mit dem Mobile Country Code (MCC), den die Mobilfunkmasten senden. Daraus wird der Standort bestimmt und der AP passend geprimt."
+    },
+    {
+        "id":  "slg-wa-003",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A technician wants to prime a Universal AP manually with a smartphone. Which security is recommended for the SSID the phone connects to, so that all phone platforms can join it?",
+        "optionen":  [
+                         "Open with web authentication",
+                         "WPA2-Enterprise with 802.1X",
+                         "WPA2-PSK",
+                         "WPA3-Enterprise 192-bit"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Für manuelles Priming verbindet sich das Smartphone mit der SSID des Universal AP. Cisco empfiehlt WPA2-PSK, weil manche Android-Plattformen 802.1X dafür nicht unterstützen; der Kurs nennt WPA2-PSK sogar als Pflicht."
+    },
+    {
+        "id":  "slg-wa-004",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A new warehouse receives 40 unprimed Universal APs that all hear each other over the air. What is the minimum manual priming effort?",
+        "optionen":  [
+                         "Prime no AP manually, because the WLC pushes the country code during the join",
+                         "Prime every AP manually, because automatic priming works only for outdoor APs",
+                         "Prime one AP per VLAN, because priming information is sent as a broadcast",
+                         "Prime at least one AP manually; the others can learn the setting automatically"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Pro RF-Nachbarschaft muss mindestens ein Universal AP manuell geprimt werden. Danach verteilt er Domain und Land per NDP im Beacon, und die übrigen APs primen sich automatisch."
+    },
+    {
+        "id":  "slg-wa-005",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A Universal AP that was primed in Germany is shipped to an office in Canada, where several primed APs are already running. What is required?",
+        "optionen":  [
+                         "Reset the AP to factory defaults so that the WLC can assign the domain",
+                         "Prime the AP manually again, because automatic priming does not override a previous country",
+                         "Move the AP into monitor mode until the WLC detects the new country",
+                         "Nothing, because it learns the Canadian setting from the neighbor beacons"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein AP, der bereits für ein anderes Land geprimt wurde, übernimmt die Einstellung seiner Nachbarn nicht automatisch. Er muss (nach dem Zurücksetzen/Unpriming) manuell neu geprimt werden, damit Kanäle und Leistung zum neuen Land passen; der WLC vergibt die Domain nicht."
+    },
+    {
+        "id":  "slg-wa-006",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about automatic priming of Cisco Universal APs are correct? (Choose two.)",
+        "optionen":  [
+                         "Unprimed APs learn the setting from an adjacent primed AP in the RF neighborhood",
+                         "Automatic priming requires every AP to be in the same VLAN and subnet",
+                         "Unprimed APs query a DNS record that returns the country code of the site",
+                         "The WLC sends the regulatory domain to all APs in the DHCP ACK message",
+                         "A primed AP advertises its regulatory settings in an encrypted part of its beacons"
+                     ],
+        "richtig":  [
+                        0,
+                        4
+                    ],
+        "erklaerung":  "Automatisches Priming nutzt das Cisco-proprietäre NDP: Ein geprimter AP sendet Domain und Land verschlüsselt im Beacon, Nachbar-APs übernehmen sie über die Luft. DHCP, DNS oder ein gemeinsames VLAN spielen dabei keine Rolle."
+    },
+    {
+        "id":  "slg-wa-007",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "To prime the first Universal AP of a site manually, a technician uses the Cisco ___ app on a smartphone.",
+        "optionen":  [
+                         "AirProvision",
+                         "Spaces",
+                         "Webex",
+                         "Meraki Go"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die App Cisco AirProvision ermittelt den Standort und primt den Universal AP. Cisco Spaces ist eine Location-Plattform, Meraki Go eine Cloud-Lösung für Kleinbetriebe."
+    },
+    {
+        "id":  "slg-wa-008",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which mechanism lets a primed Universal AP pass its country configuration to unprimed neighbors?",
+        "optionen":  [
+                         "Cisco Neighbor Discovery Protocol in 802.11 beacons",
+                         "Cisco Discovery Protocol on the wired switch port",
+                         "LLDP-MED location TLVs from the access switch",
+                         "CAPWAP configuration messages from the WLC"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Das Priming-Wissen wird über die Luft verteilt: Cisco NDP überträgt die Einstellungen in einem verschlüsselten Segment der Beacons. CDP und LLDP arbeiten auf dem Kabel, und die CAPWAP-Konfiguration setzt einen bereits gejointen AP voraus."
+    },
+    {
+        "id":  "slg-wa-009",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the goal of the initial controller discovery phase of a lightweight AP?",
+        "optionen":  [
+                         "Learn one WLC address that is then used for all future joins of the AP",
+                         "Learn as many WLCs as possible to choose the primary or least-loaded one",
+                         "Find the closest WLC and join it immediately without further comparison",
+                         "Find only the WLC that is configured as DHCP server for the AP subnet"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der AP sammelt möglichst viele Controller-Adressen. Erst danach wählt er nach Primary/Secondary/Tertiary, Master oder geringster Auslastung aus."
+    },
+    {
+        "id":  "slg-wa-010",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "APs in VLAN 50 must find a WLC in VLAN 10 by sending CAPWAP discovery broadcasts. The SVI for VLAN 50 already has ip helper-address 10.10.10.5. Discovery still fails. What is missing?",
+        "optionen":  [
+                         "ip helper-address on the SVI of VLAN 10 as well",
+                         "switchport trunk allowed vlan 10 on the AP ports",
+                         "ip directed-broadcast on the SVI of VLAN 50",
+                         "ip forward-protocol udp 5246 in global configuration"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "ip helper-address leitet standardmäßig nur bestimmte UDP-Dienste wie DHCP oder DNS weiter. Für CAPWAP-Discovery-Broadcasts muss zusätzlich ip forward-protocol udp 5246 konfiguriert werden; dann wird daraus eine Layer-3-Discovery."
+    },
+    {
+        "id":  "slg-wa-011",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus auf dem Router des AP-Subnetzes: Sorge dafür, dass per ip helper-address auch CAPWAP-Discovery-Broadcasts (Control-Port) weitergeleitet werden.",
+        "bausteine":  [
+                          "ip",
+                          "forward-protocol",
+                          "udp",
+                          "5246",
+                          "5247",
+                          "helper-address",
+                          "tcp"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "forward-protocol",
+                        "udp",
+                        "5246"
+                    ],
+        "erklaerung":  "ip forward-protocol udp 5246 nimmt den CAPWAP-Control-Port in die Liste der weitergeleiteten UDP-Broadcasts auf. 5247 ist der Datenkanal und spielt bei der Discovery keine Rolle."
+    },
+    {
+        "id":  "slg-wa-012",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Konfiguration interface Vlan50 (AP-Subnetz): Leite Broadcasts an die WLC-Management-Adresse 10.10.10.5 weiter.",
+        "bausteine":  [
+                          "ip",
+                          "helper-address",
+                          "10.10.10.5",
+                          "forward-protocol",
+                          "dhcp",
+                          "relay",
+                          "address"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "helper-address",
+                        "10.10.10.5"
+                    ],
+        "erklaerung":  "ip helper-address wandelt Broadcasts im AP-Subnetz in Unicasts an die angegebene Adresse um. Zusammen mit ip forward-protocol udp 5246 erreichen so auch CAPWAP-Discovery-Requests den WLC in einem anderen Subnetz."
+    },
+    {
+        "id":  "slg-wa-013",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "For IPv6-only APs, a DHCPv6 server provides the list of WLC addresses in DHCPv6 option ___.",
+        "optionen":  [
+                         "52",
+                         "43",
+                         "82",
+                         "60"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Für IPv6 nutzen Cisco-APs DHCPv6 Option 52, für IPv4 Option 43. Option 60 ist der Vendor Class Identifier, Option 82 die Relay-Agent-Information."
+    },
+    {
+        "id":  "slg-wa-014",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "APs should find their WLC through DNS. Which two DHCP options must the DHCP scope provide for this?",
+        "optionen":  [
+                         "Option 43 (vendor info) and option 60 (vendor class)",
+                         "Option 6 (DNS server) and option 15 (domain name)",
+                         "Option 3 (router) and option 66 (TFTP server name)",
+                         "Option 51 (lease time) and option 82 (relay agent info)"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der AP braucht die Adresse eines DNS-Servers (Option 6) und den Domänennamen (Option 15), um CISCO-CAPWAP-CONTROLLER.\u003cdomain\u003e aufzulösen. Option 43 ist eine eigene Discovery-Methode, die DNS nicht benötigt."
+    },
+    {
+        "id":  "slg-wa-015",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "DHCP-Pool-Konfiguration (ip dhcp pool AP-POOL) auf einem IOS-Router: Gib den APs die Domäne corp.local mit, damit sie CISCO-CAPWAP-CONTROLLER.corp.local auflösen können.",
+        "bausteine":  [
+                          "domain-name",
+                          "corp.local",
+                          "dns-server",
+                          "option",
+                          "15",
+                          "ip",
+                          "domain"
+                      ],
+        "loesung":  [
+                        "domain-name",
+                        "corp.local"
+                    ],
+        "erklaerung":  "Im DHCP-Pool setzt domain-name die DHCP-Option 15. Zusammen mit dns-server (Option 6) kann der AP den WLC per DNS finden."
+    },
+    {
+        "id":  "slg-wa-016",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A company uses DNS-based discovery and wants the APs of building A to join WLC-A and the APs of building B to join WLC-B. How can this be achieved?",
+        "optionen":  [
+                         "Give the APs of building B a lower AP priority than those of building A",
+                         "Create two A records with the same name and let DNS round-robin choose",
+                         "Configure WLC-B as master controller so that building B APs prefer it",
+                         "Give each building\u0027s DHCP scope a different domain name with its own DNS record"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der AP fragt CISCO-CAPWAP-CONTROLLER in der per DHCP gelernten Domäne ab. Unterschiedliche Domänen pro Scope (z. B. a.corp.local, b.corp.local) mit jeweils eigenem Eintrag lenken die APs gezielt auf verschiedene WLCs. Round-Robin wäre zufällig, AP-Priorität betrifft nur den Failover."
+    },
+    {
+        "id":  "slg-wa-017",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An AP receives a list of three WLC addresses in DHCP option 43. What does it do next?",
+        "optionen":  [
+                         "It joins the first listed WLC without sending a discovery",
+                         "It sends one multicast join request to all three WLCs",
+                         "It sends a unicast discovery request to each listed WLC",
+                         "It broadcasts a discovery request and ignores the list"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Adressen aus Option 43 sind nur Kandidaten. Der AP schickt jedem WLC einen Unicast Discovery Request und wählt anhand der Antworten den passenden Controller."
+    },
+    {
+        "id":  "slg-wa-018",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An AP joined WLC1, which is a member of a mobility group with WLC2 and WLC3. What does the AP store about this group?",
+        "optionen":  [
+                         "The client database of all three controllers for faster roaming",
+                         "The configuration of all WLANs of every controller in the group",
+                         "Nothing, because group members are learned only through DHCP",
+                         "The IP addresses of the other group members, cached even across a reboot"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beim Join lernt der AP die Adressen der anderen Mobility-Group-Mitglieder und speichert sie im nichtflüchtigen Speicher. Nach einem Reboot kann er sie direkt per Unicast anfragen."
+    },
+    {
+        "id":  "slg-wa-019",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An AP with a static IP address reboots after a power outage. Its subnet has no DHCP option 43, no DNS entry, and no WLC. It was joined to a WLC in another subnet before. Why does it rejoin successfully?",
+        "optionen":  [
+                         "It uses the controller addresses stored in its nonvolatile memory",
+                         "It falls back to a broadcast that routers forward by default",
+                         "It learns the WLC address from CDP messages of the switch",
+                         "It joins the nearest WLC through an over-the-air discovery"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Primary/Secondary/Tertiary und die gelernten Mobility-Group-Mitglieder bleiben im NVRAM des AP erhalten. Daher findet er seinen WLC auch ohne DHCP-Option, DNS oder L2-Broadcast. Router leiten Broadcasts standardmäßig nicht weiter."
+    },
+    {
+        "id":  "slg-wa-020",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A DHCP server must return option 43 only to Cisco APs. Which information sent by the AP in its DHCP discover allows the server to identify it?",
+        "optionen":  [
+                         "The CAPWAP version in option 43, which the AP sends in every request",
+                         "The AP serial number in option 61, which encodes the regulatory domain",
+                         "The parameter request list in option 55, which lists only option 43",
+                         "The vendor class identifier in option 60, which depends on the AP model"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Cisco-APs senden einen modellabhängigen Vendor-Class-String in Option 60. Der DHCP-Server kann darauf passend mit Option 43 antworten. Deshalb muss die Vendor Class im Server zum AP-Modell passen."
+    },
+    {
+        "id":  "slg-wa-021",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedem Hinweis die Discovery-Methode zu, zu der er gehört.",
+        "paare":  [
+                      [
+                          "DHCPv6 Option 52",
+                          "DHCP Vendor Option"
+                      ],
+                      [
+                          "ip forward-protocol udp 5246",
+                          "Layer-3-weitergeleiteter Broadcast"
+                      ],
+                      [
+                          "Adressen überleben einen Reboot",
+                          "Lokal gespeicherte Adressen"
+                      ],
+                      [
+                          "DHCP Option 15 liefert die Domäne",
+                          "DNS-Lookup"
+                      ]
+                  ],
+        "erklaerung":  "Option 43/52 liefern WLC-Adressen direkt per DHCP. Weitergeleitete Broadcasts brauchen ip helper-address und ip forward-protocol udp 5246. Gespeicherte Adressen liegen im NVRAM, und DNS braucht Domäne (Option 15) und DNS-Server (Option 6)."
+    },
+    {
+        "id":  "slg-wa-022",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "A WLC answers a CAPWAP discovery request. Which three pieces of information in the response help the AP select a controller? (Choose three.)",
+        "optionen":  [
+                         "The RF channel plan of the controller",
+                         "The controller name",
+                         "The list of client VLANs on the controller",
+                         "The maximum number of APs it supports",
+                         "The number of APs currently joined"
+                     ],
+        "richtig":  [
+                        1,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Die Discovery Response enthält den Controller-Namen (für den Abgleich mit Primary/Secondary/Tertiary) sowie Kapazität und aktuelle AP-Zahl (für die Wahl des am wenigsten ausgelasteten WLC). VLANs oder Kanalpläne spielen für die Auswahl keine Rolle."
+    },
+    {
+        "id":  "slg-wa-023",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "An AP sits in a routed subnet without any WLC. The router is the local DHCP server and has no ip helper-address. Which three methods can still give the AP a WLC address? (Choose three.)",
+        "optionen":  [
+                         "DHCP option 43",
+                         "Addresses stored from a previous join",
+                         "LLDP network policy from the switch",
+                         "Layer 2 CAPWAP subnet broadcast",
+                         "DNS lookup of the controller name"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        4
+                    ],
+        "erklaerung":  "DHCP Option 43, DNS und gespeicherte Adressen funktionieren über Subnetzgrenzen, weil danach Unicast verwendet wird. Der L2-Broadcast endet ohne Weiterleitung am Router, und LLDP liefert keine WLC-Adressen."
+    },
+    {
+        "id":  "slg-wa-024",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "After discovery and before the join request, the AP and the WLC establish a ___ session that protects the CAPWAP control channel.",
+        "optionen":  [
+                         "IPsec",
+                         "DTLS",
+                         "TLS over TCP",
+                         "MACsec"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "CAPWAP baut nach der Discovery eine DTLS-Sitzung auf (Datagram TLS über UDP 5246). Erst über diesen geschützten Kanal laufen Join Request und Konfiguration. TLS über TCP passt nicht, weil CAPWAP UDP verwendet."
+    },
+    {
+        "id":  "slg-wa-025",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which sequence describes the CAPWAP states of a new AP in the correct order?",
+        "optionen":  [
+                         "Discovery, DTLS setup, join, image data if needed, configure, run",
+                         "Discovery, join, DTLS setup, configure, image data if needed, run",
+                         "Join, discovery, DTLS setup, image data if needed, run, configure",
+                         "DTLS setup, discovery, join, configure, run, image data if needed"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der AP findet zuerst WLCs (Discovery), baut dann DTLS auf, sendet den Join Request, lädt bei Bedarf ein neues Image, erhält die Konfiguration und geht in den Run-Zustand. Ohne DTLS gibt es keinen Join."
+    },
+    {
+        "id":  "slg-wa-026",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A new AP joins the WLC, downloads software for several minutes, reboots, and then joins again. What explains this behavior?",
+        "optionen":  [
+                         "The AP image did not match the WLC software version",
+                         "The AP failed DTLS and retried with a new certificate",
+                         "The WLC reached its AP capacity and rejected the AP",
+                         "The AP was configured with a wrong primary controller"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Passt die AP-Software nicht zur Version des WLC, lädt der AP im Image-Data-Zustand das passende Image, rebootet und joint erneut. Das ist normales Verhalten, kein Fehler."
+    },
+    {
+        "id":  "slg-wa-027",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "After a WLC replacement, no AP can join. The WLC logs show DTLS handshake failures because the AP certificate is not yet valid. The WLC clock shows a date in 2010. What is the fix?",
+        "optionen":  [
+                         "Install a new MIC on every AP from the WLC GUI",
+                         "Disable DTLS for the control channel on the WLC",
+                         "Set the correct time on the WLC, ideally through NTP",
+                         "Open UDP 5247 for the DTLS handshake on the firewall"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Beim DTLS-Aufbau prüft der WLC das Herstellerzertifikat des AP. Liegt die WLC-Uhrzeit vor dem Gültigkeitsbeginn des Zertifikats, scheitert der Handshake. Korrekte Zeit per NTP behebt das; DTLS für den Control-Kanal lässt sich nicht abschalten."
+    },
+    {
+        "id":  "slg-wa-028",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which credential does a Cisco lightweight AP present during the DTLS handshake with the WLC by default?",
+        "optionen":  [
+                         "A username and password stored on a RADIUS server",
+                         "A self-signed certificate created at the first boot",
+                         "A pre-shared key configured with DHCP option 43",
+                         "Its Manufacturing Installed Certificate (MIC)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Cisco-APs tragen ab Werk ein Manufacturing Installed Certificate. Der WLC prüft es beim DTLS-Aufbau gegen die Cisco-CA. Option 43 liefert nur WLC-Adressen, keine Schlüssel."
+    },
+    {
+        "id":  "slg-wa-029",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which CAPWAP messages does a joined AP use as heartbeat to verify that its WLC is still reachable?",
+        "optionen":  [
+                         "Primary Discovery Request and Response",
+                         "Discovery Request and Discovery Response",
+                         "Join Request and Join Response",
+                         "Echo Request and Echo Response"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Im Run-Zustand sendet der AP periodisch CAPWAP Echo Requests, die der WLC beantwortet; das ist der Heartbeat. Discovery und Join gehören zum Verbindungsaufbau, Primary Discovery Requests prüfen die Backup-Liste."
+    },
+    {
+        "id":  "slg-wa-030",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A shipment of APs with a European regulatory domain is installed in a German branch. They are rejected by the WLC, which is configured only for country code US. What is the fix?",
+        "optionen":  [
+                         "Set a higher AP priority so that the WLC accepts them",
+                         "Convert the APs to FlexConnect mode on the WLC",
+                         "Add the country code DE to the WLC configuration",
+                         "Change DHCP option 43 to point to a European WLC"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein WLC akzeptiert nur APs, deren Regulatory Domain zu einem konfigurierten Country Code passt. Mit DE in der Länderliste des WLC können die -E-APs joinen. DHCP-Optionen, Priorität oder Modus ändern daran nichts."
+    },
+    {
+        "id":  "slg-wa-031",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "New APs discover the WLC but never complete the join. Which three causes are plausible? (Choose three.)",
+        "optionen":  [
+                         "The WLC has a wrong system time",
+                         "The APs are in a different subnet than the WLC",
+                         "The WLC does not have the AP country code",
+                         "The WLC broadcasts a different SSID than planned",
+                         "AP authorization is on and the AP MACs are not listed"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Falsche WLC-Uhrzeit (DTLS-Zertifikatsprüfung), fehlender Country Code (Regulatory Domain Mismatch) und eine AP-Autorisierungsliste ohne die AP-MACs verhindern den Join, obwohl die Discovery klappt. CAPWAP ist routbar, ein anderes Subnetz ist also kein Problem, und SSIDs spielen beim Join keine Rolle."
+    },
+    {
+        "id":  "slg-wa-032",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einem Catalyst 9800: Zeige die Statistik der AP-Join-Versuche aller APs in Kurzform, um fehlgeschlagene Joins zu finden.",
+        "bausteine":  [
+                          "show",
+                          "wireless",
+                          "stats",
+                          "ap",
+                          "join",
+                          "summary",
+                          "capwap",
+                          "client"
+                      ],
+        "loesung":  [
+                        "show",
+                        "wireless",
+                        "stats",
+                        "ap",
+                        "join",
+                        "summary"
+                    ],
+        "erklaerung":  "show wireless stats ap join summary listet auf dem Catalyst 9800 alle APs mit Join-Status und letztem Fehlergrund. show ap summary zeigt dagegen nur bereits gejointe APs."
+    },
+    {
+        "id":  "slg-wa-033",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An AP has WLC1 as primary and WLC2 as secondary controller. WLC1 is offline while the AP boots, and WLC2 answers. Which controller does the AP join?",
+        "optionen":  [
+                         "The least-loaded WLC, because the primary is offline",
+                         "None, because the AP waits until WLC1 is reachable",
+                         "WLC2, because it is the next configured controller",
+                         "The master controller, because the primary is offline"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Join-Reihenfolge ist Primary, Secondary, Tertiary. Ist der Primary nicht erreichbar, joint der AP seinen Secondary. Master und Least Loaded kommen nur ohne erreichbare konfigurierte Controller zum Zug."
+    },
+    {
+        "id":  "slg-wa-034",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "AireOS network: a brand-new AP without stored controller information discovers WLC1 (master controller enabled, 70 % loaded) and WLC2 (20 % loaded) by broadcast. Which WLC does it join?",
+        "optionen":  [
+                         "WLC1, because the AP always joins the WLC that answers first",
+                         "WLC2, because the least-loaded choice always wins over the master",
+                         "WLC1, because the master is used before the least-loaded choice",
+                         "WLC2, because master controllers accept only primed APs"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ohne konfigurierte Controller kommt in der Join-Reihenfolge der Master Controller vor dem am wenigsten ausgelasteten WLC. Der AP joint also WLC1, unabhängig von dessen Auslastung."
+    },
+    {
+        "id":  "slg-wa-035",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An AP has WLC3 configured as primary controller, and WLC3 is reachable. WLC1 is configured as master controller. Which WLC does the AP join?",
+        "optionen":  [
+                         "WLC1, because the master answers every broadcast first",
+                         "WLC1, because the master overrides all other settings",
+                         "The least-loaded WLC, because two candidates conflict",
+                         "WLC3, because a configured primary takes precedence"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Master Controller wird nur genutzt, wenn der AP keine Controller-Informationen hat. Ein konfigurierter und erreichbarer Primary hat immer Vorrang."
+    },
+    {
+        "id":  "slg-wa-036",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the intended use of the master controller option on an AireOS WLC?",
+        "optionen":  [
+                         "Serving as the permanent primary WLC for all production APs",
+                         "Staging new APs before they are assigned to their final WLC",
+                         "Synchronizing client sessions between two WLCs for SSO",
+                         "Distributing the RF channel plan to all controllers"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit dem Master Controller joinen neue APs ohne Controller-Info zunächst einen bekannten WLC. Dort kann der Administrator sie erfassen und auf ihren endgültigen Controller umkonfigurieren. Für den Produktivbetrieb ist die Option nicht gedacht."
+    },
+    {
+        "id":  "slg-wa-037",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A team migrates from AireOS to Catalyst 9800 and asks how to replace the master controller option for staging new APs. What is correct?",
+        "optionen":  [
+                         "The 9800 configures the master controller option per SSID in the WLAN profile",
+                         "The 9800 replaces the master option with the AP failover priority setting",
+                         "The 9800 has no master controller option; use DHCP, DNS, or AP priming instead",
+                         "The 9800 offers the master option only when two units form an SSO pair"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Catalyst 9800 kennt keinen Master Controller. Neue APs werden über DHCP Option 43, DNS oder statisches Priming (Primary/Secondary/Tertiary) gezielt auf den richtigen Controller gelenkt."
+    },
+    {
+        "id":  "slg-wa-038",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A new AP without controller configuration discovers two WLCs and no master: WLC-A supports 250 APs and has 200 joined; WLC-B supports 2000 APs and has 1000 joined. Which WLC does it join?",
+        "optionen":  [
+                         "WLC-B, because its load is 50 % compared to 80 %",
+                         "WLC-B, because larger models always take priority",
+                         "WLC-A, because smaller controllers answer faster",
+                         "WLC-A, because it has fewer APs joined in total"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der AP wählt den am wenigsten ausgelasteten Controller mit der größten freien Kapazität. WLC-A ist zu 80 % belegt (50 frei), WLC-B zu 50 % (1000 frei). Die absolute AP-Zahl allein entscheidet nicht."
+    },
+    {
+        "id":  "slg-wa-039",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two identical, empty WLCs and no master controller exist. AP1 boots and joins WLC1. Then AP2 boots and discovers both WLCs. Which WLC does AP2 join?",
+        "optionen":  [
+                         "WLC1, because it has the lower IP address",
+                         "Whichever WLC answers the discovery first",
+                         "WLC1, because AP1 is already joined there",
+                         "WLC2, because it is less loaded than WLC1"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "WLC1 hat bereits einen AP, WLC2 keinen. AP2 wählt den weniger ausgelasteten WLC2. Nur bei Gleichstand, wie bei AP1, entscheidet, welcher WLC zuerst antwortet."
+    },
+    {
+        "id":  "slg-wa-040",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer configures WLC-DC2 as secondary controller for branch APs. WLC-DC2 is not in the mobility group of the current WLC. What must be configured for the secondary?",
+        "optionen":  [
+                         "Only the IP address, because names are ignored by the AP",
+                         "Only the controller name, because the AP resolves it in DNS",
+                         "Both the controller name and its management IP address",
+                         "The mobility group name of WLC-DC2 and its MAC address"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "APs gleichen Primary/Secondary/Tertiary über den Namen aus der Discovery Response ab. Liegt der Controller nicht in derselben Mobility Group, kennt der AP seine Adresse nicht; deshalb müssen Name und IP angegeben werden."
+    },
+    {
+        "id":  "slg-wa-041",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedem Kandidaten in der AP-Join-Reihenfolge die Bedingung zu, unter der er gewählt wird.",
+        "paare":  [
+                      [
+                          "Primary",
+                          "Erste Wahl, wenn auf dem AP konfiguriert und erreichbar"
+                      ],
+                      [
+                          "Tertiary",
+                          "Erst wenn Primary und Secondary nicht joinbar sind"
+                      ],
+                      [
+                          "Master Controller",
+                          "Nur wenn der AP keinerlei Controller-Info hat"
+                      ],
+                      [
+                          "Least-loaded WLC",
+                          "Letzte Option: größte freie AP-Kapazität"
+                      ]
+                  ],
+        "erklaerung":  "Die Reihenfolge lautet Primary, Secondary, Tertiary, Master, Least Loaded. Der Master greift nur bei APs ohne Controller-Informationen, die Auslastung entscheidet ganz zum Schluss."
+    },
+    {
+        "id":  "slg-wa-042",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einem Catalyst 9800: Lege für den AP AP-LAGER den Controller WLC1 mit der Adresse 10.1.1.5 als Primary fest.",
+        "bausteine":  [
+                          "ap",
+                          "name",
+                          "AP-LAGER",
+                          "controller",
+                          "primary",
+                          "WLC1",
+                          "10.1.1.5",
+                          "primary-base",
+                          "capwap"
+                      ],
+        "loesung":  [
+                        "ap",
+                        "name",
+                        "AP-LAGER",
+                        "controller",
+                        "primary",
+                        "WLC1",
+                        "10.1.1.5"
+                    ],
+        "erklaerung":  "Auf dem 9800 setzt ap name \u003cAP\u003e controller primary \u003cName\u003e \u003cIP\u003e den Primary für einen einzelnen AP; secondary und tertiary funktionieren analog. capwap ap primary-base ist dagegen ein Befehl auf der AP-Konsole."
+    },
+    {
+        "id":  "slg-wa-043",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "AireOS-WLC (Legacy-CLI): Aktiviere die Master-Controller-Funktion, damit neue APs ohne Controller-Info diesem WLC beitreten.",
+        "bausteine":  [
+                          "config",
+                          "network",
+                          "master-base",
+                          "enable",
+                          "ap-priority",
+                          "advanced",
+                          "show"
+                      ],
+        "loesung":  [
+                        "config",
+                        "network",
+                        "master-base",
+                        "enable"
+                    ],
+        "erklaerung":  "config network master-base enable macht den AireOS-WLC zum Master Controller. Nach dem Staging sollte die Option wieder deaktiviert werden, weil sie nicht für den Produktivbetrieb gedacht ist; der Catalyst 9800 kennt sie nicht."
+    },
+    {
+        "id":  "slg-wa-044",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "If no primary, secondary, tertiary, or master controller is available, the AP joins the ___ controller.",
+        "optionen":  [
+                         "first-booted",
+                         "highest-priority",
+                         "least-loaded",
+                         "closest"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Als letzten Ausweg wählt der AP den Controller mit der größten freien AP-Kapazität. Nähe oder Boot-Reihenfolge spielen keine Rolle; Priorität betrifft die APs, nicht die Controller."
+    },
+    {
+        "id":  "slg-wa-045",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "By default, a joined AP sends a CAPWAP heartbeat to its WLC every ___ seconds.",
+        "optionen":  [
+                         "1",
+                         "30",
+                         "10",
+                         "120"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Das Standard-Heartbeat-Intervall beträgt 30 Sekunden. 120 Sekunden ist der Default des Primary Discovery Timeout, nicht des Heartbeats."
+    },
+    {
+        "id":  "slg-wa-046",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An AP misses a heartbeat acknowledgment from its WLC. What happens next by default?",
+        "optionen":  [
+                         "It reboots and starts a new discovery after the next interval",
+                         "It waits for three more 30-second intervals before failing over",
+                         "It retransmits up to five times, then declares the WLC unreachable",
+                         "It immediately declares the WLC unreachable and joins a backup"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der AP wiederholt den Heartbeat bis zu fünfmal in kurzen Abständen. Bleibt auch der letzte ohne Bestätigung, gilt der WLC als unerreichbar und der AP sucht einen anderen Controller."
+    },
+    {
+        "id":  "slg-wa-047",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An engineer lowers the heartbeat retransmit interval and count. What is the trade-off?",
+        "optionen":  [
+                         "Slower failure detection, but less control traffic",
+                         "Fewer AP reboots, but longer client reassociation",
+                         "Faster failure detection, but more control traffic",
+                         "Faster failure detection, but no AP fallback support"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Kleinere Werte lassen den AP einen ausgefallenen WLC schneller erkennen. Dafür entsteht mehr Management-Verkehr, der Bandbreite kostet."
+    },
+    {
+        "id":  "slg-wa-048",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An AP declares its primary WLC unreachable. Its per-AP secondary and tertiary and the global backup controllers are configured. Which order does it try?",
+        "optionen":  [
+                         "AP secondary, AP tertiary, WLC primary backup, WLC secondary backup, then least loaded",
+                         "WLC primary backup, WLC secondary backup, AP secondary, AP tertiary, then least loaded",
+                         "Least loaded, AP secondary, AP tertiary, WLC primary backup, then WLC secondary backup",
+                         "AP secondary, WLC primary backup, AP tertiary, WLC secondary backup, then least loaded"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Pro AP konfigurierte Controller haben Vorrang vor den globalen Backup-Controllern des WLC. Erst wenn alle nicht verfügbar sind, wählt der AP dynamisch den am wenigsten ausgelasteten Controller."
+    },
+    {
+        "id":  "slg-wa-049",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "APs periodically send primary discovery requests to the controllers in their backup list. What is the default timer?",
+        "optionen":  [
+                         "300 seconds",
+                         "3600 seconds",
+                         "30 seconds",
+                         "120 seconds"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Primary Discovery Timeout ist zwischen 30 und 3600 Sekunden einstellbar und steht standardmäßig auf 120 Sekunden. 30 Sekunden ist das Heartbeat-Intervall."
+    },
+    {
+        "id":  "slg-wa-050",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The primary discovery timeout can be configured in the range of 30 to ___ seconds.",
+        "optionen":  [
+                         "86400",
+                         "1800",
+                         "3600",
+                         "300"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Bereich reicht von 30 bis 3600 Sekunden (eine Stunde), Default 120 Sekunden. Kürzere Werte prüfen die Backup-Liste häufiger."
+    },
+    {
+        "id":  "slg-wa-051",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which AP failover priority level is the highest?",
+        "optionen":  [
+                         "Urgent (level 5)",
+                         "Critical (level 4)",
+                         "Primary (level 1)",
+                         "High (level 3)"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Es gibt vier Stufen: 1 Low, 2 Medium, 3 High und 4 Critical. Critical ist die höchste; Urgent oder Primary gibt es als Prioritätsstufe nicht."
+    },
+    {
+        "id":  "slg-wa-052",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which failover priority does an AP have if the administrator never configured one?",
+        "optionen":  [
+                         "Low (level 1)",
+                         "Medium (level 2)",
+                         "High (level 3)",
+                         "Critical (level 4)"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Alle APs haben standardmäßig die niedrigste Stufe 1 (Low). Nur wichtige APs müssen höher eingestuft werden."
+    },
+    {
+        "id":  "slg-wa-053",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Failover priority is enabled. A backup WLC has no free AP capacity when a critical-priority AP from a failed WLC sends a join request. What happens?",
+        "optionen":  [
+                         "The critical AP waits until a low-priority AP disconnects",
+                         "The backup WLC disconnects a lower-priority AP to make room",
+                         "The backup WLC accepts the AP and exceeds its AP capacity",
+                         "The critical AP joins the least-loaded WLC in the network"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit aktivierter Failover-Priorität erkennt der Backup-WLC den höher priorisierten AP und trennt bei Bedarf einen niedriger priorisierten AP. Die AP-Kapazität wird dabei nicht überschritten."
+    },
+    {
+        "id":  "slg-wa-054",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "AireOS: lobby APs were set to critical priority, but after a WLC failure they still cannot join the full backup WLC, and no low-priority AP is removed. What is the most likely cause?",
+        "optionen":  [
+                         "Failover priority was not enabled globally on the network",
+                         "AP fallback is enabled, which overrides the AP priority",
+                         "Priorities apply only to APs that run in FlexConnect mode",
+                         "The lobby APs need a higher level than critical to preempt"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "AP-Prioritäten wirken nur, wenn die Failover-Priorität zusätzlich global aktiviert ist. Critical ist bereits die höchste Stufe, und AP Fallback betrifft nur die Rückkehr zum Primary."
+    },
+    {
+        "id":  "slg-wa-055",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "AireOS-WLC (Legacy-CLI): Aktiviere global die AP-Failover-Priorität, damit konfigurierte AP-Prioritäten wirksam werden.",
+        "bausteine":  [
+                          "config",
+                          "network",
+                          "ap-priority",
+                          "enable",
+                          "ap-fallback",
+                          "master-base",
+                          "priority"
+                      ],
+        "loesung":  [
+                        "config",
+                        "network",
+                        "ap-priority",
+                        "enable"
+                    ],
+        "erklaerung":  "config network ap-priority enable schaltet die Funktion global ein; die einzelnen Stufen werden pro AP gesetzt. ap-fallback steuert dagegen die Rückkehr zum Primary."
+    },
+    {
+        "id":  "slg-wa-056",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "AP fallback is enabled with its default setting. What happens when a failed primary WLC comes back online?",
+        "optionen":  [
+                         "The APs stay on the backup WLC until they reboot",
+                         "The APs return to the primary WLC automatically",
+                         "The APs split evenly between primary and backup",
+                         "The APs return only after an administrator command"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "AP Fallback ist standardmäßig aktiv: Sobald der Primary wieder erreichbar ist, joinen die APs erneut bei ihm. Ohne Fallback blieben sie auf dem Backup-WLC."
+    },
+    {
+        "id":  "slg-wa-057",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why do some administrators disable AP fallback and move APs back during a maintenance window instead?",
+        "optionen":  [
+                         "Rejoining the primary requires all APs to reboot twice",
+                         "Rejoining the primary briefly interrupts client service",
+                         "Fallback disables AP priority on the backup controller",
+                         "Fallback causes the WLCs to lose their configuration"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Beim Zurückwechseln joinen die APs neu, wodurch die Clients für einige Sekunden (Kurs: etwa 12 bis 30 s) keinen Dienst haben. Im Wartungsfenster stört das weniger."
+    },
+    {
+        "id":  "slg-wa-058",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The WAN path to the primary WLC drops every few minutes. APs keep moving between the primary and the backup WLC, and users complain. What is the recommended approach?",
+        "optionen":  [
+                         "Remove the backup WLC so that the APs stay on the primary only",
+                         "Increase the heartbeat interval permanently to 300 seconds",
+                         "Raise all APs to critical priority so that they stay on the primary",
+                         "Disable AP fallback temporarily while the unstable link is repaired"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Instabile Verbindungen zum Primary führen mit Fallback zu Flapping. Empfohlen ist, Fallback nur während der Fehlerbehebung abzuschalten und danach wieder zu aktivieren. AP-Priorität oder ein entfernter Backup lösen das Problem nicht."
+    },
+    {
+        "id":  "slg-wa-059",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two configuration approaches define the controllers an AP moves to when its primary WLC fails? (Choose two.)",
+        "optionen":  [
+                         "The order of addresses in DHCP option 43 after the join",
+                         "A mobility anchor configured for the guest WLAN",
+                         "Primary, secondary, and tertiary controllers configured per AP",
+                         "Global primary and secondary backup controllers on the WLC",
+                         "An HSRP virtual IP address shared by two WLCs"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Backup-Controller werden pro AP (Primary/Secondary/Tertiary) oder global am WLC (Primary/Secondary Backup) festgelegt. Option 43 dient nur der ersten Discovery, Mobility Anchors betreffen Gastverkehr, und HSRP wird für WLCs nicht genutzt."
+    },
+    {
+        "id":  "slg-wa-060",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeder Stufe der AP-Failover-Priorität ihre Bezeichnung zu.",
+        "paare":  [
+                      [
+                          "Level 1",
+                          "Low"
+                      ],
+                      [
+                          "Level 2",
+                          "Medium"
+                      ],
+                      [
+                          "Level 3",
+                          "High"
+                      ],
+                      [
+                          "Level 4",
+                          "Critical"
+                      ]
+                  ],
+        "erklaerung":  "Die Stufen reichen von 1 (Low, Default) bis 4 (Critical, höchste Priorität). Höher priorisierte APs dürfen auf einem vollen Backup-WLC niedrigere verdrängen."
+    },
+    {
+        "id":  "slg-wa-061",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On a Catalyst 9800, where are the global primary and secondary backup controllers for a group of APs configured?",
+        "optionen":  [
+                         "In the AP join profile",
+                         "In the WLAN profile",
+                         "In the policy profile",
+                         "In the RF profile"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beim 9800 gehören CAPWAP-Einstellungen wie Backup-Controller und Timer ins AP Join Profile, das über das Site Tag den APs zugeordnet wird. WLAN-, Policy- und RF-Profile regeln SSID, Client-Policy bzw. Funkparameter."
+    },
+    {
+        "id":  "slg-wa-062",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, AP-Join-Profile-Modus (ap profile AP-JP-HQ): Lege WLC-B mit der Adresse 10.1.1.6 als primären Backup-Controller fest.",
+        "bausteine":  [
+                          "capwap",
+                          "backup",
+                          "primary",
+                          "WLC-B",
+                          "10.1.1.6",
+                          "controller",
+                          "secondary",
+                          "ap"
+                      ],
+        "loesung":  [
+                        "capwap",
+                        "backup",
+                        "primary",
+                        "WLC-B",
+                        "10.1.1.6"
+                    ],
+        "erklaerung":  "capwap backup primary \u003cName\u003e \u003cIP\u003e im AP Join Profile entspricht dem globalen Primary Backup Controller von AireOS. Mit capwap backup secondary wird der zweite Backup gesetzt."
+    },
+    {
+        "id":  "slg-wa-063",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What does an N+1 WLC high-availability design mean?",
+        "optionen":  [
+                         "One backup WLC protects several primary WLCs",
+                         "Two WLCs share one IP address as an SSO pair",
+                         "Each primary WLC has its own dedicated backup",
+                         "Each AP connects to N controllers at the same time"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bei N+1 deckt ein einzelner Backup-Controller mehrere Primary-WLCs ab. Ein eigener Backup pro WLC wäre 1:1, eine gemeinsame IP gibt es nur beim SSO-Paar."
+    },
+    {
+        "id":  "slg-wa-064",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about the WLCs in an N+1 design are correct? (Choose two.)",
+        "optionen":  [
+                         "The WLCs synchronize client sessions over a redundancy port",
+                         "The WLCs share one management IP that moves on failure",
+                         "All WLCs must run identical hardware and software versions",
+                         "The backup WLC may be in another data center across the WAN",
+                         "Each WLC has its own configuration and IP addresses"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Bei N+1 sind die WLCs unabhängig: eigene Konfiguration und IPs, auch unterschiedliche Hardware und Software, auch an anderen Standorten. Redundancy Port und gemeinsame Management-IP gehören zum SSO-Paar."
+    },
+    {
+        "id":  "slg-wa-065",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the main drawback of AP-specific high availability with primary, secondary, and tertiary controllers?",
+        "optionen":  [
+                         "It supports only one-to-one designs with two WLCs",
+                         "It is stateless, so APs rejoin and clients reassociate",
+                         "It cannot move APs back to the primary controller",
+                         "It needs a redundancy port between all controllers"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die per-AP-Redundanz ist stateless: Beim Ausfall joint der AP neu, und Clients müssen sich neu verbinden. Sie unterstützt aber flexible Designs (1:1, N:1, N:N:1) und Fallback; ein Redundancy Port ist nicht nötig."
+    },
+    {
+        "id":  "slg-wa-066",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three are advantages of AP-specific redundancy with primary, secondary, and tertiary WLCs? (Choose three.)",
+        "optionen":  [
+                         "Flexible designs such as N:N:1",
+                         "Fallback to the primary after a failure",
+                         "No planning or configuration effort",
+                         "Stateful switchover of client sessions",
+                         "Predictable placement of APs on controllers"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Vorhersagbarkeit, Fallback und flexible Designs sind Vorteile der per-AP-Konfiguration. Sie arbeitet aber stateless und erfordert mehr Planung und Konfiguration im Voraus."
+    },
+    {
+        "id":  "slg-wa-067",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "AireOS: what is the benefit of ordering the secondary controller of an N+1 design as a high-availability SKU?",
+        "optionen":  [
+                         "It provides the full hardware AP capacity with a minimal license",
+                         "It synchronizes client sessions statefully with all primaries",
+                         "It is preferred as active unit when it boots for the first time",
+                         "It shares the management IP address of the primary WLC"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein AireOS-WLC mit HA-SKU braucht nur eine Minimallizenz, stellt als Backup aber die volle Hardware-Kapazität bereit (Kursbeispiel: 5508 mit 50er-Lizenz für 500 APs). Beim Catalyst 9800 gibt es stattdessen Smart Licensing."
+    },
+    {
+        "id":  "slg-wa-068",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Two WLCs form an SSO pair. Which statement about their configuration is correct?",
+        "optionen":  [
+                         "Each keeps its own configuration and management IP address",
+                         "Both share the configuration but use different management IPs",
+                         "Each keeps its own configuration but shares the service port IP",
+                         "Both share the same configuration and management IP address"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Im SSO-Paar sind Konfiguration und Management-IP identisch; für die APs ist es ein einziger Controller. Eigene Konfigurationen und IPs sind typisch für N+1."
+    },
+    {
+        "id":  "slg-wa-069",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the purpose of the redundancy port (RP) between two WLCs in an SSO pair?",
+        "optionen":  [
+                         "Forwarding client traffic between the units for load sharing",
+                         "Providing an out-of-band management address for each unit",
+                         "Carrying CAPWAP data traffic of the APs during a switchover",
+                         "Configuration and state sync and role negotiation between the units"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Über den Redundancy Port synchronisieren die Controller Konfiguration und Betriebszustand, handeln die Rollen aus und überwacht der Standby den Active. CAPWAP und Client-Daten laufen über die normalen Uplinks."
+    },
+    {
+        "id":  "slg-wa-070",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In an SSO pair, WLC-A was active and failed. WLC-B took over. Now WLC-A is repaired and boots again. What happens?",
+        "optionen":  [
+                         "WLC-A stays offline until a manual switchover",
+                         "WLC-A becomes standby-hot; WLC-B stays active",
+                         "WLC-A preempts and becomes active again",
+                         "Both units reboot to renegotiate their roles"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "SSO kennt keine Preemption. Der zurückkehrende Controller handelt mit dem aktuellen Active aus und wird Standby-Hot. Ein Rollentausch erfolgt erst bei einem erneuten Ausfall oder manuellem Switchover."
+    },
+    {
+        "id":  "slg-wa-071",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An older AireOS SSO pair supports AP SSO but not client SSO. The active WLC fails. What do users experience?",
+        "optionen":  [
+                         "APs reboot and clients wait for the old active to return",
+                         "APs stay connected, but clients are deauthenticated and reassociate",
+                         "APs rejoin the standby, but clients stay connected",
+                         "APs and clients stay connected without any interruption"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Reines AP SSO hält nur die CAPWAP-Sitzungen der APs. Die Clients werden deauthentifiziert und müssen sich neu verbinden. Erst Client SSO (AireOS ab 7.5, beim 9800 Standard) synchronisiert auch die Clients."
+    },
+    {
+        "id":  "slg-wa-072",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Client SSO is active. During a switchover, client 1 is passing traffic, while client 2 is still waiting for its DHCP address. What happens to them?",
+        "optionen":  [
+                         "Both clients stay connected because all clients are synced",
+                         "Client 2 stays connected; client 1 must reauthenticate",
+                         "Client 1 stays connected; client 2 must restart its connection",
+                         "Both clients must reassociate because DHCP state is lost"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Client SSO synchronisiert nur Clients im RUN-State, also nach abgeschlossener Authentifizierung und DHCP. Clients mitten im Verbindungsaufbau müssen nach dem Switchover neu beginnen."
+    },
+    {
+        "id":  "slg-wa-073",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An SSO pair (10.6.61.2) is the primary WLC for the APs, with 10.6.62.2 as secondary and 10.6.63.2 as tertiary. When do the APs join the secondary?",
+        "optionen":  [
+                         "When the standby unit loses its redundancy port",
+                         "As soon as the active unit of the SSO pair fails",
+                         "Only when both units of the SSO pair have failed",
+                         "After every planned switchover between the two units"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Für die APs ist das SSO-Paar ein einziger Primary. Fällt nur der Active aus, übernimmt der Standby stateful. Erst wenn beide Geräte ausfallen, weichen die APs auf Secondary und Tertiary aus."
+    },
+    {
+        "id":  "slg-wa-074",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einem Catalyst 9800 im SSO-Paar: Zeige die aktuellen Redundanz-Rollen und -Zustände (Active, Standby Hot).",
+        "bausteine":  [
+                          "show",
+                          "redundancy",
+                          "standby",
+                          "ha",
+                          "status",
+                          "sso"
+                      ],
+        "loesung":  [
+                        "show",
+                        "redundancy"
+                    ],
+        "erklaerung":  "show redundancy zeigt Betriebsmodus (SSO), aktuelle Rolle und Zustand beider Einheiten. Ergänzend listet show chassis die Chassis-Nummern, Rollen und Prioritäten."
+    },
+    {
+        "id":  "slg-wa-075",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, globaler Konfigurationsmodus: Konfiguriere das Redundancy Management Interface auf Vlan10 mit 10.10.10.11 für Chassis 1 und 10.10.10.12 für Chassis 2.",
+        "bausteine":  [
+                          "redun-management",
+                          "interface",
+                          "Vlan10",
+                          "chassis",
+                          "1",
+                          "address",
+                          "10.10.10.11",
+                          "2",
+                          "10.10.10.12",
+                          "chassis",
+                          "address",
+                          "redundancy",
+                          "mode",
+                          "sso"
+                      ],
+        "loesung":  [
+                        "redun-management",
+                        "interface",
+                        "Vlan10",
+                        "chassis",
+                        "1",
+                        "address",
+                        "10.10.10.11",
+                        "chassis",
+                        "2",
+                        "address",
+                        "10.10.10.12"
+                    ],
+        "erklaerung":  "Mit redun-management interface legt man beim 9800 das RMI an: pro Chassis eine eigene Adresse im Management-Subnetz, über die die Einheiten zusätzlich zum RP ihre Erreichbarkeit prüfen. Die gemeinsame Management-IP bleibt die des Wireless Management Interface."
+    },
+    {
+        "id":  "slg-wa-076",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jede Hochverfügbarkeitsvariante ihrer typischen Eigenschaft zu.",
+        "paare":  [
+                      [
+                          "AP-spezifisch (P/S/T)",
+                          "Stateless, jeder AP kennt bis zu drei WLCs"
+                      ],
+                      [
+                          "N+1",
+                          "Ein Backup-WLC für mehrere unabhängige Primaries"
+                      ],
+                      [
+                          "AP SSO ohne Client SSO",
+                          "CAPWAP bleibt, Clients müssen reassoziieren"
+                      ],
+                      [
+                          "AP SSO mit Client SSO",
+                          "APs und Clients im RUN-State bleiben verbunden"
+                      ]
+                  ],
+        "erklaerung":  "Per-AP- und N+1-Redundanz arbeiten stateless. SSO synchronisiert die AP-Sitzungen; erst mit Client SSO überleben auch die Clients den Switchover ohne Reassoziation."
+    },
+    {
+        "id":  "slg-wa-077",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A hospital requires that VoWLAN calls survive a controller failure without reassociation. Which design meets this requirement?",
+        "optionen":  [
+                         "A master controller with AP fallback",
+                         "An N+1 design with AP priority",
+                         "An SSO pair with client SSO",
+                         "Per-AP primary and secondary WLCs"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Nur SSO mit Client SSO übernimmt Clients im RUN-State ohne Reassoziation. N+1 und per-AP-Redundanz sind stateless, und der Master Controller ist eine Staging-Funktion."
+    },
+    {
+        "id":  "slg-wa-078",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Three regional WLCs run different software releases. The customer wants one shared backup controller in a remote data center. Which design fits?",
+        "optionen":  [
+                         "N+1 with the backup configured as secondary on all APs",
+                         "A master controller in the data center for all regions",
+                         "An SSO pair formed by one regional WLC and the backup",
+                         "Client SSO between the backup and every regional WLC"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "N+1 erlaubt unabhängige WLCs mit unterschiedlicher Software und einen geografisch entfernten Backup. Ein SSO-Paar braucht identische Konfiguration und gleiche Version, und Client SSO gibt es nur innerhalb eines Paares."
+    },
+    {
+        "id":  "slg-wa-079",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In a WLC SSO pair, the unit that is not active has the role standby-___.",
+        "optionen":  [
+                         "ready",
+                         "warm",
+                         "cold",
+                         "hot"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der zweite Controller ist Standby-Hot: Er ist vollständig synchronisiert und kann sofort stateful übernehmen."
+    },
+    {
+        "id":  "slg-wa-080",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "AireOS: a new WLC with a high-availability SKU is paired with a WLC that has a permanent AP count license. Which role does the HA SKU unit take on its first boot?",
+        "optionen":  [
+                         "Standby",
+                         "Whichever unit boots first",
+                         "The unit with the lower MAC address",
+                         "Active"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Rolle wird nicht gewählt: Ein Gerät mit HA-SKU wird beim ersten Pairing immer Standby. Bei zwei Geräten mit permanenter Lizenz legt der Administrator die Rollen manuell fest."
+    },
+    {
+        "id":  "slg-wa-081",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "An engineer verifies a working WLC SSO pair. Which three observations are expected? (Choose three.)",
+        "optionen":  [
+                         "Both units have identical configuration",
+                         "The units are connected through a redundancy port",
+                         "Both units share the management IP address",
+                         "Each unit has its own set of joined APs",
+                         "The old active preempts after it recovers"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Im SSO-Paar teilen beide Geräte Konfiguration und Management-IP und sind über den Redundancy Port verbunden. Alle APs hängen am Active, und es gibt keine Preemption."
+    },
+    {
+        "id":  "slg-wa-082",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which AP mode does a lightweight AP typically use by default after it joins a WLC?",
+        "optionen":  [
+                         "FlexConnect mode",
+                         "Monitor mode",
+                         "Bridge mode",
+                         "Local mode"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Nach dem Join arbeitet ein AP standardmäßig im Local Mode und tunnelt Management und Daten per CAPWAP zum WLC. Andere Modi müssen gezielt konfiguriert werden."
+    },
+    {
+        "id":  "slg-wa-083",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does a local-mode AP collect RRM and rogue information about other channels while it serves clients?",
+        "optionen":  [
+                         "It listens to all channels at the same time with its client radio",
+                         "It asks neighboring APs to report their channels over CAPWAP",
+                         "It leaves its channel briefly and periodically to scan other channels",
+                         "It uses a dedicated scanning radio that every AP model includes"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der AP geht innerhalb des RRM-Monitor-Intervalls (Default 180 s) regelmäßig für einige Millisekunden (je nach Release ca. 50–80 ms) off-channel und kehrt dann zurück. Gleichzeitiges Hören auf allen Kanälen ist mit einem Radio nicht möglich; ein eigenes Scan-Radio haben nur bestimmte Modelle."
+    },
+    {
+        "id":  "slg-wa-084",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Within the same RRM monitor interval, a local-mode AP leaves its channel for off-channel scans more often in the 5-GHz band than in the 2.4-GHz band. Why?",
+        "optionen":  [
+                         "Clients in the 5-GHz band tolerate longer absences",
+                         "The 5-GHz radio needs more time to change its channel",
+                         "Off-channel scans in 5 GHz must avoid DFS radar detection",
+                         "The 5-GHz band has more channels to scan in the same cycle"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Im 5-GHz-Band gibt es deutlich mehr Kanäle. Damit alle im selben Intervall gescannt werden, verlässt der AP seinen Kanal dort häufiger (Kursbeispiel: ca. 13 s Pause zwischen Scans in 2,4 GHz, ca. 10 s in 5 GHz)."
+    },
+    {
+        "id":  "slg-wa-085",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which two functions depend on the off-channel scanning of local-mode APs?",
+        "optionen":  [
+                         "Client roaming and DHCP relay",
+                         "RRM and rogue detection",
+                         "CAPWAP keepalives and DTLS",
+                         "AP priming and image download"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Off-Channel-Scanning liefert RRM die Messwerte zu Rauschen, Interferenz und Nachbarn anderer Kanäle und erkennt Rogue-APs. Keepalives, DHCP oder Priming brauchen kein Scanning."
+    },
+    {
+        "id":  "slg-wa-086",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A security team wants to find out whether a detected rogue AP is plugged into the wired network. Which AireOS AP mode listens for the rogue MAC addresses in ARP traffic on the wire?",
+        "optionen":  [
+                         "Monitor mode",
+                         "Rogue detector mode",
+                         "Sniffer mode",
+                         "SE-Connect mode"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Im Rogue-Detector-Modus ist das Radio aus; der AP sammelt ARP-Pakete auf dem Kabel und prüft, ob MAC-Adressen erkannter Rogues im LAN auftauchen. Monitor- und Sniffer-Modus arbeiten über die Luft, SE-Connect liefert Spektrumdaten."
+    },
+    {
+        "id":  "slg-wa-087",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An AireOS rogue detector AP should see ARP traffic of all user VLANs. How should its switch port be configured?",
+        "optionen":  [
+                         "As a routed port with an IP in every VLAN",
+                         "As an access port in the AP management VLAN",
+                         "As a trunk that carries all relevant VLANs",
+                         "As a SPAN destination for the WLC uplink"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Rogue Detector kann nur ARP-Verkehr der VLANs auswerten, die er empfängt. Deshalb wird er an einen Trunk mit allen zu überwachenden VLANs angeschlossen; ein Access-Port zeigt nur ein VLAN."
+    },
+    {
+        "id":  "slg-wa-089",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Frames captured by a sniffer-mode AP arrive as a UDP stream at a laptop running Wireshark, which does not decode them automatically. Which protocol must be selected with Decode As?",
+        "optionen":  [
+                         "TZSP",
+                         "ERSPAN",
+                         "PEEKREMOTE",
+                         "CAPWAP-Data"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die mitgeschnittenen 802.11-Frames tragen einen AiroPeek-Header; der 9800 leitet sie per UDP (Quellport 5555, Zielport 5000) an den Analyzer-PC weiter. In Wireshark wählt man per Decode As für diesen UDP-Port PEEKREMOTE."
+    },
+    {
+        "id":  "slg-wa-090",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which information does a sniffer-mode AP include for each captured frame in addition to the frame itself?",
+        "optionen":  [
+                         "The WLAN-to-VLAN mapping of the frame",
+                         "The DHCP lease of the transmitting client",
+                         "Timing and signal strength information",
+                         "The client username from 802.1X"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Sniffer-AP liefert zu jedem Frame Metadaten wie Zeitstempel, Kanal und Signalstärke, damit der Analyzer die Funkbedingungen auswerten kann. Benutzernamen oder VLAN-Zuordnungen kennt er nicht."
+    },
+    {
+        "id":  "slg-wa-091",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Users report drops near the break room. The engineer suspects a non-Wi-Fi interferer and wants raw spectrum data from a CleanAir AP on a remote analysis workstation. Which AP mode fits?",
+        "optionen":  [
+                         "SE-Connect mode",
+                         "FlexConnect mode",
+                         "Rogue detector mode",
+                         "Sniffer mode"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "SE-Connect (Spectrum-Only Monitor Mode) macht einen CleanAir-AP zum Spektrumsensor und liefert Rohdaten zu Signalstärke und Duty Cycle an Chanalyzer bzw. Spectrum Expert. Sniffer erfasst nur dekodierbare 802.11-Frames, keine Nicht-Wi-Fi-Störer."
+    },
+    {
+        "id":  "slg-wa-092",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A teleworker needs secure access to corporate SSIDs at home, while family members use their own SSID that goes directly to the internet. Which AP mode is designed for this?",
+        "optionen":  [
+                         "Local mode",
+                         "Monitor mode",
+                         "Bridge mode",
+                         "OfficeExtend AP (OEAP)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "OEAP ist eine Form von FlexConnect für Telearbeit: Firmen-SSIDs werden sicher zum Unternehmens-WLC getunnelt, eine persönliche SSID wird lokal ins Internet geroutet."
+    },
+    {
+        "id":  "slg-wa-093",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about the monitor mode submodes described in the course is correct?",
+        "optionen":  [
+                         "One submode is optimized for RFID tag tracking, another for wIPS",
+                         "One submode captures frames, another forwards spectrum data",
+                         "One submode runs on 2.4 GHz only, another on 5 GHz only",
+                         "One submode serves clients, another blocks rogue APs on the wire"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Monitor-Mode-APs sind reine Sensoren. Laut Kurs gibt es Submodi, die auf RFID-Tracking bzw. auf wIPS optimiert sind. Mitschnitt und Spektrumdaten sind eigene Modi (Sniffer, SE-Connect)."
+    },
+    {
+        "id":  "slg-wa-094",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which three AP modes do not serve wireless clients? (Choose three.)",
+        "optionen":  [
+                         "SE-Connect",
+                         "Sniffer",
+                         "FlexConnect",
+                         "Monitor",
+                         "OfficeExtend"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Monitor, Sniffer und SE-Connect machen den AP zum Sensor bzw. Analysewerkzeug. OEAP und FlexConnect bedienen Clients."
+    },
+    {
+        "id":  "slg-wa-095",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedem Szenario den passenden AP-Modus zu.",
+        "paare":  [
+                      [
+                          "Homeoffice mit Firmen-SSID und privater SSID",
+                          "OEAP"
+                      ],
+                      [
+                          "Zwei Gebäude per Funk auf Layer 2 verbinden",
+                          "Bridge"
+                      ],
+                      [
+                          "Rogue-MACs per ARP auf dem Kabel suchen",
+                          "Rogue Detector"
+                      ],
+                      [
+                          "Nicht-WLAN-Störer per Spektrumanalyse finden",
+                          "SE-Connect"
+                      ]
+                  ],
+        "erklaerung":  "OEAP bedient Telearbeiter, Bridge verbindet LANs per Funk, der Rogue Detector lauscht ohne Radio auf ARP im LAN, und SE-Connect liefert Spektrumdaten für Störquellen."
+    },
+    {
+        "id":  "slg-wa-096",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Two buildings 2 km apart need a LAN connection, but there is no fiber between them. Which AP function is designed for this?",
+        "optionen":  [
+                         "A FlexConnect AP in each building",
+                         "A monitor-mode AP on each rooftop",
+                         "A wireless bridge between the two buildings",
+                         "An OfficeExtend AP in the remote building"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Wireless Bridges verbinden LANs in benachbarten Gebäuden, typischerweise über einige Kilometer. FlexConnect, Monitor und OEAP sind für Client-Zugang bzw. Überwachung gedacht."
+    },
+    {
+        "id":  "slg-wa-097",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "At which layer does a Cisco wireless bridge forward traffic between two LANs?",
+        "optionen":  [
+                         "Layer 4, translating ports between both networks",
+                         "Layer 2, acting like a wireless trunk between switches",
+                         "Layer 7, proxying applications between buildings",
+                         "Layer 3, routing between the two building subnets"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Cisco-Bridges arbeiten auf der Sicherungsschicht und haben keine Routing-Funktion. Sie verhalten sich wie ein Trunk zwischen den Switches der Gebäude."
+    },
+    {
+        "id":  "slg-wa-098",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A campus uses a point-to-multipoint bridge with one central site and four spoke buildings. The central bridge loses power. What is the impact?",
+        "optionen":  [
+                         "Spokes communicate directly with each other until the center returns",
+                         "All spokes are isolated, because they communicate only through the center",
+                         "Only the spoke with the weakest signal loses its connection",
+                         "Spokes automatically form a mesh and elect a new central bridge"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "In Point-to-Multipoint-Topologien reden Spokes nur über den zentralen Punkt miteinander. Fällt er aus, sind alle Spokes isoliert. Gegenseitige Ausweichpfade bietet erst ein Mesh."
+    },
+    {
+        "id":  "slg-wa-099",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In a Cisco wireless mesh, what distinguishes a root AP (RAP) from a mesh AP (MAP)?",
+        "optionen":  [
+                         "The RAP has a wired network connection; the MAP uses only wireless backhaul",
+                         "The RAP serves clients only; the MAP only forwards backhaul traffic",
+                         "The RAP uses 2.4 GHz for backhaul; the MAP uses 5 GHz for clients",
+                         "The RAP runs in local mode; the MAP runs in FlexConnect mode"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der RAP ist kabelgebunden ans LAN angeschlossen, MAPs erreichen das Netz nur über Funk-Backhaul, ggf. über mehrere Hops. Beide können Clients bedienen."
+    },
+    {
+        "id":  "slg-wa-100",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "How does the Adaptive Wireless Path Protocol (AWPP) choose a path through a mesh network?",
+        "optionen":  [
+                         "It prefers the path with the highest ease, based on SNR and hop count",
+                         "It prefers the path with the lowest cost, based on link bandwidth only",
+                         "It prefers the path that the WLC configured statically for each MAP",
+                         "It prefers the path with the fewest hops, ignoring the signal quality"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "AWPP sucht nicht den kürzesten Weg, sondern den mit der höchsten Ease, dem Gegenteil von Kosten. Ease wird aus SNR und Hop-Zahl der Nachbarn berechnet, und Pfade passen sich dynamisch an."
+    },
+    {
+        "id":  "slg-wa-101",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In a Cisco mesh network, the AP with a wired connection to the LAN is called the ___ AP.",
+        "optionen":  [
+                         "parent",
+                         "mesh",
+                         "anchor",
+                         "root"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Root AP (RAP) ist kabelgebunden angeschlossen. Mesh APs (MAPs) sind nur per Funk angebunden; Anchor ist ein Mobility-Begriff."
+    },
+    {
+        "id":  "slg-wa-102",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In a typical dual-radio mesh deployment, how are the two radios of a mesh AP used?",
+        "optionen":  [
+                         "Both radios carry the backhaul to double the throughput",
+                         "Both radios serve clients and the backhaul uses Ethernet",
+                         "One radio carries the backhaul and the other serves clients",
+                         "One radio scans for rogues and the other carries all data"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein Radio (typisch 5 GHz) transportiert den Backhaul zu den Nachbar-APs, das andere bedient die WLAN-Clients. So konkurrieren Backhaul und Clients nicht um denselben Kanal."
+    },
+    {
+        "id":  "slg-wa-103",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Outdoor mesh APs in a remote yard connect to a WLC in the data center. Client traffic should be bridged locally at the yard instead of being tunneled over the WAN. Which AP mode fits?",
+        "optionen":  [
+                         "Local mode",
+                         "SE-Connect mode",
+                         "Flex+Bridge mode",
+                         "Sniffer mode"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Flex+Bridge kombiniert Mesh (Bridge) mit FlexConnect-Local-Switching. So bleibt der Client-Verkehr am Standort, während der Mesh-Backhaul über Funk läuft. Im reinen Bridge-Modus würde der Verkehr zum WLC getunnelt."
+    },
+    {
+        "id":  "slg-wa-104",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "A FlexConnect AP loses its CAPWAP connection and enters standalone mode. Which three WLAN states can occur on this AP now? (Choose three.)",
+        "optionen":  [
+                         "Local authentication, local switching",
+                         "Authentication down, local switching",
+                         "Central authentication, local switching",
+                         "Central authentication, central switching",
+                         "Authentication down, central switching down"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Im Standalone Mode gibt es keine zentrale Authentifizierung und keinen Tunnel. Möglich sind nur Local Auth mit Local Switching sowie die beiden Down-Zustände. Zustände mit Central Authentication setzen den Connected Mode voraus."
+    },
+    {
+        "id":  "slg-wa-105",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A FlexConnect AP in standalone mode serves a locally switched web authentication WLAN. The last existing client disconnects. What does the AP do for this WLAN?",
+        "optionen":  [
+                         "It accepts new clients without web authentication",
+                         "It keeps beaconing and redirects new clients locally",
+                         "It stops transmitting beacons for the WLAN",
+                         "It switches the WLAN to central switching mode"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei Web Authentication im Standalone Mode bleiben bestehende Clients verbunden, neue werden abgewiesen. Sinkt die Clientzahl auf null, stellt der AP die Beacons für dieses WLAN ein."
+    },
+    {
+        "id":  "slg-wa-106",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeden FlexConnect-Zustand seinem Verhalten zu.",
+        "paare":  [
+                      [
+                          "Central Auth – Local Switching",
+                          "Nur im Connected Mode: Auth über WLC, Daten lokal"
+                      ],
+                      [
+                          "Local Auth – Local Switching",
+                          "Connected und Standalone: neue Clients weiter möglich"
+                      ],
+                      [
+                          "Authentication Down – Local Switching",
+                          "Standalone: neue Clients abgelehnt, bestehende bleiben"
+                      ],
+                      [
+                          "Authentication Down – Central Switching Down",
+                          "Standalone: keine Beacons, Clients getrennt"
+                      ]
+                  ],
+        "erklaerung":  "Zentrale Authentifizierung braucht den CAPWAP-Kontakt zum WLC. Local Auth mit Local Switching verhält sich in beiden Modi gleich. Im Standalone Mode verlieren zentral geswitchte WLANs ihre Clients, lokal geswitchte mit zentraler Auth nehmen nur keine neuen mehr an."
+    },
+    {
+        "id":  "slg-wa-107",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about authentication and switching on a FlexConnect AP is correct?",
+        "optionen":  [
+                         "Central switching always requires local authentication on the AP",
+                         "Authentication is always central while the AP is in connected mode",
+                         "Authentication can be local or central regardless of the switching mode",
+                         "Local switching always requires local authentication on the AP"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Switching und Authentifizierung sind bei FlexConnect unabhängig wählbar. Ein lokal geswitchtes WLAN kann z. B. zentral über den WLC authentifizieren. Im Connected Mode ist auch Local Auth möglich, wenn sie konfiguriert ist."
+    },
+    {
+        "id":  "slg-wa-108",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "When is a FlexConnect AP considered to be in connected mode?",
+        "optionen":  [
+                         "When its switch port is configured as an 802.1Q trunk",
+                         "When its CAPWAP control plane to the WLC over DTLS is up",
+                         "When at least one client is associated to a local WLAN",
+                         "When its local RADIUS server answers authentication"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Connected Mode bedeutet: Der CAPWAP-Control-Kanal über das WAN steht, AP und WLC haben DTLS erfolgreich ausgehandelt. Fällt er weg, wechselt der AP in den Standalone Mode."
+    },
+    {
+        "id":  "slg-wa-109",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedem CAPWAP-Zustand zu, was in ihm passiert.",
+        "paare":  [
+                      [
+                          "Discovery",
+                          "AP sammelt WLC-Kandidaten und ihre Auslastung"
+                      ],
+                      [
+                          "DTLS Setup",
+                          "Gegenseitige Prüfung per Zertifikat"
+                      ],
+                      [
+                          "Image Data",
+                          "AP lädt passende Software und rebootet"
+                      ],
+                      [
+                          "Run",
+                          "Betrieb mit Echo-Heartbeats"
+                      ]
+                  ],
+        "erklaerung":  "Nach der Discovery sichern AP und WLC den Control-Kanal mit DTLS. Image Data tritt nur bei Versionsabweichung auf. Im Run-Zustand überwacht der Heartbeat (Echo) die Verbindung."
+    }
+]

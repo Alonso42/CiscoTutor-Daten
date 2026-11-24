@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Gastzugang mit Anchor-WLC</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Guest Anchor: Gastverkehr in die DMZ tunneln</text>
+<g font-size="13" fill="#222" text-anchor="middle">
+<rect x="30" y="200" width="70" height="34" rx="4" fill="#fff" stroke="#222" stroke-width="2"/><text x="65" y="222">Gast</text>
+<circle cx="175" cy="217" r="20" fill="#fff" stroke="#222" stroke-width="2"/><text x="175" y="222">AP</text>
+<rect x="260" y="195" width="130" height="44" rx="6" fill="#4a9cff"/><text x="325" y="215" fill="#fff">Foreign-WLC</text><text x="325" y="231" fill="#fff" font-size="11">Campus</text>
+<rect x="540" y="195" width="130" height="44" rx="6" fill="#b08aff"/><text x="605" y="215">Anchor-WLC</text><text x="605" y="231" font-size="11">DMZ, Gast-VLAN</text>
+<rect x="700" y="100" width="80" height="34" rx="4" fill="#ffd23f"/><text x="740" y="122">Internet</text>
+<rect x="540" y="320" width="130" height="34" rx="4" fill="#fff" stroke="#222" stroke-width="2"/><text x="605" y="342">ISE (bei CWA)</text>
+</g>
+<g stroke-width="3">
+<line x1="100" y1="217" x2="155" y2="217" stroke="#222" stroke-dasharray="5,4"/>
+<line x1="195" y1="217" x2="260" y2="217" stroke="#4a9cff"/>
+<line x1="390" y1="217" x2="540" y2="217" stroke="#39c86a" stroke-width="6"/>
+<line x1="640" y1="195" x2="720" y2="134" stroke="#222"/>
+<line x1="605" y1="239" x2="605" y2="320" stroke="#222" stroke-dasharray="5,4"/>
+</g>
+<g font-size="12" fill="#222">
+<text x="228" y="205" text-anchor="middle">CAPWAP</text>
+<text x="465" y="200" text-anchor="middle">Mobility-Tunnel</text>
+<text x="465" y="250" text-anchor="middle">9800: CAPWAP UDP 16666/16667</text>
+<text x="465" y="266" text-anchor="middle">AireOS: EoIP (IP 97) + UDP 16666</text>
+<text x="40" y="70" font-weight="bold" font-size="14">Ablauf</text>
+<text x="40" y="90">1 Gast assoziiert am AP des Foreign-WLC (Open SSID)</text>
+<text x="40" y="108">2 Foreign tunnelt den Client-Verkehr zum Anchor</text>
+<text x="40" y="126">3 Anchor vergibt IP aus dem Gast-VLAN, zeigt Portal (LWA)</text>
+<text x="40" y="144">4 Nach Login/AUP: Status RUN, Internet über DMZ-Firewall</text>
+<text x="40" y="300" font-weight="bold" font-size="14">LWA vs. CWA</text>
+<text x="40" y="320">LWA: Portal + Gastkonten auf dem WLC (Lobby Ambassador)</text>
+<text x="40" y="338">CWA: MAC Filtering → ISE: url-redirect + ACL</text>
+<text x="40" y="356">       Portal auf ISE → CoA → finale Policy</text>
+<text x="40" y="380">Pre-Auth immer erlauben: DHCP, DNS</text>
+<text x="40" y="398">Portal-Adresse: Virtual IP (z. B. 192.0.2.1), auf allen WLCs gleich</text>
+<text x="40" y="420">9800: Foreign 'mobility anchor &lt;IP&gt; priority 1', Anchor 'mobility anchor'</text>
+<text x="40" y="438">WLAN-Profil (Name, SSID, Security) auf beiden WLCs identisch</text>
+</g>
+</svg>

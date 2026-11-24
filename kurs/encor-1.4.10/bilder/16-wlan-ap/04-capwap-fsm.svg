@@ -21,7 +21,7 @@
 <polygon points="80,148 85,140 90,148" fill="#ff6b6b"/>
 <text x="320" y="210" text-anchor="middle" font-size="12" fill="#ff6b6b">Image laden → Reboot → erneut Discovery/Join</text>
 <g font-size="13" fill="#222">
-<text x="30" y="320">• Control-Kanal UDP 5246 (immer DTLS), Daten UDP 5247</text>
+<text x="30" y="320">• Control-Kanal UDP 5246 (ab DTLS Setup verschlüsselt), Daten UDP 5247</text>
 <text x="30" y="345">• DTLS: AP-Zertifikat (MIC) und WLC-Zertifikat werden gegenseitig geprüft</text>
 <text x="30" y="370">• Klassischer Fehler: falsche WLC-Uhrzeit → Zertifikat "noch nicht gültig"</text>
 <text x="30" y="395">• Image Data entfällt, wenn AP-Software und WLC-Version passen</text>

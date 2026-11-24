@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>WLAN-Sicherheitsmodi im Überblick</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">WLAN-Sicherheitsmodi</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="50" width="180" height="40" rx="6" fill="#b08aff"/><text x="110" y="75" text-anchor="middle" font-weight="bold">Modus</text>
+<rect x="210" y="50" width="200" height="40" rx="6" fill="#b08aff"/><text x="310" y="75" text-anchor="middle" font-weight="bold">Authentifizierung</text>
+<rect x="420" y="50" width="160" height="40" rx="6" fill="#b08aff"/><text x="500" y="75" text-anchor="middle" font-weight="bold">Verschlüsselung</text>
+<rect x="590" y="50" width="190" height="40" rx="6" fill="#b08aff"/><text x="685" y="75" text-anchor="middle" font-weight="bold">Status</text>
+
+<rect x="20" y="98" width="760" height="38" rx="4" fill="#ff6b6b" opacity="0.35"/>
+<text x="30" y="122">WEP / SKA</text><text x="220" y="122">statischer Key, Challenge</text><text x="430" y="122">RC4 + 24-bit IV</text><text x="600" y="122">gebrochen – verboten</text>
+<rect x="20" y="140" width="760" height="38" rx="4" fill="#ff6b6b" opacity="0.25"/>
+<text x="30" y="164">WPA (TKIP)</text><text x="220" y="164">PSK oder 802.1X</text><text x="430" y="164">TKIP (RC4)</text><text x="600" y="164">veraltet, max. 54 Mbit/s</text>
+<rect x="20" y="182" width="760" height="38" rx="4" fill="#ffd23f" opacity="0.45"/>
+<text x="30" y="206">WPA2-Personal</text><text x="220" y="206">PSK → 4-Way Handshake</text><text x="430" y="206">AES-CCMP</text><text x="600" y="206">offline-Wörterbuch möglich</text>
+<rect x="20" y="224" width="760" height="38" rx="4" fill="#4a9cff" opacity="0.35"/>
+<text x="30" y="248">WPA2-Enterprise</text><text x="220" y="248">802.1X/EAP + RADIUS</text><text x="430" y="248">AES-CCMP</text><text x="600" y="248">verbreitet, PMF optional</text>
+<rect x="20" y="266" width="760" height="38" rx="4" fill="#39c86a" opacity="0.4"/>
+<text x="30" y="290">WPA3-Personal</text><text x="220" y="290">SAE (Dragonfly)</text><text x="430" y="290">AES-CCMP</text><text x="600" y="290">PMF Pflicht, Forward Secrecy</text>
+<rect x="20" y="308" width="760" height="38" rx="4" fill="#39c86a" opacity="0.4"/>
+<text x="30" y="332">WPA3-Enterprise</text><text x="220" y="332">802.1X (192-bit: nur EAP-TLS)</text><text x="430" y="332">CCMP / GCMP-256</text><text x="600" y="332">PMF Pflicht</text>
+<rect x="20" y="350" width="760" height="38" rx="4" fill="#39c86a" opacity="0.25"/>
+<text x="30" y="374">Enhanced Open (OWE)</text><text x="220" y="374">keine (DH bei Association)</text><text x="430" y="374">AES-CCMP</text><text x="600" y="374">gegen Mitlesen, nicht Evil Twin</text>
+<rect x="20" y="392" width="760" height="38" rx="4" fill="#ffd23f" opacity="0.25"/>
+<text x="30" y="416">Open + WebAuth</text><text x="220" y="416">Portal (Layer 3)</text><text x="430" y="416">keine über Funk</text><text x="600" y="416">Gäste, in 6 GHz nicht erlaubt</text>
+</g>
+</svg>

@@ -10,10 +10,10 @@ Topics: ENCOR-LEGACY-WLAN (Wireless ist im ENCOR-Blueprint v1.2 kein eigenes Pr�
 
 - Die **Regulatory Domain** und das **Country** eines AP legen fest, welche Kanäle und Sendeleistungen erlaubt sind.
 - Klassische APs haben eine feste, ab Werk eingestellte Regulatory Domain (SKU-Suffix wie -A, -E, -Z …). **Universal APs** (Aironet, Suffix -UX) sind nicht länderspezifisch; ihre Domain wird nach dem Standort gesetzt ("Priming") und kann bei Bedarf neu gesetzt werden.
-- **Manuelles Priming:** Smartphone mit der App **Cisco AirProvision** verbindet sich mit der SSID des Universal AP (gleiches WLAN; SSID muss **WPA2-PSK** nutzen). Die App bestimmt den Standort aus den **GPS-Koordinaten** des Telefons und dem **Mobile Country Code (MCC)** der Mobilfunkmasten und primt den AP.
+- **Manuelles Priming:** Smartphone mit der App **Cisco AirProvision** verbindet sich mit der SSID des Universal AP (gleiches WLAN; Kurs: SSID muss **WPA2-PSK** nutzen – Cisco empfiehlt WPA2-PSK, weil manche Android-Plattformen 802.1X dafür nicht unterstützen; das Telefon muss Mobilfunkempfang haben). Die App bestimmt den Standort aus den **GPS-Koordinaten** des Telefons und dem **Mobile Country Code (MCC)** der Mobilfunkmasten und primt den AP.
 - **Automatisches Priming:** Ein bereits geprimter AP sendet Domain/Country in einem **verschlüsselten Teil seiner Beacons**; Cisco-proprietäres **NDP (Neighbor Discovery Protocol)**. Nicht geprimte Universal APs in der RF-Nachbarschaft übernehmen die Einstellung.
 - Bei Neuinstallationen muss **mindestens ein AP pro RF-Nachbarschaft manuell** geprimt werden; die übrigen können automatisch folgen.
-- Ein AP, der bereits für ein **anderes Land** geprimt war, muss **manuell** neu geprimt werden (automatisches Priming überschreibt das nicht).
+- Ein AP, der bereits für ein **anderes Land** geprimt war, muss **manuell** neu geprimt werden (automatisches Priming überschreibt das nicht; vorher AP zurücksetzen/unprimen). Automatisches Priming funktioniert nur für Lightweight-APs, nicht im Autonomous Mode.
 - Ein AP, dessen Country/Regulatory Domain der WLC nicht konfiguriert hat, wird nicht oder ohne aktive Radios betrieben – Country-Code auf dem WLC prüfen ist ein Standard-Troubleshooting-Schritt (allgemeines Wissen).
 - Aktuell (allgemeines Wissen): Ciscos Wi-Fi-7-APs (CW917x) sind "Global Use"-APs mit einer SKU weltweit; der Standort wird z. B. über die Cisco-Wireless-App bzw. Ortungsfunktionen bestimmt – gleiche Idee wie Universal Priming.
 
@@ -67,10 +67,10 @@ Die **Discovery Response** enthält u. a. den WLC-Namen, seine AP-Kapazität und
 - Primary/Secondary/Tertiary werden über den **Namen** (System Name) in der Discovery Response gematcht; liegen die WLCs nicht in derselben Mobility Group, müssen **Name und IP-Adresse** angegeben werden.
 - *Mit Master:* Alle APs ohne gespeicherten Controller, die per L2/L3-Broadcast suchen, joinen automatisch den Master. Admin sieht so die neuen APs und konfiguriert sie dann auf ihren Ziel-WLC um.
 - *Ohne Master:* APs verteilen sich auf den am wenigsten ausgelasteten WLC. Beispiel mit zwei leeren WLCs: AP1 → erster Antwortender (z. B. WLC1), AP2 → WLC2 (0 statt 1), AP3 → Gleichstand, erster Antwortender, AP4 → der weniger belastete.
-- Last ist **relativ**: 50-AP-WLC mit 10 APs (20 %) gilt als weniger ausgelastet als 6-AP-WLC mit 3 APs (50 %).
+- Kurs: Last ist **relativ**: 50-AP-WLC mit 10 APs (20 %) gilt als weniger ausgelastet als 6-AP-WLC mit 3 APs (50 %). Cisco-Doku (119286) spricht von der **excess capacity** (freie AP-Plätze) aus der Discovery Response; bei Gleichstand gewinnt der zuerst antwortende WLC. In den Beispielen führen beide Maßstäbe zum selben Ergebnis (40 bzw. 3 freie Plätze).
 - Kursaussage "Load Balancing erst ab drei APs pro WLC" – siehe Fehlerliste.
 
-Troubleshooting Join (allgemeines Wissen): UDP 5246/5247 durch Firewalls, Uhrzeit/NTP auf dem WLC (DTLS-Zertifikate), Country Code, AP-Lizenz/Kapazität, ACL/Authorization (AP-Autorisierung per MAC), Software-Kompatibilität. *9800*: `show ap summary`, `show wireless stats ap join summary`, `show ap name <AP> config general`. Auf dem AP: `show capwap client rcb`.
+Troubleshooting Join (Cisco 119286 u. a.): UDP 5246/5247 durch Firewalls, Uhrzeit/NTP auf dem WLC (WLC-Zeit muss im Gültigkeitszeitraum des AP-Zertifikats liegen), Country Code (Log "Regulatory Domain Mismatch … not allowed to join"), AP-Lizenz/Kapazität, AP-Autorisierung per MAC ("AP Authorization failure"), Software-Kompatibilität. *9800*: `show ap summary`, `show wireless stats ap join summary`, `show ap name <AP> config general`. Auf dem AP: `show capwap client rcb`.
 
 ## AP Failover
 
@@ -129,13 +129,13 @@ Nicht jedes AP-Modell unterstützt jeden Modus.
 | **Flex+Bridge** (allgemeines Wissen) | ja | Mesh mit FlexConnect-Local-Switching |
 | **OEAP** (Office Extend) | ja | Spezielles FlexConnect für Telearbeit: sicherer Tunnel ins Firmennetz + lokal geroutete private SSID |
 | **Monitor** | nein | dedizierter Sensor: Location (Context-Aware), Rogue Detection, IDS/wIPS; Submodi für RFID-Tracking und wIPS (AireOS) |
-| **Rogue Detector** | nein (Radio aus) | lauscht auf dem Kabel nach ARP, vergleicht mit Rogue-MACs; *9800*: nicht mehr unterstützt |
-| **Sniffer** | nein | Promiscuous Capture eines Kanals inkl. Timing/Signalstärke, Weiterleitung an PC mit Analyzer (OmniPeek, Wireshark, AirMagnet) – allgemeines Wissen: Kapselung "PeekRemote", Ziel UDP 5000 |
+| **Rogue Detector** | nein (Radio aus) | *AireOS*: lauscht auf dem Kabel (Trunk-Port) nach ARP, vergleicht mit Rogue-MACs; ob/wie der 9800 ihn noch anbietet, ist in der Cisco-Doku nicht eindeutig belegt |
+| **Sniffer** | nein | Promiscuous Capture eines Kanals inkl. Timing/Signalstärke, Weiterleitung an PC mit Analyzer (OmniPeek, Wireshark, AirMagnet) – AiroPeek-Header; *9800* leitet per UDP Quellport 5555 → Zielport 5000 an den Analyzer weiter; Wireshark: Decode As → PEEKREMOTE |
 | **SE-Connect** (SOMM) | nein | CleanAir-AP als Spektrumsensor; Rohdaten an Chanalyzer/Spectrum Expert |
 
 ### Local Mode – Off-Channel-Scanning
 
-- Der AP bedient Clients auf seinem Kanal und geht periodisch **kurz off-channel** (~50 ms), um andere Kanäle zu messen (Rauschen, Interferenz, Nachbar-APs, Rogues). Zyklus 180 s: im 2,4-GHz-Band ca. 13 s auf dem eigenen Kanal zwischen zwei Scans, im 5-GHz-Band wegen der vielen Kanäle ca. 10 s.
+- Der AP bedient Clients auf seinem Kanal und geht periodisch **kurz off-channel** (Kurs/Forum ~50 ms; Cisco 7.2-Guide: max. 60 ms; TAC-Doc 214393: ca. 80 ms alle 3–20 s), um andere Kanäle zu messen (Rauschen, Interferenz, Nachbar-APs, Rogues). RRM-Monitor-Intervall (Channel Scan) Default 180 s; Kursbeispiel: im 2,4-GHz-Band ca. 13 s auf dem eigenen Kanal zwischen zwei Scans, im 5-GHz-Band wegen der vielen Kanäle ca. 10 s (Zahlen nicht offiziell belegt).
 - Kanalliste und Intervall sind auf dem WLC konfigurierbar (Kurs nennt das missverständlich "total RTT").
 - Allgemeines Wissen: Off-Channel Scanning Defer verschiebt Scans, solange z. B. Voice-Verkehr (hohe UP-Werte) läuft.
 
@@ -175,7 +175,7 @@ Nicht jedes AP-Modell unterstützt jeden Modus.
 4. **Heartbeat-Retransmit-Intervall 1 s**: Cisco-Konfigurationsguides (AireOS `config advanced timers ap-retransmit-interval`, 9800 AP Join Profile) nennen als Default 3 s bei 5 Wiederholungen; der Kurs/die Grafik zeigt 1 s. Für Prüfungsfragen nur "5 Wiederholungen" und "30 s Heartbeat" verwenden.
 5. **AP SSO: "alle Clients werden deauthentifiziert"** gilt nur ohne Client SSO (AireOS vor 7.5). Der Kurs erwähnt Client SSO im übernächsten Absatz; beim Catalyst 9800 ist SSO immer AP- **und** Client-SSO.
 6. **Primary-Discovery-Timer** wird im Kurs vermischt (Intervall der Primary Discovery Requests vs. Antwortzeit). Gemeint ist der Primary Discovery Timeout (30–3600 s, Default 120 s), nach dem der AP seine Backup-Liste neu prüft.
-7. Veraltet: Master Controller, HA-SKU, 5508, Release 7.5, Rogue Detector Mode (auf 9800 nicht unterstützt), Cisco Spectrum Expert (abgekündigt), Aironet (Nachfolger Catalyst 9100/CW91xx), AirProvision-Priming (für die Wi-Fi-7-Generation durch Global-Use-Konzept ersetzt).
+7. Veraltet: Master Controller (9800: laut Cisco Community kein Äquivalent – Option 43/DNS/Priming nutzen), HA-SKU, 5508, Release 7.5, Rogue Detector Mode (AireOS-Begriff; 9800-Unterstützung nicht belegt), Cisco Spectrum Expert (abgekündigt), Aironet (Nachfolger Catalyst 9100/CW91xx), AirProvision-Priming (für die Wi-Fi-7-Generation durch Global-Use-Konzept ersetzt).
 
 ## Bilder
 

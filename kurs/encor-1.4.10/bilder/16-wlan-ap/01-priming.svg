@@ -16,7 +16,7 @@
 <text x="105" y="355" text-anchor="middle" font-size="11" fill="#222">+ Mobile Country Code</text>
 <line x1="120" y1="180" x2="250" y2="180" stroke="#39c86a" stroke-width="3"/>
 <polygon points="250,172 266,180 250,188" fill="#39c86a"/>
-<text x="190" y="168" text-anchor="middle" font-size="11" fill="#222">SSID (WPA2-PSK)</text>
+<text x="190" y="168" text-anchor="middle" font-size="11" fill="#222">SSID (WPA2-PSK empf.)</text>
 <text x="190" y="200" text-anchor="middle" font-size="11" fill="#222">gleiches WLAN</text>
 <rect x="268" y="155" width="90" height="50" rx="8" fill="#4a9cff"/>
 <text x="313" y="178" text-anchor="middle" font-size="13" fill="#ffffff">AP 1</text>

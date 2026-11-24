@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>802.1X im zentralen WLAN</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">802.1X/EAP im WLAN (zentral, WLC = Authenticator)</text>
+<g font-size="13" fill="#222" text-anchor="middle">
+<rect x="40" y="50" width="110" height="36" rx="5" fill="#fff" stroke="#222" stroke-width="2"/><text x="95" y="73">Client</text>
+<circle cx="285" cy="68" r="20" fill="#fff" stroke="#222" stroke-width="2"/><text x="285" y="73">AP</text>
+<rect x="420" y="50" width="110" height="36" rx="5" fill="#4a9cff"/><text x="475" y="73" fill="#fff">WLC</text>
+<rect x="640" y="50" width="120" height="36" rx="5" fill="#b08aff"/><text x="700" y="73">ISE (RADIUS)</text>
+</g>
+<g stroke="#222" stroke-dasharray="4,4"><line x1="95" y1="86" x2="95" y2="420"/><line x1="285" y1="88" x2="285" y2="420"/><line x1="475" y1="86" x2="475" y2="420"/><line x1="700" y1="86" x2="700" y2="420"/></g>
+<g font-size="12" fill="#222">
+<line x1="95" y1="112" x2="285" y2="112" stroke="#222" stroke-width="2"/><text x="190" y="106" text-anchor="middle">1 Open Auth + Association</text>
+<text x="300" y="116">Port blockiert (nur EAPOL)</text>
+<rect x="95" y="128" width="380" height="18" fill="#ffd23f" opacity="0.6"/><text x="285" y="142" text-anchor="middle">EAPOL (Funk) → im CAPWAP-Tunnel zum WLC</text>
+<rect x="475" y="128" width="225" height="18" fill="#b08aff" opacity="0.5"/><text x="587" y="142" text-anchor="middle">RADIUS (UDP 1812)</text>
+<line x1="95" y1="170" x2="475" y2="170" stroke="#4a9cff" stroke-width="2"/><text x="285" y="164" text-anchor="middle">2 EAP-Request/Identity · Response/Identity</text>
+<line x1="475" y1="170" x2="700" y2="170" stroke="#b08aff" stroke-width="2"/><text x="587" y="164" text-anchor="middle">Access-Request</text>
+<line x1="95" y1="205" x2="700" y2="205" stroke="#39c86a" stroke-width="3"/><text x="400" y="199" text-anchor="middle">3 EAP-Methode (TLS / PEAP / FAST) – WLC reicht nur durch</text>
+<line x1="475" y1="240" x2="700" y2="240" stroke="#b08aff" stroke-width="2"/><text x="587" y="234" text-anchor="middle">4 Access-Accept + PMK</text>
+<text x="587" y="255" text-anchor="middle">(+ VLAN, ACL, QoS)</text>
+<line x1="95" y1="275" x2="475" y2="275" stroke="#4a9cff" stroke-width="2"/><text x="285" y="269" text-anchor="middle">EAP-Success</text>
+<line x1="95" y1="310" x2="475" y2="310" stroke="#ffd23f" stroke-width="4"/><text x="285" y="304" text-anchor="middle">5 4-Way Handshake (PTK/GTK)</text>
+<line x1="95" y1="345" x2="475" y2="345" stroke="#39c86a" stroke-width="4"/><text x="285" y="339" text-anchor="middle">6 Daten AES-verschlüsselt (Client ↔ AP), Zustand RUN</text>
+<text x="40" y="385">Client berechnet die PMK selbst; die PMK geht nur vom Server zum WLC.</text>
+<text x="40" y="405">Client prüft das Server-Zertifikat → Schutz vor Evil Twin / Rogue AP.</text>
+<text x="40" y="425">FlexConnect mit lokaler Authentifizierung: AP ist Authenticator/RADIUS-Client.</text>
+</g>
+</svg>

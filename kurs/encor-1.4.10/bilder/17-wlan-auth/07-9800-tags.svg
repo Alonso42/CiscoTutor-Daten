@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Catalyst 9800 Profile und Tags</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Catalyst 9800: Profile → Tags → AP</text>
+<g font-size="12" fill="#222">
+<rect x="20" y="50" width="250" height="250" rx="8" fill="none" stroke="#4a9cff" stroke-width="3"/>
+<text x="145" y="72" text-anchor="middle" font-weight="bold" font-size="15">Policy Tag</text>
+<rect x="35" y="85" width="220" height="95" rx="5" fill="#4a9cff" opacity="0.3"/>
+<text x="45" y="103" font-weight="bold">WLAN Profile</text><text x="45" y="120">SSID, WLAN-ID, Band</text><text x="45" y="136">L2: WPA2/WPA3, AKM PSK/802.1X/SAE</text><text x="45" y="152">PMF, Fast Transition</text><text x="45" y="168">L3: Web Policy, AAA-Liste</text>
+<text x="145" y="196" text-anchor="middle" font-size="16">⇄</text>
+<rect x="35" y="202" width="220" height="90" rx="5" fill="#39c86a" opacity="0.35"/>
+<text x="45" y="220" font-weight="bold">Policy Profile</text><text x="45" y="237">VLAN, ACL, QoS</text><text x="45" y="253">AAA Override, NAC, Timeout</text><text x="45" y="269">Central/Local Switching</text><text x="45" y="285">Mobility Anchor</text>
+
+<rect x="285" y="50" width="230" height="150" rx="8" fill="none" stroke="#b08aff" stroke-width="3"/>
+<text x="400" y="72" text-anchor="middle" font-weight="bold" font-size="15">Site Tag</text>
+<rect x="300" y="85" width="200" height="50" rx="5" fill="#b08aff" opacity="0.3"/><text x="310" y="104" font-weight="bold">AP Join Profile</text><text x="310" y="122">CAPWAP, Backup-WLC, SSH</text>
+<rect x="300" y="142" width="200" height="50" rx="5" fill="#b08aff" opacity="0.2"/><text x="310" y="161" font-weight="bold">Flex Profile</text><text x="310" y="179">Local Site ja = Local-Modus</text>
+
+<rect x="530" y="50" width="250" height="150" rx="8" fill="none" stroke="#ffd23f" stroke-width="3"/>
+<text x="655" y="72" text-anchor="middle" font-weight="bold" font-size="15">RF Tag</text>
+<rect x="545" y="85" width="220" height="100" rx="5" fill="#ffd23f" opacity="0.35"/><text x="555" y="105">RF Profile 2.4 GHz</text><text x="555" y="125">RF Profile 5 GHz</text><text x="555" y="145">RF Profile 6 GHz</text><text x="555" y="170">Datenraten, TPC, DCA</text>
+</g>
+<rect x="340" y="250" width="160" height="50" rx="8" fill="#fff" stroke="#222" stroke-width="2"/>
+<text x="420" y="280" text-anchor="middle" font-size="15" fill="#222">AP</text>
+<g stroke="#222" stroke-width="2"><line x1="270" y1="200" x2="340" y2="265"/><line x1="400" y1="200" x2="410" y2="250"/><line x1="600" y1="200" x2="490" y2="255"/></g>
+<g font-size="12" fill="#222">
+<text x="20" y="330">Jeder AP hat genau 1 Policy-, 1 Site- und 1 RF-Tag (sonst default-policy-tag, default-site-tag, default-rf-tag).</text>
+<text x="20" y="350">Zuweisung: statisch pro AP-MAC, Filter (Regex auf AP-Namen), Location im Basic Setup, Catalyst Center.</text>
+<text x="20" y="378" font-family="monospace">wireless tag policy PT-CAMPUS</text>
+<text x="20" y="394" font-family="monospace"> wlan ENCOR-SALES policy PP-EMP</text>
+<text x="20" y="410" font-family="monospace">ap 00aa.bbcc.ddee</text>
+<text x="20" y="426" font-family="monospace"> policy-tag PT-CAMPUS</text>
+<text x="420" y="394">Ohne Policy-Tag-Eintrag wird ein WLAN</text>
+<text x="420" y="410">nicht ausgestrahlt, auch wenn es "enabled" ist.</text>
+</g>
+</svg>

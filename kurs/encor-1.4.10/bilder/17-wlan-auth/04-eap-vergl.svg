@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>EAP-TLS, PEAP und EAP-FAST im Vergleich</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">EAP-Methoden: Tunnel und Credentials</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="50" width="245" height="330" rx="8" fill="none" stroke="#39c86a" stroke-width="3"/>
+<text x="142" y="75" text-anchor="middle" font-weight="bold" font-size="16">EAP-TLS</text>
+<rect x="35" y="90" width="215" height="44" rx="5" fill="#39c86a" opacity="0.4"/><text x="142" y="108" text-anchor="middle">Server-Zertifikat</text><text x="142" y="125" text-anchor="middle">+ Client-Zertifikat</text>
+<text x="35" y="160">Kein innerer Schritt:</text><text x="35" y="178">das Zertifikat ist das Credential</text>
+<text x="35" y="210">+ keine Passwörter</text><text x="35" y="228">+ einzig erlaubt bei WPA3-192</text>
+<text x="35" y="246">+ Identität aus Zertifikat (CN/SAN)</text>
+<text x="35" y="278">− PKI für jeden Client nötig</text><text x="35" y="296">  (Verteilung, Widerruf CRL/OCSP)</text>
+
+<rect x="278" y="50" width="245" height="330" rx="8" fill="none" stroke="#4a9cff" stroke-width="3"/>
+<text x="400" y="75" text-anchor="middle" font-weight="bold" font-size="16">PEAP</text>
+<rect x="293" y="90" width="215" height="44" rx="5" fill="#4a9cff" opacity="0.4"/><text x="400" y="108" text-anchor="middle">Phase 1: TLS-Tunnel</text><text x="400" y="125" text-anchor="middle">nur Server-Zertifikat</text>
+<rect x="313" y="142" width="175" height="44" rx="5" fill="#ffd23f"/><text x="400" y="160" text-anchor="middle">Phase 2 im Tunnel:</text><text x="400" y="177" text-anchor="middle">EAP-MSCHAPv2 / GTC</text>
+<text x="293" y="210">+ Outer Identity anonym</text><text x="293" y="228">+ AD-Passwörter nutzbar</text>
+<text x="293" y="260">− Client MUSS Server-Zertifikat</text><text x="293" y="278">  prüfen, sonst Evil Twin</text><text x="293" y="296">  + Offline-Angriff auf MSCHAPv2</text>
+
+<rect x="536" y="50" width="245" height="330" rx="8" fill="none" stroke="#b08aff" stroke-width="3"/>
+<text x="658" y="75" text-anchor="middle" font-weight="bold" font-size="16">EAP-FAST (Cisco)</text>
+<rect x="551" y="90" width="215" height="44" rx="5" fill="#b08aff" opacity="0.4"/><text x="658" y="108" text-anchor="middle">Phase 0: PAC-Provisioning</text><text x="658" y="125" text-anchor="middle">(Server-Zert. optional)</text>
+<rect x="551" y="142" width="215" height="30" rx="5" fill="#b08aff" opacity="0.25"/><text x="658" y="162" text-anchor="middle">Phase 1: Tunnel mit PAC-Key</text>
+<rect x="571" y="180" width="175" height="30" rx="5" fill="#ffd23f"/><text x="658" y="200" text-anchor="middle">Phase 2: MSCHAPv2/GTC</text>
+<text x="551" y="234">PAC = PAC-Key + PAC-Opaque</text><text x="551" y="252">      + PAC-Info (A-ID)</text>
+<text x="551" y="278">− anonymes Phase 0 → MITM</text><text x="551" y="296">heute: TEAP als Nachfolger</text>
+</g>
+<rect x="20" y="395" width="760" height="42" rx="6" fill="#ffd23f" opacity="0.35"/>
+<text x="400" y="421" text-anchor="middle" font-size="13" fill="#222">Alle drei: gegenseitige Authentifizierung → MSK → PMK an den WLC → 4-Way Handshake</text>
+</svg>
