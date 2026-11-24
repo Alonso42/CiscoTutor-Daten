@@ -1,0 +1,2392 @@
+[
+    {
+        "id":  "slg-mc-001",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A source sends to group 239.130.5.10. Which destination MAC address does it use on Ethernet?",
+        "optionen":  [
+                         "01:00:5E:02:05:0A",
+                         "01:00:5E:7F:05:0A",
+                         "01:00:5E:82:05:0A",
+                         "01:00:5E:EF:05:0A"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Nur die unteren 23 Bit werden kopiert: Vom zweiten Oktett 130 (1000 0010) fällt das oberste Bit weg, es bleibt 0x02. Drittes und viertes Oktett bleiben 0x05 und 0x0A, davor steht 01:00:5E."
+    },
+    {
+        "id":  "slg-mc-002",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which Ethernet MAC address corresponds to the multicast group 224.200.10.20?",
+        "optionen":  [
+                         "01:00:5E:68:0A:14",
+                         "01:00:5E:48:0A:14",
+                         "01:00:5E:C8:0A:14",
+                         "01:00:5E:48:10:20"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "200 = 0xC8; das höchste Bit (128) wird gestrichen, also 72 = 0x48. 10 und 20 werden zu 0x0A und 0x14. Ergebnis: 01:00:5E:48:0A:14."
+    },
+    {
+        "id":  "slg-mc-003",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A switch receives frames destined to 01:00:5E:01:01:01. Which group can NOT be the IP destination of these frames?",
+        "optionen":  [
+                         "239.129.1.1",
+                         "238.1.1.1",
+                         "239.1.2.1",
+                         "225.1.1.1"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Alle Gruppen mit gleichen unteren 23 Bit landen auf 01:00:5E:01:01:01 (zweites Oktett 1 oder 129, egal welches erste Oktett). 239.1.2.1 hat ein anderes drittes Oktett und wird zu 01:00:5E:01:02:01."
+    },
+    {
+        "id":  "slg-mc-004",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "How many different IPv4 multicast group addresses map to the same Ethernet MAC address?",
+        "optionen":  [
+                         "128",
+                         "16",
+                         "64",
+                         "32"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Eine Gruppenadresse hat 28 variable Bit, in die MAC werden nur 23 übernommen. Die 5 verlorenen Bit ergeben 2^5 = 32 Gruppen pro MAC."
+    },
+    {
+        "id":  "slg-mc-005",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which groups map to the same Ethernet MAC address as 232.10.20.30? (Choose three.)",
+        "optionen":  [
+                         "232.10.148.30",
+                         "239.10.20.31",
+                         "232.138.20.30",
+                         "233.138.20.30",
+                         "224.10.20.30"
+                     ],
+        "richtig":  [
+                        2,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Gleich sind alle Gruppen mit identischen unteren 23 Bit: erstes Oktett beliebig, zweites Oktett 10 oder 138 (10+128), drittes und viertes Oktett unverändert. 239.10.20.31 und 232.10.148.30 unterscheiden sich in kopierten Bit."
+    },
+    {
+        "id":  "slg-mc-006",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "An IPv4 multicast MAC address is built from 01:00:5E, one zero bit, and the low-order ___ bits of the group address.",
+        "optionen":  [
+                         "28",
+                         "23",
+                         "24",
+                         "25"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die IANA-OUI 01:00:5E belegt 24 Bit, ein Bit ist fest 0, für die Gruppe bleiben 23 Bit. 28 ist die Zahl der variablen Bit einer Klasse-D-Adresse."
+    },
+    {
+        "id":  "slg-mc-007",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why can several IPv4 multicast groups share one Ethernet MAC address?",
+        "optionen":  [
+                         "The OUI 01:00:5E reserves only 32 values that are reused by all groups",
+                         "IGMP compresses the group ID into 16 bits when a host sends its report",
+                         "Five of the 28 variable group bits are not copied into the MAC address",
+                         "Only the last two octets of the group address are copied into the MAC"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Nach 1110 bleiben 28 variable Bit, die MAC übernimmt nur die unteren 23. Die übrigen 5 Bit gehen verloren, daher teilen sich 32 Gruppen eine MAC."
+    },
+    {
+        "id":  "slg-mc-008",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A PC has joined 239.1.1.1. Another application on the LAN streams to 224.1.1.1. What happens to the 224.1.1.1 frames at the PC?",
+        "optionen":  [
+                         "The PC sends an IGMP Leave so that the router stops the unwanted stream",
+                         "The NIC drops them because it compares the full IP group in hardware",
+                         "The switch removes them because IGMP snooping always filters by IP group",
+                         "The NIC accepts them because the MAC matches, and the IP layer discards them"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beide Gruppen ergeben 01:00:5E:01:01:01. Die Netzwerkkarte filtert nur nach MAC und nimmt die Frames an; erst der IP-Stack erkennt die fremde Gruppe und verwirft sie. Das kostet CPU, ist aber kein Fehler."
+    },
+    {
+        "id":  "slg-mc-009",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An enterprise needs multicast group addresses for internal applications only, similar to RFC 1918 for unicast. Which range should it use?",
+        "optionen":  [
+                         "224.0.0.0/24",
+                         "232.0.0.0/8",
+                         "239.0.0.0/8",
+                         "233.0.0.0/8"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "239.0.0.0/8 ist administratively scoped und nur für die Nutzung innerhalb einer Organisation gedacht. 224.0.0.0/24 ist link-local für Protokolle, 232/8 SSM, 233/8 GLOP."
+    },
+    {
+        "id":  "slg-mc-010",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A host sends a packet to 224.0.0.10 with a TTL of 64. What does a multicast router do with it?",
+        "optionen":  [
+                         "Forwards it only toward the configured RP",
+                         "Forwards it only on PIM-enabled interfaces",
+                         "Never forwards it off the local network",
+                         "Forwards it until the TTL reaches zero"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "224.0.0.0/24 ist der link-local Bereich (Local Network Control). Pakete daran werden unabhängig vom TTL nie geroutet; der TTL ist meist ohnehin 1."
+    },
+    {
+        "id":  "slg-mc-011",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die link-local Multicast-Adresse ihrer Verwendung zu.",
+        "paare":  [
+                      [
+                          "224.0.0.1",
+                          "All hosts on the segment"
+                      ],
+                      [
+                          "224.0.0.2",
+                          "All routers on the segment"
+                      ],
+                      [
+                          "224.0.0.13",
+                          "All PIMv2 routers"
+                      ],
+                      [
+                          "224.0.0.22",
+                          "IGMPv3 membership reports"
+                      ]
+                  ],
+        "erklaerung":  "224.0.0.1 erreicht alle Hosts (IGMP General Query), 224.0.0.2 alle Router (IGMPv2 Leave). PIM-Hellos gehen an 224.0.0.13, IGMPv3-Reports an 224.0.0.22."
+    },
+    {
+        "id":  "slg-mc-012",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Multicast-Adressbereich seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "224.0.0.0/24",
+                          "Local network control, never routed"
+                      ],
+                      [
+                          "232.0.0.0/8",
+                          "Source-Specific Multicast"
+                      ],
+                      [
+                          "233.0.0.0/8",
+                          "GLOP, derived from an AS number"
+                      ],
+                      [
+                          "239.0.0.0/8",
+                          "Administratively scoped, private use"
+                      ]
+                  ],
+        "erklaerung":  "Link-local-Adressen bleiben im Segment. 232/8 ist für SSM reserviert, 233/8 (GLOP) bettet eine 16-Bit-AS-Nummer ein, 239/8 ist der private, organisationsinterne Bereich."
+    },
+    {
+        "id":  "slg-mc-013",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Auto-RP mapping agents advertise the RP-to-group mappings to the group ___, which all PIM routers join.",
+        "optionen":  [
+                         "224.0.0.13",
+                         "224.0.0.40",
+                         "224.0.1.40",
+                         "224.0.1.39"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Mapping Agents senden RP-Discovery an 224.0.1.40 (CISCO-RP-DISCOVERY). 224.0.1.39 (CISCO-RP-ANNOUNCE) nutzen die Candidate-RPs; 224.0.0.13 ist All PIM Routers."
+    },
+    {
+        "id":  "slg-mc-014",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which IP source address does a multicast sender put into its data packets?",
+        "optionen":  [
+                         "The multicast group address",
+                         "The IP address of the RP",
+                         "Its own unicast IP address",
+                         "The address 0.0.0.0"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Gruppenadressen sind nur als Ziel gültig. Die Quelle sendet von ihrer eigenen Unicast-Adresse – genau diese Adresse prüfen Router beim RPF-Check und tragen sie als S in (S,G) ein."
+    },
+    {
+        "id":  "slg-mc-015",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which are typical disadvantages of IP multicast applications compared to unicast TCP applications? (Choose three.)",
+        "optionen":  [
+                         "Traffic on the source link grows with each receiver",
+                         "The source must know every receiver address",
+                         "Occasional duplicate or out-of-order packets",
+                         "No transport-layer congestion control",
+                         "Best-effort UDP delivery without retransmission"
+                     ],
+        "richtig":  [
+                        2,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Multicast läuft fast immer über UDP: keine Zuverlässigkeit, keine Staukontrolle, bei Topologieänderungen gelegentlich Duplikate und falsche Reihenfolge. Die Quelle kennt die Empfänger gerade nicht, und ihre Last wächst nicht mit der Empfängerzahl."
+    },
+    {
+        "id":  "slg-mc-016",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In a video conference every participant sends video and receives the video of all others. Which multicast application model is this?",
+        "optionen":  [
+                         "One-to-one",
+                         "One-to-many",
+                         "Many-to-many",
+                         "Many-to-one"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Jeder Teilnehmer ist zugleich Sender und Empfänger – das ist many-to-many. One-to-many wäre z. B. IPTV mit einer Quelle."
+    },
+    {
+        "id":  "slg-mc-017",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "To which destination address does an IGMPv2 host send a Leave Group message?",
+        "optionen":  [
+                         "224.0.0.2",
+                         "The group being left",
+                         "224.0.0.22",
+                         "224.0.0.1"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Leave richtet sich an die Router und geht daher an 224.0.0.2 (All Routers). Reports gehen an die Gruppe selbst, IGMPv3-Reports an 224.0.0.22."
+    },
+    {
+        "id":  "slg-mc-018",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The IGMPv2 querier receives a Leave for group 239.1.1.1. What does it do next?",
+        "optionen":  [
+                         "Sends a general query to 224.0.0.1 and waits",
+                         "Sends a group-specific query to 239.1.1.1",
+                         "Removes the group from the interface at once",
+                         "Sends a PIM prune upstream without waiting"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Querier weiß nicht, ob noch andere Mitglieder da sind. Er fragt gezielt per Group-Specific Query an die Gruppe nach; antwortet niemand innerhalb der Last-Member-Zeit, wird die Gruppe entfernt."
+    },
+    {
+        "id":  "slg-mc-019",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Routers 10.1.1.1 and 10.1.1.2 share a LAN and both run IGMPv2. Which router becomes the IGMP querier?",
+        "optionen":  [
+                         "10.1.1.2, because it has the highest IP address",
+                         "10.1.1.1, because it has the lowest IP address",
+                         "The router that was elected PIM DR on the LAN",
+                         "The router with the higher IGMP query priority"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei IGMPv2 starten alle Router als Querier und geben die Rolle ab, sobald sie eine Query von einer niedrigeren IP hören. Es gibt keine IGMP-Priorität."
+    },
+    {
+        "id":  "slg-mc-020",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 (10.1.1.1) and R2 (10.1.1.2) share a receiver LAN with default PIM DR priority and IGMPv2. Which roles do they take?",
+        "optionen":  [
+                         "R1 is PIM DR and IGMP querier",
+                         "R1 is PIM DR, R2 is IGMP querier",
+                         "R2 is PIM DR, R1 is IGMP querier",
+                         "R2 is PIM DR and IGMP querier"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die PIM-DR-Wahl nimmt bei gleicher Priorität die höchste IP (R2), die IGMPv2-Querier-Wahl die niedrigste IP (R1). Die beiden Rollen liegen deshalb oft auf verschiedenen Routern."
+    },
+    {
+        "id":  "slg-mc-021",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The Leave Group message and the group-specific query were introduced with ___.",
+        "optionen":  [
+                         "IGMPv3",
+                         "IGMPv2",
+                         "MLDv1",
+                         "IGMPv1"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "IGMPv1 kannte kein Leave, das Verlassen wurde nur per Timeout erkannt. IGMPv2 (RFC 2236) brachte Leave, Group-Specific Query, Querier-Wahl und Max Response Time."
+    },
+    {
+        "id":  "slg-mc-022",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The last IGMPv1 member of a group on a LAN closes its application. How does the router learn that the group is gone?",
+        "optionen":  [
+                         "The host sends a Leave Group message to 224.0.0.2",
+                         "The host sends a report with an empty source list",
+                         "The membership times out after queries remain unanswered",
+                         "The switch informs the router through IGMP snooping"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "IGMPv1 hat keine Leave-Nachricht. Der Router merkt das Verlassen erst, wenn auf mehrere General Queries kein Report mehr kommt – deshalb ist die Leave-Latenz bei v1 hoch."
+    },
+    {
+        "id":  "slg-mc-023",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An IGMPv2 host is about to answer a general query when it hears another host\u0027s report for the same group. What does it do?",
+        "optionen":  [
+                         "It sends a Leave to stop duplicates",
+                         "It doubles its random report delay",
+                         "It cancels its own pending report",
+                         "It sends its own report immediately"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Report Suppression: Dem Router reicht ein Mitglied pro Gruppe, damit er weiterleitet. Hört ein Host den Report eines anderen Mitglieds, unterdrückt er seinen eigenen und spart so Bandbreite und CPU."
+    },
+    {
+        "id":  "slg-mc-024",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Why do IGMPv3 hosts not use report suppression?",
+        "optionen":  [
+                         "Each host may want different sources, so every host reports to 224.0.0.22",
+                         "Suppression is only disabled when the router runs SSM for the group range",
+                         "IGMPv3 removed queries, so each host must refresh its state independently",
+                         "IGMPv3 reports are sent as unicast to the querier and cannot be overheard"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit Source Filtering kann jeder Host andere Quellen wünschen; ein fremder Report ersetzt den eigenen also nicht. Reports gehen an 224.0.0.22, das Hosts nicht abhören – der Router kennt damit jedes Mitglied (Explicit Tracking)."
+    },
+    {
+        "id":  "slg-mc-025",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the purpose of the Max Response Time field in an IGMPv2 query?",
+        "optionen":  [
+                         "It defines how long a group stays after a Leave",
+                         "It spreads host reports over time to avoid bursts",
+                         "It sets how often the querier sends general queries",
+                         "It limits the TTL that hosts may set on reports"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Jeder Host wählt eine zufällige Wartezeit bis zur Max Response Time (Cisco-Default 10 s). So kommen Reports nicht gleichzeitig und Report Suppression kann greifen. Das Query Interval ist ein eigener Timer."
+    },
+    {
+        "id":  "slg-mc-026",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A host sends an IGMPv3 report for group 239.5.5.5 in INCLUDE mode with source list {10.1.1.5}. Which traffic does it want?",
+        "optionen":  [
+                         "Traffic from all sources except 10.1.1.5",
+                         "Traffic from 10.1.1.5 via the shared tree",
+                         "No traffic; the report is a leave",
+                         "Only traffic from source 10.1.1.5"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "INCLUDE heißt: nur die aufgelisteten Quellen. Das ist der Modus, den SSM nutzt. EXCLUDE würde alle Quellen außer den aufgelisteten bedeuten."
+    },
+    {
+        "id":  "slg-mc-027",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A host sends an IGMPv3 report for 239.5.5.5 in EXCLUDE mode with source list {10.1.1.5}. What does it receive?",
+        "optionen":  [
+                         "No traffic from any source",
+                         "Only traffic from 10.1.1.5",
+                         "Only traffic forwarded by the RP",
+                         "Traffic from all sources but 10.1.1.5"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "EXCLUDE blendet die aufgelisteten Quellen aus und nimmt alle anderen an. Eine leere EXCLUDE-Liste bedeutet daher alle Quellen."
+    },
+    {
+        "id":  "slg-mc-028",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which IGMPv3 filter state is equivalent to a classic IGMPv2 join for group G?",
+        "optionen":  [
+                         "INCLUDE with the RP as only source",
+                         "INCLUDE with an empty source list",
+                         "EXCLUDE with the RP as only source",
+                         "EXCLUDE with an empty source list"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein IGMPv2-Join will Traffic von allen Quellen. In IGMPv3 entspricht das EXCLUDE mit leerer Liste (niemand ausgeschlossen). INCLUDE mit leerer Liste bedeutet dagegen: keine Quelle – also Leave."
+    },
+    {
+        "id":  "slg-mc-029",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die IGMP-Nachricht ihrer Zieladresse zu.",
+        "paare":  [
+                      [
+                          "IGMPv2 general query",
+                          "224.0.0.1"
+                      ],
+                      [
+                          "IGMPv2 leave group",
+                          "224.0.0.2"
+                      ],
+                      [
+                          "IGMPv2 group-specific query",
+                          "The group address itself"
+                      ],
+                      [
+                          "IGMPv3 membership report",
+                          "224.0.0.22"
+                      ]
+                  ],
+        "erklaerung":  "General Queries gehen an alle Hosts, Leaves an alle Router. Die Group-Specific Query erreicht nur Mitglieder der Gruppe. IGMPv3-Reports haben mit 224.0.0.22 eine eigene Adresse."
+    },
+    {
+        "id":  "slg-mc-030",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R2 shows:\n  Internet address is 10.1.1.2/24\n  IGMP is enabled on interface\n  Current IGMP host version is 2\n  IGMP query interval is 60 seconds\n  IGMP querier timeout is 120 seconds\n  IGMP max query response time is 10 seconds\n  IGMP querying router is 10.1.1.1\n  Multicast designated router (DR) is 10.1.1.2 (this system)\nWhich statement is true?",
+        "optionen":  [
+                         "R2 runs IGMPv3, but 10.1.1.1 is limited to IGMPv2",
+                         "R2 is neither the IGMP querier nor the PIM DR",
+                         "R2 is the PIM DR, but 10.1.1.1 is the IGMP querier",
+                         "R2 is the IGMP querier and the PIM DR of the segment"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Querier ist 10.1.1.1 (niedrigste IP), DR ist R2 selbst (höchste IP bei gleicher Priorität). R2 sendet daher die PIM-Joins für Empfänger, fragt aber nicht ab."
+    },
+    {
+        "id":  "slg-mc-031",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the same output (query interval 60 s, querier timeout 120 s), the querier 10.1.1.1 fails. When does R2 start sending queries?",
+        "optionen":  [
+                         "After 10 seconds without queries",
+                         "After 60 seconds without queries",
+                         "Immediately after the next PIM hello",
+                         "After 120 seconds without queries"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein Nicht-Querier übernimmt erst, wenn er für die Dauer des Querier Timeout (hier 120 s, Default 2× Query Interval) keine Query mehr gehört hat."
+    },
+    {
+        "id":  "slg-mc-032",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "On Cisco IOS XE the default IGMP query interval is ___ seconds.",
+        "optionen":  [
+                         "60",
+                         "125",
+                         "10",
+                         "30"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Cisco nutzt 60 s als Default-Query-Interval (Querier Timeout 120 s, Max Response Time 10 s). 125 s ist der RFC-Standardwert, den Cisco nicht als Default verwendet."
+    },
+    {
+        "id":  "slg-mc-033",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A VLAN with IGMP snooping has receivers but no multicast router. After a few minutes the streams to the receivers stop. What is the best fix?",
+        "optionen":  [
+                         "Enable the IGMP snooping querier",
+                         "Disable IGMP snooping in the VLAN",
+                         "Configure ip igmp join-group on the SVI",
+                         "Change the hosts to IGMP version 1"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ohne Querier gibt es keine Queries, Hosts senden keine neuen Reports und die Snooping-Einträge altern aus. Der Snooping-Querier (\u0027ip igmp snooping querier\u0027) übernimmt die Queries im VLAN."
+    },
+    {
+        "id":  "slg-mc-034",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer enables IGMP snooping immediate-leave on a VLAN where an access port connects to a hub with three receivers. What is the risk?",
+        "optionen":  [
+                         "The remaining receivers lose the stream when one leaves",
+                         "The switch floods the group to every port of the VLAN",
+                         "The querier role moves to the switch with immediate-leave",
+                         "Leave messages are forwarded to all hosts of the VLAN"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Immediate-Leave entfernt den Port sofort beim ersten Leave, ohne Group-Specific Query. Hängen mehrere Empfänger an einem Port, verlieren die anderen den Stream. Daher nur bei einem Empfänger pro Port nutzen."
+    },
+    {
+        "id":  "slg-mc-035",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus (Gi0/1, Empfänger-LAN): Stelle die IGMP-Version so ein, dass Hosts Quellen angeben können.",
+        "bausteine":  [
+                          "ip",
+                          "igmp",
+                          "version",
+                          "3",
+                          "2",
+                          "pim",
+                          "mld"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "igmp",
+                        "version",
+                        "3"
+                    ],
+        "erklaerung":  "Source Filtering (INCLUDE/EXCLUDE) gibt es erst in IGMPv3. Der Cisco-Default ist Version 2, daher muss \u0027ip igmp version 3\u0027 explizit gesetzt werden, z. B. für SSM."
+    },
+    {
+        "id":  "slg-mc-036",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A display on Gi0/2 cannot send IGMP reports but must receive 239.1.1.1. The router should forward the group onto Gi0/2 without processing the packets itself. Which command fits?",
+        "optionen":  [
+                         "ip igmp access-group 239.1.1.1",
+                         "ip pim rp-address 239.1.1.1",
+                         "ip igmp static-group 239.1.1.1",
+                         "ip igmp join-group 239.1.1.1"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "static-group leitet die Gruppe fest auf das Interface weiter, ohne dass der Router selbst Mitglied wird. join-group macht den Router zum Mitglied, das die Pakete auch selbst verarbeitet (z. B. für Ping-Tests)."
+    },
+    {
+        "id":  "slg-mc-037",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which TTL do IGMP membership queries and reports carry?",
+        "optionen":  [
+                         "1",
+                         "64",
+                         "255",
+                         "2"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "IGMP hat nur lokale Bedeutung zwischen Host und erstem Router. Mit TTL 1 kann kein Report in andere Subnetze gelangen und dort Verwirrung stiften."
+    },
+    {
+        "id":  "slg-mc-038",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which features did IGMPv2 add compared to IGMPv1? (Choose three.)",
+        "optionen":  [
+                         "Reports sent to 224.0.0.22",
+                         "Querier election",
+                         "Group-specific query",
+                         "Leave Group message",
+                         "Source filtering"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "IGMPv2 brachte Leave, Group-Specific Query, Querier-Wahl (niedrigste IP) und Max Response Time. Source Filtering und Reports an 224.0.0.22 kamen erst mit IGMPv3."
+    },
+    {
+        "id":  "slg-mc-039",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Sources 10.1.1.10 and 10.2.2.20 both send to 239.1.1.1 in PIM-SM. A last-hop router with receivers has switched to the SPT for both. How many mroute entries does it hold for the group?",
+        "optionen":  [
+                         "One (*,G) and one (S,G)",
+                         "One (*,G) and two (S,G)",
+                         "One (*,G) entry only",
+                         "Two (S,G) entries only"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der (*,G)-Eintrag des Shared Tree bleibt als Eltern-Eintrag bestehen. Nach dem SPT-Switchover kommt pro Quelle ein eigener (S,G)-Eintrag hinzu – hier zwei."
+    },
+    {
+        "id":  "slg-mc-040",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the main advantage of a shared tree over source trees?",
+        "optionen":  [
+                         "It always uses the shortest path to receivers",
+                         "It avoids the RPF check on every router",
+                         "It needs less multicast state in the routers",
+                         "It removes the need for a rendezvous point"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein (*,G)-Baum gilt für alle Quellen einer Gruppe, daher brauchen Router viel weniger Einträge. Der Preis sind mögliche Umwege über den RP."
+    },
+    {
+        "id":  "slg-mc-041",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the main drawback of a source tree (SPT) compared with a shared tree?",
+        "optionen":  [
+                         "Higher latency between source and receivers",
+                         "Traffic must always pass through the RP",
+                         "It cannot prune branches without receivers",
+                         "Routers must keep state for every source"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein SPT ist optimal im Pfad, aber jeder Router braucht pro Quelle und Gruppe einen (S,G)-Eintrag. Bei Tausenden Quellen und Gruppen wird das zum Speicherproblem."
+    },
+    {
+        "id":  "slg-mc-042",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A network uses shared trees only (spt-threshold infinity). Traffic from a source behind router A to a receiver behind router C crosses A, B, D (RP), C, although A and C are directly connected. What is the main design lever?",
+        "optionen":  [
+                         "Lower the OSPF cost between A and C",
+                         "Enable PIM dense mode on A and C",
+                         "Use IGMPv3 on the receiver LAN",
+                         "Move the RP to a better location"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne SPT-Switchover fließt aller Traffic über den RP. Die Pfadqualität hängt dann direkt von der RP-Platzierung ab; eine Unicast-Kostenänderung ändert den Weg über den RP nicht."
+    },
+    {
+        "id":  "slg-mc-043",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Begriff der passenden Beschreibung zu.",
+        "paare":  [
+                      [
+                          "(S,G)",
+                          "One tree per source and group, rooted at the source"
+                      ],
+                      [
+                          "(*,G)",
+                          "One tree for all sources of a group, rooted at the RP"
+                      ],
+                      [
+                          "Prune",
+                          "Removes a branch without interested receivers"
+                      ],
+                      [
+                          "Join",
+                          "Adds a branch toward the root of the tree"
+                      ]
+                  ],
+        "erklaerung":  "(S,G) ist der Source Tree, (*,G) der Shared Tree. Joins bauen Äste Richtung Wurzel, Prunes entfernen Äste ohne Empfänger – so passen sich die Bäume dynamisch an."
+    },
+    {
+        "id":  "slg-mc-044",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R3\u0027s unicast route to 10.1.1.0/24 points out Gi0/1. A packet from 10.1.1.10 to 239.1.1.1 arrives on Gi0/2. What does R3 do?",
+        "optionen":  [
+                         "Sends it to the RP inside a register",
+                         "Forwards it back out Gi0/1 to the source",
+                         "Drops it because the RPF check fails",
+                         "Forwards it out all interfaces in the OIL"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das RPF-Interface für die Quelle ist Gi0/1. Ein Paket, das auf einem anderen Interface ankommt, besteht den RPF-Check nicht und wird verworfen – so entstehen keine Multicast-Schleifen."
+    },
+    {
+        "id":  "slg-mc-045",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Traffic for group G flows down the PIM-SM shared tree. Against which address does a router perform the RPF check for these packets?",
+        "optionen":  [
+                         "The address of the PIM DR",
+                         "The multicast group address",
+                         "The address of the source",
+                         "The address of the RP"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Auf dem Shared Tree ist das Incoming Interface des (*,G)-Eintrags das RPF-Interface Richtung RP. Erst auf dem SPT wird gegen die Quelladresse geprüft."
+    },
+    {
+        "id":  "slg-mc-046",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Multicast von Quellen in 10.1.1.0/24 kommt über Tunnel0, die Unicast-Route zeigt aber auf ein physisches Interface. Lege per static mroute Tunnel0 als RPF-Interface fest.",
+        "bausteine":  [
+                          "ip",
+                          "mroute",
+                          "10.1.1.0",
+                          "255.255.255.0",
+                          "Tunnel0",
+                          "route",
+                          "0.0.0.255"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "mroute",
+                        "10.1.1.0",
+                        "255.255.255.0",
+                        "Tunnel0"
+                    ],
+        "erklaerung":  "Eine static mroute beeinflusst nur den RPF-Check, nicht das Unicast-Forwarding. Sie nutzt eine Subnetzmaske (keine Wildcard) und ein RPF-Interface oder einen RPF-Nachbarn."
+    },
+    {
+        "id":  "slg-mc-047",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which command shows the RPF interface and RPF neighbor a router uses for source 10.1.1.10?",
+        "optionen":  [
+                         "show ip pim rpf 10.1.1.10",
+                         "show ip igmp rpf 10.1.1.10",
+                         "show ip rpf 10.1.1.10",
+                         "show ip route 10.1.1.10 multicast"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027show ip rpf \u003cQuelle\u003e\u0027 zeigt RPF-Interface, RPF-Nachbar und die Quelle der Information (Unicast-Tabelle, static mroute oder MBGP)."
+    },
+    {
+        "id":  "slg-mc-048",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R4 has two equal-cost unicast paths to a source, via PIM neighbors 10.0.12.1 and 10.0.13.1. Which neighbor does Cisco IOS select as RPF neighbor by default?",
+        "optionen":  [
+                         "The neighbor that is PIM DR on its link",
+                         "10.0.13.1, the highest neighbor address",
+                         "10.0.12.1, the lowest neighbor address",
+                         "Both, with per-packet load sharing"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei gleichwertigen Pfaden wählt IOS standardmäßig den PIM-Nachbarn mit der höchsten IP als RPF-Nachbarn. Multicast-ECMP-Lastteilung muss separat aktiviert werden."
+    },
+    {
+        "id":  "slg-mc-049",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is PIM called protocol independent?",
+        "optionen":  [
+                         "It uses the existing unicast routing table for RPF and exchanges no routes",
+                         "It supports dense, sparse and bidirectional modes in one process",
+                         "It can be used with IPv4 and IPv6 without separate configuration",
+                         "It runs over TCP and UDP and can therefore carry any routing protocol"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "PIM baut keine eigene Routing-Tabelle auf, sondern nutzt die Unicast-Tabelle – egal ob OSPF, EIGRP, BGP oder statische Routen – für den RPF-Check."
+    },
+    {
+        "id":  "slg-mc-050",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which situations cause multicast packets to fail the RPF check? (Choose two.)",
+        "optionen":  [
+                         "The unicast route to the source uses a different interface than the one the packets arrive on",
+                         "The receivers on the last-hop LAN use IGMPv2 instead of IGMPv3",
+                         "Multicast arrives over a GRE tunnel while the unicast route to the source uses a physical link",
+                         "The group is in the administratively scoped range 239.0.0.0/8",
+                         "The source sends the packets with a TTL value of 64"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "Der RPF-Check vergleicht das Eingangsinterface mit dem Unicast-Pfad zur Quelle. Asymmetrisches Routing und Tunnel ohne passende static mroute führen zu RPF-Fehlern; IGMP-Version, Gruppenbereich und TTL haben damit nichts zu tun."
+    },
+    {
+        "id":  "slg-mc-051",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On a LAN, R1 (10.1.1.1) is configured with ip pim dr-priority 10, R2 (10.1.1.2) and R3 (10.1.1.3) use the default. Which router becomes PIM DR?",
+        "optionen":  [
+                         "R3",
+                         "R2",
+                         "R1",
+                         "No DR is elected"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die PIM-DR-Wahl entscheidet zuerst nach der höchsten DR-Priorität (Default 1), erst bei Gleichstand nach der höchsten IP. R1 gewinnt mit Priorität 10."
+    },
+    {
+        "id":  "slg-mc-052",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does the PIM DR on a LAN with an active source do in PIM sparse mode?",
+        "optionen":  [
+                         "Sends register messages to the RP",
+                         "Elects the IGMP querier on the LAN",
+                         "Sends (*,G) joins toward the RP",
+                         "Floods the traffic out all interfaces"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der DR auf dem Quell-LAN (FHR) kapselt die ersten Pakete in PIM-Register und schickt sie per Unicast an den RP. (*,G)-Joins sendet der DR auf dem Empfänger-LAN."
+    },
+    {
+        "id":  "slg-mc-053",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Two routers forward the same (S,G) stream onto a shared LAN and detect each other through PIM Assert. Which criteria decide the winner, in order?",
+        "optionen":  [
+                         "Highest DR priority, then highest IP address on the LAN",
+                         "Lowest IP address, then lowest metric toward the RP",
+                         "Best metric to the RP, then the lowest AD, then lowest IP",
+                         "Lowest AD to the source, then best metric, then highest IP"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beim Assert gewinnt die niedrigere Administrative Distance der Route zur Quelle, dann die bessere Metrik, dann die höhere IP. Der Verlierer pruned sein Interface, damit nur eine Kopie auf dem LAN liegt."
+    },
+    {
+        "id":  "slg-mc-054",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "PIM messages are carried directly in IP with protocol number ___.",
+        "optionen":  [
+                         "103",
+                         "88",
+                         "2",
+                         "89"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "PIM nutzt IP-Protokoll 103. 2 ist IGMP, 88 EIGRP und 89 OSPF."
+    },
+    {
+        "id":  "slg-mc-055",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In PIM dense mode, a router receives flooded traffic for a group but has no receivers and no downstream PIM neighbors. What does it do?",
+        "optionen":  [
+                         "Sends a prune toward the source",
+                         "Sends a graft toward the source",
+                         "Registers the source with the RP",
+                         "Sends a (*,G) join toward the RP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "PIM-DM arbeitet nach Flood \u0026 Prune: Erst wird überall hin geflutet, Router ohne Bedarf schicken einen Prune nach oben. Der Prune läuft ab, und das Fluten wiederholt sich periodisch."
+    },
+    {
+        "id":  "slg-mc-056",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In PIM dense mode, a branch was pruned. A new receiver now joins behind that branch. How does the router restore the traffic quickly?",
+        "optionen":  [
+                         "It sends a register to the source",
+                         "It waits for the next flood cycle",
+                         "It sends a (*,G) join to the RP",
+                         "It sends a graft message upstream"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Mit einer Graft-Nachricht hebt der Router den Prune sofort auf, statt auf das nächste periodische Fluten zu warten. PIM-DM kennt keinen RP und keine (*,G)-Joins."
+    },
+    {
+        "id":  "slg-mc-057",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which statements about PIM dense mode are true? (Choose two.)",
+        "optionen":  [
+                         "It requires a rendezvous point per group",
+                         "It builds only source trees, (S,G)",
+                         "It floods traffic first and prunes unwanted branches",
+                         "It is recommended for most production networks",
+                         "It forwards only after an explicit join"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "PIM-DM ist ein Push-Modell mit Flood \u0026 Prune und kennt nur (S,G)-Einträge. RP und explizite Joins gehören zu PIM-SM, das für Produktionsnetze empfohlen wird."
+    },
+    {
+        "id":  "slg-mc-058",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In which situation would PIM dense mode be the most efficient choice?",
+        "optionen":  [
+                         "Active receivers exist on almost every subnet",
+                         "Thousands of sources send to the same group",
+                         "Receivers are spread thinly across a large WAN",
+                         "Sources are known and receivers use IGMPv3"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Fluten ist nur effizient, wenn fast überall Empfänger sitzen – dann muss kaum gepruned werden. Für dünn verteilte Empfänger ist PIM-SM, für bekannte Quellen SSM, für viele Quellen BiDir besser."
+    },
+    {
+        "id":  "slg-mc-059",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die PIM-Variante ihrer Arbeitsweise zu.",
+        "paare":  [
+                      [
+                          "PIM-DM",
+                          "Flood and prune, source trees only"
+                      ],
+                      [
+                          "PIM-SM",
+                          "Explicit join to a shared tree rooted at the RP"
+                      ],
+                      [
+                          "PIM-SSM",
+                          "Receivers join (S,G) directly, no RP"
+                      ],
+                      [
+                          "BiDir-PIM",
+                          "Only (*,G), traffic up and down one tree"
+                      ]
+                  ],
+        "erklaerung":  "Dense Mode flutet, Sparse Mode wartet auf Joins zum RP. SSM baut ausschließlich (S,G)-Bäume ohne RP, BiDir nutzt einen einzigen (*,G)-Baum in beide Richtungen."
+    },
+    {
+        "id":  "slg-mc-060",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A source starts sending to a PIM-SM group. How does its first-hop router get the first packets to the RP?",
+        "optionen":  [
+                         "It encapsulates them in unicast registers",
+                         "It forwards them along the shared tree",
+                         "It floods them out all PIM interfaces",
+                         "It sends a (*,G) join to the RP first"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der FHR kapselt die Datenpakete in PIM-Register-Nachrichten und schickt sie per Unicast an den RP. Erst wenn der RP den SPT zur Quelle aufgebaut hat, fließen die Daten nativ."
+    },
+    {
+        "id":  "slg-mc-061",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "When does the RP send a Register-Stop message to the first-hop router?",
+        "optionen":  [
+                         "When the last receiver leaves the shared tree for the group",
+                         "As soon as the first register message arrives from the FHR",
+                         "When native (S,G) traffic arrives over the source tree",
+                         "After the SPT threshold on the last-hop router is exceeded"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der RP sendet einen (S,G)-Join zur Quelle. Sobald die Daten nativ über diesen SPT ankommen, sind die gekapselten Register überflüssig und der RP schickt Register-Stop."
+    },
+    {
+        "id":  "slg-mc-062",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An RP receives a PIM register for (10.1.1.10, 239.9.9.9), but no receiver has joined the group. How does the RP react?",
+        "optionen":  [
+                         "It forwards the register to the other RPs",
+                         "It joins the SPT toward the source anyway",
+                         "It sends a Register-Stop to the first-hop router",
+                         "It floods the data to all PIM neighbors"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ohne Empfänger (leere OIL am (*,G)) gibt es keinen Grund, Daten zum RP zu ziehen. Der RP antwortet direkt mit Register-Stop; der FHR prüft später periodisch erneut."
+    },
+    {
+        "id":  "slg-mc-063",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "With default settings, when does a Cisco last-hop router switch from the shared tree to the shortest path tree?",
+        "optionen":  [
+                         "After the first packet from the source",
+                         "After 60 seconds on the shared tree",
+                         "Never, unless configured explicitly",
+                         "After the rate exceeds 4 kbps"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Default-SPT-Threshold ist 0. Der LHR sendet daher nach dem ersten Paket einer neuen Quelle einen (S,G)-Join direkt zur Quelle."
+    },
+    {
+        "id":  "slg-mc-064",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus auf dem Last-Hop-Router: Empfänger sollen dauerhaft auf dem Shared Tree bleiben (kein SPT-Switchover).",
+        "bausteine":  [
+                          "ip",
+                          "pim",
+                          "spt-threshold",
+                          "infinity",
+                          "0",
+                          "rp-address",
+                          "sparse-mode"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "pim",
+                        "spt-threshold",
+                        "infinity"
+                    ],
+        "erklaerung":  "Mit \u0027infinity\u0027 wird die Schwelle nie überschritten, der LHR bleibt auf dem (*,G)-Baum. Das spart (S,G)-State, kann aber Umwege über den RP erzwingen. Der Default ist 0."
+    },
+    {
+        "id":  "slg-mc-065",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which PIM-SM messages are sent as unicast? (Choose two.)",
+        "optionen":  [
+                         "Join/Prune",
+                         "Register-Stop",
+                         "Register",
+                         "Hello",
+                         "Assert"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Register (FHR an RP) und Register-Stop (RP an FHR) gehen per Unicast. Hello, Join/Prune und Assert sind hop-by-hop-Nachrichten an 224.0.0.13."
+    },
+    {
+        "id":  "slg-mc-066",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "After switching to the SPT for source S, the last-hop router still receives S\u0027s packets via the RP as well. What does it send to stop the duplicate flow?",
+        "optionen":  [
+                         "A Register-Stop to the first-hop router",
+                         "An (S,G) prune with the RP bit toward the RP",
+                         "A (*,G) prune toward the source",
+                         "An IGMP Leave to the RP for group G"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der LHR schickt einen (S,G,rpt)-Prune (RP-Bit gesetzt) den Shared Tree hinauf. So wird nur Quelle S vom Shared Tree entfernt, andere Quellen der Gruppe kommen weiter über den RP."
+    },
+    {
+        "id":  "slg-mc-067",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A receiver LAN has two PIM routers. One is the IGMPv2 querier, the other is the PIM DR. Which router sends the (*,G) join toward the RP?",
+        "optionen":  [
+                         "The router closer to the RP",
+                         "The PIM DR",
+                         "The IGMP querier",
+                         "Both routers"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Joins sendet ausschließlich der PIM-DR des Segments, damit nicht zwei Router dieselbe Gruppe anfordern. Der Querier fragt nur die Mitgliedschaft ab."
+    },
+    {
+        "id":  "slg-mc-068",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which statements about the RP in PIM-SM are true? (Choose two.)",
+        "optionen":  [
+                         "Each group maps to one RP address",
+                         "It must be on the shortest path",
+                         "It must run PIM dense mode",
+                         "It is required for SSM groups",
+                         "It is the root of the shared tree"
+                     ],
+        "richtig":  [
+                        0,
+                        4
+                    ],
+        "erklaerung":  "Der RP ist Wurzel des (*,G)-Baums. Per ACL kann man verschiedene RPs für verschiedene Gruppenbereiche nutzen, aber jede Gruppe wird auf genau eine RP-Adresse abgebildet (bei Anycast-RP teilen sich mehrere Router diese Adresse). SSM braucht keinen RP."
+    },
+    {
+        "id":  "slg-mc-069",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A last-hop router shows:\n(*, 239.1.1.1), 00:05:10/00:02:55, RP 10.0.0.1, flags: SJC\n(10.1.1.10, 239.1.1.1), 00:01:02/00:02:57, flags: JT\nWhat does the T flag on the (S,G) entry indicate?",
+        "optionen":  [
+                         "Packets for the entry are received on the SPT",
+                         "The entry is a candidate for MSDP advertising",
+                         "The router is registering the directly connected source",
+                         "The entry was created by an IGMPv3 source report"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "T bedeutet SPT-bit set: Pakete kommen bereits über den Shortest Path Tree. MSDP-Kandidat wäre A, Registrierung F, IGMPv3-Quellreport I."
+    },
+    {
+        "id":  "slg-mc-070",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In \u0027show ip mroute\u0027, what does the C flag on a (*,G) entry mean?",
+        "optionen":  [
+                         "The entry was created by a Cisco Auto-RP agent",
+                         "A member of the group is directly connected",
+                         "The group is configured as a candidate RP",
+                         "The RP is connected to the incoming interface"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "C = Connected: An einem Interface des Routers hängt ein Empfänger, der sich per IGMP angemeldet hat. Typisch für Last-Hop-Router."
+    },
+    {
+        "id":  "slg-mc-071",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A router shows \u0027(10.1.1.10, 239.1.1.1), 00:00:40/00:02:50, flags: FT\u0027. The source 10.1.1.10 is on a directly connected LAN. What does the F flag mean?",
+        "optionen":  [
+                         "The (S,G) stream has been pruned from the RP",
+                         "The group is mapped to a bidirectional RP",
+                         "The router registers this source with the RP",
+                         "The entry is forwarded in PIM dense mode"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "F ist das Register-Flag: Der Router ist First-Hop-Router für eine direkt angeschlossene Quelle und registriert sie beim RP."
+    },
+    {
+        "id":  "slg-mc-072",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An intermediate router shows \u0027(*, 239.2.2.2), 00:03:00/00:00:12, RP 10.0.0.1, flags: SP\u0027 with \u0027Outgoing interface list: Null\u0027. What does this mean?",
+        "optionen":  [
+                         "The group is mapped to the SSM range 232.0.0.0/8",
+                         "The router does not know any RP for the group",
+                         "The RP has sent a Register-Stop for the group",
+                         "The router has no downstream interest in the group"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "P = Pruned: Die Outgoing Interface List ist leer, weil es keine Empfänger und keine Downstream-Joins mehr gibt. Der Eintrag altert aus, wenn kein neuer Join kommt."
+    },
+    {
+        "id":  "slg-mc-073",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Flag aus \u0027show ip mroute\u0027 seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "S",
+                          "Sparse mode entry"
+                      ],
+                      [
+                          "C",
+                          "Directly connected group member"
+                      ],
+                      [
+                          "T",
+                          "Packets received on the SPT"
+                      ],
+                      [
+                          "P",
+                          "Pruned, outgoing list is empty"
+                      ]
+                  ],
+        "erklaerung":  "S steht für Sparse, C für einen direkt angeschlossenen Empfänger, T für SPT-bit set und P für Pruned. Kleines s bedeutet dagegen SSM-Gruppe."
+    },
+    {
+        "id":  "slg-mc-074",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A receiver joined 239.5.5.5, but no traffic arrives. The last-hop router shows:\n(*, 239.5.5.5), 00:02:11/00:02:48, RP 0.0.0.0, flags: SC\n  Incoming interface: Null, RPF nbr 0.0.0.0\nWhat is the most likely cause?",
+        "optionen":  [
+                         "The receiver uses IGMPv2 instead of IGMPv3",
+                         "The router has no RP mapping for the group",
+                         "The source TTL is too low to reach the router",
+                         "The IGMP querier on the LAN is not elected"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "RP 0.0.0.0 heißt: Der Router kennt für diese Gruppe keinen RP. Ohne RP kann er keinen (*,G)-Join senden, das Incoming Interface bleibt Null. Lösung: RP statisch, per Auto-RP oder BSR bekannt machen."
+    },
+    {
+        "id":  "slg-mc-075",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A router shows \u0027(10.9.9.9, 232.1.1.1), 00:01:20/00:02:39, flags: sTI\u0027. What does the lowercase s indicate?",
+        "optionen":  [
+                         "The group is in the SSM range",
+                         "The router is sending registers",
+                         "The source is directly connected",
+                         "The entry is a sparse-mode entry"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Kleines s steht für SSM Group, großes S für Sparse. Das I-Flag zeigt, dass ein quellspezifischer Host-Report (IGMPv3) empfangen wurde."
+    },
+    {
+        "id":  "slg-mc-076",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "In \u0027show ip mroute\u0027, the flag ___ marks a group that is mapped to a bidirectional RP.",
+        "optionen":  [
+                         "B",
+                         "D",
+                         "R",
+                         "J"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "B steht für Bidir Group. D ist Dense, R RP-bit set (Eintrag zeigt Richtung RP), J Join SPT."
+    },
+    {
+        "id":  "slg-mc-077",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which command shows which RP each group range is mapped to and whether the mapping came from Auto-RP, BSR, or static configuration?",
+        "optionen":  [
+                         "show ip mroute count",
+                         "show ip pim neighbor",
+                         "show ip pim rp mapping",
+                         "show ip igmp groups"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027show ip pim rp mapping\u0027 listet Gruppenbereiche, RP und die Info-Quelle (z. B. \u0027Info source: ... via Auto-RP\u0027 oder \u0027Static\u0027). So lässt sich prüfen, ob alle Router denselben RP kennen."
+    },
+    {
+        "id":  "slg-mc-078",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Aktiviere Multicast-Routing auf dem Router.",
+        "bausteine":  [
+                          "ip",
+                          "multicast-routing",
+                          "multicast",
+                          "routing",
+                          "pim",
+                          "enable"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "multicast-routing"
+                    ],
+        "erklaerung":  "Ohne \u0027ip multicast-routing\u0027 leitet der Router keinen Multicast weiter, selbst wenn PIM auf Interfaces konfiguriert ist. Manche Plattformen verlangen \u0027ip multicast-routing distributed\u0027."
+    },
+    {
+        "id":  "slg-mc-079",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus: Aktiviere PIM Sparse Mode auf dem Interface.",
+        "bausteine":  [
+                          "ip",
+                          "pim",
+                          "sparse-mode",
+                          "dense-mode",
+                          "igmp",
+                          "multicast"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "pim",
+                        "sparse-mode"
+                    ],
+        "erklaerung":  "\u0027ip pim sparse-mode\u0027 aktiviert PIM-SM und zugleich IGMP auf dem Interface. Es muss auf allen Interfaces entlang des Multicast-Pfads konfiguriert sein."
+    },
+    {
+        "id":  "slg-mc-080",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege 10.0.0.1 als statischen RP nur für die Gruppen fest, die ACL 10 erlaubt.",
+        "bausteine":  [
+                          "ip",
+                          "pim",
+                          "rp-address",
+                          "10.0.0.1",
+                          "10",
+                          "rp-candidate",
+                          "bsr-candidate"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "pim",
+                        "rp-address",
+                        "10.0.0.1",
+                        "10"
+                    ],
+        "erklaerung":  "Die optionale ACL begrenzt den statischen RP auf bestimmte Gruppenbereiche. So kann man verschiedene RPs für verschiedene Gruppen nutzen. Der Befehl muss auf jedem Router der Domäne stehen."
+    },
+    {
+        "id":  "slg-mc-081",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "All routers have \u0027ip pim rp-address 10.0.0.1\u0027. Auto-RP later announces 10.0.0.2 as RP for the same groups. Which RP do the routers use?",
+        "optionen":  [
+                         "10.0.0.1, static configuration always wins",
+                         "Neither; the conflict disables the group range",
+                         "Both RPs, load-shared by a hash function",
+                         "10.0.0.2, dynamically learned RPs take precedence"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein dynamisch gelernter RP (Auto-RP) hat Vorrang vor dem statischen. Soll der statische gewinnen, braucht er das Schlüsselwort \u0027override\u0027."
+    },
+    {
+        "id":  "slg-mc-082",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Der statische RP 10.0.0.1 soll Vorrang vor per Auto-RP gelernten RPs haben.",
+        "bausteine":  [
+                          "ip",
+                          "pim",
+                          "rp-address",
+                          "10.0.0.1",
+                          "override",
+                          "bidir",
+                          "priority"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "pim",
+                        "rp-address",
+                        "10.0.0.1",
+                        "override"
+                    ],
+        "erklaerung":  "Normalerweise gewinnt ein dynamisch gelernter RP. Mit \u0027override\u0027 setzt sich der statisch konfigurierte RP durch."
+    },
+    {
+        "id":  "slg-mc-083",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which Auto-RP component listens to the RP announcements sent to 224.0.1.39?",
+        "optionen":  [
+                         "The mapping agents",
+                         "The last-hop designated routers",
+                         "The elected bootstrap router",
+                         "All PIM routers in the domain"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Candidate-RPs senden RP-Announce an 224.0.1.39, nur Mapping Agents hören dort zu. Sie wählen die RPs und verteilen das Ergebnis an 224.0.1.40, das alle PIM-Router hören."
+    },
+    {
+        "id":  "slg-mc-084",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A network runs only \u0027ip pim sparse-mode\u0027 on all interfaces. Auto-RP candidates and a mapping agent are configured, but routers do not learn any RP. What is the fix?",
+        "optionen":  [
+                         "Configure ip pim autorp listener",
+                         "Change the scope to a value of 255",
+                         "Configure ip pim bsr-candidate",
+                         "Enable ip igmp version 3 everywhere"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "224.0.1.39 und 224.0.1.40 werden im Dense Mode geflutet. Im reinen Sparse Mode bräuchte man dafür einen RP – den man erst durch Auto-RP lernen will. \u0027ip pim autorp listener\u0027 flutet nur diese beiden Gruppen dense."
+    },
+    {
+        "id":  "slg-mc-085",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two Auto-RP candidates, 10.0.0.1 and 10.0.0.2, announce the same group range. Which RP does the mapping agent select?",
+        "optionen":  [
+                         "10.0.0.1, the lowest IP address",
+                         "The candidate with the lower priority",
+                         "10.0.0.2, the highest IP address",
+                         "Both, one per half of the range"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei Auto-RP wählt der Mapping Agent für denselben Gruppenbereich den Candidate-RP mit der höchsten IP-Adresse. Der andere dient als Backup, falls der gewählte ausfällt."
+    },
+    {
+        "id":  "slg-mc-086",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How is the bootstrap router elected among several candidate BSRs?",
+        "optionen":  [
+                         "Lowest BSR priority, then lowest IP address",
+                         "Highest BSR priority, then highest IP address",
+                         "The first candidate to send a bootstrap wins",
+                         "Highest IP address only, priority is ignored"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der C-BSR mit der höchsten Priorität gewinnt, bei Gleichstand der mit der höchsten IP. Die anderen bleiben Backup."
+    },
+    {
+        "id":  "slg-mc-087",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How do candidate RPs advertise themselves in the BSR mechanism?",
+        "optionen":  [
+                         "By multicast to the group 224.0.1.39",
+                         "By unicast messages to the elected BSR",
+                         "By MSDP source-active messages",
+                         "By flooding hellos to all PIM routers"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die C-RPs schicken ihre Candidate-RP-Advertisements per Unicast an den BSR. Der BSR verteilt dann das gesammelte RP-Set an alle Router."
+    },
+    {
+        "id":  "slg-mc-088",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does the BSR distribute the RP-set to all routers of the PIM domain?",
+        "optionen":  [
+                         "Unicast updates sent to each router\u0027s loopback address",
+                         "Directed broadcasts to every subnet of the domain",
+                         "RP-discovery messages sent to the group 224.0.1.40",
+                         "Bootstrap messages flooded hop-by-hop to 224.0.0.13"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bootstrap-Nachrichten werden hop-by-hop an All PIM Routers (224.0.0.13) geflutet. Der Kurs spricht vereinfachend von \u0027broadcast\u0027. 224.0.1.40 gehört zu Auto-RP."
+    },
+    {
+        "id":  "slg-mc-089",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An IPv6 multicast network needs RP information to be distributed dynamically. Which of these mechanisms can be used?",
+        "optionen":  [
+                         "BSR",
+                         "IGMPv3",
+                         "Auto-RP",
+                         "MSDP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Auto-RP unterstützt kein IPv6. BSR ist Teil von PIMv2 und funktioniert auch für IPv6. MSDP tauscht Quellen zwischen RPs aus, IGMPv3 ist ein Host-Protokoll für IPv4."
+    },
+    {
+        "id":  "slg-mc-090",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which statements about BSR are true? (Choose two.)",
+        "optionen":  [
+                         "It is a Cisco-proprietary mechanism",
+                         "It must be configured on every router",
+                         "It is a standards-based PIMv2 mechanism",
+                         "It can be used for IPv6 multicast",
+                         "It uses the groups 224.0.1.39 and .40"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "BSR ist standardisiert (RFC 5059), herstellerneutral und auch für IPv6 nutzbar. Konfiguriert werden nur C-BSRs und C-RPs. Die Gruppen 224.0.1.39/40 gehören zu Auto-RP."
+    },
+    {
+        "id":  "slg-mc-091",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A design proposes running Auto-RP and BSR together in one PIM domain. What is the recommendation?",
+        "optionen":  [
+                         "Do not configure both in the same network",
+                         "Use both to get two independent RP sets",
+                         "Use Auto-RP only on the mapping agents",
+                         "Use BSR for IPv4 and Auto-RP for IPv6"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Auto-RP und BSR sollen nicht gemeinsam im selben Netz betrieben werden, sonst können Router unterschiedliche RPs für dieselbe Gruppe lernen."
+    },
+    {
+        "id":  "slg-mc-092",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Mache den Router zum Auto-RP Mapping Agent mit Loopback0 als Adresse und TTL-Scope 16.",
+        "bausteine":  [
+                          "ip",
+                          "pim",
+                          "send-rp-discovery",
+                          "Loopback0",
+                          "scope",
+                          "16",
+                          "send-rp-announce",
+                          "bsr-candidate"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "pim",
+                        "send-rp-discovery",
+                        "Loopback0",
+                        "scope",
+                        "16"
+                    ],
+        "erklaerung":  "send-rp-discovery macht den Router zum Mapping Agent, der RP-Discovery an 224.0.1.40 sendet. send-rp-announce wäre der Candidate-RP, bsr-candidate gehört zu BSR."
+    },
+    {
+        "id":  "slg-mc-093",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Mache den Router mit Loopback0 zum Candidate-BSR.",
+        "bausteine":  [
+                          "ip",
+                          "pim",
+                          "bsr-candidate",
+                          "Loopback0",
+                          "rp-candidate",
+                          "send-rp-discovery"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "pim",
+                        "bsr-candidate",
+                        "Loopback0"
+                    ],
+        "erklaerung":  "\u0027ip pim bsr-candidate\u0027 bewirbt den Router als BSR; optional folgen Hash-Mask-Länge und Priorität. Candidate-RPs werden mit \u0027ip pim rp-candidate\u0027 konfiguriert."
+    },
+    {
+        "id":  "slg-mc-094",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Der Router soll sich per Auto-RP mit Loopback0 als Candidate-RP für die Gruppen aus ACL 10 bewerben, TTL-Scope 16.",
+        "bausteine":  [
+                          "ip",
+                          "pim",
+                          "send-rp-announce",
+                          "Loopback0",
+                          "scope",
+                          "16",
+                          "group-list",
+                          "10",
+                          "send-rp-discovery",
+                          "rp-candidate"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "pim",
+                        "send-rp-announce",
+                        "Loopback0",
+                        "scope",
+                        "16",
+                        "group-list",
+                        "10"
+                    ],
+        "erklaerung":  "send-rp-announce sendet RP-Announce-Nachrichten an 224.0.1.39. Die group-list begrenzt die Gruppen, für die sich der Router bewirbt; scope setzt den TTL der Ankündigungen."
+    },
+    {
+        "id":  "slg-mc-095",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Komponente ihrer Aufgabe bei der RP-Verteilung zu.",
+        "paare":  [
+                      [
+                          "Auto-RP candidate RP",
+                          "Sends announcements to 224.0.1.39"
+                      ],
+                      [
+                          "Auto-RP mapping agent",
+                          "Sends RP-discovery to 224.0.1.40"
+                      ],
+                      [
+                          "Bootstrap router",
+                          "Floods the RP-set to all PIM routers"
+                      ],
+                      [
+                          "BSR candidate RP",
+                          "Unicasts its candidacy to the BSR"
+                      ]
+                  ],
+        "erklaerung":  "Bei Auto-RP kündigen Candidate-RPs sich an 224.0.1.39 an, Mapping Agents verteilen die Auswahl an 224.0.1.40. Bei BSR melden sich C-RPs per Unicast beim BSR, der das RP-Set hop-by-hop flutet."
+    },
+    {
+        "id":  "slg-mc-096",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the main drawback of a single statically configured RP?",
+        "optionen":  [
+                         "It only works for the SSM range 232/8",
+                         "It requires IGMPv3 on all receiver LANs",
+                         "It cannot be used with PIM sparse mode",
+                         "No automatic failover if the RP fails"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein statischer RP muss auf jedem Router gleich konfiguriert werden und hat keinen eingebauten Failover und kein Load-Balancing. Abhilfe schafft Anycast-RP."
+    },
+    {
+        "id":  "slg-mc-097",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Two RPs both use 10.255.255.1/32 on Loopback1 (Anycast-RP). Why must they run MSDP between each other?",
+        "optionen":  [
+                         "MSDP replaces the IGP route to the shared anycast address",
+                         "Each source registers only with its nearest RP, so RPs must share sources",
+                         "Without MSDP, the RPs would send duplicate register-stop messages",
+                         "MSDP elects which of the two RPs is active for each group range"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Das IGP leitet jeden FHR zum nächsten RP. Empfänger können aber am anderen RP hängen. Per MSDP-SA erfahren die RPs von den Quellen des jeweils anderen und können (S,G)-Joins senden."
+    },
+    {
+        "id":  "slg-mc-098",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In an Anycast-RP design, why is \u0027ip msdp originator-id\u0027 set to a unique loopback on each RP?",
+        "optionen":  [
+                         "So SA messages identify the RP that created them and pass peer-RPF",
+                         "So hosts can address IGMP reports to their preferred RP",
+                         "So Auto-RP announces each RP for a different group range",
+                         "So the IGP can load-share between both RPs for the same groups"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ohne originator-id würde die gemeinsame Anycast-Adresse als Ursprung in den SAs stehen. Mit einer eindeutigen Adresse ist erkennbar, welcher RP die SA erzeugt hat, und der Peer-RPF-Check funktioniert."
+    },
+    {
+        "id":  "slg-mc-099",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In an Anycast-RP design, one of the two RPs fails. How do routers reach the remaining RP?",
+        "optionen":  [
+                         "The last-hop routers send their joins to both RPs at once",
+                         "The BSR re-elects a new RP and floods the new RP-set",
+                         "The IGP converges to the other router advertising the same address",
+                         "Auto-RP announces the surviving RP with a new address"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Beide RPs annoncieren dieselbe /32-Adresse. Fällt einer aus, verschwindet seine Route und das IGP leitet alle Joins und Register zum verbleibenden RP – ohne Änderung der RP-Konfiguration."
+    },
+    {
+        "id":  "slg-mc-100",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which PIM-SM mechanisms are eliminated for groups in the SSM range?",
+        "optionen":  [
+                         "RPF checks and (S,G) joins",
+                         "Register messages and (*,G) joins",
+                         "PIM hellos and DR election",
+                         "IGMP queries and PIM asserts"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei SSM sendet der LHR direkt (S,G)-Joins zur Quelle. Es gibt keinen RP, also weder (*,G)-Joins noch Register. Hellos, DR-Wahl und RPF-Check bleiben erhalten."
+    },
+    {
+        "id":  "slg-mc-101",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Set-top boxes support only IGMPv2 but must receive the SSM channel (10.9.9.9, 232.1.1.1). What can the last-hop router use?",
+        "optionen":  [
+                         "IGMP snooping",
+                         "Auto-RP listener",
+                         "A static RP for 232/8",
+                         "SSM mapping"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "SSM-Mapping übersetzt IGMPv1/v2-Reports für SSM-Gruppen anhand einer statischen Tabelle oder per DNS in (S,G)-Joins. Damit ist IGMPv3 auf dem Host in diesem Fall nicht nötig."
+    },
+    {
+        "id":  "slg-mc-102",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus (SSM-Mapping ist bereits mit \u0027ip igmp ssm-map enable\u0027 aktiv): Ordne die Gruppen aus ACL 20 der Quelle 10.9.9.9 statisch zu.",
+        "bausteine":  [
+                          "ip",
+                          "igmp",
+                          "ssm-map",
+                          "static",
+                          "20",
+                          "10.9.9.9",
+                          "enable",
+                          "join-group"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "igmp",
+                        "ssm-map",
+                        "static",
+                        "20",
+                        "10.9.9.9"
+                    ],
+        "erklaerung":  "\u0027ip igmp ssm-map static \u003cACL\u003e \u003cQuelle\u003e\u0027 bildet IGMPv1/v2-Reports für die Gruppen der ACL auf die Quelle ab. Der LHR sendet dann einen (S,G)-Join, obwohl der Host keine Quelle genannt hat."
+    },
+    {
+        "id":  "slg-mc-103",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Aktiviere SSM für den Standardbereich 232.0.0.0/8.",
+        "bausteine":  [
+                          "ip",
+                          "pim",
+                          "ssm",
+                          "default",
+                          "range",
+                          "232.0.0.0",
+                          "sparse-mode"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "pim",
+                        "ssm",
+                        "default"
+                    ],
+        "erklaerung":  "\u0027ip pim ssm default\u0027 aktiviert SSM für 232.0.0.0/8. Für eigene Bereiche nutzt man \u0027ip pim ssm range \u003cACL\u003e\u0027."
+    },
+    {
+        "id":  "slg-mc-104",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two content providers both stream to 232.1.1.1 from sources 10.1.1.1 and 10.2.2.2 in an SSM network. What happens?",
+        "optionen":  [
+                         "The streams mix at every receiver of the group",
+                         "The second source fails the RPF check",
+                         "The RP drops the source registered later",
+                         "Each stream is a separate (S,G) channel"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "In SSM ist ein Kanal durch Quelle und Gruppe definiert. Ein Empfänger abonniert (10.1.1.1, 232.1.1.1) oder (10.2.2.2, 232.1.1.1) – die Gruppenadresse muss daher nicht eindeutig sein."
+    },
+    {
+        "id":  "slg-mc-105",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027ip pim ssm default\u0027 is configured. A host without SSM mapping sends an IGMPv2 report for 232.1.1.1. What is the result?",
+        "optionen":  [
+                         "The host receives no traffic for the group",
+                         "The LHR joins every source sending to G",
+                         "The LHR sends a (*,G) join toward the RP",
+                         "The LHR floods the group in dense mode"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Für den SSM-Bereich baut der Router keine Shared Trees, und ein IGMPv2-Report nennt keine Quelle. Ohne SSM-Mapping kann der LHR also keinen (S,G)-Join erzeugen – der Host bekommt nichts."
+    },
+    {
+        "id":  "slg-mc-106",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which statements about Source-Specific Multicast are true? (Choose three.)",
+        "optionen":  [
+                         "Sources register with the first-hop RP",
+                         "The default range is 232.0.0.0/8",
+                         "It is optimized for many-to-many applications",
+                         "No RP is needed for SSM groups",
+                         "Receivers must know the source in advance"
+                     ],
+        "richtig":  [
+                        1,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "SSM baut nur (S,G)-Bäume, braucht keinen RP und keine Register. Der Empfänger muss die Quelle out-of-band kennen. Das Modell passt zu one-to-many; für many-to-many ist BiDir gedacht."
+    },
+    {
+        "id":  "slg-mc-107",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does interdomain SSM not need MSDP?",
+        "optionen":  [
+                         "Receivers already name the source, so RPs need not discover it",
+                         "SSM sources register with every RP of the Internet at once",
+                         "SSM floods the first packets to all domains in dense mode",
+                         "BGP carries the active sources as part of its route updates"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "MSDP dient dazu, dass RPs aktive Quellen anderer Domänen kennenlernen. Bei SSM nennt der Empfänger die Quelle selbst, der LHR joint direkt – ein RP und damit MSDP entfallen."
+    },
+    {
+        "id":  "slg-mc-108",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Some legacy routers in a PIM-SM domain do not recognize 232.0.0.0/8 as SSM. Which filter on the RP prevents shared-tree delivery for this range?",
+        "optionen":  [
+                         "Accept (*,G) joins for 232/8 only from SSM routers",
+                         "Answer registers for 232/8 at once with a Register-Stop",
+                         "Set the SPT threshold to infinity for 232/8 groups",
+                         "Deny IGMPv3 reports for 232/8 on the RP interfaces"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der RP soll für 232/8 nie Quellen annehmen: Er beantwortet Register sofort mit Register-Stop. Zusätzlich filtert man (*,G)-Joins an LHRs, RP-Bit-Prunes und SA-Nachrichten für 232/8."
+    },
+    {
+        "id":  "slg-mc-109",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "For SSM, the receiver requests a specific source with an IGMPv3 report in ___ mode.",
+        "optionen":  [
+                         "INCLUDE",
+                         "EXCLUDE",
+                         "FILTER",
+                         "SUPPRESS"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "INCLUDE {S} bedeutet: nur Traffic von Quelle S. Daraus erzeugt der LHR direkt einen (S,G)-Join. SUPPRESS und FILTER sind keine IGMPv3-Modi."
+    },
+    {
+        "id":  "slg-mc-110",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which multicast state does a router keep for a bidirectional PIM group?",
+        "optionen":  [
+                         "(S,G) entries up to the RP only",
+                         "Only (S,G) entries",
+                         "(*,G) plus (S,G) for each source",
+                         "Only (*,G) entries"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "BiDir verzichtet auf Register und (S,G)-State. Egal wie viele Quellen senden, es gibt pro Gruppe nur einen (*,G)-Eintrag – ideal für many-to-many."
+    },
+    {
+        "id":  "slg-mc-111",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How is the designated forwarder (DF) elected on a link in bidirectional PIM?",
+        "optionen":  [
+                         "Router with the highest PIM DR priority",
+                         "Router with the best unicast route to the RP",
+                         "Router that first receives the source traffic",
+                         "Router with the lowest IP address on the link"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der DF ist der Router mit dem besten Unicast-Pfad (Metrik) zum RP. Das garantiert, dass alle Router auf dem Link eine konsistente Sicht Richtung RP haben."
+    },
+    {
+        "id":  "slg-mc-112",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On a LAN, R1 has a cost of 10 to the BiDir RP and R2 a cost of 30. A source on the LAN sends to a BiDir group. Which router forwards the traffic toward the RP?",
+        "optionen":  [
+                         "The PIM DR of the LAN",
+                         "Both routers forward a copy",
+                         "R2, because it is the DF",
+                         "R1, because it is the DF"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "R1 hat den besseren Pfad zum RP und ist DF. Nur der DF nimmt Pakete vom Link auf und leitet sie upstream; R2 ignoriert sie, damit keine Duplikate entstehen."
+    },
+    {
+        "id":  "slg-mc-113",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In bidirectional PIM, a router that is not the DF on a link receives a (*,G) join on that link. What does it do?",
+        "optionen":  [
+                         "It forwards the join to the DF",
+                         "It becomes DF for the group",
+                         "It answers with a prune",
+                         "It ignores the join"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Nur der DF ist für Joins auf dem Link zuständig; Downstream-Router adressieren ihre Joins an ihn. Ein Nicht-DF ignoriert den Join."
+    },
+    {
+        "id":  "slg-mc-114",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does bidirectional PIM have no SPT switchover?",
+        "optionen":  [
+                         "The RP sends Register-Stop messages before any switchover",
+                         "IGMPv3 receivers always join the source tree directly instead",
+                         "It keeps no (S,G) state and forwards natively on the (*,G) tree",
+                         "The SPT threshold is set to infinity by IOS for BiDir groups"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "BiDir ist bewusst auf (*,G) beschränkt: Traffic fließt nativ zum RP und den Baum hinab. Ohne (S,G)-Einträge gibt es keinen Source Tree, auf den man umschalten könnte."
+    },
+    {
+        "id":  "slg-mc-115",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege 10.0.0.1 als statischen RP für bidirektionales PIM fest.",
+        "bausteine":  [
+                          "ip",
+                          "pim",
+                          "rp-address",
+                          "10.0.0.1",
+                          "bidir",
+                          "override",
+                          "ssm"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "pim",
+                        "rp-address",
+                        "10.0.0.1",
+                        "bidir"
+                    ],
+        "erklaerung":  "Das Schlüsselwort \u0027bidir\u0027 kennzeichnet die Gruppen dieses RPs als bidirektional. Dynamisch geht das auch per Auto-RP oder BSR (Bidir-Bit)."
+    },
+    {
+        "id":  "slg-mc-116",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "For which combination is a designated forwarder elected in bidirectional PIM?",
+        "optionen":  [
+                         "Per link and per RP",
+                         "Once per PIM domain",
+                         "Per link and per source",
+                         "Per group and per router"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Es gibt pro Link einen DF pro RP; er ist für alle BiDir-Gruppen dieses RPs zuständig. Gewählt wird bei der RP-Discovery; fällt der DF aus, erkennen die anderen das über PIM-Hellos."
+    },
+    {
+        "id":  "slg-mc-117",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which statements about bidirectional PIM are true? (Choose two.)",
+        "optionen":  [
+                         "BiDir groups require IGMPv3 on all receivers",
+                         "The DF is the router with the highest IP address",
+                         "Traffic can reach nearby receivers without passing the RP",
+                         "Sources do not register with the RP",
+                         "Routers keep (S,G) state on the path to the RP"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Der DF leitet Quellverkehr nativ Richtung RP, Register entfallen. Liegt ein Empfänger auf einem Ast unterwegs, wird direkt dorthin verzweigt. DF-Kriterium ist die Metrik zum RP, nicht die IP."
+    },
+    {
+        "id":  "slg-mc-118",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Under which conditions does a bidirectional PIM router forward a packet for group G? (Choose two.)",
+        "optionen":  [
+                         "The router has the lowest IP on the receiving link",
+                         "It arrives on the incoming interface toward the RP",
+                         "The packet was decapsulated from a PIM register",
+                         "The router is DF on the link where it arrived"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Downstream-Pakete kommen über das IIF Richtung RP und werden normal weitergeleitet. Upstream-Pakete von einem Link nimmt nur der DF dieses Links auf. Register gibt es bei BiDir nicht."
+    },
+    {
+        "id":  "slg-mc-119",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which transport do MSDP peers use for their sessions by default?",
+        "optionen":  [
+                         "IP protocol 103",
+                         "TCP port 179",
+                         "UDP port 639",
+                         "TCP port 639"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "MSDP-Peers bauen TCP-Sessions auf Port 639 auf (RFC 3618). 179 ist BGP, IP-Protokoll 103 ist PIM."
+    },
+    {
+        "id":  "slg-mc-120",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "An RP re-originates MSDP source-active messages every ___ seconds while the source is active.",
+        "optionen":  [
+                         "30",
+                         "180",
+                         "60",
+                         "90"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "SA-Nachrichten werden alle 60 Sekunden erneut erzeugt, solange die Quelle sendet. Bei sehr vielen Quellen kann das ein Skalierungsproblem werden."
+    },
+    {
+        "id":  "slg-mc-121",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An RP receives an MSDP SA for (192.0.2.10, 239.7.7.7), but it has no (*,G) state for 239.7.7.7. What does it do?",
+        "optionen":  [
+                         "Sends a Register-Stop to the originating RP",
+                         "Does not join; it forwards the SA to other peers",
+                         "Sends an (S,G) join toward the source anyway",
+                         "Creates a (*,G) entry and floods the traffic"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein (S,G)-Join in die fremde Domäne lohnt sich nur bei eigenen Empfängern ((*,G) mit nicht-leerer OIL). Die SA wird nach erfolgreichem Peer-RPF trotzdem an weitere Peers geflutet."
+    },
+    {
+        "id":  "slg-mc-122",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An MSDP speaker receives an SA from a peer that is not its RPF peer toward the originating RP. What happens?",
+        "optionen":  [
+                         "The SA is dropped by the peer-RPF check",
+                         "The SA is cached but the timer is halved",
+                         "The SA is accepted and flooded to all peers",
+                         "The SA is sent back to the originating RP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Peer-RPF-Check prüft per BGP, ob die SA vom richtigen Nachbarn Richtung Originator-RP kommt. Kopien von anderen Peers werden verworfen – so kreisen SAs nicht im Internet."
+    },
+    {
+        "id":  "slg-mc-123",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "With which multicast routing mode does MSDP work?",
+        "optionen":  [
+                         "PIM dense mode",
+                         "IGMPv3 only",
+                         "IGMP snooping",
+                         "PIM sparse mode"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "MSDP setzt voraus, dass ein RP alle Quellen (über Register) und alle Empfänger (über (*,G)-Joins) seiner Domäne kennt. Das ist nur bei PIM-SM der Fall."
+    },
+    {
+        "id":  "slg-mc-124",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After receiving an SA, the RP in domain E sends an (S,G) join toward a source in domain A. Which path does the join follow?",
+        "optionen":  [
+                         "The interdomain unicast path from BGP/MBGP",
+                         "The shared tree rooted at the remote RP",
+                         "The path of the MSDP TCP sessions",
+                         "The path that the SA message traveled"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "MSDP-Sessions sind nur logische Verbindungen. Der (S,G)-Join folgt dem normalen Interdomain-Routing (BGP bzw. MBGP), und die Daten fließen über den so gebauten Source Tree."
+    },
+    {
+        "id":  "slg-mc-125",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the benefit when an MSDP speaker caches source-active messages?",
+        "optionen":  [
+                         "It lets the RP skip register decapsulation",
+                         "It reduces join latency for new receivers",
+                         "It removes the need for the peer-RPF check",
+                         "It allows SSM groups to use a shared tree"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit SA-Cache kennt der RP aktive Quellen sofort, wenn der erste Empfänger joint, und muss nicht bis zu 60 s auf die nächste SA warten. Auf Cisco IOS ist das Caching standardmäßig aktiv."
+    },
+    {
+        "id":  "slg-mc-126",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus auf dem RP: Baue ein MSDP-Peering zu 192.0.2.2 auf und nutze Loopback0 als Quelladresse der TCP-Session.",
+        "bausteine":  [
+                          "ip",
+                          "msdp",
+                          "peer",
+                          "192.0.2.2",
+                          "connect-source",
+                          "Loopback0",
+                          "originator-id",
+                          "neighbor"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "msdp",
+                        "peer",
+                        "192.0.2.2",
+                        "connect-source",
+                        "Loopback0"
+                    ],
+        "erklaerung":  "\u0027ip msdp peer\u0027 definiert den Peer, \u0027connect-source\u0027 die Quelladresse der TCP-Verbindung (Port 639). originator-id legt dagegen die RP-Adresse in erzeugten SAs fest."
+    },
+    {
+        "id":  "slg-mc-127",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den show-Befehl der Information zu, die er liefert.",
+        "paare":  [
+                      [
+                          "show ip msdp sa-cache",
+                          "Learned (S,G) pairs with originating RP"
+                      ],
+                      [
+                          "show ip pim rp mapping",
+                          "Group ranges and the RP they map to"
+                      ],
+                      [
+                          "show ip rpf 10.1.1.10",
+                          "RPF interface and neighbor for a source"
+                      ],
+                      [
+                          "show ip igmp groups",
+                          "Groups joined by hosts on each interface"
+                      ]
+                  ],
+        "erklaerung":  "sa-cache zeigt per MSDP gelernte Quellen, rp mapping die Gruppen-RP-Zuordnung, show ip rpf den Upstream-Pfad zur Quelle und show ip igmp groups die angemeldeten Empfänger-Gruppen."
+    },
+    {
+        "id":  "slg-mc-128",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Anforderung der passenden Technik zu.",
+        "paare":  [
+                      [
+                          "Explicit join instead of flooding",
+                          "PIM-SM"
+                      ],
+                      [
+                          "Exchange active sources between domains",
+                          "MSDP"
+                      ],
+                      [
+                          "Separate unicast and multicast RPF topology",
+                          "MP-BGP"
+                      ],
+                      [
+                          "Per-source channel without any RP",
+                          "SSM"
+                      ]
+                  ],
+        "erklaerung":  "PIM-SM liefert das explizite Join-Modell, MSDP tauscht Quellen zwischen RPs, MP-BGP trägt eigene Routen für den Multicast-RPF, und SSM kommt ganz ohne RP aus."
+    },
+    {
+        "id":  "slg-mc-129",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An ISP wants its own RP for every group and does not want to depend on an RP operated by a competitor, while still receiving their sources. What enables this?",
+        "optionen":  [
+                         "BiDir-PIM with one RP for all domains",
+                         "MSDP between the RPs of the domains",
+                         "One shared RP in an Internet exchange",
+                         "PIM dense mode between the domains"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit MSDP betreibt jede Domäne ihren eigenen RP; die RPs informieren sich gegenseitig per SA über aktive Quellen. Ein gemeinsamer RP wäre genau die unerwünschte Abhängigkeit."
+    },
+    {
+        "id":  "slg-mc-130",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A receiver has joined (show ip igmp groups is correct). The last-hop router\u0027s (*,G) entry shows RPF neighbor 10.0.0.1 on Gi0/1, but \u0027show ip pim neighbor\u0027 lists no neighbor on Gi0/1. What is the most likely cause?",
+        "optionen":  [
+                         "The receiver uses IGMPv2 instead of IGMPv3 on the LAN",
+                         "PIM is not enabled on the upstream router\u0027s interface",
+                         "IGMP snooping is disabled on the receiver access switch",
+                         "The source sends with a TTL that is larger than needed"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Join muss zum RPF-Nachbarn gehen. Fehlt die PIM-Nachbarschaft auf dem RPF-Interface (z. B. kein \u0027ip pim sparse-mode\u0027 gegenüber), kann der Baum dort nicht aufgebaut werden."
+    },
+    {
+        "id":  "slg-mc-131",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A source sends with TTL 1. Receivers on the same LAN get the stream, receivers two router hops away do not. Why?",
+        "optionen":  [
+                         "PIM sparse mode never forwards packets with TTL 1 to the RP",
+                         "IGMP reports of the remote receivers are blocked by TTL 1",
+                         "The RPF check fails for all packets with a low TTL value",
+                         "The first router drops the packets when the TTL expires"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Jeder Router verringert den TTL; ein Paket mit TTL 1 kann nicht weitergeleitet werden. Die Anwendung muss einen größeren TTL setzen, damit der Stream mehrere Hops überwindet."
+    },
+    {
+        "id":  "slg-mc-132",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A Catalyst switch runs IGMP snooping in VLAN 10. Hosts on ports 1 and 2 joined 239.1.1.1, the multicast router is on port 24, port 5 has no receiver. Where does the switch send traffic for 239.1.1.1?",
+        "optionen":  [
+                         "Ports 1 and 2 only",
+                         "All ports in VLAN 10 except port 5",
+                         "Ports 1, 2 and the mrouter port 24",
+                         "All ports in VLAN 10"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Snooping leitet Gruppenverkehr nur an Ports mit angemeldeten Empfängern und an Multicast-Router-Ports weiter. Port 5 ohne Empfänger bleibt frei."
+    },
+    {
+        "id":  "slg-mc-133",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which protocol do IPv6 hosts use to signal multicast group membership to their router?",
+        "optionen":  [
+                         "PIMv6",
+                         "IGMPv3",
+                         "MLD",
+                         "NDP"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Multicast Listener Discovery (MLD) ist das IPv6-Gegenstück zu IGMP; MLDv2 entspricht IGMPv3 mit Source Filtering. PIM läuft zwischen Routern."
+    },
+    {
+        "id":  "slg-mc-134",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which router is called the last-hop router in a multicast network?",
+        "optionen":  [
+                         "The router with the highest PIM priority",
+                         "The router directly connected to the source",
+                         "The router directly connected to receivers",
+                         "The router that serves as the RP"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Last-Hop-Router hat direkt angeschlossene Empfänger, hört deren IGMP-Reports und trägt die Mitgliedschaft per PIM ins Netz. Der First-Hop-Router hängt an der Quelle."
+    },
+    {
+        "id":  "slg-mc-135",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Bidirectional PIM elects a ___ on every link to forward traffic toward and away from the RP.",
+        "optionen":  [
+                         "designated router",
+                         "bootstrap router",
+                         "IGMP querier",
+                         "designated forwarder"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Designated Forwarder übernimmt bei BiDir die Rolle des DR: Er leitet als einziger Upstream-Traffic Richtung RP und Downstream-Traffic auf den Link."
+    },
+    {
+        "id":  "slg-mc-136",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Auto-RP candidate RPs send their RP-announce messages to the group ___.",
+        "optionen":  [
+                         "224.0.0.39",
+                         "224.0.1.39",
+                         "224.0.1.40",
+                         "224.0.0.13"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Candidate-RPs kündigen sich an 224.0.1.39 (CISCO-RP-ANNOUNCE) an, dort hören die Mapping Agents zu. 224.0.1.40 ist die Discovery-Gruppe der Mapping Agents, 224.0.0.13 All PIM Routers."
+    },
+    {
+        "id":  "slg-mc-137",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Protokollversion ihrem wichtigsten Merkmal zu.",
+        "paare":  [
+                      [
+                          "IGMPv1",
+                          "Query and report only, no leave message"
+                      ],
+                      [
+                          "IGMPv2",
+                          "Leave message and querier election"
+                      ],
+                      [
+                          "IGMPv3",
+                          "Source filtering with INCLUDE and EXCLUDE"
+                      ],
+                      [
+                          "MLDv2",
+                          "IPv6 counterpart of IGMPv3"
+                      ]
+                  ],
+        "erklaerung":  "IGMPv1 erkennt das Verlassen nur per Timeout, IGMPv2 bringt Leave und Querier-Wahl, IGMPv3 das Source Filtering für SSM. MLDv2 bietet dieselben Funktionen für IPv6."
+    },
+    {
+        "id":  "slg-mc-138",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Multicast-Gruppe ihrer Ethernet-MAC-Adresse zu.",
+        "paare":  [
+                      [
+                          "239.1.1.1",
+                          "01:00:5E:01:01:01"
+                      ],
+                      [
+                          "239.128.1.2",
+                          "01:00:5E:00:01:02"
+                      ],
+                      [
+                          "224.255.0.1",
+                          "01:00:5E:7F:00:01"
+                      ],
+                      [
+                          "232.20.30.40",
+                          "01:00:5E:14:1E:28"
+                      ]
+                  ],
+        "erklaerung":  "Vom zweiten Oktett wird das höchste Bit gestrichen (128 wird 0, 255 wird 127 = 0x7F), drittes und viertes Oktett werden direkt in Hex übernommen (20/30/40 = 14/1E/28)."
+    },
+    {
+        "id":  "slg-mc-139",
+        "topic":  "ENCOR-3.3.d",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die PIM-Nachricht ihrem Sender, Empfänger und Transport zu.",
+        "paare":  [
+                      [
+                          "Register",
+                          "First-hop router to RP, unicast"
+                      ],
+                      [
+                          "Register-Stop",
+                          "RP to first-hop router, unicast"
+                      ],
+                      [
+                          "(*,G) Join",
+                          "Last-hop router toward the RP, hop by hop"
+                      ],
+                      [
+                          "Bootstrap",
+                          "BSR to all PIM routers, hop by hop"
+                      ]
+                  ],
+        "erklaerung":  "Register und Register-Stop laufen per Unicast zwischen FHR und RP. Joins und Bootstrap-Nachrichten gehen hop-by-hop an 224.0.0.13, Joins Richtung RP, Bootstraps an alle Router."
+    }
+]
