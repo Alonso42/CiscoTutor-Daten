@@ -269,7 +269,7 @@
                          "Three"
                      ],
         "richtig":  1,
-        "erklaerung":  "Eine SA gilt für ein Protokoll (AH oder ESP) und eine Richtung. Mit AH und ESP in beiden Richtungen sind es also 2 × 2 = 4 IPsec-SAs."
+        "erklaerung":  "Eine SA gilt für ein Protokoll (AH oder ESP) und eine Richtung. Mit AH und ESP in beiden Richtungen sind es also 2 × 2 = 4 IPsec-SAs. (Cisco IOS XE unterstützt die Kombination AH+ESP in einem Transform Set übrigens nicht mehr.)"
     },
     {
         "id":  "slg-vp-017",
@@ -397,7 +397,7 @@
         "topic":  "ENCOR-2.2.b",
         "schwierigkeit":  3,
         "typ":  "single",
-        "frage":  "Two peers have identical ISAKMP policies except for the lifetime: R1 uses \u0027lifetime 3600\u0027, R2 uses \u0027lifetime 86400\u0027. What is the result on Cisco IOS?",
+        "frage":  "Two peers have identical ISAKMP policies except for the lifetime: R1 uses \u0027lifetime 3600\u0027, R2 uses \u0027lifetime 86400\u0027. R1 initiates the IKE negotiation. What is the result on Cisco IOS?",
         "optionen":  [
                          "The IKE SA comes up with the longer lifetime of 86400 seconds",
                          "The IKE SA comes up with the shorter lifetime of 3600 seconds",
@@ -405,7 +405,7 @@
                          "The IKE SA fails, because the lifetime must match exactly"
                      ],
         "richtig":  1,
-        "erklaerung":  "Cisco IOS verlangt keine identische IKE-Lifetime. Die IKE-SA wird mit dem kürzeren der beiden Werte aufgebaut, hier 3600 Sekunden."
+        "erklaerung":  "Cisco IOS verlangt keine identische IKE-Lifetime: Eine Policy passt, wenn die Lifetime des Remote-Peers kleiner oder gleich der lokalen ist, und es gilt der kürzere Wert, hier 3600 Sekunden."
     },
     {
         "id":  "slg-vp-025",
@@ -435,7 +435,7 @@
                          "3DES, SHA, DH group 2"
                      ],
         "richtig":  1,
-        "erklaerung":  "Policy 65508 nutzt PSK mit AES, SHA und DH-Gruppe 5 und bietet damit den besten Schutz der PSK-Defaults. Die anderen Defaults verwenden MD5 und/oder 3DES mit Gruppe 2."
+        "erklaerung":  "Policy 65508 nutzt PSK mit AES, SHA und DH-Gruppe 5 und bietet damit den besten Schutz der PSK-Defaults. Die übrigen PSK-Defaults nutzen AES/MD5/Gruppe 5 (65510) oder 3DES mit Gruppe 2 (65512, 65514)."
     },
     {
         "id":  "slg-vp-027",

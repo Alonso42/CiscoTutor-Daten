@@ -34,7 +34,7 @@
 <g font-size="12" fill="#222">
 <text x="30" y="355">R2 (wird konfiguriert): Tunnel0 = ip unnumbered E0/0, source E0/0, destination 172.18.4.2,</text>
 <text x="30" y="375">tunnel mode ipsec ipv4, tunnel protection ipsec profile MYPROFILE, ip route 10.10.2.0/24 Tunnel0.</text>
-<text x="30" y="400">Erwartung: show crypto ipsec sa → encaps/decaps steigen je Ping um 5; Tunnel0 up/up.</text>
+<text x="30" y="400">Erwartung: show crypto ipsec sa → encaps/decaps steigen je ping-Befehl (5 Echos) um 5; Tunnel0 up/up.</text>
 <text x="30" y="425">R3 ist vorkonfiguriert (spiegelbildlich), R1 routet nur die äußeren Pakete 172.17.1.2 ↔ 172.18.4.2.</text>
 </g>
 </svg>

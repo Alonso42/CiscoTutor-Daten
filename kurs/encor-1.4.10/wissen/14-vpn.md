@@ -38,7 +38,7 @@ Hinweis: Abschnitte mit "(Ergänzung)" stammen nicht aus dem Kurs, sondern aus a
   - **IKE / IKEv2**: Rahmen für Policy-Aushandlung und Schlüsselverwaltung.
   - **AH (Authentication Header)**: Integrität, Ursprungs-Authentisierung, Anti-Replay – **keine Verschlüsselung**; gilt als weitgehend obsolet; auf Cisco ASA nicht unterstützt.
   - **ESP (Encapsulating Security Payload)**: Integrität, Ursprungs-Authentisierung, Anti-Replay **und Vertraulichkeit** (Verschlüsselung) – bevorzugt.
-  - AH und ESP können kombiniert werden; meist reicht eines (ESP).
+  - AH und ESP können laut RFC kombiniert werden; meist reicht eines (ESP). Cisco IOS XE unterstützt die Transform-Set-Kombination AH+ESP nicht (Security for VPNs with IPsec Config Guide).
 - IPsec schützt Pfade zwischen zwei Hosts, zwei Security Gateways (Router/Firewalls) oder Gateway↔Host.
 - Neue Header: Transport Mode → hinter dem IP-Header, vor TCP/UDP. Tunnel Mode → neuer IP-Header ersetzt/umschließt das Original, ganzes Originalpaket verschlüsselt. Cisco-IPsec-VPNs nutzen standardmäßig Tunnel Mode.
 - Protokollnummern (Ergänzung): **ESP = IP-Protokoll 50**, **AH = IP-Protokoll 51**, IKE = **UDP 500**, NAT-T = **UDP 4500**.
@@ -147,7 +147,7 @@ interface Tunnel0
 | 65514 | PSK | 3DES | MD5 | 2 |
 
 - Empfehlungen: MD5 und DH 2 meiden; SHA-2 bevorzugen; DH 14+ für langfristigen Schutz. Default-Policies abschaltbar mit `no crypto isakmp default policy`; erscheinen in `show crypto isakmp policy`, solange keine eigene Policy existiert.
-- Lifetime muss nicht übereinstimmen – es gilt der kürzere Wert. IOS-Default IKE-Lifetime 86400 s (Ergänzung). IPsec-SA-Default 3600 s / 4 608 000 KB (im Lab-Output sichtbar).
+- Lifetime muss nicht übereinstimmen – es gilt der kürzere Wert (Cisco-Doku formal: Match, wenn die Lifetime des Remote-Peers ≤ der lokalen ist; in der Praxis senkt IOS auf den kürzeren Wert). IOS-Default IKE-Lifetime 86400 s (Ergänzung). IPsec-SA-Default 3600 s / 4 608 000 KB (im Lab-Output sichtbar).
 
 Konfiguration (eigene Werte):
 ```

@@ -16,7 +16,7 @@ Status: ✅ fertig · ⏳ in Arbeit · ☐ offen · ⚠ nicht mehr in ENCOR v1.2
 | 11 | Implementing Network Redundancy (FHRP, SSO) | 108–117 | 11-redundancy | ✅ 130 Fragen, geprüft (4 korr., 1 entf.) |
 | 12 | Implementing NAT | 118–126 | 12-nat | ✅ 117 Fragen, geprüft (1 entf.) |
 | 13 | Virtualization Protocols (VRF, GRE) | 127–137 | 13-virtualization | ✅ 120 Fragen, geprüft (2 korr.) |
-| 14 | VPNs and Interfaces (IPsec, VTI) | 138–148 | 14-vpn | ⏳ 122 geschrieben + Wissen + 10 SVGs, Faktencheck läuft |
+| 14 | VPNs and Interfaces (IPsec, VTI) | 138–148 | 14-vpn | ✅ 122 Fragen + Wissen + 10 SVGs, geprüft (3 korr.) |
 | 15 | Wireless Deployment Options | 149–158 | 15-wlan-deploy | ⚠ |
 | 16 | Wireless AP Operation | 159–167 | 16-wlan-ap | ⚠ |
 | 17 | Wireless Client Authentication | 168–183 | 17-wlan-auth | ⚠ |
