@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>LSA-Typen: Erzeuger und Flooding-Bereich</title>
+<defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#222"/></marker>
+</defs>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Wer erzeugt welche LSA – und wie weit reicht sie?</text>
+<!-- Areas -->
+<rect x="150" y="55" width="300" height="200" rx="14" fill="#e8f1ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="300" y="77" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Area 1</text>
+<rect x="450" y="55" width="330" height="200" rx="14" fill="#e8f8ee" stroke="#39c86a" stroke-width="2"/>
+<text x="615" y="77" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Area 0 (Backbone)</text>
+<!-- Extern -->
+<ellipse cx="70" cy="130" rx="58" ry="34" fill="#f7f7f7" stroke="#222"/>
+<text x="70" y="126" text-anchor="middle" font-size="12" fill="#222">externe</text>
+<text x="70" y="142" text-anchor="middle" font-size="12" fill="#222">Domain</text>
+<!-- Router -->
+<circle cx="190" cy="130" r="26" fill="#b08aff"/><text x="190" y="136" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">R3</text>
+<text x="190" y="175" text-anchor="middle" font-size="11" fill="#222">ASBR</text>
+<circle cx="450" cy="130" r="26" fill="#4a9cff"/><text x="450" y="136" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">R2</text>
+<text x="450" y="175" text-anchor="middle" font-size="11" fill="#222">ABR</text>
+<circle cx="740" cy="130" r="26" fill="#39c86a"/><text x="740" y="136" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">R1</text>
+<!-- Pfeile -->
+<g stroke-width="5" marker-end="url(#a)">
+<line x1="220" y1="105" x2="420" y2="105" stroke="#4a9cff"/>
+<line x1="480" y1="105" x2="708" y2="105" stroke="#39c86a"/>
+<line x1="480" y1="150" x2="708" y2="150" stroke="#b08aff"/>
+<line x1="480" y1="185" x2="708" y2="185" stroke="#ffd23f"/>
+<line x1="220" y1="225" x2="708" y2="225" stroke="#ff6b6b"/>
+</g>
+<g font-size="12" fill="#222">
+<text x="250" y="98">Typ 1/2 bleiben in Area 1</text>
+<text x="510" y="98">Typ 1/2 bleiben in Area 0</text>
+<text x="490" y="145">Typ 3: Netze aus Area 1</text>
+<text x="490" y="180">Typ 4: „ASBR R3 via mich“</text>
+<text x="250" y="218">Typ 5: externe Netze von R3, ganze Domain</text>
+</g>
+<!-- Tabelle -->
+<g font-size="12" fill="#222">
+<rect x="20" y="275" width="760" height="24" fill="#4a9cff"/>
+<text x="30" y="292" fill="#fff" font-weight="bold">Typ</text><text x="80" y="292" fill="#fff" font-weight="bold">Name</text><text x="230" y="292" fill="#fff" font-weight="bold">Erzeuger</text><text x="400" y="292" fill="#fff" font-weight="bold">Link-State-ID</text><text x="590" y="292" fill="#fff" font-weight="bold">Route</text>
+<text x="30" y="318">1</text><text x="80" y="318">Router</text><text x="230" y="318">jeder Router je Area</text><text x="400" y="318">RID des Erzeugers</text><text x="590" y="318">O</text>
+<text x="30" y="340">2</text><text x="80" y="340">Network</text><text x="230" y="340">DR (Multiaccess)</text><text x="400" y="340">Interface-IP des DR</text><text x="590" y="340">O</text>
+<text x="30" y="362">3</text><text x="80" y="362">Summary</text><text x="230" y="362">ABR</text><text x="400" y="362">Zielnetz</text><text x="590" y="362">O IA</text>
+<text x="30" y="384">4</text><text x="80" y="384">ASBR Summary</text><text x="230" y="384">ABR</text><text x="400" y="384">RID des ASBR</text><text x="590" y="384">–</text>
+<text x="30" y="406">5</text><text x="80" y="406">AS External</text><text x="230" y="406">ASBR</text><text x="400" y="406">externes Netz</text><text x="590" y="406">O E1 / O E2</text>
+<text x="30" y="428">7</text><text x="80" y="428">NSSA External</text><text x="230" y="428">ASBR in NSSA</text><text x="400" y="428">externes Netz (ABR → Typ 5)</text><text x="590" y="428">O N1 / O N2</text>
+</g>
+<text x="680" y="318" font-size="11" fill="#222">20-Byte-</text>
+<text x="680" y="334" font-size="11" fill="#222">LSA-Header</text>
+</svg>

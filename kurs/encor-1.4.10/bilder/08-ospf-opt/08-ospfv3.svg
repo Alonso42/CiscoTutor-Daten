@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>OSPFv2, OSPFv3 und Address-Families</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Drei OSPF-Varianten im Vergleich</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="50" width="240" height="200" rx="10" fill="#e8f1ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="140" y="75" text-anchor="middle" font-weight="bold">OSPFv2</text>
+<text x="35" y="102" font-family="monospace" font-size="12">router ospf 1</text>
+<text x="35" y="128">routet: IPv4</text>
+<text x="35" y="150">Transport: IPv4</text>
+<text x="35" y="172">network-Befehl oder</text>
+<text x="35" y="190">ip ospf 1 area x</text>
+<text x="35" y="216" font-family="monospace" font-size="11">show ip ospf neighbor</text>
+<text x="35" y="236" font-family="monospace" font-size="11">show ip route ospf</text>
+<rect x="280" y="50" width="240" height="200" rx="10" fill="#f3edff" stroke="#b08aff" stroke-width="2"/>
+<text x="400" y="75" text-anchor="middle" font-weight="bold">OSPFv3 klassisch</text>
+<text x="295" y="102" font-family="monospace" font-size="12">ipv6 router ospf 1</text>
+<text x="295" y="128">routet: nur IPv6</text>
+<text x="295" y="150">Transport: IPv6 Link-Local</text>
+<text x="295" y="172">pro Interface:</text>
+<text x="295" y="190" font-family="monospace" font-size="12">ipv6 ospf 1 area x</text>
+<text x="295" y="216">Router-ID Pflicht ohne</text>
+<text x="295" y="236">aktive IPv4-Adresse</text>
+<rect x="540" y="50" width="240" height="200" rx="10" fill="#e8f8ee" stroke="#39c86a" stroke-width="2"/>
+<text x="660" y="75" text-anchor="middle" font-weight="bold">OSPFv3 mit AF</text>
+<text x="555" y="102" font-family="monospace" font-size="12">router ospfv3 1</text>
+<text x="555" y="128">routet: IPv4 + IPv6</text>
+<text x="555" y="150">Transport: IPv6 Link-Local</text>
+<text x="555" y="172" font-family="monospace" font-size="11">ospfv3 1 ipv6 area x</text>
+<text x="555" y="190" font-family="monospace" font-size="11">ospfv3 1 ipv4 area x</text>
+<text x="555" y="216">IPv4-AF: IPv4-Adresse am</text>
+<text x="555" y="236">Interface nötig</text>
+</g>
+<line x1="260" y1="270" x2="540" y2="270" stroke="#ff6b6b" stroke-width="3" stroke-dasharray="7 5"/>
+<text x="400" y="290" text-anchor="middle" font-size="12" fill="#ff6b6b" font-weight="bold">kein Peering zwischen OSPFv2 und OSPFv3 (auch nicht für IPv4)</text>
+<!-- Instanzen -->
+<rect x="20" y="305" width="370" height="130" rx="10" fill="#fff8d6" stroke="#ffd23f" stroke-width="2"/>
+<g font-size="12" fill="#222">
+<text x="32" y="327" font-weight="bold">Je AF eigene Instanz</text>
+<text x="32" y="349">IPv6 Unicast: Instance-ID 0</text>
+<text x="32" y="369">IPv4 Unicast: Instance-ID 64</text>
+<text x="32" y="391">passive-interface, area range, default-</text>
+<text x="32" y="409">information originate und Kosten je AF</text>
+<text x="32" y="427" font-family="monospace" font-size="11">show ospfv3 neighbor / show ip route ospfv3</text>
+</g>
+<rect x="410" y="305" width="370" height="130" rx="10" fill="#ffecec" stroke="#ff6b6b" stroke-width="2"/>
+<g font-size="12" fill="#222">
+<text x="422" y="327" font-weight="bold">AF-Bit</text>
+<text x="422" y="349">AF-Unterstützung ab IOS 15.1(3)S / 15.2(1)T.</text>
+<text x="422" y="369">Geräte ohne AF-Bit bilden für die</text>
+<text x="422" y="389">IPv4-AF keine Nachbarschaft.</text>
+<text x="422" y="411">Gemeinsam mit v2: Pakettypen 1–5, SPF,</text>
+<text x="422" y="429">Areas, DR/BDR, RID 32 Bit, FF02::5/6</text>
+</g>
+</svg>

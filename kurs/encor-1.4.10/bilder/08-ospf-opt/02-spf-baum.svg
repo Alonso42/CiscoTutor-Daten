@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>SPF-Baum aus Sicht von R1</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">SPF: R1 ist die Wurzel seines eigenen Baums</text>
+<!-- Links -->
+<line x1="120" y1="110" x2="370" y2="110" stroke="#39c86a" stroke-width="5"/>
+<line x1="100" y1="130" x2="100" y2="300" stroke="#bbb" stroke-width="3" stroke-dasharray="7 5"/>
+<line x1="370" y1="130" x2="370" y2="300" stroke="#39c86a" stroke-width="5"/>
+<line x1="120" y1="320" x2="350" y2="320" stroke="#bbb" stroke-width="3" stroke-dasharray="7 5"/>
+<circle cx="100" cy="110" r="26" fill="#ffd23f"/><text x="100" y="116" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">R1</text>
+<circle cx="370" cy="110" r="26" fill="#4a9cff"/><text x="370" y="116" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">R2</text>
+<circle cx="100" cy="320" r="26" fill="#4a9cff"/><text x="100" y="326" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">R3</text>
+<circle cx="370" cy="320" r="26" fill="#4a9cff"/><text x="370" y="326" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">R4</text>
+<g font-size="13" fill="#222" font-weight="bold">
+<text x="235" y="100" text-anchor="middle">10</text>
+<text x="80" y="215" text-anchor="end">20</text>
+<text x="385" y="215">10</text>
+<text x="235" y="340" text-anchor="middle">10</text>
+</g>
+<!-- LANs -->
+<g stroke="#b08aff" stroke-width="3">
+<line x1="396" y1="110" x2="460" y2="110"/>
+<line x1="74" y1="320" x2="30" y2="320"/>
+<line x1="396" y1="320" x2="460" y2="320"/>
+<line x1="100" y1="84" x2="100" y2="55"/>
+</g>
+<g font-size="12" fill="#222">
+<text x="465" y="106">R2-LAN (4)</text>
+<text x="20" y="350">R3-LAN (2)</text>
+<text x="465" y="316">R4-LAN (10)</text>
+<text x="108" y="62">LAN (1)</text>
+</g>
+<text x="235" y="215" text-anchor="middle" font-size="12" fill="#222">grün = SPF-Baum</text>
+<text x="235" y="232" text-anchor="middle" font-size="12" fill="#222">grau = verworfen</text>
+<!-- Tabelle -->
+<g font-size="13" fill="#222">
+<rect x="545" y="60" width="235" height="28" fill="#4a9cff"/>
+<text x="555" y="79" fill="#fff" font-weight="bold">Ziel</text><text x="640" y="79" fill="#fff" font-weight="bold">Weg</text><text x="735" y="79" fill="#fff" font-weight="bold">Kosten</text>
+<text x="555" y="112">R2-LAN</text><text x="640" y="112">R1→R2</text><text x="735" y="112">14</text>
+<text x="555" y="140">R3-LAN</text><text x="640" y="140">R1→R3</text><text x="735" y="140">22</text>
+<text x="555" y="168">R4-LAN</text><text x="640" y="168">R1→R2→R4</text><text x="735" y="168">30</text>
+</g>
+<rect x="545" y="190" width="235" height="150" rx="8" fill="#fff8d6" stroke="#ffd23f" stroke-width="2"/>
+<g font-size="12" fill="#222">
+<text x="555" y="212">R4-LAN über R3:</text>
+<text x="555" y="230">20 + 10 + 10 = 40 → verworfen</text>
+<text x="555" y="256">R3-LAN über R2/R4:</text>
+<text x="555" y="274">10 + 10 + 10 + 2 = 32 → verworfen</text>
+<text x="555" y="300">Kosten = Summe der aus-</text>
+<text x="555" y="318">gehenden Interfaces inkl. Ziel</text>
+</g>
+<rect x="20" y="380" width="760" height="55" rx="8" fill="#f7f7f7" stroke="#222"/>
+<text x="35" y="403" font-size="12" fill="#222">Gleiche LSDB in der Area, aber jeder Router rechnet seinen eigenen Baum. Nur die besten (ECMP: bis 4)</text>
+<text x="35" y="423" font-size="12" fill="#222">Pfade kommen in die RIB; anders als EIGRP gibt es keine vorgerechneten Backup-Pfade – bei Änderungen läuft SPF neu.</text>
+</svg>

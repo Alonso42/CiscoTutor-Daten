@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Default-Route per default-information originate</title>
+<defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#222"/></marker>
+</defs>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Default-Route in OSPF einspeisen</text>
+<ellipse cx="700" cy="110" rx="70" ry="38" fill="#f7f7f7" stroke="#222"/>
+<text x="700" y="115" text-anchor="middle" font-size="13" fill="#222">ISP / Internet</text>
+<circle cx="520" cy="110" r="28" fill="#ffd23f"/><text x="520" y="116" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">GW</text>
+<text x="520" y="160" text-anchor="middle" font-size="12" fill="#222">wird ASBR</text>
+<line x1="548" y1="110" x2="630" y2="110" stroke="#222" stroke-width="3"/>
+<text x="590" y="100" text-anchor="middle" font-size="10" fill="#222">ip route 0.0.0.0/0</text>
+<circle cx="300" cy="110" r="24" fill="#4a9cff"/><text x="300" y="115" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">HQ</text>
+<circle cx="90" cy="110" r="24" fill="#b08aff"/><text x="90" y="115" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">DIST</text>
+<g stroke="#39c86a" stroke-width="3" marker-end="url(#a)">
+<line x1="490" y1="110" x2="330" y2="110"/>
+<line x1="275" y1="110" x2="118" y2="110"/>
+</g>
+<text x="410" y="100" text-anchor="middle" font-size="12" fill="#222">Typ-5-LSA 0.0.0.0/0</text>
+<text x="190" y="100" text-anchor="middle" font-size="12" fill="#222">O*E2, Metrik 1</text>
+<rect x="30" y="185" width="360" height="120" rx="10" fill="#f7f7f7" stroke="#222"/>
+<g font-size="12" fill="#222" font-family="monospace">
+<text x="45" y="208">router ospf 1</text>
+<text x="45" y="228"> default-information originate</text>
+<text x="60" y="248">[always]</text>
+<text x="60" y="266">[metric n] [metric-type 1|2]</text>
+<text x="60" y="284">[route-map NAME]</text>
+</g>
+<rect x="410" y="185" width="360" height="120" rx="10" fill="#e8f8ee" stroke="#39c86a" stroke-width="2"/>
+<g font-size="12" fill="#222">
+<text x="425" y="208" font-weight="bold">ohne always</text>
+<text x="425" y="228">nur wenn GW selbst eine Default-Route</text>
+<text x="425" y="246">in der RIB hat. Fällt die statische</text>
+<text x="425" y="264">Route weg, verschwindet auch die</text>
+<text x="425" y="282">OSPF-Default-Route.</text>
+</g>
+<rect x="30" y="320" width="740" height="110" rx="10" fill="#ffecec" stroke="#ff6b6b" stroke-width="2"/>
+<g font-size="12" fill="#222">
+<text x="45" y="343" font-weight="bold">mit always: Default-Route wird immer annonciert</text>
+<text x="45" y="363">Uplink weg → alle Router schicken weiter Richtung GW → GW verwirft (ICMP unreachable) = Black Hole.</text>
+<text x="45" y="388" font-weight="bold">Flooding</text>
+<text x="45" y="408">Typ 5 erreicht alle normalen Areas, aber keine Stub-/NSSA-Areas (dort eigene Default-Mechanismen).</text>
+<text x="45" y="424">Defaults: E2, Metrik 1 · ECMP nur bei gleichem Typ, gleicher Metrik und gleicher forward metric.</text>
+</g>
+</svg>

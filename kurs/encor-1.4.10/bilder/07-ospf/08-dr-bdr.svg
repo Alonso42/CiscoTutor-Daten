@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>DR und BDR auf einem Multiaccess-Segment</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">DR/BDR: weniger Adjazenzen, zentrales Flooding</text>
+<!-- links: physisch -->
+<text x="130" y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Physisch: ein Segment</text>
+<line x1="30" y1="150" x2="230" y2="150" stroke="#222" stroke-width="4"/>
+<g fill="#4a9cff">
+<circle cx="50" cy="100" r="16"/><circle cx="130" cy="100" r="16"/><circle cx="210" cy="100" r="16"/>
+<circle cx="80" cy="200" r="16"/><circle cx="180" cy="200" r="16"/>
+</g>
+<g stroke="#222" stroke-width="2">
+<line x1="50" y1="116" x2="50" y2="150"/><line x1="130" y1="116" x2="130" y2="150"/><line x1="210" y1="116" x2="210" y2="150"/>
+<line x1="80" y1="150" x2="80" y2="184"/><line x1="180" y1="150" x2="180" y2="184"/>
+</g>
+<text x="130" y="245" text-anchor="middle" font-size="12" fill="#222">Full Mesh wäre n(n−1)/2 = 10</text>
+<!-- Mitte: Adjazenzen -->
+<text x="400" y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">FULL nur zu DR und BDR</text>
+<g stroke="#39c86a" stroke-width="2.5">
+<line x1="360" y1="100" x2="300" y2="200"/><line x1="360" y1="100" x2="400" y2="210"/><line x1="360" y1="100" x2="500" y2="200"/>
+<line x1="450" y1="110" x2="300" y2="200"/><line x1="450" y1="110" x2="400" y2="210"/><line x1="450" y1="110" x2="500" y2="200"/>
+<line x1="360" y1="100" x2="450" y2="110"/>
+</g>
+<g stroke="#bbb" stroke-width="2" stroke-dasharray="5 4">
+<line x1="300" y1="200" x2="400" y2="210"/><line x1="400" y1="210" x2="500" y2="200"/>
+</g>
+<circle cx="360" cy="100" r="22" fill="#39c86a"/><text x="360" y="105" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">DR</text>
+<circle cx="450" cy="110" r="22" fill="#b08aff"/><text x="450" y="115" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">BDR</text>
+<circle cx="300" cy="200" r="18" fill="#4a9cff"/><circle cx="400" cy="210" r="18" fill="#4a9cff"/><circle cx="500" cy="200" r="18" fill="#4a9cff"/>
+<text x="400" y="245" text-anchor="middle" font-size="12" fill="#222">4 + 3 = 7 FULL, DROTHER untereinander 2-WAY</text>
+<!-- rechts: Flooding -->
+<text x="670" y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Update-Fluss</text>
+<g font-size="12" fill="#222">
+<rect x="570" y="80" width="200" height="40" rx="6" fill="#e8f1ff" stroke="#4a9cff"/>
+<text x="580" y="105">1 DROTHER → 224.0.0.6</text>
+<rect x="570" y="130" width="200" height="40" rx="6" fill="#e8f8ee" stroke="#39c86a"/>
+<text x="580" y="155">2 DR → 224.0.0.5 an alle</text>
+<rect x="570" y="180" width="200" height="40" rx="6" fill="#f3edff" stroke="#b08aff"/>
+<text x="580" y="198">BDR hört mit, flutet nicht,</text>
+<text x="580" y="214">übernimmt bei DR-Ausfall</text>
+</g>
+<!-- Wahl -->
+<rect x="20" y="270" width="760" height="165" rx="10" fill="#fff8d6" stroke="#ffd23f" stroke-width="2"/>
+<text x="35" y="295" font-size="14" font-weight="bold" fill="#222">Wahl (am Ende von 2-WAY)</text>
+<g font-size="13" fill="#222">
+<text x="35" y="320">1. höchste Priority (ip ospf priority 0–255 je Interface, Default 1)</text>
+<text x="35" y="342">2. bei Gleichstand höchste Router-ID</text>
+<text x="35" y="364">Priority 0 = nie DR/BDR · DR erzeugt die Typ-2-LSA · gibt es auf broadcast und non-broadcast</text>
+<text x="35" y="386">Nicht präemptiv: neuer „besserer“ Router wird nur DROTHER.</text>
+<text x="35" y="408">DR fällt aus → BDR wird DR, neuer BDR wird gewählt. Neuwahl erzwingen: clear ip ospf process.</text>
+<text x="35" y="428" font-size="12">Lab: R5 (5.5.5.5) DR, R4 BDR → R5 aus: R4 DR, R1 BDR → R5 zurück: DROTHER</text>
+</g>
+</svg>

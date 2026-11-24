@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>LSDB-Synchronisation und OSPF-Paket-Header</title>
+<defs>
+<marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#222"/></marker>
+</defs>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Datenbankaustausch zwischen zwei Nachbarn</text>
+<circle cx="110" cy="70" r="24" fill="#4a9cff"/><text x="110" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">A</text>
+<circle cx="560" cy="70" r="24" fill="#4a9cff"/><text x="560" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">B</text>
+<line x1="110" y1="96" x2="110" y2="290" stroke="#bbb" stroke-width="2"/>
+<line x1="560" y1="96" x2="560" y2="290" stroke="#bbb" stroke-width="2"/>
+<g stroke-width="2.5" marker-end="url(#r)">
+<line x1="114" y1="120" x2="552" y2="120" stroke="#39c86a"/>
+<line x1="556" y1="140" x2="118" y2="140" stroke="#39c86a"/>
+<line x1="114" y1="185" x2="552" y2="185" stroke="#4a9cff"/>
+<line x1="556" y1="230" x2="118" y2="230" stroke="#b08aff"/>
+<line x1="114" y1="275" x2="552" y2="275" stroke="#ffd23f"/>
+</g>
+<g font-size="12" fill="#222" text-anchor="middle">
+<text x="335" y="113">Typ 2 DBD: „meine LSDB“ (nur LSA-Header)</text>
+<text x="335" y="158">Master/Slave: höhere RID = Master, Slave spiegelt DBD-Seq</text>
+<text x="335" y="178">Typ 3 LSR: „schick mir die LSA für 10.1.5.0/24“</text>
+<text x="335" y="223">Typ 4 LSU: komplette LSA</text>
+<text x="335" y="268">Typ 5 LSAck: bestätigt (enthält LSA-Header)</text>
+</g>
+<g font-size="12" fill="#222">
+<text x="590" y="125">EXSTART/EXCHANGE</text>
+<text x="590" y="190">LOADING</text>
+<text x="590" y="235">LOADING</text>
+<text x="590" y="280">→ FULL</text>
+</g>
+<text x="40" y="310" font-size="12" fill="#222">Seq-Nummer im LSA-Header = Aktualität · kein ACK in 5 s → erneut senden (Retransmit)</text>
+<!-- Header -->
+<text x="40" y="345" font-size="14" font-weight="bold" fill="#222">OSPF-Header (alle 5 Typen), direkt in IP, Protokoll 89</text>
+<g font-size="11" fill="#222" text-anchor="middle">
+<rect x="40" y="358" width="70" height="40" fill="#f7f7f7" stroke="#222"/><text x="75" y="383">IP-Header</text>
+<rect x="110" y="358" width="70" height="40" fill="#e8f8ee" stroke="#222"/><text x="145" y="375">Version</text><text x="145" y="390">2 / 3</text>
+<rect x="180" y="358" width="60" height="40" fill="#e8f8ee" stroke="#222"/><text x="210" y="375">Type</text><text x="210" y="390">1–5</text>
+<rect x="240" y="358" width="70" height="40" fill="#e8f8ee" stroke="#222"/><text x="275" y="375">Packet</text><text x="275" y="390">Length</text>
+<rect x="310" y="358" width="80" height="40" fill="#e8f1ff" stroke="#222"/><text x="350" y="383">Router ID</text>
+<rect x="390" y="358" width="70" height="40" fill="#e8f1ff" stroke="#222"/><text x="425" y="383">Area ID</text>
+<rect x="460" y="358" width="75" height="40" fill="#e8f8ee" stroke="#222"/><text x="497" y="383">Checksum</text>
+<rect x="535" y="358" width="80" height="40" fill="#fff8d6" stroke="#222"/><text x="575" y="375">AuType</text><text x="575" y="390">0/1/2</text>
+<rect x="615" y="358" width="85" height="40" fill="#fff8d6" stroke="#222"/><text x="657" y="383">Auth-Daten</text>
+<rect x="700" y="358" width="60" height="40" fill="#f3edff" stroke="#222"/><text x="730" y="383">Daten</text>
+</g>
+<text x="40" y="425" font-size="11" fill="#222">OSPFv2-Header · AuType: 0 = keine, 1 = Klartext, 2 = MD5 · OSPFv3 (Version 3): Instance-ID statt AuType/Auth</text>
+</svg>

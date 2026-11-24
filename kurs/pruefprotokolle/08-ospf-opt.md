@@ -42,3 +42,25 @@ Ergebnis: 0 entfernt, 133 verbleiben. `pruefen.ps1 -Kapitel 08-ospf-opt` → OK 
 - 004: Kappung berechneter Kosten > 65535 auf 65535 nur durch Kurs belegt.
 - 044: Bedeutung der Zahl in Active(x) nicht in Cisco-Doku beschrieben, aber durch zwei Ausgaben konsistent (Komponentenkosten = Wert in Klammern).
 - 021: per-packet bei vom Router erzeugtem Verkehr (process switching) – Kursaussage, plattformabhängig.
+
+## Wissen & Bilder (Checker, 2026-11-24)
+
+Geprüft: wissen/08-ospf-opt.md (alle Faktenaussagen und Rechenbeispiele), bilder/08-ospf-opt/01–09. Alle 9 SVGs wohlgeformt, UTF-8 ohne BOM.
+
+Rechnungen nachgerechnet (alle korrekt): Kostentabelle (Ref. 10^8/10^10/10^11: 64k → 1562/65535/65535, T1 → 64/6476/64766, Ethernet 10/1000/10000 …); SPF-Beispiel 14/22/30 und Alternativen 44/32/40; Discovery 8: 21 → 2001, mit cost 500: 1501/501/1001/1500/2000/2001, fwd 1500 (Default), fwd 2000 bzw. 2500 (BR-Netze); Discovery 9: /21 aus 192.168.16–23, /22 aus 10.33.4–7, [110/21] bei Active(11); Discovery 10: /60 aus 2001:DB8:0:220–22F, 75 → 211.
+
+Korrekturen wissen/08-ospf-opt.md:
+| Stelle | Problem | Änderung |
+|---|---|---|
+| Distribute-List, ACL-Satz | „ein Interface-ACL ändert keine Routing-Updates“ zu pauschal (eine eingehende ACL kann OSPF-Pakete verwerfen) | präzisiert: ausgehende ACLs filtern keinen selbst erzeugten Verkehr; eingehende ACL könnte nur ganze OSPF-Pakete verwerfen, keine einzelnen Routen |
+
+Korrekturen Bilder:
+- 02-spf-baum.svg: Fußzeile zu lang (ragte über Kasten/viewBox) → gekürzt.
+- 03-tuning-lab.svg: GW-Beschriftung überlappte „Area 0 · 172.16.123.0/25“ und ragte aus dem Area-Kasten → zweizeilig unter die Area-Überschrift.
+- 05-summary.svg: „1 × Typ 5: 10.33.4.0/22“ überlappte „bis 10.33.7.0/24“ → unter die Linie verschoben.
+- 06-filter.svg: Fußzeile zu lang (über viewBox) → gekürzt.
+- 09-v3-lab.svg: Beschriftungen Ser2/0 / Kosten und Eth0/1 wurden von den Linien durchkreuzt → verschoben.
+
+Belegt: match ip route-source bei OSPF = Router-ID des LSA-Erzeugers (Advertising Router), nicht Next Hop (Cisco IOS Route-Map-Feature-Guide 12.0S https://www3-realm.cisco.com/en/US/docs/ios/12_0s/feature/guide/routmap.html; networklessons „Route-map matching OSPF router ID“). Summary-Kosten: RFC 1583 3.5 Minimum (IOS-Default compatible rfc1583), RFC 2328 Maximum.
+Offen/unsicher (unverändert): Kappung berechneter Kosten > 65535 auf 65535 nur durch Kurs und Fremdhersteller-Doku (HPE) belegt, Cisco-Doku nennt nur 16-Bit-Feld/ip ospf cost 1–65535; Bedeutung der Zahl in „Active(11)“.
+Fragen: keine auffällig falsch.

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>OSPF Neighbor States und typische Hänger</title>
+<defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#222"/></marker>
+</defs>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Neighbor-States von Down bis Full</text>
+<g font-size="13" fill="#222" text-anchor="middle">
+<rect x="20" y="70" width="100" height="56" rx="8" fill="#f7f7f7" stroke="#222"/>
+<text x="70" y="95" font-weight="bold">DOWN</text><text x="70" y="113" font-size="11">kein Hello</text>
+<rect x="150" y="70" width="100" height="56" rx="8" fill="#e8f1ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="200" y="95" font-weight="bold">INIT</text><text x="200" y="113" font-size="11">eigene RID fehlt</text>
+<rect x="280" y="70" width="100" height="56" rx="8" fill="#e8f1ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="330" y="95" font-weight="bold">2-WAY</text><text x="330" y="113" font-size="11">DR/BDR-Wahl</text>
+<rect x="410" y="70" width="100" height="56" rx="8" fill="#f3edff" stroke="#b08aff" stroke-width="2"/>
+<text x="460" y="95" font-weight="bold">EXSTART</text><text x="460" y="113" font-size="11">Master/Slave</text>
+<rect x="540" y="70" width="100" height="56" rx="8" fill="#f3edff" stroke="#b08aff" stroke-width="2"/>
+<text x="590" y="95" font-weight="bold">EXCHANGE</text><text x="590" y="113" font-size="11">DBDs</text>
+<rect x="670" y="70" width="110" height="56" rx="8" fill="#f3edff" stroke="#b08aff" stroke-width="2"/>
+<text x="725" y="95" font-weight="bold">LOADING</text><text x="725" y="113" font-size="11">LSR / LSU</text>
+<rect x="600" y="175" width="180" height="56" rx="8" fill="#e8f8ee" stroke="#39c86a" stroke-width="3"/>
+<text x="690" y="200" font-weight="bold">FULL</text><text x="690" y="218" font-size="11">LSDBs synchron</text>
+</g>
+<g stroke="#222" stroke-width="2" marker-end="url(#a)">
+<line x1="120" y1="98" x2="148" y2="98"/>
+<line x1="250" y1="98" x2="278" y2="98"/>
+<line x1="380" y1="98" x2="408" y2="98"/>
+<line x1="510" y1="98" x2="538" y2="98"/>
+<line x1="640" y1="98" x2="668" y2="98"/>
+<line x1="725" y1="126" x2="725" y2="173"/>
+</g>
+<!-- Haenger -->
+<g font-size="12" fill="#222">
+<rect x="20" y="260" width="240" height="110" rx="8" fill="#ffecec" stroke="#ff6b6b" stroke-width="2"/>
+<text x="32" y="282" font-weight="bold">Gar kein Nachbar / DOWN</text>
+<text x="32" y="302">Area-ID, Hello/Dead, Auth,</text>
+<text x="32" y="320">Subnetz/Maske, Stub-Flag,</text>
+<text x="32" y="338">passive-interface</text>
+<text x="32" y="358">debug ip ospf hello</text>
+<rect x="280" y="260" width="240" height="110" rx="8" fill="#ffecec" stroke="#ff6b6b" stroke-width="2"/>
+<text x="292" y="282" font-weight="bold">Hängt in INIT</text>
+<text x="292" y="302">Hellos kommen nur in eine</text>
+<text x="292" y="320">Richtung an (ACL, Filter,</text>
+<text x="292" y="338">Multicast-Problem)</text>
+<rect x="540" y="260" width="240" height="110" rx="8" fill="#ffecec" stroke="#ff6b6b" stroke-width="2"/>
+<text x="552" y="282" font-weight="bold">Hängt in EXSTART/EXCHANGE</text>
+<text x="552" y="302">MTU-Mismatch</text>
+<text x="552" y="320">„Nbr … has larger</text>
+<text x="552" y="338">interface MTU“</text>
+</g>
+<rect x="20" y="160" width="540" height="76" rx="8" fill="#fff8d6" stroke="#ffd23f" stroke-width="2"/>
+<g font-size="12" fill="#222">
+<text x="32" y="182" font-weight="bold">2-WAY als Endzustand ist normal</text>
+<text x="32" y="202">zwischen zwei DROTHERs auf Broadcast-/NBMA-Segmenten:</text>
+<text x="32" y="222">FULL nur zu DR und BDR (show ip ospf neighbor: 2WAY/DROTHER)</text>
+</g>
+<text x="20" y="400" font-size="12" fill="#222">ATTEMPT gibt es nur auf NBMA (statische Nachbarn, Unicast-Hellos).</text>
+<text x="20" y="420" font-size="12" fill="#222">Debug: debug ip ospf adj zeigt Wahl, DBD-Flags (0x7 = I+M+MS), „Negotiation Done“, „Synchronized … FULL“.</text>
+</svg>

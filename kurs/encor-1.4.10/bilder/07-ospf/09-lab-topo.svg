@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Discovery 7: Multiarea-Topologie und Kostenrechnung</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Discovery 7: R1 als ABR für drei Areas</text>
+<rect x="20" y="50" width="330" height="250" rx="14" fill="#e8f8ee" stroke="#39c86a" stroke-width="2"/>
+<text x="35" y="72" font-size="14" font-weight="bold" fill="#222">Area 0</text>
+<rect x="440" y="45" width="340" height="120" rx="14" fill="#e8f1ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="765" y="67" text-anchor="end" font-size="14" font-weight="bold" fill="#222">Area 1</text>
+<rect x="440" y="185" width="340" height="120" rx="14" fill="#f3edff" stroke="#b08aff" stroke-width="2"/>
+<text x="765" y="295" text-anchor="end" font-size="14" font-weight="bold" fill="#222">Area 2</text>
+<!-- Segment -->
+<line x1="200" y1="90" x2="200" y2="270" stroke="#222" stroke-width="5"/>
+<text x="210" y="285" font-size="11" fill="#222">172.16.145.0/29</text>
+<line x1="110" y1="120" x2="200" y2="120" stroke="#222" stroke-width="2"/>
+<line x1="110" y1="230" x2="200" y2="230" stroke="#222" stroke-width="2"/>
+<line x1="200" y1="175" x2="370" y2="175" stroke="#222" stroke-width="2"/>
+<circle cx="85" cy="120" r="25" fill="#39c86a"/><text x="85" y="126" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">R4</text>
+<text x="40" y="162" font-size="11" fill="#222">.4 · Lo 192.168.4.1/24</text>
+<circle cx="85" cy="230" r="25" fill="#39c86a"/><text x="85" y="236" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">R5</text>
+<text x="55" y="272" font-size="11" fill="#222">.5</text>
+<circle cx="395" cy="175" r="28" fill="#ffd23f"/><text x="395" y="181" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">R1</text>
+<text x="350" y="222" font-size="11" fill="#222">ABR · Et0/1 .1</text>
+<!-- WAN Links -->
+<line x1="418" y1="160" x2="600" y2="105" stroke="#4a9cff" stroke-width="3"/>
+<line x1="418" y1="192" x2="600" y2="245" stroke="#b08aff" stroke-width="3"/>
+<circle cx="625" cy="100" r="25" fill="#4a9cff"/><text x="625" y="106" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">R2</text>
+<circle cx="625" cy="250" r="25" fill="#b08aff"/><text x="625" y="256" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">R3</text>
+<g font-size="11" fill="#222">
+<text x="440" y="88">S2/0 172.16.12.0/30</text>
+<text x="440" y="104">Serial P2P, Kosten 64</text>
+<text x="660" y="98">Lo 192.168.2.1/24</text>
+<text x="440" y="255">Et0/0 172.16.13.0/30</text>
+<text x="440" y="271">Ethernet, Kosten 10</text>
+<text x="660" y="248">Lo 192.168.3.1/24</text>
+</g>
+<!-- Rechnung -->
+<rect x="20" y="315" width="760" height="125" rx="10" fill="#fff8d6" stroke="#ffd23f" stroke-width="2"/>
+<text x="35" y="338" font-size="14" font-weight="bold" fill="#222">show ip route ospf auf R5 (Kosten = Summe der ausgehenden Interfaces)</text>
+<g font-size="12" fill="#222" font-family="monospace">
+<text x="35" y="362">O IA 172.16.12.0/30 [110/74]  = 10 + 64</text>
+<text x="35" y="382">O IA 192.168.2.1/32 [110/75]  = 10 + 64 + 1 (Loopback als /32)</text>
+<text x="35" y="402">O IA 192.168.3.1/32 [110/21]  = 10 + 10 + 1</text>
+<text x="35" y="422">O    192.168.4.0/24 [110/11]  intra-area (R4-Loopback mit Netztyp point-to-point)</text>
+</g>
+</svg>

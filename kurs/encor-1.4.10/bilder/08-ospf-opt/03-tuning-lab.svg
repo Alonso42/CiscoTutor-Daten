@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Discovery 8: Kosten-Tuning und E2-Routen</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Discovery 8: Kosten-Tuning (Ref. 10000, Ethernet = 1000)</text>
+<!-- Areas -->
+<rect x="250" y="45" width="320" height="105" rx="12" fill="#e8f8ee" stroke="#39c86a" stroke-width="2"/>
+<text x="262" y="65" font-size="13" font-weight="bold" fill="#222">Area 0 · 172.16.123.0/25</text>
+<rect x="20" y="160" width="430" height="150" rx="12" fill="#e8f1ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="32" y="300" font-size="13" font-weight="bold" fill="#222">Area 1</text>
+<rect x="470" y="160" width="310" height="150" rx="12" fill="#f3edff" stroke="#b08aff" stroke-width="2"/>
+<text x="768" y="300" text-anchor="end" font-size="13" font-weight="bold" fill="#222">Area 2</text>
+<!-- Lines -->
+<line x1="300" y1="110" x2="520" y2="110" stroke="#222" stroke-width="4"/>
+<line x1="410" y1="110" x2="410" y2="80" stroke="#222" stroke-width="2"/>
+<line x1="300" y1="110" x2="300" y2="165" stroke="#222" stroke-width="2"/>
+<line x1="520" y1="110" x2="520" y2="165" stroke="#222" stroke-width="2"/>
+<line x1="300" y1="190" x2="110" y2="245" stroke="#ffd23f" stroke-width="5"/>
+<line x1="520" y1="190" x2="130" y2="255" stroke="#39c86a" stroke-width="3"/>
+<line x1="520" y1="190" x2="650" y2="245" stroke="#39c86a" stroke-width="3"/>
+<!-- Router -->
+<circle cx="410" cy="75" r="20" fill="#ffd23f"/><text x="410" y="80" text-anchor="middle" font-size="11" font-weight="bold" fill="#222">GW</text>
+<text x="436" y="82" font-size="11" fill="#222">Lo 192.168.3.3</text><text x="436" y="96" font-size="11" fill="#222">Default-Originator</text>
+<circle cx="300" cy="180" r="22" fill="#4a9cff"/><text x="300" y="185" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">HQ1</text>
+<circle cx="520" cy="180" r="22" fill="#4a9cff"/><text x="520" y="185" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">HQ2</text>
+<circle cx="110" cy="255" r="24" fill="#b08aff"/><text x="110" y="260" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">DIST</text>
+<circle cx="670" cy="255" r="24" fill="#b08aff"/><text x="670" y="260" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">BR</text>
+<text x="700" y="240" font-size="11" fill="#222">ASBR</text>
+<text x="700" y="256" font-size="11" fill="#222">10.x/24 E2</text>
+<g font-size="12" font-weight="bold">
+<text x="150" y="205" fill="#222">cost 500</text>
+<text x="300" y="240" fill="#39c86a">1000</text>
+<text x="580" y="210" fill="#39c86a">1000</text>
+<text x="330" y="130" fill="#39c86a">1000</text>
+<text x="465" y="130" fill="#39c86a">1000</text>
+</g>
+<!-- Tabelle -->
+<g font-size="12" fill="#222">
+<rect x="20" y="320" width="760" height="24" fill="#4a9cff"/>
+<text x="30" y="337" fill="#fff" font-weight="bold">Ziel von DIST</text><text x="220" y="337" fill="#fff" font-weight="bold">vorher (ECMP)</text><text x="370" y="337" fill="#fff" font-weight="bold">nach ip ospf cost 500</text><text x="580" y="337" fill="#fff" font-weight="bold">warum</text>
+<text x="30" y="362">GW-Loopback</text><text x="220" y="362">2001 (beide)</text><text x="370" y="362">1501 nur via HQ1</text><text x="580" y="362">500 + 1000 + 1</text>
+<text x="30" y="384">0.0.0.0/0 (E2, Metrik 1)</text><text x="220" y="384">fwd 2000 (beide)</text><text x="370" y="384">fwd 1500 via HQ1</text><text x="580" y="384">forward metric zu GW</text>
+<text x="30" y="406">10.x/24 von BR (E2, 20)</text><text x="220" y="406">fwd 2000 via HQ2</text><text x="370" y="406">bleibt via HQ2</text><text x="580" y="406">via HQ1 wären es 2500</text>
+</g>
+<text x="20" y="435" font-size="12" fill="#222">E2: Metrik bleibt überall gleich; bei Gleichstand entscheidet die forward metric (Kosten bis zum ASBR).</text>
+</svg>

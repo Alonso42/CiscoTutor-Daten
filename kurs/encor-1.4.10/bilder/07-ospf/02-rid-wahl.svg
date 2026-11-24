@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Prozess-ID und Wahl der Router-ID</title>
+<defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#222"/></marker>
+</defs>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Prozess-ID lokal, Router-ID eindeutig</text>
+<!-- Teil 1 -->
+<line x1="110" y1="110" x2="330" y2="110" stroke="#39c86a" stroke-width="4"/>
+<circle cx="80" cy="110" r="30" fill="#4a9cff"/><text x="80" y="116" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">R1</text>
+<circle cx="360" cy="110" r="30" fill="#4a9cff"/><text x="360" y="116" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">R2</text>
+<text x="80" y="162" text-anchor="middle" font-size="12" fill="#222">router ospf 1</text>
+<text x="360" y="162" text-anchor="middle" font-size="12" fill="#222">router ospf 10</text>
+<text x="220" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#39c86a">Nachbarn: FULL</text>
+<text x="220" y="190" text-anchor="middle" font-size="12" fill="#222">Die Prozess-ID verlässt den Router nie.</text>
+<text x="220" y="208" text-anchor="middle" font-size="12" fill="#222">Mehrere Prozesse: Austausch nur per Redistribution.</text>
+<!-- Teil 2 -->
+<text x="590" y="70" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">Router-ID beim Prozessstart</text>
+<g font-size="13" fill="#222">
+<rect x="450" y="85" width="280" height="44" rx="8" fill="#e8f8ee" stroke="#39c86a" stroke-width="2"/>
+<text x="465" y="112">1  router-id x.x.x.x (Best Practice)</text>
+<rect x="450" y="149" width="280" height="44" rx="8" fill="#e8f1ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="465" y="176">2  höchste IP eines aktiven Loopbacks</text>
+<rect x="450" y="213" width="280" height="44" rx="8" fill="#f3edff" stroke="#b08aff" stroke-width="2"/>
+<text x="465" y="234">3  höchste IP eines aktiven</text>
+<text x="465" y="250">    physischen Interfaces</text>
+<rect x="450" y="277" width="280" height="44" rx="8" fill="#ffecec" stroke="#ff6b6b" stroke-width="2"/>
+<text x="465" y="304">keine IP auf up/up → kein Start</text>
+</g>
+<g stroke="#222" stroke-width="2" marker-end="url(#a)">
+<line x1="590" y1="129" x2="590" y2="147"/>
+<line x1="590" y1="193" x2="590" y2="211"/>
+<line x1="590" y1="257" x2="590" y2="275"/>
+</g>
+<text x="745" y="170" font-size="11" fill="#222">sonst</text>
+<text x="745" y="234" font-size="11" fill="#222">sonst</text>
+<!-- Merkkasten -->
+<rect x="30" y="250" width="380" height="180" rx="10" fill="#fff8d6" stroke="#ffd23f" stroke-width="2"/>
+<g font-size="13" fill="#222">
+<text x="45" y="275" font-weight="bold">Wichtig</text>
+<text x="45" y="298">• 32 Bit im IP-Format, muss nicht erreichbar sein</text>
+<text x="45" y="320">• neue höhere IP ändert die RID nicht</text>
+<text x="45" y="342">• neuer router-id-Befehl wirkt erst nach</text>
+<text x="60" y="360" font-family="monospace">clear ip ospf process</text>
+<text x="45" y="382">• RID-Wechsel = alle Adjazenzen neu</text>
+<text x="45" y="404">• Tipp: Loopback 10.255.255.X/32 = RID</text>
+</g>
+<rect x="450" y="345" width="330" height="85" rx="10" fill="#f7f7f7" stroke="#222"/>
+<g font-size="12" fill="#222" font-family="monospace">
+<text x="462" y="368">interface Loopback0</text>
+<text x="462" y="386"> ip address 10.255.255.1 255.255.255.255</text>
+<text x="462" y="404">router ospf 1</text>
+<text x="462" y="422"> router-id 10.255.255.1</text>
+</g>
+</svg>

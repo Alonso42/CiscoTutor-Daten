@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Summarization am ABR und am ASBR</title>
+<defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#222"/></marker>
+</defs>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Summarization nur an ABR (Typ 3) und ASBR (Typ 5)</text>
+<rect x="20" y="50" width="250" height="230" rx="12" fill="#e8f1ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="32" y="72" font-size="13" font-weight="bold" fill="#222">Area 1</text>
+<rect x="270" y="50" width="260" height="230" rx="12" fill="#e8f8ee" stroke="#39c86a" stroke-width="2"/>
+<text x="400" y="72" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">Area 0</text>
+<rect x="530" y="50" width="250" height="230" rx="12" fill="#f3edff" stroke="#b08aff" stroke-width="2"/>
+<text x="768" y="72" text-anchor="end" font-size="13" font-weight="bold" fill="#222">Area 2</text>
+<circle cx="90" cy="150" r="24" fill="#4a9cff"/><text x="90" y="155" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">R2</text>
+<g font-size="10" fill="#222"><text x="30" y="195">192.168.16.0/24</text><text x="30" y="209">192.168.17.0/24</text><text x="30" y="223">… bis</text><text x="30" y="237">192.168.23.0/24</text></g>
+<circle cx="270" cy="150" r="26" fill="#ffd23f"/><text x="270" y="155" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">R1</text>
+<text x="270" y="195" text-anchor="middle" font-size="11" fill="#222">ABR</text>
+<circle cx="440" cy="150" r="24" fill="#39c86a"/><text x="440" y="155" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">R4</text>
+<circle cx="680" cy="150" r="24" fill="#b08aff"/><text x="680" y="155" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">R3</text>
+<text x="680" y="195" text-anchor="middle" font-size="11" fill="#222">ASBR</text>
+<g font-size="10" fill="#222"><text x="610" y="220">extern: 10.33.4.0/24</text><text x="610" y="234">bis 10.33.7.0/24</text></g>
+<line x1="114" y1="150" x2="244" y2="150" stroke="#222" stroke-width="2"/>
+<line x1="296" y1="150" x2="416" y2="150" stroke="#222" stroke-width="2"/>
+<line x1="296" y1="160" x2="656" y2="160" stroke="#222" stroke-width="1" stroke-dasharray="4 3"/>
+<g stroke-width="3" marker-end="url(#a)">
+<line x1="300" y1="115" x2="420" y2="115" stroke="#4a9cff"/>
+<line x1="650" y1="245" x2="460" y2="245" stroke="#b08aff"/>
+</g>
+<text x="360" y="108" text-anchor="middle" font-size="11" fill="#222">1 × Typ 3: 192.168.16.0/21</text>
+<text x="555" y="262" text-anchor="middle" font-size="11" fill="#222">1 × Typ 5: 10.33.4.0/22</text>
+<g font-size="11" fill="#222" font-family="monospace">
+<rect x="20" y="295" width="370" height="70" rx="8" fill="#f7f7f7" stroke="#222"/>
+<text x="30" y="315">R1(config-router)#</text>
+<text x="30" y="333"> area 1 range 192.168.16.0 255.255.248.0</text>
+<text x="30" y="355" font-family="sans-serif">Area-ID = Area der Teilnetze</text>
+<rect x="410" y="295" width="370" height="70" rx="8" fill="#f7f7f7" stroke="#222"/>
+<text x="420" y="315">R3(config-router)#</text>
+<text x="420" y="333"> summary-address 10.33.4.0 255.255.252.0</text>
+<text x="420" y="355" font-family="sans-serif">für redistributierte Netze</text>
+</g>
+<rect x="20" y="375" width="760" height="65" rx="8" fill="#fff8d6" stroke="#ffd23f" stroke-width="2"/>
+<g font-size="12" fill="#222">
+<text x="32" y="395">• Summierender Router legt Discard-Route an: „192.168.16.0/21 is a summary, Null0“ (verhindert Schleifen)</text>
+<text x="32" y="413">• Nur aktiv, solange mind. ein Teilnetz existiert · IOS-Default (compatible rfc1583): niedrigste Teilnetz-Kosten</text>
+<text x="32" y="431">• RFC 2328 / no compatible rfc1583: höchste Kosten · eine Metrik, evtl. suboptimale Pfade, Longest Match gewinnt</text>
+</g>
+</svg>

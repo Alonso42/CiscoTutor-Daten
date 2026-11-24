@@ -51,3 +51,25 @@
 
 ## Nachtrag (Checker 08-ospf-opt)
 - slg-os-109: Erklärung zur Summary-Metrik präzisiert: Cisco IOS Default 'compatible rfc1583' = niedrigste Komponentenkosten (RFC 1583 Abschn. 3.5), RFC 2328 bzw. 'no compatible rfc1583' = höchste. Quelle: Cisco OSPF Command Reference 'compatible rfc1583', RFC 1583/2328 Abschn. 3.5.
+
+## Wissen & Bilder (Checker, 2026-11-24)
+
+Geprüft: wissen/07-ospf.md (alle Faktenaussagen, Tabellen, Rechenbeispiele), bilder/07-ospf/01–09 (Beschriftungen, [xml], Überlappung, viewBox). Alle 9 SVGs wohlgeformt, UTF-8 ohne BOM, kein Text außerhalb der viewBox.
+
+Rechnungen nachgerechnet (korrekt): R5-Routen 74/20/75/21/11; Area 300 = 0.0.1.44; n = 5 → 10 vs. 7 Adjazenzen; /29-Wildcard 0.0.0.7.
+
+Korrekturen wissen/07-ospf.md:
+| Stelle | Problem | Änderung | Quelle |
+|---|---|---|---|
+| Nachbarschaften (MTU) + Fehlerliste Nr. 7 | Behauptung „die Meldung ‚has smaller interface MTU‘ ist nicht belegt“ falsch | Beide Varianten dokumentiert: „larger“ auf dem Router mit kleinerer MTU, „smaller“ auf dem mit größerer MTU; Kursabbildung insoweit korrekt | Cisco Tech Note 116119 https://www.cisco.com/c/en/us/support/docs/ip/open-shortest-path-first-ospf/116119-technote-ospf-mtu-00.html |
+| Fehlerliste Nr. 9 | „RFC 3101 sieht anderes vor“ zu vage | präzisiert: RFC 3101 2.4 verlangt Default vom NSSA-ABR (Typ 7, bei no-summary Typ 3), IOS nur mit default-information-originate | https://www.rfc-editor.org/rfc/rfc3101.txt |
+| OSPF-Paket-Header | Header mit AuType als „für v2/v3“ dargestellt | Ergänzung: OSPFv3-Header ohne Auth-Felder, mit Instance ID (RFC 5340 A.3.1), Auth via IPsec/Trailer (RFC 7166) | https://www.rfc-editor.org/rfc/rfc5340 |
+
+Korrekturen Bilder:
+- 04-dbd-ablauf.svg: Fußzeile – Header als OSPFv2 gekennzeichnet, OSPFv3 mit Instance-ID statt AuType/Auth.
+- 07-rollen.svg: Labels „interne Backbone-Router“ und beide „ABR“ lagen auf Verbindungslinien → verschoben.
+- 09-lab-topo.svg: Link-Beschriftungen S2/0 und Et0/0 wurden von den Linien R1–R2/R1–R3 durchkreuzt → über bzw. unter die Linie verschoben.
+- 02-rid-wahl.svg: Text „keine IP auf up/up → …“ ragte über den Kasten → gekürzt („kein Start“).
+
+Belegt/unverändert: Summary-Kosten IOS-Default Minimum (RFC 1583 3.5 „minimum cost to any of the networks“, https://www.rfc-editor.org/rfc/rfc1583.txt), RFC 2328 Maximum; Logmeldung „Nbr … has larger interface MTU“ (Tech Note 119384/116119).
+Fragen: keine auffällig falsch (slg-os-019/020/127 konsistent mit beiden MTU-Meldungen).
