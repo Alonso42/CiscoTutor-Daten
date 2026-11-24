@@ -1,0 +1,2247 @@
+[
+    {
+        "id":  "slg-rf-001",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An AP radio transmits on 5-GHz channel 36 (center frequency 5.180 GHz). What is the approximate wavelength of this signal?",
+        "optionen":  [
+                         "About 5.8 cm",
+                         "About 1.7 cm",
+                         "About 12.3 cm",
+                         "About 58 cm"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "λ = c / f = 300.000.000 m/s / 5.180.000.000 Hz ≈ 0,058 m = 5,8 cm. Merkhilfe: λ[cm] ≈ 30 / f[GHz]; 12,3 cm wäre 2,4 GHz (Kanal 6)."
+    },
+    {
+        "id":  "slg-rf-002",
+        "topic":  "CCNA2-1.5.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A radio signal has a wavelength of 5 mm. What is its approximate frequency?",
+        "optionen":  [
+                         "About 1.5 GHz",
+                         "About 60 GHz",
+                         "About 600 MHz",
+                         "About 6 GHz"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "f = c / λ = 3 × 10^8 m/s / 0,005 m = 6 × 10^10 Hz = 60 GHz. Je kürzer die Wellenlänge, desto höher die Frequenz; 6 GHz hätte etwa 5 cm."
+    },
+    {
+        "id":  "slg-rf-004",
+        "topic":  "CCNA2-1.5.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "A signal that completes one billion cycles per second has a frequency of 1 ___.",
+        "optionen":  [
+                         "MHz",
+                         "kHz",
+                         "THz",
+                         "GHz"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "1 GHz = 10^9 Hz (eine Milliarde Zyklen pro Sekunde), 1 MHz = 10^6 Hz. WLAN arbeitet im 2,4-, 5- und 6-GHz-Bereich."
+    },
+    {
+        "id":  "slg-rf-005",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two APs use the same transmit power and the same antenna gain, one on 2.4 GHz and one on 5 GHz. Why does the 2.4-GHz cell usually reach farther?",
+        "optionen":  [
+                         "Lower frequencies suffer less free space path loss and less absorption",
+                         "5-GHz radios must use DFS, which reduces the transmit power by half",
+                         "The 2.4-GHz band allows four times higher EIRP in all regulatory domains",
+                         "2.4-GHz signals use DSSS, which always has a better receiver sensitivity"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bei gleicher Leistung und isotroper Betrachtung steigt der Freiraumverlust mit der Frequenz (ca. 6,5 dB mehr bei 5,2 statt 2,4 GHz), und Materialien absorbieren höhere Frequenzen stärker. Deshalb sind 5- und 6-GHz-Zellen kleiner."
+    },
+    {
+        "id":  "slg-rf-006",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer replaces a 2-dBi antenna with an 8-dBi antenna but leaves the transmitter output unchanged. The signal in the main direction becomes stronger. What kind of change is this?",
+        "optionen":  [
+                         "Passive amplification, because the antenna focuses the same energy",
+                         "Attenuation, because the narrower beam loses part of the energy",
+                         "Active amplification, because the antenna adds 6 dB of energy",
+                         "Modulation, because the antenna changes the amplitude of each symbol"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Eine Antenne ist passiv: Sie erzeugt keine zusätzliche Energie, sondern bündelt sie in eine Richtung (passive Verstärkung). Aktive Verstärkung wäre eine höhere Senderleistung."
+    },
+    {
+        "id":  "slg-rf-007",
+        "topic":  "CCNA2-1.5.b",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jede Welleneigenschaft ihrer Beschreibung zu.",
+        "paare":  [
+                      [
+                          "Amplitude",
+                          "Strength or energy level of the wave"
+                      ],
+                      [
+                          "Frequency",
+                          "Number of cycles per second, measured in hertz"
+                      ],
+                      [
+                          "Wavelength",
+                          "Physical distance covered during one cycle"
+                      ],
+                      [
+                          "Phase",
+                          "Position of the wave within its cycle, in degrees"
+                      ]
+                  ],
+        "erklaerung":  "Amplitude = Stärke, Frequenz = Zyklen pro Sekunde (Hz), Wellenlänge = Strecke pro Zyklus (Meter), Phase = Lage im Zyklus (0–360°). Modulation verändert Amplitude, Frequenz oder Phase, um Daten zu übertragen."
+    },
+    {
+        "id":  "slg-rf-009",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A client receives two unrelated (uncorrelated) interfering signals on its channel, each at -70 dBm. What is the total interference power?",
+        "optionen":  [
+                         "About -67 dBm",
+                         "About -73 dBm",
+                         "About -35 dBm",
+                         "About -140 dBm"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Leistungen addiert man in mW, nicht in dBm: zwei gleich starke, unkorrelierte Leistungen ergeben die doppelte Leistung, also +3 dB → -67 dBm. -140 dBm entstünde durch falsches Addieren der dBm-Werte. (Phasengleiche Kopien desselben Signals addieren dagegen ihre Amplituden: bis zu +6 dB.)"
+    },
+    {
+        "id":  "slg-rf-010",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In free space, a client 10 m from an AP receives -50 dBm. The client moves to 20 m from the AP. What is the expected received signal?",
+        "optionen":  [
+                         "About -56 dBm",
+                         "About -60 dBm",
+                         "About -53 dBm",
+                         "About -100 dBm"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Freiraumverlust wächst mit dem Quadrat der Entfernung: doppelte Distanz = vierfacher Verlust = rund 6 dB (20·log10(2) ≈ 6,02). -50 dBm - 6 dB ≈ -56 dBm."
+    },
+    {
+        "id":  "slg-rf-011",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In free space, a receiver 10 m from an AP measures -45 dBm. Without obstacles, what does it measure at 100 m from the AP?",
+        "optionen":  [
+                         "About -85 dBm",
+                         "About -450 dBm",
+                         "About -55 dBm",
+                         "About -65 dBm"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Zehnfache Entfernung bedeutet 100-fachen Verlust, also 20·log10(10) = 20 dB mehr Freiraumdämpfung. -45 dBm - 20 dB = -65 dBm."
+    },
+    {
+        "id":  "slg-rf-013",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two rooftop antennas have a perfectly clear path with no obstacles, yet the received signal is many orders of magnitude weaker than the transmitted signal. What is the main reason?",
+        "optionen":  [
+                         "The energy spreads over an ever larger area and the receiving antenna captures only a small part",
+                         "The signal is reflected by the ground and arrives out of phase with the direct signal",
+                         "Air molecules absorb most of the energy, especially oxygen at 2.4 GHz and 5 GHz",
+                         "Electromagnetic waves slow down with distance, so less energy arrives per second"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Free Space Path Loss entsteht durch die Ausbreitung der Energie über eine immer größere Kugeloberfläche, von der die Empfangsantenne nur einen kleinen Teil auffängt. Es braucht dafür kein Hindernis; die Geschwindigkeit bleibt konstant."
+    },
+    {
+        "id":  "slg-rf-014",
+        "topic":  "CCNA2-1.5.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In a warehouse with tall metal racks, clients receive several copies of the same signal at slightly different times. Which RF behavior creates these copies?",
+        "optionen":  [
+                         "Absorption",
+                         "Reflection",
+                         "Diffraction",
+                         "Refraction"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Große, glatte Metallflächen reflektieren die Welle; die reflektierten Kopien laufen längere Wege und treffen zeitversetzt ein (Multipath). Absorption würde das Signal nur abschwächen."
+    },
+    {
+        "id":  "slg-rf-016",
+        "topic":  "CCNA2-1.5.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A signal hits a chain-link fence and dense foliage and is spread into many weak signals in different directions. Which RF behavior is this?",
+        "optionen":  [
+                         "Scattering",
+                         "Refraction",
+                         "Amplification",
+                         "Diffraction"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Streuung (Scattering) entsteht an rauen, unebenen Oberflächen oder vielen kleinen Objekten (Zaun, Laub, Staub); die Energie wird in viele schwache Teilwellen zerlegt. Beugung wäre das Herumbiegen um eine Kante."
+    },
+    {
+        "id":  "slg-rf-017",
+        "topic":  "CCNA2-1.5.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Behind the corner of a large building, a client still receives a weak signal although there is no line of sight to the AP. Which RF behavior explains this?",
+        "optionen":  [
+                         "Polarization",
+                         "Attenuation",
+                         "Diffraction",
+                         "Absorption"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei der Beugung (Diffraction) biegt sich die Welle um die Kante eines Hindernisses. Direkt dahinter entsteht ein RF-Schatten mit schwächerem Signal, aber nicht zwingend ein Totalausfall."
+    },
+    {
+        "id":  "slg-rf-018",
+        "topic":  "CCNA2-1.5.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedem RF-Phänomen die typische Ursache zu.",
+        "paare":  [
+                      [
+                          "Reflection",
+                          "Smooth metal surface bounces the wave back"
+                      ],
+                      [
+                          "Absorption",
+                          "Water and human bodies turn energy into heat"
+                      ],
+                      [
+                          "Scattering",
+                          "Rough surface splits the wave into many weak waves"
+                      ],
+                      [
+                          "Diffraction",
+                          "Wave bends around the edge of an obstacle"
+                      ]
+                  ],
+        "erklaerung":  "Reflexion an glatten Flächen (Metall), Absorption durch Wasser/Menschen (Dämpfung), Streuung an rauen Flächen oder Partikeln, Beugung an Kanten (RF-Schatten). Reflexion ist die Hauptursache für Multipath."
+    },
+    {
+        "id":  "slg-rf-019",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In a factory hall full of metal machines, old 802.11g scanners show good RSSI but many retries, while new 802.11ac laptops in the same spot work well. What is the most likely explanation?",
+        "optionen":  [
+                         "The scanners transmit with too much power, which saturates the AP receiver in metal halls",
+                         "Multipath corrupts symbols for the single-antenna scanners, while MIMO devices can benefit from it",
+                         "The laptops use 5 GHz, which is not reflected by metal surfaces, unlike 2.4-GHz signals",
+                         "The scanners use DSSS, which cannot pass through metal, while OFDM signals can penetrate it"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Reflektierte, zeitversetzte Kopien verursachen bei SISO-Geräten Fading und Inter-Symbol-Interferenz trotz gutem RSSI. MIMO-Geräte (MRC, Spatial Multiplexing) nutzen die unterschiedlichen Pfade sogar. Metall reflektiert beide Bänder; 802.11g nutzt OFDM, nicht DSSS."
+    },
+    {
+        "id":  "slg-rf-020",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three effects can multipath have on a single-antenna (SISO) receiver? (Choose three.)",
+        "optionen":  [
+                         "An automatic change of the channel width by the AP",
+                         "Nulling: copies cancel each other almost completely",
+                         "Data corruption caused by delayed copies of earlier symbols",
+                         "Downfade: the combined signal is weaker than the direct signal",
+                         "A permanently lower noise floor on the affected channel"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Multipath kann das Signal verstärken (Upfade), abschwächen (Downfade), auslöschen (Nulling) oder durch Laufzeitunterschiede Symbole verfälschen (ISI). Rauschpegel und Kanalbreite ändern sich dadurch nicht."
+    },
+    {
+        "id":  "slg-rf-021",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A 2-km point-to-point bridge has clear visual line of sight, but treetops reach into the lower half of the space around the beam. The link drops frequently. What is the cause?",
+        "optionen":  [
+                         "The distance exceeds the maximum range of OFDM, which is about 1 km",
+                         "The first Fresnel zone is obstructed, so less than 60 percent of it is clear",
+                         "The EIRP is too high, so the receiver is saturated by the strong signal",
+                         "The antennas are cross-polarized, because trees rotate the polarization"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Für eine stabile Funkstrecke reicht optische Sicht nicht; die erste Fresnel-Zone (Ellipse um die Sichtlinie) sollte zu mindestens 60 % frei sein. Ragen Bäume hinein, entstehen Beugung und Auslöschungen."
+    },
+    {
+        "id":  "slg-rf-022",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The radius of the first Fresnel zone at the midpoint of a link is about 8.66 × √(D[km] / f[GHz]) meters. What is this radius for a 2-km link on 5.8 GHz?",
+        "optionen":  [
+                         "About 0.5 m",
+                         "About 5.1 m",
+                         "About 1.5 m",
+                         "About 12.5 m"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "8,66 × √(2 / 5,8) = 8,66 × 0,587 ≈ 5,1 m. Mindestens 60 % davon (ca. 3 m) müssen frei sein; längere Strecken und niedrigere Frequenzen vergrößern die Zone."
+    },
+    {
+        "id":  "slg-rf-023",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "For a reliable outdoor bridge link, at least ___ of the first Fresnel zone should be free of obstructions.",
+        "optionen":  [
+                         "60 percent",
+                         "20 percent",
+                         "40 percent",
+                         "10 percent"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Als Faustregel darf höchstens ca. 40 % der ersten Fresnel-Zone blockiert sein, also mindestens 60 % frei. Darüber steigt der Verlust durch Beugung stark an."
+    },
+    {
+        "id":  "slg-rf-024",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The noise floor in a meeting room is -92 dBm. The design requires an SNR of at least 25 dB. What is the minimum RSSI a client needs there?",
+        "optionen":  [
+                         "-77 dBm",
+                         "-25 dBm",
+                         "-117 dBm",
+                         "-67 dBm"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "SNR = RSSI - Noise → RSSI = Noise + SNR = -92 dBm + 25 dB = -67 dBm. Ein schwächeres Signal (z. B. -77 dBm) ergäbe nur 15 dB SNR."
+    },
+    {
+        "id":  "slg-rf-025",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A client receives its AP at -65 dBm. The noise floor is -95 dBm, and a neighboring interferer adds -80 dBm on the same channel. What is the approximate SINR?",
+        "optionen":  [
+                         "About 5 dB",
+                         "About 15 dB",
+                         "About 30 dB",
+                         "About 45 dB"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Rauschen und Interferenz werden in mW addiert: 10^-9,5 + 10^-8 mW ≈ -79,9 dBm (die stärkere Störung dominiert). SINR = -65 - (-79,9) ≈ 15 dB; das ist weit unter den 25 dB, die der Kurs für Voice fordert."
+    },
+    {
+        "id":  "slg-rf-026",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "At the same spot, laptop A reports an RSSI grade of 70 and laptop B from another vendor reports 45. Why can the engineer not conclude that laptop A receives a stronger signal?",
+        "optionen":  [
+                         "RSSI is measured in dBi, which depends on the laptop\u0027s antenna gain",
+                         "RSSI always includes the noise floor, which differs between laptops",
+                         "RSSI grades use vendor-specific scales that map differently to dBm",
+                         "RSSI grades are only valid for 2.4 GHz and cannot be compared at 5 GHz"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der RSSI-Rohwert ist herstellerabhängig (z. B. 0–100 oder 0–60), und jeder Hersteller ordnet ihm eigene dBm-Werte zu. Erst ein standardisierter Wert wie RCPI (802.11k) oder ein kalibrierter dBm-Wert ist vergleichbar."
+    },
+    {
+        "id":  "slg-rf-027",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "IEEE 802.11k defines the ___ as a standardized measurement of received channel power that is comparable across vendors.",
+        "optionen":  [
+                         "RCPI",
+                         "EIRP",
+                         "RSSI",
+                         "SINR"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "RCPI (Received Channel Power Indicator) ist in 802.11k mit fester Skala definiert, während RSSI herstellerspezifisch ist. SINR ist ein Verhältnis, EIRP eine Sendegröße."
+    },
+    {
+        "id":  "slg-rf-028",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about the noise floor is correct?",
+        "optionen":  [
+                         "It is a ratio in dBi, and it depends mainly on the AP antenna gain",
+                         "It is a ratio in dB, and a higher positive value indicates less noise",
+                         "It is an absolute power level in dBm, and a value closer to 0 is better",
+                         "It is an absolute power level in dBm, and a more negative value is better"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Rauschpegel ist eine absolute Leistung und wird in dBm angegeben (typisch -90 bis -95 dBm); je negativer, desto ruhiger der Kanal. Der Kurs schreibt ungenau \u0027dB\u0027. Ein Verhältnis in dB ist erst der SNR."
+    },
+    {
+        "id":  "slg-rf-029",
+        "topic":  "CCNA2-1.5.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about decibels are true? (Choose two.)",
+        "optionen":  [
+                         "A gain of 3 dB roughly doubles the power",
+                         "dBm expresses a ratio between any two powers",
+                         "A level of 0 dBm means that no power is present",
+                         "A loss of 10 dB reduces the power to one tenth",
+                         "A gain of 10 dB roughly doubles the power"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Regel der 3 und 10: +3 dB ≈ ×2, -10 dB = ÷10. dBm ist eine absolute Leistung mit Bezug auf 1 mW; 0 dBm sind also 1 mW, nicht 0 mW."
+    },
+    {
+        "id":  "slg-rf-030",
+        "topic":  "CCNA2-1.5.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedem Modulationsverfahren zu, welche Welleneigenschaft es verändert.",
+        "paare":  [
+                      [
+                          "AM",
+                          "Amplitude only"
+                      ],
+                      [
+                          "FM",
+                          "Frequency only"
+                      ],
+                      [
+                          "PSK",
+                          "Phase only"
+                      ],
+                      [
+                          "QAM",
+                          "Amplitude and phase together"
+                      ]
+                  ],
+        "erklaerung":  "Amplitude, Frequenz und Phase sind die drei veränderbaren Größen. WLAN nutzt PSK-Varianten (BPSK, QPSK) für robuste niedrige Raten und QAM (16- bis 4096-QAM) für hohe Raten."
+    },
+    {
+        "id":  "slg-rf-031",
+        "topic":  "CCNA2-1.5.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A radio transmits at 0 dBm. How much power does it send?",
+        "optionen":  [
+                         "0.1 mW",
+                         "0 mW",
+                         "1 mW",
+                         "10 mW"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "dBm bezieht sich auf 1 mW: 0 dBm bedeutet \u0027gleich der Referenz\u0027, also 1 mW. 0 mW wäre minus unendlich dBm."
+    },
+    {
+        "id":  "slg-rf-032",
+        "topic":  "CCNA2-1.5.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An AP radio is set to 20 dBm. How much power is that?",
+        "optionen":  [
+                         "200 mW",
+                         "20 mW",
+                         "100 mW",
+                         "1000 mW"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "20 dB = Faktor 100 (10 × 10) gegenüber 1 mW, also 100 mW – ein typischer Wert für Indoor-APs. 1000 mW wären 30 dBm."
+    },
+    {
+        "id":  "slg-rf-034",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An outdoor regulation limits EIRP to 36 dBm. Approximately how much power is that?",
+        "optionen":  [
+                         "About 1 W",
+                         "About 4 W",
+                         "About 360 mW",
+                         "About 3.6 W"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "36 dBm = 10+10+10+3+3 → 1 mW × 10 × 10 × 10 × 2 × 2 = 4000 mW ≈ 4 W (exakt 3,98 W). 30 dBm entsprechen 1 W."
+    },
+    {
+        "id":  "slg-rf-035",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A data sheet lists a maximum transmit power of 250 mW. What is this value in dBm?",
+        "optionen":  [
+                         "About 25 dBm",
+                         "About 24 dBm",
+                         "About 27 dBm",
+                         "About 22 dBm"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "250 mW = 1000 mW / 2 / 2 → 30 dBm - 3 dB - 3 dB = 24 dBm (exakt 23,98 dBm). 25 dBm wären etwa 316 mW, 27 dBm etwa 500 mW."
+    },
+    {
+        "id":  "slg-rf-036",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two combinations of transmit power, cable loss, and antenna gain result in an EIRP of exactly 23 dBm? (Choose two.)",
+        "optionen":  [
+                         "14 dBm transmit power, 0 dB cable loss, 6-dBi antenna",
+                         "20 dBm transmit power, 0 dB cable loss, 3-dBi antenna",
+                         "20 dBm transmit power, 3 dB cable loss, 3-dBi antenna",
+                         "17 dBm transmit power, 1 dB cable loss, 7-dBi antenna",
+                         "23 dBm transmit power, 3 dB cable loss, 6-dBi antenna"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "EIRP = Tx - Kabel + Antenne: 20 - 0 + 3 = 23 und 17 - 1 + 7 = 23 dBm. Die anderen ergeben 26, 20 und 20 dBm."
+    },
+    {
+        "id":  "slg-rf-037",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A received signal has a power of 0.01 mW. What is this value in dBm?",
+        "optionen":  [
+                         "-2 dBm",
+                         "-100 dBm",
+                         "-10 dBm",
+                         "-20 dBm"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "0,01 mW = 1 mW / 10 / 10 → 0 dBm - 10 dB - 10 dB = -20 dBm. Werte unter 1 mW ergeben negative dBm."
+    },
+    {
+        "id":  "slg-rf-038",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Client A receives -50 dBm and client B receives -70 dBm from the same AP. How much stronger is the signal at client A?",
+        "optionen":  [
+                         "20 times stronger",
+                         "1000 times stronger",
+                         "100 times stronger",
+                         "2 times stronger"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Differenz beträgt 20 dB = 10 dB + 10 dB = Faktor 10 × 10 = 100. Dezibel sind logarithmisch, 20 dB bedeuten also nicht Faktor 20."
+    },
+    {
+        "id":  "slg-rf-039",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A client measures -64 dBm from AP1 and -67 dBm from AP2. How do the two received power levels compare?",
+        "optionen":  [
+                         "AP1 is received with about twice the power",
+                         "AP2 is received with about twice the power",
+                         "AP1 is received with about three times the power",
+                         "Both are equal, because 3 dB is within tolerance"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "-64 dBm ist 3 dB stärker als -67 dBm, und +3 dB entspricht ungefähr der doppelten Leistung. Näher an 0 = stärker."
+    },
+    {
+        "id":  "slg-rf-040",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer increases the transmit power of a radio from 25 mW to 100 mW. What is the change in decibels?",
+        "optionen":  [
+                         "+6 dB",
+                         "+3 dB",
+                         "+75 dB",
+                         "+10 dB"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "25 → 100 mW ist Faktor 4 = 2 × 2 → +3 dB +3 dB = +6 dB (14 dBm → 20 dBm). +10 dB wäre Faktor 10."
+    },
+    {
+        "id":  "slg-rf-041",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An outdoor installation uses a long cable run with 9 dB of loss. After moving the radio next to the antenna, only 3 dB of loss remain. How does the EIRP change?",
+        "optionen":  [
+                         "It increases about threefold",
+                         "It increases about fourfold",
+                         "It increases about sixfold",
+                         "It increases about ninefold"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Verlust sinkt um 6 dB, die EIRP steigt also um 6 dB = 3 dB + 3 dB = Faktor 2 × 2 = 4. Dezibel-Differenzen sind Faktoren, keine linearen Werte."
+    },
+    {
+        "id":  "slg-rf-042",
+        "topic":  "CCNA2-1.5.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "A loss of 10 dB reduces the power to one ___ of its original value.",
+        "optionen":  [
+                         "half",
+                         "hundredth",
+                         "tenth",
+                         "quarter"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "-10 dB = Faktor 1/10, -3 dB = 1/2, -6 dB = 1/4, -20 dB = 1/100. Das ist die \u0027Regel der 3 und 10\u0027."
+    },
+    {
+        "id":  "slg-rf-043",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which RF calculation is mathematically valid?",
+        "optionen":  [
+                         "Subtracting a power in dBm from a gain in dBi, which results in dBm",
+                         "Multiplying a power in dBm by a gain in dB, which results in mW",
+                         "Adding a gain in dB to a power in dBm, which results in dBm",
+                         "Adding two powers in dBm, which results in their total in dBm"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Gewinne und Verluste (dB, dBi) werden zu einer absoluten Leistung (dBm) addiert bzw. abgezogen – Ergebnis wieder dBm (z. B. EIRP). Zwei dBm-Werte darf man nicht addieren (Leistungen in mW addieren); dBm − dBm ergibt ein Verhältnis in dB (z. B. SNR)."
+    },
+    {
+        "id":  "slg-rf-044",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An antenna data sheet specifies a gain of 6 dBd. What is the gain in dBi?",
+        "optionen":  [
+                         "12 dBi",
+                         "3.86 dBi",
+                         "8.14 dBi",
+                         "6 dBi"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein Dipol hat 2,14 dBi, daher gilt dBi = dBd + 2,14 → 6 + 2,14 = 8,14 dBi. Antennen darf man nur in derselben Einheit vergleichen."
+    },
+    {
+        "id":  "slg-rf-045",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Antenna A has a gain of 5 dBd, antenna B has a gain of 6 dBi. Which statement is correct?",
+        "optionen":  [
+                         "Antenna B has about 1 dB more gain than antenna A",
+                         "Both antennas have the same gain, because dBd and dBi are equal",
+                         "Antenna A has about 1.1 dB more gain than antenna B",
+                         "Antenna B has about 3.1 dB more gain than antenna A"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "5 dBd = 5 + 2,14 = 7,14 dBi; 7,14 - 6 = 1,14 dB mehr für Antenne A. Wer dBd und dBi direkt vergleicht, zieht den falschen Schluss."
+    },
+    {
+        "id":  "slg-rf-046",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three features are key enhancements of 802.11ax (Wi-Fi 6) compared with 802.11ac? (Choose three.)",
+        "optionen":  [
+                         "320-MHz channels",
+                         "Target Wake Time",
+                         "OFDMA with resource units",
+                         "Multi-Link Operation",
+                         "BSS coloring for spatial reuse"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "802.11ax brachte OFDMA, BSS Coloring, TWT, 1024-QAM und Uplink-MU-MIMO. 320-MHz-Kanäle und MLO sind Neuerungen von 802.11be (Wi-Fi 7)."
+    },
+    {
+        "id":  "slg-rf-047",
+        "topic":  "CCNA2-1.5.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is an isotropic radiator, the reference for the dBi scale?",
+        "optionen":  [
+                         "A real omnidirectional antenna that radiates a perfect sphere",
+                         "A half-wave dipole that radiates equally in the horizontal plane",
+                         "A theoretical point source that radiates equally in all directions",
+                         "A directional antenna with a gain of exactly 0 dBd in all directions"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der isotrope Strahler ist ein gedachter Punkt, der kugelförmig gleichmäßig abstrahlt; er existiert real nicht. Er dient als Referenz für dBi und EIRP; der Dipol ist die Referenz für dBd."
+    },
+    {
+        "id":  "slg-rf-048",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An AP transmits at 20 dBm, the antenna cable has 2 dB of loss, and the antenna has a gain of 6 dBi. What is the EIRP?",
+        "optionen":  [
+                         "28 dBm",
+                         "24 dBm",
+                         "16 dBm",
+                         "22 dBm"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "EIRP = Sendeleistung - Kabelverlust + Antennengewinn = 20 - 2 + 6 = 24 dBm (≈ 250 mW). 28 dBm ergäbe sich, wenn man den Kabelverlust addiert statt abzieht."
+    },
+    {
+        "id":  "slg-rf-049",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A 100-mW transmitter feeds a 13.5-dBi Yagi antenna through cabling with 3 dB of loss. What is the EIRP?",
+        "optionen":  [
+                         "About 23.5 dBm",
+                         "About 36.5 dBm",
+                         "About 30.5 dBm",
+                         "About 110.5 dBm"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "100 mW = 20 dBm; EIRP = 20 - 3 + 13,5 = 30,5 dBm (≈ 1,1 W). Die mW-Angabe muss zuerst in dBm umgerechnet werden, bevor man dB-Werte addiert."
+    },
+    {
+        "id":  "slg-rf-050",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The regulatory EIRP limit is 36 dBm. The installer uses a 12-dBi omni antenna with 1 dB of cable loss. What is the highest transmit power the radio may use?",
+        "optionen":  [
+                         "23 dBm",
+                         "36 dBm",
+                         "25 dBm",
+                         "24 dBm"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "EIRP = Tx - Kabel + Antenne → Tx max = 36 - 12 + 1 = 25 dBm (≈ 316 mW). Der Kabelverlust erlaubt hier 1 dB mehr Sendeleistung."
+    },
+    {
+        "id":  "slg-rf-051",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A 2.4-GHz installation must stay at or below 20 dBm EIRP. The radio transmits 17 dBm and the cable has 2 dB of loss. What is the highest antenna gain that keeps the installation compliant?",
+        "optionen":  [
+                         "7 dBi",
+                         "9 dBi",
+                         "5 dBi",
+                         "3 dBi"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Antenne max = EIRP-Limit - Tx + Kabel = 20 - 17 + 2 = 5 dBi. 3 dBi wäre ebenfalls erlaubt, aber nicht der höchstmögliche Gewinn; 7 dBi ergäbe 22 dBm."
+    },
+    {
+        "id":  "slg-rf-052",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A bridge link has an EIRP of 30 dBm, a path loss of 110 dB, a receive antenna gain of 13 dBi, and 1 dB of receive cable loss. What is the received signal level?",
+        "optionen":  [
+                         "-80 dBm",
+                         "-66 dBm",
+                         "-94 dBm",
+                         "-68 dBm"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Link-Budget: Empfang = EIRP - Pfadverlust + Rx-Antenne - Rx-Kabel = 30 - 110 + 13 - 1 = -68 dBm. Der Empfangsantennengewinn zählt genauso wie der Sendeantennengewinn."
+    },
+    {
+        "id":  "slg-rf-053",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A bridge receives -68 dBm. The radio\u0027s receiver sensitivity for the desired data rate is -82 dBm. What is the fade margin of this link?",
+        "optionen":  [
+                         "-14 dB",
+                         "150 dB",
+                         "82 dB",
+                         "14 dB"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Fade Margin = Empfangspegel - Empfindlichkeit = -68 - (-82) = 14 dB Reserve gegen Schwankungen (Regen, Laub, Refraktion). Bei 0 dB oder weniger fällt die gewünschte Rate weg."
+    },
+    {
+        "id":  "slg-rf-054",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three features are new in 802.11be (Wi-Fi 7)? (Choose three.)",
+        "optionen":  [
+                         "320-MHz channels in the 6-GHz band",
+                         "OFDMA for the first time",
+                         "Multi-Link Operation",
+                         "4096-QAM modulation",
+                         "Downlink MU-MIMO for the first time"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Wi-Fi 7 bringt 320 MHz (nur 6 GHz), 4096-QAM (12 Bit/Symbol) und MLO, dazu Multi-RU und Preamble Puncturing. Downlink-MU-MIMO gibt es seit 802.11ac Wave 2, OFDMA seit 802.11ax."
+    },
+    {
+        "id":  "slg-rf-055",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Besides the transmitter output power, which two values are needed to calculate the EIRP of an AP? (Choose two.)",
+        "optionen":  [
+                         "Gain of the transmitting antenna in dBi",
+                         "Receiver sensitivity of the client",
+                         "Cable and connector loss between radio and antenna",
+                         "Noise floor at the client location",
+                         "Free space path loss to the client"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "EIRP = Tx-Leistung - Kabel-/Steckerverluste + Antennengewinn. Pfadverlust, Rauschen und Empfängerempfindlichkeit gehören zum Link-Budget auf der Strecke bzw. Empfängerseite."
+    },
+    {
+        "id":  "slg-rf-056",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeder Einheit ihre Bedeutung zu.",
+        "paare":  [
+                      [
+                          "dBm",
+                          "Absolute power relative to 1 milliwatt"
+                      ],
+                      [
+                          "dBi",
+                          "Antenna gain relative to an isotropic radiator"
+                      ],
+                      [
+                          "dBd",
+                          "Antenna gain relative to a half-wave dipole"
+                      ],
+                      [
+                          "dB",
+                          "Ratio between two power levels"
+                      ]
+                  ],
+        "erklaerung":  "Nur dBm ist absolut (Bezug 1 mW). dBi und dBd beschreiben Antennengewinn mit verschiedenen Referenzen, dB ist ein reines Verhältnis (z. B. Kabelverlust, SNR)."
+    },
+    {
+        "id":  "slg-rf-057",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A radio transmits at 23 dBm. The path to the antenna has 4 dB of cable loss, 1 dB for a lightning arrestor, and 1 dB for connectors. The antenna has a gain of 9 dBi. What is the EIRP in milliwatts?",
+        "optionen":  [
+                         "About 800 mW",
+                         "About 200 mW",
+                         "About 400 mW",
+                         "About 260 mW"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "EIRP = 23 - 4 - 1 - 1 + 9 = 26 dBm. 26 dBm = 20 dBm + 3 + 3 → 100 mW × 2 × 2 = 400 mW. Alle Verluste zwischen Radio und Antenne werden abgezogen."
+    },
+    {
+        "id":  "slg-rf-058",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two changes increase the EIRP of an existing outdoor AP installation? (Choose two.)",
+        "optionen":  [
+                         "Replacing the long antenna cable with a shorter one",
+                         "Installing a higher-gain antenna on the client",
+                         "Moving the client closer to the AP",
+                         "Lowering the noise floor by removing interferers",
+                         "Replacing the antenna with a higher-gain model"
+                     ],
+        "richtig":  [
+                        0,
+                        4
+                    ],
+        "erklaerung":  "EIRP hängt nur von Sendeleistung, Verlusten bis zur Antenne und Sendeantennengewinn ab. Clientantenne, Distanz und Rauschen verändern den Empfangspegel bzw. SNR, nicht die EIRP des AP."
+    },
+    {
+        "id":  "slg-rf-059",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A long, narrow warehouse aisle must be covered from one end with an external antenna. Which antenna type fits best?",
+        "optionen":  [
+                         "Dipole antenna",
+                         "Yagi antenna",
+                         "Isotropic antenna",
+                         "Ceiling-mount omni antenna"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Eine Yagi bündelt die Energie in einen schmalen, weit reichenden Strahl (Kurs: ca. 13,5 dBi) und eignet sich für Korridore und Regalgänge. Omnis verteilen die Energie rundum; isotrope Antennen gibt es nur theoretisch."
+    },
+    {
+        "id":  "slg-rf-060",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Two buildings 5 km apart need a point-to-point wireless link. Which antenna type is the best choice?",
+        "optionen":  [
+                         "Parabolic dish",
+                         "Ceiling-mount omni",
+                         "Dual-band dipole",
+                         "Patch antenna"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Parabolantennen haben einen sehr schmalen Strahl und sehr hohen Gewinn (Kurs: 21 dBi) und sind für lange Punkt-zu-Punkt-Strecken gedacht. Patch und Omni reichen dafür nicht weit genug."
+    },
+    {
+        "id":  "slg-rf-061",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "How is the beamwidth of an antenna defined?",
+        "optionen":  [
+                         "The angle between the H-plane and the E-plane of the antenna",
+                         "The angle between the main lobe and the strongest side lobe",
+                         "The angle between the points where the signal drops to zero",
+                         "The angle between the points where the signal is 3 dB below the maximum"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Beamwidth (Half-Power Beamwidth) wird zwischen den Punkten gemessen, an denen die Leistung auf die Hälfte (-3 dB) gefallen ist. Je schmaler der Strahl, desto höher der Gewinn."
+    },
+    {
+        "id":  "slg-rf-063",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In a high hall, an engineer replaces a 2-dBi ceiling omni with a 12-dBi omni to extend coverage. Users at the far walls are happy, but users directly below the AP now have a weak signal. Why?",
+        "optionen":  [
+                         "Higher omni gain changes the polarization from vertical to horizontal",
+                         "Higher omni gain reduces total radiated power, so all nearby users lose signal",
+                         "Higher omni gain creates a back lobe that points upward toward the ceiling",
+                         "Higher omni gain flattens the vertical pattern, so less energy goes straight down"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Omni-Gewinn entsteht durch einen flacheren, dünneren \u0027Donut\u0027 in der Elevation: mehr Reichweite seitlich, aber weniger Abdeckung direkt darunter und darüber. Die Gesamtleistung ändert sich nicht."
+    },
+    {
+        "id":  "slg-rf-065",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The elevation (E-plane) chart shows the radiation pattern of an antenna as seen from the ___.",
+        "optionen":  [
+                         "side",
+                         "top",
+                         "rear",
+                         "bottom"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "E-Plane/Elevation = Seitenansicht (vorne, hinten, oben, unten); H-Plane/Azimut = Draufsicht. Bei Omnis zeigt die Elevation die typische Donut-Form."
+    },
+    {
+        "id":  "slg-rf-066",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A new point-to-point link performs far below the calculated link budget. One antenna is mounted vertically and the other horizontally. What is the problem?",
+        "optionen":  [
+                         "Polarization mismatch, which causes a large signal loss",
+                         "Multipath, which cancels the signal on vertical antennas",
+                         "Fresnel zone blockage, which causes diffraction losses",
+                         "Too much EIRP, which saturates both receivers at once"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Sende- und Empfangsantenne müssen gleich polarisiert sein. Eine 90°-Fehlausrichtung (Cross-Polarization) kostet viel Signal (oft 20 dB und mehr). Bei Yagis und Parabolantennen zeigen Markierungen die richtige Ausrichtung."
+    },
+    {
+        "id":  "slg-rf-068",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about omnidirectional antennas are true? (Choose two.)",
+        "optionen":  [
+                         "A higher gain narrows the vertical beamwidth of the pattern",
+                         "A higher gain increases the total power that is radiated",
+                         "They radiate around 360 degrees in the azimuth plane",
+                         "They provide the strongest signal directly above and below",
+                         "They radiate equally in all directions like a perfect sphere"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "Omnis sind in der Horizontalen rund, vertikal aber \u0027Donut\u0027-förmig mit schwachen Zonen direkt ober- und unterhalb. Mehr Gewinn = flacherer Donut; die Gesamtleistung steigt nicht."
+    },
+    {
+        "id":  "slg-rf-070",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The course states that a 21-dBi parabolic dish is \u0027almost 100 times as powerful as a dipole.\u0027 What is the correct factor compared with a 2.14-dBi dipole?",
+        "optionen":  [
+                         "About 10 times",
+                         "About 19 times",
+                         "About 126 times",
+                         "About 77 times"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "21 - 2,14 = 18,86 dB → 10^1,886 ≈ 77. Faktor 126 (21 dB) gilt gegenüber dem isotropen Strahler, nicht gegenüber dem Dipol."
+    },
+    {
+        "id":  "slg-rf-071",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedem Antennentyp den typischen Einsatz zu.",
+        "paare":  [
+                      [
+                          "Parabolic dish",
+                          "Long-distance point-to-point link between buildings"
+                      ],
+                      [
+                          "Yagi",
+                          "Narrow corridor or warehouse aisle"
+                      ],
+                      [
+                          "Patch",
+                          "Flat wall mount covering a long room"
+                      ],
+                      [
+                          "High-gain ceiling omni",
+                          "Large open hall covered from the center"
+                      ]
+                  ],
+        "erklaerung":  "Je schmaler der Strahl, desto größer Gewinn und Reichweite: Parabol \u003e Yagi \u003e Patch. Omnis decken rundum ab; höherer Gewinn vergrößert die horizontale Reichweite."
+    },
+    {
+        "id":  "slg-rf-072",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A stadium needs many small, controlled cells aimed at specific seating sections. Which antenna approach fits best?",
+        "optionen":  [
+                         "High-gain omni antennas on the roof so each AP covers as many seats as possible",
+                         "Directional antennas such as patch or sector antennas aimed at each section",
+                         "Low-gain dipoles at maximum power so each cell overlaps with all its neighbors",
+                         "Parabolic dishes on the field so each AP reaches the whole stand at once"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "In High-Density-Umgebungen begrenzt man Zellen gezielt: Richtantennen beleuchten nur einen Sektor, sodass Kanäle wiederverwendet werden können und CCI sinkt. Große Omni-Zellen erhöhen die Überlappung."
+    },
+    {
+        "id":  "slg-rf-073",
+        "topic":  "CCNA2-1.5.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jede Wi-Fi-Generation dem IEEE-Standard zu.",
+        "paare":  [
+                      [
+                          "Wi-Fi 4",
+                          "802.11n"
+                      ],
+                      [
+                          "Wi-Fi 5",
+                          "802.11ac"
+                      ],
+                      [
+                          "Wi-Fi 6",
+                          "802.11ax"
+                      ],
+                      [
+                          "Wi-Fi 7",
+                          "802.11be"
+                      ]
+                  ],
+        "erklaerung":  "Die Wi-Fi Alliance hat die Generationen nummeriert: n = 4, ac = 5, ax = 6 (6E = ax im 6-GHz-Band), be = 7."
+    },
+    {
+        "id":  "slg-rf-074",
+        "topic":  "CCNA2-1.5.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which IEEE standard operates only in the 5-GHz band?",
+        "optionen":  [
+                         "802.11ac",
+                         "802.11n",
+                         "802.11ax",
+                         "802.11g"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "802.11ac (Wi-Fi 5) ist nur für 5 GHz definiert; Dual-Band-APs nutzen auf 2,4 GHz 802.11n. 802.11n und 802.11ax arbeiten auf 2,4 und 5 GHz, 802.11g nur auf 2,4 GHz."
+    },
+    {
+        "id":  "slg-rf-075",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An old handheld scanner supports only the data rates 1, 2, 5.5, and 11 Mbps. Which physical layer does it use?",
+        "optionen":  [
+                         "802.11g with OFDM",
+                         "802.11a with OFDM",
+                         "802.11n with MIMO",
+                         "802.11b with DSSS"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "1, 2, 5,5 und 11 Mbps sind die DSSS/HR-DSSS-Raten von 802.11b (Barker-Code für 1/2, CCK für 5,5/11 Mbps). OFDM (a/g) beginnt bei 6 Mbps."
+    },
+    {
+        "id":  "slg-rf-076",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An 802.11g network in 2.4 GHz performs noticeably worse after an 802.11b-only device joins. What is the reason?",
+        "optionen":  [
+                         "The AP must reduce all clients to 11 Mbps to stay backward-compatible",
+                         "The AP must disable 64-QAM so that the 802.11b device can decode it",
+                         "802.11g stations must switch from OFDM to 22-MHz DSSS channels",
+                         "802.11g stations must use protection such as RTS/CTS or CTS-to-self"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "802.11b-Geräte verstehen OFDM-Frames nicht; damit sie das Medium als belegt erkennen, reservieren g-Stationen den Kanal per RTS/CTS oder CTS-to-self in DSSS. Dieser Overhead senkt den Durchsatz, die g-Clients behalten aber ihre OFDM-Raten."
+    },
+    {
+        "id":  "slg-rf-077",
+        "topic":  "CCNA2-1.5.a",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two IEEE standards have a maximum data rate of 54 Mbps? (Choose two.)",
+        "optionen":  [
+                         "802.11n",
+                         "802.11a",
+                         "802.11ac",
+                         "802.11g",
+                         "802.11b"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "802.11a (5 GHz) und 802.11g (2,4 GHz) nutzen beide OFDM mit maximal 54 Mbps. 802.11b erreicht 11 Mbps, 802.11n bis 600 Mbps, 802.11ac bis 6,93 Gbps."
+    },
+    {
+        "id":  "slg-rf-079",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "One 802.11n spatial stream reaches 150 Mbps in a 40-MHz channel with a short guard interval. What is the maximum PHY rate of a 3x3:3 802.11n AP with these settings?",
+        "optionen":  [
+                         "1300 Mbps",
+                         "600 Mbps",
+                         "450 Mbps",
+                         "300 Mbps"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Rate wächst linear mit der Zahl der Spatial Streams: 3 × 150 = 450 Mbps. 600 Mbps sind das 802.11n-Maximum mit 4 Streams, 1300 Mbps gelten für 802.11ac Wave 1."
+    },
+    {
+        "id":  "slg-rf-080",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An 802.11ac AP with 4x4:4 radios serves a 2x2:2 laptop on an 80-MHz channel at MCS 9 with a short guard interval (433.3 Mbps per stream). What is the maximum PHY rate of this connection?",
+        "optionen":  [
+                         "About 867 Mbps",
+                         "About 433 Mbps",
+                         "About 1300 Mbps",
+                         "About 1733 Mbps"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die nutzbaren Streams sind durch das schwächere Gerät begrenzt: min(4, 2) = 2 Streams × 433,3 Mbps ≈ 866,7 Mbps. 1733 Mbps wären 4 Streams, die der Laptop nicht unterstützt."
+    },
+    {
+        "id":  "slg-rf-081",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which capabilities did 802.11ac Wave 2 add compared with Wave 1?",
+        "optionen":  [
+                         "256-QAM modulation, 80-MHz channels, and block acknowledgment",
+                         "Operation in the 2.4-GHz band and 40-MHz channel bonding",
+                         "160-MHz channels, more spatial streams, and downlink MU-MIMO",
+                         "OFDMA, uplink MU-MIMO, and 1024-QAM modulation"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Wave 1: bis 80 MHz, 256-QAM, 1–3 Streams, 1,3 Gbps. Wave 2: 160 MHz, bis zu 8 Streams (Standard), Downlink-MU-MIMO, 6,93 Gbps. OFDMA, UL-MU-MIMO und 1024-QAM kamen erst mit 802.11ax."
+    },
+    {
+        "id":  "slg-rf-082",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The course lists the maximum 802.11ax data rate as about 4.8 Gbps. Which combination produces this value?",
+        "optionen":  [
+                         "8 spatial streams, 160-MHz channel, 1024-QAM",
+                         "4 spatial streams, 160-MHz channel, 256-QAM",
+                         "2 spatial streams, 320-MHz channel, 4096-QAM",
+                         "8 spatial streams, 80-MHz channel, 1024-QAM"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein 802.11ax-Stream erreicht bei 80 MHz und MCS 11 (1024-QAM) ca. 600 Mbps → 8 × 600 ≈ 4,8 Gbps. Mit 160 MHz wären es ca. 9,6 Gbps; 320 MHz und 4096-QAM gehören zu Wi-Fi 7."
+    },
+    {
+        "id":  "slg-rf-083",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A Wi-Fi 7 laptop keeps simultaneous links to the same AP on 5 GHz and 6 GHz and sends frames on whichever link is free. Which feature is this?",
+        "optionen":  [
+                         "Target Wake Time (TWT)",
+                         "Band Select (band steering)",
+                         "BSS coloring for spatial reuse",
+                         "Multi-Link Operation (MLO)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "MLO (802.11be) erlaubt einem Multi-Link-Device mehrere Links über verschiedene Bänder gleichzeitig – für mehr Durchsatz, geringere Latenz und Ausfallsicherheit. Band Select lenkt nur die Bandwahl bei der Verbindung."
+    },
+    {
+        "id":  "slg-rf-084",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An engineer wants to configure a 320-MHz channel for a Wi-Fi 7 AP. In which band is this possible?",
+        "optionen":  [
+                         "Only in the 6-GHz band",
+                         "In the 5-GHz and 6-GHz bands",
+                         "Only in the 5-GHz band with DFS channels",
+                         "In all three bands, including 2.4 GHz"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "320-MHz-Kanäle gibt es nur im 6-GHz-Band, weil nur dort genug zusammenhängendes Spektrum vorhanden ist. Im 5-GHz-Band ist bei 160 MHz Schluss."
+    },
+    {
+        "id":  "slg-rf-085",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Wi-Fi 7 introduces 4096-QAM in addition to the 1024-QAM of Wi-Fi 6. How much does this raise the bits per symbol on each subcarrier?",
+        "optionen":  [
+                         "From 8 to 10 bits, about 25 percent more",
+                         "From 10 to 16 bits, about 60 percent more",
+                         "From 10 to 12 bits, about 20 percent more",
+                         "From 12 to 16 bits, about 33 percent more"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bits pro Symbol = log2(Konstellationspunkte): 1024 = 2^10, 4096 = 2^12. 12/10 = +20 %. Der Sprung von 256-QAM (8 Bit) auf 1024-QAM (10 Bit) brachte +25 %."
+    },
+    {
+        "id":  "slg-rf-086",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A Wi-Fi 6 client uses 1024-QAM only when it is close to the AP and drops to lower modulations farther away. Why?",
+        "optionen":  [
+                         "Denser constellations need a higher SNR to tell the points apart",
+                         "1024-QAM is allowed only within the first Fresnel zone of the AP",
+                         "The AP disables 1024-QAM for clients that use a short guard interval",
+                         "1024-QAM uses a narrower channel, which reduces the range of the cell"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Je mehr Konstellationspunkte, desto kleiner ihr Abstand; Rauschen verschiebt Punkte schneller in den Nachbarbereich. Hohe QAM-Stufen brauchen deshalb ein hohes SNR (sehr guter Empfang), sonst schaltet der Client auf eine robustere MCS zurück."
+    },
+    {
+        "id":  "slg-rf-087",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeder Modulation die Anzahl Bits pro Symbol zu.",
+        "paare":  [
+                      [
+                          "BPSK",
+                          "1 bit"
+                      ],
+                      [
+                          "QPSK",
+                          "2 bits"
+                      ],
+                      [
+                          "64-QAM",
+                          "6 bits"
+                      ],
+                      [
+                          "256-QAM",
+                          "8 bits"
+                      ]
+                  ],
+        "erklaerung":  "Bits pro Symbol = log2(Anzahl Zustände): BPSK 2 Zustände, QPSK 4, 64-QAM 64 = 2^6, 256-QAM = 2^8. 1024-QAM trägt 10, 4096-QAM 12 Bits."
+    },
+    {
+        "id":  "slg-rf-088",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does the Modulation and Coding Scheme (MCS) index of an 802.11ac or 802.11ax connection describe?",
+        "optionen":  [
+                         "A combination of guard interval and channel width",
+                         "A combination of channel number and channel width",
+                         "A combination of modulation type and coding rate",
+                         "A combination of transmit power and antenna gain"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der MCS-Index steht für Modulation (z. B. 256-QAM) plus Coding Rate (z. B. 5/6); bei 802.11n codiert er zusätzlich die Zahl der Streams. Beispiele: ac MCS 9 = 256-QAM 5/6, ax MCS 11 = 1024-QAM 5/6."
+    },
+    {
+        "id":  "slg-rf-089",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Two MCS values use the same 64-QAM modulation, one with a coding rate of 1/2 and one with 5/6. Which statement is correct?",
+        "optionen":  [
+                         "5/6 carries more user data per symbol but needs a better SNR",
+                         "Both carry the same user data because the modulation is identical",
+                         "5/6 adds more error correction and works better at the cell edge",
+                         "1/2 carries more user data per symbol because it uses longer symbols"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Coding Rate gibt den Anteil Nutzbits an: Bei 5/6 sind 5 von 6 Bits Daten, bei 1/2 nur die Hälfte (mehr Redundanz). Weniger Fehlerkorrektur bedeutet mehr Durchsatz, aber höhere SNR-Anforderung."
+    },
+    {
+        "id":  "slg-rf-090",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is OFDM more robust against multipath than the single-carrier DSSS used by 802.11b?",
+        "optionen":  [
+                         "It splits data across many narrow, slow subcarriers with long symbols",
+                         "It transmits each bit with a Barker code over a 22-MHz channel",
+                         "It uses a single wide carrier that ignores delayed reflections",
+                         "It switches frequency many times per second to avoid reflections"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "OFDM verteilt die Daten auf viele orthogonale Unterträger (312,5 kHz Abstand bei a/g/n/ac). Jeder Unterträger hat lange Symbole plus Guard Interval, sodass verzögerte Kopien kaum Inter-Symbol-Interferenz erzeugen. Barker-Code gehört zu DSSS, Frequenzsprünge zu FHSS."
+    },
+    {
+        "id":  "slg-rf-091",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A Wi-Fi 6 AP must deliver tiny status packets to nine IoT sensors with as little airtime as possible. Which feature allows it to serve all nine in one 20-MHz transmission?",
+        "optionen":  [
+                         "Downlink MU-MIMO with nine spatial streams",
+                         "Channel bonding with preamble puncturing",
+                         "OFDMA with 26-tone resource units",
+                         "Frame aggregation with block acknowledgment"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "OFDMA teilt den Kanal in Resource Units; ein 20-MHz-Kanal lässt sich in bis zu neun 26-Ton-RUs aufteilen, je eine pro Client. MU-MIMO trennt räumlich und ist auf 8 Nutzer begrenzt; Aggregation bündelt nur Frames für einen Empfänger."
+    },
+    {
+        "id":  "slg-rf-092",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What is the key difference between MU-MIMO and OFDMA in 802.11ax?",
+        "optionen":  [
+                         "MU-MIMO separates clients in frequency; OFDMA separates them with beams in space",
+                         "MU-MIMO works only in the uplink; OFDMA works only in the downlink",
+                         "MU-MIMO separates clients in space with beams; OFDMA separates them in frequency",
+                         "MU-MIMO serves only legacy clients; OFDMA serves only 802.11ax clients"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "MU-MIMO sendet gleichzeitig auf derselben Frequenz mit verschiedenen Strahlen (ideal für große Datenmengen). OFDMA teilt den Kanal in Resource Units (ideal für viele kleine Pakete). 802.11ax kann beides im Down- und Uplink."
+    },
+    {
+        "id":  "slg-rf-093",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A dense office with 40 APs is changed from 20-MHz to 80-MHz channels on 5 GHz. Throughput per cell drops. What is the most likely reason?",
+        "optionen":  [
+                         "Fewer non-overlapping channels are available, so co-channel interference rises",
+                         "80-MHz channels require DFS, which forces every AP to change channels hourly",
+                         "Wider channels reduce the number of spatial streams that each client can use",
+                         "Wider channels use DSSS, which has lower data rates than OFDM channels"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Breitere Kanäle vervierfachen zwar die Spitzenrate, aber es gibt nur noch etwa ein Viertel so viele unabhängige Kanäle. Bei vielen APs hören sich Zellen auf demselben Kanal und teilen sich die Airtime (CCI)."
+    },
+    {
+        "id":  "slg-rf-094",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "When the channel width doubles, the SNR of a client at the same position drops by about 3 dB. Why?",
+        "optionen":  [
+                         "The receiver collects noise over twice the bandwidth while the signal power is spread",
+                         "The client switches from MIMO to SISO when the channel is wider than 40 MHz",
+                         "The wider channel moves the signal to a higher frequency with more path loss",
+                         "The AP halves its transmit power for each doubling of the channel width"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Rauschleistung ist proportional zur Bandbreite: doppelte Breite = doppeltes Rauschen = +3 dB Noise, während die Gesamtsendeleistung gleich bleibt und sich nur auf doppelt so viele Unterträger verteilt. Deshalb erreichen Clients mit breiten Kanälen am Zellrand oft niedrigere MCS-Werte."
+    },
+    {
+        "id":  "slg-rf-095",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "802.11ax makes OFDM symbols four times longer, which reduces the subcarrier spacing from 312.5 kHz to ___.",
+        "optionen":  [
+                         "156.25 kHz",
+                         "1250 kHz",
+                         "78.125 kHz",
+                         "20 kHz"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "312,5 kHz / 4 = 78,125 kHz; dadurch passen viermal so viele Unterträger (Töne) in denselben Kanal, z. B. 256 statt 64 bei 20 MHz. Längere Symbole machen die Übertragung zudem robuster, besonders outdoor."
+    },
+    {
+        "id":  "slg-rf-096",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the purpose of the guard interval between OFDM symbols?",
+        "optionen":  [
+                         "It reserves airtime for the acknowledgment of each transmitted frame",
+                         "It gives the AP time to switch between transmit and receive mode",
+                         "It separates adjacent channels so they do not overlap in frequency",
+                         "It prevents delayed multipath copies from overlapping the next symbol"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Das Guard Interval ist eine Schutzzeit, in der verspätete Reflexionen abklingen, bevor das nächste Symbol beginnt (gegen Inter-Symbol-Interferenz). Ein kurzes GI (400 ns) bringt ca. 11 % mehr Rate, ist bei starkem Multipath aber riskanter."
+    },
+    {
+        "id":  "slg-rf-097",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Battery-powered IoT sensors on a Wi-Fi 6 network should sleep as long as possible and wake only at agreed times. Which 802.11ax feature supports this?",
+        "optionen":  [
+                         "BSS coloring",
+                         "Uplink MU-MIMO",
+                         "Target Wake Time (TWT)",
+                         "1024-QAM"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Mit TWT vereinbaren AP und Client feste Aufwachzeiten; dazwischen kann der Client schlafen und Akku sparen. BSS Coloring dient der räumlichen Wiederverwendung, MU-MIMO und 1024-QAM dem Durchsatz."
+    },
+    {
+        "id":  "slg-rf-098",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Two neighboring Wi-Fi 6 APs share channel 36 and use different BSS colors. How does BSS coloring help?",
+        "optionen":  [
+                         "The color lowers the transmit power of the neighbor AP when both transmit at once",
+                         "A station can treat weak frames with a foreign color as noise and transmit anyway",
+                         "A station encrypts frames with its own color so foreign APs cannot read them",
+                         "The AP moves all stations with a foreign color to another channel automatically"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "BSS Coloring kennzeichnet Frames pro BSS. Erkennt eine Station einen Frame eines fremden BSS unterhalb einer Schwelle, darf sie das Medium trotzdem als frei werten (Spatial Reuse) und muss nicht warten. Das mildert CCI in dichten Umgebungen."
+    },
+    {
+        "id":  "slg-rf-099",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "5-GHz channel numbers follow the formula center frequency = 5000 MHz + 5 × channel number. What is the center frequency of channel 149?",
+        "optionen":  [
+                         "5745 MHz",
+                         "5149 MHz",
+                         "5800 MHz",
+                         "5490 MHz"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "5000 + 5 × 149 = 5745 MHz. Kanal 36 liegt entsprechend bei 5180 MHz; im 2,4-GHz-Band gilt 2407 + 5 × n (Kanal 6 = 2437 MHz)."
+    },
+    {
+        "id":  "slg-rf-100",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In the United States, the 6-GHz band offers 1200 MHz of spectrum. How many non-overlapping 160-MHz channels are available there?",
+        "optionen":  [
+                         "14",
+                         "3",
+                         "7",
+                         "59"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die 6-GHz-Kanalaufteilung in den USA ergibt 59 Kanäle à 20 MHz, 29 à 40 MHz, 14 à 80 MHz und 7 à 160 MHz. Zum Vergleich: In Europa stehen nur 480 MHz (24 × 20 MHz) zur Verfügung."
+    },
+    {
+        "id":  "slg-rf-101",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A legacy 802.11g client with one antenna sends uplink frames to an AP with three receive antennas. The AP combines the three received signals in phase to improve the SNR. Which technique is this?",
+        "optionen":  [
+                         "Transmit beamforming",
+                         "Downlink MU-MIMO",
+                         "Maximal ratio combining (MRC)",
+                         "Spatial multiplexing"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "MRC arbeitet auf der Empfängerseite und kombiniert die Energie aller Empfangsketten phasenrichtig. Es funktioniert unabhängig davon, ob der Sender MIMO kann – der Empfänger braucht nur mehrere Antennen."
+    },
+    {
+        "id":  "slg-rf-102",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An AP adjusts the phase of the signal on each of its transmit antennas so that the copies arrive in phase at a stationary client. Which technique is this?",
+        "optionen":  [
+                         "Spatial multiplexing",
+                         "Maximal ratio combining",
+                         "Transmit beamforming",
+                         "Antenna diversity"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Tx Beamforming steuert die Phase pro Sendeantenne, damit sich die Signale am Empfänger konstruktiv addieren. Es eignet sich besonders für stationäre oder langsame Clients in Innenräumen mit stabilen Reflexionen."
+    },
+    {
+        "id":  "slg-rf-103",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What distinguishes explicit beamforming from implicit beamforming?",
+        "optionen":  [
+                         "Explicit works with any legacy client, while implicit needs 802.11ac clients",
+                         "Explicit uses sounding feedback from the client, so both sides must support it",
+                         "Explicit requires a WLC to calculate beams, while implicit runs on the AP",
+                         "Explicit changes the channel width, while implicit changes the transmit power"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Beim expliziten Beamforming sendet der AP Sounding-Frames, der Client misst den Kanal und schickt Feedback – beide müssen es unterstützen. Implizites Beamforming (z. B. Cisco ClientLink) schätzt den Kanal aus empfangenen Frames und hilft so auch älteren Clients."
+    },
+    {
+        "id":  "slg-rf-104",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An AP with 4x4:4 radios serves a smartphone with a 2x2:2 radio. How many spatial streams can this connection use at most?",
+        "optionen":  [
+                         "1",
+                         "4",
+                         "8",
+                         "2"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Zahl der Spatial Streams ist durch das schwächere Gerät begrenzt: min(4, 2) = 2. Zusätzliche AP-Antennen verbessern aber weiterhin Empfang (MRC) und Beamforming."
+    },
+    {
+        "id":  "slg-rf-105",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "In the MIMO notation 3x3:2, the first number is the transmit chains, the second the receive chains, and the third the number of ___.",
+        "optionen":  [
+                         "spatial streams",
+                         "antennas per band",
+                         "channel bonds",
+                         "supported clients"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "T×R:S – ein 3x3:2-Gerät hat 3 Sende- und 3 Empfangsketten, kann aber nur 2 unabhängige Datenströme übertragen. Die zusätzliche Kette verbessert MRC und Beamforming."
+    },
+    {
+        "id":  "slg-rf-106",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An 802.11n AP with four spatial streams has downlink data queued for four single-stream smartphones. How many of these clients can receive data at the same instant?",
+        "optionen":  [
+                         "Three, because one stream is reserved for beacons",
+                         "One, because 802.11n supports only single-user MIMO",
+                         "Two, because 802.11n splits the streams into pairs",
+                         "Four, because each stream can go to a different client"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "802.11n kennt nur SU-MIMO: Alle Streams gehen gleichzeitig an genau einen Empfänger. Gleichzeitige Übertragung an mehrere Clients (MU-MIMO) kam erst mit 802.11ac Wave 2."
+    },
+    {
+        "id":  "slg-rf-107",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about MU-MIMO in 802.11ac Wave 2 is correct?",
+        "optionen":  [
+                         "It works in both directions and serves up to four clients at once",
+                         "It works in the downlink only and serves up to four clients at once",
+                         "It works in the uplink only and serves up to eight clients at once",
+                         "It works in the downlink only and serves up to nine clients at once"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "802.11ac Wave 2 unterstützt nur Downlink-MU-MIMO mit bis zu vier gleichzeitigen Clients. 802.11ax erweitert MU-MIMO auf den Uplink und bis zu acht Nutzer."
+    },
+    {
+        "id":  "slg-rf-108",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "During an MU-MIMO transmission, the AP forms a beam toward user 1 and places minimum energy in the directions of users 2 and 3. What is this technique called?",
+        "optionen":  [
+                         "Maximal ratio combining",
+                         "Antenna diversity",
+                         "Preamble puncturing",
+                         "Null steering"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beim Null Steering setzt der AP Nullstellen in Richtung der anderen Empfänger, damit deren Daten möglichst wenig stören. Nur so können mehrere Clients gleichzeitig auf derselben Frequenz bedient werden."
+    },
+    {
+        "id":  "slg-rf-109",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three techniques does MIMO in 802.11n/ac combine according to the course? (Choose three.)",
+        "optionen":  [
+                         "Maximal ratio combining",
+                         "Spatial multiplexing",
+                         "Switched antenna diversity",
+                         "Transmit beamforming",
+                         "Direct-sequence spread spectrum"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        3
+                    ],
+        "erklaerung":  "MIMO = MRC (Empfang), Tx Beamforming (Senden) und Spatial Multiplexing (mehrere Streams). DSSS ist das Verfahren von 802.11b, Antenna Diversity die SISO-Technik mit Umschalten zwischen Antennen."
+    },
+    {
+        "id":  "slg-rf-110",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A 2x2:2 bridge link across an open field with no reflecting objects achieves far less throughput than the same devices indoors. What is the most likely reason?",
+        "optionen":  [
+                         "Without walls, MRC adds the signals out of phase and lowers the SNR",
+                         "Without reflections, the receiver can hardly separate the two streams",
+                         "OFDM cannot operate outdoors, so the radios fall back to DSSS rates",
+                         "Outdoor regulations always limit a link to a single spatial stream"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Spatial Multiplexing nutzt unterschiedliche Ausbreitungswege, um die Streams zu trennen. Ohne Reflexionen (reine Sichtverbindung) sind die Kanäle stark korreliert, und der zweite Stream lässt sich kaum dekodieren. Outdoor nutzt man daher oft zwei Polarisationen."
+    },
+    {
+        "id":  "slg-rf-111",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two conditions are required for spatial multiplexing? (Choose two.)",
+        "optionen":  [
+                         "The AP and client are cross-polarized to separate the streams",
+                         "The streams follow different paths, for example because of reflections",
+                         "The client and the AP use different channels for each stream",
+                         "The receiver has a single antenna and uses implicit feedback",
+                         "Both transmitter and receiver support MIMO with multiple radio chains"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Spatial Multiplexing braucht MIMO auf beiden Seiten (eigene Ketten pro Stream) und räumlich unterscheidbare Pfade. Alle Streams nutzen denselben Kanal; ein Empfänger mit nur einer Antenne kann nur einen Stream empfangen."
+    },
+    {
+        "id":  "slg-rf-112",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeder MIMO-Technik die passende Beschreibung zu.",
+        "paare":  [
+                      [
+                          "MRC",
+                          "Receiver combines energy from several antennas in phase"
+                      ],
+                      [
+                          "Tx beamforming",
+                          "Transmitter shifts phase per antenna toward one client"
+                      ],
+                      [
+                          "Spatial multiplexing",
+                          "Several data streams on one channel to one client"
+                      ],
+                      [
+                          "MU-MIMO",
+                          "Simultaneous streams to several clients on one channel"
+                      ]
+                  ],
+        "erklaerung":  "MRC = Empfangsseite, Beamforming = Sendeseite, Spatial Multiplexing = mehrere Streams an einen Client (SU-MIMO), MU-MIMO = Streams an mehrere Clients gleichzeitig."
+    },
+    {
+        "id":  "slg-rf-114",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "The course compares an AP with an Ethernet hub. Which property do they share?",
+        "optionen":  [
+                         "Only one device can transmit at a time on the shared medium",
+                         "Every frame is flooded to all ports regardless of the destination",
+                         "Both require full-duplex links to avoid collisions on the medium",
+                         "Both operate at Layer 1 and do not inspect any frame addresses"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Auf einem WLAN-Kanal kann zu jedem Zeitpunkt nur eine Station senden (Half-Duplex, geteiltes Medium, CSMA/CA) – wie an einem Hub. Der AP wertet aber 802.11-Adressen aus und bridged zwischen Funk und Kabel."
+    },
+    {
+        "id":  "slg-rf-115",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An AP forwards a client\u0027s frame to a server on the wired LAN. Which role does the AP play in this case?",
+        "optionen":  [
+                         "Translational bridge between 802.11 and 802.3",
+                         "Repeater that regenerates the 802.11 frame",
+                         "Gateway that terminates the client\u0027s TCP session",
+                         "Router between the wireless and wired subnets"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der AP übersetzt den 802.11-Frame in einen 802.3-Frame und umgekehrt (Translational Bridge, Layer 2). Routing übernimmt das Default Gateway; ein Repeater bliebe auf der Funkseite."
+    },
+    {
+        "id":  "slg-rf-116",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An AP receives a data frame from a station that has completed 802.11 authentication but has not associated yet. How does the AP react?",
+        "optionen":  [
+                         "It buffers the frame until the association response has been sent to the station",
+                         "It sends a deauthentication frame, so the station must restart from the beginning",
+                         "It forwards the frame, because authentication is sufficient for data transfer",
+                         "It sends a disassociation frame, leaving the station authenticated but unassociated"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Laut Kurs antwortet der AP einer authentifizierten, aber nicht assoziierten Station mit Disassociation. Eine nicht authentifizierte Station erhält dagegen ein Deauthentication. Daten fließen erst im Zustand \u0027authentifiziert und assoziiert\u0027."
+    },
+    {
+        "id":  "slg-rf-117",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "When the association succeeds, the AP sends an association response that includes the ___ it assigned to the station.",
+        "optionen":  [
+                         "BSSID",
+                         "PMKID",
+                         "SSID",
+                         "Association ID"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der AP vergibt pro assoziierter Station eine Association ID (AID) und meldet sie in der Association Response. Die BSSID identifiziert den AP-Funk, die SSID den Netznamen."
+    },
+    {
+        "id":  "slg-rf-118",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A capture on a WPA2-Enterprise WLAN shows \u0027Authentication: Open System\u0027 frames before the association. An engineer suspects a security misconfiguration. What is correct?",
+        "optionen":  [
+                         "This is normal only for guest WLANs; enterprise WLANs skip the authentication frames",
+                         "This is normal: 802.11 open authentication precedes association, and 802.1X runs afterward",
+                         "This is a misconfiguration: WPA2-Enterprise must use Shared Key authentication frames",
+                         "This is a misconfiguration: the open frames show that the WLAN falls back to no encryption"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die 802.11-Low-Level-Authentifizierung ist fast immer \u0027Open\u0027 und gelingt praktisch immer; Shared Key (WEP) ist veraltet. Die eigentliche Sicherheit (802.1X/EAP, 4-Way-Handshake) folgt nach der Association."
+    },
+    {
+        "id":  "slg-rf-120",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jede Funktion bzw. jeden Begriff der richtigen Beschreibung zu.",
+        "paare":  [
+                      [
+                          "Mobility Agent (MA)",
+                          "Terminates CAPWAP tunnels and keeps the client database"
+                      ],
+                      [
+                          "Mobility Controller (MC)",
+                          "Handles system-wide roaming, RRM, wIPS, and guest access"
+                      ],
+                      [
+                          "Point of Presence (PoP)",
+                          "Anchors the client IP address on the wired network"
+                      ],
+                      [
+                          "Point of Attachment (PoA)",
+                          "WLC where the current AP\u0027s CAPWAP tunnel terminates"
+                      ]
+                  ],
+        "erklaerung":  "MA und MC können auf demselben WLC laufen; der MA meldet Client-Zustände an den MC. Beim Roaming bleibt der PoP (IP-Anker) fest, während der PoA mit dem AP-Wechsel auf einen anderen WLC wandern kann."
+    },
+    {
+        "id":  "slg-rf-121",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A VoIP client roams from an AP on WLC1 to an AP on WLC2 in a different subnet and keeps its IP address. Where are its point of presence (PoP) and point of attachment (PoA) after the roam?",
+        "optionen":  [
+                         "Both PoP and PoA stay on WLC1 until reassociation",
+                         "Both PoP and PoA move to WLC2 with the client",
+                         "PoP moves to WLC2, while PoA stays on WLC1",
+                         "PoP stays on WLC1, while PoA moves to WLC2"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der PoP verankert die IP-Adresse und bleibt beim ursprünglichen WLC, damit der Anruf nicht abbricht. Der PoA ist der WLC, an dem der CAPWAP-Tunnel des aktuellen AP endet – also nach dem Roam WLC2."
+    },
+    {
+        "id":  "slg-rf-122",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A wireless repeater extends coverage into a remote room on the same channel as the root AP. What is the typical side effect for clients behind the repeater?",
+        "optionen":  [
+                         "Throughput drops to roughly half, because each frame is sent twice on one channel",
+                         "Latency improves, because the repeater acknowledges frames on behalf of the AP",
+                         "The clients need a separate SSID, because a repeater cannot reuse the root SSID",
+                         "The EIRP doubles, because the repeater adds its transmit power to the AP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein Repeater empfängt jeden Frame und sendet ihn auf demselben Kanal erneut; die Airtime wird doppelt belegt, der Durchsatz sinkt etwa auf die Hälfte. Außerdem braucht er ca. 50 % Zellüberlappung mit dem Root-AP."
+    },
+    {
+        "id":  "slg-rf-123",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Several wired PLCs on a forklift must reach the corporate LAN through one wireless uplink to an existing AP. Which component fits best?",
+        "optionen":  [
+                         "Root AP in a mesh",
+                         "Workgroup bridge (WGB)",
+                         "Wireless repeater",
+                         "Mobility Controller"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Eine Workgroup Bridge verbindet sich als Client mit einem AP und stellt die dahinterliegenden kabelgebundenen Geräte ins WLAN. Ein Repeater erweitert nur die Funkzelle, ein Root-AP braucht selbst einen Kabelanschluss."
+    },
+    {
+        "id":  "slg-rf-124",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeder WLAN-Komponente ihre Rolle zu.",
+        "paare":  [
+                      [
+                          "Workgroup bridge",
+                          "Connects wired devices behind it to an AP as a client"
+                      ],
+                      [
+                          "Repeater",
+                          "Retransmits frames on the same channel to extend a cell"
+                      ],
+                      [
+                          "Point-to-point bridge",
+                          "Links two LANs in separate buildings over the air"
+                      ],
+                      [
+                          "Mesh root AP",
+                          "Has the wired uplink and serves as the root for mesh APs"
+                      ]
+                  ],
+        "erklaerung":  "WGB = Client mit kabelgebundenen Geräten dahinter; Repeater = Zellerweiterung auf gleichem Kanal (halber Durchsatz); Bridge = Gebäudeverbindung; im Mesh hat nur der RAP eine Kabelanbindung, MAPs nutzen Funk-Backhaul."
+    },
+    {
+        "id":  "slg-rf-126",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A lecture hall must support 300 devices. About half are active at the same time, and each active device needs 2 Mbps. Each 5-GHz radio realistically delivers about 100 Mbps. How many 5-GHz radios are needed at minimum?",
+        "optionen":  [
+                         "2",
+                         "6",
+                         "3",
+                         "10"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bedarf = 300 × 0,5 × 2 Mbps = 300 Mbps; 300 / 100 Mbps pro Radio = 3 Radios. Wer alle 300 Geräte als aktiv rechnet, kommt auf 6 und überdimensioniert."
+    },
+    {
+        "id":  "slg-rf-127",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Two clients in the same cell each download a 10-MB file. Client A transmits at 300 Mbps, client B at 6 Mbps (PHY rates, overhead ignored). How much longer does client B occupy the channel?",
+        "optionen":  [
+                         "About 6 times longer",
+                         "About 2 times longer",
+                         "About 13 times longer",
+                         "About 50 times longer"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "10 MB = 80 Mbit: A braucht 80/300 ≈ 0,27 s, B 80/6 ≈ 13,3 s – Faktor 50. Weil sich alle die Airtime teilen, bremst ein langsamer Client die ganze Zelle; deshalb deaktiviert man niedrige Raten und plant kleinere Zellen."
+    },
+    {
+        "id":  "slg-rf-129",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A conference room for 400 attendees is covered by one AP at maximum power. Users complain about slow performance. Which design change helps most?",
+        "optionen":  [
+                         "Enable all low data rates so distant clients stay connected longer",
+                         "Deploy more APs at reduced power on different 20-MHz channels",
+                         "Bond all 5-GHz channels to 160 MHz so the single AP gains capacity",
+                         "Raise the AP power and antenna gain so all users get a stronger signal"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Kapazität entsteht durch mehr Zellen, nicht durch mehr Leistung: Mehrere APs mit reduzierter Leistung auf verschiedenen schmalen Kanälen teilen die Clients auf und vermeiden CCI. Mehr Leistung oder breitere Kanäle helfen einem überlasteten AP nicht."
+    },
+    {
+        "id":  "slg-rf-130",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three measures increase capacity in a high-density 5-GHz design? (Choose three.)",
+        "optionen":  [
+                         "Disabling the lowest data rates",
+                         "Setting every AP to maximum transmit power",
+                         "Broadcasting one SSID per user group",
+                         "Using 20-MHz or 40-MHz channels instead of 160 MHz",
+                         "Adding APs and lowering their transmit power"
+                     ],
+        "richtig":  [
+                        0,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Schmalere Kanäle ergeben mehr unabhängige Kanäle, deaktivierte niedrige Raten sparen Airtime und verkleinern Zellen, mehr APs mit weniger Leistung erlauben Kanal-Wiederverwendung. Maximale Leistung erhöht CCI, viele SSIDs verschwenden Airtime durch Beacons."
+    },
+    {
+        "id":  "slg-rf-131",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A laptop roams back and forth between two APs every few seconds although the user sits still. What is this behavior called, and what typically causes it?",
+        "optionen":  [
+                         "Co-channel roaming, caused by two APs that use the same BSS color on one channel",
+                         "Band steering, caused by the WLC moving the client between 2.4 GHz and 5 GHz",
+                         "Sticky client roaming, caused by a client that keeps a weak AP for too long",
+                         "Ping-pong roaming, caused by aggressive vendor roaming thresholds and heavy cell overlap"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Laut Kurs legen Hersteller eigene Roaming-Schwellen fest. Zu aggressive Schwellen bei starker Überlappung führen zu Ping-Pong (zu häufiges Roaming), zu träge zu Sticky Clients. Beides verschlechtert die Nutzererfahrung."
+    },
+    {
+        "id":  "slg-rf-133",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "According to the course, which three factors influence the client density a wireless network can support? (Choose three.)",
+        "optionen":  [
+                         "Placement of the access points",
+                         "Physical environment of the coverage area",
+                         "Length of the CAPWAP tunnel to the WLC",
+                         "Number of VLANs on the WLC uplink",
+                         "Channel allocation of neighboring APs"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Der Kurs nennt Umgebung, AP-Platzierung, Gerätetypen, Netzlast und Kanalzuteilung. Tunnellänge und VLAN-Anzahl am Uplink bestimmen nicht, wie viele Clients eine Funkzelle verkraftet."
+    },
+    {
+        "id":  "slg-rf-134",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus auf einem Catalyst 9800: Deaktiviere die Datenrate 1 Mbps im 2,4-GHz-Netz.",
+        "bausteine":  [
+                          "ap",
+                          "dot11",
+                          "24ghz",
+                          "rate",
+                          "RATE_1M",
+                          "disable",
+                          "5ghz",
+                          "mandatory",
+                          "RATE_11M"
+                      ],
+        "loesung":  [
+                        "ap",
+                        "dot11",
+                        "24ghz",
+                        "rate",
+                        "RATE_1M",
+                        "disable"
+                    ],
+        "erklaerung":  "Mit \u0027ap dot11 24ghz rate RATE_1M disable\u0027 wird 1 Mbps im 2,4-GHz-Netz abgeschaltet. Niedrige Raten zu deaktivieren spart Airtime, weil Beacons und Broadcasts schneller gesendet werden."
+    },
+    {
+        "id":  "slg-rf-135",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus auf einem Catalyst 9800: Mache 12 Mbps zur Mandatory Rate im 2,4-GHz-Netz.",
+        "bausteine":  [
+                          "ap",
+                          "dot11",
+                          "24ghz",
+                          "rate",
+                          "RATE_12M",
+                          "mandatory",
+                          "supported",
+                          "RATE_1M",
+                          "5ghz"
+                      ],
+        "loesung":  [
+                        "ap",
+                        "dot11",
+                        "24ghz",
+                        "rate",
+                        "RATE_12M",
+                        "mandatory"
+                    ],
+        "erklaerung":  "Mandatory Rates muss jeder Client beherrschen; die niedrigste Mandatory Rate bestimmt die Rate für Beacons und Broadcasts. Mit 12 Mbps als niedrigster Mandatory Rate können reine 802.11b-Geräte nicht mehr assoziieren."
+    },
+    {
+        "id":  "slg-rf-136",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus auf einem Catalyst 9800: Schalte das 2,4-GHz-Netz vor einer Änderung der Datenraten ab.",
+        "bausteine":  [
+                          "ap",
+                          "dot11",
+                          "24ghz",
+                          "shutdown",
+                          "5ghz",
+                          "disable",
+                          "network"
+                      ],
+        "loesung":  [
+                        "ap",
+                        "dot11",
+                        "24ghz",
+                        "shutdown"
+                    ],
+        "erklaerung":  "Viele netzweite Radio-Parameter (z. B. Datenraten) ändert man am 9800 bei abgeschaltetem Band: \u0027ap dot11 24ghz shutdown\u0027, danach ändern und mit \u0027no ap dot11 24ghz shutdown\u0027 wieder aktivieren. Dabei verlieren alle 2,4-GHz-Clients kurz die Verbindung, also im Wartungsfenster arbeiten."
+    },
+    {
+        "id":  "slg-rf-137",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einem Catalyst 9800: Setze das 5-GHz-Radio des AP \u0027AP1\u0027 fest auf Sendeleistungsstufe 3.",
+        "bausteine":  [
+                          "ap",
+                          "name",
+                          "AP1",
+                          "dot11",
+                          "5ghz",
+                          "slot",
+                          "1",
+                          "txpower",
+                          "3",
+                          "24ghz",
+                          "power",
+                          "auto"
+                      ],
+        "loesung":  [
+                        "ap",
+                        "name",
+                        "AP1",
+                        "dot11",
+                        "5ghz",
+                        "slot",
+                        "1",
+                        "txpower",
+                        "3"
+                    ],
+        "erklaerung":  "Pro AP wird die Leistungsstufe im EXEC-Modus mit \u0027ap name AP1 dot11 5ghz slot 1 txpower 3\u0027 gesetzt (\u0027auto\u0027 gibt sie an RRM zurück). Stufe 1 ist die höchste Leistung; jede weitere Stufe reduziert typischerweise um etwa 3 dB."
+    },
+    {
+        "id":  "slg-rf-138",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einem Catalyst 9800: Weise dem 5-GHz-Radio des AP \u0027AP1\u0027 statisch Kanal 36 zu.",
+        "bausteine":  [
+                          "ap",
+                          "name",
+                          "AP1",
+                          "dot11",
+                          "5ghz",
+                          "slot",
+                          "1",
+                          "channel",
+                          "36",
+                          "24ghz",
+                          "width",
+                          "auto"
+                      ],
+        "loesung":  [
+                        "ap",
+                        "name",
+                        "AP1",
+                        "dot11",
+                        "5ghz",
+                        "slot",
+                        "1",
+                        "channel",
+                        "36"
+                    ],
+        "erklaerung":  "\u0027ap name AP1 dot11 5ghz slot 1 channel 36\u0027 setzt den Kanal statisch und nimmt das Radio aus der automatischen Kanalwahl (DCA); \u0027channel auto\u0027 gibt es an RRM zurück. Kanal 36 liegt bei 5180 MHz."
+    },
+    {
+        "id":  "slg-rf-139",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus auf einem Catalyst 9800: Lass DCA im 5-GHz-Band nur noch 40-MHz-Kanäle vergeben (High-Density-Design).",
+        "bausteine":  [
+                          "ap",
+                          "dot11",
+                          "5ghz",
+                          "rrm",
+                          "channel",
+                          "dca",
+                          "chan-width",
+                          "40",
+                          "160",
+                          "24ghz",
+                          "best"
+                      ],
+        "loesung":  [
+                        "ap",
+                        "dot11",
+                        "5ghz",
+                        "rrm",
+                        "channel",
+                        "dca",
+                        "chan-width",
+                        "40"
+                    ],
+        "erklaerung":  "Mit \u0027ap dot11 5ghz rrm channel dca chan-width 40\u0027 begrenzt DCA alle 5-GHz-Radios auf 40 MHz. Schmalere Kanäle bieten mehr unabhängige Kanäle und damit weniger Co-Channel Interference; \u0027best\u0027 würde die Breite dynamisch wählen."
+    },
+    {
+        "id":  "slg-rf-140",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einem Catalyst 9800: Zeige für alle APs Kanal, Kanalbreite und Sendeleistung der 5-GHz-Radios in einer Übersicht.",
+        "bausteine":  [
+                          "show",
+                          "ap",
+                          "dot11",
+                          "5ghz",
+                          "summary",
+                          "24ghz",
+                          "wireless",
+                          "client"
+                      ],
+        "loesung":  [
+                        "show",
+                        "ap",
+                        "dot11",
+                        "5ghz",
+                        "summary"
+                    ],
+        "erklaerung":  "\u0027show ap dot11 5ghz summary\u0027 listet je AP das 5-GHz-Radio mit Admin-/Oper-Status, Kanal, Kanalbreite und Tx-Power-Stufe. Für 2,4 GHz entsprechend \u0027show ap dot11 24ghz summary\u0027."
+    },
+    {
+        "id":  "slg-rf-141",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "AireOS-WLC (Legacy-CLI): Deaktiviere die Datenrate 1 Mbps im 802.11b/g/n-Netz (2,4 GHz).",
+        "bausteine":  [
+                          "config",
+                          "802.11b",
+                          "rate",
+                          "disabled",
+                          "1",
+                          "802.11a",
+                          "mandatory",
+                          "supported",
+                          "11"
+                      ],
+        "loesung":  [
+                        "config",
+                        "802.11b",
+                        "rate",
+                        "disabled",
+                        "1"
+                    ],
+        "erklaerung":  "Auf AireOS steht \u0027802.11b\u0027 für das 2,4-GHz-Netz und \u0027802.11a\u0027 für 5 GHz. \u0027config 802.11b rate disabled 1\u0027 schaltet 1 Mbps ab; vorher muss das Netz mit \u0027config 802.11b disable network\u0027 deaktiviert werden."
+    },
+    {
+        "id":  "slg-rf-143",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "AireOS-WLC (Legacy-CLI): Setze das 5-GHz-Radio von AP \u0027AP1\u0027 auf Sendeleistungsstufe 2.",
+        "bausteine":  [
+                          "config",
+                          "802.11a",
+                          "txPower",
+                          "ap",
+                          "AP1",
+                          "2",
+                          "802.11b",
+                          "global",
+                          "channel"
+                      ],
+        "loesung":  [
+                        "config",
+                        "802.11a",
+                        "txPower",
+                        "ap",
+                        "AP1",
+                        "2"
+                    ],
+        "erklaerung":  "\u0027config 802.11a txPower ap AP1 2\u0027 setzt die Leistungsstufe pro AP; mit \u0027global\u0027 statt einer Stufe übernimmt wieder RRM (TPC). Stufe 1 entspricht der maximalen Leistung."
+    },
+    {
+        "id":  "slg-rf-144",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "AireOS-WLC (Legacy-CLI): Stelle das 5-GHz-Radio von AP \u0027AP1\u0027 auf eine Kanalbreite von 40 MHz ein.",
+        "bausteine":  [
+                          "config",
+                          "802.11a",
+                          "chan_width",
+                          "AP1",
+                          "40",
+                          "802.11b",
+                          "channel",
+                          "80"
+                      ],
+        "loesung":  [
+                        "config",
+                        "802.11a",
+                        "chan_width",
+                        "AP1",
+                        "40"
+                    ],
+        "erklaerung":  "\u0027config 802.11a chan_width AP1 40\u0027 setzt die Kanalbreite für das 5-GHz-Radio eines AP (Optionen 20, 40, 80, 160, best). Im 2,4-GHz-Band sollte man bei 20 MHz bleiben, da es nur drei überlappungsfreie Kanäle gibt."
+    },
+    {
+        "id":  "slg-rf-145",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show ap dot11 5ghz summary\u0027 on a Catalyst 9800 shows AP-Lobby with \u0027Tx Pwr 1\u0027 and AP-Office with \u0027Tx Pwr 4\u0027 on the same AP model. Which statement is correct?",
+        "optionen":  [
+                         "Both APs transmit at the same power, because the level only selects the channel",
+                         "AP-Lobby transmits at the lowest power level, roughly 9 dB below AP-Office",
+                         "AP-Lobby transmits at the highest power level, roughly 9 dB above AP-Office",
+                         "AP-Office transmits at the higher power, because level 4 is four times level 1"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Cisco-Leistungsstufen zählen von 1 (maximale Leistung) abwärts; jede Stufe reduziert typischerweise um etwa 3 dB. Stufe 4 liegt damit rund 9 dB (ca. Faktor 8) unter Stufe 1."
+    },
+    {
+        "id":  "slg-rf-146",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The details of a wireless client on a Catalyst 9800 report protocol 802.11ac, an 80-MHz channel, a current rate of \u0027m9 ss1\u0027, and a short guard interval. Which statement is correct?",
+        "optionen":  [
+                         "The client uses 1024-QAM 5/6 on one stream at about 600 Mbps PHY rate",
+                         "The client uses 256-QAM 5/6 on nine streams at about 3.9 Gbps PHY rate",
+                         "The client uses 256-QAM 5/6 on one stream at about 433 Mbps PHY rate",
+                         "The client uses 64-QAM 5/6 on one stream at about 325 Mbps PHY rate"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "m9 ss1 = MCS 9 mit einem Spatial Stream; bei 802.11ac ist MCS 9 256-QAM 5/6. Mit 80 MHz und Short GI ergibt das 433,3 Mbps. 1024-QAM gibt es erst ab 802.11ax (MCS 10/11)."
+    }
+]

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Client-Dichte und Airtime</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Airtime ist die knappe Ressource</text>
+<g font-size="13" fill="#222">
+<text x="40" y="65" font-weight="bold">Dieselben 10 MB (80 Mbit) übertragen:</text>
+<rect x="40" y="80" width="10" height="28" fill="#39c86a"/><text x="60" y="99">Client mit 300 Mbps PHY: ≈ 0,27 s</text>
+<rect x="40" y="118" width="500" height="28" fill="#ff6b6b"/><text x="550" y="137">Client mit 6 Mbps: ≈ 13,3 s</text>
+<text x="40" y="170">Der langsame Client belegt die Zelle 50-mal so lange – alle anderen warten (Half-Duplex, CSMA/CA).</text>
+<rect x="40" y="190" width="720" height="240" rx="8" fill="#f4f8ff" stroke="#4a9cff"/>
+<text x="60" y="216" font-weight="bold">High-Density-Maßnahmen</text>
+<text x="60" y="242">1. Für Kapazität planen: Geräte × Aktivität × Bandbreite ÷ realer Durchsatz pro Radio</text>
+<text x="60" y="266">2. Niedrige Datenraten deaktivieren (1/2/5,5/11 Mbps) → Beacons schneller, Zellen kleiner</text>
+<text x="60" y="290">3. Mehr APs mit weniger Sendeleistung → kleinere Zellen, Kanal-Wiederverwendung</text>
+<text x="60" y="314">4. 5/6 GHz bevorzugen (Band Select), 20-MHz-Kanäle für mehr unabhängige Kanäle</text>
+<text x="60" y="338">5. Wenige SSIDs, Richtantennen in Hallen/Stadien</text>
+<text x="60" y="362">6. Wi-Fi-6/7-Features: OFDMA, BSS Coloring, MU-MIMO, TWT</text>
+<text x="60" y="392">Trend: 3–4+ Geräte pro Nutzer, Laptops ohne Ethernet, Video ≈ 82 % des mobilen Traffics</text>
+<text x="60" y="416">Gefahr: herstellerspezifische Roaming-Schwellen → Sticky Clients / Ping-Pong</text>
+</g>
+</svg>

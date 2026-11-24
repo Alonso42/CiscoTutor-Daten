@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>IEEE-802.11-Standards im Überblick</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">802.11-Standards und Wi-Fi-Generationen</text>
+<line x1="40" y1="80" x2="760" y2="80" stroke="#222" stroke-width="3"/>
+<g font-size="12" fill="#222" text-anchor="middle">
+<circle cx="80" cy="80" r="8" fill="#999"/><text x="80" y="65">1999</text>
+<circle cx="190" cy="80" r="8" fill="#999"/><text x="190" y="65">2003</text>
+<circle cx="300" cy="80" r="8" fill="#4a9cff"/><text x="300" y="65">2009</text>
+<circle cx="430" cy="80" r="8" fill="#39c86a"/><text x="430" y="65">2013</text>
+<circle cx="570" cy="80" r="8" fill="#b08aff"/><text x="570" y="65">2021</text>
+<circle cx="710" cy="80" r="8" fill="#ff6b6b"/><text x="710" y="65">2024</text>
+</g>
+<g font-size="12" fill="#222">
+<rect x="25" y="100" width="110" height="320" rx="6" fill="#f2f2f2"/>
+<text x="35" y="122" font-weight="bold">802.11b / a</text>
+<text x="35" y="142">b: 2,4 GHz</text><text x="35" y="158">DSSS/CCK</text><text x="35" y="174">11 Mbps</text>
+<text x="35" y="200">a: 5 GHz</text><text x="35" y="216">OFDM 64-QAM</text><text x="35" y="232">54 Mbps</text>
+<rect x="140" y="100" width="110" height="320" rx="6" fill="#f2f2f2"/>
+<text x="150" y="122" font-weight="bold">802.11g</text>
+<text x="150" y="142">2,4 GHz</text><text x="150" y="158">OFDM, kompatibel</text><text x="150" y="174">zu 802.11b</text><text x="150" y="190">54 Mbps</text>
+<rect x="255" y="100" width="120" height="320" rx="6" fill="#eaf3ff"/>
+<text x="265" y="122" font-weight="bold">802.11n</text><text x="265" y="138" fill="#4a9cff" font-weight="bold">Wi-Fi 4</text>
+<text x="265" y="158">2,4 + 5 GHz</text><text x="265" y="174">40 MHz, 64-QAM</text><text x="265" y="190">MIMO 4 SS</text><text x="265" y="206">A-MPDU, Block ACK</text><text x="265" y="222">600 Mbps</text>
+<rect x="380" y="100" width="130" height="320" rx="6" fill="#f4fff7"/>
+<text x="390" y="122" font-weight="bold">802.11ac</text><text x="390" y="138" fill="#39c86a" font-weight="bold">Wi-Fi 5</text>
+<text x="390" y="158">nur 5 GHz</text><text x="390" y="174">80/160 MHz</text><text x="390" y="190">256-QAM, 8 SS</text><text x="390" y="206">W2: DL MU-MIMO</text><text x="390" y="222">1,3 / 6,93 Gbps</text>
+<rect x="515" y="100" width="130" height="320" rx="6" fill="#f5f0ff"/>
+<text x="525" y="122" font-weight="bold">802.11ax</text><text x="525" y="138" fill="#b08aff" font-weight="bold">Wi-Fi 6 / 6E</text>
+<text x="525" y="158">2,4 + 5 (+6) GHz</text><text x="525" y="174">OFDMA (RUs)</text><text x="525" y="190">1024-QAM, 8 SS</text><text x="525" y="206">DL+UL MU-MIMO</text><text x="525" y="222">BSS Color, TWT</text><text x="525" y="238">≈ 9,6 Gbps</text>
+<rect x="650" y="100" width="130" height="320" rx="6" fill="#fff0f0"/>
+<text x="660" y="122" font-weight="bold">802.11be</text><text x="660" y="138" fill="#ff6b6b" font-weight="bold">Wi-Fi 7</text>
+<text x="660" y="158">2,4 + 5 + 6 GHz</text><text x="660" y="174">320 MHz (6 GHz)</text><text x="660" y="190">4096-QAM</text><text x="660" y="206">MLO, Multi-RU</text><text x="660" y="222">≈ 23 Gbps (8 SS)</text>
+<text x="35" y="300" font-size="13">Bits/Symbol: BPSK 1 · QPSK 2 · 16-QAM 4 · 64-QAM 6 · 256-QAM 8 · 1024-QAM 10 · 4096-QAM 12</text>
+<text x="35" y="325" font-size="13">PHY-Rate ≈ Unterträger × Bits/Symbol × Coding Rate × Spatial Streams / Symboldauer</text>
+<text x="35" y="350" font-size="13">Doppelte Kanalbreite ≈ doppelte Rate, aber halb so viele Kanäle</text>
+<text x="35" y="375" font-size="13">Pro Stream: n 40 MHz 150 · ac 80 MHz 433 · ac 160 MHz 867 · ax 80 MHz 600 Mbps</text>
+</g>
+</svg>

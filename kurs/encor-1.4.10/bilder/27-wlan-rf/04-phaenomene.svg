@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>RF-Ausbreitungsphänomene</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Was Hindernisse mit der Welle machen</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="50" width="245" height="180" rx="8" fill="none" stroke="#4a9cff"/>
+<text x="35" y="72" font-weight="bold">Reflexion</text>
+<rect x="40" y="170" width="200" height="10" fill="#999"/>
+<line x1="60" y1="90" x2="140" y2="168" stroke="#4a9cff" stroke-width="3"/><line x1="140" y1="168" x2="220" y2="90" stroke="#4a9cff" stroke-width="3"/>
+<text x="35" y="205">glatte Fläche (Metall, Glas)</text><text x="35" y="222">→ Ursache für Multipath</text>
+<rect x="278" y="50" width="245" height="180" rx="8" fill="none" stroke="#b08aff"/>
+<text x="293" y="72" font-weight="bold">Refraktion</text>
+<rect x="290" y="120" width="220" height="50" fill="#eee8ff"/>
+<line x1="310" y1="85" x2="380" y2="120" stroke="#b08aff" stroke-width="3"/><line x1="380" y1="120" x2="400" y2="170" stroke="#b08aff" stroke-width="3"/><line x1="400" y1="170" x2="470" y2="205" stroke="#b08aff" stroke-width="3"/>
+<text x="293" y="222">Brechung beim Medienwechsel</text>
+<rect x="536" y="50" width="245" height="180" rx="8" fill="none" stroke="#ff6b6b"/>
+<text x="551" y="72" font-weight="bold">Absorption</text>
+<rect x="640" y="95" width="40" height="80" fill="#ffd6d6"/>
+<line x1="560" y1="135" x2="640" y2="135" stroke="#ff6b6b" stroke-width="5"/><line x1="680" y1="135" x2="760" y2="135" stroke="#ff6b6b" stroke-width="1.5"/>
+<text x="551" y="205">Wasser, Menschen, Beton</text><text x="551" y="222">Energie → Wärme, Dämpfung</text>
+<rect x="20" y="245" width="245" height="180" rx="8" fill="none" stroke="#ffd23f"/>
+<text x="35" y="267" font-weight="bold">Streuung</text>
+<line x1="40" y1="335" x2="120" y2="335" stroke="#c9a400" stroke-width="3"/>
+<g stroke="#c9a400" stroke-width="2"><line x1="125" y1="335" x2="200" y2="290"/><line x1="125" y1="335" x2="215" y2="320"/><line x1="125" y1="335" x2="210" y2="355"/><line x1="125" y1="335" x2="185" y2="385"/></g>
+<circle cx="125" cy="335" r="8" fill="#ffd23f"/>
+<text x="35" y="402">raue Fläche, Partikel, Laub</text><text x="35" y="419">→ viele schwache Teilwellen</text>
+<rect x="278" y="245" width="245" height="180" rx="8" fill="none" stroke="#39c86a"/>
+<text x="293" y="267" font-weight="bold">Beugung</text>
+<rect x="390" y="290" width="25" height="90" fill="#999"/>
+<line x1="300" y1="300" x2="390" y2="300" stroke="#39c86a" stroke-width="3"/><path d="M415 292 Q 450 300 470 350" fill="none" stroke="#39c86a" stroke-width="3"/>
+<text x="425" y="378">RF-Schatten</text>
+<text x="293" y="402">Welle biegt sich um Kanten</text>
+<rect x="536" y="245" width="245" height="180" rx="8" fill="none" stroke="#222"/>
+<text x="551" y="267" font-weight="bold">Multipath</text>
+<rect x="555" y="300" width="22" height="30" fill="#4a9cff"/><text x="556" y="345" font-size="11">AP</text>
+<rect x="735" y="300" width="22" height="30" fill="#39c86a"/><text x="726" y="345" font-size="11">Client</text>
+<line x1="577" y1="315" x2="735" y2="315" stroke="#222" stroke-width="2"/>
+<polyline points="577,310 655,280 735,308" fill="none" stroke="#ff6b6b" stroke-width="2"/>
+<polyline points="577,322 655,365 735,322" fill="none" stroke="#b08aff" stroke-width="2"/>
+<text x="551" y="390">Kopien kommen zeitversetzt an:</text><text x="551" y="407">SISO: Fading/Nulling</text><text x="551" y="424">MIMO: nutzt Pfade als Streams</text>
+</g>
+</svg>

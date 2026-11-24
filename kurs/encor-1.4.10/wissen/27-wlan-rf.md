@@ -31,7 +31,7 @@ Topics: ENCOR-LEGACY-WLAN (Wireless ist im ENCOR-Blueprint v1.2 kein eigenes The
 - **Amplitude** = Stärke/Energie des Signals (Höhe der Welle). Mehr eingespeiste Energie pro Zyklus → größere Amplitude.
 - **Aktive Verstärkung (active amplification)**: Sendeleistung wird erhöht (Verstärker). **Passive Verstärkung (passive amplification)**: Antenne bündelt die Energie in eine Richtung (Antennengewinn). **Dämpfung (attenuation)**: Abnahme von Leistung/Amplitude.
 - Zu schwaches Signal → beim Empfänger nicht lesbar; zu starkes Signal → teuer, kann Empfänger übersteuern; Regulierung begrenzt die erlaubte Leistung.
-- **Phase**: Position im Zyklus (0–360°). Zwei gleiche Wellen in Phase addieren sich (+3 dB bei gleicher Leistung), um 180° versetzt löschen sie sich aus.
+- **Phase**: Position im Zyklus (0–360°). Zwei gleiche Wellen in Phase addieren ihre Amplituden (doppelte Amplitude = vierfache Leistung = +6 dB), um 180° versetzt löschen sie sich aus. Unkorrelierte Signale (z. B. Rauschen + Störer) addieren dagegen ihre Leistungen in mW (zwei gleich starke = +3 dB).
 - Modulation = Veränderung einer Welleneigenschaft, um Daten zu kodieren: **AM** (Amplitude), **FM** (Frequenz), **PM/PSK** (Phase). **QAM** kombiniert Amplitude und Phase. WLAN nutzt BPSK, QPSK und QAM-Stufen (siehe IEEE-Abschnitt).
 
 ### Free Space Path Loss (FSPL)
@@ -80,7 +80,7 @@ Topics: ENCOR-LEGACY-WLAN (Wireless ist im ENCOR-Blueprint v1.2 kein eigenes The
 
 - Rechenweg dBm → mW: Wert als Summe von 10ern und 3ern zerlegen, bei 1 mW beginnen. 36 dBm = 10+10+10+3+3 → 1·10·10·10·2·2 = 4000 mW. 27 dBm = 30 − 3 → 500 mW.
 - Rechenweg mW → dBm: Wert als Produkt von 2ern und 10ern zerlegen. 40 mW = 10·2·2 → 10+3+3 = 16 dBm. 50 mW = 100/2 → 20 − 3 = 17 dBm.
-- Merke: dB + dB = dB, dBm + dB = dBm (Gewinn/Verlust auf absolute Leistung), dBm − dBm = dB (z. B. SNR). dBm + dBm ist **keine** sinnvolle Rechnung in dB – Leistungen addiert man in mW (zwei gleiche Signale ergeben +3 dB, z. B. 2 × −70 dBm = −67 dBm).
+- Merke: dB + dB = dB, dBm + dB = dBm (Gewinn/Verlust auf absolute Leistung), dBm − dBm = dB (z. B. SNR). dBm + dBm ist **keine** sinnvolle Rechnung in dB – Leistungen addiert man in mW (zwei gleich starke, unkorrelierte Signale ergeben +3 dB, z. B. 2 × −70 dBm = −67 dBm).
 - **dBi**: Antennengewinn relativ zum (theoretischen) **isotropen Strahler** (punktförmig, strahlt kugelförmig gleichmäßig; existiert nicht real). **dBd**: relativ zu einem **Dipol** (Halbwellendipol hat 2,14 dBi). **dBi = dBd + 2,14**. Nur gleiche Einheiten vergleichen.
 - Antenne ist **passiv**: sie erzeugt keine Energie, sondern bündelt sie (Ballon-Analogie: gleiche Luftmenge, nur anders geformt).
 - **EIRP** (Effective Isotropic Radiated Power) = Leistung, die ein isotroper Strahler abstrahlen müsste, um in der Hauptstrahlrichtung dieselbe Leistungsdichte zu erzeugen:
@@ -119,7 +119,7 @@ IEEE 802.11 definiert Layer 1 und Layer 2 (PHY und MAC) des WLAN. Der Kurs spric
 | 802.11n (HT) | Wi-Fi 4 | 2009 | 2,4 + 5 GHz | OFDM, MIMO | 40 MHz | 64-QAM | 4 | 600 Mbps |
 | 802.11ac (VHT) | Wi-Fi 5 | 2013 | nur 5 GHz | OFDM, DL MU-MIMO (Wave 2) | 80 (W1) / 160 MHz (W2) | 256-QAM | 8 (W1 Produkte 3) | 1,3 Gbps (W1) / 6,93 Gbps |
 | 802.11ax (HE) | Wi-Fi 6 / 6E (6 GHz) | 2021 | 2,4 + 5 (+6) GHz | OFDMA, DL+UL MU-MIMO | 160 MHz | 1024-QAM | 8 | 9,6 Gbps (8 SS, 160 MHz); Kurs: ~4,8 Gbps bei 80 MHz |
-| 802.11be (EHT) | Wi-Fi 7 | 2024 | 2,4 + 5 + 6 GHz | OFDMA, MLO, Multi-RU | 320 MHz (nur 6 GHz) | 4096-QAM | 16 im Standard | ca. 46 Gbps theoretisch |
+| 802.11be (EHT) | Wi-Fi 7 | 2024 (Wi-Fi CERTIFIED 7) | 2,4 + 5 + 6 GHz | OFDMA, MLO, Multi-RU | 320 MHz (nur 6 GHz) | 4096-QAM | 8 (16 nur in frühen Drafts) | ca. 23 Gbps (8 SS × 2,88 Gbps); oft genannte 46 Gbps setzen 16 SS voraus |
 
 - **802.11b**: Raten 1, 2, 5,5, 11 Mbps; DSSS mit Barker-Code (1/2 Mbps) bzw. CCK (5,5/11 Mbps).
 - **802.11a/g**: OFDM-Raten 6, 9, 12, 18, 24, 36, 48, 54 Mbps (48 Datenträger, 64-QAM 3/4 bei 54 Mbps). 802.11g in Mischumgebung mit 11b braucht Schutzmechanismen (RTS/CTS oder CTS-to-self) → Durchsatz sinkt (eigene Ergänzung).

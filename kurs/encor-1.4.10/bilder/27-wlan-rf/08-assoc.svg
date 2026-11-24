@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>802.11-Verbindungszustände und Frames</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Vom Probe bis zur Association</text>
+<g font-size="13" fill="#222">
+<rect x="40" y="50" width="90" height="40" rx="6" fill="#39c86a"/><text x="85" y="75" text-anchor="middle" fill="#fff">Client</text>
+<rect x="420" y="50" width="90" height="40" rx="6" fill="#4a9cff"/><text x="465" y="75" text-anchor="middle" fill="#fff">AP</text>
+<line x1="85" y1="90" x2="85" y2="410" stroke="#999"/><line x1="465" y1="90" x2="465" y2="410" stroke="#999"/>
+<g stroke-width="2">
+<line x1="85" y1="115" x2="460" y2="115" stroke="#222"/><text x="95" y="110">Probe Request (Broadcast, Raten, Fähigkeiten)</text>
+<line x1="465" y1="150" x2="90" y2="150" stroke="#222"/><text x="140" y="145">Probe Response (SSID, Raten, Security)</text>
+<line x1="85" y1="200" x2="460" y2="200" stroke="#b08aff"/><text x="95" y="195">Authentication (Open, Seq 0x0001)</text>
+<line x1="465" y1="235" x2="90" y2="235" stroke="#b08aff"/><text x="140" y="230">Authentication (Open, Seq 0x0002)</text>
+<line x1="85" y1="285" x2="460" y2="285" stroke="#4a9cff"/><text x="95" y="280">Association Request (Security, Fähigkeiten)</text>
+<line x1="465" y1="320" x2="90" y2="320" stroke="#4a9cff"/><text x="140" y="315">Association Response (Success, AID)</text>
+<line x1="85" y1="370" x2="460" y2="370" stroke="#39c86a" stroke-dasharray="6 4"/><text x="95" y="365">danach: WPA2/WPA3/802.1X, DHCP, Daten</text>
+</g>
+<rect x="540" y="50" width="240" height="70" rx="6" fill="#f2f2f2"/><text x="550" y="72" font-weight="bold">Zustand 1</text><text x="550" y="92">nicht authentifiziert,</text><text x="550" y="110">nicht assoziiert</text>
+<rect x="540" y="180" width="240" height="70" rx="6" fill="#f5f0ff"/><text x="550" y="202" font-weight="bold">Zustand 2</text><text x="550" y="222">authentifiziert,</text><text x="550" y="240">nicht assoziiert</text>
+<rect x="540" y="290" width="240" height="60" rx="6" fill="#f4fff7"/><text x="550" y="312" font-weight="bold">Zustand 3</text><text x="550" y="332">authentifiziert + assoziiert</text>
+<text x="540" y="380" font-size="12">Falscher Frame in Zustand 1 → Deauthentication</text>
+<text x="540" y="398" font-size="12">Falscher Frame in Zustand 2 → Disassociation</text>
+<text x="540" y="416" font-size="12">Auth bei mehreren APs möglich,</text>
+<text x="540" y="432" font-size="12">assoziiert nur mit einem AP</text>
+</g>
+</svg>

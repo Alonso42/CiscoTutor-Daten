@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>MIMO-Techniken: MRC, Beamforming, Spatial Multiplexing, MU-MIMO</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">MIMO-Techniken</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="50" width="370" height="180" rx="8" fill="none" stroke="#4a9cff"/>
+<text x="35" y="72" font-weight="bold">MRC (Empfängerseite)</text>
+<rect x="40" y="110" width="30" height="40" fill="#39c86a"/><text x="35" y="168">Client (1 Ant.)</text>
+<rect x="300" y="95" width="40" height="70" fill="#4a9cff"/><text x="300" y="185">AP 3 Rx</text>
+<g stroke="#4a9cff" stroke-width="2"><line x1="70" y1="130" x2="300" y2="102"/><line x1="70" y1="130" x2="300" y2="130"/><line x1="70" y1="130" x2="300" y2="158"/></g>
+<text x="35" y="210">kombiniert alle Empfangsketten phasenrichtig</text><text x="35" y="226">→ besseres SNR, auch für Legacy-Sender</text>
+<rect x="410" y="50" width="370" height="180" rx="8" fill="none" stroke="#39c86a"/>
+<text x="425" y="72" font-weight="bold">Tx Beamforming (Senderseite)</text>
+<rect x="430" y="95" width="40" height="70" fill="#4a9cff"/><text x="430" y="185">AP 3 Tx</text>
+<rect x="700" y="110" width="30" height="40" fill="#39c86a"/>
+<path d="M470 130 Q 590 70 700 130 Q 590 190 470 130 Z" fill="#f4fff7" stroke="#39c86a" stroke-width="2"/>
+<text x="425" y="210">Phase je Antenne → Signale treffen in Phase ein</text><text x="425" y="226">explizit: Sounding-Feedback · implizit: ClientLink</text>
+<rect x="20" y="245" width="370" height="190" rx="8" fill="none" stroke="#b08aff"/>
+<text x="35" y="267" font-weight="bold">Spatial Multiplexing (SU-MIMO)</text>
+<rect x="40" y="285" width="40" height="80" fill="#4a9cff"/><rect x="320" y="285" width="40" height="80" fill="#39c86a"/>
+<g stroke-width="3"><line x1="80" y1="300" x2="320" y2="300" stroke="#b08aff"/><line x1="80" y1="325" x2="320" y2="325" stroke="#ffd23f"/><line x1="80" y1="350" x2="320" y2="350" stroke="#ff6b6b"/></g>
+<text x="35" y="390">3 Streams gleichzeitig, gleiche Frequenz, 1 Client</text><text x="35" y="406">Notation T×R:S, z. B. 4×4:4</text><text x="35" y="422">Streams = Minimum beider Seiten</text>
+<rect x="410" y="245" width="370" height="190" rx="8" fill="none" stroke="#ffd23f"/>
+<text x="425" y="267" font-weight="bold">MU-MIMO vs. OFDMA</text>
+<rect x="430" y="290" width="35" height="60" fill="#4a9cff"/>
+<path d="M465 320 Q 520 270 570 285" fill="none" stroke="#b08aff" stroke-width="3"/><path d="M465 320 Q 520 320 570 320" fill="none" stroke="#ffd23f" stroke-width="3"/><path d="M465 320 Q 520 370 570 355" fill="none" stroke="#ff6b6b" stroke-width="3"/>
+<rect x="572" y="275" width="15" height="20" fill="#39c86a"/><rect x="572" y="310" width="15" height="20" fill="#39c86a"/><rect x="572" y="345" width="15" height="20" fill="#39c86a"/>
+<text x="600" y="290">räumlich getrennt</text><text x="600" y="306">(null steering)</text>
+<rect x="600" y="320" width="160" height="12" fill="#b08aff"/><rect x="600" y="334" width="160" height="12" fill="#ffd23f"/><rect x="600" y="348" width="160" height="12" fill="#ff6b6b"/>
+<text x="600" y="375">OFDMA: Kanal in RUs geteilt</text>
+<text x="425" y="400">ac W2: DL MU-MIMO, max. 4 Clients</text><text x="425" y="416">ax: DL + UL MU-MIMO, OFDMA</text>
+</g>
+</svg>
