@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>WLC-Hochverfügbarkeit: AP-spezifisch, N+1 und SSO</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="32" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">WLC High Availability im Vergleich</text>
+<rect x="15" y="55" width="250" height="380" rx="10" fill="none" stroke="#39c86a" stroke-width="2"/>
+<text x="140" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#39c86a">AP-spezifisch</text>
+<g font-size="12" text-anchor="middle">
+<rect x="30" y="95" width="65" height="30" rx="5" fill="#39c86a"/><text x="62" y="115" fill="#222">WLC A</text>
+<rect x="107" y="95" width="65" height="30" rx="5" fill="#4a9cff"/><text x="140" y="115" fill="#fff">WLC B</text>
+<rect x="184" y="95" width="65" height="30" rx="5" fill="#b08aff"/><text x="217" y="115" fill="#fff">WLC C</text>
+</g>
+<g font-size="12" fill="#222">
+<text x="30" y="155">AP1: P=A, S=B, T=C</text>
+<text x="30" y="173">AP2: P=B, S=C, T=A</text>
+<text x="30" y="191">AP3: P=C, S=A, T=B</text>
+<text x="30" y="230">+ vorhersagbar, schneller,</text>
+<text x="30" y="246">  Fallback, 1:1, N:1, N:N:1</text>
+<text x="30" y="270">− stateless (kein SSO)</text>
+<text x="30" y="286">− mehr Planung</text>
+</g>
+<rect x="275" y="55" width="250" height="380" rx="10" fill="none" stroke="#4a9cff" stroke-width="2"/>
+<text x="400" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#4a9cff">N+1</text>
+<g font-size="12" text-anchor="middle">
+<rect x="290" y="95" width="60" height="30" rx="5" fill="#4a9cff"/><text x="320" y="115" fill="#fff">WLC 1</text>
+<rect x="370" y="95" width="60" height="30" rx="5" fill="#4a9cff"/><text x="400" y="115" fill="#fff">WLC 2</text>
+<rect x="450" y="95" width="60" height="30" rx="5" fill="#4a9cff"/><text x="480" y="115" fill="#fff">WLC n</text>
+<rect x="355" y="175" width="90" height="34" rx="5" fill="#ffd23f"/><text x="400" y="197" fill="#222">Backup-WLC</text>
+</g>
+<g stroke="#222" stroke-dasharray="5,4"><line x1="320" y1="125" x2="380" y2="175"/><line x1="400" y1="125" x2="400" y2="175"/><line x1="480" y1="125" x2="420" y2="175"/></g>
+<g font-size="12" fill="#222">
+<text x="290" y="235">ein Backup für viele Primaries</text>
+<text x="290" y="255">eigene Konfig/IP je WLC,</text>
+<text x="290" y="271">auch anderes RZ über WAN</text>
+<text x="290" y="295">AP-Priorität bei Überbuchung</text>
+<text x="290" y="315">− stateless: AP-Rejoin,</text>
+<text x="290" y="331">  Clients reassoziieren</text>
+<text x="290" y="355">AireOS: HA-SKU (Legacy)</text>
+</g>
+<rect x="535" y="55" width="250" height="380" rx="10" fill="none" stroke="#b08aff" stroke-width="2"/>
+<text x="660" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#b08aff">SSO (1:1)</text>
+<g font-size="12" text-anchor="middle">
+<rect x="550" y="95" width="95" height="34" rx="5" fill="#39c86a"/><text x="597" y="117" fill="#222">Active</text>
+<rect x="675" y="95" width="95" height="34" rx="5" fill="#b08aff"/><text x="722" y="117" fill="#fff">Standby-Hot</text>
+</g>
+<line x1="645" y1="112" x2="675" y2="112" stroke="#ff6b6b" stroke-width="4"/>
+<text x="660" y="148" text-anchor="middle" font-size="11" fill="#ff6b6b">Redundancy Port (RP)</text>
+<g font-size="12" fill="#222">
+<text x="550" y="180">gleiche Konfig + Mgmt-IP</text>
+<text x="550" y="200">Standby überwacht Active</text>
+<text x="550" y="220">kein Preemption</text>
+<text x="550" y="244">AP SSO: CAPWAP bleibt</text>
+<text x="550" y="264">Client SSO: Clients im</text>
+<text x="550" y="280">RUN-State bleiben</text>
+<text x="550" y="304">Paar = Primary für die APs;</text>
+<text x="550" y="320">Secondary/Tertiary erst,</text>
+<text x="550" y="336">wenn beide ausfallen</text>
+<text x="550" y="360">9800: SSO = AP + Client</text>
+</g>
+</svg>

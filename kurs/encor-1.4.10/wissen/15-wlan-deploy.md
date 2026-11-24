@@ -87,7 +87,7 @@ ip dhcp pool AP-VLAN10
 - **Central authentication** (WLC/ RADIUS über WLC) vs. **local authentication** (AP selbst bzw. direkt zum RADIUS).
 - Use Cases: Einzelhandel, Restaurantketten, kleine Lager, Enterprise-Filialen; Migration weg von autonomen APs hin zu zentralem Management.
 - **Vorteile:** viele Vorteile der zentralen Architektur, Hochverfügbarkeit/WLAN-Survivability bei WLC-Ausfall, schnelles sicheres Roaming in der Filiale (VoWLAN), dynamische VLAN-/ACL-Zuweisung pro User, flexible Optionen, WLC nur im Rechenzentrum, effiziente WAN-Nutzung (nur gewünschter Verkehr wird getunnelt), skaliert auf viele Filialen.
-- **WAN-Anforderungen (Kurs/Cisco):** RTT < **300 ms** für Daten, < **100 ms** für Voice; WAN-MTU mindestens **500 Byte** (maximal vier Fragmente). Für Roaming wird ein standortweites VLAN benötigt.
+- **WAN-Anforderungen (Kurs/Cisco):** RTT < **300 ms** für Daten, < **100 ms** für Voice; WAN-MTU mindestens **500 Byte**. Cisco empfiehlt zudem mindestens 12,8 kbps WAN-Bandbreite pro AP (9800 FlexConnect Branch Deployment Guide). Für Roaming wird ein standortweites VLAN benötigt.
 - Boot: AP muss den WLC zunächst erreichen, um die Konfiguration zu laden (Join + Konfig: einige zehn kbps für 5–6 s). Danach CAPWAP-Control-Keepalives, typisch ca. **0,35 kbps pro AP**.
 - **Connected Mode** (WLC erreichbar): Authentifizierung zentral am WLC (sofern nicht Local Auth konfiguriert); lokal geswitchte WLANs bleiben lokal.
 - **Standalone Mode** (WLC nicht erreichbar):
@@ -99,7 +99,7 @@ ip dhcp pool AP-VLAN10
 9800-Konfiguration (Tag-Modell, Beispiel):
 ```
 wireless profile policy PP-BRANCH
- no central-switching
+ no central switching
  vlan 20
  no shutdown
 wireless tag site ST-BRANCH1
@@ -109,7 +109,7 @@ ap 00aa.bbcc.ddee
  site-tag ST-BRANCH1
  policy-tag PT-BRANCH
 ```
-- `no local-site` im Site Tag = APs arbeiten im FlexConnect-Modus; `no central-switching` in der Policy = Local Switching.
+- `no local-site` im Site Tag = APs arbeiten im FlexConnect-Modus; `no central switching` in der Policy = Local Switching (Syntax mit Leerzeichen, analog `central authentication`, `central dhcp`, `central association`). Ein Local-Mode-AP, der einen Site Tag ohne Local Site erhält, rebootet und kommt im FlexConnect-Modus zurück.
 
 ## Cloud-Managed Meraki
 
@@ -131,8 +131,8 @@ ap 00aa.bbcc.ddee
   - Skalierung (Datenblatt, gerundet): 9800-L bis 250 APs (mit Performance-Lizenz 500), 9800-40 bis 2000 APs, 9800-80 bis 6000 APs.
 - **Embedded Wireless Controller (EWC) auf Catalyst 9000 Switch** (z. B. 9300): Software-Paket auf dem Switch, nur für **SD-Access** (APs nur im Fabric Mode); Topologien: 9300 als kombinierter Border/Control Plane oder **Fabric in a Box**. Kurs: bis 200 APs/4000 Clients pro Switch, max. zwei Instanzen pro Standort → 400 APs/8000 Clients. Vorteile: Catalyst-Funktionen (Segmentierung, ETA) für WLAN, 802.11ax, L2-Roaming ohne gespannte VLANs, kein Guest Anchor nötig, SSO im Stack.
 - **EWC auf Catalyst 9100 AP** (nicht im Kurs, aktueller Nachfolger von Mobility Express): ein AP übernimmt die Controller-Funktion für kleine Standorte (bis ca. 100 APs je nach Modell), APs switchen lokal (FlexConnect-ähnlich).
-- **9800-CL (Cloud/virtuell):** VM auf x86 – Private Cloud: VMware ESXi, KVM, Cisco NFVIS auf ENCS (Branch-Optimierung). Scale-Templates in einem Paket, Auswahl beim Instanziieren: **Small** 1000 APs/10.000 Clients, **Medium** 3000/32.000, **Large** 6000/64.000. Bis ca. 1,5 Gbps im zentralen Modus laut Kurs (daher für Centralized nur kleine Datenlast; große Datenmengen eher FlexConnect). Modi: Centralized, FlexConnect, Fabric. Bootstrap-Wizard.
-- **Public Cloud (Kurs: AWS):** IaaS über AWS Marketplace, Instanz in einer VPC, nur mit (managed) **VPN** zum Standort, nur **FlexConnect mit Local Switching** (zentrale Authentifizierung), bis 3000 APs/32.000 Clients; Deployment per CloudFormation-Template (empfohlen) oder EC2-Konsole. Inzwischen auch Google Cloud und Microsoft Azure unterstützt.
+- **9800-CL (Cloud/virtuell):** VM auf x86 – Private Cloud: VMware ESXi, KVM, Cisco NFVIS auf ENCS (Branch-Optimierung). Scale-Templates in einem Paket, Auswahl beim Instanziieren: **Small** 1000 APs/10.000 Clients, **Medium** 3000/32.000, **Large** 6000/64.000. Bis ca. 1,5 Gbps im zentralen Modus laut Kurs; aktuelles Datenblatt: bis 2,1 Gbps (Low-Throughput-Profil ohne SR-IOV), High-Throughput-Profile nur auf ESXi/KVM (daher für Centralized nur kleine Datenlast; große Datenmengen eher FlexConnect). Modi: Centralized, FlexConnect, Fabric. Bootstrap-Wizard.
+- **Public Cloud (Kurs: AWS):** IaaS über AWS Marketplace, Instanz in einer VPC, nur mit (managed) **VPN** zum Standort, nur **FlexConnect mit Local Switching** (zentrale Authentifizierung), laut Kurs bis 3000 APs/32.000 Clients (aktuelles Datenblatt: bis 6000 APs/64.000 Clients); Deployment per CloudFormation-Template (empfohlen) oder EC2-Konsole. Inzwischen auch Google Cloud und Microsoft Azure unterstützt.
 - Vorteile Virtualisierung: Hardware-Unabhängigkeit, Ressourcenteilung über Hypervisor, VM-Mobilität zwischen Servern/Standorten.
 
 ## Cisco Mobility Express (veraltet)
@@ -141,7 +141,7 @@ ap 00aa.bbcc.ddee
 - APs laufen standardmäßig mit CAPWAP-Image; für die Controller-Funktion muss das ME-Image installiert sein.
 - **Primary AP** (früher "Master AP"): betreibt den virtuellen WLC und bedient gleichzeitig Clients; je nach Modell bis 100 APs/2000 Clients.
 - **Subordinate APs:** nur Client-Service, müssen nicht Wave 2 sein.
-- **Alle APs im selben VLAN.**
+- Kurs: **alle APs im selben VLAN** (Design-Empfehlung; laut Cisco Community können APs in anderen Subnetzen per DHCP Option 43 dennoch joinen – nicht offiziell belegt, daher nicht als harte Regel verwenden).
 - Vorteile: einfache Einrichtung (Minuten), Management per Mobile App, Web-UI, Cisco Prime oder DNA Center; keine Controller-/AP-Lizenz-, keine Abo-Kosten; APs später an physischen WLC migrierbar.
 - Funktionen: zentrale Authentifizierung + lokales Switching, Open/WPA2-PSK/WPA2-Enterprise, Guest-WLAN mit CWA/LWA und internen/externen Splash Pages, L2-Roaming ohne Mobility Groups, automatisches Failover auf neuen Primary AP.
 - Over-the-Air-Setup: Primary AP bootet, sendet SSID **CiscoAirProvision** (kann bis 10 min dauern), Laptop verbinden, Browser zu **mobilityexpress.cisco** → Setup-Wizard.
@@ -166,7 +166,8 @@ ap 00aa.bbcc.ddee
 - **Mobility Express** und AireOS-WLCs (AP-Manager-Interface, Cisco Prime) sind End-of-Life; Nachfolger EWC auf Catalyst-9100-APs bzw. Catalyst 9800 (Wireless Management Interface statt AP-Manager).
 - **9800-CL Public Cloud nur AWS**: inzwischen auch Google Cloud Platform und Microsoft Azure unterstützt (Cisco 9800-CL Deployment Guides).
 - **FlexConnect "AP übernimmt die Authentifizierung"** bei WLC-Ausfall: gilt für Open/PSK automatisch; 802.1X-Neuanmeldungen nur, wenn Local Auth (Local EAP) oder Backup-RADIUS in FlexConnect Group/Flex Profile konfiguriert ist (Cisco FlexConnect Feature Matrix).
-- Kurs nennt EWC nur für den Switch; EWC auf Catalyst-9100-APs fehlt.
+- Kurs nennt EWC nur für den Switch; EWC auf Catalyst-9100-APs fehlt. (Ein Non-SD-Access-Modus des EWC auf Catalyst-9000-Switches existierte kurzzeitig, letzter Release 17.3.x, End of Support – Cisco "EWC on Catalyst Switches (Non-SD-Access) Deployment Guide".)
+- **9800-CL-Durchsatz/Public-Cloud-Skalierung**: Kurswerte (1,5 Gbps, 3000 APs in der Public Cloud) sind älter; aktuelles 9800-CL-Datenblatt: bis 2,1 Gbps (Low Profile), Public Cloud bis 6000 APs/64.000 Clients.
 
 ## Bilder
 

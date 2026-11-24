@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>AP-Modi: Clients bedienen oder Spezialfunktion</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="32" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">AP-Modi eines Controller-basierten AP</text>
+<rect x="15" y="55" width="375" height="380" rx="10" fill="none" stroke="#39c86a" stroke-width="2"/>
+<text x="202" y="80" text-anchor="middle" font-size="16" font-weight="bold" fill="#39c86a">Bedienen Clients</text>
+<g font-size="13" fill="#222">
+<text x="30" y="112" font-weight="bold">Local</text><text x="150" y="112">Default; alles per CAPWAP</text><text x="150" y="128">zum WLC; Off-Channel-Scan</text>
+<text x="30" y="162" font-weight="bold">FlexConnect</text><text x="150" y="162">Filiale; lokal/zentral je WLAN</text><text x="150" y="178">überlebt WAN-Ausfall</text>
+<text x="30" y="212" font-weight="bold">OEAP</text><text x="150" y="212">Telearbeit: Firmen-Tunnel +</text><text x="150" y="228">private SSID lokal ins Internet</text>
+<text x="30" y="262" font-weight="bold">Bridge/Mesh</text><text x="150" y="262">RAP (Kabel) / MAP (Funk),</text><text x="150" y="278">Pfadwahl per AWPP</text>
+<text x="30" y="312" font-weight="bold">Flex+Bridge</text><text x="150" y="312">Mesh mit lokalem Switching</text>
+</g>
+<rect x="410" y="55" width="375" height="380" rx="10" fill="none" stroke="#b08aff" stroke-width="2"/>
+<text x="597" y="80" text-anchor="middle" font-size="16" font-weight="bold" fill="#b08aff">Keine Clients (Sensor/Spezial)</text>
+<g font-size="13" fill="#222">
+<text x="425" y="112" font-weight="bold">Monitor</text><text x="545" y="112">Location, Rogue, IDS/wIPS;</text><text x="545" y="128">Submodi wIPS / RFID-Tracking</text>
+<text x="425" y="162" font-weight="bold">Rogue Detector</text><text x="545" y="178">Radio aus, lauscht auf dem</text><text x="545" y="194">Kabel nach ARP (9800: entfallen)</text>
+<text x="425" y="228" font-weight="bold">Sniffer</text><text x="545" y="228">Capture eines Kanals inkl.</text><text x="545" y="244">RSSI/Timing → Analyzer-PC</text>
+<text x="425" y="278" font-weight="bold">SE-Connect</text><text x="545" y="278">Spektrumsensor (CleanAir),</text><text x="545" y="294">Rohdaten → Chanalyzer</text>
+</g>
+<text x="400" y="412" text-anchor="middle" font-size="12" fill="#222">Nicht jedes AP-Modell unterstützt jeden Modus.</text>
+</svg>

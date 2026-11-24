@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>FlexConnect: Central und Local Switching, Connected und Standalone Mode</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">FlexConnect: Filiale ohne eigenen WLC</text>
+<g font-size="13" fill="#222">
+  <!-- Zentrale -->
+  <rect x="560" y="55" width="220" height="130" rx="8" fill="#eaf3ff" stroke="#4a9cff"/>
+  <text x="670" y="75" text-anchor="middle" font-weight="bold">Zentrale / RZ</text>
+  <rect x="590" y="90" width="80" height="34" rx="4" fill="#4a9cff"/><text x="630" y="112" text-anchor="middle" fill="#fff">WLC</text>
+  <rect x="685" y="90" width="80" height="34" fill="#eee" stroke="#222"/><text x="725" y="112" text-anchor="middle">RADIUS</text>
+  <text x="670" y="160" text-anchor="middle" font-size="12">Konfiguration, Auth (zentral),</text><text x="670" y="175" text-anchor="middle" font-size="12">zentral geswitchte WLANs</text>
+  <!-- WAN -->
+  <ellipse cx="420" cy="120" rx="70" ry="34" fill="#f3f3f3" stroke="#999"/><text x="420" y="118" text-anchor="middle">WAN</text>
+  <text x="420" y="134" text-anchor="middle" font-size="11">RTT &lt; 300 ms</text>
+  <!-- Filiale -->
+  <rect x="20" y="55" width="300" height="200" rx="8" fill="#eafaf0" stroke="#39c86a"/>
+  <text x="170" y="75" text-anchor="middle" font-weight="bold">Filiale</text>
+  <rect x="120" y="95" width="80" height="32" rx="4" fill="#39c86a"/><text x="160" y="116" text-anchor="middle" fill="#fff">SW</text>
+  <text x="210" y="100" font-size="11">Trunk, Native VLAN</text><text x="210" y="114" font-size="11">= AP-Mgmt-VLAN</text>
+  <rect x="115" y="175" width="90" height="28" rx="14" fill="#fff" stroke="#222"/><text x="160" y="194" text-anchor="middle">Flex-AP</text>
+  <line x1="160" y1="127" x2="160" y2="175" stroke="#222" stroke-width="2"/>
+  <rect x="40" y="215" width="44" height="26" fill="#ddd" stroke="#222"/><text x="62" y="233" text-anchor="middle">C1</text>
+  <rect x="236" y="215" width="44" height="26" fill="#ddd" stroke="#222"/><text x="258" y="233" text-anchor="middle">C2</text>
+  <!-- local switching C1 -->
+  <path d="M62 215 L130 200 L150 175 L150 127" stroke="#39c86a" stroke-width="4" fill="none"/>
+  <!-- central switching C2 -->
+  <path d="M258 215 L195 200 L172 175 L200 127 L360 115 L480 115 L590 105" stroke="#4a9cff" stroke-width="3" stroke-dasharray="8 4" fill="none"/>
+  <!-- control -->
+  <path d="M205 185 Q400 230 600 124" stroke="#b08aff" stroke-width="2" stroke-dasharray="2 4" fill="none"/>
+  <text x="400" y="215" text-anchor="middle" font-size="11" fill="#7a55d0">CAPWAP Control (~0,35 kbps/AP)</text>
+</g>
+<g font-size="12" fill="#222">
+  <line x1="30" y1="280" x2="60" y2="280" stroke="#39c86a" stroke-width="4"/><text x="68" y="284">Local Switching: Daten direkt ins lokale VLAN</text>
+  <line x1="420" y1="280" x2="450" y2="280" stroke="#4a9cff" stroke-width="3" stroke-dasharray="8 4"/><text x="458" y="284">Central Switching: Daten per CAPWAP zum WLC</text>
+  <rect x="20" y="300" width="370" height="135" rx="8" fill="#eafaf0" stroke="#39c86a"/>
+  <text x="205" y="322" text-anchor="middle" font-weight="bold" font-size="13">Connected Mode (WLC erreichbar)</text>
+  <text x="32" y="346">• Auth zentral (außer Local Auth konfiguriert)</text>
+  <text x="32" y="368">• lokal geswitchte WLANs: Daten bleiben lokal</text>
+  <text x="32" y="390">• zentral geswitchte WLANs: Daten zum WLC</text>
+  <text x="32" y="412">• AP holt Konfiguration beim Boot vom WLC</text>
+  <rect x="410" y="300" width="370" height="135" rx="8" fill="#fff0f0" stroke="#ff6b6b"/>
+  <text x="595" y="322" text-anchor="middle" font-weight="bold" font-size="13">Standalone Mode (WAN/WLC weg)</text>
+  <text x="422" y="346">• lokal geswitchte Clients bleiben verbunden</text>
+  <text x="422" y="368">• neue Clients nur mit lokaler Auth möglich</text>
+  <text x="422" y="384">  (Open, PSK, Local EAP / Backup-RADIUS)</text>
+  <text x="422" y="406">• zentral geswitchte Clients werden getrennt</text>
+  <text x="422" y="426">• Reassoziation erst wenn WLC zurück ist</text>
+</g>
+</svg>

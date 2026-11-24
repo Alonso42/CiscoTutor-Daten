@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Catalyst-9800-Formfaktoren und Einsatzbereiche</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">Catalyst 9800 (IOS XE): ein Controller, vier Formfaktoren</text>
+<g font-size="13" fill="#222">
+  <rect x="15" y="55" width="185" height="370" rx="8" fill="#eaf3ff" stroke="#4a9cff"/>
+  <text x="107" y="80" text-anchor="middle" font-weight="bold">Appliance</text>
+  <rect x="35" y="95" width="145" height="26" rx="3" fill="#4a9cff"/><text x="107" y="113" text-anchor="middle" fill="#fff">9800-L</text>
+  <text x="107" y="138" text-anchor="middle" font-size="12">fest, klein/mittel</text>
+  <rect x="35" y="155" width="145" height="26" rx="3" fill="#4a9cff"/><text x="107" y="173" text-anchor="middle" fill="#fff">9800-40</text>
+  <text x="107" y="198" text-anchor="middle" font-size="12">fest, mittel/groß</text>
+  <rect x="35" y="215" width="145" height="26" rx="3" fill="#4a9cff"/><text x="107" y="233" text-anchor="middle" fill="#fff">9800-80</text>
+  <text x="107" y="258" text-anchor="middle" font-size="12">modular, 100G-Uplinks,</text>
+  <text x="107" y="273" text-anchor="middle" font-size="12">sehr groß/Campus</text>
+  <text x="107" y="320" text-anchor="middle" font-size="12">Centralized, Flex,</text><text x="107" y="335" text-anchor="middle" font-size="12">Fabric; SSO-HA-Paar</text>
+
+  <rect x="210" y="55" width="185" height="370" rx="8" fill="#f4eeff" stroke="#b08aff"/>
+  <text x="302" y="80" text-anchor="middle" font-weight="bold">EWC auf Switch</text>
+  <rect x="235" y="100" width="135" height="34" rx="4" fill="#39c86a"/><text x="302" y="122" text-anchor="middle" fill="#fff">Catalyst 9300</text>
+  <text x="302" y="160" text-anchor="middle" font-size="12">nur SD-Access,</text>
+  <text x="302" y="175" text-anchor="middle" font-size="12">APs im Fabric Mode</text>
+  <text x="302" y="205" text-anchor="middle" font-size="12">Fabric in a Box oder</text>
+  <text x="302" y="220" text-anchor="middle" font-size="12">Border + Control Plane</text>
+  <text x="302" y="255" text-anchor="middle" font-size="12">Kurs: 200 APs/Switch,</text>
+  <text x="302" y="270" text-anchor="middle" font-size="12">max. 2 pro Standort</text>
+  <text x="302" y="320" text-anchor="middle" font-size="12">kleiner Campus,</text><text x="302" y="335" text-anchor="middle" font-size="12">verteilte Filialen</text>
+
+  <rect x="405" y="55" width="185" height="370" rx="8" fill="#eafaf0" stroke="#39c86a"/>
+  <text x="497" y="80" text-anchor="middle" font-weight="bold">9800-CL privat</text>
+  <rect x="430" y="100" width="135" height="34" rx="4" fill="#fff" stroke="#222"/><text x="497" y="122" text-anchor="middle">VM</text>
+  <text x="497" y="160" text-anchor="middle" font-size="12">ESXi, KVM, NFVIS (ENCS)</text>
+  <text x="497" y="195" text-anchor="middle" font-size="12">Small 1000 APs</text>
+  <text x="497" y="212" text-anchor="middle" font-size="12">Medium 3000 APs</text>
+  <text x="497" y="229" text-anchor="middle" font-size="12">Large 6000 APs</text>
+  <text x="497" y="260" text-anchor="middle" font-size="12">ein Paket, Größe beim</text>
+  <text x="497" y="275" text-anchor="middle" font-size="12">Instanziieren wählen</text>
+  <text x="497" y="320" text-anchor="middle" font-size="12">Centralized, Flex,</text><text x="497" y="335" text-anchor="middle" font-size="12">Fabric</text>
+
+  <rect x="600" y="55" width="185" height="370" rx="8" fill="#fff8dc" stroke="#e0b400"/>
+  <text x="692" y="80" text-anchor="middle" font-weight="bold">9800-CL Public Cloud</text>
+  <ellipse cx="692" cy="117" rx="60" ry="20" fill="#ffd23f"/><text x="692" y="122" text-anchor="middle">IaaS</text>
+  <text x="692" y="160" text-anchor="middle" font-size="12">AWS (Kurs), heute auch</text>
+  <text x="692" y="175" text-anchor="middle" font-size="12">Azure und GCP</text>
+  <text x="692" y="205" text-anchor="middle" font-size="12">Instanz in VPC,</text>
+  <text x="692" y="220" text-anchor="middle" font-size="12">VPN zum Standort</text>
+  <text x="692" y="255" text-anchor="middle" font-size="12">nur FlexConnect:</text>
+  <text x="692" y="270" text-anchor="middle" font-size="12">Local Switching</text>
+  <text x="692" y="320" text-anchor="middle" font-size="12">Daten nie über</text><text x="692" y="335" text-anchor="middle" font-size="12">die Cloud</text>
+</g>
+<text x="400" y="442" text-anchor="middle" font-size="12" fill="#222">Dazu: EWC auf Catalyst-9100-AP (Nachfolger von Mobility Express) für kleine Standorte ohne Fabric</text>
+</svg>

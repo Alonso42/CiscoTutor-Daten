@@ -1,0 +1,1992 @@
+[
+    {
+        "id":  "slg-wd-001",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A small coffee shop needs Wi-Fi from two access points. There is no IT staff, no budget for a controller, and no need for roaming features. Which deployment model fits best?",
+        "optionen":  [
+                         "Centralized WLC deployment with a Catalyst 9800-80",
+                         "Autonomous access points",
+                         "FlexConnect APs managed by a WLC in a data center",
+                         "SD-Access wireless with a fabric WLC"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Für Hotspots und sehr kleine Standorte mit wenigen APs sind autonome APs die einfachste und günstigste Lösung. Controller-basierte Modelle lohnen sich erst, wenn zentrales Management, RRM oder Roaming gebraucht werden."
+    },
+    {
+        "id":  "slg-wd-002",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which statement describes an autonomous access point deployment?",
+        "optionen":  [
+                         "Each AP is configured and managed individually and has no knowledge of the other APs",
+                         "Each AP tunnels all client data to a central controller for policy enforcement",
+                         "Each AP downloads a shared configuration from a controller over CAPWAP at boot time",
+                         "Each AP is claimed in a cloud dashboard and pulls its configuration over a secure tunnel"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Autonome APs arbeiten als unabhängige Zellen: Jeder AP hat seine eigene Konfiguration und weiß nichts von den anderen. Konfiguration per CAPWAP, Datentunnel zum WLC oder Cloud-Claiming gehören zu Controller- bzw. Cloud-Modellen."
+    },
+    {
+        "id":  "slg-wd-003",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "A retailer has grown to 35 autonomous APs per store. The network team reports recurring problems. Which three problems are inherent to the autonomous design? (Choose three.)",
+        "optionen":  [
+                         "Configuration drift because every AP is configured separately",
+                         "No fast, secure roaming for clients that move between subnets",
+                         "APs cannot offer WPA2-Enterprise because there is no controller",
+                         "No dynamic RRM to adjust channels and transmit power across APs",
+                         "All client traffic must cross the WAN to reach a central WLC"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Autonome APs werden einzeln verwaltet (Inkonsistenzen, einzelne Upgrades), haben kein dynamisches RRM und kein schnelles sicheres Roaming über Subnetzgrenzen. WPA2-Enterprise mit externem RADIUS ist auch autonom möglich, und einen Datentunnel zum WLC gibt es in diesem Modell gar nicht."
+    },
+    {
+        "id":  "slg-wd-004",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the purpose of Wireless Domain Services (WDS) in a Cisco autonomous AP network?",
+        "optionen":  [
+                         "Sharing roaming client credentials among APs in the same subnet",
+                         "Allowing autonomous APs to discover a WLC without DHCP option 43",
+                         "Sharing roaming client credentials among APs in different subnets",
+                         "Calculating channel and power plans for all APs in the building"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "WDS verteilt bei autonomen Cisco-APs die Credentials roamender Clients, damit sie nicht komplett neu authentifizieren müssen – aber nur innerhalb desselben Subnetzes. Für Roaming über Subnetzgrenzen gibt es bei autonomen APs keinen Mechanismus."
+    },
+    {
+        "id":  "slg-wd-005",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Two clients associate to the same autonomous AP. Client A uses SSID STAFF (VLAN 10) and client B uses SSID LAB (VLAN 20). How does a packet from client A reach client B?",
+        "optionen":  [
+                         "The AP bridges it between the two SSIDs because both clients use the same radio",
+                         "The AP routes it internally between VLAN 10 and VLAN 20 and delivers it directly to client B",
+                         "The AP forwards it to the wired network, a router routes it, and the AP delivers it back to client B",
+                         "The AP drops it because clients of different SSIDs can never communicate"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein AP routet nicht zwischen VLANs. Der Verkehr geht über den Switch zum Gateway-Router und von dort zurück zum selben AP. Für die Clients sieht es aus, als stünde der andere hinter einem Router im LAN."
+    },
+    {
+        "id":  "slg-wd-006",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two clients in the same WLAN and VLAN are associated to two different autonomous APs that connect to the same access switch. Which path does their traffic take?",
+        "optionen":  [
+                         "Through a CAPWAP tunnel to a wireless controller",
+                         "Directly over the air from one AP to the other AP",
+                         "Through the default gateway router of the VLAN",
+                         "Through both APs and the access switch"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Verkehr zwischen Clients an verschiedenen autonomen APs läuft über die kabelgebundene Infrastruktur, hier über den gemeinsamen Switch. AP-zu-AP-Funk ist nur für Sonderfälle wie Gebäudebrücken gedacht; ein Router ist im selben VLAN nicht nötig."
+    },
+    {
+        "id":  "slg-wd-007",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Two clients in the same subnet are associated to the same autonomous AP on the same WLAN. What load does their traffic place on the access switch?",
+        "optionen":  [
+                         "None, the AP forwards the frames between the clients itself",
+                         "Only broadcast frames, because unicast is sent to the router",
+                         "All frames, because the AP has no MAC address table",
+                         "All frames are sent to the switch and reflected back to the AP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bei gleichem AP und gleichem Subnetz bleibt der Verkehr im AP und erreicht den Switch nicht. Erst bei verschiedenen APs oder verschiedenen VLANs wird die kabelgebundene Infrastruktur beansprucht."
+    },
+    {
+        "id":  "slg-wd-008",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "An autonomous AP converts the client\u0027s 802.11 frame into an ___ frame before it forwards the frame to the access switch.",
+        "optionen":  [
+                         "VXLAN",
+                         "802.1X",
+                         "CAPWAP",
+                         "802.3"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der autonome AP arbeitet als Bridge zwischen Funk und Kabel: Aus dem 802.11-Frame wird ein Ethernet-Frame (802.3). CAPWAP und VXLAN sind Tunnelkapselungen anderer Architekturen, 802.1X ist ein Authentifizierungsstandard."
+    },
+    {
+        "id":  "slg-wd-009",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A tenant in an office building uses three autonomous APs. The signal is clearly received in the parking lot and in the neighboring tenant\u0027s offices. Which parameter should be tuned first?",
+        "optionen":  [
+                         "Transmit power level of the APs",
+                         "Beacon interval of the APs",
+                         "SSID name and SSID broadcast setting",
+                         "WPA2 encryption cipher"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Reichweite wird über die Sendeleistung begrenzt – bei autonomen APs neben SSID und Security einer der wenigen typischen Konfigurationsparameter. SSID, Beacon-Intervall oder Cipher ändern nichts daran, wie weit das Signal reicht."
+    },
+    {
+        "id":  "slg-wd-010",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A company wants to reuse its existing Cisco autonomous APs in a new controller-based design. What is required?",
+        "optionen":  [
+                         "Enable WDS on one AP so that it acts as a proxy for the controller",
+                         "Replace the APs, because autonomous hardware can never join a WLC",
+                         "Load the lightweight CAPWAP image on the APs so they can join a WLC",
+                         "Keep the autonomous image and add the APs to a FlexConnect group"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Viele Cisco-APs können zwischen autonomem Image und Lightweight-(CAPWAP-)Image umgestellt werden. Mit CAPWAP-Image suchen sie einen WLC und joinen ihn. WDS ist ein reiner Roaming-Dienst autonomer APs, und FlexConnect setzt ein CAPWAP-Image voraus."
+    },
+    {
+        "id":  "slg-wd-011",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which benefit is typical of a standalone autonomous AP design?",
+        "optionen":  [
+                         "Automatic rogue detection and mitigation",
+                         "Seamless roaming between different subnets",
+                         "Low capital expenditure for very small sites",
+                         "Central troubleshooting of all APs"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Autonome APs brauchen keinen Controller und keine Controller-Lizenzen – daher geringe Investitionskosten bei wenigen APs. Rogue-Abwehr, subnetzübergreifendes Roaming und zentrales Troubleshooting sind Vorteile von Controller-Lösungen."
+    },
+    {
+        "id":  "slg-wd-012",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In a split-MAC architecture, which function is performed by the lightweight AP?",
+        "optionen":  [
+                         "Processing association and reassociation requests",
+                         "Transmitting beacons and answering probe requests",
+                         "Calculating the RRM channel and power plan",
+                         "Applying the security and QoS policy to clients"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der AP übernimmt die zeitkritischen (real-time) MAC-Funktionen wie Beacons, Probe Responses, ACKs und Verschlüsselung. Association, RRM-Berechnung und Policy-Entscheidungen sind nicht zeitkritisch und liegen beim WLC."
+    },
+    {
+        "id":  "slg-wd-013",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In a Cisco split-MAC architecture, which device processes client association and reassociation, for example during roaming?",
+        "optionen":  [
+                         "The access switch of the AP",
+                         "The lightweight access point",
+                         "The wireless LAN controller",
+                         "The RADIUS server (Cisco ISE)"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Association und Reassociation gehören zu den nicht zeitkritischen MAC-Funktionen und werden vom WLC verarbeitet. Dadurch kennt der WLC jederzeit, an welchem AP ein Client hängt, und kann Roaming steuern. ISE prüft nur die Identität, nicht die 802.11-Association."
+    },
+    {
+        "id":  "slg-wd-014",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three tasks are real-time 802.11 MAC functions that a lightweight AP handles in split-MAC mode? (Choose three.)",
+        "optionen":  [
+                         "Encrypting and decrypting 802.11 frames on the air",
+                         "Sending 802.11 acknowledgments and retransmissions",
+                         "Transmitting beacon frames",
+                         "Running RRM to compute a channel plan",
+                         "Enforcing ACLs on client traffic"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "ACKs, Retransmissions, Beacons und die 802.11-Verschlüsselung müssen im Mikrosekundenbereich passieren und laufen deshalb auf dem AP. RRM-Berechnungen und ACL-Policy sind nicht zeitkritisch und gehören zum WLC."
+    },
+    {
+        "id":  "slg-wd-015",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which transport and port does CAPWAP use for its control channel?",
+        "optionen":  [
+                         "UDP 5246",
+                         "UDP 5247",
+                         "UDP 12223",
+                         "TCP 5246"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "CAPWAP nutzt UDP 5246 für Control und UDP 5247 für Daten. TCP wird nicht verwendet; UDP 12222/12223 gehörten zum Vorgänger LWAPP."
+    },
+    {
+        "id":  "slg-wd-016",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Encapsulated client data travels from a local-mode AP to the WLC with destination port UDP ___.",
+        "optionen":  [
+                         "4789",
+                         "5246",
+                         "5247",
+                         "16667"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der CAPWAP-Datenkanal nutzt UDP 5247, der Control-Kanal UDP 5246. UDP 4789 ist VXLAN, 16667 gehört zum Mobility-Datentunnel zwischen Controllern."
+    },
+    {
+        "id":  "slg-wd-017",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about DTLS in CAPWAP is correct?",
+        "optionen":  [
+                         "Neither channel uses DTLS; CAPWAP relies on IPsec between AP and controller",
+                         "Both channels must use DTLS, so encryption cannot be disabled for client data",
+                         "The data channel is always DTLS-protected, while the control channel is sent in clear text",
+                         "The control channel is always DTLS-protected, while data channel encryption is optional"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "CAPWAP sichert den Control-Kanal (Join, Konfiguration, Schlüssel) mit DTLS; nur die vorgelagerten Discovery-Nachrichten laufen unverschlüsselt (RFC 5415). Die Verschlüsselung des Datenkanals ist optional und wird z. B. aktiviert, wenn APs über unsichere Netze angebunden sind."
+    },
+    {
+        "id":  "slg-wd-018",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about CAPWAP is true?",
+        "optionen":  [
+                         "It is an IEEE 802.11 amendment that defines how clients roam between APs",
+                         "It is a TCP-based protocol that the WLC uses to push configuration to APs",
+                         "It is a Cisco proprietary protocol that only works within one Layer 2 domain",
+                         "It is an IETF standard based on Cisco LWAPP that separates control and data"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "CAPWAP (RFC 5415) ist ein offener IETF-Standard, der auf LWAPP aufbaut. Er läuft über UDP, ist routbar (AP und WLC können in verschiedenen Subnetzen liegen) und trennt Control- und Data-Kanal."
+    },
+    {
+        "id":  "slg-wd-019",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A firewall separates the AP subnet from the WLC. New local-mode APs never join the controller. Which traffic must the firewall permit from the APs to the WLC?",
+        "optionen":  [
+                         "TCP 5246 and TCP 5247",
+                         "UDP 12222 and UDP 12223",
+                         "UDP 5246 and UDP 5247",
+                         "UDP 16666 and UDP 16667"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "APs bauen CAPWAP über UDP 5246 (Control, inklusive DTLS-Join) und UDP 5247 (Data) zum WLC auf. 12222/12223 sind LWAPP, 16666/16667 werden für Mobility-Tunnel zwischen Controllern genutzt."
+    },
+    {
+        "id":  "slg-wd-020",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A capture between a local-mode AP and the WLC shows packets from the AP IP with a random source port to the WLC on UDP 5247. What do these packets carry?",
+        "optionen":  [
+                         "Client frames encapsulated in CAPWAP",
+                         "RADIUS requests for client authentication",
+                         "Mobility messages between two controllers",
+                         "AP join and configuration messages"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "UDP 5247 ist der CAPWAP-Datenkanal: Der AP kapselt jeden Client-Frame und sendet ihn zum WLC. Join und Konfiguration laufen über den Control-Port 5246, Mobility-Nachrichten zwischen WLCs über eigene Ports."
+    },
+    {
+        "id":  "slg-wd-021",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Wireless clients on a local-mode AP are in VLAN 20. On the AP\u0027s switch port, the engineer sees only untagged traffic in the AP management VLAN and no frames tagged with VLAN 20. What explains this?",
+        "optionen":  [
+                         "Client frames are hidden inside the CAPWAP payload and leave the WLC in VLAN 20",
+                         "The AP drops VLAN 20 traffic because the WLAN is not mapped on the switch",
+                         "The AP is in FlexConnect mode and switches VLAN 20 traffic onto another port",
+                         "The switch strips the VLAN 20 tag because the AP port is configured as a trunk"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Im Local Mode kapselt der AP alle Client-Frames in CAPWAP; die VLAN-Information steckt in der Nutzlast. Erst der WLC gibt den Verkehr in VLAN 20 aus. Deshalb reicht für Local-Mode-APs ein Access-Port im AP-Management-VLAN."
+    },
+    {
+        "id":  "slg-wd-022",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two clients are associated to the same local-mode AP on the same WLAN. Which path does a frame from one client to the other take?",
+        "optionen":  [
+                         "From the AP to the access switch and back to the AP as 802.3",
+                         "Directly inside the AP without leaving it, like an autonomous AP",
+                         "From the AP to the WLC over CAPWAP and back to the same AP",
+                         "From the AP to the default gateway and back via the WLC"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Im Local Mode geht jeder Client-Frame zuerst zum WLC – auch wenn Sender und Empfänger am selben AP hängen. Nur so kann der WLC QoS, Security und Bandbreitenlimits anwenden und hat Sichtbarkeit über den Verkehr."
+    },
+    {
+        "id":  "slg-wd-023",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Client A and client B are in the same VLAN and associated to different local-mode APs on the same WLC. How does the WLC forward a frame from A to B?",
+        "optionen":  [
+                         "It sends the frame over a mobility tunnel because the clients use different APs",
+                         "It forwards the frame to the default gateway, which routes it back to the controller",
+                         "It re-encapsulates the frame in CAPWAP and sends it to B\u0027s AP without using its uplink switch",
+                         "It converts the frame to 802.3, sends it to its uplink switch, and receives it back from the switch"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der WLC kennt alle seine Clients. Liegt das Ziel im selben Subnetz und am selben WLC, kapselt er den Frame direkt wieder in CAPWAP zum Ziel-AP; der Switch hinter dem WLC sieht davon nichts."
+    },
+    {
+        "id":  "slg-wd-024",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Client A is on WLC1 and client B is on WLC2. Both WLCs are in the same mobility group. How does traffic from A reach B?",
+        "optionen":  [
+                         "WLC1 sends it to its VLAN gateway, routers forward it, and WLC2 delivers it via CAPWAP",
+                         "WLC1 sends it over a direct controller-to-controller tunnel to WLC2",
+                         "WLC1 sends it directly to B\u0027s AP because it learned B\u0027s MAC from WLC2",
+                         "WLC1 sends it to the mobility group leader, which relays it to WLC2"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Für normale Datenflüsse gibt es keinen direkten WLC-zu-WLC-Pfad, auch nicht in derselben Mobility Group. Der Verkehr verlässt WLC1 im Client-VLAN, wird geroutet und erreicht WLC2, der ihn per CAPWAP zum AP schickt. Die ausgetauschten Client-MACs dienen nur dem Roaming."
+    },
+    {
+        "id":  "slg-wd-025",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A last-hop router sends an ARP request for the IP address of a wireless client that is associated to a local-mode AP. Which device answers the request?",
+        "optionen":  [
+                         "The access switch the AP is connected to",
+                         "The wireless client itself, through the CAPWAP tunnel",
+                         "The WLC, acting as an ARP proxy for its client",
+                         "The lightweight AP the client is associated to"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der WLC kennt IP und MAC seiner Clients und beantwortet ARP-Anfragen stellvertretend. Danach schickt der Router den Frame zum WLC, der ihn in 802.11 umwandelt, in CAPWAP kapselt und zum richtigen AP sendet."
+    },
+    {
+        "id":  "slg-wd-026",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Client A (VLAN 10) and client B (VLAN 20) are both associated to the same WLC. How does the WLC handle traffic from A to B?",
+        "optionen":  [
+                         "It sends it as 802.3 out the VLAN 10 interface so that a router can route it",
+                         "It routes it internally between VLAN 10 and VLAN 20 and sends it to B\u0027s AP",
+                         "It drops it, because clients in different VLANs cannot communicate",
+                         "It re-encapsulates it in CAPWAP to B\u0027s AP because both clients are local"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der WLC routet nicht zwischen Client-VLANs. Ziel in anderem VLAN bedeutet: Frame als 802.3 ins VLAN des Senders zum Gateway; der Router routet und schickt das Paket zurück zum WLC, der es an B ausliefert."
+    },
+    {
+        "id":  "slg-wd-027",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A customer asks why traffic between two clients on the same local-mode AP is sent to the controller instead of being switched inside the AP. What is the main reason?",
+        "optionen":  [
+                         "The access switch must learn the client MAC addresses for ARP to work",
+                         "The AP has no MAC address table and cannot deliver frames between its own clients",
+                         "The 802.11 standard forbids an AP from forwarding frames between two clients",
+                         "The controller applies QoS, security, and rate limits and gets visibility of the traffic"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Im Unified-Modell liegt die Kontrolle beim WLC: Nur wenn jeder Frame dort vorbeikommt, greifen Policies und Bandbreitenlimits, und der Administrator sieht den Client-Verkehr. Technisch könnte ein AP lokal weiterleiten – das zeigen autonome APs und FlexConnect."
+    },
+    {
+        "id":  "slg-wd-028",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "A hospital replaces 120 autonomous APs with a centralized WLC deployment. Which three benefits does it gain? (Choose three.)",
+        "optionen":  [
+                         "Dynamic RRM for channel and power assignment",
+                         "Client data is always switched locally at each AP",
+                         "Access switches are no longer needed for the APs",
+                         "Consistent configuration pushed to all APs",
+                         "Rogue detection and wIPS"
+                     ],
+        "richtig":  [
+                        0,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Zentrale WLCs bringen RRM, Rogue-Erkennung/wIPS und konsistente Konfiguration für alle APs. Im Local Mode läuft Client-Verkehr gerade nicht lokal, sondern zum WLC, und APs hängen weiterhin an Access-Switches."
+    },
+    {
+        "id":  "slg-wd-029",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three are limitations of a centralized WLC deployment with APs in local mode? (Choose three.)",
+        "optionen":  [
+                         "A single WLC is a single point of failure",
+                         "All client traffic is forwarded to the WLC",
+                         "The WLC can become a bottleneck",
+                         "Clients cannot roam between APs on one WLC",
+                         "APs cannot be upgraded from a central point"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Weil alle Daten durch den WLC laufen, kann er zum Engpass werden, und ohne Redundanz ist er ein Single Point of Failure; verteilte Ressourcen werden ineffizient erreicht. Zentrale Upgrades und Roaming sind dagegen Stärken des Modells."
+    },
+    {
+        "id":  "slg-wd-030",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A campus runs one WLC. Management wants to remove the single point of failure. What is the recommended approach?",
+        "optionen":  [
+                         "Move the APs to monitor mode so they keep serving clients without a WLC",
+                         "Deploy a second controller as an SSO pair or as secondary WLC for the APs",
+                         "Configure WDS on every AP so that clients can roam if the WLC fails",
+                         "Convert all APs to autonomous mode so that they work without a controller"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Redundanz entsteht durch einen zweiten Controller: als SSO-Paar (stateful, APs und Clients bleiben verbunden) oder als Secondary/Tertiary WLC, auf den APs ausweichen. Monitor-Mode-APs bedienen gar keine Clients, und WDS ersetzt keinen Controller."
+    },
+    {
+        "id":  "slg-wd-031",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An AP in a centralized deployment fails. The neighboring APs automatically increase their transmit power to cover the gap. Which capability provides this?",
+        "optionen":  [
+                         "FlexConnect standalone mode of the APs",
+                         "RRM self-healing coordinated by the WLC",
+                         "Split tunneling on the neighboring APs",
+                         "WDS credential caching on the APs"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der WLC kennt durch RRM die Nachbarschaft der APs und kann bei einem Ausfall die Leistung der Nachbarn erhöhen (Self-Healing, Coverage-Hole-Ausgleich). WDS, Standalone Mode und Split Tunneling haben mit der Funkabdeckung nichts zu tun."
+    },
+    {
+        "id":  "slg-wd-032",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which customer is the best fit for a centralized on-premises WLC deployment?",
+        "optionen":  [
+                         "A single coffee shop with two APs, a guest SSID, and no IT staff",
+                         "A retail chain with 400 small stores, lean IT, and cloud services",
+                         "A kiosk that needs one AP for a few hand scanners and a printer",
+                         "A hospital campus with voice over WLAN and roaming everywhere"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Centralized eignet sich für große Standorte wie Campus, Krankenhäuser, Hochschulen und Fertigung, besonders bei VoWLAN mit Roaming und viel Customizing. Sehr kleine Standorte passen zu autonomen APs, viele kleine Filialen zu FlexConnect oder Cloud-Management."
+    },
+    {
+        "id":  "slg-wd-033",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A university plans high-bandwidth video streaming between wireless clients that are often associated to the same local-mode AP. What must the design take into account?",
+        "optionen":  [
+                         "The access switch carries each stream once between the two clients",
+                         "The AP keeps the streams local, so only the radio cell must be sized",
+                         "The AP-to-WLC links carry each stream to the controller and back",
+                         "The router must route each stream because clients share an AP"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Im Local Mode läuft auch Verkehr zwischen Clients am selben AP über den WLC: hin per CAPWAP und wieder zurück. Die Links zwischen APs und WLC sowie der WLC selbst müssen für diese Last dimensioniert werden."
+    },
+    {
+        "id":  "slg-wd-034",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Controllers in the same mobility group exchange the MAC addresses of their associated clients. What is this information used for?",
+        "optionen":  [
+                         "Handling client roaming between the controllers",
+                         "Load-balancing CAPWAP tunnels between controllers",
+                         "Forwarding data directly between the controllers",
+                         "Building a shared ARP cache for the default gateway"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die ausgetauschten Client-Informationen dienen nur dem Roaming zwischen Controllern, nicht der normalen Datenweiterleitung. Daten zwischen Clients verschiedener WLCs laufen über das geroutete Netz."
+    },
+    {
+        "id":  "slg-wd-035",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In a centralized design with APs in local mode, client VLANs 20 and 30 must be reachable. Where must these VLANs be present?",
+        "optionen":  [
+                         "On every AP access port as allowed trunk VLANs",
+                         "Only on the APs, because they map WLANs to VLANs",
+                         "On the WLC uplink trunk and the distribution layer",
+                         "Only in the AP management VLAN, which carries all"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Im Local Mode gibt der WLC den Client-Verkehr in die jeweiligen VLANs aus. Deshalb müssen VLAN 20 und 30 auf dem WLC-Uplink (Trunk) und im Distribution-Netz existieren. Die AP-Ports brauchen nur das AP-Management-VLAN."
+    },
+    {
+        "id":  "slg-wd-036",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the purpose of DHCP option 43 in a lightweight AP deployment?",
+        "optionen":  [
+                         "It tells the AP which VLAN to use for client traffic",
+                         "It gives the AP the IP addresses of one or more WLCs",
+                         "It assigns the AP to a FlexConnect group on the WLC",
+                         "It provides the AP with its CAPWAP DTLS certificate"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Über Option 43 liefert der DHCP-Server dem AP die WLC-Management-Adressen. So findet der AP einen Controller auch in einem anderen Subnetz, wo Layer-2-Broadcast-Discovery nicht funktioniert."
+    },
+    {
+        "id":  "slg-wd-037",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "APs must learn two WLCs, 10.10.10.5 and 10.10.10.6, through DHCP option 43 (Cisco TLV format, type 0xF1). Which hex value is correct?",
+        "optionen":  [
+                         "f1020a0a0a050a0a0a06",
+                         "f1080a0a0a050a0a0a06",
+                         "f1080a0a05060a0a0a06",
+                         "f1040a0a0a050a0a0a06"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Aufbau: Typ f1, dann Länge = 4 Byte pro WLC (2 WLCs = 8 = 08), dann die Adressen in Hex: 10.10.10.5 = 0a0a0a05, 10.10.10.6 = 0a0a0a06. Zusammen ergibt das f108 0a0a0a05 0a0a0a06."
+    },
+    {
+        "id":  "slg-wd-038",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A lightweight AP uses DNS to discover a controller. Which name does the AP try to resolve?",
+        "optionen":  [
+                         "CISCO-CAPWAP-CONTROLLER.\u003clocal domain\u003e",
+                         "CAPWAP-MANAGER.\u003clocal domain\u003e",
+                         "CISCO-WLC-DISCOVERY.\u003clocal domain\u003e",
+                         "WLC-PRIMARY.\u003clocal domain\u003e"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der AP fragt den Namen CISCO-CAPWAP-CONTROLLER in der per DHCP gelernten Domäne ab. Zeigt der DNS-Eintrag auf die WLC-Management-Adresse, kann der AP auch ohne Option 43 und über Subnetzgrenzen joinen."
+    },
+    {
+        "id":  "slg-wd-039",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three methods can a Cisco lightweight AP use to find a WLC? (Choose three.)",
+        "optionen":  [
+                         "LLDP-MED network policy TLV from the switch",
+                         "DNS lookup of CISCO-CAPWAP-CONTROLLER",
+                         "DHCP option 43",
+                         "SNMP trap sent by the WLC to the AP",
+                         "Layer 2 CAPWAP broadcast in the local subnet"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Lightweight APs finden WLCs per Layer-2-Broadcast, über DHCP Option 43, per DNS und über gespeicherte bzw. statisch konfigurierte Adressen. LLDP-MED-Policies liefern Voice-VLAN-Informationen, und SNMP-Traps sind kein Discovery-Mechanismus."
+    },
+    {
+        "id":  "slg-wd-040",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "New APs in VLAN 50 never join the WLC, which sits in VLAN 10 behind a router. The DHCP server hands out only IP address, mask, and default gateway. No DNS entry exists for the controller. What is the most likely cause?",
+        "optionen":  [
+                         "The APs need a trunk port because the WLC is in a different VLAN than the APs",
+                         "CAPWAP requires the WLC and the APs to be in the same subnet for the DTLS join",
+                         "Broadcast discovery does not cross the router, so the APs never learn a WLC address",
+                         "The router blocks UDP 5247 because data must flow before the control channel"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ohne Option 43, DNS-Eintrag oder Priming bleibt nur Layer-2-Broadcast – und der endet am Router. Lösung: Option 43 oder DNS-Eintrag CISCO-CAPWAP-CONTROLLER einrichten. CAPWAP selbst ist routbar."
+    },
+    {
+        "id":  "slg-wd-041",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "DHCP-Pool-Konfiguration auf einem IOS-Router: Gib den APs per Option 43 den WLC 192.168.10.5 mit (Cisco-TLV-Format, Typ 0xF1).",
+        "bausteine":  [
+                          "option",
+                          "43",
+                          "hex",
+                          "f104c0a80a05",
+                          "f108c0a80a05",
+                          "ascii",
+                          "60"
+                      ],
+        "loesung":  [
+                        "option",
+                        "43",
+                        "hex",
+                        "f104c0a80a05"
+                    ],
+        "erklaerung":  "f1 ist der Typ, 04 die Länge für eine IPv4-Adresse, c0a80a05 ist 192.168.10.5 in Hex. Länge 08 würde zwei Controller-Adressen erwarten. Option 60 ist die Vendor Class, nicht die Controller-Liste."
+    },
+    {
+        "id":  "slg-wd-042",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus auf dem IOS-Router, der als DNS-Server der Filiale dient (Domäne corp.local): Lege den Host-Eintrag an, über den Lightweight-APs den WLC 10.1.1.5 finden.",
+        "bausteine":  [
+                          "ip",
+                          "host",
+                          "CISCO-CAPWAP-CONTROLLER.corp.local",
+                          "10.1.1.5",
+                          "CISCO-WLC.corp.local",
+                          "name-server",
+                          "domain"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "host",
+                        "CISCO-CAPWAP-CONTROLLER.corp.local",
+                        "10.1.1.5"
+                    ],
+        "erklaerung":  "Mit ip host wird ein statischer Namenseintrag angelegt, den der Router als DNS-Server beantwortet (ip dns server vorausgesetzt). APs fragen CISCO-CAPWAP-CONTROLLER in ihrer Domäne ab und erhalten so die WLC-Adresse."
+    },
+    {
+        "id":  "slg-wd-043",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einem Lightweight-AP (Konsole): Lege WLC1 mit der Adresse 10.1.1.5 als primären Controller fest, damit der AP ihn auch ohne DHCP/DNS findet.",
+        "bausteine":  [
+                          "capwap",
+                          "ap",
+                          "primary-base",
+                          "WLC1",
+                          "10.1.1.5",
+                          "secondary-base",
+                          "controller"
+                      ],
+        "loesung":  [
+                        "capwap",
+                        "ap",
+                        "primary-base",
+                        "WLC1",
+                        "10.1.1.5"
+                    ],
+        "erklaerung":  "capwap ap primary-base \u003cName\u003e \u003cIP\u003e primt den AP statisch auf einen Controller. secondary-base würde den Backup-Controller setzen. Im Betrieb konfiguriert man Primary/Secondary meist zentral auf dem WLC."
+    },
+    {
+        "id":  "slg-wd-044",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "For which environment was Cisco FlexConnect designed?",
+        "optionen":  [
+                         "Fabric sites where APs build VXLAN tunnels to fabric edge nodes",
+                         "Branch offices with few APs where a local WLC is not justified",
+                         "Large campuses where all traffic must pass a local controller",
+                         "Hotspots where each AP is configured on its own without WAN links"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "FlexConnect erweitert das zentrale Modell für Filialen und Remote Offices: Die APs werden über das WAN vom zentralen WLC gesteuert, ein eigener Controller pro Filiale entfällt."
+    },
+    {
+        "id":  "slg-wd-045",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What does local switching on a FlexConnect AP mean?",
+        "optionen":  [
+                         "The AP authenticates clients against a local user list",
+                         "The AP routes client traffic between its local VLANs",
+                         "The AP tunnels client traffic over the WAN to the WLC",
+                         "The AP bridges client traffic onto its local Ethernet VLAN"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bei Local Switching gibt der AP Client-Frames direkt in das zugeordnete lokale VLAN aus (WLAN-zu-VLAN-Mapping). Central Switching tunnelt sie dagegen per CAPWAP zum WLC. Ein AP routet in keinem Fall."
+    },
+    {
+        "id":  "slg-wd-046",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Branch users must reach a local printer directly, while traffic to the corporate data center is tunneled to the WLC. Which FlexConnect feature makes this decision based on the destination?",
+        "optionen":  [
+                         "Split tunneling",
+                         "Standalone mode",
+                         "WLAN-to-VLAN mapping",
+                         "Central switching"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Split Tunneling entscheidet pro Ziel: Firmenverkehr geht per CAPWAP zum WLC, lokale Ziele werden direkt ausgeleitet. So wird lokaler Verkehr nicht unnötig über das WAN hin und zurück geschickt."
+    },
+    {
+        "id":  "slg-wd-047",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The WAN to the data center fails. A branch client is connected to a centrally switched WLAN on a FlexConnect AP. What happens to this client?",
+        "optionen":  [
+                         "It is disconnected and can reassociate only when the WLC is reachable again",
+                         "It is moved automatically to a locally switched WLAN on the same AP",
+                         "It stays connected, but only traffic to local subnets is still forwarded",
+                         "It stays connected and its traffic is switched locally until the WAN returns"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Zentral geswitchte WLANs brauchen den Tunnel zum WLC. Fällt er weg, werden diese Clients getrennt und können sich erst wieder verbinden, wenn der WLC erreichbar ist. Nur lokal geswitchte WLANs überleben den Ausfall."
+    },
+    {
+        "id":  "slg-wd-048",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The WAN fails. A new employee tries to join a locally switched 802.1X WLAN on a FlexConnect AP. The WLAN uses central authentication; no local authentication and no backup RADIUS server are configured for the branch. What happens?",
+        "optionen":  [
+                         "The client joins, but its traffic is queued until the WLC is reachable",
+                         "The AP lets the client join without authentication until the WLC returns",
+                         "Authentication fails, so the new client cannot join until the WAN returns",
+                         "The AP authenticates the client with its cached credentials of other users"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ohne WLC ist zentrale Authentifizierung unmöglich. Neue 802.1X-Clients können im Standalone Mode nur joinen, wenn Local Auth (Local EAP) oder ein direkt erreichbarer Backup-RADIUS konfiguriert ist. Bereits verbundene Clients auf lokal geswitchten WLANs bleiben verbunden."
+    },
+    {
+        "id":  "slg-wd-049",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A FlexConnect AP lost its WAN connection. Which clients can still associate as new clients?",
+        "optionen":  [
+                         "Clients of a locally switched WLAN that uses WPA2-PSK",
+                         "Clients of any WLAN, because the AP caches all settings",
+                         "Clients of a centrally switched WLAN that uses WPA2-PSK",
+                         "Clients of a centrally switched WLAN that uses 802.1X"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Im Standalone Mode kann der AP PSK- oder Open-Authentifizierung selbst durchführen, solange das WLAN lokal geswitcht ist. Zentral geswitchte WLANs funktionieren ohne Tunnel zum WLC gar nicht."
+    },
+    {
+        "id":  "slg-wd-050",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "When a FlexConnect AP can no longer reach its WLC, it changes from connected mode to ___ mode.",
+        "optionen":  [
+                         "bridge",
+                         "monitor",
+                         "standalone",
+                         "sniffer"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "FlexConnect-APs kennen Connected Mode (WLC erreichbar) und Standalone Mode (WLC weg). Monitor, Sniffer und Bridge sind eigene AP-Betriebsmodi, keine Zustände von FlexConnect."
+    },
+    {
+        "id":  "slg-wd-051",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A new FlexConnect AP is installed in a branch while the WAN link is down. It has never been connected to the WLC. What happens?",
+        "optionen":  [
+                         "It switches to autonomous mode and broadcasts a setup SSID for staging",
+                         "It serves only the guest WLAN until the controller becomes reachable",
+                         "It serves all WLANs locally, using the default WLAN-to-VLAN mapping",
+                         "It cannot serve any WLAN because it has not received a configuration"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein FlexConnect-AP bezieht seine Konfiguration beim Join vom WLC. Ohne einmalige Verbindung kennt er keine WLANs und kann nichts ausstrahlen. Standalone-Betrieb funktioniert nur mit einer bereits geladenen Konfiguration."
+    },
+    {
+        "id":  "slg-wd-052",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "For FlexConnect data traffic, Cisco requires a round-trip time between AP and WLC below ___ ms.",
+        "optionen":  [
+                         "20",
+                         "100",
+                         "300",
+                         "500"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Für FlexConnect gilt: RTT unter 300 ms für Daten, unter 100 ms bei Voice. 20 ms ist die Grenze für Fabric-APs in SD-Access."
+    },
+    {
+        "id":  "slg-wd-053",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A branch connects over a satellite link with 180 ms RTT to the data center WLC. The customer wants FlexConnect for both data and voice over WLAN. What is the assessment?",
+        "optionen":  [
+                         "Data is within the 300 ms limit, but voice exceeds the 100 ms limit",
+                         "Neither works, because FlexConnect needs less than 20 ms RTT",
+                         "Both work if the voice WLAN is centrally switched to the WLC",
+                         "Data and voice are both within the 300 ms limit for FlexConnect"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Richtwerte sind 300 ms RTT für Daten und 100 ms für Voice. 180 ms reicht also für Daten, aber nicht für VoWLAN. Zentrales Switching würde die Sprachpakete noch zusätzlich über die Satellitenstrecke schicken."
+    },
+    {
+        "id":  "slg-wd-054",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "FlexConnect requires a minimum WAN MTU of ___ bytes between AP and WLC.",
+        "optionen":  [
+                         "500",
+                         "64",
+                         "1500",
+                         "9000"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Cisco nennt für FlexConnect eine minimale WAN-MTU von 500 Byte (Catalyst 9800 FlexConnect Branch Deployment Guide). 1500 ist die Ethernet-Standard-MTU, die nicht zwingend erforderlich ist."
+    },
+    {
+        "id":  "slg-wd-055",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "All WLANs on 20 branch FlexConnect APs are locally switched. How much WAN bandwidth does the CAPWAP control traffic of these APs need in normal operation?",
+        "optionen":  [
+                         "Very little, roughly a fraction of a kbps per AP for keepalives",
+                         "About 1 Mbps per AP for continuous configuration sync",
+                         "About the same as the client traffic, because it is mirrored",
+                         "None, because FlexConnect APs stop CAPWAP after the join"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Nach Join und Konfigurationsdownload tauschen FlexConnect-APs nur noch CAPWAP-Control-Nachrichten aus – laut Kurs typisch etwa 0,35 kbps pro AP. Die Control-Verbindung bleibt bestehen, solange der WLC erreichbar ist."
+    },
+    {
+        "id":  "slg-wd-056",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is a main purpose of a FlexConnect group (AireOS) or flex profile with site tag (Catalyst 9800)?",
+        "optionen":  [
+                         "Assigning each branch AP its own dedicated WLC in the data center",
+                         "Converting branch APs to local mode when the WAN link is restored",
+                         "Bundling the AP uplinks of a site into one EtherChannel to the switch",
+                         "Sharing fast-roaming keys and backup RADIUS settings among APs of a site"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "APs eines Standorts werden gruppiert, damit sie Schlüssel für schnelles Roaming (z. B. OKC/CCKM) teilen und gemeinsame Einstellungen wie VLAN-Mappings, Local Auth und Backup-RADIUS für den Standalone Mode nutzen."
+    },
+    {
+        "id":  "slg-wd-057",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Branch clients lose their IP connectivity when they roam between two FlexConnect APs. The WLAN is locally switched to VLAN 20 on AP1 and to VLAN 30 on AP2. What is the fix?",
+        "optionen":  [
+                         "Enable split tunneling for the WLAN on both APs",
+                         "Map the WLAN to the same site-wide VLAN on both APs",
+                         "Change the WLAN to central authentication on the WLC",
+                         "Put the two APs into different FlexConnect groups"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Lokal geswitchte Clients behalten beim Roaming ihre IP-Adresse nur, wenn das WLAN an allen APs auf dasselbe VLAN zeigt. Deshalb braucht FlexConnect ein standortweites VLAN für Roaming."
+    },
+    {
+        "id":  "slg-wd-058",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The WAN is up. A client joins a locally switched 802.1X WLAN on a FlexConnect AP with default settings. Where is the client authenticated?",
+        "optionen":  [
+                         "On the AP, with its built-in local EAP server",
+                         "On the AP, using a copy of the RADIUS database",
+                         "Through the WLC, which proxies the RADIUS exchange",
+                         "On the branch switch, using 802.1X on the AP port"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Solange der WLC erreichbar ist, läuft die Authentifizierung standardmäßig zentral über den WLC, auch wenn die Daten lokal geswitcht werden. Local Auth muss explizit konfiguriert werden."
+    },
+    {
+        "id":  "slg-wd-059",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A branch uses local-mode APs that join a WLC in the data center over the WAN. Users print to a printer in the same branch, and the WAN link is congested. What is the best improvement?",
+        "optionen":  [
+                         "Add a second WLC in the data center as an SSO pair",
+                         "Map the WLAN to a different VLAN on the data center WLC",
+                         "Increase the transmit power of the APs in the branch",
+                         "Convert the APs to FlexConnect and switch the WLAN locally"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Im Local Mode läuft der Druckverkehr per CAPWAP zum WLC ins Rechenzentrum und als Ethernet wieder zurück in die Filiale – zweimal über das WAN. FlexConnect mit Local Switching hält ihn in der Filiale."
+    },
+    {
+        "id":  "slg-wd-060",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "RFC 5415 defines two CAPWAP operating modes. Which one corresponds to a FlexConnect AP that bridges client traffic locally?",
+        "optionen":  [
+                         "Bridge MAC",
+                         "Split MAC",
+                         "Local MAC",
+                         "Remote MAC"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "CAPWAP unterscheidet Split MAC (AP tunnelt 802.11-Frames, der WLC übernimmt nicht zeitkritische MAC-Funktionen) und Local MAC (AP erledigt die MAC-Funktionen und bridged lokal). FlexConnect mit Local Switching entspricht dem Local-MAC-Prinzip."
+    },
+    {
+        "id":  "slg-wd-061",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three are benefits of FlexConnect for an enterprise with many branches? (Choose three.)",
+        "optionen":  [
+                         "Locally switched WLANs survive a WLC outage",
+                         "Each branch AP can be managed autonomously",
+                         "No WAN latency limits apply to the AP links",
+                         "Only selected traffic is tunneled over the WAN",
+                         "No controller is needed in each branch"
+                     ],
+        "richtig":  [
+                        0,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "FlexConnect spart Controller in den Filialen, nutzt das WAN effizient (nur gewünschter Verkehr wird getunnelt) und hält lokal geswitchte WLANs bei WLC-Ausfall am Leben. Es gelten aber RTT-Grenzen, und die APs werden zentral verwaltet."
+    },
+    {
+        "id":  "slg-wd-062",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus Gi1/0/10, an dem ein FlexConnect-AP hängt (Port ist bereits Trunk). Das AP-Management-VLAN 10 soll untagged übertragen werden.",
+        "bausteine":  [
+                          "switchport",
+                          "trunk",
+                          "native",
+                          "vlan",
+                          "10",
+                          "access",
+                          "allowed",
+                          "mode"
+                      ],
+        "loesung":  [
+                        "switchport",
+                        "trunk",
+                        "native",
+                        "vlan",
+                        "10"
+                    ],
+        "erklaerung":  "Der AP sendet seinen eigenen (CAPWAP-)Verkehr untagged; deshalb muss das Native VLAN des Trunks dem AP-Management-VLAN entsprechen. Die lokal geswitchten WLAN-VLANs kommen getaggt vom AP."
+    },
+    {
+        "id":  "slg-wd-063",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus am Trunk zu einem FlexConnect-AP: Erlaube nur das Management-VLAN 10 und die lokal geswitchten WLAN-VLANs 20 und 30.",
+        "bausteine":  [
+                          "switchport",
+                          "trunk",
+                          "allowed",
+                          "vlan",
+                          "10,20,30",
+                          "native",
+                          "add",
+                          "access"
+                      ],
+        "loesung":  [
+                        "switchport",
+                        "trunk",
+                        "allowed",
+                        "vlan",
+                        "10,20,30"
+                    ],
+        "erklaerung":  "switchport trunk allowed vlan 10,20,30 begrenzt den Trunk auf genau diese VLANs. Mit add würde man VLANs an eine bestehende Liste anhängen; native setzt nur das untagged VLAN."
+    },
+    {
+        "id":  "slg-wd-064",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, Konfiguration des Site Tags ST-BR1 (wireless tag site ST-BR1): Sorge dafür, dass die APs mit diesem Site Tag im FlexConnect-Modus arbeiten.",
+        "bausteine":  [
+                          "no",
+                          "local-site",
+                          "flex-mode",
+                          "flex-profile",
+                          "fabric",
+                          "shutdown"
+                      ],
+        "loesung":  [
+                        "no",
+                        "local-site"
+                    ],
+        "erklaerung":  "Ein Site Tag ist standardmäßig eine Local Site (APs im Local Mode). Mit no local-site werden die zugeordneten APs zu FlexConnect-APs; zusätzlich verweist man per flex-profile auf das Flex Profile mit VLAN- und Auth-Einstellungen."
+    },
+    {
+        "id":  "slg-wd-065",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, Konfiguration des Policy Profiles PP-BRANCH (wireless profile policy PP-BRANCH): Lass den Client-Verkehr am FlexConnect-AP lokal switchen.",
+        "bausteine":  [
+                          "no",
+                          "central",
+                          "switching",
+                          "authentication",
+                          "local-site",
+                          "dhcp",
+                          "shutdown"
+                      ],
+        "loesung":  [
+                        "no",
+                        "central",
+                        "switching"
+                    ],
+        "erklaerung":  "Im Policy Profile ist central switching standardmäßig aktiv. no central switching aktiviert Local Switching für das WLAN auf FlexConnect-APs. no central authentication würde dagegen die Authentifizierung an den AP verlagern, no central dhcp die DHCP-Behandlung."
+    },
+    {
+        "id":  "slg-wd-066",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, AP-Konfigurationsmodus (ap 00aa.bbcc.ddee): Weise dem AP den Site Tag ST-BR1 zu.",
+        "bausteine":  [
+                          "site-tag",
+                          "ST-BR1",
+                          "policy-tag",
+                          "rf-tag",
+                          "flex-profile",
+                          "tag"
+                      ],
+        "loesung":  [
+                        "site-tag",
+                        "ST-BR1"
+                    ],
+        "erklaerung":  "Beim 9800 erhalten APs drei Tags: Policy Tag (WLAN-zu-Policy-Profile), Site Tag (AP Join Profile, Flex Profile, Local/Flex) und RF Tag (Funkprofile). Über ap \u003cMAC\u003e werden die Tags statisch zugewiesen."
+    },
+    {
+        "id":  "slg-wd-067",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einem Catalyst 9800: Zeige eine Übersicht aller gejointen APs mit Modell, IP-Adresse und Zustand.",
+        "bausteine":  [
+                          "show",
+                          "ap",
+                          "summary",
+                          "wireless",
+                          "client",
+                          "capwap"
+                      ],
+        "loesung":  [
+                        "show",
+                        "ap",
+                        "summary"
+                    ],
+        "erklaerung":  "show ap summary listet alle beim Controller registrierten APs mit Name, Modell, MAC, IP und Zustand. Für Clients nutzt man dagegen show wireless client summary."
+    },
+    {
+        "id":  "slg-wd-068",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einem Catalyst 9800: Zeige alle verbundenen Wireless-Clients in Kurzform.",
+        "bausteine":  [
+                          "show",
+                          "wireless",
+                          "client",
+                          "summary",
+                          "ap",
+                          "detail",
+                          "capwap"
+                      ],
+        "loesung":  [
+                        "show",
+                        "wireless",
+                        "client",
+                        "summary"
+                    ],
+        "erklaerung":  "show wireless client summary listet die Clients mit MAC, AP, WLAN, Zustand und Protokoll. Mit show wireless client mac-address \u003cMAC\u003e detail erhält man Details zu einem einzelnen Client."
+    },
+    {
+        "id":  "slg-wd-069",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus auf einem Catalyst 9800: Lege das SVI Vlan10 als Wireless Management Interface fest, an dem die APs ihre CAPWAP-Tunnel terminieren.",
+        "bausteine":  [
+                          "wireless",
+                          "management",
+                          "interface",
+                          "Vlan10",
+                          "ap-manager",
+                          "mobility",
+                          "GigabitEthernet0"
+                      ],
+        "loesung":  [
+                        "wireless",
+                        "management",
+                        "interface",
+                        "Vlan10"
+                    ],
+        "erklaerung":  "Beim 9800 terminiert CAPWAP am Wireless Management Interface (WMI), meist ein SVI. Das separate AP-Manager-Interface gab es nur bei AireOS; GigabitEthernet0 ist der Service Port für Out-of-Band-Management."
+    },
+    {
+        "id":  "slg-wd-070",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which statement describes the management architecture of Cisco Meraki wireless?",
+        "optionen":  [
+                         "On-premises: a local Meraki controller manages the APs at each site",
+                         "In-band: all user traffic is tunneled through the Meraki cloud",
+                         "Out-of-band: only management data flows through the Meraki cloud",
+                         "Hybrid: user traffic is sent to the cloud only for guest SSIDs"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Meraki arbeitet Out-of-Band: Über die Cloud laufen nur Konfiguration, Monitoring und Firmware. Nutzerverkehr passiert die Meraki-Rechenzentren nicht und bleibt im eigenen Netz."
+    },
+    {
+        "id":  "slg-wd-071",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The internet connection of a Meraki site fails, so the APs cannot reach the Meraki cloud. What is the impact on wireless users?",
+        "optionen":  [
+                         "Connected users stay online, but new users cannot authenticate with WPA2-PSK",
+                         "Users keep working; only management functions such as reports and changes are lost",
+                         "All users are disconnected until the APs reach the Meraki cloud dashboard again",
+                         "Users keep working, but traffic drops to a reduced rate until the cloud returns"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Weil die Data Plane lokal ist, funktioniert das Netz ohne Cloud weiter: Authentifizierung, Firewall-Regeln und Weiterleitung mit voller Leitungsrate. Ausfallen nur Management-Funktionen wie Reports und Konfigurationsänderungen."
+    },
+    {
+        "id":  "slg-wd-072",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "A Meraki branch loses its connection to the Meraki cloud for two hours. Which two functions continue to work? (Choose two.)",
+        "optionen":  [
+                         "Viewing live client reports in the dashboard",
+                         "Enforcement of the configured firewall rules",
+                         "Changing SSID settings in the dashboard",
+                         "Wireless access for already connected clients"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Die APs arbeiten mit ihrer zuletzt geladenen Konfiguration weiter: Verbundene Clients bleiben im Netz, Firewall-Regeln bleiben aktiv. Dashboard-Änderungen und Reports brauchen die Cloud; auch neue Anmeldungen über Meraki-Cloud-Authentifizierung oder Meraki-Splash-Pages sind standardmäßig eingeschränkt."
+    },
+    {
+        "id":  "slg-wd-073",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A new Meraki AP is plugged into a PoE switch port at a remote site without IT staff. Its serial number is already claimed in the dashboard network. What happens next?",
+        "optionen":  [
+                         "It broadcasts a provisioning SSID that a technician must join to set it up",
+                         "It waits until an engineer stages it with a console cable and a setup wizard",
+                         "It gets an IP via DHCP, contacts the Meraki cloud, and downloads its configuration",
+                         "It searches for a local WLC via DHCP option 43 and joins it over CAPWAP"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Meraki setzt auf Zero-Touch Provisioning: Der AP holt sich per DHCP eine Adresse, baut selbstständig eine gesicherte Verbindung zur Meraki Cloud auf, registriert sich und lädt seine Konfiguration. Vor-Ort-Staging ist nicht nötig."
+    },
+    {
+        "id":  "slg-wd-074",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two use cases fit a Cisco Meraki cloud-managed wireless deployment best? (Choose two.)",
+        "optionen":  [
+                         "An organization that already relies on cloud services",
+                         "Many distributed branches without on-site IT staff",
+                         "An isolated site that must never have internet access",
+                         "A deployment that needs deep controller customization"
+                     ],
+        "richtig":  [
+                        0,
+                        1
+                    ],
+        "erklaerung":  "Meraki passt zu verteilten Standorten mit schlanker IT und zu Organisationen, die Cloud-Dienste akzeptieren. Ohne Internetzugang ist kein Cloud-Management möglich, und das Customizing ist geringer als bei einem On-Prem-WLC."
+    },
+    {
+        "id":  "slg-wd-075",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A defense contractor\u0027s security policy forbids any network management traffic from leaving its premises. Which wireless option is unsuitable?",
+        "optionen":  [
+                         "Embedded wireless controller on site",
+                         "Meraki cloud-managed APs",
+                         "Catalyst 9800-40 controller on site",
+                         "Catalyst 9800-CL on a local ESXi host"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Meraki-APs werden zwingend über die Meraki Cloud verwaltet, also muss Management-Verkehr das Gelände verlassen. Alle 9800-Varianten können vollständig On-Premises betrieben werden."
+    },
+    {
+        "id":  "slg-wd-076",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which statement about roaming in current Cisco Meraki MR wireless networks is accurate?",
+        "optionen":  [
+                         "Layer 3 roaming is supported, either distributed or through a concentrator",
+                         "Roaming is possible only when all APs connect to the same access switch",
+                         "Only Layer 2 roaming exists, so clients changing subnets always get a new IP",
+                         "Roaming requires a Catalyst 9800 anchor controller next to the APs"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Meraki MR unterstützt Layer-3-Roaming, entweder verteilt zwischen den APs oder über einen MX-Concentrator (Tunnel). Die Kursaussage \u0027kein Layer-3-Roaming\u0027 ist veraltet; für einfaches Roaming ist ein standortweites VLAN aber weiterhin die gängige Lösung."
+    },
+    {
+        "id":  "slg-wd-077",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the purpose of the dedicated security radio in Meraki access points?",
+        "optionen":  [
+                         "Building a wireless backhaul link to a neighboring access point",
+                         "Sending the management traffic of the AP to the Meraki cloud",
+                         "Providing a separate SSID for guest users at the same time",
+                         "Scanning all channels for interference, vulnerabilities, and attacks"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Das zusätzliche Scan-Radio überwacht ständig alle Kanäle auf Störungen, Schwachstellen und Angriffe, ohne die Client-Radios zu unterbrechen. Gäste-SSIDs, Mesh-Backhaul und Cloud-Management laufen über andere Funktionen."
+    },
+    {
+        "id":  "slg-wd-078",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How are firmware upgrades delivered to Meraki access points?",
+        "optionen":  [
+                         "Over the web from the cloud, with schedules the admin can change or cancel",
+                         "From a local TFTP server that the admin configures on every site in advance",
+                         "Manually, by uploading the image to each AP through its local web interface",
+                         "By the access switch, which pushes the image to all APs at its next reload"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Meraki liefert Firmware sicher über das Web aus der Cloud. Upgrades werden im Dashboard geplant und können verschoben oder abgebrochen werden; ein Staging pro AP ist nicht nötig."
+    },
+    {
+        "id":  "slg-wd-079",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Meraki-Funktion ihrer Wirkung zu.",
+        "paare":  [
+                      [
+                          "Zero-Touch Provisioning",
+                          "AP holt sich Konfiguration selbst aus der Cloud"
+                      ],
+                      [
+                          "Auto RF",
+                          "Passt Kanal und Sendeleistung automatisch an"
+                      ],
+                      [
+                          "Application Visibility and Control",
+                          "Erkennt Anwendungen und priorisiert oder begrenzt sie"
+                      ],
+                      [
+                          "Security Radio",
+                          "Scannt alle Kanäle auf Interferenz und Angriffe"
+                      ]
+                  ],
+        "erklaerung":  "Zero-Touch Provisioning verkürzt Rollouts, Auto RF optimiert das Funknetz anhand von Kanalauslastung, Signal und Interferenz, AVC steuert Anwendungen und das Security-Radio überwacht dauerhaft das Spektrum."
+    },
+    {
+        "id":  "slg-wd-080",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Cisco Meraki uses an ___ management architecture, so no user traffic passes through the Meraki data centers.",
+        "optionen":  [
+                         "out-of-band",
+                         "split-MAC",
+                         "overlay",
+                         "in-band"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Out-of-Band bedeutet: Management und Daten sind getrennt. Nur Managementdaten laufen über die Cloud, Nutzerdaten bleiben im lokalen Netz."
+    },
+    {
+        "id":  "slg-wd-081",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about Cisco\u0027s current Wi-Fi 7 access points of the CW917x series is correct?",
+        "optionen":  [
+                         "They can be operated only with the Meraki dashboard, never with a 9800",
+                         "They can be operated only with a Catalyst 9800, never with Meraki",
+                         "They can be operated either with the Meraki dashboard or with a Catalyst 9800",
+                         "They can be operated only as autonomous APs with a local web interface"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Cisco hat mit den Wi-Fi-7-APs (z. B. CW9172, CW9176, CW9178) eine gemeinsame Hardware eingeführt, die wahlweise cloud-verwaltet (Meraki) oder controllerbasiert (Catalyst 9800) betrieben werden kann. Die Trennung zwischen Meraki- und Catalyst-AP-Hardware entfällt damit."
+    },
+    {
+        "id":  "slg-wd-082",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "On which operating system are Cisco Catalyst 9800 wireless controllers based?",
+        "optionen":  [
+                         "Cisco IOS XE",
+                         "Meraki OS",
+                         "Cisco AireOS",
+                         "Cisco NX-OS"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Catalyst 9800 laufen auf IOS XE, wie die Catalyst-9000-Switches. Das ermöglicht Funktionen wie Patching, NETCONF/YANG und Model-Driven Telemetry. AireOS war das Betriebssystem der Vorgänger-WLCs."
+    },
+    {
+        "id":  "slg-wd-083",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A customer still runs AireOS controllers (5520) and Mobility Express. Which Cisco platform is the current on-premises successor?",
+        "optionen":  [
+                         "Cisco 8540 wireless controllers",
+                         "Aironet autonomous access points",
+                         "Cisco Prime Infrastructure",
+                         "Catalyst 9800 wireless controllers"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "AireOS-WLCs wie 3504, 5520 und 8540 sowie Mobility Express sind End-of-Sale/End-of-Life. Nachfolger ist die Catalyst-9800-Familie (Appliance, 9800-CL, EWC). Prime Infrastructure ist ein Management-Tool, kein Controller."
+    },
+    {
+        "id":  "slg-wd-084",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three capabilities are characteristic of Catalyst 9800 wireless controllers? (Choose three.)",
+        "optionen":  [
+                         "Operation only as a physical appliance in the data center",
+                         "Exclusive management through the Meraki cloud dashboard",
+                         "Secure boot and image signing for built-in security",
+                         "Management through NETCONF/YANG and model-driven telemetry",
+                         "Hot and cold patching for seamless software updates"
+                     ],
+        "richtig":  [
+                        2,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Die 9800 bieten Patching ohne Ausfall, eingebaute Sicherheit (Secure Boot, Image Signing, Runtime Defenses) und offene Programmierbarkeit mit NETCONF/YANG und Telemetrie. Sie werden lokal, per Catalyst Center oder API verwaltet und gibt es auch virtuell und eingebettet."
+    },
+    {
+        "id":  "slg-wd-085",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Catalyst-9800-Variante ihrer Beschreibung zu.",
+        "paare":  [
+                      [
+                          "9800-L",
+                          "Feste Appliance für kleine bis mittlere Unternehmen"
+                      ],
+                      [
+                          "9800-40",
+                          "Feste Appliance für mittlere bis große Unternehmen"
+                      ],
+                      [
+                          "9800-80",
+                          "Modulare Appliance mit optionalen 100G-Uplinks"
+                      ],
+                      [
+                          "9800-CL",
+                          "Virtuelle Instanz auf Hypervisor oder in der Cloud"
+                      ]
+                  ],
+        "erklaerung":  "9800-L und 9800-40 sind feste Appliances unterschiedlicher Größe, die 9800-80 ist modular für große Campus-Netze. Die 9800-CL läuft als VM auf ESXi, KVM, NFVIS oder in der Public Cloud."
+    },
+    {
+        "id":  "slg-wd-086",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A branch with a Catalyst 9300 switch wants to run the embedded wireless controller on the switch for traditional local-mode APs, without an SD-Access fabric. Is this possible?",
+        "optionen":  [
+                         "Yes, but only if the APs are connected directly to the 9300 that runs the controller",
+                         "No, the embedded controller on the switch supports only FlexConnect APs at branches",
+                         "No, the embedded controller on the switch supports only SD-Access with fabric-mode APs",
+                         "Yes, the embedded controller on the switch supports local mode, FlexConnect, and fabric"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Embedded Wireless Controller auf Catalyst-9000-Switches ist für SD-Access gedacht: Die APs laufen nur im Fabric Mode. Für klassische Standorte ohne Fabric gibt es eine Appliance, die 9800-CL oder den EWC auf einem Catalyst-9100-AP."
+    },
+    {
+        "id":  "slg-wd-087",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In which two topologies can the Catalyst 9800 embedded wireless controller run on a Catalyst 9300 switch?",
+        "optionen":  [
+                         "As a FlexConnect hub, or on a switch acting as the anchor controller for guests",
+                         "As an access-layer switch, or on a switch acting as the fabric edge node only",
+                         "As a local-mode controller, or on a switch acting as mobility group leader",
+                         "As Fabric in a Box, or on a switch acting as colocated border and control plane node"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Kurs nennt zwei Topologien: 9300 als kombinierter Border/Control-Plane-Knoten oder als Fabric in a Box (alle Fabric-Rollen in einem Gerät/Stack). In beiden Fällen ist der EWC Teil einer SD-Access-Fabric."
+    },
+    {
+        "id":  "slg-wd-088",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Using the course values for the embedded wireless controller on Catalyst 9300 (200 APs per switch, at most two controllers per site), how can a fabric site with 350 APs be served?",
+        "optionen":  [
+                         "Enable the embedded controller on one 9300 stack of four members",
+                         "Enable the embedded controller on two 9300 switches in each building",
+                         "It is not possible, because the limit is 200 APs per site",
+                         "Enable the embedded controller on two 9300 switches at the site"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Laut Kurs trägt ein EWC auf einem 9300 bis zu 200 APs; pro Standort sind maximal zwei Instanzen auf zwei Switches erlaubt, zusammen also 400 APs. 350 APs passen damit auf zwei EWC-Instanzen."
+    },
+    {
+        "id":  "slg-wd-089",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which benefit does the embedded wireless controller on a Catalyst 9300 bring to a small SD-Access site?",
+        "optionen":  [
+                         "Central switching of all wireless traffic through the switch CPU",
+                         "Layer 2 roaming without spanning VLANs and no need for a guest anchor",
+                         "Support for autonomous APs that are not able to run CAPWAP",
+                         "Wireless management from the Meraki cloud without a dashboard license"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Durch die Fabric-Integration roamen Clients nahtlos, ohne dass VLANs gespannt werden müssen, und ein separater Guest-Anchor-Controller entfällt. Daten laufen per VXLAN über die Fabric, nicht über die Switch-CPU."
+    },
+    {
+        "id":  "slg-wd-090",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A small branch wants one compact box that runs a virtual router, a firewall, and the wireless controller. Which 9800-CL hosting option from the course fits?",
+        "optionen":  [
+                         "Amazon Web Services in a public VPC",
+                         "Catalyst 9300 switch with app hosting",
+                         "Cisco ENCS 5000 running NFVIS",
+                         "Cisco UCS server with Windows Server"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Für die Branch-Optimierung nennt der Kurs die 9800-CL als VM auf einem Cisco ENCS 5000 mit NFVIS, das mehrere VNFs auf einer Plattform hostet. Private-Cloud-Hypervisoren sind ESXi, KVM und NFVIS."
+    },
+    {
+        "id":  "slg-wd-091",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer downloads the Catalyst 9800-CL for a private cloud. How is the small, medium, or large scale template selected?",
+        "optionen":  [
+                         "By choosing the template when the virtual machine is instantiated",
+                         "By converting the VM after deployment with a CLI scale command",
+                         "By installing a separate license file on the running controller",
+                         "By downloading a different image file for each scale template"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die 9800-CL nutzt ein einziges Deployment-Paket; die Größe (Small, Medium, Large) wird beim Instanziieren der VM gewählt und bestimmt die zugewiesenen Ressourcen."
+    },
+    {
+        "id":  "slg-wd-092",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das 9800-CL-Scale-Template (Private Cloud) seiner maximalen Skalierung laut Kurs zu.",
+        "paare":  [
+                      [
+                          "Small",
+                          "1000 APs / 10.000 Clients"
+                      ],
+                      [
+                          "Medium",
+                          "3000 APs / 32.000 Clients"
+                      ],
+                      [
+                          "Large",
+                          "6000 APs / 64.000 Clients"
+                      ]
+                  ],
+        "erklaerung":  "Die drei Templates decken kleine Campus/verteilte Filialen (Small), mittlere Campus-Netze (Medium) und große Unternehmen bzw. Service Provider (Large) ab. Die Public-Cloud-Variante unterstützt laut Kurs bis 3000 APs, laut aktuellem Datenblatt bis 6000 APs."
+    },
+    {
+        "id":  "slg-wd-093",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A company runs its Catalyst 9800-CL in a public cloud VPC. How do the branch APs forward client traffic?",
+        "optionen":  [
+                         "Fabric mode; client traffic is VXLAN-encapsulated to the cloud-hosted controller",
+                         "Local mode; all client traffic is tunneled through the VPN into the cloud controller",
+                         "FlexConnect with local switching; only control and authentication use the VPN to the cloud",
+                         "Autonomous mode; the cloud controller only collects statistics from the APs"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Public-Cloud-Variante der 9800-CL unterstützt nur FlexConnect mit Local Switching und zentraler Authentifizierung. Nutzerdaten bleiben am Standort; über den VPN-Tunnel laufen nur CAPWAP-Control und Authentifizierung."
+    },
+    {
+        "id":  "slg-wd-094",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about deploying a Catalyst 9800-CL in AWS are correct? (Choose two.)",
+        "optionen":  [
+                         "The APs reach the controller over the public internet without a VPN",
+                         "A VPN from the customer site to AWS is required for the APs",
+                         "The instance is placed in a virtual private cloud (VPC)",
+                         "Client traffic is centrally switched through the AWS instance"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Die 9800-CL wird in einer VPC instanziiert (am besten per Cisco-CloudFormation-Template), und die APs erreichen sie über einen VPN-Tunnel vom Standort. Zentrales Switching wird in der Public Cloud nicht unterstützt."
+    },
+    {
+        "id":  "slg-wd-095",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two Catalyst 9800-40 controllers form an SSO high-availability pair. The active controller fails. What happens to APs and clients?",
+        "optionen":  [
+                         "The standby takes over statefully, and APs and clients stay connected",
+                         "The APs switch to standalone mode until the failed controller returns",
+                         "The APs reboot and rejoin the standby, and all clients must reassociate",
+                         "The clients stay connected, but the APs must download a new image first"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bei SSO (Stateful Switchover) synchronisiert der Standby den Zustand von APs und Clients. Fällt der Active aus, übernimmt der Standby ohne AP-Rejoin, und die Clients bleiben verbunden (AP- und Client-SSO)."
+    },
+    {
+        "id":  "slg-wd-096",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On a Catalyst 9800 controller, which interface terminates the CAPWAP tunnels from the APs?",
+        "optionen":  [
+                         "The redundancy port (RP)",
+                         "The AP-manager interface",
+                         "The wireless management interface",
+                         "The service port (Gi0)"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Beim 9800 terminiert CAPWAP am Wireless Management Interface (WMI). AP-Manager-Interfaces gab es nur bei AireOS. Der Service Port dient dem Out-of-Band-Management, der RP-Port der SSO-Synchronisation."
+    },
+    {
+        "id":  "slg-wd-097",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A 9800-CL in a centralized deployment is limited to roughly 2 Gbps of client throughput. A campus expects 8 Gbps of wireless client traffic. Which design is most appropriate?",
+        "optionen":  [
+                         "Two 9800-CL instances in an SSO pair to double throughput",
+                         "A Mobility Express primary AP for all campus access points",
+                         "A 9800-40 or 9800-80 appliance, or FlexConnect local switching",
+                         "A single 9800-CL using the large scale template in local mode"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die 9800-CL ist im zentralen Modus durch ihren Datendurchsatz begrenzt; das Large-Template erhöht die AP-/Client-Zahl, nicht den Durchsatz auf das Benötigte. SSO verdoppelt den Durchsatz nicht, da nur ein Controller aktiv ist. Hoher Durchsatz erfordert eine Appliance oder lokales Switching."
+    },
+    {
+        "id":  "slg-wd-098",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is Cisco Mobility Express?",
+        "optionen":  [
+                         "A switch feature that powers APs through UPOE ports",
+                         "A virtual WLC that runs as a VM on VMware ESXi hosts",
+                         "A virtual WLC that runs on a Cisco Wave 2 access point",
+                         "A cloud dashboard that manages APs over the internet"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Mobility Express ist ein in einen 802.11ac-Wave-2-AP integrierter virtueller (AireOS-)WLC. Ein Primary AP steuert die übrigen APs. Die Lösung ist End-of-Life; Nachfolger ist der EWC auf Catalyst-9100-APs."
+    },
+    {
+        "id":  "slg-wd-099",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A customer plans a new small branch based on Mobility Express. What should you point out?",
+        "optionen":  [
+                         "Mobility Express needs a separate 9800 appliance for its primary access point",
+                         "Mobility Express is end-of-life; the successor is the EWC on Catalyst 9100 APs",
+                         "Mobility Express requires an SD-Access fabric with fabric-mode access points",
+                         "Mobility Express is only available as a VM in the AWS Marketplace"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mobility Express basiert auf AireOS und ist abgekündigt. Für neue kleine Standorte ohne eigenen Controller bietet Cisco den Embedded Wireless Controller auf Catalyst-9100-APs (IOS XE) oder Meraki an."
+    },
+    {
+        "id":  "slg-wd-100",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about subordinate APs in a Mobility Express network is correct?",
+        "optionen":  [
+                         "They only serve clients and do not have to be 802.11ac Wave 2 models",
+                         "They run a standby copy of the WLC and must be 802.11ac Wave 2 models",
+                         "They act as RADIUS servers for the primary AP in the same VLAN",
+                         "They only scan for rogues and cannot serve any clients in the branch"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Subordinate APs bedienen nur Clients und werden vom Primary AP verwaltet. Nur der Primary (bzw. ein möglicher Nachfolger) braucht ein Wave-2-Modell mit Mobility-Express-Image; Subordinates können auch ältere Modelle sein."
+    },
+    {
+        "id":  "slg-wd-102",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "For Over-the-Air setup, a new Mobility Express primary AP broadcasts the SSID ___.",
+        "optionen":  [
+                         "CiscoSetupWizard",
+                         "CiscoAirProvision",
+                         "CiscoProvisionAP",
+                         "MobilityExpress"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Nach dem Boot sendet der Primary AP die SSID CiscoAirProvision. Mit einem Laptop verbindet man sich und öffnet im Browser mobilityexpress.cisco, um den Setup-Wizard zu starten."
+    },
+    {
+        "id":  "slg-wd-103",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does a Mobility Express network handle client data traffic?",
+        "optionen":  [
+                         "Local authentication on each AP, with central switching to a WLC",
+                         "Central authentication on the primary AP, with local switching at each AP",
+                         "Central switching to a cloud controller over a secure VPN tunnel",
+                         "Central authentication and central switching through the primary AP"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mobility Express arbeitet FlexConnect-ähnlich: Die Authentifizierung wird zentral über den Primary AP (virtueller WLC) abgewickelt, der Datenverkehr aber an jedem AP lokal ins LAN geswitcht."
+    },
+    {
+        "id":  "slg-wd-104",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The primary AP of a Mobility Express network fails. What happens?",
+        "optionen":  [
+                         "The subordinate APs convert to autonomous mode with saved settings",
+                         "The subordinate APs join the nearest Meraki cloud automatically",
+                         "All subordinate APs stop serving clients until it is replaced",
+                         "Another capable AP is elected and takes over the controller function"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Mobility Express erkennt den Ausfall und wählt einen neuen Primary AP unter den dafür geeigneten (Wave-2-)APs. Danach übernimmt dieser die virtuelle WLC-Funktion."
+    },
+    {
+        "id":  "slg-wd-105",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three were advertised benefits of Cisco Mobility Express for small sites? (Choose three.)",
+        "optionen":  [
+                         "Support for an unlimited number of APs per primary AP",
+                         "APs can later join a physical controller when the network grows",
+                         "No separate controller appliance to buy and manage",
+                         "No controller or AP license costs and no subscription",
+                         "Mandatory management through Cisco DNA Center"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Mobility Express sparte Controller-Hardware, Lizenz- und Abo-Kosten, und die APs konnten später an einen physischen WLC umziehen. Ein Primary AP verwaltete aber nur bis zu etwa 100 APs, und Management war auch per App, Web-UI oder Prime möglich."
+    },
+    {
+        "id":  "slg-wd-106",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A company has outgrown its Mobility Express network and now needs 180 APs at one site. What is the appropriate migration?",
+        "optionen":  [
+                         "Convert the APs to the CAPWAP image and join them to a Catalyst 9800 controller",
+                         "Move half of the APs into a second VLAN with its own subordinate APs",
+                         "Upgrade the primary AP to a newer Wave 2 model to raise its AP limit",
+                         "Add a second primary AP so that two primaries share the 180 APs"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein Mobility-Express-Netz ist auf etwa 100 APs pro Primary begrenzt und kennt keinen zweiten aktiven Primary. Die APs können aber mit CAPWAP-Image an einen physischen oder virtuellen Controller migriert werden – heute ein Catalyst 9800."
+    },
+    {
+        "id":  "slg-wd-107",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which deployment model integrates wireless into a fabric with group-based policy instead of a VLAN-centric design, automated by Catalyst Center?",
+        "optionen":  [
+                         "Mobility Express",
+                         "Autonomous",
+                         "SD-Access wireless",
+                         "FlexConnect"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "SD-Access Wireless bindet WLAN in die SD-Access-Fabric ein: gruppenbasierte Policy (SGTs), flexible Layer-2-Erweiterung und Automatisierung über Catalyst Center (früher DNA Center)."
+    },
+    {
+        "id":  "slg-wd-108",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which two cloud-based controller solutions does the course list for cloud-managed wireless?",
+        "optionen":  [
+                         "Cisco Meraki and Catalyst 9800-CL in the cloud",
+                         "Cisco Meraki and Cisco Mobility Express",
+                         "Catalyst 9800-80 and Catalyst 9800-L",
+                         "Cisco Prime and Cisco Catalyst Center"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Als cloudbasierte Controller nennt der Kurs Meraki und die 9800 Cloud Controller (9800-CL). Mobility Express läuft auf einem AP, 9800-80/-L sind Appliances, Prime und Catalyst Center sind Management-Plattformen."
+    },
+    {
+        "id":  "slg-wd-109",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jede Anforderung dem passenden Deployment-Modell zu.",
+        "paare":  [
+                      [
+                          "Hotspot mit zwei APs, kein Budget für Controller",
+                          "Autonomous"
+                      ],
+                      [
+                          "Krankenhaus-Campus mit VoWLAN und viel Customizing",
+                          "Centralized (Local Mode)"
+                      ],
+                      [
+                          "400 Filialen, WLC nur im Rechenzentrum",
+                          "FlexConnect"
+                      ],
+                      [
+                          "Verteilte Standorte, kaum IT, Cloud akzeptiert",
+                          "Meraki"
+                      ]
+                  ],
+        "erklaerung":  "Kleine Hotspots: autonom. Große Campus-Netze mit Roaming und Voice: zentral. Viele Filialen ohne eigenen WLC: FlexConnect. Verteilte Standorte mit schlanker IT und Cloud-Akzeptanz: Meraki."
+    },
+    {
+        "id":  "slg-wd-110",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den UDP-Port seiner Verwendung zu.",
+        "paare":  [
+                      [
+                          "UDP 5246",
+                          "CAPWAP Control (DTLS)"
+                      ],
+                      [
+                          "UDP 5247",
+                          "CAPWAP Data"
+                      ],
+                      [
+                          "UDP 12222",
+                          "LWAPP Data (Vorgänger von CAPWAP)"
+                      ],
+                      [
+                          "UDP 16666",
+                          "Mobility Control zwischen Controllern"
+                      ]
+                  ],
+        "erklaerung":  "CAPWAP nutzt 5246 für Control und 5247 für Daten. Der Vorgänger LWAPP verwendete 12222 (Data) und 12223 (Control). Zwischen Controllern laufen Mobility-Control-Nachrichten über 16666 und Mobility-Daten über 16667."
+    },
+    {
+        "id":  "slg-wd-111",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den AP-Modus eines Lightweight-APs seiner Funktion zu.",
+        "paare":  [
+                      [
+                          "Local",
+                          "Bedient Clients, alle Daten per CAPWAP zum WLC"
+                      ],
+                      [
+                          "FlexConnect",
+                          "Bedient Clients, kann Daten lokal ins VLAN switchen"
+                      ],
+                      [
+                          "Monitor",
+                          "Bedient keine Clients, scannt für Rogue/wIPS/Location"
+                      ],
+                      [
+                          "Sniffer",
+                          "Zeichnet Frames eines Kanals für einen Analyzer auf"
+                      ]
+                  ],
+        "erklaerung":  "Local Mode ist der Standard im zentralen Design. FlexConnect erlaubt lokales Switching und Überleben bei WAN-Ausfall. Monitor-Mode-APs dienen nur der Überwachung, Sniffer-Mode-APs leiten mitgeschnittene Frames an einen PC mit Analyzer weiter."
+    },
+    {
+        "id":  "slg-wd-112",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ein FlexConnect-AP ist im Standalone Mode (WAN ausgefallen). Ordne jeder Situation das Ergebnis zu.",
+        "paare":  [
+                      [
+                          "Bestehender Client, lokal geswitchtes WLAN",
+                          "Bleibt verbunden"
+                      ],
+                      [
+                          "Bestehender Client, zentral geswitchtes WLAN",
+                          "Wird getrennt"
+                      ],
+                      [
+                          "Neuer Client, lokal geswitchtes WPA2-PSK-WLAN",
+                          "Kann sich neu verbinden"
+                      ],
+                      [
+                          "Neuer 802.1X-Client, zentrale Auth, kein Backup-RADIUS",
+                          "Wird abgewiesen"
+                      ]
+                  ],
+        "erklaerung":  "Lokal geswitchte Sessions überleben, und PSK kann der AP selbst prüfen. Zentral geswitchte WLANs brauchen den Tunnel zum WLC und fallen weg. 802.1X ohne Local Auth oder Backup-RADIUS ist ohne WLC nicht möglich."
+    },
+    {
+        "id":  "slg-wd-113",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne dem autonomen Verkehrsszenario den Weg des Verkehrs zu.",
+        "paare":  [
+                      [
+                          "Client zu Server im LAN",
+                          "AP wandelt 802.11 in 802.3 und gibt an den Switch"
+                      ],
+                      [
+                          "Zwei Clients, gleicher AP, gleiches VLAN",
+                          "Bleibt im AP"
+                      ],
+                      [
+                          "Zwei Clients, verschiedene APs, gleiches VLAN",
+                          "Über den Switch"
+                      ],
+                      [
+                          "Zwei Clients, gleicher AP, verschiedene VLANs",
+                          "Über den Router und zurück zum AP"
+                      ]
+                  ],
+        "erklaerung":  "Autonome APs bridgen zwischen Funk und Kabel. Nur Verkehr im selben VLAN am selben AP bleibt lokal; andere APs werden über den Switch erreicht, andere VLANs über den Router."
+    },
+    {
+        "id":  "slg-wd-114",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Deployment dem Ort seiner Controller-Funktion zu.",
+        "paare":  [
+                      [
+                          "Autonomous",
+                          "Kein Controller, jeder AP eigenständig"
+                      ],
+                      [
+                          "FlexConnect",
+                          "WLC in der Zentrale, über das WAN erreicht"
+                      ],
+                      [
+                          "Meraki",
+                          "Dashboard in der Public Cloud"
+                      ],
+                      [
+                          "Mobility Express",
+                          "Virtueller WLC auf einem AP"
+                      ]
+                  ],
+        "erklaerung":  "Die Modelle unterscheiden sich vor allem darin, wo gesteuert wird: gar nicht zentral (autonom), im Rechenzentrum über das WAN (FlexConnect), in der Cloud (Meraki) oder auf einem AP selbst (Mobility Express bzw. heute EWC auf AP)."
+    },
+    {
+        "id":  "slg-wd-115",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den FlexConnect-Begriff seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "Local switching",
+                          "Daten werden am AP ins lokale VLAN gebridged"
+                      ],
+                      [
+                          "Central switching",
+                          "Daten werden per CAPWAP zum WLC getunnelt"
+                      ],
+                      [
+                          "Split tunneling",
+                          "Entscheidung lokal oder zentral je nach Ziel"
+                      ]
+                  ],
+        "erklaerung":  "FlexConnect kann pro WLAN lokal oder zentral switchen; Split Tunneling trifft die Entscheidung abhängig vom Ziel des Verkehrs."
+    },
+    {
+        "id":  "slg-wd-116",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In a centralized deployment, the division of 802.11 MAC functions between the AP (real-time) and the WLC (non-real-time) is called ___.",
+        "optionen":  [
+                         "local-MAC",
+                         "split-MAC",
+                         "split tunneling",
+                         "local switching"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Split-MAC teilt die 802.11-MAC-Funktionen zwischen AP und WLC auf. Local-MAC und Local Switching beschreiben dagegen das lokale Bridging am AP, Split Tunneling eine zielabhängige Weiterleitung bei FlexConnect."
+    },
+    {
+        "id":  "slg-wd-117",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Cisco autonomous APs use ___ to share credentials of roaming clients among APs in the same subnet.",
+        "optionen":  [
+                         "CAPWAP",
+                         "WDS",
+                         "RRM",
+                         "OKC on the WLC"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Wireless Domain Services (WDS) ist der Roaming-Hilfsdienst autonomer Cisco-APs und funktioniert nur innerhalb eines Subnetzes. RRM und CAPWAP gehören zu Controller-Architekturen."
+    },
+    {
+        "id":  "slg-wd-118",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement correctly compares the data planes of Meraki and a centralized local-mode WLC deployment?",
+        "optionen":  [
+                         "Both keep user traffic local and only send management to the controller",
+                         "Meraki keeps user traffic local; local mode tunnels it to the WLC",
+                         "Meraki tunnels user traffic to the cloud; local mode keeps it local",
+                         "Both tunnel all user traffic to the controller for policy enforcement"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Meraki trennt Management (Cloud) und Daten (lokal). Im Local Mode läuft dagegen jeder Client-Frame per CAPWAP zum WLC. FlexConnect mit Local Switching ähnelt in der Data Plane eher Meraki."
+    }
+]

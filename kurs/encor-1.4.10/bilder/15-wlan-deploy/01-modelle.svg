@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Fünf WLAN-Deployment-Modelle im Vergleich</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">WLAN-Deployment-Modelle: Wo sitzt der Controller, wo laufen die Daten?</text>
+<g font-size="13" fill="#222">
+  <!-- Spalten -->
+  <rect x="15" y="50" width="146" height="380" rx="8" fill="#f3f3f3" stroke="#999"/>
+  <rect x="171" y="50" width="146" height="380" rx="8" fill="#eaf3ff" stroke="#4a9cff"/>
+  <rect x="327" y="50" width="146" height="380" rx="8" fill="#eafaf0" stroke="#39c86a"/>
+  <rect x="483" y="50" width="146" height="380" rx="8" fill="#f4eeff" stroke="#b08aff"/>
+  <rect x="639" y="50" width="146" height="380" rx="8" fill="#fff8dc" stroke="#e0b400"/>
+  <text x="88" y="75" text-anchor="middle" font-weight="bold">Autonomous</text>
+  <text x="244" y="75" text-anchor="middle" font-weight="bold">Centralized</text>
+  <text x="400" y="75" text-anchor="middle" font-weight="bold">FlexConnect</text>
+  <text x="556" y="75" text-anchor="middle" font-weight="bold">SD-Access</text>
+  <text x="712" y="75" text-anchor="middle" font-weight="bold">Cloud-managed</text>
+  <!-- Controller-Ebene -->
+  <text x="88" y="120" text-anchor="middle">kein Controller</text>
+  <text x="88" y="138" text-anchor="middle">jeder AP einzeln</text>
+  <rect x="214" y="100" width="60" height="30" rx="4" fill="#4a9cff"/><text x="244" y="120" text-anchor="middle" fill="#fff">WLC</text>
+  <text x="244" y="148" text-anchor="middle" font-size="11">im Campus/RZ</text>
+  <rect x="370" y="100" width="60" height="30" rx="4" fill="#4a9cff"/><text x="400" y="120" text-anchor="middle" fill="#fff">WLC</text>
+  <text x="400" y="148" text-anchor="middle" font-size="11">nur in der Zentrale</text>
+  <rect x="510" y="100" width="92" height="30" rx="4" fill="#b08aff"/><text x="556" y="120" text-anchor="middle" fill="#fff">WLC + Fabric</text>
+  <text x="556" y="148" text-anchor="middle" font-size="11">Catalyst Center</text>
+  <ellipse cx="712" cy="115" rx="52" ry="20" fill="#ffd23f"/><text x="712" y="120" text-anchor="middle">Cloud</text>
+  <text x="712" y="148" text-anchor="middle" font-size="11">Meraki / 9800-CL</text>
+  <!-- WAN / Netz -->
+  <line x1="244" y1="130" x2="244" y2="250" stroke="#4a9cff" stroke-width="3" stroke-dasharray="6 4"/>
+  <line x1="400" y1="130" x2="400" y2="250" stroke="#4a9cff" stroke-width="3" stroke-dasharray="6 4"/>
+  <text x="408" y="200" font-size="11">WAN</text>
+  <line x1="556" y1="130" x2="556" y2="250" stroke="#b08aff" stroke-width="3" stroke-dasharray="6 4"/>
+  <line x1="712" y1="135" x2="712" y2="250" stroke="#e0b400" stroke-width="3" stroke-dasharray="2 4"/>
+  <text x="720" y="200" font-size="11">nur Mgmt</text>
+  <!-- APs -->
+  <rect x="58" y="250" width="60" height="26" rx="13" fill="#ffffff" stroke="#222"/><text x="88" y="268" text-anchor="middle">AP</text>
+  <rect x="214" y="250" width="60" height="26" rx="13" fill="#ffffff" stroke="#222"/><text x="244" y="268" text-anchor="middle">LAP</text>
+  <rect x="370" y="250" width="60" height="26" rx="13" fill="#ffffff" stroke="#222"/><text x="400" y="268" text-anchor="middle">LAP</text>
+  <rect x="526" y="250" width="60" height="26" rx="13" fill="#ffffff" stroke="#222"/><text x="556" y="268" text-anchor="middle">Fabric AP</text>
+  <rect x="682" y="250" width="60" height="26" rx="13" fill="#ffffff" stroke="#222"/><text x="712" y="268" text-anchor="middle">MR AP</text>
+  <!-- Datenpfad -->
+  <text x="88" y="310" text-anchor="middle" font-weight="bold">Daten:</text>
+  <text x="88" y="328" text-anchor="middle">lokal am AP</text>
+  <text x="244" y="310" text-anchor="middle" font-weight="bold">Daten:</text>
+  <text x="244" y="328" text-anchor="middle">CAPWAP zum WLC</text>
+  <text x="400" y="310" text-anchor="middle" font-weight="bold">Daten:</text>
+  <text x="400" y="328" text-anchor="middle">lokal oder zentral</text>
+  <text x="556" y="310" text-anchor="middle" font-weight="bold">Daten:</text>
+  <text x="556" y="328" text-anchor="middle">VXLAN zur Edge</text>
+  <text x="712" y="310" text-anchor="middle" font-weight="bold">Daten:</text>
+  <text x="712" y="328" text-anchor="middle">bleiben lokal</text>
+  <!-- Einsatz -->
+  <text x="88" y="375" text-anchor="middle" font-size="12">Hotspot,</text>
+  <text x="88" y="391" text-anchor="middle" font-size="12">sehr kleine Firma</text>
+  <text x="244" y="375" text-anchor="middle" font-size="12">Campus, VoWLAN,</text>
+  <text x="244" y="391" text-anchor="middle" font-size="12">viele APs</text>
+  <text x="400" y="375" text-anchor="middle" font-size="12">Filialen ohne</text>
+  <text x="400" y="391" text-anchor="middle" font-size="12">eigenen WLC</text>
+  <text x="556" y="375" text-anchor="middle" font-size="12">gruppenbasierte</text>
+  <text x="556" y="391" text-anchor="middle" font-size="12">Policy, Fabric</text>
+  <text x="712" y="375" text-anchor="middle" font-size="12">verteilt,</text>
+  <text x="712" y="391" text-anchor="middle" font-size="12">schlanke IT</text>
+</g>
+</svg>

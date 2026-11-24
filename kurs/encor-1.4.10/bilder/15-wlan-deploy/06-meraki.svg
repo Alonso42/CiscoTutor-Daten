@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Meraki Out-of-Band-Management</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">Meraki: Management in der Cloud, Daten bleiben lokal</text>
+<g font-size="13" fill="#222">
+  <ellipse cx="400" cy="105" rx="150" ry="50" fill="#fff8dc" stroke="#e0b400" stroke-width="2"/>
+  <text x="400" y="100" text-anchor="middle" font-weight="bold">Meraki Cloud / Dashboard</text>
+  <text x="400" y="118" text-anchor="middle" font-size="12">Konfiguration, Monitoring, Firmware</text>
+  <rect x="640" y="85" width="120" height="40" fill="#eee" stroke="#222"/><text x="700" y="110" text-anchor="middle">Admin-Browser</text>
+  <line x1="550" y1="105" x2="640" y2="105" stroke="#222" stroke-width="2"/>
+  <!-- Standorte -->
+  <rect x="40" y="220" width="320" height="200" rx="8" fill="#eafaf0" stroke="#39c86a"/>
+  <text x="200" y="240" text-anchor="middle" font-weight="bold">Standort A</text>
+  <rect x="440" y="220" width="320" height="200" rx="8" fill="#eafaf0" stroke="#39c86a"/>
+  <text x="600" y="240" text-anchor="middle" font-weight="bold">Standort B</text>
+  <rect x="150" y="260" width="100" height="30" rx="4" fill="#39c86a"/><text x="200" y="280" text-anchor="middle" fill="#fff">SW / Gateway</text>
+  <rect x="160" y="320" width="80" height="28" rx="14" fill="#fff" stroke="#222"/><text x="200" y="339" text-anchor="middle">MR AP</text>
+  <rect x="80" y="375" width="50" height="28" fill="#ddd" stroke="#222"/><text x="105" y="394" text-anchor="middle">Client</text>
+  <rect x="270" y="375" width="60" height="28" fill="#eee" stroke="#222"/><text x="300" y="394" text-anchor="middle">Server</text>
+  <rect x="550" y="260" width="100" height="30" rx="4" fill="#39c86a"/><text x="600" y="280" text-anchor="middle" fill="#fff">SW / Gateway</text>
+  <rect x="560" y="320" width="80" height="28" rx="14" fill="#fff" stroke="#222"/><text x="600" y="339" text-anchor="middle">MR AP</text>
+  <line x1="200" y1="290" x2="200" y2="320" stroke="#222" stroke-width="2"/>
+  <line x1="600" y1="290" x2="600" y2="320" stroke="#222" stroke-width="2"/>
+  <!-- data path local -->
+  <path d="M130 385 L175 348 L195 300 L250 280 L300 375" stroke="#39c86a" stroke-width="4" fill="none"/>
+  <!-- mgmt -->
+  <path d="M215 320 L330 150" stroke="#b08aff" stroke-width="2" stroke-dasharray="5 4" fill="none"/>
+  <path d="M585 320 L470 150" stroke="#b08aff" stroke-width="2" stroke-dasharray="5 4" fill="none"/>
+  <text x="235" y="200" font-size="12" fill="#7a55d0">sicherer Mgmt-Tunnel</text>
+  <text x="485" y="200" font-size="12" fill="#7a55d0">nur Management</text>
+  <text x="70" y="315" font-size="12" fill="#1f8a45">Nutzerdaten</text><text x="70" y="330" font-size="12" fill="#1f8a45">lokal</text>
+  <text x="460" y="380" font-size="12">Cloud nicht erreichbar:</text>
+  <text x="460" y="396" font-size="12">Clients, Auth, Firewall laufen weiter,</text>
+  <text x="460" y="412" font-size="12">nur Reports/Konfiguration fehlen</text>
+</g>
+</svg>

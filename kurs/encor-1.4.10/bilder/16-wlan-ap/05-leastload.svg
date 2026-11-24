@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Join ohne Master: Verteilung auf den am wenigsten ausgelasteten WLC</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="32" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Ohne Master: Least-Loaded-Join</text>
+<rect x="150" y="60" width="140" height="50" rx="8" fill="#4a9cff"/><text x="220" y="91" text-anchor="middle" font-size="15" fill="#fff">WLC 1</text>
+<rect x="510" y="60" width="140" height="50" rx="8" fill="#b08aff"/><text x="580" y="91" text-anchor="middle" font-size="15" fill="#fff">WLC 2</text>
+<g font-size="13" fill="#222">
+<rect x="40" y="150" width="720" height="34" fill="#f2f2f2"/>
+<text x="60" y="172" font-weight="bold">AP bootet</text><text x="200" y="172" font-weight="bold">Last WLC1</text><text x="330" y="172" font-weight="bold">Last WLC2</text><text x="470" y="172" font-weight="bold">Ergebnis</text>
+<text x="60" y="210">AP 1</text><text x="200" y="210">0</text><text x="330" y="210">0</text><text x="470" y="210">Gleichstand → erster Antwortender (z. B. WLC 1)</text>
+<text x="60" y="245">AP 2</text><text x="200" y="245">1</text><text x="330" y="245">0</text><text x="470" y="245" fill="#b08aff" font-weight="bold">WLC 2</text>
+<text x="60" y="280">AP 3</text><text x="200" y="280">1</text><text x="330" y="280">1</text><text x="470" y="280">Gleichstand → erster Antwortender</text>
+<text x="60" y="315">AP 4</text><text x="200" y="315">2</text><text x="330" y="315">1</text><text x="470" y="315" fill="#b08aff" font-weight="bold">WLC 2</text>
+</g>
+<rect x="40" y="345" width="720" height="85" rx="8" fill="none" stroke="#ffd23f" stroke-width="3"/>
+<text x="60" y="372" font-size="14" fill="#222" font-weight="bold">Last ist relativ (Discovery Response meldet Kapazität und belegte APs):</text>
+<text x="60" y="396" font-size="13" fill="#222">WLC A: 10 von 50 APs = 20 %   ·   WLC B: 3 von 6 APs = 50 %</text>
+<text x="60" y="418" font-size="13" fill="#222">→ WLC A gilt als weniger ausgelastet, obwohl dort mehr APs hängen.</text>
+</svg>

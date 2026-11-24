@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>CAPWAP-Join-Ablauf vom Discovery bis Run</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="32" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">CAPWAP: vom Booten bis zum Betrieb</text>
+<g font-size="14" text-anchor="middle">
+<rect x="20" y="80" width="130" height="60" rx="8" fill="#4a9cff"/><text x="85" y="106" fill="#fff" font-weight="bold">Discovery</text><text x="85" y="124" fill="#fff" font-size="11">Request/Response</text>
+<rect x="175" y="80" width="130" height="60" rx="8" fill="#b08aff"/><text x="240" y="106" fill="#fff" font-weight="bold">DTLS Setup</text><text x="240" y="124" fill="#fff" font-size="11">Zertifikate</text>
+<rect x="330" y="80" width="130" height="60" rx="8" fill="#4a9cff"/><text x="395" y="106" fill="#fff" font-weight="bold">Join</text><text x="395" y="124" fill="#fff" font-size="11">Request/Response</text>
+<rect x="485" y="80" width="130" height="60" rx="8" fill="#ffd23f"/><text x="550" y="106" fill="#222" font-weight="bold">Image Data</text><text x="550" y="124" fill="#222" font-size="11">nur bei Mismatch</text>
+<rect x="640" y="80" width="140" height="60" rx="8" fill="#4a9cff"/><text x="710" y="106" fill="#fff" font-weight="bold">Configure</text><text x="710" y="124" fill="#fff" font-size="11">Config Status</text>
+<rect x="640" y="220" width="140" height="60" rx="8" fill="#39c86a"/><text x="710" y="246" fill="#222" font-weight="bold">Run</text><text x="710" y="264" fill="#222" font-size="11">Echo = Heartbeat</text>
+</g>
+<g stroke="#222" stroke-width="2" fill="#222">
+<line x1="150" y1="110" x2="170" y2="110"/><polygon points="170,105 176,110 170,115"/>
+<line x1="305" y1="110" x2="325" y2="110"/><polygon points="325,105 331,110 325,115"/>
+<line x1="460" y1="110" x2="480" y2="110"/><polygon points="480,105 486,110 480,115"/>
+<line x1="615" y1="110" x2="635" y2="110"/><polygon points="635,105 641,110 635,115"/>
+<line x1="710" y1="140" x2="710" y2="214"/><polygon points="705,214 710,220 715,214"/>
+</g>
+<path d="M550,140 C550,220 85,220 85,146" fill="none" stroke="#ff6b6b" stroke-width="2" stroke-dasharray="7,5"/>
+<polygon points="80,148 85,140 90,148" fill="#ff6b6b"/>
+<text x="320" y="210" text-anchor="middle" font-size="12" fill="#ff6b6b">Image laden → Reboot → erneut Discovery/Join</text>
+<g font-size="13" fill="#222">
+<text x="30" y="320">• Control-Kanal UDP 5246 (immer DTLS), Daten UDP 5247</text>
+<text x="30" y="345">• DTLS: AP-Zertifikat (MIC) und WLC-Zertifikat werden gegenseitig geprüft</text>
+<text x="30" y="370">• Klassischer Fehler: falsche WLC-Uhrzeit → Zertifikat "noch nicht gültig"</text>
+<text x="30" y="395">• Image Data entfällt, wenn AP-Software und WLC-Version passen</text>
+<text x="30" y="420">• Im Run-Zustand prüft der Heartbeat (Echo) die Erreichbarkeit des WLC</text>
+</g>
+</svg>

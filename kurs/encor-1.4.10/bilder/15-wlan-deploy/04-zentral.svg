@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Datenpfade im Centralized Deployment (Local Mode)</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">Centralized (Local Mode): Alles läuft zuerst zum WLC</text>
+<g font-size="13" fill="#222">
+  <circle cx="400" cy="85" r="26" fill="#4a9cff"/><text x="400" y="90" text-anchor="middle" fill="#fff" font-weight="bold">R</text>
+  <text x="432" y="80" font-size="11">Gateway: routet</text><text x="432" y="94" font-size="11">zwischen VLANs</text>
+  <rect x="220" y="150" width="110" height="40" rx="4" fill="#4a9cff"/><text x="275" y="175" text-anchor="middle" fill="#fff" font-weight="bold">WLC 1</text>
+  <rect x="470" y="150" width="110" height="40" rx="4" fill="#4a9cff"/><text x="525" y="175" text-anchor="middle" fill="#fff" font-weight="bold">WLC 2</text>
+  <line x1="380" y1="102" x2="300" y2="150" stroke="#222" stroke-width="2"/>
+  <line x1="420" y1="102" x2="500" y2="150" stroke="#222" stroke-width="2"/>
+  <text x="560" y="140" font-size="11">antwortet als</text><text x="560" y="153" font-size="11">ARP-Proxy für C4</text>
+  <rect x="100" y="280" width="70" height="26" rx="13" fill="#fff" stroke="#222"/><text x="135" y="298" text-anchor="middle">AP-A</text>
+  <rect x="300" y="280" width="70" height="26" rx="13" fill="#fff" stroke="#222"/><text x="335" y="298" text-anchor="middle">AP-B</text>
+  <rect x="560" y="280" width="70" height="26" rx="13" fill="#fff" stroke="#222"/><text x="595" y="298" text-anchor="middle">AP-C</text>
+  <line x1="135" y1="280" x2="250" y2="190" stroke="#999" stroke-width="8" opacity="0.4"/>
+  <line x1="335" y1="280" x2="295" y2="190" stroke="#999" stroke-width="8" opacity="0.4"/>
+  <line x1="595" y1="280" x2="540" y2="190" stroke="#999" stroke-width="8" opacity="0.4"/>
+  <text x="140" y="230" font-size="11" fill="#555">CAPWAP</text>
+  <rect x="70" y="360" width="46" height="28" fill="#ddd" stroke="#222"/><text x="93" y="379" text-anchor="middle">C1</text>
+  <rect x="150" y="360" width="46" height="28" fill="#ddd" stroke="#222"/><text x="173" y="379" text-anchor="middle">C2</text>
+  <rect x="312" y="360" width="46" height="28" fill="#ddd" stroke="#222"/><text x="335" y="379" text-anchor="middle">C3</text>
+  <rect x="572" y="360" width="46" height="28" fill="#ddd" stroke="#222"/><text x="595" y="379" text-anchor="middle">C4</text>
+  <!-- C: same AP C1->C2 via WLC -->
+  <path d="M93 360 L120 306 L240 192 L250 192 L150 306 L173 360" stroke="#39c86a" stroke-width="3" fill="none"/>
+  <!-- B: C2->C3 different AP same WLC -->
+  <path d="M180 360 L262 195 L320 280 L335 360" stroke="#ffd23f" stroke-width="3" stroke-dasharray="7 4" fill="none"/>
+  <!-- A: C3 -> C4 via router -->
+  <path d="M345 360 L345 306 L305 190 L392 108 L410 108 L515 190 L600 306 L600 360" stroke="#ff6b6b" stroke-width="3" stroke-dasharray="3 4" fill="none"/>
+</g>
+<g font-size="12" fill="#222">
+  <rect x="640" y="210" width="150" height="225" rx="6" fill="#fafafa" stroke="#bbb"/>
+  <line x1="650" y1="230" x2="680" y2="230" stroke="#39c86a" stroke-width="3"/><text x="686" y="234">gleicher AP:</text>
+  <text x="650" y="250">Hairpin über WLC</text>
+  <line x1="650" y1="275" x2="680" y2="275" stroke="#ffd23f" stroke-width="3" stroke-dasharray="7 4"/><text x="686" y="279">anderer AP,</text>
+  <text x="650" y="295">gleicher WLC/VLAN:</text><text x="650" y="310">WLC re-kapselt</text>
+  <line x1="650" y1="335" x2="680" y2="335" stroke="#ff6b6b" stroke-width="3" stroke-dasharray="3 4"/><text x="686" y="339">anderer WLC:</text>
+  <text x="650" y="355">über den Router,</text><text x="650" y="370">kein WLC-zu-WLC-</text><text x="650" y="385">Datenpfad</text>
+  <text x="650" y="415">Client-VLAN ist im</text><text x="650" y="429">Tunnel versteckt</text>
+</g>
+</svg>

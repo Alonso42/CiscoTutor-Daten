@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>AP Join Order: welcher WLC wird gewählt</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="32" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">AP Join Order</text>
+<g font-size="15">
+<rect x="40" y="70" width="230" height="52" rx="8" fill="#39c86a"/>
+<text x="155" y="102" text-anchor="middle" fill="#222" font-weight="bold">1. Primary</text>
+<rect x="40" y="140" width="230" height="52" rx="8" fill="#39c86a" opacity="0.75"/>
+<text x="155" y="172" text-anchor="middle" fill="#222" font-weight="bold">2. Secondary</text>
+<rect x="40" y="210" width="230" height="52" rx="8" fill="#39c86a" opacity="0.5"/>
+<text x="155" y="242" text-anchor="middle" fill="#222" font-weight="bold">3. Tertiary</text>
+<rect x="40" y="280" width="230" height="52" rx="8" fill="#ffd23f"/>
+<text x="155" y="312" text-anchor="middle" fill="#222" font-weight="bold">4. Master Controller</text>
+<rect x="40" y="350" width="230" height="52" rx="8" fill="#4a9cff"/>
+<text x="155" y="382" text-anchor="middle" fill="#ffffff" font-weight="bold">5. Least Loaded</text>
+</g>
+<g stroke="#222" stroke-width="2">
+<line x1="155" y1="122" x2="155" y2="140"/><line x1="155" y1="192" x2="155" y2="210"/>
+<line x1="155" y1="262" x2="155" y2="280"/><line x1="155" y1="332" x2="155" y2="350"/>
+</g>
+<g font-size="13" fill="#222">
+<text x="300" y="92">pro AP konfiguriert; Match über WLC-Namen</text>
+<text x="300" y="110">(andere Mobility Group: Name + IP nötig)</text>
+<text x="300" y="170">nur wenn der vorherige nicht antwortet/joinbar ist</text>
+<text x="300" y="300">nur wenn KEINE Controller-Info im AP hinterlegt ist</text>
+<text x="300" y="318">AireOS: Staging neuer APs; 9800: kein Master-Feature</text>
+<text x="300" y="370">größte freie AP-Kapazität (relativ):</text>
+<text x="300" y="388">50er-WLC mit 10 APs = 20 % &lt; 6er-WLC mit 3 APs = 50 %</text>
+</g>
+</svg>

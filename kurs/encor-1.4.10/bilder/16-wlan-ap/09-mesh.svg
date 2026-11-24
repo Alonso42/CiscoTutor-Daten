@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Bridge-Topologien und Wireless Mesh mit RAP und MAP</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="32" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Bridge und Mesh</text>
+<text x="120" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Point-to-Point</text>
+<rect x="30" y="90" width="50" height="60" fill="#f2f2f2" stroke="#222"/><rect x="160" y="90" width="50" height="60" fill="#f2f2f2" stroke="#222"/>
+<line x1="80" y1="110" x2="160" y2="110" stroke="#4a9cff" stroke-width="3" stroke-dasharray="4,4"/>
+<text x="330" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Point-to-Multipoint</text>
+<rect x="305" y="90" width="50" height="60" fill="#f2f2f2" stroke="#222"/>
+<rect x="245" y="185" width="40" height="45" fill="#f2f2f2" stroke="#222"/><rect x="310" y="185" width="40" height="45" fill="#f2f2f2" stroke="#222"/><rect x="375" y="185" width="40" height="45" fill="#f2f2f2" stroke="#222"/>
+<g stroke="#4a9cff" stroke-width="3" stroke-dasharray="4,4"><line x1="320" y1="150" x2="265" y2="185"/><line x1="330" y1="150" x2="330" y2="185"/><line x1="340" y1="150" x2="395" y2="185"/></g>
+<g font-size="12" fill="#222">
+<text x="30" y="260">Layer 2, kein Routing – Funk-Trunk zwischen Switches</text>
+<text x="30" y="278">P2MP: Spokes nur über den zentralen Punkt erreichbar;</text>
+<text x="30" y="296">fällt er aus, sind alle Spokes isoliert</text>
+</g>
+<text x="620" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Mesh</text>
+<rect x="455" y="160" width="40" height="40" fill="#fff" stroke="#222" stroke-width="2"/><text x="475" y="185" text-anchor="middle" font-size="11">SW</text>
+<line x1="495" y1="180" x2="520" y2="180" stroke="#222" stroke-width="3"/>
+<g text-anchor="middle" font-size="12">
+<circle cx="545" cy="180" r="24" fill="#39c86a"/><text x="545" y="185" fill="#222">RAP</text>
+<circle cx="630" cy="110" r="22" fill="#4a9cff"/><text x="630" y="115" fill="#fff">MAP</text>
+<circle cx="630" cy="250" r="22" fill="#4a9cff"/><text x="630" y="255" fill="#fff">MAP</text>
+<circle cx="720" cy="180" r="22" fill="#4a9cff"/><text x="720" y="185" fill="#fff">MAP</text>
+</g>
+<g stroke="#b08aff" stroke-width="3"><line x1="565" y1="165" x2="610" y2="122"/><line x1="565" y1="195" x2="610" y2="238"/><line x1="650" y1="120" x2="700" y2="168"/></g>
+<line x1="650" y1="240" x2="700" y2="192" stroke="#b08aff" stroke-width="2" stroke-dasharray="5,4"/>
+<g font-size="12" fill="#222">
+<text x="455" y="300">RAP = Root AP mit Kabelanschluss</text>
+<text x="455" y="318">MAP = Mesh AP, Backhaul nur per Funk</text>
+<text x="455" y="336">AWPP wählt Pfad mit höchster "Ease"</text>
+<text x="455" y="354">(aus SNR und Hop-Zahl, Gegenteil von Kosten)</text>
+<text x="455" y="372">Ausfall eines Knotens → neuer Pfad</text>
+</g>
+<rect x="30" y="330" width="390" height="95" rx="8" fill="none" stroke="#ffd23f" stroke-width="3"/>
+<g font-size="12" fill="#222">
+<text x="45" y="355">Dual-Radio-Mesh-AP:</text>
+<text x="45" y="375">ein Radio für den Backhaul (typisch 5 GHz),</text>
+<text x="45" y="395">ein Radio für die Wi-Fi-Clients</text>
+<text x="45" y="415">Flex+Bridge: Mesh + FlexConnect-Local-Switching</text>
+</g>
+</svg>
