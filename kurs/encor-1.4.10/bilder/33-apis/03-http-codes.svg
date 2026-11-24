@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>HTTP-Statuscodes einer REST-API nach Klassen</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">HTTP-Statuscodes: Wer ist schuld?</text>
+<!-- 2xx -->
+<rect x="20" y="50" width="245" height="370" rx="10" fill="#39c86a" fill-opacity="0.15" stroke="#39c86a" stroke-width="2"/>
+<text x="142" y="78" text-anchor="middle" font-size="18" fill="#222" font-weight="bold">2xx – Erfolg</text>
+<text x="35" y="110" font-size="14" fill="#222" font-weight="bold">200 OK</text><text x="35" y="128" font-size="12" fill="#222">Ergebnis im Body</text>
+<text x="35" y="158" font-size="14" fill="#222" font-weight="bold">201 Created</text><text x="35" y="176" font-size="12" fill="#222">neue Ressource angelegt</text>
+<text x="35" y="206" font-size="14" fill="#222" font-weight="bold">202 Accepted</text><text x="35" y="224" font-size="12" fill="#222">angenommen, läuft noch (async)</text>
+<text x="35" y="240" font-size="12" fill="#222">→ Catalyst Center: taskId pollen</text>
+<text x="35" y="270" font-size="14" fill="#222" font-weight="bold">204 No Content</text><text x="35" y="288" font-size="12" fill="#222">Erfolg, leerer Body</text>
+<text x="35" y="318" font-size="14" fill="#222" font-weight="bold">206 Partial Content</text><text x="35" y="336" font-size="12" fill="#222">Antwort auf Range-Header</text>
+<text x="35" y="380" font-size="12" fill="#222" font-style="italic">Anfrage war in Ordnung</text>
+<!-- 4xx -->
+<rect x="278" y="50" width="245" height="370" rx="10" fill="#ffd23f" fill-opacity="0.2" stroke="#ffd23f" stroke-width="2"/>
+<text x="400" y="78" text-anchor="middle" font-size="18" fill="#222" font-weight="bold">4xx – Client-Fehler</text>
+<text x="293" y="110" font-size="14" fill="#222" font-weight="bold">400 Bad Request</text><text x="293" y="128" font-size="12" fill="#222">Syntax/Body ungültig</text>
+<text x="293" y="158" font-size="14" fill="#222" font-weight="bold">401 Unauthorized</text><text x="293" y="176" font-size="12" fill="#222">Credentials/Token fehlt, falsch, abgelaufen</text>
+<text x="293" y="206" font-size="14" fill="#222" font-weight="bold">403 Forbidden</text><text x="293" y="224" font-size="12" fill="#222">bekannt, aber keine Berechtigung</text>
+<text x="293" y="254" font-size="14" fill="#222" font-weight="bold">404 Not Found</text><text x="293" y="272" font-size="12" fill="#222">Ressource/URL existiert nicht</text>
+<text x="293" y="302" font-size="14" fill="#222" font-weight="bold">409 Conflict</text><text x="293" y="320" font-size="12" fill="#222">Konflikt, später erneut versuchen</text>
+<text x="293" y="350" font-size="14" fill="#222" font-weight="bold">415 Unsupported Media Type</text><text x="293" y="368" font-size="12" fill="#222">Body-Format falsch (XML statt JSON)</text>
+<text x="293" y="398" font-size="12" fill="#222" font-style="italic">Request korrigieren, nicht blind wiederholen</text>
+<!-- 5xx -->
+<rect x="536" y="50" width="245" height="370" rx="10" fill="#ff6b6b" fill-opacity="0.15" stroke="#ff6b6b" stroke-width="2"/>
+<text x="658" y="78" text-anchor="middle" font-size="18" fill="#222" font-weight="bold">5xx – Server-Fehler</text>
+<text x="551" y="110" font-size="14" fill="#222" font-weight="bold">500 Internal Server Error</text><text x="551" y="128" font-size="12" fill="#222">Server konnte nicht erfüllen</text>
+<text x="551" y="158" font-size="14" fill="#222" font-weight="bold">501 Not Implemented</text><text x="551" y="176" font-size="12" fill="#222">Funktion nicht implementiert</text>
+<text x="551" y="206" font-size="14" fill="#222" font-weight="bold">503 Service Unavailable</text><text x="551" y="224" font-size="12" fill="#222">vorübergehend nicht verfügbar</text>
+<text x="551" y="254" font-size="14" fill="#222" font-weight="bold">504 Gateway Timeout</text><text x="551" y="272" font-size="12" fill="#222">Upstream antwortete nicht rechtzeitig</text>
+<text x="551" y="398" font-size="12" fill="#222" font-style="italic">Request evtl. korrekt – Server prüfen</text>
+<text x="400" y="440" text-anchor="middle" font-size="12" fill="#222">Erste Ziffer = Klasse · requests: response.ok ist True für Codes unter 400</text>
+</svg>

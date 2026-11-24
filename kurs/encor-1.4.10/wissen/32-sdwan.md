@@ -155,7 +155,7 @@ Rollen sind getrennt → skalierbar und effizient. Routing-Prinzipien wie im Int
 - **VPN 0** = Transport-VPN: Control-Traffic (DTLS/TLS) zu Controllern/Validator, WAN-Transport-Interfaces mit Tunnel-Interface. Auf vEdges anfangs alle Interfaces außer Management, alle deaktiviert. WAN-Interfaces müssen hier konfiguriert werden, sonst keine Control Plane.
 - **VPN 512** = Management-VPN, **Out-of-Band-Management**, standardmäßig konfiguriert und aktiv.
 - **Service-VPNs**: jede andere Nummer (Benutzersegmente), mit Interfaces zu lokalen Netzen, Routing (BGP, OSPFv2/v3, EIGRP, RIPv2), VRRP, QoS, Shaping, Policing.
-- *(Ergänzung/Korrektur)* Gültig für Service-VPNs: **1–511 und 513–65530**; **65531–65535 sind intern reserviert** (der Kurs schreibt pauschal "1–65535").
+- *(Ergänzung/Korrektur)* Gültig für Service-VPNs laut Segmentation Configuration Guide (IOS XE 17.x): **1–65525 ohne 512**; Nummern darüber nutzt das System intern (z. B. 65528–65530 für Loopbacks/SIG-Tracker/Speedtest) (der Kurs schreibt pauschal "1–65535").
 - *(Ergänzung)* Auf IOS-XE-Edges: VPN 0 = globale Routing-Tabelle, VPN 512 = VRF `Mgmt-intf`, Service-VPN n = `vrf definition n`. Im Data Plane trägt jedes Paket ein **VPN-Label**, damit die Gegenseite das Segment zuordnen kann.
 
 ### Route-Reflector-Prinzip
@@ -181,7 +181,7 @@ Eine OMP-Route wird nur installiert, wenn ihr TLOC **aktiv** ist (BFD-Session up
 ### System-IP, Organization-Name, Site-ID
 - **System-IP**: eindeutiger Identifier eines OMP-Endpunkts, 32-Bit-IPv4-Notation, logisch ein Loopback "system" in VPN 0, ähnlich Router-ID; nicht dasselbe wie ein konfiguriertes Loopback; muss nicht geroutet werden. Empfehlung: als Router-ID für OSPF/BGP verwenden; ist manuell eine andere Router-ID konfiguriert, hat diese Vorrang.
 - **Organization-Name**: **case-sensitive**, auf allen Geräten identisch, muss zum Namen in den Zertifikaten passen (OU) – sonst schlägt die Authentifizierung fehl.
-- **Site-ID**: numerische Standortkennung; auf jeder Edge konfiguriert; **nicht eindeutig** – alle Geräte desselben Standorts teilen sie (gleiche Site-ID = gleicher Ort). *(Ergänzung)* Edges mit gleicher Site-ID bauen untereinander keine IPsec/BFD-Tunnel auf; Site-ID wird in Control Policies (site-lists) verwendet.
+- **Site-ID**: numerische Standortkennung; auf jeder Edge konfiguriert; **nicht eindeutig** – alle Geräte desselben Standorts teilen sie (gleiche Site-ID = gleicher Ort). *(Ergänzung)* Edges mit gleicher Site-ID bauen untereinander standardmäßig keine IPsec/BFD-Tunnel auf (änderbar mit `allow-same-site-tunnels`); Site-ID wird in Control Policies (site-lists) verwendet.
 
 ### Colors
 - Color = Typ des WAN-Transports, Teil des TLOC. Vordefiniert: 3g, biz-internet, blue, bronze, custom1–3, default, gold, green, lte, metro-ethernet, mpls, private1–private6, public-internet, red, silver.
@@ -286,7 +286,7 @@ Default bei Cisco-Cloud: je 1 Manager, Validator, Controller in der Primärregio
 
 ## Fehler/Ungenauigkeiten im Kurs
 
-1. **Service-VPN-Bereich**: Kurs nennt "VPN 1-65535 (512 reserved)". Korrekt: Service-VPNs 1–511 und 513–65530; 0 und 512 sind Transport/Management, **65531–65535 intern reserviert** (Cisco Catalyst SD-WAN Segmentation Configuration Guide, "VPNs in Cisco SD-WAN").
+1. **Service-VPN-Bereich**: Kurs nennt "VPN 1-65535 (512 reserved)". Korrekt: Service-VPNs **1–65525 ohne 512**; 0 und 512 sind Transport/Management, Nummern oberhalb 65525 intern reserviert (Cisco Catalyst SD-WAN Segmentation Configuration Guide IOS XE 17.x: "Range: 1 to 65525, excluding 512").
 2. **Alte Namen**: Orchestration-Plane-Liste spricht von "vSmart controllers" und Seite 362 von "Cisco SD-WAN solution" – aktuell SD-WAN Controller/Catalyst SD-WAN.
 3. **Color-Liste** inkonsistent: einmal "private1, private2", an anderer Stelle "private1–6"; Schreibweise "Metro Ethernet"/"public internet" statt der CLI-Keywords `metro-ethernet`/`public-internet`; "3G" heißt in der CLI `3g`.
 4. **BFD und Stromausfall**: Der Kurs behauptet, BFD erkenne Ausfälle durch Stromausfall oder Spannungsabfall. Gemeint sind wohl "Blackout/Brownout" im Netzwerksinn (Totalausfall bzw. Qualitätsverschlechterung eines Pfads). BFD misst Pfad-Erreichbarkeit und -Qualität, nicht die Stromversorgung.

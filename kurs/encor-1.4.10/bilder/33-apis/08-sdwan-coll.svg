@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Ressourcen-Collections der SD-WAN-Manager-API mit Beispiel-Endpunkten</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">SD-WAN Manager API: Collections unter /dataservice</text>
+<g font-size="12" fill="#222">
+<rect x="20" y="45" width="370" height="58" rx="6" fill="#39c86a" fill-opacity="0.16" stroke="#39c86a"/>
+<text x="32" y="65" font-weight="bold" font-size="13">Monitoring</text>
+<text x="32" y="82">Status/Statistik; Edges sammeln alle 10 min (zip)</text>
+<text x="32" y="97" font-family="monospace">GET /dataservice/device</text>
+<rect x="410" y="45" width="370" height="58" rx="6" fill="#39c86a" fill-opacity="0.16" stroke="#39c86a"/>
+<text x="422" y="65" font-weight="bold" font-size="13">Real-Time Monitoring</text>
+<text x="422" y="82">ca. einmal pro Sekunde, deviceId = System-IP</text>
+<text x="422" y="97" font-family="monospace">GET /dataservice/device/interface?deviceId=…</text>
+<rect x="20" y="113" width="370" height="58" rx="6" fill="#4a9cff" fill-opacity="0.16" stroke="#4a9cff"/>
+<text x="32" y="133" font-weight="bold" font-size="13">Configuration</text>
+<text x="32" y="150">Feature-/Device-Templates, Manager-Cluster</text>
+<text x="32" y="165" font-family="monospace">POST /dataservice/template/device/config/input</text>
+<rect x="410" y="113" width="370" height="58" rx="6" fill="#4a9cff" fill-opacity="0.16" stroke="#4a9cff"/>
+<text x="422" y="133" font-weight="bold" font-size="13">Administration</text>
+<text x="422" y="150">User/Gruppen, Audit-Log, Settings, Tenants</text>
+<text x="422" y="165" font-family="monospace">GET /dataservice/admin/user</text>
+<rect x="20" y="181" width="370" height="58" rx="6" fill="#b08aff" fill-opacity="0.16" stroke="#b08aff"/>
+<text x="32" y="201" font-weight="bold" font-size="13">Device Inventory</text>
+<text x="32" y="218">Seriennummern, Status, Controller, WAN Edges</text>
+<text x="32" y="233" font-family="monospace">GET /dataservice/system/device/vedges</text>
+<rect x="410" y="181" width="370" height="58" rx="6" fill="#b08aff" fill-opacity="0.16" stroke="#b08aff"/>
+<text x="422" y="201" font-weight="bold" font-size="13">Certificate Management</text>
+<text x="422" y="218">Zertifikate, Schlüssel, Serial-Number-File</text>
+<text x="422" y="233" font-family="monospace">GET /dataservice/certificate/view</text>
+<rect x="20" y="249" width="760" height="44" rx="6" fill="#ffd23f" fill-opacity="0.2" stroke="#ffd23f"/>
+<text x="32" y="268" font-weight="bold" font-size="13">Troubleshooting Tools</text>
+<text x="32" y="285">Geräte troubleshooten, Policy-Wirkung prüfen, Software aktualisieren, Versionen abfragen</text>
+</g>
+<rect x="20" y="305" width="760" height="125" rx="8" fill="#fff" stroke="#ff6b6b" stroke-width="2"/>
+<text x="35" y="328" font-size="14" fill="#222" font-weight="bold">Große Netze: Bulk-APIs statt ein Aufruf pro Gerät</text>
+<text x="35" y="350" font-size="12" fill="#222">• State: Zustände, z. B. Anzahl und Status von OMP- und BFD-Sessions</text>
+<text x="35" y="370" font-size="12" fill="#222">• Statistics: Zähler wie gesendete/empfangene Pakete, Flows, Alarme, Events, Logs</text>
+<text x="35" y="390" font-size="12" fill="#222">• Ergebnis kommt seitenweise (Batches); Anzahl pro Seite wählbar, weiterblättern bis keine Daten mehr folgen</text>
+<text x="35" y="412" font-size="12" fill="#222">• ideal für externe Monitoring-Tools · Antworten: {"header": {...}, "data": [...]}</text>
+</svg>

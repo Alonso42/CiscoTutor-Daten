@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Ablauf eines asynchronen Intent-API-Aufrufs mit Token und taskId</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">Intent API: Token → Auftrag → taskId → Ergebnis</text>
+<rect x="30" y="45" width="140" height="40" rx="6" fill="#4a9cff" fill-opacity="0.2" stroke="#4a9cff"/>
+<text x="100" y="70" text-anchor="middle" font-size="14" fill="#222" font-weight="bold">Python-Skript</text>
+<rect x="630" y="45" width="140" height="40" rx="6" fill="#b08aff" fill-opacity="0.2" stroke="#b08aff"/>
+<text x="700" y="70" text-anchor="middle" font-size="14" fill="#222" font-weight="bold">Catalyst Center</text>
+<line x1="100" y1="87" x2="100" y2="430" stroke="#999" stroke-dasharray="5,4"/>
+<line x1="700" y1="87" x2="700" y2="430" stroke="#999" stroke-dasharray="5,4"/>
+<!-- 1 -->
+<line x1="102" y1="115" x2="695" y2="115" stroke="#39c86a" stroke-width="2.5"/><polygon points="698,115 684,108 684,122" fill="#39c86a"/>
+<text x="400" y="108" text-anchor="middle" font-size="12" fill="#222" font-family="monospace">1  POST /dna/system/api/v1/auth/token  (Basic Auth)</text>
+<line x1="698" y1="145" x2="105" y2="145" stroke="#39c86a" stroke-width="2.5" stroke-dasharray="7,4"/><polygon points="102,145 116,138 116,152" fill="#39c86a"/>
+<text x="400" y="138" text-anchor="middle" font-size="12" fill="#222" font-family="monospace">200  {"Token": "eyJ..."}</text>
+<!-- 2 -->
+<line x1="102" y1="190" x2="695" y2="190" stroke="#4a9cff" stroke-width="2.5"/><polygon points="698,190 684,183 684,197" fill="#4a9cff"/>
+<text x="400" y="176" text-anchor="middle" font-size="12" fill="#222" font-family="monospace">2  POST /dna/intent/api/v1/network-device</text>
+<text x="400" y="186" text-anchor="middle" font-size="11" fill="#222" font-family="monospace">X-Auth-Token: eyJ...   Content-Type: application/json</text>
+<line x1="698" y1="225" x2="105" y2="225" stroke="#4a9cff" stroke-width="2.5" stroke-dasharray="7,4"/><polygon points="102,225 116,218 116,232" fill="#4a9cff"/>
+<text x="400" y="218" text-anchor="middle" font-size="12" fill="#222" font-family="monospace">202  {"response": {"taskId": "6f5a...", "url": "/api/v1/task/6f5a..."}}</text>
+<!-- background -->
+<rect x="712" y="235" width="80" height="60" rx="5" fill="#ffd23f" fill-opacity="0.25" stroke="#ffd23f"/>
+<text x="752" y="258" text-anchor="middle" font-size="11" fill="#222">arbeitet</text>
+<text x="752" y="274" text-anchor="middle" font-size="11" fill="#222">asynchron</text>
+<text x="752" y="288" text-anchor="middle" font-size="11" fill="#222">mit Geräten</text>
+<!-- 3 -->
+<line x1="102" y1="275" x2="695" y2="275" stroke="#b08aff" stroke-width="2.5"/><polygon points="698,275 684,268 684,282" fill="#b08aff"/>
+<text x="400" y="268" text-anchor="middle" font-size="12" fill="#222" font-family="monospace">3  GET /dna/intent/api/v1/task/6f5a...   (wiederholt)</text>
+<line x1="698" y1="310" x2="105" y2="310" stroke="#b08aff" stroke-width="2.5" stroke-dasharray="7,4"/><polygon points="102,310 116,303 116,317" fill="#b08aff"/>
+<text x="400" y="303" text-anchor="middle" font-size="12" fill="#222" font-family="monospace">200  {"response": {"isError": false, "progress": ..., "endTime": ...}}</text>
+<!-- notes -->
+<rect x="130" y="335" width="540" height="95" rx="8" fill="#fff" stroke="#ff6b6b"/>
+<text x="145" y="358" font-size="13" fill="#222" font-weight="bold">Lesen der Antwort</text>
+<text x="145" y="378" font-size="12" fill="#222">• 202 heißt nur „angenommen“ – Erfolg erst über die Task-API prüfen</text>
+<text x="145" y="397" font-size="12" fill="#222">• isError: true + failureReason → Auftrag ist trotz 202 fehlgeschlagen</text>
+<text x="145" y="416" font-size="12" fill="#222">• Token läuft ab (typisch 60 min) → 401 → neues Token holen</text>
+</svg>

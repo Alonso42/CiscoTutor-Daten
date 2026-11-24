@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>SD-WAN-Manager-API: Session-Login, XSRF-Token und dataservice-Aufrufe</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">SD-WAN Manager REST API: Session-basierte Anmeldung</text>
+<rect x="30" y="45" width="140" height="40" rx="6" fill="#4a9cff" fill-opacity="0.2" stroke="#4a9cff"/>
+<text x="100" y="70" text-anchor="middle" font-size="14" fill="#222" font-weight="bold">Client</text>
+<rect x="610" y="45" width="160" height="40" rx="6" fill="#39c86a" fill-opacity="0.2" stroke="#39c86a"/>
+<text x="690" y="70" text-anchor="middle" font-size="14" fill="#222" font-weight="bold">SD-WAN Manager</text>
+<line x1="100" y1="87" x2="100" y2="370" stroke="#999" stroke-dasharray="5,4"/>
+<line x1="690" y1="87" x2="690" y2="370" stroke="#999" stroke-dasharray="5,4"/>
+<!-- 1 -->
+<line x1="102" y1="118" x2="685" y2="118" stroke="#39c86a" stroke-width="2.5"/><polygon points="688,118 674,111 674,125" fill="#39c86a"/>
+<text x="395" y="100" text-anchor="middle" font-size="12" fill="#222" font-family="monospace">1  POST /j_security_check</text>
+<text x="395" y="113" text-anchor="middle" font-size="11" fill="#222" font-family="monospace">x-www-form-urlencoded: j_username=…&amp;j_password=…</text>
+<line x1="688" y1="148" x2="105" y2="148" stroke="#39c86a" stroke-width="2.5" stroke-dasharray="7,4"/><polygon points="102,148 116,141 116,155" fill="#39c86a"/>
+<text x="395" y="141" text-anchor="middle" font-size="12" fill="#222" font-family="monospace">200 OK + Set-Cookie: JSESSIONID=…</text>
+<!-- 2 -->
+<line x1="102" y1="190" x2="685" y2="190" stroke="#ffd23f" stroke-width="2.5"/><polygon points="688,190 674,183 674,197" fill="#ffd23f"/>
+<text x="395" y="183" text-anchor="middle" font-size="12" fill="#222" font-family="monospace">2  GET /dataservice/client/token   (Cookie: JSESSIONID)</text>
+<line x1="688" y1="220" x2="105" y2="220" stroke="#ffd23f" stroke-width="2.5" stroke-dasharray="7,4"/><polygon points="102,220 116,213 116,227" fill="#ffd23f"/>
+<text x="395" y="213" text-anchor="middle" font-size="12" fill="#222" font-family="monospace">200  Token als reiner Text (kein JSON)</text>
+<!-- 3 -->
+<line x1="102" y1="262" x2="685" y2="262" stroke="#4a9cff" stroke-width="2.5"/><polygon points="688,262 674,255 674,269" fill="#4a9cff"/>
+<text x="395" y="255" text-anchor="middle" font-size="12" fill="#222" font-family="monospace">3  GET /dataservice/device   (nur Cookie)</text>
+<line x1="688" y1="292" x2="105" y2="292" stroke="#4a9cff" stroke-width="2.5" stroke-dasharray="7,4"/><polygon points="102,292 116,285 116,299" fill="#4a9cff"/>
+<text x="395" y="285" text-anchor="middle" font-size="12" fill="#222" font-family="monospace">200  {"header": {...}, "data": [ {...}, ... ]}</text>
+<!-- 4 -->
+<line x1="102" y1="334" x2="685" y2="334" stroke="#b08aff" stroke-width="2.5"/><polygon points="688,334 674,327 674,341" fill="#b08aff"/>
+<text x="395" y="320" text-anchor="middle" font-size="12" fill="#222" font-family="monospace">4  POST/PUT/DELETE /dataservice/...</text>
+<text x="395" y="330" text-anchor="middle" font-size="11" fill="#222" font-family="monospace">Cookie: JSESSIONID + Header X-XSRF-TOKEN + JSON-Body</text>
+<rect x="60" y="380" width="680" height="60" rx="8" fill="#fff" stroke="#ff6b6b"/>
+<text x="75" y="402" font-size="12" fill="#222">• Falsches Passwort: Login liefert trotzdem 200, aber eine HTML-Login-Seite statt Cookie → Body prüfen</text>
+<text x="75" y="422" font-size="12" fill="#222">• requests.Session() speichert das Cookie automatisch · Doku/Swagger: https://manager:port/apidocs</text>
+</svg>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Catalyst-Center-Plattform: Intent API, Integrationen, Events und Multivendor-SDK</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">Catalyst Center als Plattform</text>
+<!-- north -->
+<rect x="270" y="45" width="260" height="70" rx="8" fill="#4a9cff" fill-opacity="0.2" stroke="#4a9cff" stroke-width="2"/>
+<text x="400" y="70" text-anchor="middle" font-size="15" fill="#222" font-weight="bold">Intent API (northbound)</text>
+<text x="400" y="90" text-anchor="middle" font-size="12" fill="#222">REST/JSON, /dna/intent/api/v1/...</text>
+<text x="400" y="106" text-anchor="middle" font-size="12" fill="#222">Doku: Platform › Developer Toolkit, Swagger</text>
+<line x1="400" y1="117" x2="400" y2="170" stroke="#4a9cff" stroke-width="3"/>
+<!-- center -->
+<rect x="300" y="175" width="200" height="90" rx="10" fill="#fff" stroke="#222" stroke-width="2"/>
+<text x="400" y="210" text-anchor="middle" font-size="16" fill="#222" font-weight="bold">Catalyst Center</text>
+<text x="400" y="232" text-anchor="middle" font-size="12" fill="#222">Assurance · Automation</text>
+<text x="400" y="250" text-anchor="middle" font-size="12" fill="#222">Policy · Design</text>
+<!-- west -->
+<line x1="298" y1="220" x2="250" y2="220" stroke="#b08aff" stroke-width="3"/>
+<rect x="20" y="160" width="228" height="120" rx="8" fill="#b08aff" fill-opacity="0.2" stroke="#b08aff" stroke-width="2"/>
+<text x="134" y="183" text-anchor="middle" font-size="14" fill="#222" font-weight="bold">Integration API (Adapter)</text>
+<text x="32" y="205" font-size="12" fill="#222">• ITSM: ServiceNow, Ticketing</text>
+<text x="32" y="225" font-size="12" fill="#222">• IPAM: Infoblox, BlueCat</text>
+<text x="32" y="245" font-size="12" fill="#222">• Reporting-Systeme</text>
+<text x="32" y="265" font-size="12" fill="#222">bidirektional, REST-basiert</text>
+<!-- east -->
+<line x1="502" y1="220" x2="550" y2="220" stroke="#ffd23f" stroke-width="3"/><polygon points="555,220 541,213 541,227" fill="#ffd23f"/>
+<rect x="555" y="160" width="228" height="120" rx="8" fill="#ffd23f" fill-opacity="0.22" stroke="#ffd23f" stroke-width="2"/>
+<text x="669" y="183" text-anchor="middle" font-size="14" fill="#222" font-weight="bold">Events &amp; Notifications</text>
+<text x="567" y="205" font-size="12" fill="#222">• Assurance-/SWIM-Events</text>
+<text x="567" y="225" font-size="12" fill="#222">• Webhook = HTTP POST an</text>
+<text x="567" y="242" font-size="12" fill="#222">  externes System bei Event</text>
+<text x="567" y="264" font-size="12" fill="#222">• Push statt Polling</text>
+<!-- south -->
+<line x1="400" y1="267" x2="400" y2="320" stroke="#39c86a" stroke-width="3"/>
+<rect x="150" y="322" width="500" height="95" rx="8" fill="#39c86a" fill-opacity="0.16" stroke="#39c86a" stroke-width="2"/>
+<text x="400" y="345" text-anchor="middle" font-size="14" fill="#222" font-weight="bold">Southbound + Multivendor SDK</text>
+<text x="400" y="366" text-anchor="middle" font-size="12" fill="#222">Cisco-Geräte: SSH/CLI, SNMP, NETCONF, HTTPS</text>
+<text x="400" y="386" text-anchor="middle" font-size="12" fill="#222">Fremdgeräte: Device Packages (Java-SDK) – Inventar, Interfaces,</text>
+<text x="400" y="404" text-anchor="middle" font-size="12" fill="#222">Status, Command Runner; Topologie über LLDP</text>
+<text x="400" y="440" text-anchor="middle" font-size="12" fill="#222">Plattform und REST-APIs sind in aktuellen Releases standardmäßig installiert und aktiviert</text>
+</svg>
