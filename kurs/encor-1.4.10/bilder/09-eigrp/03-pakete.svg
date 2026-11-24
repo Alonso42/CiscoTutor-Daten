@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>EIGRP-Pakettypen und Tabellen</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">EIGRP-Pakete (RTP, IP-Protokoll 88)</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="45" width="760" height="28" fill="#4a9cff"/>
+<text x="32" y="64" fill="#fff" font-weight="bold">Paket</text>
+<text x="130" y="64" fill="#fff" font-weight="bold">Zweck</text>
+<text x="440" y="64" fill="#fff" font-weight="bold">Zustellung</text>
+<text x="680" y="64" fill="#fff" font-weight="bold">zuverlässig</text>
+<rect x="20" y="73" width="760" height="28" fill="#f4f4f4"/>
+<text x="32" y="92" font-weight="bold">Hello</text><text x="130" y="92">Nachbarn finden/halten (ACK-Nr. 0)</text><text x="440" y="92">Multicast</text><text x="680" y="92" fill="#ff6b6b" font-weight="bold">nein</text>
+<text x="32" y="120" font-weight="bold">Update</text><text x="130" y="120">Routen verteilen</text><text x="440" y="120">Multicast, Unicast bei Sync</text><text x="680" y="120" fill="#39c86a" font-weight="bold">ja</text>
+<rect x="20" y="129" width="760" height="28" fill="#f4f4f4"/>
+<text x="32" y="148" font-weight="bold">Query</text><text x="130" y="148">Ersatzpfad suchen, Route active</text><text x="440" y="148">Multicast</text><text x="680" y="148" fill="#39c86a" font-weight="bold">ja</text>
+<text x="32" y="176" font-weight="bold">Reply</text><text x="130" y="176">Antwort auf Query</text><text x="440" y="176">Unicast an den Fragenden</text><text x="680" y="176" fill="#39c86a" font-weight="bold">ja</text>
+<rect x="20" y="185" width="760" height="28" fill="#f4f4f4"/>
+<text x="32" y="204" font-weight="bold">ACK</text><text x="130" y="204">bestätigt Update, Query, Reply</text><text x="440" y="204">Unicast</text><text x="680" y="204" fill="#ff6b6b" font-weight="bold">nein</text>
+<text x="32" y="232" font-weight="bold">Request</text><text x="130" y="232">gezielte Anfrage (Route-Server)</text><text x="440" y="232">Unicast oder Multicast</text><text x="680" y="232" fill="#ff6b6b" font-weight="bold">nein</text>
+</g>
+<text x="400" y="272" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Drei Tabellen (je Protokoll: IPv4 und IPv6 getrennt)</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="288" width="240" height="120" rx="10" fill="#eaf3ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="35" y="312" font-weight="bold">Neighbor Table</text>
+<text x="35" y="334">Primäradresse + Interface</text>
+<text x="35" y="354">Hold, Uptime, SRTT,</text>
+<text x="35" y="374">RTO, Q Cnt</text>
+<rect x="280" y="288" width="240" height="120" rx="10" fill="#fff8d6" stroke="#ffd23f" stroke-width="2"/>
+<text x="295" y="312" font-weight="bold">Topology Table</text>
+<text x="295" y="334">alle Ziele aller Nachbarn</text>
+<text x="295" y="354">je Pfad (FD/RD)</text>
+<text x="295" y="374">Successor + Feasible Succ.</text>
+<text x="295" y="394">Zustand passive / active</text>
+<rect x="540" y="288" width="240" height="120" rx="10" fill="#e8f8ee" stroke="#39c86a" stroke-width="2"/>
+<text x="555" y="312" font-weight="bold">Routing Table</text>
+<text x="555" y="334">nur Successor-Routen</text>
+<text x="555" y="354">D = intern (AD 90)</text>
+<text x="555" y="374">D EX = extern (AD 170)</text>
+</g>
+<text x="400" y="436" text-anchor="middle" font-size="12" fill="#222">passive = keine Neuberechnung · active = Router sucht per Query einen neuen Successor</text>
+</svg>

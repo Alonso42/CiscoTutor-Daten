@@ -48,3 +48,28 @@ pruefen.ps1 -Kapitel 09-eigrp (ohne -Mischen): OK.
 - 040: Das Maximum von 255 wird nur in der Erklärung nicht genannt, also unkritisch. Das alte Whitepaper (220) widerspricht der Command Reference (255).
 - 076/082: Auf älterem IOS musste der ipv6-router-eigrp-Prozess zusätzlich mit „no shutdown“ aktiviert werden. Das ist in den Optionen nicht enthalten, die Antworten bleiben eindeutig.
 - 070: „maximum-paths 1“ als Abschaltung habe ich aus Standardwissen und Kursnotizen übernommen und nicht eigens auf cisco.com nachgeschlagen. Der Distraktor 0 ist im aktuellen Wertebereich nicht zulässig.
+
+## Wissen & Bilder
+
+Geprüft: `encor-1.4.10/wissen/09-eigrp.md` (jede Faktenaussage) und die 9 SVGs in `bilder/09-eigrp/`. Alle Metrik-Beispiele mit Python (`python -I`) nachgerechnet: 2816, 28160, 281600, 2169856 (10^7/1544 = 6476,68), 3072, 28416, 2170112, 512 (10G), 256 (40G/100G), Wide Gi 1310720 / 128 = 10240. Alle stimmen.
+
+### Korrekturen Wissensdatei
+| Stelle | Problem | Änderung | Quelle |
+|---|---|---|---|
+| Wide Metrics, Latency | Formel für Interfaces > 1 Gbit/s „10^7·65536/10/BW“ war um den Faktor 10 falsch (10G ergäbe 6553 statt 65536) | Delay (ps) = 10^13/BW (kbit/s): 1G 10 µs, 10G 1 µs, 500G 20 ns, also Latency = 10^7·65536/BW. Beispiel 10G = 131072 (RIB 1024) ergänzt | RFC 7868 (Konstanten EIGRP_BANDWIDTH 10^7, EIGRP_DELAY_PICO 10^6, EIGRP_WIDE_SCALE 65536, Kompatibilitätstabelle) https://www.rfc-editor.org/rfc/rfc7868.html |
+| Traffic Sharing | Das Beispiel nannte die Pfade 20 und 50 (2,5 → 2:1), obwohl E-B-A im selben Kursbeispiel 30 hat (der Fehlerabschnitt nennt 30/20) | Auf 30/20 = 1,5 → abgerundet 1:1 korrigiert, 50/20 nur noch als Zusatzbeispiel | Cisco 13677 („round down to the nearest integer“) https://www.cisco.com/c/en/us/support/docs/ip/enhanced-interior-gateway-routing-protocol-eigrp/13677-19.html |
+| Überblick | „Seit 2013 … RFC 7868“: der RFC stammt aus 2016 | 2013 offengelegt (Draft), RFC 7868 seit 2016 | RFC 7868 (May 2016) |
+| Named Mode | Der Satz „Ein Name aus Ziffern ist nicht die AS-Nummer“ widersprach der Ergänzung direkt dahinter (eine Zahl nach router eigrp wird als AS geparst) | Umformuliert: Name ist lokal, AS steht in der address-family; nur ein Wort ergibt Named Mode | Cisco 200156 (Named Mode) |
+| Fehlertabelle MTU-Tiebreaker | Beleglage präzisiert | RFC 7868: „Not used in metric calculation“; Labortest ipspace.net ohne MTU-Einfluss; keine Cisco-Doku | https://blog.ipspace.net/2010/06/eigrp-mtu-metric/ |
+| Fehlertabelle variance | „Cisco dokumentiert kleiner als“ war zu pauschal | Cisco 13677 ist uneinheitlich (Einleitung „less than“, Beispiel „less than or equal to 40“); Regel „kleiner als“ beibehalten | Cisco 13677 |
+
+Bestätigt (Auszug): Wide Metrics 64 Bit, Pikosekunden, bis ca. 4,2 Tbit/s, K6 Default 0 (Extended Attributes: Jitter, Energy), rib-scale Default 128, nur Named Mode (Cisco EIGRP Config Guide https://www.cisco.com/en/US/docs/ios-xml/ios/iproute_eigrp/configuration/xe-3sg/ire-cfg-eigrp.html); klassische Formel mit K5/(REL+K4) (RFC 7868); Hello 5 s/Hold 15 s, NBMA 60/180 s; Syntax `show eigrp address-family {ipv4 | ipv6} [vrf] [AS] neighbors`, AF ist Pflicht (https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/iproute_eigrp/command/ire-cr-book/ire-s1.html); CEF per-destination als Default (13677).
+
+### Bilder
+- Alle 9 SVGs sind wohlgeformt ([xml]) und als UTF-8 ohne BOM gespeichert. Ein Skript hat geprüft, ob Text über die viewBox hinausragt, ob sich Texte überlappen und ob Text Linien oder Rechteckkanten schneidet. Kein Text ragt hinaus, kein Text überlappt einen anderen. Die gemeldeten Text-Linien-Treffer sind Fehlalarme: In 07-variance treffen sie die Knotenbeschriftungen (die Linien liegen unter den gefüllten Kreisen), in 01-merkmale die Verbindungslinien (sie enden unter den gefüllten Kästen).
+- `01-merkmale.svg`: „Seit 2013 informational RFC 7868“ → „2013 offengelegt, RFC 7868 (2016, informational)“.
+- `09-modi.svg`: „Name ist lokal, auch eine Zahl ≠ AS“ war falsch, denn eine Zahl nach `router eigrp` ist Classic Mode. Korrigiert auf „Name lokal, AS in der address-family“. Außerdem war `address-family ipv4 unicast autonomous-system 100` auf zwei Zeilen umbrochen, was wie zwei Befehle aussah. Jetzt steht der Befehl in einer Zeile, dazu kommt `exit-af-interface` vor `topology base`.
+- 02–08: inhaltlich korrekt (Werte in 05/06/07 nachgerechnet).
+
+### Fragen
+Kein Widerspruch zu den geprüften Fragen. Keine Frage liegt genau auf der variance-Grenze. slg-ei-040, 043, 044, 112 und 122 passen zur korrigierten Wide-Metric-Darstellung.

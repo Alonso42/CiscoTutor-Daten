@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>eBGP und iBGP im Vergleich</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">eBGP vs. iBGP</text>
+<rect x="20" y="45" width="300" height="140" rx="16" fill="#eaf3ff" stroke="#4a9cff" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="35" y="66" font-size="13" font-weight="bold" fill="#222">AS 65010</text>
+<rect x="480" y="45" width="300" height="140" rx="16" fill="#e8f8ee" stroke="#39c86a" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="495" y="66" font-size="13" font-weight="bold" fill="#222">AS 65020</text>
+<line x1="270" y1="120" x2="530" y2="120" stroke="#ffd23f" stroke-width="4"/>
+<line x1="530" y1="120" x2="720" y2="120" stroke="#b08aff" stroke-width="4" stroke-dasharray="10 5"/>
+<line x1="80" y1="120" x2="270" y2="120" stroke="#999" stroke-width="2"/>
+<g font-size="13" font-weight="bold" fill="#222" text-anchor="middle">
+<circle cx="80" cy="120" r="22" fill="#fff" stroke="#4a9cff" stroke-width="2"/><text x="80" y="125">R1</text>
+<circle cx="270" cy="120" r="22" fill="#fff" stroke="#4a9cff" stroke-width="2"/><text x="270" y="125">R2</text>
+<circle cx="530" cy="120" r="22" fill="#fff" stroke="#39c86a" stroke-width="2"/><text x="530" y="125">R3</text>
+<circle cx="720" cy="120" r="22" fill="#fff" stroke="#39c86a" stroke-width="2"/><text x="720" y="125">R4</text>
+</g>
+<g font-size="12" fill="#222" text-anchor="middle">
+<text x="400" y="110" font-weight="bold">eBGP</text>
+<text x="400" y="142">direkt verbunden</text>
+<text x="625" y="110" font-weight="bold">iBGP</text>
+<text x="625" y="142">auch über mehrere Hops</text>
+</g>
+<g font-size="13" fill="#222">
+<rect x="20" y="205" width="760" height="26" fill="#4a9cff"/>
+<text x="32" y="223" fill="#fff" font-weight="bold">Eigenschaft</text>
+<text x="290" y="223" fill="#fff" font-weight="bold">eBGP</text>
+<text x="540" y="223" fill="#fff" font-weight="bold">iBGP</text>
+<text x="32" y="250">Nachbar-AS</text><text x="290" y="250">verschieden</text><text x="540" y="250">gleich</text>
+<rect x="20" y="258" width="760" height="24" fill="#f4f4f4"/>
+<text x="32" y="275">Default-TTL</text><text x="290" y="275">1 (sonst ebgp-multihop)</text><text x="540" y="275">255</text>
+<text x="32" y="300">Administrative Distance</text><text x="290" y="300">20</text><text x="540" y="300">200</text>
+<rect x="20" y="308" width="760" height="24" fill="#f4f4f4"/>
+<text x="32" y="325">NEXT_HOP beim Senden</text><text x="290" y="325">eigene Adresse</text><text x="540" y="325">unverändert (next-hop-self)</text>
+<text x="32" y="350">AS_PATH beim Senden</text><text x="290" y="350">eigene ASN vorangestellt</text><text x="540" y="350">unverändert</text>
+<rect x="20" y="358" width="760" height="24" fill="#f4f4f4"/>
+<text x="32" y="375">Weitergabe gelernter Routen</text><text x="290" y="375">an alle Peers</text><text x="540" y="375">nicht an andere iBGP-Peers</text>
+<text x="32" y="400">show ip bgp neighbors</text><text x="290" y="400">external link</text><text x="540" y="400">internal link</text>
+</g>
+<text x="400" y="434" text-anchor="middle" font-size="12" fill="#222">iBGP-Split-Horizon → Full Mesh oder Route Reflector · eBGP-Beispiele: Kunde–ISP, ISP–ISP, CE–PE (MPLS)</text>
+</svg>

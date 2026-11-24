@@ -39,3 +39,23 @@ pruefen.ps1 -Kapitel 10-ebgp (ohne -Mischen): OK.
 - slg-bg-036 und 041 (iBGP TTL 255): Belegt durch Cisco Press und Sekundärquellen, eine Cisco-Doku-Seite habe ich nicht gefunden.
 - slg-bg-003 und 004 (Fenster bei OSPF/EIGRP, gebündelte Updates): vereinfachte Kursaussagen, als Konzeptfragen vertretbar.
 - Lektion S. 6: Der Ablauf lässt die Schritte Multipath, AIGP und Cluster-List aus. Für ENCOR ist diese Vereinfachung vertretbar, die Reihenfolge der genannten Schritte stimmt mit Cisco 13753 überein.
+
+## Wissen & Bilder
+
+Geprüft: `encor-1.4.10/wissen/10-ebgp.md` (jede Faktenaussage) und die 9 SVGs in `bilder/10-ebgp/`.
+
+### Korrekturen Wissensdatei
+| Stelle | Problem | Änderung | Quelle |
+|---|---|---|---|
+| Fehlertabelle Versionsfeld | Die Aussage „BGP-4 handelt die Version nicht aus“ war zu absolut | Präzisiert: Das OPEN enthält nur die eigene Version. Bei nicht unterstützter Version kommt eine NOTIFICATION Unsupported Version Number, deren Datenfeld die höchste lokal unterstützte Version unterhalb der angebotenen nennt. Danach ist ein neuer Versuch möglich | RFC 4271 Kap. 6.2 https://www.rfc-editor.org/rfc/rfc4271.txt |
+| Fehlertabelle OPEN-Parameter | Quelle ergänzt | RFC 4271 (Auth-Parameter entfernt, OPEN-Subcode 5 „Deprecated“) und RFC 5492 (Capabilities) | RFC 4271, RFC 5492 |
+
+Bestätigt: KEEPALIVE ist BGP-Nachrichtentyp 4 (1 OPEN, 2 UPDATE, 3 NOTIFICATION, 4 KEEPALIVE) und hat nur den 19-Byte-Header. MED „MAY be propagated over IBGP“ und „MUST NOT be propagated to other neighboring ASes“ (RFC 4271 5.1.4), dazu passen die leere Metric-Spalte für 10.0.2.0/24 und Metric 0 für das von SP1 originierte Netz. Ebenfalls bestätigt sind die ASN-Bereiche nach RFC 6793/6996/7300/5398, die Best-Path-Reihenfolge nach Cisco 13753 (siehe Quellen oben), Hold Time 0 oder ≥ 3 s, die Error Codes 1–6, AD 20/200, Weight 32768 lokal und LOCAL_PREF 100.
+
+### Bilder
+- Alle 9 SVGs sind wohlgeformt und als UTF-8 ohne BOM gespeichert. Das Skript fand keinen Text außerhalb der viewBox und keine Text-Text-Überlappung. Die Text-Linien-Treffer in 01, 02 und 06 sind Fehlalarme: Es sind die Knotenbeschriftungen, und die Linien liegen unter den gefüllten Kreisen bzw. Ellipsen.
+- `08-attribute.svg`: Die Fußzeile „MED: eigenes AS wünscht sich beim Nachbarn den Eingang“ widersprach der Grafik, die den MED vom Nachbar-AS ins eigene AS zeigt. Neu: „MED: Nachbar-AS nennt uns seinen bevorzugten Eingang (niedriger besser)“.
+- 01–07 und 09 sind inhaltlich korrekt. Geprüft wurden z. B. PfxRcd 2 auf R1, [20/0] auf SP1, die Path-Vector-Pfade und der FSM-Ablauf mit Bad Peer AS in OpenSent.
+
+### Fragen
+Kein Widerspruch zu den geprüften Fragen (u. a. slg-bg-019, 059, 066, 072, 095, 116 und 127 geprüft). Keine Frage behandelt die Versionsverhandlung.

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Klassische EIGRP-Metrik</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Klassische EIGRP-Metrik (Default-K-Werte)</text>
+<rect x="90" y="42" width="620" height="44" rx="8" fill="#fff8d6" stroke="#ffd23f" stroke-width="2"/>
+<text x="400" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Metrik = 256 × ( 10^7 / BW_min [kbit/s] + ΣDelay [µs] / 10 )</text>
+<g font-size="12" fill="#222">
+<rect x="20" y="100" width="250" height="140" rx="10" fill="#eaf3ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="32" y="122" font-weight="bold" font-size="13">K-Werte (Default)</text>
+<text x="32" y="143">K1 = 1  Bandbreite (kleinste)</text>
+<text x="32" y="161">K2 = 0  Load</text>
+<text x="32" y="179">K3 = 1  Delay (Summe)</text>
+<text x="32" y="197">K4 = 0  Reliability</text>
+<text x="32" y="215">K5 = 0  Reliability-Koeffizient</text>
+<text x="32" y="232" fill="#ff6b6b">K5 ist NICHT die MTU</text>
+</g>
+<g font-size="12" fill="#222">
+<rect x="290" y="100" width="490" height="26" fill="#4a9cff"/>
+<text x="300" y="118" fill="#fff" font-weight="bold">Pfad</text>
+<text x="545" y="118" fill="#fff" font-weight="bold">BW-Term</text>
+<text x="620" y="118" fill="#fff" font-weight="bold">Delay-T.</text>
+<text x="700" y="118" fill="#fff" font-weight="bold">Metrik</text>
+<text x="300" y="144">Gi direkt (10 µs)</text><text x="545" y="144">10</text><text x="620" y="144">1</text><text x="700" y="144" font-weight="bold">2816</text>
+<rect x="290" y="150" width="490" height="22" fill="#f4f4f4"/>
+<text x="300" y="166">FastEthernet direkt (100 µs)</text><text x="545" y="166">100</text><text x="620" y="166">10</text><text x="700" y="166" font-weight="bold">28160</text>
+<text x="300" y="188">T1 direkt (1544 kbit/s, 20000 µs)</text><text x="545" y="188">6476</text><text x="620" y="188">2000</text><text x="700" y="188" font-weight="bold">2169856</text>
+<rect x="290" y="194" width="490" height="22" fill="#f4f4f4"/>
+<text x="300" y="210">FE-Link + Gi-LAN beim Nachbarn</text><text x="545" y="210">100</text><text x="620" y="210">11</text><text x="700" y="210" font-weight="bold">28416</text>
+<text x="300" y="232">10G direkt / 40G / 100G direkt</text><text x="545" y="232">1 / 0 / 0</text><text x="620" y="232">1</text><text x="700" y="232" font-weight="bold">512 / 256</text>
+</g>
+<g font-size="13" fill="#222">
+<rect x="20" y="258" width="370" height="172" rx="10" fill="#e8f8ee" stroke="#39c86a" stroke-width="2"/>
+<text x="35" y="282" font-weight="bold">Pfad steuern: besser delay ändern</text>
+<text x="35" y="304" font-family="monospace" font-size="12">interface Gi0/1</text>
+<text x="35" y="322" font-family="monospace" font-size="12"> delay 100   ! = 1000 µs</text>
+<text x="35" y="346">delay ist kumulativ und wirkt immer.</text>
+<text x="35" y="366">bandwidth wirkt nur als Engpass und</text>
+<text x="35" y="386">verändert zusätzlich QoS/Monitoring.</text>
+<text x="35" y="412">Brüche werden abgeschnitten.</text>
+<rect x="410" y="258" width="370" height="172" rx="10" fill="#f3edff" stroke="#b08aff" stroke-width="2"/>
+<text x="425" y="282" font-weight="bold">Grenze und Wide Metrics</text>
+<text x="425" y="304">Oberhalb 10 Gbit/s wird 10^7/BW = 0,</text>
+<text x="425" y="324">Delay min. 10 µs → 40G = 100G.</text>
+<text x="425" y="348">Named Mode: 64 Bit, Pikosekunden,</text>
+<text x="425" y="368">Konstante 65536, bis ca. 4,2 Tbit/s.</text>
+<text x="425" y="392">metric rib-scale (Default 128)</text>
+<text x="425" y="412">passt den Wert in die 32-Bit-RIB.</text>
+</g>
+</svg>

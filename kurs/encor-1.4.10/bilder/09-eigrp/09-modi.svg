@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>EIGRP Classic Mode und Named Mode</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Konfiguration: Classic vs. Named Mode</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="45" width="370" height="250" rx="10" fill="#eaf3ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="35" y="68" font-weight="bold">Classic (AS-Konfiguration)</text>
+<g font-family="monospace" font-size="12">
+<text x="35" y="92">router eigrp 100</text>
+<text x="35" y="110"> network 172.16.1.0 0.0.0.255</text>
+<text x="35" y="128"> network 192.168.1.0 0.0.0.255</text>
+<text x="35" y="146"> variance 2</text>
+<text x="35" y="166">interface Gi0/0</text>
+<text x="35" y="184"> ip hello-interval eigrp 100 10</text>
+</g>
+<text x="35" y="210">• AS 1–65535 direkt nach router eigrp</text>
+<text x="35" y="230">• Maske statt Wildcard wird umgerechnet</text>
+<text x="35" y="250">• Parameter verteilt: Prozess + Interface</text>
+<text x="35" y="270">• IPv6: ipv6 router eigrp 100,</text>
+<text x="48" y="287">am Interface ipv6 eigrp 100</text>
+<rect x="410" y="45" width="370" height="250" rx="10" fill="#e8f8ee" stroke="#39c86a" stroke-width="2"/>
+<text x="425" y="68" font-weight="bold">Named (Multi-AF)</text>
+<g font-family="monospace" font-size="12">
+<text x="425" y="92">router eigrp CompanyABC</text>
+<text x="425" y="110" font-size="10.5"> address-family ipv4 unicast autonomous-system 100</text>
+<text x="425" y="128">  network 192.168.1.0 0.0.0.255</text>
+<text x="425" y="146">  af-interface Gi0/0</text>
+<text x="425" y="164">   hello-interval 10</text>
+<text x="425" y="182">  exit-af-interface</text>
+<text x="425" y="200">  topology base</text>
+<text x="425" y="218">   variance 2</text>
+</g>
+<text x="425" y="244">• Name lokal, AS in der address-family</text>
+<text x="425" y="264">• alles an einer Stelle, VRFs, IPv6</text>
+<text x="425" y="284">• Wide Metrics nur hier</text>
+</g>
+<g font-size="12" fill="#222">
+<rect x="20" y="310" width="760" height="24" fill="#b08aff"/>
+<text x="30" y="327" fill="#fff" font-weight="bold">Prüfen (Classic)</text>
+<text x="300" y="327" fill="#fff" font-weight="bold">Prüfen (Named)</text>
+<text x="620" y="327" fill="#fff" font-weight="bold">zeigt</text>
+<text x="30" y="352" font-family="monospace">show ip eigrp interfaces</text><text x="300" y="352" font-family="monospace">show eigrp address-family ipv4 interfaces</text><text x="620" y="352">aktive Interfaces</text>
+<text x="30" y="374" font-family="monospace">show ip eigrp neighbors</text><text x="300" y="374" font-family="monospace">show eigrp address-family ipv4 neighbors</text><text x="620" y="374">Nachbarn, SRTT, Q Cnt</text>
+<text x="30" y="396" font-family="monospace">show ip eigrp topology</text><text x="300" y="396" font-family="monospace">show eigrp address-family ipv4 topology</text><text x="620" y="396">FD/RD, passive/active</text>
+<text x="30" y="418" font-family="monospace">... topology all-links</text><text x="300" y="418">auch Pfade ohne Feasibility Condition</text><text x="620" y="418">show ip protocols: K-Werte</text>
+</g>
+<text x="400" y="442" text-anchor="middle" font-size="11" fill="#222">IPv6: ipv6 unicast-routing · Router-ID (32 Bit) ohne IPv4 manuell · Next Hop = Link-Local · FF02::A</text>
+</svg>

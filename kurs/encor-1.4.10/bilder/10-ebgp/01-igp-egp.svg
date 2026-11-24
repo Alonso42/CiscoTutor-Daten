@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>IGP innerhalb, BGP zwischen autonomen Systemen</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">IGP im AS – BGP zwischen AS</text>
+<g font-size="13" fill="#222">
+<rect x="30" y="50" width="280" height="170" rx="16" fill="#eaf3ff" stroke="#4a9cff" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="45" y="72" font-weight="bold">AS 65000</text>
+<rect x="490" y="50" width="280" height="170" rx="16" fill="#e8f8ee" stroke="#39c86a" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="505" y="72" font-weight="bold">AS 65001</text>
+</g>
+<g stroke="#999" stroke-width="2">
+<line x1="100" y1="120" x2="200" y2="110"/><line x1="100" y1="120" x2="160" y2="185"/><line x1="200" y1="110" x2="160" y2="185"/><line x1="200" y1="110" x2="270" y2="140"/>
+<line x1="530" y1="140" x2="610" y2="110"/><line x1="610" y1="110" x2="700" y2="130"/><line x1="610" y1="110" x2="650" y2="185"/>
+</g>
+<line x1="290" y1="140" x2="510" y2="140" stroke="#b08aff" stroke-width="4"/>
+<g font-size="12" font-weight="bold" fill="#222" text-anchor="middle">
+<circle cx="100" cy="120" r="17" fill="#fff" stroke="#4a9cff" stroke-width="2"/><text x="100" y="124">R</text>
+<circle cx="200" cy="110" r="17" fill="#fff" stroke="#4a9cff" stroke-width="2"/><text x="200" y="114">R</text>
+<circle cx="160" cy="185" r="17" fill="#fff" stroke="#4a9cff" stroke-width="2"/><text x="160" y="189">R</text>
+<circle cx="275" cy="140" r="17" fill="#fff" stroke="#4a9cff" stroke-width="2"/><text x="275" y="144">R</text>
+<circle cx="525" cy="140" r="17" fill="#fff" stroke="#39c86a" stroke-width="2"/><text x="525" y="144">R</text>
+<circle cx="610" cy="110" r="17" fill="#fff" stroke="#39c86a" stroke-width="2"/><text x="610" y="114">R</text>
+<circle cx="700" cy="130" r="17" fill="#fff" stroke="#39c86a" stroke-width="2"/><text x="700" y="134">R</text>
+<circle cx="650" cy="185" r="17" fill="#fff" stroke="#39c86a" stroke-width="2"/><text x="650" y="189">R</text>
+</g>
+<g font-size="13" fill="#222" text-anchor="middle">
+<text x="200" y="210">IGP: OSPF, EIGRP, IS-IS</text>
+<text x="640" y="210">IGP: OSPF, EIGRP, IS-IS</text>
+<text x="400" y="128" font-weight="bold">eBGP (EGP)</text>
+<text x="400" y="162">TCP Port 179</text>
+</g>
+<g font-size="12" fill="#222">
+<rect x="30" y="240" width="740" height="24" fill="#4a9cff"/>
+<text x="42" y="257" fill="#fff" font-weight="bold">ASN-Bereich</text>
+<text x="300" y="257" fill="#fff" font-weight="bold">Verwendung</text>
+<text x="42" y="282">1 – 64495</text><text x="300" y="282">öffentlich (IANA/RIR), 16 Bit; 23456 = AS_TRANS</text>
+<rect x="30" y="288" width="740" height="22" fill="#f4f4f4"/>
+<text x="42" y="304">64496 – 64511</text><text x="300" y="304">Dokumentation und Beispiele</text>
+<rect x="30" y="310" width="740" height="22" fill="#e8f8ee"/>
+<text x="42" y="326" font-weight="bold">64512 – 65534</text><text x="300" y="326" font-weight="bold">privat (16 Bit)</text>
+<text x="42" y="348">65535</text><text x="300" y="348">reserviert (Kurs zählt sie fälschlich zu privat)</text>
+<rect x="30" y="354" width="740" height="22" fill="#e8f8ee"/>
+<text x="42" y="370" font-weight="bold">4200000000 – 4294967294</text><text x="300" y="370" font-weight="bold">privat (32 Bit, 4-Byte-ASN)</text>
+<text x="42" y="392">asdot X.Y</text><text x="300" y="392">= X × 65536 + Y, z. B. 2.10 = 131082</text>
+</g>
+<text x="400" y="430" text-anchor="middle" font-size="13" fill="#222">AS = gemeinsame technische Verwaltung und Routing-Policy, nicht rechtliches Eigentum</text>
+</svg>

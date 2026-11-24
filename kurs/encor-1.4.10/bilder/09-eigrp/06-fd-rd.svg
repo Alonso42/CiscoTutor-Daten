@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Successor und Feasible Successor</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">FD, RD und Feasibility Condition</text>
+<!-- Netz -->
+<ellipse cx="110" cy="150" rx="80" ry="45" fill="#f4f4f4" stroke="#999" stroke-width="2"/>
+<text x="110" y="155" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">10.1.1.0/24</text>
+<!-- Links -->
+<line x1="190" y1="140" x2="330" y2="85" stroke="#999" stroke-width="2"/>
+<line x1="190" y1="160" x2="330" y2="215" stroke="#999" stroke-width="2"/>
+<line x1="356" y1="85" x2="560" y2="140" stroke="#39c86a" stroke-width="4"/>
+<line x1="356" y1="215" x2="560" y2="160" stroke="#4a9cff" stroke-width="3" stroke-dasharray="8 5"/>
+<!-- Router -->
+<g font-size="15" font-weight="bold" fill="#222" text-anchor="middle">
+<circle cx="340" cy="80" r="24" fill="#eaf3ff" stroke="#4a9cff" stroke-width="2"/><text x="340" y="86">A</text>
+<circle cx="340" cy="220" r="24" fill="#eaf3ff" stroke="#4a9cff" stroke-width="2"/><text x="340" y="226">B</text>
+<circle cx="585" cy="150" r="26" fill="#eaf3ff" stroke="#4a9cff" stroke-width="2"/><text x="585" y="156">C</text>
+</g>
+<g font-size="13" fill="#222">
+<text x="230" y="95">RD 1000</text>
+<text x="230" y="215">RD 1500</text>
+<text x="430" y="95">Link 1000 (Gi0/0)</text>
+<text x="430" y="218">Link 1000 (Gi0/1)</text>
+<text x="625" y="130">Router C rechnet:</text>
+<text x="625" y="152">FD = RD + Link</text>
+</g>
+<!-- Tabelle -->
+<g font-size="13" fill="#222">
+<rect x="40" y="262" width="720" height="28" fill="#4a9cff"/>
+<text x="55" y="281" fill="#fff" font-weight="bold">Nachbar</text>
+<text x="170" y="281" fill="#fff" font-weight="bold">RD</text>
+<text x="250" y="281" fill="#fff" font-weight="bold">FD</text>
+<text x="340" y="281" fill="#fff" font-weight="bold">Prüfung</text>
+<text x="560" y="281" fill="#fff" font-weight="bold">Rolle</text>
+<rect x="40" y="290" width="720" height="30" fill="#e8f8ee"/>
+<text x="55" y="310">A</text><text x="170" y="310">1000</text><text x="250" y="310">2000</text>
+<text x="340" y="310">kleinste FD</text><text x="560" y="310" font-weight="bold">Successor → RIB</text>
+<rect x="40" y="320" width="720" height="30" fill="#eaf3ff"/>
+<text x="55" y="340">B</text><text x="170" y="340">1500</text><text x="250" y="340">2500</text>
+<text x="340" y="340">RD 1500 &lt; FD 2000 ✓</text><text x="560" y="340" font-weight="bold">Feasible Successor</text>
+</g>
+<rect x="40" y="366" width="720" height="66" rx="10" fill="#fff8d6" stroke="#ffd23f" stroke-width="2"/>
+<text x="400" y="392" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">Feasibility Condition: RD des Nachbarn &lt; FD des aktuellen Successors</text>
+<text x="400" y="417" text-anchor="middle" font-size="13" fill="#222">Nachbar ist näher am Ziel als ich → sein Pfad führt nicht über mich zurück (loop-frei)</text>
+</svg>

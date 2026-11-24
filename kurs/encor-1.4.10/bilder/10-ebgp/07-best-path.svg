@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>BGP Best-Path-Selection</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="26" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">BGP Best Path: Schritt für Schritt bis ein Pfad übrig ist</text>
+<text x="400" y="46" text-anchor="middle" font-size="12" fill="#222">Vorab: kein AS-Loop, Next Hop erreichbar · Entscheidung nach Policy, nicht nach Bandbreite</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="58" width="470" height="30" rx="6" fill="#e8f8ee" stroke="#39c86a"/><text x="32" y="78"><tspan font-weight="bold">1</tspan>  Weight (Cisco, lokal)</text><text x="478" y="78" text-anchor="end" font-weight="bold" fill="#39c86a">höher</text>
+<rect x="20" y="92" width="470" height="30" rx="6" fill="#e8f8ee" stroke="#39c86a"/><text x="32" y="112"><tspan font-weight="bold">2</tspan>  LOCAL_PREF (AS-weit, Default 100)</text><text x="478" y="112" text-anchor="end" font-weight="bold" fill="#39c86a">höher</text>
+<rect x="20" y="126" width="470" height="30" rx="6" fill="#eaf3ff" stroke="#4a9cff"/><text x="32" y="146"><tspan font-weight="bold">3</tspan>  lokal originiert (Next Hop 0.0.0.0)</text><text x="478" y="146" text-anchor="end" font-weight="bold" fill="#4a9cff">bevorzugt</text>
+<rect x="20" y="160" width="470" height="30" rx="6" fill="#fff8d6" stroke="#ffd23f"/><text x="32" y="180"><tspan font-weight="bold">4</tspan>  AS_PATH-Länge</text><text x="478" y="180" text-anchor="end" font-weight="bold" fill="#222">kürzer</text>
+<rect x="20" y="194" width="470" height="30" rx="6" fill="#fff8d6" stroke="#ffd23f"/><text x="32" y="214"><tspan font-weight="bold">5</tspan>  ORIGIN  i &lt; e &lt; ?</text><text x="478" y="214" text-anchor="end" font-weight="bold" fill="#222">niedriger</text>
+<rect x="20" y="228" width="470" height="30" rx="6" fill="#fff8d6" stroke="#ffd23f"/><text x="32" y="248"><tspan font-weight="bold">6</tspan>  MED (nur gleiches Nachbar-AS)</text><text x="478" y="248" text-anchor="end" font-weight="bold" fill="#222">niedriger</text>
+<rect x="20" y="262" width="470" height="30" rx="6" fill="#eaf3ff" stroke="#4a9cff"/><text x="32" y="282"><tspan font-weight="bold">7</tspan>  eBGP vor iBGP</text><text x="478" y="282" text-anchor="end" font-weight="bold" fill="#4a9cff">eBGP</text>
+<rect x="20" y="296" width="470" height="30" rx="6" fill="#fff8d6" stroke="#ffd23f"/><text x="32" y="316"><tspan font-weight="bold">8</tspan>  IGP-Metrik zum Next Hop</text><text x="478" y="316" text-anchor="end" font-weight="bold" fill="#222">niedriger</text>
+<rect x="20" y="330" width="470" height="30" rx="6" fill="#f3edff" stroke="#b08aff"/><text x="32" y="350"><tspan font-weight="bold">9</tspan>  ältester eBGP-Pfad</text><text x="478" y="350" text-anchor="end" font-weight="bold" fill="#222">älter</text>
+<rect x="20" y="364" width="470" height="30" rx="6" fill="#f3edff" stroke="#b08aff"/><text x="32" y="384"><tspan font-weight="bold">10</tspan>  Router-ID des Nachbarn</text><text x="478" y="384" text-anchor="end" font-weight="bold" fill="#222">niedriger</text>
+<rect x="20" y="398" width="470" height="30" rx="6" fill="#f3edff" stroke="#b08aff"/><text x="32" y="418"><tspan font-weight="bold">11</tspan>  Nachbar-IP-Adresse</text><text x="478" y="418" text-anchor="end" font-weight="bold" fill="#222">niedriger</text>
+</g>
+<g font-size="13" fill="#222">
+<rect x="510" y="58" width="270" height="150" rx="10" fill="#e8f8ee" stroke="#39c86a" stroke-width="2"/>
+<text x="525" y="82" font-weight="bold">Merkregel</text>
+<text x="525" y="106">Weight und Local Pref:</text>
+<text x="525" y="126">höher gewinnt.</text>
+<text x="525" y="150">Alles danach:</text>
+<text x="525" y="170">kürzer bzw. niedriger gewinnt</text>
+<text x="525" y="190">(außer eBGP vor iBGP, älter).</text>
+<rect x="510" y="222" width="270" height="206" rx="10" fill="#fff8d6" stroke="#ffd23f" stroke-width="2"/>
+<text x="525" y="246" font-weight="bold">Kursbeispiel: 7 Pfade</text>
+<text x="525" y="270">Weight alle 0 → alle weiter</text>
+<text x="525" y="294">LOCAL_PREF: 4 × 200,</text>
+<text x="525" y="314">100, 100, 150</text>
+<text x="525" y="338">→ nur die 4 mit 200 gehen</text>
+<text x="525" y="358">in Schritt 3</text>
+<text x="525" y="382">Verlierer bleiben als Backup</text>
+<text x="525" y="402">in der BGP-Tabelle; ein</text>
+<text x="525" y="422">einziger Best Path → RIB</text>
+</g>
+</svg>

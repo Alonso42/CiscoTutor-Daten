@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>EIGRP-Nachbarerkennung und Synchronisation</title>
+<defs>
+<marker id="pf" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker>
+</defs>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Nachbarschaft und erste Synchronisation</text>
+<!-- Router -->
+<circle cx="170" cy="72" r="24" fill="#eaf3ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="170" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">R1</text>
+<circle cx="630" cy="72" r="24" fill="#eaf3ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="630" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">R2</text>
+<line x1="170" y1="96" x2="170" y2="400" stroke="#bbb" stroke-width="2" stroke-dasharray="4 4"/>
+<line x1="630" y1="96" x2="630" y2="400" stroke="#bbb" stroke-width="2" stroke-dasharray="4 4"/>
+<g font-size="13" fill="#222">
+<!-- 1 -->
+<line x1="175" y1="125" x2="625" y2="125" stroke="#ffd23f" stroke-width="3" marker-end="url(#pf)"/>
+<text x="400" y="118" text-anchor="middle">① Hello (Multicast 224.0.0.10): AS, K-Werte, Hold Time</text>
+<!-- 2 -->
+<line x1="625" y1="168" x2="175" y2="168" stroke="#ffd23f" stroke-width="3" marker-end="url(#pf)"/>
+<text x="400" y="161" text-anchor="middle">② Hello zurück – Parameter passen</text>
+<line x1="625" y1="211" x2="175" y2="211" stroke="#4a9cff" stroke-width="3" marker-end="url(#pf)"/>
+<text x="400" y="204" text-anchor="middle">② Update (Unicast): komplette Routen von R2</text>
+<!-- 3 -->
+<line x1="175" y1="254" x2="625" y2="254" stroke="#39c86a" stroke-width="3" marker-end="url(#pf)"/>
+<text x="400" y="247" text-anchor="middle">③ ACK – erst wenn die Nachbarschaft steht</text>
+<!-- 5 -->
+<line x1="175" y1="297" x2="625" y2="297" stroke="#4a9cff" stroke-width="3" marker-end="url(#pf)"/>
+<text x="400" y="290" text-anchor="middle">⑤ Update (Unicast): Routen von R1</text>
+<!-- 6 -->
+<line x1="625" y1="340" x2="175" y2="340" stroke="#39c86a" stroke-width="3" marker-end="url(#pf)"/>
+<text x="400" y="333" text-anchor="middle">⑥ ACK von R2</text>
+</g>
+<rect x="15" y="235" width="140" height="40" rx="6" fill="#f3edff" stroke="#b08aff"/>
+<text x="85" y="252" text-anchor="middle" font-size="12" fill="#222">④ R1 übernimmt die</text>
+<text x="85" y="268" text-anchor="middle" font-size="12" fill="#222">Topology Table</text>
+<rect x="250" y="370" width="300" height="32" rx="8" fill="#e8f8ee" stroke="#39c86a" stroke-width="2"/>
+<text x="400" y="391" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">konvergiert – danach nur Änderungen</text>
+<text x="400" y="432" text-anchor="middle" font-size="12" fill="#222">Hello und ACK werden nie bestätigt · ACK = Hello ohne Daten mit ACK-Nummer ≠ 0</text>
+</svg>

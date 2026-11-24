@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>BGP-Nachrichten beim Sessionaufbau</title>
+<defs>
+<marker id="pf" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker>
+</defs>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">BGP-Nachrichten: Aufbau einer Session</text>
+<g font-size="13" font-weight="bold" fill="#222" text-anchor="middle">
+<circle cx="70" cy="70" r="24" fill="#eaf3ff" stroke="#4a9cff" stroke-width="2"/><text x="70" y="75">R1</text>
+<circle cx="430" cy="70" r="24" fill="#e8f8ee" stroke="#39c86a" stroke-width="2"/><text x="430" y="75">SP1</text>
+</g>
+<text x="70" y="110" text-anchor="middle" font-size="11" fill="#222">AS 100</text>
+<text x="430" y="110" text-anchor="middle" font-size="11" fill="#222">AS 1</text>
+<line x1="70" y1="116" x2="70" y2="420" stroke="#bbb" stroke-width="2" stroke-dasharray="4 4"/>
+<line x1="430" y1="116" x2="430" y2="420" stroke="#bbb" stroke-width="2" stroke-dasharray="4 4"/>
+<g font-size="12" fill="#222" text-anchor="middle">
+<line x1="75" y1="140" x2="425" y2="140" stroke="#999" stroke-width="2" marker-end="url(#pf)"/>
+<line x1="425" y1="150" x2="75" y2="150" stroke="#999" stroke-width="2" marker-end="url(#pf)"/>
+<text x="250" y="134">TCP-Handshake zu Port 179</text>
+<line x1="75" y1="190" x2="425" y2="190" stroke="#ffd23f" stroke-width="3" marker-end="url(#pf)"/>
+<line x1="425" y1="200" x2="75" y2="200" stroke="#ffd23f" stroke-width="3" marker-end="url(#pf)"/>
+<text x="250" y="184">OPEN (beide Seiten)</text>
+<line x1="75" y1="240" x2="425" y2="240" stroke="#b08aff" stroke-width="3" marker-end="url(#pf)"/>
+<line x1="425" y1="250" x2="75" y2="250" stroke="#b08aff" stroke-width="3" marker-end="url(#pf)"/>
+<text x="250" y="234">KEEPALIVE bestätigt das OPEN</text>
+<text x="250" y="276" font-weight="bold">→ Established</text>
+<line x1="75" y1="305" x2="425" y2="305" stroke="#4a9cff" stroke-width="3" marker-end="url(#pf)"/>
+<line x1="425" y1="315" x2="75" y2="315" stroke="#4a9cff" stroke-width="3" marker-end="url(#pf)"/>
+<text x="250" y="299">UPDATE: erst volle Tabelle, dann Änderungen</text>
+<line x1="75" y1="365" x2="425" y2="365" stroke="#ff6b6b" stroke-width="3" marker-end="url(#pf)"/>
+<text x="250" y="359">NOTIFICATION bei Fehler → Session zu</text>
+<text x="250" y="395">KEEPALIVE alle 60 s, Hold Time 180 s</text>
+</g>
+<g font-size="12" fill="#222">
+<rect x="475" y="55" width="305" height="180" rx="10" fill="#fff8d6" stroke="#ffd23f" stroke-width="2"/>
+<text x="488" y="77" font-weight="bold" font-size="13">Inhalt OPEN</text>
+<text x="488" y="99">• Version 4</text>
+<text x="488" y="119">• eigene ASN – Peer prüft gegen remote-as</text>
+<text x="488" y="139">• Hold Time – kleinerer Wert gilt</text>
+<text x="488" y="159">• BGP Identifier (Router-ID, 32 Bit):</text>
+<text x="500" y="177">manuell, sonst höchste Loopback-,</text>
+<text x="500" y="195">sonst höchste Interface-IPv4</text>
+<text x="488" y="217">• optionale Parameter: Capabilities</text>
+<rect x="475" y="250" width="305" height="180" rx="10" fill="#eaf3ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="488" y="272" font-weight="bold" font-size="13">UPDATE-Felder</text>
+<text x="488" y="294">• Withdrawn Routes</text>
+<text x="488" y="314">• Path Attributes (ein Satz je UPDATE)</text>
+<text x="488" y="334">• NLRI: Präfixe mit diesen Attributen</text>
+<text x="488" y="362" font-weight="bold" font-size="13">Weitere</text>
+<text x="488" y="384">KEEPALIVE: nur Header (19 Byte)</text>
+<text x="488" y="404">Hold Time 0 → keine Keepalives</text>
+<text x="488" y="424">ROUTE-REFRESH (Typ 5): Soft Reset</text>
+</g>
+</svg>

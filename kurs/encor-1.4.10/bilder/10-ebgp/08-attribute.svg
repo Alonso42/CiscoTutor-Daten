@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>BGP-Pfadattribute und ihre Reichweite</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Pfadattribute: vier Klassen</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="45" width="375" height="95" rx="10" fill="#e8f8ee" stroke="#39c86a" stroke-width="2"/>
+<text x="35" y="68" font-weight="bold">Well-known mandatory</text>
+<text x="35" y="90">in jedem UPDATE mit NLRI</text>
+<text x="35" y="114">ORIGIN · AS_PATH · NEXT_HOP</text>
+<rect x="405" y="45" width="375" height="95" rx="10" fill="#eaf3ff" stroke="#4a9cff" stroke-width="2"/>
+<text x="420" y="68" font-weight="bold">Well-known discretionary</text>
+<text x="420" y="90">jeder kennt sie, nicht immer dabei</text>
+<text x="420" y="114">LOCAL_PREF · ATOMIC_AGGREGATE</text>
+<rect x="20" y="150" width="375" height="95" rx="10" fill="#fff8d6" stroke="#ffd23f" stroke-width="2"/>
+<text x="35" y="173" font-weight="bold">Optional transitive</text>
+<text x="35" y="195">unbekannt → weitergeben, Partial-Bit</text>
+<text x="35" y="219">COMMUNITY · AGGREGATOR</text>
+<rect x="405" y="150" width="375" height="95" rx="10" fill="#ffecec" stroke="#ff6b6b" stroke-width="2"/>
+<text x="420" y="173" font-weight="bold">Optional non-transitive</text>
+<text x="420" y="195">unbekannt → Attribut entfernen</text>
+<text x="420" y="219">MED</text>
+</g>
+<text x="400" y="272" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">Wie weit reicht der Wert?</text>
+<!-- Reichweite -->
+<rect x="20" y="285" width="160" height="110" rx="14" fill="#f4f4f4" stroke="#999" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="100" y="303" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">Nachbar-AS</text>
+<rect x="250" y="285" width="300" height="110" rx="14" fill="#f4f4f4" stroke="#999" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="400" y="303" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">eigenes AS</text>
+<rect x="620" y="285" width="160" height="110" rx="14" fill="#f4f4f4" stroke="#999" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="700" y="303" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">weiteres AS</text>
+<g font-size="12" fill="#222">
+<rect x="270" y="315" width="90" height="26" rx="6" fill="#39c86a"/><text x="315" y="333" text-anchor="middle" fill="#fff" font-weight="bold">Weight</text>
+<text x="370" y="333">nur dieser Router</text>
+<rect x="270" y="350" width="260" height="26" rx="6" fill="#4a9cff"/><text x="400" y="368" text-anchor="middle" fill="#fff" font-weight="bold">LOCAL_PREF: ganzes AS (Default 100)</text>
+<rect x="40" y="350" width="120" height="26" rx="6" fill="#ff6b6b"/><text x="100" y="368" text-anchor="middle" fill="#fff" font-weight="bold">MED</text>
+<line x1="250" y1="363" x2="160" y2="363" stroke="#ff6b6b" stroke-width="3"/>
+<text x="700" y="333" text-anchor="middle">MED kommt hier</text>
+<text x="700" y="351" text-anchor="middle">nicht an</text>
+<text x="700" y="376" text-anchor="middle">AS_PATH, ORIGIN</text>
+<text x="700" y="390" text-anchor="middle">gehen weiter</text>
+</g>
+<text x="400" y="418" text-anchor="middle" font-size="12" fill="#222">MED: Nachbar-AS nennt uns seinen bevorzugten Eingang (niedriger besser) · LOCAL_PREF/Weight: Wahl des Ausgangs</text>
+<text x="400" y="438" text-anchor="middle" font-size="12" fill="#222">ORIGIN: i = network/aggregate · ? = Redistribution · e = EGP (obsolet)</text>
+</svg>

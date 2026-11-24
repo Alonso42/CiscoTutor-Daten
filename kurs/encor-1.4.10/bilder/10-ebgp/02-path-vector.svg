@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Path Vector und Hop-by-hop-Paradigma</title>
+<defs>
+<marker id="pf" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b08aff"/></marker>
+</defs>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Path Vector: jedes AS meldet nur seinen Best Path</text>
+<g stroke="#999" stroke-width="2">
+<line x1="110" y1="110" x2="330" y2="110"/>
+<line x1="330" y1="110" x2="560" y2="110"/>
+<line x1="330" y1="110" x2="440" y2="230"/>
+<line x1="440" y1="230" x2="560" y2="110"/>
+<line x1="560" y1="110" x2="680" y2="230"/>
+<line x1="440" y1="230" x2="680" y2="230"/>
+<line x1="110" y1="110" x2="220" y2="230"/>
+<line x1="220" y1="230" x2="440" y2="230"/>
+</g>
+<line x1="505" y1="80" x2="387" y2="80" stroke="#b08aff" stroke-width="3" marker-end="url(#pf)"/>
+<line x1="275" y1="80" x2="167" y2="80" stroke="#b08aff" stroke-width="3" marker-end="url(#pf)"/>
+<g font-size="13" font-weight="bold" fill="#222" text-anchor="middle">
+<ellipse cx="110" cy="110" rx="50" ry="24" fill="#eaf3ff" stroke="#4a9cff" stroke-width="2"/><text x="110" y="115">AS 65010</text>
+<ellipse cx="330" cy="110" rx="50" ry="24" fill="#fff8d6" stroke="#ffd23f" stroke-width="2"/><text x="330" y="115">AS 65020</text>
+<ellipse cx="560" cy="110" rx="50" ry="24" fill="#f4f4f4" stroke="#999" stroke-width="2"/><text x="560" y="115">AS 65030</text>
+<ellipse cx="220" cy="230" rx="50" ry="24" fill="#f4f4f4" stroke="#999" stroke-width="2"/><text x="220" y="235">AS 65040</text>
+<ellipse cx="440" cy="230" rx="50" ry="24" fill="#f4f4f4" stroke="#999" stroke-width="2"/><text x="440" y="235">AS 65050</text>
+<ellipse cx="680" cy="230" rx="50" ry="24" fill="#e8f8ee" stroke="#39c86a" stroke-width="2"/><text x="680" y="235">AS 65060</text>
+</g>
+<text x="680" y="272" text-anchor="middle" font-size="12" fill="#222">Ziel-Präfixe</text>
+<text x="220" y="64" text-anchor="middle" font-size="13" fill="#222">gemeldet: AS_PATH 65020 65030 65060</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="295" width="370" height="140" rx="10" fill="#fff8d6" stroke="#ffd23f" stroke-width="2"/>
+<text x="35" y="318" font-weight="bold">AS 65020 kennt mehrere Wege:</text>
+<text x="35" y="340">65030 65060  ← Best Path (Policy)</text>
+<text x="35" y="360">65050 65060</text>
+<text x="35" y="380">65050 65030 65060</text>
+<text x="35" y="404">AS 65010 sieht nur den Best Path und</text>
+<text x="35" y="423">kann die Alternativen nicht erzwingen.</text>
+<rect x="410" y="295" width="370" height="140" rx="10" fill="#f3edff" stroke="#b08aff" stroke-width="2"/>
+<text x="425" y="318" font-weight="bold">Regeln</text>
+<text x="425" y="340">• Beim Verlassen des AS wird die eigene</text>
+<text x="440" y="358">ASN vorne angefügt (Ursprung rechts).</text>
+<text x="425" y="380">• Eigene ASN im AS_PATH → Update</text>
+<text x="440" y="398">verwerfen (Loop-Schutz).</text>
+<text x="425" y="420">• Einfluss nur auf das nächste AS.</text>
+</g>
+</svg>

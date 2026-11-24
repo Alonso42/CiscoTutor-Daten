@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>BGP-Zustandsautomat</title>
+<defs>
+<marker id="pf" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker>
+</defs>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">BGP Finite State Machine</text>
+<g font-size="13" font-weight="bold" fill="#222" text-anchor="middle">
+<rect x="20" y="70" width="110" height="44" rx="10" fill="#f4f4f4" stroke="#999" stroke-width="2"/><text x="75" y="97">Idle</text>
+<rect x="150" y="70" width="110" height="44" rx="10" fill="#eaf3ff" stroke="#4a9cff" stroke-width="2"/><text x="205" y="97">Connect</text>
+<rect x="150" y="170" width="110" height="44" rx="10" fill="#ffecec" stroke="#ff6b6b" stroke-width="2"/><text x="205" y="197">Active</text>
+<rect x="290" y="70" width="120" height="44" rx="10" fill="#fff8d6" stroke="#ffd23f" stroke-width="2"/><text x="350" y="97">OpenSent</text>
+<rect x="440" y="70" width="140" height="44" rx="10" fill="#f3edff" stroke="#b08aff" stroke-width="2"/><text x="510" y="97">OpenConfirm</text>
+<rect x="610" y="70" width="170" height="44" rx="10" fill="#e8f8ee" stroke="#39c86a" stroke-width="3"/><text x="695" y="97">Established</text>
+</g>
+<g stroke="#222" stroke-width="2" fill="none">
+<line x1="130" y1="92" x2="148" y2="92" marker-end="url(#pf)"/>
+<line x1="260" y1="92" x2="288" y2="92" marker-end="url(#pf)"/>
+<line x1="410" y1="92" x2="438" y2="92" marker-end="url(#pf)"/>
+<line x1="580" y1="92" x2="608" y2="92" marker-end="url(#pf)"/>
+<line x1="195" y1="114" x2="195" y2="168" marker-end="url(#pf)"/>
+<line x1="260" y1="185" x2="345" y2="116" marker-end="url(#pf)"/>
+</g>
+<g font-size="11" fill="#222">
+<text x="188" y="145" text-anchor="end">TCP scheitert</text>
+<text x="300" y="165">TCP klappt</text>
+<text x="300" y="62">OPEN gesendet</text>
+<text x="445" y="62">OPEN erhalten</text>
+<text x="615" y="62">KEEPALIVE erhalten</text>
+</g>
+<g font-size="12" fill="#222">
+<rect x="420" y="135" width="360" height="92" rx="10" fill="#fff8d6" stroke="#ffd23f" stroke-width="1"/>
+<text x="432" y="156" font-weight="bold">In OpenSent wird das OPEN des Peers geprüft</text>
+<text x="432" y="176">ASN ≠ konfigurierte remote-as →</text>
+<text x="432" y="195">NOTIFICATION OPEN Message Error /</text>
+<text x="432" y="214">Bad Peer AS → Session zurück auf Idle</text>
+</g>
+<g font-size="13" fill="#222">
+<rect x="20" y="245" width="370" height="185" rx="10" fill="#ffecec" stroke="#ff6b6b" stroke-width="2"/>
+<text x="35" y="268" font-weight="bold">Hängt in Active / pendelt Idle–Active</text>
+<text x="35" y="292">TCP-Verbindung kommt nicht zustande:</text>
+<text x="35" y="314">• falsche Nachbar-IP, keine Route</text>
+<text x="35" y="336">• TCP 179 durch ACL/Firewall gefiltert</text>
+<text x="35" y="358">• Loopback-Peering ohne update-source</text>
+<text x="35" y="380">• eBGP über Loopbacks ohne ebgp-multihop</text>
+<text x="50" y="398">(eBGP sendet mit TTL 1)</text>
+<text x="35" y="420">Active ≠ „aktiv und gut“!</text>
+<rect x="410" y="245" width="370" height="185" rx="10" fill="#e8f8ee" stroke="#39c86a" stroke-width="2"/>
+<text x="425" y="268" font-weight="bold">Anzeige in show ip bgp summary</text>
+<text x="425" y="292">State/PfxRcd = Zahl → Established,</text>
+<text x="425" y="312">Zahl = empfangene Präfixe</text>
+<text x="425" y="336">Idle / Active / OpenSent → nicht up</text>
+<text x="425" y="360">Idle (Admin): neighbor shutdown</text>
+<text x="425" y="384">Idle (PfxCt): maximum-prefix</text>
+<text x="425" y="402">überschritten</text>
+<text x="425" y="424">Log: %BGP-5-ADJCHANGE ... Up</text>
+</g>
+</svg>
