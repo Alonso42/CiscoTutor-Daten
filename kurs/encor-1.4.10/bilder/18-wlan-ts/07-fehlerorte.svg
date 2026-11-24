@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Fehlerorte bei Wireless-Client-Problemen</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Drei Fehlerbereiche</text>
+<rect x="30" y="200" width="70" height="45" rx="4" fill="#fff" stroke="#222" stroke-width="2"/>
+<text x="65" y="228" text-anchor="middle" font-size="14" fill="#222">Client</text>
+<rect x="190" y="200" width="70" height="45" rx="22" fill="#fff" stroke="#222" stroke-width="2"/>
+<text x="225" y="228" text-anchor="middle" font-size="14" fill="#222">AP</text>
+<rect x="360" y="200" width="80" height="45" rx="4" fill="#fff" stroke="#222" stroke-width="2"/>
+<text x="400" y="228" text-anchor="middle" font-size="14" fill="#222">SW</text>
+<rect x="560" y="200" width="80" height="45" rx="4" fill="#fff" stroke="#222" stroke-width="2"/>
+<text x="600" y="228" text-anchor="middle" font-size="14" fill="#222">WLC</text>
+<rect x="360" y="330" width="80" height="40" rx="4" fill="#fff" stroke="#222"/>
+<text x="400" y="355" text-anchor="middle" font-size="13" fill="#222">NTP</text>
+<rect x="560" y="330" width="80" height="40" rx="4" fill="#fff" stroke="#222"/>
+<text x="600" y="355" text-anchor="middle" font-size="13" fill="#222">ISE</text>
+<rect x="690" y="200" width="80" height="45" rx="22" fill="#fff" stroke="#222"/>
+<text x="730" y="228" text-anchor="middle" font-size="13" fill="#222">GW/DHCP</text>
+<line x1="100" y1="222" x2="190" y2="222" stroke="#4a9cff" stroke-width="3" stroke-dasharray="7,5"/>
+<g stroke="#222" stroke-width="2"><line x1="260" y1="222" x2="360" y2="222"/><line x1="440" y1="222" x2="560" y2="222"/><line x1="400" y1="245" x2="400" y2="330"/><line x1="600" y1="245" x2="600" y2="330"/><line x1="640" y1="222" x2="690" y2="222"/></g>
+<g font-size="12" fill="#222">
+<rect x="20" y="55" width="250" height="125" rx="8" fill="#4a9cff" opacity="0.2" stroke="#4a9cff"/>
+<text x="30" y="75" font-weight="bold">1 Client ↔ AP</text>
+<text x="30" y="95">Antennen: Typ, Ausrichtung, Abstand</text>
+<text x="30" y="113">CCI/ACI, Nicht-Wi-Fi-Störer</text>
+<text x="30" y="131">Signal/SNR, Sticky, Power-Mismatch</text>
+<text x="30" y="149">PoE-Budget (af/at/bt)</text>
+<text x="30" y="167">Association: Reason/Status Codes</text>
+<rect x="290" y="55" width="490" height="125" rx="8" fill="#b08aff" opacity="0.2" stroke="#b08aff"/>
+<text x="300" y="75" font-weight="bold">2 WLAN-Konfiguration (WLC)</text>
+<text x="300" y="95">netzseitig (viele Nutzer): SSID-Name/Status, Radio Policy/Band,</text>
+<text x="300" y="113">Interface/VLAN, Security, RADIUS, Mandatory Data Rates</text>
+<text x="300" y="137">clientseitig (1-2 Nutzer): richtiges SSID? Security im Profil?</text>
+<text x="300" y="155">IP erhalten? Passwort/Tippfehler?</text>
+<rect x="20" y="270" width="320" height="165" rx="8" fill="#ffd23f" opacity="0.3" stroke="#222"/>
+<text x="30" y="290" font-weight="bold">3 Infrastruktur</text>
+<text x="30" y="310">Trunk: erlaubte VLANs, Native VLAN</text>
+<text x="30" y="328">AP-Port im falschen VLAN</text>
+<text x="30" y="346">AP-Join: Opt. 43/DNS, NTP-Zeit, Reg. Domain,</text>
+<text x="30" y="364">   Firewall (CAPWAP), max. APs</text>
+<text x="30" y="382">RF Group (max. 20 WLCs) / Mobility Group:</text>
+<text x="30" y="400">   Name exakt, Pfad, Links "Up"</text>
+<text x="30" y="418">Client disabled / excluded</text>
+</g>
+<text x="460" y="410" font-size="13" fill="#222">Viele Nutzer → zuerst WLC/Netz</text>
+<text x="460" y="430" font-size="13" fill="#222">Einzelner Nutzer → zuerst Endgerät</text>
+</svg>

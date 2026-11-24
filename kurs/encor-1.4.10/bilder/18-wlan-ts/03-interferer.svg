@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Nicht-Wi-Fi-Störer und Duty Cycle</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Was ein Spektrumanalysator zeigt</text>
+<rect x="40" y="55" width="460" height="230" fill="#f4f4f4" stroke="#222"/>
+<text x="270" y="305" text-anchor="middle" font-size="13" fill="#222">Frequenz 2400 – 2483,5 MHz →</text>
+<text x="25" y="170" font-size="13" fill="#222" transform="rotate(-90 25 170)">Leistung (dBm)</text>
+<line x1="40" y1="250" x2="500" y2="250" stroke="#999" stroke-dasharray="3,3"/>
+<text x="505" y="254" font-size="11" fill="#222">Noise Floor</text>
+<path d="M60,250 Q110,110 160,250" fill="#39c86a" opacity="0.5"/>
+<text x="110" y="135" text-anchor="middle" font-size="12" fill="#222">Wi-Fi Kanal 1</text>
+<path d="M330,250 L345,90 L470,90 L485,250 Z" fill="#ff6b6b" opacity="0.5"/>
+<text x="407" y="82" text-anchor="middle" font-size="12" fill="#222">Mikrowelle (~2,45 GHz)</text>
+<g fill="#4a9cff">
+<rect x="70" y="200" width="4" height="50"/><rect x="140" y="190" width="4" height="60"/><rect x="200" y="205" width="4" height="45"/><rect x="260" y="195" width="4" height="55"/><rect x="310" y="200" width="4" height="50"/><rect x="380" y="198" width="4" height="52"/><rect x="440" y="203" width="4" height="47"/>
+</g>
+<text x="230" y="185" text-anchor="middle" font-size="12" fill="#222">Bluetooth: schmal, springt (FHSS)</text>
+<g font-size="13" fill="#222">
+<rect x="520" y="55" width="265" height="230" rx="8" fill="#ffd23f" opacity="0.3" stroke="#222"/>
+<text x="535" y="78" font-weight="bold">Duty Cycle = Sendezeit-Anteil</text>
+<text x="535" y="102">Mikrowelle  ≈ 50 % (Netz-Halbwellen)</text>
+<text x="535" y="122">Bluetooth   niedrig, über ganzes Band</text>
+<text x="535" y="142">Videobrücke/Jammer ≈ 100 %</text>
+<text x="535" y="166">Hoher Duty Cycle → Kanal praktisch</text>
+<text x="535" y="184">dauerhaft belegt (CCA), Retries</text>
+<text x="535" y="212" font-weight="bold">CleanAir:</text>
+<text x="535" y="232">Air Quality 1–100 (100 = sauber),</text>
+<text x="535" y="250">Störer-Typ, Severity, welche APs</text>
+<text x="535" y="268">ihn hören, ED-RRM-Kanalwechsel</text>
+</g>
+<rect x="40" y="330" width="745" height="95" rx="8" fill="#b08aff" opacity="0.2" stroke="#b08aff"/>
+<g font-size="13" fill="#222">
+<text x="55" y="355" font-weight="bold">Nicht im WLAN-Band: DECT</text>
+<text x="55" y="377">Europa 1880–1900 MHz, USA "DECT 6.0" 1920–1930 MHz → stört 2,4/5 GHz nicht.</text>
+<text x="55" y="399">Ältere Funktelefone, Babyfone, Funkkameras im 2,4- oder 5,8-GHz-Band dagegen schon.</text>
+<text x="55" y="417">Ein Wi-Fi-Scanner sieht keinen dieser Störer – nur der Spektrumanalysator.</text>
+</g>
+</svg>

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>WLAN-Troubleshooting-Werkzeuge nach Kategorie</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="32" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Welches Werkzeug sieht was?</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="55" width="180" height="300" rx="8" fill="#ffd23f" opacity="0.35" stroke="#222"/>
+<text x="110" y="80" text-anchor="middle" font-weight="bold" font-size="15">Spektrumanalyse</text>
+<text x="110" y="98" text-anchor="middle">Layer 1</text>
+<text x="30" y="128">sieht: jede HF-Energie,</text>
+<text x="30" y="146">Duty Cycle, Störer-Typ</text>
+<text x="30" y="164">(Mikrowelle, Bluetooth)</text>
+<text x="30" y="194" fill="#c0392b">sieht nicht: SSID,</text>
+<text x="30" y="212" fill="#c0392b">Frames, Clients</text>
+<text x="30" y="250" font-style="italic">CleanAir (AQ 1-100)</text>
+<text x="30" y="268" font-style="italic">Chanalyzer + Wi-Spy</text>
+<text x="30" y="286" font-style="italic">Ekahau Sidekick</text>
+<text x="30" y="304" font-style="italic">AP im SE-Connect</text>
+
+<rect x="215" y="55" width="180" height="300" rx="8" fill="#4a9cff" opacity="0.3" stroke="#222"/>
+<text x="305" y="80" text-anchor="middle" font-weight="bold" font-size="15">Wi-Fi-Scanner</text>
+<text x="305" y="98" text-anchor="middle">Beacons / Probe Resp.</text>
+<text x="225" y="128">sieht: SSID, BSSID,</text>
+<text x="225" y="146">Kanal, RSSI, Security,</text>
+<text x="225" y="164">Kanalüberlappung</text>
+<text x="225" y="194" fill="#c0392b">sieht nicht: Nicht-</text>
+<text x="225" y="212" fill="#c0392b">Wi-Fi-Störer, Daten</text>
+<text x="225" y="250" font-style="italic">inSSIDer</text>
+<text x="225" y="268" font-style="italic">Wi-Fi Analyzer</text>
+<text x="225" y="286" font-style="italic">AirPort Utility</text>
+
+<rect x="410" y="55" width="180" height="300" rx="8" fill="#39c86a" opacity="0.3" stroke="#222"/>
+<text x="500" y="80" text-anchor="middle" font-weight="bold" font-size="15">Packet Capture</text>
+<text x="500" y="98" text-anchor="middle">802.11-Frames (L2+)</text>
+<text x="420" y="128">sieht: Probe, Auth,</text>
+<text x="420" y="146">Assoc, EAPOL, DHCP,</text>
+<text x="420" y="164">Retries, Datenrate</text>
+<text x="420" y="194" fill="#c0392b">braucht: Monitor-</text>
+<text x="420" y="212" fill="#c0392b">Modus, 1 Kanal</text>
+<text x="420" y="250" font-style="italic">Wireshark, OmniPeek</text>
+<text x="420" y="268" font-style="italic">AP im Sniffer-Modus</text>
+<text x="420" y="286" font-style="italic">SPAN/EPC (kabelseitig)</text>
+
+<rect x="605" y="55" width="180" height="300" rx="8" fill="#b08aff" opacity="0.3" stroke="#222"/>
+<text x="695" y="80" text-anchor="middle" font-weight="bold" font-size="15">WLC / Analyse</text>
+<text x="695" y="98" text-anchor="middle">Zustand + Konfiguration</text>
+<text x="615" y="128">sieht: Client-State,</text>
+<text x="615" y="146">Reason Codes, Logs,</text>
+<text x="615" y="164">AAA, VLAN, Tags</text>
+<text x="615" y="194" fill="#c0392b">sieht nicht: was nur</text>
+<text x="615" y="212" fill="#c0392b">der Client hört</text>
+<text x="615" y="250" font-style="italic">9800: RA Trace</text>
+<text x="615" y="268" font-style="italic">AireOS: debug client</text>
+<text x="615" y="286" font-style="italic">WCAE (Konfig-Check)</text>
+<text x="615" y="304" font-style="italic">Client 360</text>
+</g>
+<text x="400" y="395" text-anchor="middle" font-size="14" fill="#222">Reihenfolge in der Praxis: Zustand am WLC → HF prüfen (Scanner/Spektrum) → Capture, wenn nötig</text>
+<text x="400" y="420" text-anchor="middle" font-size="13" fill="#222">Hinweis: Der Kurs ordnet Packet Analysis "Layer 3" zu – 802.11-Frames sind Layer 2.</text>
+</svg>

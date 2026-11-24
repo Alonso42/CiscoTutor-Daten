@@ -20,7 +20,7 @@ Status: ✅ fertig · ⏳ in Arbeit · ☐ offen · ⚠ nicht mehr in ENCOR v1.2
 | 15 | Wireless Deployment Options | 149–158 | 15-wlan-deploy | ⚠ ✅ 117 Fragen + Wissen + 9 SVGs, geprüft (7 korr., 1 entf.) |
 | 16 | Wireless AP Operation | 159–167 | 16-wlan-ap | ⚠ ✅ 108 Fragen + Wissen + 9 SVGs, geprüft (11 korr., 2 entf.) |
 | 17 | Wireless Client Authentication | 168–183 | 17-wlan-auth | ⚠ ✅ 118 Fragen + Wissen + 8 SVGs, geprüft (2 präzisiert) |
-| 18 | Troubleshooting Wireless Client Connectivity | 184–197 | 18-wlan-ts | ⚠ ⏳ Writer läuft |
+| 18 | Troubleshooting Wireless Client Connectivity | 184–197 | 18-wlan-ts | ⚠ ✅ 122 Fragen + Wissen + 10 SVGs, geprüft (5 korr.) |
 | 19 | Network Services (NTP, PTP, Syslog, SNMP, NetFlow, EEM) | 198–209 | 19-services | ✅ 143 Fragen + Wissen + 10 SVGs, geprüft (2 präzisiert) |
 | 20 | Multicast | 210–220 | 20-multicast | ✅ 139 Fragen + Wissen + 11 SVGs, geprüft (2 korr.) |
 | 21 | QoS | 221–227 | 21-qos | ✅ 130 Fragen + Wissen + 9 SVGs, geprüft (Bild + Wissen korr.) |
@@ -29,7 +29,7 @@ Status: ✅ fertig · ⏳ in Arbeit · ☐ offen · ⚠ nicht mehr in ENCOR v1.2
 | 24 | Secure Access Control (AAA) | 255–267 | 24-aaa | ✅ 134 Fragen + Wissen + 8 SVGs, geprüft (5 korr.) |
 | 25 | Python Basics | 268–277 | 25-python | ✅ 140 Fragen + Wissen + 10 SVGs, geprüft (130 ausgeführt, 5 korr.) |
 | 26 | Network Programmability (JSON, YANG, NETCONF, RESTCONF) | 278–294 | 26-programmability | ✅ 146 Fragen + Wissen + 10 SVGs, geprüft (7 korr.) |
-| 27 | Wireless Principles (RF) | 295–304 | 27-wlan-rf | ⚠ |
+| 27 | Wireless Principles (RF) | 295–304 | 27-wlan-rf | ⚠ ⏳ Writer läuft |
 | 28 | Wireless Roaming and Location | 305–312 | 28-wlan-roaming | ⚠ |
 | 29 | Enterprise Network Security Architecture | 313–332 | 29-security-arch | ✅ 140 Fragen + Wissen + 9 SVGs, geprüft (1 korr.) |
 | 30 | Cisco Catalyst Center | 333–347 | 30-catalyst-center | ✅ 133 Fragen + Wissen + 10 SVGs, geprüft inkl. Web (14 korr., 2 entf.) |

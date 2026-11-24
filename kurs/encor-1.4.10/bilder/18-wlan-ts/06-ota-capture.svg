@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Packet Capture over the air</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Mitschnitt über die Luft</text>
+<rect x="40" y="90" width="70" height="45" rx="4" fill="#fff" stroke="#222" stroke-width="2"/>
+<text x="75" y="118" text-anchor="middle" font-size="14" fill="#222">Client</text>
+<rect x="330" y="90" width="80" height="45" rx="22" fill="#fff" stroke="#222" stroke-width="2"/>
+<text x="370" y="118" text-anchor="middle" font-size="14" fill="#222">AP</text>
+<text x="370" y="155" text-anchor="middle" font-size="12" fill="#222">Kanal 36, 80 MHz</text>
+<line x1="110" y1="112" x2="330" y2="112" stroke="#4a9cff" stroke-width="3" stroke-dasharray="8,5"/>
+<text x="220" y="104" text-anchor="middle" font-size="12" fill="#222">802.11-Frames</text>
+<rect x="160" y="200" width="130" height="50" rx="4" fill="#39c86a" opacity="0.4" stroke="#222"/>
+<text x="225" y="222" text-anchor="middle" font-size="13" fill="#222">Sniffer-Laptop</text>
+<text x="225" y="240" text-anchor="middle" font-size="12" fill="#222">Monitor-Modus</text>
+<line x1="225" y1="200" x2="225" y2="118" stroke="#39c86a" stroke-width="2"/>
+<text x="232" y="180" font-size="12" fill="#222">hört mit, sendet nichts</text>
+<rect x="320" y="200" width="130" height="50" rx="4" fill="#b08aff" opacity="0.4" stroke="#222"/>
+<text x="385" y="222" text-anchor="middle" font-size="13" fill="#222">AP im Sniffer-</text>
+<text x="385" y="240" text-anchor="middle" font-size="12" fill="#222">Modus → UDP an PC</text>
+<rect x="40" y="280" width="410" height="60" fill="#f4f4f4" stroke="#222"/>
+<rect x="40" y="280" width="140" height="60" fill="#ffd23f" opacity="0.6" stroke="#222"/>
+<text x="110" y="304" text-anchor="middle" font-size="13" fill="#222">Radiotap</text>
+<text x="110" y="322" text-anchor="middle" font-size="11" fill="#222">Kanal, Rate, RSSI</text>
+<rect x="180" y="280" width="120" height="60" fill="#4a9cff" opacity="0.4" stroke="#222"/>
+<text x="240" y="304" text-anchor="middle" font-size="13" fill="#222">802.11-Header</text>
+<text x="240" y="322" text-anchor="middle" font-size="11" fill="#222">FC, Adressen, Seq</text>
+<text x="375" y="315" text-anchor="middle" font-size="13" fill="#222">Payload (ggf. CCMP)</text>
+<text x="245" y="360" text-anchor="middle" font-size="12" fill="#222">Radiotap kommt vom Capture-Treiber, nicht aus der Luft</text>
+<rect x="475" y="60" width="310" height="370" rx="8" fill="#4a9cff" opacity="0.12" stroke="#4a9cff"/>
+<g font-size="13" fill="#222">
+<text x="490" y="85" font-weight="bold">Regeln</text>
+<text x="490" y="108">• Monitor-Modus (RFMON), nicht</text>
+<text x="490" y="126">   nur Promiscuous</text>
+<text x="490" y="148">• ein Adapter = ein Kanal; Kanal</text>
+<text x="490" y="166">   + Breite wie der AP einstellen</text>
+<text x="490" y="188">• Client roamt → Capture verliert ihn</text>
+<text x="490" y="210">• Adapter muss PHY/Streams können</text>
+<text x="490" y="232">• nahe am Client aufstellen</text>
+<text x="490" y="262" font-weight="bold">WPA2-PSK entschlüsseln</text>
+<text x="490" y="284">• Passphrase + SSID in Wireshark</text>
+<text x="490" y="306">• kompletter 4-Way Handshake</text>
+<text x="490" y="324">   muss im Capture sein</text>
+<text x="490" y="354" font-weight="bold">Filter</text>
+<text x="490" y="376">wlan.fc.type_subtype == 0x0c (Deauth)</text>
+<text x="490" y="396">eapol · wlan.addr == &lt;mac&gt;</text>
+<text x="490" y="416">0x04 Probe Req · 0x0b Auth · 0x00 Assoc</text>
+</g>
+<text x="40" y="400" font-size="12" fill="#222">Kabelseitig (SPAN am AP-Port / EPC am WLC):</text>
+<text x="40" y="418" font-size="12" fill="#222">sieht CAPWAP-Tunnel AP↔WLC, aber kein RSSI, keine Retries.</text>
+</svg>

@@ -1,0 +1,2142 @@
+[
+    {
+        "id":  "slg-wt-001",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Users near the cafeteria lose Wi-Fi every day around noon. A Wi-Fi scanner shows no new or changed access points in the area. Which type of tool is best suited to find the cause?",
+        "optionen":  [
+                         "A spectrum analyzer that measures all RF energy in the band",
+                         "A wired packet capture on the AP switch port with SPAN",
+                         "A Wi-Fi scanner that lists SSIDs, BSSIDs, and channels",
+                         "The Wireless Config Analyzer Express with show tech wireless"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein Scanner sieht nur 802.11-Beacons; ein Nicht-Wi-Fi-Störer wie eine Mikrowelle taucht dort nie auf. Nur die Spektrumanalyse (Layer 1) erkennt und klassifiziert solche Energiequellen."
+    },
+    {
+        "id":  "slg-wt-002",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which information can a typical Wi-Fi scanner such as inSSIDer NOT provide?",
+        "optionen":  [
+                         "The type and duty cycle of a non-Wi-Fi interferer",
+                         "The security type such as open, WPA2, or WPA3",
+                         "The channel and RSSI of each neighboring AP",
+                         "The BSSID and SSID that each AP advertises"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Scanner werten Beacons und Probe Responses aus und zeigen daher SSID, BSSID, Kanal, RSSI und Security. Störer ohne 802.11-Frames und deren Duty Cycle erkennt nur ein Spektrumanalysator."
+    },
+    {
+        "id":  "slg-wt-003",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer runs Wireshark on a laptop that is associated to the corporate SSID, with the adapter in promiscuous mode. The capture shows only the laptop\u0027s own traffic and no beacons, probes, or frames of other clients. What is required to capture all 802.11 frames on the channel?",
+        "optionen":  [
+                         "Put the wireless adapter into monitor (RFMON) mode",
+                         "Associate the laptop to the same AP as the client",
+                         "Disable 802.11w PMF on the SSID during the capture",
+                         "Enable SPAN on the switch port of the nearest AP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Promiscuous Mode reicht bei WLAN-Adaptern nicht: Sie liefern dann nur Frames des eigenen BSS als Ethernet-ähnliche Frames. Erst der Monitor-Modus (RFMON) liefert alle 802.11-Management-, Control- und Datenframes des Kanals (der Kurs spricht hier ungenau von Promiscuous Mode)."
+    },
+    {
+        "id":  "slg-wt-004",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A sniffer in monitor mode on channel 36 captures a client\u0027s traffic perfectly. When the user walks down the hallway, the capture shows no more frames from the client, although the client still works. What is the most likely explanation?",
+        "optionen":  [
+                         "The client switched to WPA3 encryption that hides all frames from sniffers",
+                         "The sniffer\u0027s radiotap header removed the frames of moving clients",
+                         "The client roamed to an AP on another channel that the sniffer does not hear",
+                         "The AP started CAPWAP DTLS data encryption, which hides the client frames"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein Capture-Adapter hört immer nur einen Kanal. Roamt der Client zu einem AP auf einem anderen Kanal, verschwindet er aus dem Mitschnitt; für Roaming-Analysen braucht man mehrere Adapter oder einen Kanalwechsel."
+    },
+    {
+        "id":  "slg-wt-005",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In an over-the-air capture in Wireshark, which information comes from the radiotap header added by the capture driver rather than from the 802.11 frame itself?",
+        "optionen":  [
+                         "Source, destination, and BSSID MAC addresses of the frame",
+                         "Received signal strength and the data rate of each frame",
+                         "The sequence number and the retry flag of the frame",
+                         "The SSID and supported rates listed in the beacon body"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Radiotap-Header enthält Metadaten des Empfängers wie Kanal, Frequenz, Datenrate/MCS und RSSI. Adressen, Sequenznummer, Retry-Flag und Beacon-Inhalte stehen dagegen im 802.11-Frame selbst."
+    },
+    {
+        "id":  "slg-wt-006",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer entered the correct passphrase and SSID for a WPA2-Personal network into Wireshark, but the data frames of one client remain encrypted while another client\u0027s frames are decrypted. What is the most likely reason?",
+        "optionen":  [
+                         "WPA2-Personal uses a unique passphrase for every connected client",
+                         "The second client uses the GTK, which Wireshark cannot decrypt",
+                         "Wireshark can decrypt only the first client per capture file",
+                         "The capture does not contain that client\u0027s complete 4-way handshake"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Aus Passphrase und SSID berechnet Wireshark nur die PMK. Für die Sitzungsschlüssel (PTK) eines Clients braucht es zusätzlich dessen Nonces aus dem 4-Way Handshake; fehlt der Handshake im Mitschnitt, bleiben dessen Daten verschlüsselt."
+    },
+    {
+        "id":  "slg-wt-007",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "To display only Deauthentication frames in Wireshark, use the filter wlan.fc.type_subtype == ___.",
+        "optionen":  [
+                         "0x0c",
+                         "0x0b",
+                         "0x0a",
+                         "0x08"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Deauthentication ist Management-Subtyp 12 (0x0c). 0x0a ist Disassociation, 0x08 Beacon und 0x0b Authentication."
+    },
+    {
+        "id":  "slg-wt-008",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Wireshark-Wert wlan.fc.type_subtype dem 802.11-Management-Frame zu.",
+        "paare":  [
+                      [
+                          "0x04",
+                          "Probe Request"
+                      ],
+                      [
+                          "0x08",
+                          "Beacon"
+                      ],
+                      [
+                          "0x0b",
+                          "Authentication"
+                      ],
+                      [
+                          "0x00",
+                          "Association Request"
+                      ]
+                  ],
+        "erklaerung":  "Management-Subtypen: 0 Association Request, 4 Probe Request, 8 Beacon, 11 (0x0b) Authentication. Mit diesen Filtern lässt sich der Verbindungsaufbau eines Clients Schritt für Schritt verfolgen."
+    },
+    {
+        "id":  "slg-wt-009",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A client reports an RSSI of -71 dBm, and the noise floor at that location is -94 dBm. What is the signal-to-noise ratio?",
+        "optionen":  [
+                         "-23 dB",
+                         "165 dB",
+                         "23 dB",
+                         "71 dB"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "SNR = Signal - Rauschen = -71 dBm - (-94 dBm) = 23 dB. Der SNR ist eine Differenz zweier dBm-Werte und wird daher in dB angegeben."
+    },
+    {
+        "id":  "slg-wt-010",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A laptop shows an excellent RSSI of -60 dBm, but its SNR is only 8 dB and throughput is very poor. What does this indicate?",
+        "optionen":  [
+                         "The client is too far from the AP, so it needs a closer AP",
+                         "The SNR is normal for 5 GHz, so the problem must be on the wired side",
+                         "The AP transmits too weakly, so the signal must be increased by 8 dB",
+                         "The noise floor is about -68 dBm, so an interferer raises the noise"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bei -60 dBm Signal und 8 dB SNR liegt das Rauschen bei etwa -68 dBm, weit über dem üblichen Noise Floor von rund -92 dBm. Ursache ist meist ein Störer, den man mit Spektrumanalyse sucht; mehr Sendeleistung löst das nicht nachhaltig."
+    },
+    {
+        "id":  "slg-wt-011",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A hospital plans a voice-grade WLAN for VoWLAN handsets. Which cell-edge values match the common Cisco design guideline?",
+        "optionen":  [
+                         "RSSI of -80 dBm or better and SNR of at least 15 dB",
+                         "RSSI of -85 dBm or better and SNR of at least 10 dB",
+                         "RSSI of -67 dBm or better and SNR of at least 25 dB",
+                         "RSSI of -90 dBm or better and SNR of at least 5 dB"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Für Voice empfiehlt Cisco am Zellrand etwa -67 dBm und mindestens 25 dB SNR, damit hohe Datenraten und wenige Retries möglich sind. Werte um -80 dBm oder SNR unter 20 dB führen zu Aussetzern."
+    },
+    {
+        "id":  "slg-wt-012",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Four 2.4-GHz APs in an open office in the US use channels 1, 3, 6, and 9. Users complain about poor performance. Which channel plan should be used instead?",
+        "optionen":  [
+                         "Only channels 3, 6, 9, and 12",
+                         "Only channels 1, 4, 7, and 10",
+                         "Only channels 1, 6, and 11",
+                         "Only channels 2, 5, 8, and 11"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "2,4-GHz-Kanäle liegen nur 5 MHz auseinander, sind aber 20 MHz breit. In Nordamerika überlappen sich nur 1, 6 und 11 nicht; die Kanäle 3 und 9 überlappen mit ihren Nachbarn und erzeugen Adjacent Channel Interference."
+    },
+    {
+        "id":  "slg-wt-013",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two neighboring APs use 2.4-GHz channels 1 and 3. Clients between them see many corrupted frames and retries. Which type of interference is this?",
+        "optionen":  [
+                         "Co-channel interference",
+                         "Multipath interference",
+                         "Adjacent channel interference",
+                         "Non-Wi-Fi interference"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Kanal 1 und 3 überlappen sich teilweise; die Energie des Nachbarkanals wirkt wie Rauschen und zerstört Frames. Das ist ACI; bei CCI liegen beide Zellen auf demselben Kanal und teilen sich die Airtime."
+    },
+    {
+        "id":  "slg-wt-014",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two APs on channel 6 can hear each other. Throughput in both cells dropped by about half, but the CRC error rate did not increase. What explains this?",
+        "optionen":  [
+                         "A duplex mismatch on the switch ports of both APs",
+                         "Co-channel interference: both cells share the airtime through CSMA/CA",
+                         "Adjacent channel interference: the overlapping channel corrupts frames",
+                         "A non-Wi-Fi interferer: a microwave oven occupies channel 6"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei CCI erkennen sich die Geräte auf demselben Kanal und warten per CSMA/CA aufeinander; die Frames bleiben intakt, aber die Airtime wird geteilt. Abhilfe sind ein besserer Kanalplan und geringere Sendeleistung."
+    },
+    {
+        "id":  "slg-wt-015",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "A dense 2.4-GHz deployment suffers from co-channel interference. Which two actions reduce it? (Choose two.)",
+        "optionen":  [
+                         "Enable 40-MHz channels in the 2.4-GHz band to gain capacity",
+                         "Lower the AP transmit power so that fewer APs hear each other",
+                         "Alternate the APs between channels 1, 2, and 3",
+                         "Raise the transmit power to overpower the neighboring cells",
+                         "Disable the 2.4-GHz radio on some APs that are not needed for coverage"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Mit nur drei überlappungsfreien Kanälen hilft nur, dass sich weniger Zellen gegenseitig hören: weniger Leistung oder weniger aktive 2,4-GHz-Radios. 40 MHz und mehr Leistung verschärfen das Problem, Kanäle 1/2/3 erzeugen zusätzlich ACI."
+    },
+    {
+        "id":  "slg-wt-016",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which statement about microwave ovens as Wi-Fi interferers is correct?",
+        "optionen":  [
+                         "They emit only in the 1.9-GHz band used by cordless phones",
+                         "They emit in the 2.4-GHz band, strongest around 2.45 GHz",
+                         "They emit mainly in the 5-GHz UNII-1 band near channel 36",
+                         "They emit evenly across all 2.4-GHz and 5-GHz channels"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mikrowellenherde arbeiten im 2,4-GHz-ISM-Band um 2,45 GHz und treffen vor allem die oberen 2,4-GHz-Kanäle. Das 5-GHz-Band bleibt davon unberührt, weshalb ein Wechsel auf 5 GHz oft hilft."
+    },
+    {
+        "id":  "slg-wt-017",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An office replaces its old 2.4-GHz frequency-hopping cordless phones with DECT phones. What is the expected effect on the Wi-Fi network?",
+        "optionen":  [
+                         "Interference decreases, because DECT uses about 1.9 GHz, outside the Wi-Fi bands",
+                         "5-GHz clients are affected, because DECT operates in the UNII-3 band",
+                         "Interference increases, because DECT hops across all 2.4-GHz Wi-Fi channels",
+                         "Nothing changes, because DECT and the old phones use the same frequencies"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "DECT nutzt in Europa 1880-1900 MHz und in den USA (DECT 6.0) 1920-1930 MHz, also kein WLAN-Band. Die alten 2,4-GHz-Telefone störten dagegen das WLAN direkt."
+    },
+    {
+        "id":  "slg-wt-018",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A spectrum analyzer shows many narrow, very short bursts that jump randomly across the entire 2.4-GHz band. Which device type is the most likely source?",
+        "optionen":  [
+                         "A Bluetooth device using frequency hopping",
+                         "A microwave oven near the break room",
+                         "An analog video camera on a fixed channel",
+                         "A Wi-Fi AP transmitting beacons on channel 6"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bluetooth nutzt FHSS mit schmalen 1-MHz-Kanälen und springt sehr schnell über das ganze 2,4-GHz-Band. Mikrowelle und Videokamera belegen dagegen einen festen, breiten Frequenzbereich, ein AP einen 20-MHz-Kanal."
+    },
+    {
+        "id":  "slg-wt-019",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "CleanAir reports a video bridge on channel 11 with a duty cycle close to 100 percent. What is the impact on Wi-Fi clients on that channel?",
+        "optionen":  [
+                         "Only beacons are lost, while data frames are delivered as usual",
+                         "Throughput drops slightly, because the interferer transmits rarely",
+                         "The channel is almost always sensed as busy, so it is practically unusable",
+                         "Clients are unaffected, because CleanAir filters the interferer\u0027s energy"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Duty Cycle gibt an, wie viel Zeit der Störer sendet. Bei fast 100 % meldet Clear Channel Assessment den Kanal ständig als belegt oder Frames werden zerstört; abhelfen lässt sich nur durch Entfernen des Störers oder einen Kanalwechsel."
+    },
+    {
+        "id":  "slg-wt-020",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The percentage of time during which an interferer is actually transmitting is called its ___.",
+        "optionen":  [
+                         "DTIM period",
+                         "beacon interval",
+                         "duty cycle",
+                         "noise floor"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Duty Cycle beschreibt den Sendezeit-Anteil eines Störers in Prozent. Der Noise Floor ist das Grundrauschen, Beacon Interval und DTIM gehören zum normalen 802.11-Betrieb."
+    },
+    {
+        "id":  "slg-wt-021",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A CleanAir report shows an Air Quality (AQ) value of 100 for an AP radio. What does this value mean?",
+        "optionen":  [
+                         "One hundred interfering devices were detected on the radio",
+                         "The radio uses 100 percent of its airtime for client data",
+                         "The channel is fully blocked by a severe interferer",
+                         "The channel is clean, without measurable interference"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Air Quality wird von 1 bis 100 angegeben, wobei 100 bestmögliche Luftqualität ohne Störer bedeutet. Je niedriger der Wert, desto stärker beeinträchtigen Störer den Kanal."
+    },
+    {
+        "id":  "slg-wt-022",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three CleanAir settings can be configured on a Cisco WLC according to the course? (Choose three.)",
+        "optionen":  [
+                         "Choose which interferer types generate an SNMP trap",
+                         "Set an individual channel width for each interferer",
+                         "Track and report persistent interfering devices",
+                         "Block the MAC address of a detected interferer",
+                         "Enable or disable CleanAir globally"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Am WLC wird CleanAir ein- oder ausgeschaltet, festgelegt, ob Störer gemeldet und persistente Geräte verfolgt werden, und welche Störertypen einen SNMP-Trap auslösen. Nicht-Wi-Fi-Störer haben keine MAC-Adresse und keine Kanalbreite, die man setzen könnte."
+    },
+    {
+        "id":  "slg-wt-023",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Compared with a handheld spectrum analyzer carried by an engineer, which advantage does Cisco CleanAir provide?",
+        "optionen":  [
+                         "Continuous monitoring by many APs, which also helps to locate the interferer",
+                         "Decoding of all 802.11 data frames, including encrypted client payloads",
+                         "Detection of interferers outside the Wi-Fi bands, such as LTE base stations",
+                         "Automatic removal of interferers by jamming their frequencies"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "CleanAir läuft dauerhaft in den APs; da mehrere APs denselben Störer hören, lässt er sich eingrenzen und auf der Karte verorten. Ein Handgerät misst nur dort und dann, wo der Techniker gerade steht."
+    },
+    {
+        "id":  "slg-wt-024",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does Event-Driven RRM (ED-RRM) do when CleanAir detects a severe interferer on an AP\u0027s channel?",
+        "optionen":  [
+                         "It disables the affected SSID until an administrator acknowledges the event",
+                         "It excludes all clients that are associated to the affected radio",
+                         "It raises the AP transmit power to overpower the interferer",
+                         "It moves the AP to another channel immediately, without waiting for the next DCA run"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Normalerweise ändert DCA Kanäle nur in festen Intervallen. ED-RRM reagiert auf schwere CleanAir-Ereignisse sofort mit einem Kanalwechsel des betroffenen APs."
+    },
+    {
+        "id":  "slg-wt-025",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "VoIP calls drop in one warehouse aisle. The engineer wants to walk the area and measure signal strength, SNR, roaming behavior, round-trip time, packet loss, and channel utilization in one tool. Which tool from the course fits best?",
+        "optionen":  [
+                         "Apple AirPort Utility Wi-Fi scanner",
+                         "MetaGeek Eye P.A. packet analyzer",
+                         "Wireless Config Analyzer Express",
+                         "Ekahau Site Survey with an active survey"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ekahau misst bei einer Begehung passiv und aktiv Signal, SNR, Rauschen, Roaming, RTT, Paketverlust und Kanalauslastung und ist damit für ortsgebundene VoIP-Probleme ideal. Der Config Analyzer prüft nur Konfiguration, ein Scanner zeigt nur Beacons."
+    },
+    {
+        "id":  "slg-wt-026",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A help desk technician needs a quick view on an Android phone of which channels neighboring networks use and how strongly they overlap. Which tool fits?",
+        "optionen":  [
+                         "Cisco Spectrum Expert",
+                         "Wi-Fi Analyzer app",
+                         "Wireshark with AirPcap",
+                         "Wireless Config Analyzer Express"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Wi-Fi Analyzer ist ein Scanner für Android und zeigt SSIDs, Kanäle, Überlappung und Signalstärke als Graph. Die anderen Werkzeuge brauchen Spezialhardware, einen PC oder Controller-Ausgaben."
+    },
+    {
+        "id":  "slg-wt-027",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer uses SPAN on the switch port of a local-mode AP and opens the capture in Wireshark. What does the capture show for wireless client traffic?",
+        "optionen":  [
+                         "Client frames inside CAPWAP between AP and WLC, but no RSSI or retries",
+                         "802.11 frames with radiotap header, including RSSI and data rate",
+                         "Only beacons and probe responses that the AP transmits on its channel",
+                         "Plain 802.1Q-tagged client frames, switched locally at the AP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein Local-Mode-AP tunnelt Clientverkehr per CAPWAP zum WLC; kabelseitig sieht man daher nur gekapselte Frames. HF-Informationen wie RSSI, Datenrate oder Retries gibt es nur im Over-the-Air-Mitschnitt."
+    },
+    {
+        "id":  "slg-wt-028",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "AireOS \u0027show client detail\u0027 for a problem client shows \u0027Data Switching: Local\u0027. Where should the engineer look first if the client receives no IP address?",
+        "optionen":  [
+                         "The mobility anchor configuration between the foreign and anchor WLC",
+                         "The CAPWAP data tunnel between the AP and the WLC in the data center",
+                         "The dynamic interface on the WLC that maps the WLAN to the client VLAN",
+                         "The VLAN configuration on the AP\u0027s switch port and the local DHCP path"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027Data Switching: Local\u0027 erscheint bei FlexConnect-Clients, deren Verkehr am AP lokal ins VLAN geht. Das Client-VLAN muss daher auf dem Trunk zum AP und lokal mit DHCP versorgt sein, nicht am WLC."
+    },
+    {
+        "id":  "slg-wt-029",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three tools does the Client View page of the AireOS monitoring dashboard offer to troubleshoot a selected client? (Choose three.)",
+        "optionen":  [
+                         "Packet Capture",
+                         "Ping Test",
+                         "Event Log",
+                         "Radioactive Trace",
+                         "Spectrum Waterfall"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Die Client View bietet Ping Test, Connection-Logs, Event Log und Packet Capture. Radioactive Tracing gibt es auf dem Catalyst 9800, Spektrumdarstellungen liefert CleanAir bzw. ein Spektrumanalysator."
+    },
+    {
+        "id":  "slg-wt-030",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On the AireOS Best Practices page, what does the option \u0027Fix it Now\u0027 do for a parameter?",
+        "optionen":  [
+                         "It sets the parameter to the Cisco-recommended value",
+                         "It removes the parameter from the best practice list",
+                         "It resets the parameter to the factory default value",
+                         "It opens the advanced view for manual configuration"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027Fix it Now\u0027 übernimmt die Cisco-Empfehlung. \u0027Restore Default\u0027 setzt auf Werkseinstellung zurück, \u0027Manual Configuration\u0027 öffnet die Detailansicht und \u0027Ignore\u0027 entfernt den Punkt aus der Liste."
+    },
+    {
+        "id":  "slg-wt-031",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "AireOS-WLC (Legacy-CLI): Schalte die seitenweise Ausgabe (--More--) ab, bevor du eine lange Ausgabe mitloggst.",
+        "bausteine":  [
+                          "config",
+                          "paging",
+                          "disable",
+                          "terminal",
+                          "length",
+                          "0",
+                          "no"
+                      ],
+        "loesung":  [
+                        "config",
+                        "paging",
+                        "disable"
+                    ],
+        "erklaerung":  "Auf AireOS verhindert \u0027config paging disable\u0027 Seitenumbrüche in der Ausgabe. \u0027terminal length 0\u0027 ist das IOS-Gegenstück, das auf AireOS nicht gilt."
+    },
+    {
+        "id":  "slg-wt-032",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "AireOS-WLC (Legacy-CLI): Aktiviere das Client-Debug-Makro für den Client 00:40:96:aa:6f:71, damit nur dessen Association-, Authentifizierungs- und DHCP-Meldungen erscheinen.",
+        "bausteine":  [
+                          "debug",
+                          "client",
+                          "00:40:96:aa:6f:71",
+                          "mac",
+                          "wireless",
+                          "enable",
+                          "condition"
+                      ],
+        "loesung":  [
+                        "debug",
+                        "client",
+                        "00:40:96:aa:6f:71"
+                    ],
+        "erklaerung":  "\u0027debug client \u003cmac\u003e\u0027 aktiviert mehrere Client-Debugs auf einmal und filtert auf die MAC. Das hält die Ausgabe übersichtlich und schont den Controller."
+    },
+    {
+        "id":  "slg-wt-033",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einem Catalyst 9800: Zeige alle Details zum Client 3c22.fb11.2233 (Zustand, VLAN, IP, AP, RSSI/SNR, Security).",
+        "bausteine":  [
+                          "show",
+                          "wireless",
+                          "client",
+                          "mac-address",
+                          "3c22.fb11.2233",
+                          "detail",
+                          "summary",
+                          "ap"
+                      ],
+        "loesung":  [
+                        "show",
+                        "wireless",
+                        "client",
+                        "mac-address",
+                        "3c22.fb11.2233",
+                        "detail"
+                    ],
+        "erklaerung":  "\u0027show wireless client mac-address \u003cmac\u003e detail\u0027 ist das 9800-Gegenstück zu AireOS \u0027show client detail\u0027 und zeigt u. a. den Policy Manager State. \u0027summary\u0027 listet nur alle Clients in Kurzform."
+    },
+    {
+        "id":  "slg-wt-034",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einem Catalyst 9800: Starte ein Radioactive Trace (bedingtes Debugging) für den Client 3c22.fb11.2233.",
+        "bausteine":  [
+                          "debug",
+                          "wireless",
+                          "mac",
+                          "3c22.fb11.2233",
+                          "client",
+                          "condition",
+                          "all"
+                      ],
+        "loesung":  [
+                        "debug",
+                        "wireless",
+                        "mac",
+                        "3c22.fb11.2233"
+                    ],
+        "erklaerung":  "\u0027debug wireless mac \u003cmac\u003e\u0027 startet auf dem 9800 das Radioactive Tracing für genau diesen Client über alle beteiligten Prozesse. Mit \u0027no debug wireless mac \u003cmac\u003e\u0027 wird es beendet und die ra_trace-Datei erzeugt."
+    },
+    {
+        "id":  "slg-wt-035",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einem Catalyst 9800: Ein Client hatte vor einer Stunde ein Problem, ein Debug lief nicht. Schreibe die Always-On-Trace-Meldungen dieses Clients (3c22.fb11.2233) der letzten 2 Stunden in die Datei bootflash:client.log.",
+        "bausteine":  [
+                          "show",
+                          "logging",
+                          "profile",
+                          "wireless",
+                          "start",
+                          "last",
+                          "2",
+                          "hours",
+                          "filter",
+                          "mac",
+                          "3c22.fb11.2233",
+                          "to-file",
+                          "bootflash:client.log",
+                          "debug",
+                          "process"
+                      ],
+        "loesung":  [
+                        "show",
+                        "logging",
+                        "profile",
+                        "wireless",
+                        "start",
+                        "last",
+                        "2",
+                        "hours",
+                        "filter",
+                        "mac",
+                        "3c22.fb11.2233",
+                        "to-file",
+                        "bootflash:client.log"
+                    ],
+        "erklaerung":  "Der 9800 schreibt ständig Traces mit (Always-On Tracing). \u0027show logging profile wireless ... filter mac\u0027 holt die Meldungen eines Clients nachträglich, ohne dass vorher ein Debug gesetzt sein musste. Ohne 'start last' reicht der Befehl nur 10 Minuten zurück, daher hier 'start last 2 hours'."
+    },
+    {
+        "id":  "slg-wt-036",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einem Catalyst 9800: Zeige die Liste der Clients, die der Controller nach wiederholten Fehlern ausgeschlossen hat.",
+        "bausteine":  [
+                          "show",
+                          "wireless",
+                          "exclusionlist",
+                          "client",
+                          "summary",
+                          "blocklist"
+                      ],
+        "loesung":  [
+                        "show",
+                        "wireless",
+                        "exclusionlist"
+                    ],
+        "erklaerung":  "\u0027show wireless exclusionlist\u0027 listet ausgeschlossene Clients, z. B. nach zu vielen 802.1X- oder Association-Fehlern. Auf AireOS hieß der Befehl \u0027show exclusionlist\u0027."
+    },
+    {
+        "id":  "slg-wt-037",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einem Catalyst 9800: Prüfe, ob der Controller die RADIUS-Server als UP oder DEAD führt, inklusive Request- und Timeout-Zählern.",
+        "bausteine":  [
+                          "show",
+                          "aaa",
+                          "servers",
+                          "radius",
+                          "statistics",
+                          "wireless"
+                      ],
+        "loesung":  [
+                        "show",
+                        "aaa",
+                        "servers"
+                    ],
+        "erklaerung":  "\u0027show aaa servers\u0027 zeigt pro RADIUS-Server den Zustand (UP/DEAD) und Zähler für Requests, Timeouts und Antworten. So erkennt man, ob der WLC den Server überhaupt erreicht."
+    },
+    {
+        "id":  "slg-wt-038",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "AireOS-WLC (Legacy-CLI): Zeige Benutzername, AP, SSID, IP-Adresse, VLAN, Mobility State und Security des Clients 00:40:96:aa:6f:71.",
+        "bausteine":  [
+                          "show",
+                          "client",
+                          "detail",
+                          "00:40:96:aa:6f:71",
+                          "summary",
+                          "wireless",
+                          "mac-address"
+                      ],
+        "loesung":  [
+                        "show",
+                        "client",
+                        "detail",
+                        "00:40:96:aa:6f:71"
+                    ],
+        "erklaerung":  "\u0027show client detail \u003cmac\u003e\u0027 ist der zentrale AireOS-Befehl für einen einzelnen Client. \u0027show client summary\u0027 listet dagegen alle Clients mit AP, WLAN-ID und Radio."
+    },
+    {
+        "id":  "slg-wt-039",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, Policy-Profile-Modus (wireless profile policy PP-SALES): Clients hängen in IP Learn, weil das Profil auf VLAN 11 zeigt. Setze das Client-VLAN auf 30.",
+        "bausteine":  [
+                          "vlan",
+                          "30",
+                          "switchport",
+                          "access",
+                          "interface",
+                          "11"
+                      ],
+        "loesung":  [
+                        "vlan",
+                        "30"
+                    ],
+        "erklaerung":  "Auf dem 9800 legt das Policy Profile mit \u0027vlan \u003cid\u003e\u0027 fest, in welches VLAN der Clientverkehr geht. Zeigt es auf ein VLAN ohne DHCP, bekommt der Client keine Adresse und bleibt in IP Learn."
+    },
+    {
+        "id":  "slg-wt-040",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, Modus radius server ISE-Server: Korrigiere die Serveradresse auf 10.10.10.60 mit den Standardports für Authentifizierung und Accounting.",
+        "bausteine":  [
+                          "address",
+                          "ipv4",
+                          "10.10.10.60",
+                          "auth-port",
+                          "1812",
+                          "acct-port",
+                          "1813",
+                          "host",
+                          "1645"
+                      ],
+        "loesung":  [
+                        "address",
+                        "ipv4",
+                        "10.10.10.60",
+                        "auth-port",
+                        "1812",
+                        "acct-port",
+                        "1813"
+                    ],
+        "erklaerung":  "Im \u0027radius server\u0027-Modus setzt \u0027address ipv4 \u003cip\u003e auth-port 1812 acct-port 1813\u0027 Adresse und Ports. Im Lab war genau diese Adresse falsch (10.10.10.66), was zu \u0027AAA Server Down\u0027 führte."
+    },
+    {
+        "id":  "slg-wt-041",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus des Trunks vom Switch zum WLC (Trunk erlaubt bisher VLAN 10 und 30): Füge das Accounting-Client-VLAN 40 zur Liste der erlaubten VLANs hinzu, ohne die bestehenden zu entfernen.",
+        "bausteine":  [
+                          "switchport",
+                          "trunk",
+                          "allowed",
+                          "vlan",
+                          "add",
+                          "40",
+                          "native",
+                          "remove"
+                      ],
+        "loesung":  [
+                        "switchport",
+                        "trunk",
+                        "allowed",
+                        "vlan",
+                        "add",
+                        "40"
+                    ],
+        "erklaerung":  "Mit \u0027add\u0027 wird VLAN 40 ergänzt; ohne \u0027add\u0027 würde die Liste ersetzt und VLAN 10 und 30 fielen weg. Fehlt ein Client-VLAN auf dem Trunk zum WLC, erhalten die Clients dieses WLANs keine Adresse."
+    },
+    {
+        "id":  "slg-wt-042",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einem Catalyst 9800: Zeige für alle gejointen APs, welchen Policy Tag, Site Tag und RF Tag sie verwenden.",
+        "bausteine":  [
+                          "show",
+                          "ap",
+                          "tag",
+                          "summary",
+                          "wireless",
+                          "detail",
+                          "policy"
+                      ],
+        "loesung":  [
+                        "show",
+                        "ap",
+                        "tag",
+                        "summary"
+                    ],
+        "erklaerung":  "\u0027show ap tag summary\u0027 zeigt die Tags jedes APs. Steht dort der default-policy-tag statt des richtigen Tags, strahlt der AP die gewünschten WLANs nicht aus – genau der erste Fehler im Lab."
+    },
+    {
+        "id":  "slg-wt-043",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Werkzeug seiner Kategorie zu.",
+        "paare":  [
+                      [
+                          "MetaGeek Chanalyzer",
+                          "Spektrumanalyse"
+                      ],
+                      [
+                          "inSSIDer",
+                          "Wi-Fi-Scanner"
+                      ],
+                      [
+                          "Wireshark",
+                          "Paketanalyse"
+                      ],
+                      [
+                          "Wireless Config Analyzer Express",
+                          "Konfigurationsanalyse"
+                      ]
+                  ],
+        "erklaerung":  "Chanalyzer misst HF-Energie (Layer 1), inSSIDer wertet Beacons aus, Wireshark dekodiert Frames und WCAE prüft Controller-Konfigurationen. Jede Kategorie beantwortet eine andere Frage."
+    },
+    {
+        "id":  "slg-wt-044",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Client-Zustand auf dem Catalyst 9800 seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "Authenticating",
+                          "PSK- oder 802.1X-Authentifizierung läuft noch"
+                      ],
+                      [
+                          "IP Learn",
+                          "Client wartet auf eine Adresse per DHCP"
+                      ],
+                      [
+                          "Webauth Pending",
+                          "Anmeldung am Gastportal fehlt noch"
+                      ],
+                      [
+                          "Run",
+                          "Client ist vollständig verbunden"
+                      ]
+                  ],
+        "erklaerung":  "Der Zustand zeigt, in welcher Phase ein Client hängt: Authenticating deutet auf PSK/RADIUS, IP Learn auf VLAN/DHCP, Webauth Pending auf das Portal. Run ist das Ziel."
+    },
+    {
+        "id":  "slg-wt-045",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedem Symptom auf dem Catalyst 9800 die wahrscheinlichste Ursache zu.",
+        "paare":  [
+                      [
+                          "SSID taucht in keiner Client-Liste auf",
+                          "WLAN fehlt im Policy Tag des APs"
+                      ],
+                      [
+                          "Client bleibt in IP Learn",
+                          "Policy Profile zeigt auf VLAN ohne DHCP"
+                      ],
+                      [
+                          "%DOT1X-5-FAIL ... AAA Server Down",
+                          "RADIUS-Server mit falscher IP eingetragen"
+                      ],
+                      [
+                          "Association Response mit Status 18",
+                          "Client kann eine Mandatory Rate nicht"
+                      ]
+                  ],
+        "erklaerung":  "Die Phase des Fehlers grenzt die Ursache ein: Discovery (Tag/WLAN), Adressvergabe (VLAN/DHCP), Authentifizierung (RADIUS) und Association (Datenraten)."
+    },
+    {
+        "id":  "slg-wt-046",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Störer seiner typischen Signatur im Spektrumanalysator zu.",
+        "paare":  [
+                      [
+                          "Mikrowellenherd",
+                          "breit um 2,45 GHz, Duty Cycle etwa 50 %"
+                      ],
+                      [
+                          "Bluetooth",
+                          "schmale, kurze Bursts, springt über das Band"
+                      ],
+                      [
+                          "Videobrücke",
+                          "fester Kanal, Duty Cycle nahe 100 %"
+                      ],
+                      [
+                          "DECT-Telefon",
+                          "bei 1,9 GHz, kein Einfluss auf Wi-Fi"
+                      ]
+                  ],
+        "erklaerung":  "Jeder Störer hat ein typisches Muster aus Bandbreite, Frequenz und Duty Cycle; daran klassifizieren CleanAir und Chanalyzer. DECT liegt außerhalb der WLAN-Bänder."
+    },
+    {
+        "id":  "slg-wt-047",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den IEEE-802.11-Reason-Code in einem Deauthentication- oder Disassociation-Frame seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "4",
+                          "Trennung wegen Inaktivität des Clients"
+                      ],
+                      [
+                          "5",
+                          "AP kann keine weiteren Clients bedienen"
+                      ],
+                      [
+                          "6",
+                          "Class-2-Frame von nicht authentifizierter Station"
+                      ],
+                      [
+                          "9",
+                          "Association-Anfrage ohne vorherige Authentifizierung"
+                      ]
+                  ],
+        "erklaerung":  "Reason Codes erklären, warum eine Verbindung beendet wurde. 4 = Inaktivität (Idle Timeout, nicht Session Timeout), 5 = AP ausgelastet, 6 = Class-2-Frame (z. B. Association Request) vor der Authentifizierung, 9 = Association ohne Authentifizierung."
+    },
+    {
+        "id":  "slg-wt-048",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den AireOS-Befehl (Legacy) seinem Gegenstück auf dem Catalyst 9800 zu.",
+        "paare":  [
+                      [
+                          "show client detail \u003cmac\u003e",
+                          "show wireless client mac-address \u003cmac\u003e detail"
+                      ],
+                      [
+                          "debug client \u003cmac\u003e",
+                          "debug wireless mac \u003cmac\u003e"
+                      ],
+                      [
+                          "show exclusionlist",
+                          "show wireless exclusionlist"
+                      ],
+                      [
+                          "show client summary",
+                          "show wireless client summary"
+                      ]
+                  ],
+        "erklaerung":  "Auf dem 9800 beginnen die Wireless-Befehle meist mit \u0027show wireless\u0027. Das Client-Debug heißt dort Radioactive Tracing und wird mit \u0027debug wireless mac\u0027 gestartet."
+    },
+    {
+        "id":  "slg-wt-049",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedem Problem die passende Abhilfe zu.",
+        "paare":  [
+                      [
+                          "Sticky Client",
+                          "niedrige Datenraten abschalten, 802.11k/v nutzen"
+                      ],
+                      [
+                          "Power-Mismatch",
+                          "AP-Sendeleistung an die Clients angleichen"
+                      ],
+                      [
+                          "Co-Channel Interference",
+                          "Kanalplan überarbeiten, weniger Zellen pro Kanal"
+                      ],
+                      [
+                          "Nicht-Wi-Fi-Störer",
+                          "mit Spektrumanalyse orten und Quelle entfernen"
+                      ]
+                  ],
+        "erklaerung":  "Jede Ursache braucht eine andere Maßnahme: Sticky Clients brauchen Roaming-Hilfen und kleinere Zellen, Power-Mismatch weniger AP-Leistung, CCI einen besseren Kanalplan, Störer die Suche mit dem Spektrumanalysator."
+    },
+    {
+        "id":  "slg-wt-050",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Infrastrukturfehler seinem typischen Symptom zu.",
+        "paare":  [
+                      [
+                          "Client-VLAN fehlt auf dem Trunk zum WLC",
+                          "Clients dieses WLANs erhalten keine IP-Adresse"
+                      ],
+                      [
+                          "Native VLAN am AP-Port passt nicht",
+                          "AP kann dem WLC nicht beitreten"
+                      ],
+                      [
+                          "Mobility-Gruppenname unterschiedlich",
+                          "Roaming zwischen zwei WLCs bricht ab"
+                      ],
+                      [
+                          "RF-Gruppenname anders geschrieben",
+                          "WLC tritt der RRM-Gruppe nicht bei"
+                      ]
+                  ],
+        "erklaerung":  "Viele Client-Probleme entstehen hinter dem WLAN: fehlende VLANs, falsches Native VLAN, abweichende Gruppennamen. Gruppennamen sind dabei case-sensitive."
+    },
+    {
+        "id":  "slg-wt-051",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den PoE-Standard der Leistung zu, die am Endgerät (AP) mindestens ankommt.",
+        "paare":  [
+                      [
+                          "802.3af (PoE)",
+                          "12,95 W"
+                      ],
+                      [
+                          "802.3at (PoE+)",
+                          "25,5 W"
+                      ],
+                      [
+                          "802.3bt Typ 3",
+                          "51 W"
+                      ],
+                      [
+                          "802.3bt Typ 4",
+                          "71,3 W"
+                      ]
+                  ],
+        "erklaerung":  "Am Switch liefern die Standards 15,4 W, 30 W, 60 W und 90 W; durch Kabelverluste auf 100 m bleiben am Gerät 12,95 W, 25,5 W, 51 W und 71,3 W. Moderne Wi-Fi-6E/7-APs brauchen oft mehr als 802.3af."
+    },
+    {
+        "id":  "slg-wt-052",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Zusatzfunktion des Wireless Config Analyzer Express ihrem Inhalt zu.",
+        "paare":  [
+                      [
+                          "AP Data Summarization",
+                          "Liste der AP-Hardwaretypen und AP-Modi"
+                      ],
+                      [
+                          "RF Stats",
+                          "RF-Statistik pro WLC, AP-Gruppe oder Flex-Gruppe"
+                      ],
+                      [
+                          "RF Health",
+                          "vereinfachter Gesundheitsbericht aus den RF-Werten"
+                      ],
+                      [
+                          "Log File Summarization",
+                          "Meldungen mit Anzahl sowie erstem und letztem Auftreten"
+                      ]
+                  ],
+        "erklaerung":  "Neben über 180 Konfigurationsprüfungen fasst WCAE AP-Daten, RF-Statistiken, RF-Gesundheit und Logs zusammen. So erkennt man Muster, ohne die Rohausgaben selbst durchzugehen."
+    },
+    {
+        "id":  "slg-wt-053",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne der Verbindungsphase eines WLAN-Clients die typischen Frames zu.",
+        "paare":  [
+                      [
+                          "Discovery",
+                          "Probe Request und Probe Response"
+                      ],
+                      [
+                          "Association",
+                          "Association Request und Response mit AID"
+                      ],
+                      [
+                          "Schlüsselableitung",
+                          "EAPOL-Key-Nachrichten 1 bis 4"
+                      ],
+                      [
+                          "Adressvergabe",
+                          "DHCP Discover, Offer, Request, Ack"
+                      ]
+                  ],
+        "erklaerung":  "Ein Client findet das Netz per Probe/Beacon, assoziiert sich, leitet im 4-Way Handshake Schlüssel ab und holt dann per DHCP eine Adresse. Im Mitschnitt sieht man, an welcher Stelle die Folge abbricht."
+    },
+    {
+        "id":  "slg-wt-054",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "If a client repeatedly fails 802.1X, a Catalyst 9800 excludes it for the exclusion timeout of the policy profile, which by default is ___ seconds.",
+        "optionen":  [
+                         "10",
+                         "3600",
+                         "60",
+                         "300"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Auf dem 9800 beträgt der Exclusion-Timeout standardmäßig 60 Sekunden und ist pro Policy Profile einstellbar (AireOS ab 8.5: 180 s). Danach darf der Client es erneut versuchen, oder der Administrator entfernt ihn vorher manuell aus der Liste."
+    },
+    {
+        "id":  "slg-wt-055",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "When a radioactive trace is stopped on a Catalyst 9800, the resulting ra_trace file is stored in ___ by default.",
+        "optionen":  [
+                         "system:",
+                         "nvram:",
+                         "bootflash:",
+                         "tftp:"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Radioactive-Trace-Datei landet standardmäßig im bootflash: des Controllers. Von dort kann man sie per GUI herunterladen oder kopieren und z. B. mit dem Wireless Debug Analyzer auswerten."
+    },
+    {
+        "id":  "slg-wt-056",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "According to the course, an RF group for Radio Resource Management can contain at most ___ wireless LAN controllers.",
+        "optionen":  [
+                         "100",
+                         "20",
+                         "8",
+                         "2"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Eine RF-Gruppe kann laut Kurs bis zu 20 WLCs umfassen; die AP-Zahl hängt von der Plattform ab. Wird die Grenze überschritten oder ist der Name anders geschrieben, tritt ein WLC der Gruppe nicht bei."
+    },
+    {
+        "id":  "slg-wt-057",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "To associate successfully, a client must support all data rates that are configured as ___ on the WLAN.",
+        "optionen":  [
+                         "disabled",
+                         "optional",
+                         "mandatory",
+                         "supported"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Mandatory (Basic) Rates muss jeder Client beherrschen, sonst lehnt der AP die Association ab. Supported Rates sind zusätzlich erlaubt, Disabled Rates werden nicht genutzt."
+    },
+    {
+        "id":  "slg-wt-058",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In the 2.4-GHz band, the center frequencies of neighboring channels are only ___ MHz apart, which is why most channels overlap.",
+        "optionen":  [
+                         "5",
+                         "20",
+                         "40",
+                         "22"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Kanäle haben 5 MHz Mittenabstand, belegen aber 20 bzw. 22 MHz. Daher überlappen sich nur 1, 6 und 11 nicht."
+    },
+    {
+        "id":  "slg-wt-059",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "To analyze a Catalyst 9800 configuration with the Wireless Config Analyzer Express, the engineer uploads the output of \u0027show tech ___\u0027.",
+        "optionen":  [
+                         "support",
+                         "controller",
+                         "running",
+                         "wireless"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Für den 9800 erwartet WCAE die Ausgabe von \u0027show tech wireless\u0027, für AireOS \u0027show run-config\u0027. Das Tool prüft daraus die Konfiguration und erstellt RF- und Log-Zusammenfassungen."
+    },
+    {
+        "id":  "slg-wt-060",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The signal-to-noise ratio is calculated as the received signal level minus the ___.",
+        "optionen":  [
+                         "transmit power",
+                         "antenna gain",
+                         "data rate",
+                         "noise floor"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "SNR = RSSI - Noise Floor, beide in dBm, Ergebnis in dB. Ein guter RSSI nützt wenig, wenn das Rauschen ebenfalls hoch ist."
+    },
+    {
+        "id":  "slg-wt-061",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "A client on a Catalyst 9800 connects with the correct PSK but remains in the IP Learn state. Which three causes are plausible? (Choose three.)",
+        "optionen":  [
+                         "The RADIUS server is unreachable from the WLC",
+                         "The policy profile maps the WLAN to a VLAN without a DHCP scope",
+                         "The SVI of the client VLAN has no ip helper-address to the DHCP server",
+                         "The client does not support a mandatory data rate",
+                         "The client VLAN is not allowed on the trunk between switch and WLC"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "IP Learn heißt: Association und Authentifizierung sind fertig, aber DHCP scheitert. Ursachen liegen bei VLAN-Zuordnung, Trunk oder DHCP-Relay; RADIUS- und Datenratenprobleme würden den Client früher stoppen."
+    },
+    {
+        "id":  "slg-wt-062",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two items are required to decrypt a client\u0027s WPA2-Personal data frames in an over-the-air Wireshark capture? (Choose two.)",
+        "optionen":  [
+                         "The passphrase and the SSID entered as a decryption key",
+                         "All four EAPOL-Key messages of that client\u0027s handshake in the capture",
+                         "The RADIUS shared secret configured on the WLC",
+                         "A capture taken in promiscuous mode instead of monitor mode",
+                         "The private key of the WLC web administration certificate"
+                     ],
+        "richtig":  [
+                        0,
+                        1
+                    ],
+        "erklaerung":  "Aus Passphrase und SSID entsteht die PMK, aus den Nonces des 4-Way Handshakes die PTK des Clients. RADIUS-Secret und Web-Zertifikat spielen für WPA2-Personal keine Rolle."
+    },
+    {
+        "id":  "slg-wt-063",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Users stay connected to a distant AP with -82 dBm, although an AP in the same room offers -55 dBm. Which two measures help against this sticky-client behavior? (Choose two.)",
+        "optionen":  [
+                         "Lengthen the client idle timeout on the WLAN",
+                         "Enable 802.11k and 802.11v to give clients neighbor and transition hints",
+                         "Disable the 5-GHz radios so that clients stay on one band",
+                         "Increase the transmit power of all APs to the maximum",
+                         "Disable the lowest data rates so that cells become smaller"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Den Roaming-Entscheid trifft der Client. Höhere Mindestdatenraten verkleinern die Zellen, 802.11k liefert Nachbarlisten und 802.11v BSS-Transition-Empfehlungen; mehr Sendeleistung vergrößert die Zellen und verschlimmert das Problem."
+    },
+    {
+        "id":  "slg-wt-064",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three conditions must be met for a useful over-the-air capture of a client\u0027s connection? (Choose three.)",
+        "optionen":  [
+                         "The adapter supports the client\u0027s PHY and spatial streams",
+                         "The adapter is set to the AP\u0027s channel and channel width",
+                         "The WLC has sniffer mode enabled globally for all APs",
+                         "The adapter is associated to the same SSID as the client",
+                         "The adapter runs in monitor mode"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Ein Sniffer muss im Monitor-Modus auf dem richtigen Kanal und mit passender Breite lauschen und die Modulation des Clients dekodieren können. Eine Association ist nicht nötig und würde den Monitor-Modus sogar ausschließen."
+    },
+    {
+        "id":  "slg-wt-065",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two command outputs can be analyzed with the Cisco Wireless Config Analyzer Express? (Choose two.)",
+        "optionen":  [
+                         "debug client output from an AireOS controller",
+                         "show tech wireless from a Catalyst 9800 controller",
+                         "A site survey project file from Ekahau",
+                         "A pcap file from an over-the-air capture",
+                         "show run-config from an AireOS controller"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "WCAE wertet Konfigurations- und Tech-Support-Ausgaben aus (AireOS \u0027show run-config\u0027, 9800 \u0027show tech wireless\u0027). Debugs, Site Surveys und Mitschnitte gehören in andere Werkzeuge."
+    },
+    {
+        "id":  "slg-wt-066",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Clients lose their sessions when they roam between two Catalyst 9800 controllers. Which three items should be verified? (Choose three.)",
+        "optionen":  [
+                         "The mobility group name is identical on both controllers",
+                         "UDP 16666 and 16667 are permitted between the controllers",
+                         "Both controllers use the same RADIUS shared secret for ISE",
+                         "Both controllers use the same management VLAN ID",
+                         "The mobility control and data links show status Up"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Für Inter-Controller-Roaming müssen Mobility-Name, Peer-Konfiguration und der Mobility-Tunnel stimmen; \u0027show wireless mobility summary\u0027 zeigt Control- und Data-Link. Shared Secret und VLAN-ID müssen dafür nicht gleich sein."
+    },
+    {
+        "id":  "slg-wt-067",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Only one of 300 users cannot connect to the 802.1X SSID, while everyone else works. Which two checks should come first? (Choose two.)",
+        "optionen":  [
+                         "Whether all client VLANs are allowed on the WLC trunk",
+                         "Whether the WLAN is enabled on the WLC",
+                         "Whether the user recently changed the password or mistypes it",
+                         "Whether the user\u0027s Wi-Fi profile uses 802.1X instead of PSK or open",
+                         "Whether the WLC can reach the RADIUS server"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Ist nur ein Nutzer betroffen, liegt der Fehler fast immer am Endgerät: falsches Profil, falsches SSID oder falsche Zugangsdaten. RADIUS, WLAN-Status oder Trunk würden alle Nutzer treffen."
+    },
+    {
+        "id":  "slg-wt-068",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three events can trigger client exclusion on a Cisco WLC? (Choose three.)",
+        "optionen":  [
+                         "Excessive web authentication failures",
+                         "Excessive 802.11 association failures",
+                         "A received signal strength below -80 dBm",
+                         "A high retry rate on the client\u0027s uplink frames",
+                         "Excessive 802.1X authentication failures"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Client Exclusion Policies reagieren auf wiederholte Fehler bei 802.11-Association, 802.11-Authentifizierung, 802.1X und WebAuth (dazu IP-Theft). Schlechtes Signal oder viele Retries führen nicht zum Ausschluss."
+    },
+    {
+        "id":  "slg-wt-069",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three kinds of information does Client 360 in Catalyst Center Assurance provide for a wireless client? (Choose three.)",
+        "optionen":  [
+                         "The client\u0027s state at an earlier point in time (Time Travel)",
+                         "A diff of the access switch running configuration",
+                         "RSSI and SNR values over time",
+                         "The RADIUS shared secret of the controller in clear text",
+                         "An onboarding timeline with association, authentication, and DHCP steps"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Client 360 zeigt Onboarding-Schritte mit Dauer und Fehlergrund, Verbindungswerte wie RSSI und SNR sowie den Verlauf per Time Travel. So lassen sich auch vergangene Probleme ohne vorher gesetztes Debug analysieren."
+    },
+    {
+        "id":  "slg-wt-070",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two statements about radioactive tracing on a Catalyst 9800 are correct? (Choose two.)",
+        "optionen":  [
+                         "It writes its result to a trace file that can be downloaded and analyzed",
+                         "It is available only on AireOS controllers with version 8.10 or later",
+                         "It enables global debugging for all clients and should be avoided in production",
+                         "It requires a reload of the controller before the trace becomes active",
+                         "It collects debug-level traces for one MAC or IP address across all relevant processes"
+                     ],
+        "richtig":  [
+                        0,
+                        4
+                    ],
+        "erklaerung":  "Radioactive Tracing ist ein bedingtes Debug für eine MAC- oder IP-Adresse über alle beteiligten Prozesse und erzeugt eine ra_trace-Datei. Es braucht keinen Reload und belastet den Controller kaum, daher ist es auch in Produktion üblich."
+    },
+    {
+        "id":  "slg-wt-071",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "A new Wi-Fi 6 AP that requires 802.3at is connected to a switch port that provides only 802.3af. Which two outcomes are possible? (Choose two.)",
+        "optionen":  [
+                         "The AP does not boot completely or keeps rebooting",
+                         "The switch delivers 30 W anyway after the AP negotiates via CDP",
+                         "The AP runs in a reduced power mode with radios or spatial streams disabled",
+                         "The WLC excludes all clients that associate to this AP",
+                         "The clients receive addresses from the AP management VLAN"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "Mit nur 15,4 W am Port (12,95 W am Gerät) startet ein PoE+-AP je nach Modell gar nicht oder im Low-Power-Modus mit abgeschalteten Funktionen. Ein 802.3af-Port kann auch per CDP/LLDP nicht mehr Leistung liefern."
+    },
+    {
+        "id":  "slg-wt-072",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In a lab, a client connects to the Sales WLAN with the correct PSK, but the Catalyst 9800 shows the client in state IP Learn. The location settings map the WLAN to VLAN 11 instead of VLAN 30. What is the result of this error?",
+        "optionen":  [
+                         "The client receives an address from the AP management subnet instead",
+                         "The client is placed in a VLAN without DHCP service and gets no address",
+                         "The client cannot complete the 4-way handshake because of the VLAN",
+                         "The client is rejected during association because of a VLAN mismatch"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Das VLAN bestimmt das Subnetz, in dem der Client DHCP anfragt. In VLAN 11 gab es keinen DHCP-Dienst, daher blieb der Client nach erfolgreicher Authentifizierung in IP Learn hängen."
+    },
+    {
+        "id":  "slg-wt-073",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A Catalyst 9800 logs \u0027%DOT1X-5-FAIL: ... Authentication failed for client (2cfd.a161.b0ce) with reason (AAA Server Down)\u0027. A ping from the WLC to ISE succeeds. What should the engineer check next?",
+        "optionen":  [
+                         "The DHCP scope of the client VLAN on the gateway router",
+                         "The data rate configuration of the 802.11a and 802.11b networks",
+                         "The policy tag that is assigned to the access point",
+                         "The RADIUS server entry on the WLC and the method list used by the WLAN"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Meldung zeigt, dass der WLC keinen erreichbaren RADIUS-Server für diese Anfrage hat. Ist das Netz erreichbar, liegt es an der AAA-Konfiguration: Serveradresse, Secret, Server Group oder fehlende Method List am WLAN."
+    },
+    {
+        "id":  "slg-wt-074",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On a Catalyst 9800, the RADIUS server address is correct, but 802.1X still fails. The WLAN\u0027s Security \u003e AAA tab shows no authentication list. Why does this break authentication?",
+        "optionen":  [
+                         "The WLC does not know which server group should receive the EAP requests",
+                         "The WLC sends the requests to the first DHCP server in the client VLAN",
+                         "The WLC falls back to PSK and expects a passphrase from the clients",
+                         "The WLC tries local authentication and rejects users not in its database"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Auf dem 9800 verweist das WLAN auf eine Authentication Method List, diese auf eine Server Group und die Gruppe auf den RADIUS-Server. Fehlt das erste Glied, gibt es keinen Weg zum Server."
+    },
+    {
+        "id":  "slg-wt-075",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does a successful ping from the WLC to the ISE server not prove that RADIUS authentication will work?",
+        "optionen":  [
+                         "ICMP uses the WLC service port, but RADIUS uses the AP subnet",
+                         "ICMP succeeds only when RADIUS accounting is disabled",
+                         "ICMP is answered by the switch, not by the ISE server itself",
+                         "ICMP does not test UDP 1812/1813 or the shared secret"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein Ping zeigt nur IP-Erreichbarkeit. Eine Firewall kann UDP 1812/1813 trotzdem blockieren, und ein falsches Shared Secret oder ein fehlender Network-Device-Eintrag in ISE lassen RADIUS scheitern."
+    },
+    {
+        "id":  "slg-wt-076",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show aaa servers\u0027 on a Catalyst 9800 shows the ISE server with \u0027State: current DEAD\u0027. What does this indicate?",
+        "optionen":  [
+                         "The ISE license has expired and ISE rejects all authentications",
+                         "The WLC marked the server as unresponsive after requests timed out",
+                         "The server is reachable, but accounting is disabled on the WLAN",
+                         "The server answered with Access-Reject for every user request"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "DEAD bedeutet, dass Anfragen ohne Antwort geblieben sind und der WLC den Server als nicht erreichbar markiert hat. Ursachen sind falsche IP, blockierte Ports, ein falsches Secret (ISE verwirft) oder ein fehlender Eintrag in ISE."
+    },
+    {
+        "id":  "slg-wt-077",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An over-the-air capture shows that an AP answers a client\u0027s Association Request with status code 18. What is the most likely cause?",
+        "optionen":  [
+                         "The RADIUS server rejected the client\u0027s credentials during association",
+                         "The client sent a wrong PSK during the association exchange",
+                         "The client does not support all mandatory (basic) data rates of the BSS",
+                         "The AP has reached its maximum number of associated clients"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Status 18 bedeutet, dass die Station nicht alle Raten des BSSBasicRateSet unterstützt. Ein voller AP meldet Status 17; PSK und RADIUS spielen erst nach der Association eine Rolle."
+    },
+    {
+        "id":  "slg-wt-078",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer disables 1, 2, 5.5, and 11 Mbps on the 2.4-GHz network and makes 12 Mbps the lowest mandatory rate. Which clients can no longer associate?",
+        "optionen":  [
+                         "Dual-band 802.11n clients on 2.4 GHz",
+                         "Clients that support only 802.11b",
+                         "Clients that support only 802.11g",
+                         "802.11ax clients on 2.4 GHz"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "802.11b kennt nur 1, 2, 5,5 und 11 Mbps. Ist 12 Mbps (OFDM) Pflicht, können reine 802.11b-Geräte die Mandatory Rate nicht und werden abgelehnt; 802.11g/n/ax beherrschen OFDM-Raten."
+    },
+    {
+        "id":  "slg-wt-079",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What is the main benefit of raising the lowest mandatory data rate in a dense 2.4-GHz deployment?",
+        "optionen":  [
+                         "Beacons use less airtime and the effective cell size shrinks",
+                         "Legacy clients receive priority over newer clients",
+                         "Clients can associate from farther away from each AP",
+                         "Clients at the cell edge reach higher signal strength levels"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beacons und Broadcasts werden mit der niedrigsten Mandatory Rate gesendet; je höher sie ist, desto weniger Airtime kosten sie. Gleichzeitig können entfernte Clients nicht mehr assoziieren, die Zellen werden effektiv kleiner und Sticky Clients seltener."
+    },
+    {
+        "id":  "slg-wt-080",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A new WLAN on the WLC is restricted to the 5-GHz band. Old barcode scanners that support only 2.4 GHz cannot find the SSID. What is the cause?",
+        "optionen":  [
+                         "The radio policy excludes the 2.4-GHz band",
+                         "The SSID name contains uppercase letters",
+                         "The WLAN uses an unsupported data rate",
+                         "The broadcast SSID option is disabled"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ist die Radio Policy auf 5 GHz beschränkt, senden die 2,4-GHz-Radios keine Beacons für dieses WLAN. Single-Band-2,4-GHz-Geräte sehen den SSID daher gar nicht."
+    },
+    {
+        "id":  "slg-wt-081",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Voice handsets on a dual-band SSID take unusually long to roam on the 2.4-GHz band, and their probe requests often go unanswered. Which WLAN feature is the most likely cause?",
+        "optionen":  [
+                         "Aironet IE, which hides the SSID from probe requests",
+                         "Fast Transition, which skips probe responses on roam",
+                         "Client load balancing, which rejects new associations",
+                         "Band select, which delays probe responses on 2.4 GHz"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Band Select unterdrückt bzw. verzögert Probe Responses im 2,4-GHz-Band, um Dual-Band-Clients nach 5 GHz zu schieben. Für Voice-WLANs wird es daher nicht empfohlen."
+    },
+    {
+        "id":  "slg-wt-082",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which device decides when a Wi-Fi client roams from one AP to another?",
+        "optionen":  [
+                         "The WLC, based on RRM measurements",
+                         "The client, based on its own thresholds",
+                         "The AP with the strongest signal",
+                         "The RADIUS server after reauthentication"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Roaming wird immer vom Client ausgelöst. Infrastruktur kann nur Hinweise geben (802.11k/v) oder durch kleinere Zellen und Optimized Roaming nachhelfen; deshalb entstehen Sticky Clients."
+    },
+    {
+        "id":  "slg-wt-083",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A laptop shows full signal bars, but uploads are very slow at the edge of the cell, and the AP reports many retries for frames from that laptop. The AP transmits at 23 dBm, the laptop at about 12 dBm. What is the best fix?",
+        "optionen":  [
+                         "Reduce the AP transmit power closer to the client\u0027s power level",
+                         "Increase the AP transmit power so the client hears it even better",
+                         "Disable 802.11k and 802.11v so the client stays on this AP",
+                         "Replace the AP antennas with higher-gain antennas for more range"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Das ist ein Power-Mismatch: Der Client hört den starken AP gut, der AP hört den schwachen Client aber schlecht. Weniger AP-Leistung verkleinert die Zelle, sodass Clients früher roamen und der Link symmetrisch wird."
+    },
+    {
+        "id":  "slg-wt-084",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Users lose their sessions when roaming between WLC1 and WLC2. \u0027show wireless mobility summary\u0027 shows the peer\u0027s control link Up but the data link Down. Which traffic is most likely blocked?",
+        "optionen":  [
+                         "UDP 1812 between WLC2 and ISE",
+                         "TCP 443 between the controllers",
+                         "UDP 16667 between the controllers",
+                         "UDP 5246 between the APs and WLC2"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der 9800-Mobility-Tunnel nutzt UDP 16666 für Control und UDP 16667 für Data. Ist Control Up und Data Down, kommt nur der Datenkanal nicht durch, typischerweise wegen einer Firewall."
+    },
+    {
+        "id":  "slg-wt-085",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A WLC does not join the RF group. Its RF group name is \u0027Campus-RF\u0027, while the other controllers use \u0027campus-rf\u0027. What is the cause?",
+        "optionen":  [
+                         "The RF group name must match the mobility group name",
+                         "RF group names are case-sensitive and must match exactly",
+                         "The RF group already contains the maximum of two WLCs",
+                         "RF group names may not contain a hyphen character"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "RF- und Mobility-Gruppennamen müssen exakt übereinstimmen, einschließlich Groß-/Kleinschreibung und Leerzeichen. Eine RF-Gruppe kann bis zu 20 WLCs umfassen."
+    },
+    {
+        "id":  "slg-wt-086",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A user mistyped the password several times on an 802.1X WLAN and is now excluded. The help desk wants to let the user try again immediately. What can the administrator do?",
+        "optionen":  [
+                         "Reboot the AP that the client was associated to",
+                         "Disable 802.1X on the WLAN for a few minutes",
+                         "Remove the client from the exclusion list on the WLC",
+                         "Add the client MAC to the disabled clients list"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein ausgeschlossener Client kommt nach Ablauf des Exclusion-Timeouts wieder ins Netz oder sofort, wenn ihn der Administrator aus der Liste entfernt. Die Disabled-Clients-Liste würde ihn dagegen dauerhaft sperren."
+    },
+    {
+        "id":  "slg-wt-087",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the difference between a disabled client and an excluded client on a Cisco WLC?",
+        "optionen":  [
+                         "Disabled is a client-side setting, excluded is configured on the RADIUS server",
+                         "Disabled is set manually by an admin, excluded is applied automatically after failures",
+                         "Disabled clients may still associate, excluded clients cannot see any SSID",
+                         "Disabled is applied after 802.1X failures, excluded only after WebAuth failures"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Disabled Clients trägt der Administrator selbst ein; sie bleiben gesperrt, bis er sie entfernt. Excluded Clients setzt der WLC automatisch nach wiederholten Fehlern für die Exclusion-Zeit."
+    },
+    {
+        "id":  "slg-wt-088",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Clients on the WLAN mapped to VLAN 30 work, but clients on the WLAN mapped to VLAN 40 get no IP address. The WLC uplink trunk allows VLANs 10 and 30. What is the fix?",
+        "optionen":  [
+                         "Move the AP switch port into access VLAN 40",
+                         "Allow VLAN 40 on the trunk between the switch and the WLC",
+                         "Change the native VLAN of the trunk to VLAN 40",
+                         "Configure VLAN 40 as the WLC management VLAN"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der zentral geswitchte Clientverkehr verlässt den WLC getaggt im Client-VLAN. Ist VLAN 40 auf dem Trunk nicht erlaubt, erreichen die DHCP-Anfragen nie den Router."
+    },
+    {
+        "id":  "slg-wt-089",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "After a switch replacement, all wireless clients in one building fail. The local-mode APs there are connected to access ports in VLAN 99, which has no DHCP scope and no route to the WLC. What is the root cause of the client problem?",
+        "optionen":  [
+                         "The APs cannot get an address and join the WLC, so they serve no SSIDs",
+                         "The APs fall back to autonomous mode and broadcast a default SSID",
+                         "The APs join the WLC but map all clients to VLAN 99 without DHCP",
+                         "The APs switch to FlexConnect standalone mode and keep serving clients"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein Local-Mode-AP braucht eine IP-Adresse und einen Weg zum WLC, sonst joint er nicht und strahlt keine WLANs aus. Das AP-VLAN ist eine Infrastrukturfrage, nicht das Client-VLAN."
+    },
+    {
+        "id":  "slg-wt-090",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "About 300 users on all floors report at the same time that they cannot connect to the wireless network. Where should troubleshooting start?",
+        "optionen":  [
+                         "At the user\u0027s saved Wi-Fi profiles on their phones",
+                         "At the laptop of the first user who opened a ticket",
+                         "At the antennas of the AP on the ground floor",
+                         "At the WLC and the shared network services such as RADIUS and DHCP"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Sind viele Nutzer überall gleichzeitig betroffen, liegt die Ursache meist netzseitig: WLC-Konfiguration, RADIUS, DHCP oder Uplinks. Einzelfälle deuten dagegen auf das Endgerät."
+    },
+    {
+        "id":  "slg-wt-091",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An employee tries to connect to the contractor SSID with valid employee credentials and is rejected. What is the most likely reason?",
+        "optionen":  [
+                         "The employee account is not in the database used for the contractor SSID",
+                         "The contractor SSID uses a different channel than the employee laptop",
+                         "The contractor SSID requires a static IP address configuration",
+                         "The employee laptop does not support the 802.11ac data rates"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Jedes SSID kann auf eine andere Benutzerdatenbank bzw. Policy zeigen. Wer das falsche SSID wählt, wird trotz korrekter Zugangsdaten abgelehnt."
+    },
+    {
+        "id":  "slg-wt-092",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An administrator renamed the SSID from \u0027Corp-WiFi\u0027 to \u0027CORP-WIFI\u0027. Devices with a preconfigured profile for \u0027Corp-WiFi\u0027 no longer connect. Why?",
+        "optionen":  [
+                         "SSIDs with uppercase letters are hidden from all clients",
+                         "The rename disabled the WLAN until the WLC is rebooted",
+                         "The rename changed the PSK that is derived from the SSID name only",
+                         "SSIDs are case-sensitive, so the profile no longer matches"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein SSID wird exakt verglichen, Groß-/Kleinschreibung eingeschlossen. Ein gespeichertes Profil für \u0027Corp-WiFi\u0027 passt nicht mehr zu \u0027CORP-WIFI\u0027."
+    },
+    {
+        "id":  "slg-wt-093",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Broadcast SSID is disabled on a WLAN. Which clients can still connect?",
+        "optionen":  [
+                         "Any client that scans the channel with a Wi-Fi scanner app",
+                         "Only clients that support 802.11k neighbor reports",
+                         "No clients at all until the SSID is broadcast again",
+                         "Clients with a saved profile for the exact SSID that send directed probes"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne SSID-Broadcast steht der Name nicht im Beacon, das WLAN ist aber aktiv. Clients mit passendem Profil fragen gezielt per Probe Request danach und können sich verbinden."
+    },
+    {
+        "id":  "slg-wt-094",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "AireOS \u0027show client detail\u0027 shows: Policy Manager State RUN, Security Policy Completed Yes, IP Address 10.9.4.101, RSSI -78 dBm, SNR 12 dB. The user complains about slow, unstable Wi-Fi. What is the most likely problem area?",
+        "optionen":  [
+                         "RF coverage or interference at the user\u0027s location",
+                         "The mobility tunnel between the two controllers",
+                         "802.1X authentication against the RADIUS server",
+                         "DHCP address assignment in the client VLAN"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "RUN und \u0027Security Policy Completed: Yes\u0027 zeigen, dass Authentifizierung und Adressvergabe geklappt haben. RSSI -78 dBm und 12 dB SNR sind dagegen schwach, die Ursache liegt also in der HF-Umgebung."
+    },
+    {
+        "id":  "slg-wt-095",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On an AireOS WLC, \u0027show client detail\u0027 shows \u0027Security Policy Completed: Yes\u0027 and \u0027Policy Manager State: DHCP_REQD\u0027. What does this mean?",
+        "optionen":  [
+                         "The client completed DHCP and now waits for web authentication",
+                         "Authentication succeeded, but the client has not obtained an IP address yet",
+                         "The WLC requires the client to renew its DHCP lease before roaming",
+                         "The client failed 802.1X and must use DHCP to reach a remediation portal"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Security Policy Completed bestätigt erfolgreiche L2-Sicherheit; DHCP_REQD heißt, dass der WLC noch auf die DHCP-Adresse wartet. Ursachen liegen bei VLAN, Trunk oder DHCP-Server, nicht bei RADIUS."
+    },
+    {
+        "id":  "slg-wt-096",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A guest client on a Catalyst 9800 shows the state \u0027Webauth Pending\u0027. What is missing?",
+        "optionen":  [
+                         "The guest has not completed the 4-way handshake",
+                         "The guest has not completed the login on the web portal",
+                         "The guest has not been associated to an AP yet",
+                         "The guest has not yet received an IP address through DHCP"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Webauth Pending folgt nach Association und IP-Vergabe: Der Client hat eine Adresse, muss sich aber noch am Portal anmelden. Erst danach wechselt er in Run."
+    },
+    {
+        "id":  "slg-wt-097",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A client\u0027s disassociation frame carries IEEE 802.11 reason code 4. What does this indicate?",
+        "optionen":  [
+                         "The AP cannot handle any more associated clients",
+                         "The client was disassociated because of inactivity",
+                         "The client sent data before it was authenticated",
+                         "The client\u0027s 4-way handshake timed out"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Reason 4 bedeutet laut IEEE 802.11 Disassociation wegen Inaktivität, also nach Ablauf des Idle Timeouts. Der Kurs übersetzt das als Session Timeout, was ungenau ist; ein voller AP ist Reason 5, ein Handshake-Timeout Reason 15."
+    },
+    {
+        "id":  "slg-wt-098",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An over-the-air capture on a WPA2-PSK SSID shows: AP sends EAPOL message 1, client answers with message 2, AP sends message 1 again several times, then sends a Deauthentication with reason 15. What is the most likely cause?",
+        "optionen":  [
+                         "The client uses a wrong passphrase, so the MIC in message 2 fails",
+                         "The RADIUS server does not answer the client\u0027s EAP identity",
+                         "The client does not support a mandatory data rate of the BSS",
+                         "The AP is overloaded and cannot accept more associated clients"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit falscher Passphrase berechnet der Client eine falsche PTK, der MIC in Nachricht 2 ist ungültig und der AP verwirft sie. Nach mehreren Wiederholungen bricht der AP mit Reason 15 (4-Way Handshake Timeout) ab; RADIUS spielt bei PSK keine Rolle."
+    },
+    {
+        "id":  "slg-wt-099",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A capture shows a client sending repeated directed probe requests for SSID \u0027CORP\u0027 on channel 1. The AP on that channel answers probes for other SSIDs but never for \u0027CORP\u0027. What is the most likely cause?",
+        "optionen":  [
+                         "The RADIUS server for \u0027CORP\u0027 is down, so the AP suppresses responses",
+                         "\u0027CORP\u0027 is not offered on that AP\u0027s 2.4-GHz radio, for example by radio policy or tag",
+                         "The client uses a wrong PSK for \u0027CORP\u0027, so the AP ignores its probes",
+                         "The DHCP scope for \u0027CORP\u0027 is exhausted, so the AP stops answering"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Probe Responses sendet der AP nur für WLANs, die auf diesem Radio aktiv sind. PSK, RADIUS und DHCP kommen erst nach der Association ins Spiel und beeinflussen die Discovery nicht."
+    },
+    {
+        "id":  "slg-wt-100",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A capture of an 802.1X WLAN shows open authentication, association, and the EAP identity exchange, but then no further EAP messages. The WLC logs RADIUS timeouts. What is the most likely cause?",
+        "optionen":  [
+                         "The client entered a wrong PSK for the WLAN",
+                         "The WLC cannot reach the RADIUS server or the server drops the requests",
+                         "The client does not support the mandatory data rates of the WLAN",
+                         "The client VLAN is missing on the trunk to the WLC"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Nach der EAP-Identity leitet der WLC die Anfrage an RADIUS weiter. Kommt keine Antwort, ist der Server nicht erreichbar, blockiert oder verwirft Anfragen (z. B. falsches Secret, WLC nicht als Network Device eingetragen)."
+    },
+    {
+        "id":  "slg-wt-101",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An over-the-air capture shows an Association Response with status code 17 for a new client. What does this status mean?",
+        "optionen":  [
+                         "The client sent an invalid PSK in the request",
+                         "The client does not support the basic rate set",
+                         "The client requested an unsupported cipher suite",
+                         "The AP cannot accept more associated clients"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Status 17 bedeutet, dass der AP keine weiteren Stationen aufnehmen kann, etwa wegen eines Client-Limits. Fehlende Basic Rates melden sich als Status 18; ein PSK wird in der Association gar nicht übertragen."
+    },
+    {
+        "id":  "slg-wt-102",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why is \u0027debug client \u003cmac\u003e\u0027 preferred over enabling several global debugs on a busy AireOS controller?",
+        "optionen":  [
+                         "It enables only the DHCP debug, which is the most common failure",
+                         "It filters the output to one MAC address and limits the load on the WLC",
+                         "It requires no privileged access and can be used by lobby admins",
+                         "It writes the output directly to the Cisco TAC without local display"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Das Makro schaltet die wichtigsten Client-Debugs ein und filtert sie auf eine MAC. Ungefilterte Debugs erzeugen bei vielen Clients riesige Ausgaben und können den Controller überlasten."
+    },
+    {
+        "id":  "slg-wt-103",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A user reports that the Wi-Fi failed 20 minutes ago, but no debug was running on the Catalyst 9800. How can the engineer still see the client\u0027s connection events?",
+        "optionen":  [
+                         "Reload the controller to write the crashinfo file with all client events",
+                         "Enable debug client on the 9800, which buffers the last hour of events",
+                         "Start a radioactive trace now, which also replays the past 24 hours",
+                         "Read the always-on traces with show logging profile wireless filtered by the MAC"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der 9800 protokolliert ständig auf Notice-Level (Always-On Tracing). Mit \u0027show logging profile wireless ... filter mac\u0027 lassen sich vergangene Ereignisse eines Clients nachträglich abrufen; ein neues Radioactive Trace erfasst nur künftige Ereignisse. Ohne 'start last 30 minutes' reicht der Befehl standardmäßig nur 10 Minuten zurück."
+    },
+    {
+        "id":  "slg-wt-104",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In Client 360, the onboarding timeline of a client shows successful association and authentication, but the DHCP step failed after 30 seconds. Where should the engineer look?",
+        "optionen":  [
+                         "The mandatory data rates of the 2.4-GHz network",
+                         "The PSK or the RADIUS server configuration",
+                         "The client VLAN, the trunk, and the DHCP relay or scope",
+                         "The channel plan and transmit power of the APs"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Wenn Association und Authentifizierung gelingen und nur DHCP scheitert, liegt der Fehler in der Layer-2/3-Strecke des Client-VLANs. Client 360 zeigt diese Phasen mit Dauer und Fehlergrund, ohne dass vorher ein Debug laufen musste."
+    },
+    {
+        "id":  "slg-wt-105",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer has collected a radioactive trace file from a Catalyst 9800 and wants an automated, readable analysis of the client\u0027s connection attempts. Which Cisco tool fits?",
+        "optionen":  [
+                         "Cisco Spectrum Expert",
+                         "Wireless Config Analyzer Express",
+                         "MetaGeek inSSIDer",
+                         "Wireless Debug Analyzer"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Wireless Debug Analyzer (cway.cisco.com) wertet Client-Debugs und RA-Traces aus. Der Wireless Config Analyzer Express prüft dagegen Konfigurationen aus \u0027show tech wireless\u0027 bzw. \u0027show run-config\u0027, keine Debugs."
+    },
+    {
+        "id":  "slg-wt-106",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which statement about the Cisco Wireless Config Analyzer Express (WCAE) is correct?",
+        "optionen":  [
+                         "It is the cloud-based successor of WLCCA and supports AireOS and Catalyst 9800",
+                         "It is a spectrum analysis tool that needs a CleanAir-capable AP",
+                         "It is a Catalyst Center module that requires an Advantage license",
+                         "It is a Windows application that supports only AireOS controllers"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "WCAE ist die webbasierte Weiterentwicklung des früheren WLC Config Analyzers und unterstützt AireOS und den 9800. Er führt über 180 Konfigurationsprüfungen durch und liefert RF- und Log-Zusammenfassungen."
+    },
+    {
+        "id":  "slg-wt-107",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The RF Health summary of the Wireless Config Analyzer Express shows many 2.4-GHz radios with high \u0027Co-Channel Overlapping\u0027 and many \u0027Low SNR Clients\u0027. What is the most reasonable conclusion?",
+        "optionen":  [
+                         "The RADIUS server responds too slowly to client requests",
+                         "The WLC software has a bug in its CleanAir detection",
+                         "The 5-GHz band suffers from radar events on DFS channels",
+                         "Too many 2.4-GHz radios hear each other on the same channels"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Hohe Co-Channel-Werte bedeuten, dass sich viele Radios auf demselben Kanal hören; mit nur drei Kanälen ist das im 2,4-GHz-Band typisch. Abhilfe: Leistung senken, überzählige 2,4-GHz-Radios abschalten, Clients nach 5 GHz bringen."
+    },
+    {
+        "id":  "slg-wt-108",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An AP with four external dipole antennas has two different antenna models installed, some pointing up and some sideways. Coverage is poor. What does the antenna guideline recommend?",
+        "optionen":  [
+                         "Point each antenna in a different direction to cover all angles",
+                         "Mix antenna types so that each covers a different frequency band",
+                         "Use only half of the antenna ports to avoid self-interference",
+                         "Use the same antenna type on all ports, all in the same orientation"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Für MIMO und Diversity sollen alle unterstützten Antennenports gleiche Antennen in gleicher Ausrichtung nutzen. Gemischte Typen oder Richtungen verschlechtern die Abdeckung."
+    },
+    {
+        "id":  "slg-wt-109",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "External antennas should be spaced about half a wavelength apart for best multipath performance. What is half a wavelength at 2.4 GHz?",
+        "optionen":  [
+                         "About 25 cm",
+                         "About 6 cm",
+                         "About 12.5 cm",
+                         "About 3 cm"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Wellenlänge ist c/f = 300.000 km/s / 2,4 GHz ≈ 12,5 cm, die Hälfte also rund 6,25 cm. Bei 5 GHz sind es nur etwa 3 cm."
+    },
+    {
+        "id":  "slg-wt-110",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Clients on the AireOS client detail page show the Mobility Role \u0027Foreign\u0027. What does this indicate?",
+        "optionen":  [
+                         "The client uses a foreign regulatory domain and limited channels",
+                         "The client roamed to another WLC while its anchor WLC keeps its IP session",
+                         "The client connected through a FlexConnect AP in standalone mode",
+                         "The client was excluded after too many association failures"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei Layer-3-Roaming bzw. Anchoring ist der Client am neuen WLC \u0027Foreign\u0027, der ursprüngliche WLC bleibt \u0027Anchor\u0027 und hält die IP-Anbindung. \u0027Local\u0027 bedeutet, dass der Client am eigenen WLC ohne Tunnel arbeitet."
+    },
+    {
+        "id":  "slg-wt-111",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A site broadcasts eight SSIDs on every 2.4-GHz radio. Channel utilization is high even when few clients are active. What is the main reason?",
+        "optionen":  [
+                         "Each SSID requires its own RF channel, which forces channel overlap",
+                         "Each SSID doubles the transmit power of the AP radio",
+                         "Each SSID needs a separate CAPWAP tunnel that uses airtime",
+                         "Each SSID sends its own beacons at a low mandatory rate, consuming airtime"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Jedes SSID erzeugt eigene Beacons, die mit der niedrigsten Mandatory Rate gesendet werden und viel Airtime kosten. Daher gilt die Faustregel, nur wenige SSIDs pro Radio zu betreiben."
+    },
+    {
+        "id":  "slg-wt-112",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer configures 40-MHz channels on all 2.4-GHz radios to increase throughput. What is the typical result?",
+        "optionen":  [
+                         "Clients automatically switch to 6 GHz with higher data rates",
+                         "Microwave interference is filtered out by the wider channel",
+                         "Overlap and co-channel interference increase, so performance often gets worse",
+                         "Three additional non-overlapping channels become available"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein 40-MHz-Kanal belegt im 2,4-GHz-Band fast die Hälfte des Bands; es bleibt praktisch nur ein überlappungsfreier Kanal. CCI und ACI steigen, daher nutzt man dort nur 20 MHz."
+    },
+    {
+        "id":  "slg-wt-113",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A 5-GHz AP suddenly changes its channel, and its clients briefly disconnect. The log shows a radar detection event. What explains this behavior?",
+        "optionen":  [
+                         "The AP lost its CAPWAP connection and rebooted",
+                         "The AP exceeded its maximum number of associated clients",
+                         "DFS requires the AP to leave a channel when radar is detected",
+                         "CleanAir detected a microwave oven on the 5-GHz channel"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Auf DFS-Kanälen müssen APs bei Radarerkennung den Kanal sofort verlassen. Das führt zu kurzen Unterbrechungen; für empfindliche Anwendungen meidet man DFS-Kanäle oder plant sie bewusst ein."
+    },
+    {
+        "id":  "slg-wt-114",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Users near the kitchen lose connectivity on 2.4 GHz every day at lunchtime, while 5-GHz clients in the same area are unaffected. What is the most likely cause?",
+        "optionen":  [
+                         "A DECT phone base station installed in the kitchen",
+                         "A microwave oven interfering with the 2.4-GHz channels",
+                         "Radar detection on the 5-GHz DFS channels",
+                         "A DHCP scope that runs out at lunchtime"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Zeitliches Muster, Ort und reine 2,4-GHz-Betroffenheit passen zu einer Mikrowelle um 2,45 GHz. DECT liegt außerhalb der WLAN-Bänder, Radar betrifft nur 5 GHz, und ein DHCP-Problem wäre nicht bandabhängig."
+    },
+    {
+        "id":  "slg-wt-115",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A client is repeatedly deauthenticated, and the engineer must find out which device sends the deauthentication and with which reason code. Which tool provides this most directly?",
+        "optionen":  [
+                         "A spectrum analyzer near the client",
+                         "An over-the-air capture on the client\u0027s channel",
+                         "A SPAN capture on the WLC uplink port",
+                         "A Wi-Fi scanner app on the client"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Deauthentication-Frames sind 802.11-Management-Frames; Absender und Reason Code sieht man im Over-the-Air-Mitschnitt. Kabelseitig fehlen HF-Frames, Spektrumanalysator und Scanner dekodieren sie nicht."
+    },
+    {
+        "id":  "slg-wt-116",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Employees on the CORP SSID suddenly receive 10.10.50.x addresses from the guest subnet. What is the most likely configuration error?",
+        "optionen":  [
+                         "The PSK of the WLAN was changed by mistake",
+                         "The AP radios use overlapping 2.4-GHz channels",
+                         "The RADIUS server rejects the employee accounts",
+                         "The WLAN is mapped to the wrong interface or VLAN"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Das Subnetz der Clientadresse ergibt sich aus dem zugeordneten Interface bzw. VLAN (AireOS: Interface/Interface Group, 9800: Policy Profile). Falsche Zuordnung bedeutet Adressen aus dem falschen Netz."
+    },
+    {
+        "id":  "slg-wt-117",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A WLAN was changed from WPA2-Personal to WPA2-Enterprise. Laptops that kept their old saved profile can no longer connect. Why?",
+        "optionen":  [
+                         "The laptops must first renew their DHCP leases manually",
+                         "The SSID name changed automatically when the security changed",
+                         "The laptops must be moved to a different 2.4-GHz channel",
+                         "The saved profile still uses PSK, which does not match the WLAN security"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Client-Profil und WLAN-Security müssen zusammenpassen; ein PSK-Profil kann sich nicht an einem 802.1X-WLAN anmelden. Das Profil muss auf 802.1X/EAP umgestellt werden."
+    },
+    {
+        "id":  "slg-wt-118",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In a /24 client subnet with 400 wireless users, new clients receive 169.254.x.x addresses during peak hours. What is the most likely cause?",
+        "optionen":  [
+                         "The client exclusion timeout is too short",
+                         "The AP radios are on overlapping channels",
+                         "The WLAN uses the wrong PSK",
+                         "The DHCP scope is exhausted"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein /24 bietet nur 254 Adressen; bei 400 Nutzern läuft der Scope voll, und Clients vergeben sich eine APIPA-Adresse. Abhilfe: größeres Subnetz bzw. Scope oder kürzere Lease-Zeiten."
+    },
+    {
+        "id":  "slg-wt-119",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which RSSI value indicates the strongest received signal?",
+        "optionen":  [
+                         "-80 dBm",
+                         "-45 dBm",
+                         "-67 dBm",
+                         "-92 dBm"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "RSSI-Werte sind negativ; je näher an 0, desto stärker das Signal. -45 dBm ist sehr stark, -92 dBm liegt etwa im Rauschen."
+    },
+    {
+        "id":  "slg-wt-120",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "RRM lowers an AP\u0027s transmit power from 20 dBm to 17 dBm. How has the radiated power changed?",
+        "optionen":  [
+                         "It has been reduced by 17 mW",
+                         "It has dropped by 3 percent",
+                         "It has dropped to one tenth",
+                         "It has been roughly halved"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Dezibel sind logarithmisch: -3 dB entspricht etwa der halben Leistung, -10 dB einem Zehntel. 20 dBm sind 100 mW, 17 dBm etwa 50 mW."
+    },
+    {
+        "id":  "slg-wt-121",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Some SpectraLink voice handsets fail to work reliably on an AireOS WLAN. Which client-related attribute does the course recommend disabling for these phones?",
+        "optionen":  [
+                         "Channel agility",
+                         "PBCC modulation",
+                         "Session timeout",
+                         "Short preamble"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Laut Kurs muss die Short-Preamble-Option für manche Clients, z. B. SpectraLink- und NetLink-Telefone, deaktiviert werden. PBCC und Channel Agility sind Legacy-Attribute ohne diesen Bezug."
+    },
+    {
+        "id":  "slg-wt-122",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Users on an 802.1X WLAN are forced to reauthenticate exactly every 30 minutes, even while active. Which client attribute controls this?",
+        "optionen":  [
+                         "The client idle timeout",
+                         "The DHCP lease time",
+                         "The session timeout",
+                         "The exclusion timeout"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Session Timeout legt fest, nach welcher Zeit ein Client sich unabhängig von Aktivität neu authentifizieren muss. Der Idle Timeout trennt nur inaktive Clients."
+    }
+]

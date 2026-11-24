@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Sticky Client und Power-Mismatch</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Roaming entscheidet der Client</text>
+<circle cx="150" cy="170" r="120" fill="#4a9cff" opacity="0.15" stroke="#4a9cff"/>
+<circle cx="390" cy="170" r="120" fill="#39c86a" opacity="0.15" stroke="#39c86a"/>
+<rect x="125" y="150" width="50" height="40" rx="20" fill="#fff" stroke="#222" stroke-width="2"/><text x="150" y="175" text-anchor="middle" font-size="13" fill="#222">AP1</text>
+<rect x="365" y="150" width="50" height="40" rx="20" fill="#fff" stroke="#222" stroke-width="2"/><text x="390" y="175" text-anchor="middle" font-size="13" fill="#222">AP2</text>
+<rect x="320" y="230" width="40" height="28" rx="3" fill="#ffd23f" stroke="#222"/><text x="340" y="249" text-anchor="middle" font-size="11" fill="#222">PC</text>
+<line x1="320" y1="240" x2="170" y2="185" stroke="#ff6b6b" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="200" y="250" font-size="12" fill="#222">bleibt an AP1: −80 dBm</text>
+<line x1="345" y1="230" x2="385" y2="190" stroke="#39c86a" stroke-width="2"/>
+<text x="400" y="225" font-size="12" fill="#222">AP2: −55 dBm</text>
+<g font-size="13" fill="#222">
+<rect x="545" y="50" width="240" height="210" rx="8" fill="#ffd23f" opacity="0.25" stroke="#222"/>
+<text x="558" y="72" font-weight="bold">Sticky Client – Abhilfe</text>
+<text x="558" y="95">• niedrige Datenraten</text>
+<text x="558" y="113">   deaktivieren (kleinere Zellen)</text>
+<text x="558" y="135">• 802.11k Neighbor Report</text>
+<text x="558" y="157">• 802.11v BSS Transition</text>
+<text x="558" y="179">• Optimized Roaming (Cisco)</text>
+<text x="558" y="201">• RRM/TPC statt max. Power</text>
+<text x="558" y="229" fill="#c0392b">nicht: AP-Leistung erhöhen</text>
+</g>
+<rect x="20" y="300" width="760" height="135" rx="8" fill="#b08aff" opacity="0.15" stroke="#b08aff"/>
+<g font-size="13" fill="#222">
+<text x="35" y="323" font-weight="bold">Power-Mismatch (asymmetrischer Link)</text>
+<rect x="40" y="345" width="50" height="34" rx="17" fill="#fff" stroke="#222"/><text x="65" y="367" text-anchor="middle">AP</text>
+<rect x="330" y="345" width="40" height="34" rx="3" fill="#fff" stroke="#222"/><text x="350" y="367" text-anchor="middle">PC</text>
+<line x1="92" y1="354" x2="326" y2="354" stroke="#39c86a" stroke-width="5"/><polygon points="322,348 332,354 322,360" fill="#39c86a"/>
+<text x="210" y="345" text-anchor="middle">AP 20 dBm: Client hört gut</text>
+<line x1="328" y1="372" x2="94" y2="372" stroke="#ff6b6b" stroke-width="1.5" stroke-dasharray="4,3"/><polygon points="98,367 88,372 98,377" fill="#ff6b6b"/>
+<text x="210" y="395" text-anchor="middle">Client 11 dBm: AP hört schlecht</text>
+<text x="400" y="350">Symptom: volle Balken am Client, aber Retries,</text>
+<text x="400" y="370">schlechter Upload, Abbrüche am Zellrand</text>
+<text x="400" y="400">Fix: AP-Leistung an Clients anpassen,</text>
+<text x="400" y="420">mehr APs mit weniger Leistung</text>
+</g>
+</svg>

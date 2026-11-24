@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Discovery 19: zwei Fehlerfälle und die AAA-Kette</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Lab: Sales (PSK, VLAN 30) und Accounting (802.1X, VLAN 40)</text>
+<g font-size="12" fill="#222">
+<rect x="20" y="50" width="370" height="230" rx="8" fill="#39c86a" opacity="0.15" stroke="#39c86a"/>
+<text x="35" y="72" font-weight="bold" font-size="14">Fall 1: ENCOR-Sales</text>
+<text x="35" y="95">Symptom A: SSID nicht in der Liste</text>
+<text x="35" y="113">Prüfen: WLAN enabled? Broadcast? → ja</text>
+<text x="35" y="131">Ursache: AP hat default-policy-tag</text>
+<text x="35" y="149">Fix: AP der Location "Campus" zuweisen</text>
+<text x="35" y="167">   (AP joint neu, ca. 60 s)</text>
+<text x="35" y="195">Symptom B: Client-State "IP Learn"</text>
+<text x="35" y="213">Ursache: WLAN an VLAN 11 (ohne DHCP)</text>
+<text x="35" y="231">Fix: VLAN 30 → IP 10.10.30.x,</text>
+<text x="35" y="249">   Ping auf Gateway 10.10.30.1</text>
+<rect x="410" y="50" width="370" height="230" rx="8" fill="#b08aff" opacity="0.15" stroke="#b08aff"/>
+<text x="425" y="72" font-weight="bold" font-size="14">Fall 2: ENCOR-Accounting</text>
+<text x="425" y="95">Symptom: 802.1X (PEAP) scheitert</text>
+<text x="425" y="113">Syslog: %DOT1X-5-FAIL ... (AAA Server Down)</text>
+<text x="425" y="131">Ping WLC → ISE ok (ICMP ≠ RADIUS!)</text>
+<text x="425" y="149">Ursache 1: RADIUS-Server-IP 10.10.10.66</text>
+<text x="425" y="167">   statt 10.10.10.60 → korrigiert</text>
+<text x="425" y="185">gleiche Meldung bleibt →</text>
+<text x="425" y="203">Ursache 2: WLAN ohne Authentication List</text>
+<text x="425" y="221">Fix: dot1x-method zuweisen →</text>
+<text x="425" y="239">   IP 10.10.40.x</text>
+</g>
+<g font-size="13" fill="#222" text-anchor="middle">
+<rect x="40" y="320" width="150" height="55" rx="8" fill="#4a9cff" opacity="0.35" stroke="#222"/>
+<text x="115" y="343">WLAN</text><text x="115" y="361">ENCOR-Accounting</text>
+<rect x="235" y="320" width="150" height="55" rx="8" fill="#4a9cff" opacity="0.35" stroke="#222"/>
+<text x="310" y="343">Method List</text><text x="310" y="361">dot1x-method</text>
+<rect x="430" y="320" width="150" height="55" rx="8" fill="#4a9cff" opacity="0.35" stroke="#222"/>
+<text x="505" y="343">Server Group</text><text x="505" y="361">ISE-Group</text>
+<rect x="625" y="320" width="150" height="55" rx="8" fill="#4a9cff" opacity="0.35" stroke="#222"/>
+<text x="700" y="343">RADIUS Server</text><text x="700" y="361">ISE 10.10.10.60</text>
+</g>
+<g stroke="#222" stroke-width="2"><line x1="190" y1="347" x2="235" y2="347"/><line x1="385" y1="347" x2="430" y2="347"/><line x1="580" y1="347" x2="625" y2="347"/></g>
+<text x="400" y="410" text-anchor="middle" font-size="13" fill="#222">AAA-Kette auf dem 9800: jedes Glied muss stimmen (Name, IP, Shared Secret).</text>
+<text x="400" y="430" text-anchor="middle" font-size="13" fill="#222">Nach jeder Korrektur erneut testen – Fehler können sich überlagern.</text>
+</svg>

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Verbindungsphasen eines WLAN-Clients und typische Fehler</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Wo bleibt der Client hängen?</text>
+<g font-size="13" fill="#222" text-anchor="middle">
+<rect x="10" y="55" width="100" height="60" rx="8" fill="#4a9cff" opacity="0.4" stroke="#222"/>
+<text x="60" y="80" font-weight="bold">Discovery</text><text x="60" y="98">Beacon/Probe</text>
+<rect x="122" y="55" width="100" height="60" rx="8" fill="#4a9cff" opacity="0.4" stroke="#222"/>
+<text x="172" y="80" font-weight="bold">802.11 Auth</text><text x="172" y="98">Open System</text>
+<rect x="234" y="55" width="100" height="60" rx="8" fill="#4a9cff" opacity="0.4" stroke="#222"/>
+<text x="284" y="80" font-weight="bold">Association</text><text x="284" y="98">Req/Resp, AID</text>
+<rect x="346" y="55" width="100" height="60" rx="8" fill="#b08aff" opacity="0.4" stroke="#222"/>
+<text x="396" y="80" font-weight="bold">802.1X/EAP</text><text x="396" y="98">nur Enterprise</text>
+<rect x="458" y="55" width="100" height="60" rx="8" fill="#b08aff" opacity="0.4" stroke="#222"/>
+<text x="508" y="80" font-weight="bold">4-Way HS</text><text x="508" y="98">EAPOL-Key</text>
+<rect x="570" y="55" width="100" height="60" rx="8" fill="#ffd23f" opacity="0.5" stroke="#222"/>
+<text x="620" y="80" font-weight="bold">IP Learn</text><text x="620" y="98">DHCP</text>
+<rect x="682" y="55" width="105" height="60" rx="8" fill="#39c86a" opacity="0.6" stroke="#222"/>
+<text x="734" y="80" font-weight="bold">RUN</text><text x="734" y="98">Daten fließen</text>
+</g>
+<g stroke="#222" stroke-width="2">
+<line x1="110" y1="85" x2="122" y2="85"/><line x1="222" y1="85" x2="234" y2="85"/><line x1="334" y1="85" x2="346" y2="85"/><line x1="446" y1="85" x2="458" y2="85"/><line x1="558" y1="85" x2="570" y2="85"/><line x1="670" y1="85" x2="682" y2="85"/>
+</g>
+<g font-size="12" fill="#222">
+<rect x="10" y="135" width="212" height="150" rx="6" fill="#ff6b6b" opacity="0.15" stroke="#ff6b6b"/>
+<text x="20" y="155" font-weight="bold">SSID nicht sichtbar</text>
+<text x="20" y="174">• WLAN disabled</text>
+<text x="20" y="192">• nicht im Policy Tag (AP</text>
+<text x="20" y="208">   hat default-policy-tag)</text>
+<text x="20" y="226">• Radio Policy falsches Band</text>
+<text x="20" y="244">• Schreibweise (case-sensitive)</text>
+<text x="20" y="262">• Broadcast aus: nur mit</text>
+<text x="20" y="278">   gespeichertem Profil</text>
+<rect x="234" y="135" width="100" height="150" rx="6" fill="#ff6b6b" opacity="0.15" stroke="#ff6b6b"/>
+<text x="242" y="155" font-weight="bold">Assoc abgelehnt</text>
+<text x="242" y="174">• Mandatory</text>
+<text x="242" y="190">   Rate fehlt</text>
+<text x="242" y="208">• AP voll</text>
+<text x="242" y="226">• Client</text>
+<text x="242" y="242">   excluded</text>
+<rect x="346" y="135" width="212" height="150" rx="6" fill="#ff6b6b" opacity="0.15" stroke="#ff6b6b"/>
+<text x="356" y="155" font-weight="bold">Authentifizierung scheitert</text>
+<text x="356" y="174">• RADIUS down / falsche IP</text>
+<text x="356" y="192">• Shared Secret falsch</text>
+<text x="356" y="210">• keine Method List am WLAN</text>
+<text x="356" y="228">• Zertifikat/Zeit (NTP)</text>
+<text x="356" y="246">• falscher PSK: MIC-Fehler M2</text>
+<text x="356" y="264">• Security-Mismatch</text>
+<text x="356" y="280">   (Profil PSK, WLAN 802.1X)</text>
+<rect x="570" y="135" width="217" height="150" rx="6" fill="#ff6b6b" opacity="0.15" stroke="#ff6b6b"/>
+<text x="580" y="155" font-weight="bold">Keine IP-Adresse</text>
+<text x="580" y="174">• falsches VLAN im</text>
+<text x="580" y="190">   Policy Profile/Interface</text>
+<text x="580" y="208">• VLAN nicht auf Trunk</text>
+<text x="580" y="226">• kein ip helper-address</text>
+<text x="580" y="244">• DHCP-Scope erschöpft</text>
+<text x="580" y="262">• Client: 169.254.x.x</text>
+</g>
+<rect x="10" y="305" width="777" height="125" rx="8" fill="#39c86a" opacity="0.15" stroke="#39c86a"/>
+<g font-size="13" fill="#222">
+<text x="25" y="330" font-weight="bold">So sieht man die Phase</text>
+<text x="25" y="352">9800: show wireless client mac-address &lt;mac&gt; detail → Policy Manager State (Authenticating, IP Learn, Webauth Pending, Run)</text>
+<text x="25" y="374">AireOS: show client detail &lt;mac&gt; → Policy Manager State RUN, Security Policy Completed Yes/No</text>
+<text x="25" y="396">Client unbekannt am WLC? → Problem liegt vor der Association (SSID/HF/Band)</text>
+<text x="25" y="418">Over the Air: wo bricht die Frame-Folge ab (Probe, Auth, Assoc, EAPOL, DHCP)?</text>
+</g>
+</svg>

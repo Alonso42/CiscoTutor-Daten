@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>RSSI, Noise Floor und SNR</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">SNR = Signal (dBm) − Rauschen (dBm)</text>
+<line x1="120" y1="60" x2="120" y2="400" stroke="#222" stroke-width="2"/>
+<g font-size="13" fill="#222" text-anchor="end">
+<text x="110" y="74">−30 dBm</text><text x="110" y="134">−50</text><text x="110" y="194">−67</text><text x="110" y="234">−72</text><text x="110" y="284">−80</text><text x="110" y="384">−92</text>
+</g>
+<rect x="125" y="62" width="40" height="125" fill="#39c86a"/>
+<rect x="125" y="187" width="40" height="45" fill="#ffd23f"/>
+<rect x="125" y="232" width="40" height="80" fill="#ff6b6b" opacity="0.7"/>
+<rect x="125" y="312" width="40" height="88" fill="#ccc"/>
+<g font-size="13" fill="#222">
+<text x="175" y="130">sehr gut</text>
+<text x="175" y="205">−67 dBm: Ziel Zellrand Voice</text>
+<text x="175" y="245">−72 dBm: Ziel Daten</text>
+<text x="175" y="290">schwach: niedrige Raten, Retries</text>
+<line x1="125" y1="380" x2="520" y2="380" stroke="#222" stroke-dasharray="5,4"/>
+<text x="175" y="372">Noise Floor (z. B. −92 dBm)</text>
+</g>
+<line x1="470" y1="190" x2="470" y2="380" stroke="#4a9cff" stroke-width="3"/>
+<polygon points="465,198 470,188 475,198" fill="#4a9cff"/><polygon points="465,372 470,382 475,372" fill="#4a9cff"/>
+<text x="480" y="290" font-size="14" fill="#222" font-weight="bold">SNR 25 dB</text>
+<rect x="560" y="60" width="225" height="330" rx="8" fill="#4a9cff" opacity="0.15" stroke="#4a9cff"/>
+<g font-size="13" fill="#222">
+<text x="575" y="85" font-weight="bold">Rechenbeispiele</text>
+<text x="575" y="110">−67 − (−92) = 25 dB</text>
+<text x="575" y="132">−75 − (−96) = 21 dB</text>
+<text x="575" y="154">−80 − (−85) = 5 dB (!)</text>
+<text x="575" y="185" font-weight="bold">Merkregeln</text>
+<text x="575" y="207">+3 dB = doppelte Leistung</text>
+<text x="575" y="229">+10 dB = zehnfache Leistung</text>
+<text x="575" y="251">guter RSSI + hoher Noise</text>
+<text x="575" y="271">= trotzdem schlechter SNR</text>
+<text x="575" y="302" font-weight="bold">Ziel Voice (Cisco):</text>
+<text x="575" y="324">≥ −67 dBm, SNR ≥ 25 dB</text>
+<text x="575" y="355">Werte sieht man in</text>
+<text x="575" y="375">client detail / Client 360</text>
+</g>
+</svg>

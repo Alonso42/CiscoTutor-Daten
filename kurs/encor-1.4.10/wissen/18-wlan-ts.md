@@ -29,7 +29,7 @@ Merksatz: Spektrumanalysator = "Kabeltester" des WLANs (sieht Energie, dekodiert
 - Wichtige Darstellungen: Echtzeit-FFT/Spektrum (Leistung über Frequenz), **Waterfall/Spectrogram** (Zeitverlauf), **Duty Cycle**, Kanal-Zusammenfassung (Channel Summary: Leistung, Anzahl Störer pro Kanal), Device Finder (Störer orten durch Richtantenne/Signalstärke).
 - **MetaGeek Chanalyzer**: Windows, Hardware Wi-Spy oder Cisco-AP im SE-Connect-Modus (Zusatzlizenz); 2,4 und 5 GHz; zeigt Co-Channel/Overlapping und klassifiziert Nicht-Wi-Fi-Störer.
 - **Ekahau Site Survey** (heute Ekahau AI Pro, Spektrum über Sidekick): Planung, Pre-/Post-Site-Survey, passive und aktive Messungen; erkennt Coverage Holes, CCI/ACI, zu wenig Kapazität, zu viele Clients pro AP, suboptimale Kanalwahl, fehlende Security-Einstellungen, Roaming-Probleme; misst Signalstärke, SNR, Rauschen, RTT/Packet Loss, Kanalauslastung (Beispiel: VoIP-Abbrüche in einem Bereich).
-- **Cisco CleanAir**: im AP integrierte Spektrumanalyse (CleanAir-fähige AP-Hardware nötig), am WLC global/pro Band aktivierbar. Klassifiziert Störer (Interference Device Record), zeigt, welche APs den Störer hören (→ Lokalisierung), bewertet Kanäle mit **Air Quality (AQ/AQI, 0–100, 100 = sauber)** und Severity. Einstellungen: CleanAir global ein/aus, Störer melden ja/nein, persistente Geräte verfolgen (Persistent Device Avoidance), welche Störertypen einen **SNMP-Trap** auslösen. Mit **ED-RRM** (Event-Driven RRM) wechselt der AP bei schwerem Störer sofort den Kanal.
+- **Cisco CleanAir**: im AP integrierte Spektrumanalyse (CleanAir-fähige AP-Hardware nötig), am WLC global/pro Band aktivierbar. Klassifiziert Störer (Interference Device Record), zeigt, welche APs den Störer hören (→ Lokalisierung), bewertet Kanäle mit **Air Quality (AQ/AQI, 1–100, 100 = sauber, 1 = schlechteste)** und Severity. Einstellungen: CleanAir global ein/aus, Störer melden ja/nein, persistente Geräte verfolgen (Persistent Device Avoidance), welche Störertypen einen **SNMP-Trap** auslösen. Mit **ED-RRM** (Event-Driven RRM) wechselt der AP bei schwerem Störer sofort den Kanal.
 - **Cisco Spectrum Expert** (eingestellt): Laptop mit Sensorkarte oder Remote-Sensor = AP im **SE-Connect**-Modus. Ansichten: Spectrum Views, Active Devices, Devices (Historie), Channel Summary, Device Finder, Tools.
 - **Meraki RF Spectrum**: MR-APs mit dediziertem Scan-Radio; 2,4/5 GHz (neuere auch 6 GHz) im Dashboard, Hintergrund-Monitoring für Auto RF.
 
@@ -139,7 +139,7 @@ show logging profile wireless start last 30 minutes filter mac <mac> to-file boo
 ```
 - **Client-Zustände (Policy Manager)** auf dem 9800: Associating → L2 Authentication (Authenticating) → Mobility → **IP Learn** → (Webauth Pending) → **Run**. Hängt ein Client in IP Learn, bekommt er keine DHCP-Adresse (VLAN falsch, kein DHCP-Relay, Scope leer, Trunk fehlt). Hängt er in Authenticating, scheitert 802.1X/PSK. Webauth Pending = Portal-Login fehlt.
 - **Radioactive Tracing (RA Trace)**: bedingtes Debugging pro MAC über alle Prozesse (wncd, wncmgrd, sman, dot1x, aaa …) hinweg, ohne globale Debugs – auch in Produktion vertretbar. GUI: Troubleshooting > Radioactive Trace (MAC hinzufügen, Start, Generate für die letzten x Minuten). Ergebnis als Datei (`ra_trace_MAC_...`), auswertbar mit dem Cisco Wireless Debug Analyzer.
-- **Always-On Tracing**: Der 9800 schreibt ständig Traces auf Notice-Level; `show logging profile wireless ... filter mac` holt nachträglich Ereignisse eines Clients, auch wenn vorher kein Debug lief.
+- **Always-On Tracing**: Der 9800 schreibt ständig Traces auf Notice-Level; `show logging profile wireless ... filter mac` holt nachträglich Ereignisse eines Clients, auch wenn vorher kein Debug lief. Ohne `start last <n> {minutes|hours|days}` geht der Befehl standardmäßig nur **10 Minuten** zurück (Cisco 213949).
 - **Syslog-Beispiele** (Lab): `%DOT1X-5-FAIL: ... wncd: Authentication failed for client (2cfd.a161.b0ce) with reason (AAA Server Down)`.
 - GUI: Monitoring > Wireless > Clients (Zustand), Monitoring > Wireless > AP Statistics (Tags), Troubleshooting > Syslog, Ping and Traceroute, Radioactive Trace, Packet Capture.
 - **AAA-Kette 9800**: WLAN → Authentication Method List (z. B. dot1x-method) → Server Group (ISE-Group) → RADIUS Server (IP + Shared Secret). Fehlt die Method List am WLAN, weiß der WLC nicht, wohin er EAP schicken soll.
@@ -252,7 +252,7 @@ Faustregel: **Viele Nutzer betroffen → Netzseite** (WLC-Konfiguration, RADIUS,
 - **Mobility Group** (Roaming): Name exakt gleich; IPs (public/private) erreichbar; AireOS: Management-MACs korrekt; Control und Data Link "Up".
 - **WLC Security Settings**:
   - **Client disabled** (manuell, AireOS: Security > AAA > Disabled Clients) → kann nicht assoziieren, bis entfernt.
-  - **Client excluded** (automatisch, Client Exclusion Policies unter Security > Wireless Protection Policies): zu viele 802.11-Association-Fehler, 802.11-Authentication-Fehler, 802.1X-Fehler, WebAuth-Fehler (zusätzlich IP-Theft/IP-Reuse). Exclusion und Timeout (Sekunden, Default 60) pro WLAN (Advanced-Tab). Monitor zeigt "Excluded"; warten oder Eintrag entfernen.
+  - **Client excluded** (automatisch, Client Exclusion Policies unter Security > Wireless Protection Policies): zu viele 802.11-Association-Fehler, 802.11-Authentication-Fehler, 802.1X-Fehler, WebAuth-Fehler (zusätzlich IP-Theft/IP-Reuse). Exclusion und Timeout pro WLAN (AireOS Advanced-Tab; Default 60 s vor AireOS 8.5, ab 8.5 180 s) bzw. pro Policy Profile (9800, `exclusionlist timeout`, Default 60 s). Monitor zeigt "Excluded"; warten oder Eintrag entfernen.
 
 ## Discovery 19 (Lab): Troubleshoot Wireless Client Connectivity
 
@@ -278,6 +278,7 @@ Topologie: Client PC, Campus AP, Campus 9800 WLC (10.10.10.30; Interfaces auch 1
 1. **Packet Analysis als "Layer 3"**: 802.11-Analyzer arbeiten auf Layer 2 (802.11-MAC-Header, Management/Control/Data-Frames) und dekodieren darüber alle Schichten. (IEEE 802.11-2020, Clause 9)
 2. **"Promiscuous mode" für WLAN-Captures**: Für Over-the-Air-Mitschnitte ist der **Monitor-Modus (RFMON)** nötig; Promiscuous liefert nur Frames des eigenen BSS ohne Radio-Metadaten. (Wireshark Wiki "CaptureSetup/WLAN")
 3. **AirPcap Nx "required" für Wireshark-WLAN-Captures**: AirPcap ist seit Jahren eingestellt; heute Monitor-Modus unter Linux/macOS, Npcap mit geeigneten Adaptern oder ein Cisco-AP im Sniffer-Modus. Ebenso eingestellt: MetaGeek Eye P.A., Cisco Spectrum Expert. (Wireshark Wiki, MetaGeek)
+4a. **Reason Code 6 "Daten vor Authentifizierung"**: IEEE: "Class 2 frame received from nonauthenticated STA" – Class-2-Frames sind (Re)Association-/Disassociation-Frames, keine Datenframes (Daten = Class 3). (IEEE 802.11-2020, Table 9-49)
 4. **Reason Code 7 "class2FrameFromNonAssStation"**: IEEE 802.11 definiert Reason 7 als "Class 3 frame received from nonassociated STA". (IEEE 802.11-2020, Table 9-49)
 5. **Reason Code 4 = "Session Timeout überschritten"**: Reason 4 bedeutet Disassociation wegen **Inaktivität** (Idle Timeout), nicht Session Timeout. (IEEE 802.11-2020, Table 9-49)
 6. **Reason Code 3 = "AP ging offline"**: IEEE: Deauthentifiziert, weil die sendende Station die ESS verlässt – kann AP oder Client sein. Reason 8 bedeutet allgemein "Disassociated because sending STA is leaving BSS", nicht nur Load Balancing.
@@ -295,7 +296,7 @@ Topologie: Client PC, Campus AP, Campus 9800 WLC (10.10.10.30; Interfaces auch 1
 - `bilder/18-wlan-ts/02-kanal-24.svg` – 2,4-GHz-Kanäle 1–13 mit Überlappung, nicht-überlappende Kanäle 1/6/11, CCI vs. ACI.
 - `bilder/18-wlan-ts/03-interferer.svg` – Nicht-Wi-Fi-Störer im Spektrum (Mikrowelle, Bluetooth, Videobrücke) mit Duty Cycle; DECT außerhalb des WLAN-Bands.
 - `bilder/18-wlan-ts/04-rssi-snr.svg` – RSSI-Skala, Noise Floor und SNR-Rechnung mit Zielwerten.
-- `bilder/18-wlan-ts/05-client-phase.svg` – Verbindungsphasen Probe → Auth → Assoc → 802.1X → 4-Way → DHCP → RUN mit typischem Fehler je Phase.
+- `bilder/18-wlan-ts/05-phasen.svg` – Verbindungsphasen Probe → Auth → Assoc → 802.1X → 4-Way → DHCP → RUN mit typischem Fehler je Phase.
 - `bilder/18-wlan-ts/06-ota-capture.svg` – Over-the-Air-Capture: Monitor-Modus, ein Kanal, Radiotap-Header, Entschlüsselungsvoraussetzungen.
 - `bilder/18-wlan-ts/07-fehlerorte.svg` – Fehlerorte in der Topologie: Client↔AP, WLAN-Konfiguration, Infrastruktur.
 - `bilder/18-wlan-ts/08-9800-tools.svg` – Werkzeugkette Catalyst 9800/Catalyst Center gegenüber AireOS.

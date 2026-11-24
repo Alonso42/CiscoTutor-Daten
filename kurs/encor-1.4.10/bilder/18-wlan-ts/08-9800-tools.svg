@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Client-Troubleshooting-Werkzeuge Catalyst 9800 und AireOS</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Werkzeugkette: AireOS (Legacy) → Catalyst 9800</text>
+<g font-size="13" fill="#222">
+<text x="40" y="65" font-weight="bold">Aufgabe</text><text x="250" y="65" font-weight="bold">AireOS</text><text x="500" y="65" font-weight="bold">Catalyst 9800 / Catalyst Center</text>
+<line x1="30" y1="73" x2="780" y2="73" stroke="#222"/>
+<rect x="30" y="80" width="750" height="40" fill="#4a9cff" opacity="0.12"/>
+<text x="40" y="105">Client-Übersicht</text><text x="250" y="105">show client summary</text><text x="500" y="105">show wireless client summary</text>
+<text x="40" y="145">Client-Details</text><text x="250" y="145">show client detail &lt;mac&gt;</text><text x="500" y="145">show wireless client mac-address &lt;mac&gt; detail</text>
+<rect x="30" y="160" width="750" height="40" fill="#4a9cff" opacity="0.12"/>
+<text x="40" y="185">Debug pro Client</text><text x="250" y="185">debug client &lt;mac&gt;</text><text x="500" y="185">debug wireless mac &lt;mac&gt; (RA Trace)</text>
+<text x="40" y="225">Nachträglich</text><text x="250" y="225">Message/Trap Logs</text><text x="500" y="225">show logging profile wireless filter mac</text>
+<rect x="30" y="240" width="750" height="40" fill="#4a9cff" opacity="0.12"/>
+<text x="40" y="265">Ausschlüsse</text><text x="250" y="265">show exclusionlist</text><text x="500" y="265">show wireless exclusionlist</text>
+<text x="40" y="305">RADIUS-Status</text><text x="250" y="305">show radius summary</text><text x="500" y="305">show aaa servers (UP/DEAD)</text>
+<rect x="30" y="320" width="750" height="40" fill="#4a9cff" opacity="0.12"/>
+<text x="40" y="345">Konfig-Check</text><text x="250" y="345">WCAE: show run-config</text><text x="500" y="345">WCAE: show tech wireless</text>
+<text x="40" y="385">Historie/Analytics</text><text x="250" y="385">–</text><text x="500" y="385">Client 360: Onboarding-Zeitstrahl, RSSI/SNR,</text>
+<text x="500" y="403">Event Viewer, Time Travel, Intelligent Capture</text>
+</g>
+<text x="400" y="438" text-anchor="middle" font-size="12" fill="#222">RA Trace: bedingtes Debug für eine MAC über alle Prozesse; Ergebnis als ra_trace-Datei in bootflash:</text>
+</svg>
