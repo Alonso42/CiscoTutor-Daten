@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>BPDU-Felder und Aufbau der Bridge ID</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">BPDU und Bridge ID</text>
+<text x="20" y="62" font-size="13" fill="#222">Configuration BPDU (alle 2 s, Ziel-MAC 01-80-C2-00-00-00, Quelle = MAC des Sendeports)</text>
+<g font-size="10" fill="#222" text-anchor="middle">
+<rect x="20" y="72" width="62" height="40" fill="#eee" stroke="#222"/><text x="51" y="88">Protocol</text><text x="51" y="101">ID</text>
+<rect x="82" y="72" width="56" height="40" fill="#eee" stroke="#222"/><text x="110" y="96">Version</text>
+<rect x="138" y="72" width="62" height="40" fill="#eee" stroke="#222"/><text x="169" y="88">Msg Type</text><text x="169" y="101">Config/TCN</text>
+<rect x="200" y="72" width="56" height="40" fill="#ffd23f" stroke="#222"/><text x="228" y="88">Flags</text><text x="228" y="101">TC / TCA</text>
+<rect x="256" y="72" width="70" height="40" fill="#39c86a" stroke="#222"/><text x="291" y="88">Root</text><text x="291" y="101">Bridge ID</text>
+<rect x="326" y="72" width="70" height="40" fill="#39c86a" stroke="#222"/><text x="361" y="88">Root</text><text x="361" y="101">Path Cost</text>
+<rect x="396" y="72" width="70" height="40" fill="#39c86a" stroke="#222"/><text x="431" y="88">Sender</text><text x="431" y="101">Bridge ID</text>
+<rect x="466" y="72" width="56" height="40" fill="#39c86a" stroke="#222"/><text x="494" y="88">Port</text><text x="494" y="101">ID</text>
+<rect x="522" y="72" width="64" height="40" fill="#b08aff" stroke="#222"/><text x="554" y="88">Message</text><text x="554" y="101">Age</text>
+<rect x="586" y="72" width="64" height="40" fill="#b08aff" stroke="#222"/><text x="618" y="88">Max Age</text><text x="618" y="101">20 s</text>
+<rect x="650" y="72" width="60" height="40" fill="#b08aff" stroke="#222"/><text x="680" y="88">Hello</text><text x="680" y="101">2 s</text>
+<rect x="710" y="72" width="70" height="40" fill="#b08aff" stroke="#222"/><text x="745" y="88">Fwd Delay</text><text x="745" y="101">15 s</text>
+</g>
+<text x="400" y="132" text-anchor="middle" font-size="12" fill="#222">grün = Vergleichswerte für die Wahl  ·  lila = Timer (gibt die Root vor)  ·  gelb = Topology-Change-Flags</text>
+<text x="20" y="175" font-size="15" font-weight="bold" fill="#222">Bridge ID (8 Byte) – die niedrigste gewinnt die Root-Wahl</text>
+<rect x="20" y="190" width="110" height="46" fill="#ffd23f" stroke="#222"/>
+<text x="75" y="210" text-anchor="middle" font-size="13" fill="#222">Priorität</text>
+<text x="75" y="227" text-anchor="middle" font-size="11" fill="#222">4 Bit</text>
+<rect x="130" y="190" width="220" height="46" fill="#4a9cff" stroke="#222"/>
+<text x="240" y="210" text-anchor="middle" font-size="13" fill="#fff">Extended System ID</text>
+<text x="240" y="227" text-anchor="middle" font-size="11" fill="#fff">12 Bit = VLAN-ID</text>
+<rect x="350" y="190" width="430" height="46" fill="#eee" stroke="#222"/>
+<text x="565" y="210" text-anchor="middle" font-size="13" fill="#222">MAC-Adresse</text>
+<text x="565" y="227" text-anchor="middle" font-size="11" fill="#222">48 Bit, eindeutig pro Switch</text>
+<text x="185" y="256" text-anchor="middle" font-size="11" fill="#222">16-Bit-Prioritätsfeld</text>
+<line x1="20" y1="244" x2="350" y2="244" stroke="#222"/>
+<rect x="20" y="275" width="370" height="155" rx="8" fill="#fffbe6" stroke="#ffd23f"/>
+<g font-size="12" fill="#222">
+<text x="32" y="297" font-weight="bold">Folgen der Aufteilung</text>
+<text x="32" y="319">• Priorität nur in 4096er-Schritten: 0 … 61440</text>
+<text x="32" y="339">• nur 16 mögliche Werte, Default 32768</text>
+<text x="32" y="359">• angezeigt wird Priorität + VLAN:</text>
+<text x="32" y="379">  VLAN 1 → 32769, VLAN 10 → 32778</text>
+<text x="32" y="399">• gleiche Priorität → kleinste MAC gewinnt</text>
+<text x="32" y="419">  (oft der älteste Switch)</text>
+</g>
+<rect x="410" y="275" width="370" height="155" rx="8" fill="#f5f8ff" stroke="#4a9cff"/>
+<g font-size="12" fill="#222">
+<text x="422" y="297" font-weight="bold">Makros root primary / secondary</text>
+<text x="422" y="319">• primary: Root-Prio &gt; 24576 → 24576,</text>
+<text x="422" y="339">  sonst 4096 unter der Root</text>
+<text x="422" y="359">• Root hat 0 → Befehl schlägt fehl</text>
+<text x="422" y="379">• secondary → 28672</text>
+<text x="422" y="399">• running-config zeigt nur die Zahl</text>
+<text x="422" y="419" font-family="monospace">spanning-tree vlan 1 priority 24576</text>
+</g>
+</svg>

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>MST-Region mit zwei Instanzen zur Lastverteilung</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">MST: viele VLANs, wenige Instanzen</text>
+<rect x="15" y="45" width="470" height="330" rx="16" fill="#f7f4ff" stroke="#b08aff" stroke-width="2" stroke-dasharray="8 5"/>
+<text x="30" y="68" font-size="13" font-weight="bold" fill="#b08aff">Region: Name CCNP · Revision 1 · gleiches Mapping</text>
+<rect x="50" y="95" width="120" height="50" rx="6" fill="#4a9cff"/>
+<text x="110" y="118" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">SW1</text>
+<text x="110" y="136" text-anchor="middle" font-size="11" fill="#fff">Root MST1</text>
+<rect x="330" y="95" width="120" height="50" rx="6" fill="#b08aff"/>
+<text x="390" y="118" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">SW2</text>
+<text x="390" y="136" text-anchor="middle" font-size="11" fill="#fff">Root MST2</text>
+<rect x="190" y="280" width="120" height="50" rx="6" fill="#eee" stroke="#222"/>
+<text x="250" y="303" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">SW3</text>
+<text x="250" y="321" text-anchor="middle" font-size="11" fill="#222">Access</text>
+<line x1="170" y1="120" x2="330" y2="120" stroke="#222" stroke-width="3"/>
+<text x="250" y="112" text-anchor="middle" font-size="11" fill="#222">Trunk</text>
+<line x1="110" y1="145" x2="215" y2="280" stroke="#4a9cff" stroke-width="5"/>
+<line x1="390" y1="145" x2="285" y2="280" stroke="#b08aff" stroke-width="5"/>
+<text x="60" y="215" font-size="12" fill="#4a9cff" font-weight="bold">MST1 FWD</text>
+<text x="60" y="232" font-size="12" fill="#b08aff">MST2 BLK</text>
+<text x="350" y="215" font-size="12" fill="#b08aff" font-weight="bold">MST2 FWD</text>
+<text x="350" y="232" font-size="12" fill="#4a9cff">MST1 BLK</text>
+<text x="250" y="360" text-anchor="middle" font-size="11" fill="#222">nach außen wirkt die Region wie eine einzige Bridge</text>
+<!-- Mapping -->
+<g font-size="12" fill="#222">
+<rect x="505" y="45" width="280" height="26" fill="#4a9cff"/>
+<text x="515" y="63" fill="#fff" font-weight="bold">Instanz</text><text x="610" y="63" fill="#fff" font-weight="bold">VLANs</text><text x="690" y="63" fill="#fff" font-weight="bold">Pfad</text>
+<text x="515" y="90">MST0 (IST)</text><text x="610" y="90">alle übrigen</text><text x="690" y="90">alle Ports</text>
+<rect x="505" y="98" width="280" height="24" fill="#f3f3f3"/>
+<text x="515" y="115">MST1</text><text x="610" y="115">2, 3</text><text x="690" y="115">via SW1</text>
+<text x="515" y="140">MST2</text><text x="610" y="140">4, 5</text><text x="690" y="140">via SW2</text>
+</g>
+<rect x="505" y="160" width="280" height="140" rx="8" fill="#f5f8ff" stroke="#4a9cff"/>
+<g font-size="11" font-family="monospace" fill="#222">
+<text x="515" y="180">spanning-tree mst configuration</text>
+<text x="515" y="196"> name CCNP</text>
+<text x="515" y="212"> revision 1</text>
+<text x="515" y="228"> instance 1 vlan 2,3</text>
+<text x="515" y="244"> instance 2 vlan 4,5</text>
+<text x="515" y="260">exit   (abort = verwerfen)</text>
+<text x="515" y="276">spanning-tree mode mst</text>
+<text x="515" y="292">spanning-tree mst 1 root primary</text>
+</g>
+<rect x="505" y="310" width="280" height="125" rx="8" fill="#fffbe6" stroke="#ffd23f"/>
+<g font-size="12" fill="#222">
+<text x="515" y="330">• BPDU trägt nur Name, Revision</text>
+<text x="515" y="347">  und Digest des Mappings</text>
+<text x="515" y="366">• Digest anders → Regionsgrenze</text>
+<text x="515" y="385">• nur eine BPDU (IST), MSTIs als</text>
+<text x="515" y="402">  M-Records darin</text>
+<text x="515" y="421">• Revision zählt nicht automatisch</text>
+</g>
+<rect x="15" y="390" width="470" height="45" rx="8" fill="#eefaf2" stroke="#39c86a"/>
+<text x="27" y="410" font-size="12" fill="#222">Gleiche Lastverteilung wie PVST+ (Root je VLAN-Gruppe),</text>
+<text x="27" y="427" font-size="12" fill="#222">aber 3 Instanzen statt einer pro VLAN · Kosten immer long</text>
+</svg>

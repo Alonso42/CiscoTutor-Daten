@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>RSTP Proposal/Agreement und Link Types</title>
+<rect width="800" height="450" fill="#fff"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#222"/></marker></defs>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">RSTP: Proposal/Agreement statt Timer</text>
+<rect x="40" y="60" width="110" height="46" rx="6" fill="#4a9cff"/><text x="95" y="89" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">Upstream</text>
+<rect x="40" y="230" width="110" height="46" rx="6" fill="#4a9cff"/><text x="95" y="259" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">Downstream</text>
+<line x1="95" y1="106" x2="95" y2="230" stroke="#222" stroke-width="3"/>
+<text x="102" y="125" font-size="11" fill="#222">Designated (neu)</text>
+<text x="102" y="222" font-size="11" fill="#222">Root Port</text>
+<text x="20" y="175" font-size="11" fill="#222" transform="rotate(-90 20 175)">point-to-point</text>
+<rect x="10" y="320" width="70" height="30" rx="4" fill="#eee" stroke="#222"/><text x="45" y="340" text-anchor="middle" font-size="11" fill="#222">SW</text>
+<rect x="110" y="320" width="70" height="30" rx="4" fill="#eee" stroke="#222"/><text x="145" y="340" text-anchor="middle" font-size="11" fill="#222">SW</text>
+<line x1="70" y1="276" x2="45" y2="320" stroke="#222" stroke-width="2"/>
+<line x1="120" y1="276" x2="145" y2="320" stroke="#222" stroke-width="2"/>
+<text x="95" y="372" text-anchor="middle" font-size="11" fill="#222">Nonedge-Designated-Ports</text>
+<!-- Schritte -->
+<g font-size="13" fill="#222">
+<rect x="230" y="60" width="550" height="52" rx="8" fill="#fffbe6" stroke="#ffd23f"/>
+<text x="245" y="82" font-weight="bold">① Proposal</text>
+<text x="245" y="101">Neuer Designated Port (noch discarding) sendet BPDU mit Proposal-Flag</text>
+<rect x="230" y="122" width="550" height="52" rx="8" fill="#fff0f0" stroke="#ff6b6b"/>
+<text x="245" y="144" font-weight="bold">② Sync</text>
+<text x="245" y="163">Downstream setzt alle eigenen Nonedge-Designated-Ports auf discarding</text>
+<rect x="230" y="184" width="550" height="52" rx="8" fill="#f5f8ff" stroke="#4a9cff"/>
+<text x="245" y="206" font-weight="bold">③ Agreement</text>
+<text x="245" y="225">Downstream antwortet über seinen Root Port mit Agreement</text>
+<rect x="230" y="246" width="550" height="52" rx="8" fill="#eefaf2" stroke="#39c86a"/>
+<text x="245" y="268" font-weight="bold">④ Forwarding sofort</text>
+<text x="245" y="287">Upstream-Port forwardet, Downstream wiederholt ①–④ Richtung Rand</text>
+</g>
+<!-- Link types -->
+<text x="230" y="330" font-size="15" font-weight="bold" fill="#222">Link Types</text>
+<g font-size="12" fill="#222">
+<rect x="230" y="340" width="550" height="26" fill="#4a9cff"/>
+<text x="240" y="358" fill="#fff" font-weight="bold">Typ</text><text x="380" y="358" fill="#fff" font-weight="bold">Erkennung</text><text x="520" y="358" fill="#fff" font-weight="bold">Wirkung</text>
+<text x="240" y="384">point-to-point (P2p)</text><text x="380" y="384">Full Duplex</text><text x="520" y="384">Rapid Transition für Designated</text>
+<rect x="230" y="392" width="550" height="24" fill="#f3f3f3"/>
+<text x="240" y="409">shared (Shr)</text><text x="380" y="409">Half Duplex</text><text x="520" y="409">klassische Timer</text>
+<text x="240" y="434">edge (P2p Edge)</text><text x="380" y="434">PortFast konfiguriert</text><text x="520" y="434">sofort forwarding, keine TC</text>
+</g>
+<text x="20" y="410" font-size="11" fill="#222">Root Ports brauchen</text>
+<text x="20" y="425" font-size="11" fill="#222">keinen P2p-Typ (Sync)</text>
+<text x="20" y="440" font-size="11" fill="#222">3 Hellos weg = 6 s</text>
+</svg>

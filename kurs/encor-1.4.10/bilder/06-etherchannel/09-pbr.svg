@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Policy-Based Routing: Route-Map vor der Routing-Tabelle</title>
+<rect width="800" height="450" fill="#fff"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#222"/></marker></defs>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">PBR: Quellnetz bestimmt den ISP</text>
+<!-- LANs -->
+<rect x="20" y="70" width="130" height="40" rx="4" fill="#39c86a"/><text x="85" y="95" text-anchor="middle" font-size="12" fill="#fff">192.168.1.0/24</text>
+<rect x="20" y="150" width="130" height="40" rx="4" fill="#b08aff"/><text x="85" y="175" text-anchor="middle" font-size="12" fill="#fff">192.168.2.0/24</text>
+<!-- Router -->
+<circle cx="290" cy="130" r="38" fill="#4a9cff"/>
+<text x="290" y="137" text-anchor="middle" font-size="20" font-weight="bold" fill="#fff">R</text>
+<line x1="150" y1="90" x2="255" y2="118" stroke="#39c86a" stroke-width="3"/>
+<line x1="150" y1="170" x2="255" y2="142" stroke="#b08aff" stroke-width="3"/>
+<text x="232" y="190" font-size="11" fill="#222">Gi0/1: ip policy</text>
+<text x="232" y="204" font-size="11" fill="#222">route-map PBR-ISP</text>
+<!-- ISPs -->
+<ellipse cx="690" cy="80" rx="80" ry="34" fill="#eee" stroke="#222"/><text x="690" y="85" text-anchor="middle" font-size="14" fill="#222">ISP1</text>
+<ellipse cx="690" cy="185" rx="80" ry="34" fill="#eee" stroke="#222"/><text x="690" y="190" text-anchor="middle" font-size="14" fill="#222">ISP2</text>
+<line x1="328" y1="118" x2="608" y2="85" stroke="#39c86a" stroke-width="3" marker-end="url(#a)"/>
+<line x1="328" y1="142" x2="608" y2="182" stroke="#b08aff" stroke-width="3" marker-end="url(#a)"/>
+<text x="470" y="88" text-anchor="middle" font-size="11" fill="#222">kein Match → Routing-Tabelle</text>
+<text x="470" y="185" text-anchor="middle" font-size="11" fill="#222">Match → set ip next-hop 203.165.201.1</text>
+<!-- Entscheidung -->
+<g font-size="12" fill="#222" text-anchor="middle">
+<rect x="20" y="235" width="170" height="50" rx="8" fill="#eee" stroke="#222"/><text x="105" y="256">Paket kommt an</text><text x="105" y="273" font-size="11">(Interface mit ip policy)</text>
+<rect x="225" y="235" width="170" height="50" rx="8" fill="#ffd23f"/><text x="310" y="256">Route-Map: match?</text><text x="310" y="273" font-size="11">ACL / length …</text>
+<rect x="430" y="225" width="170" height="40" rx="8" fill="#ff6b6b"/><text x="515" y="250" fill="#fff">permit + match → set</text>
+<rect x="430" y="275" width="170" height="40" rx="8" fill="#39c86a"/><text x="515" y="300" fill="#fff">kein Match / deny</text>
+<rect x="625" y="225" width="160" height="40" rx="8" fill="#f7f7f7" stroke="#ff6b6b"/><text x="705" y="250">Policy-Next-Hop</text>
+<rect x="625" y="275" width="160" height="40" rx="8" fill="#f7f7f7" stroke="#39c86a"/><text x="705" y="300">normal nach Ziel</text>
+</g>
+<line x1="190" y1="260" x2="223" y2="260" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<line x1="395" y1="255" x2="428" y2="245" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<line x1="395" y1="268" x2="428" y2="292" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<line x1="600" y1="245" x2="623" y2="245" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<line x1="600" y1="295" x2="623" y2="295" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<!-- Config -->
+<rect x="20" y="330" width="370" height="105" rx="8" fill="#f5f8ff" stroke="#4a9cff"/>
+<g font-size="11" font-family="monospace" fill="#222">
+<text x="30" y="350">access-list 10 permit 192.168.2.0 0.0.0.255</text>
+<text x="30" y="368">route-map PBR-ISP permit 10</text>
+<text x="30" y="384"> match ip address 10</text>
+<text x="30" y="400"> set ip next-hop 203.165.201.1</text>
+<text x="30" y="416">interface Gi0/1</text>
+<text x="30" y="430"> ip policy route-map PBR-ISP</text>
+</g>
+<rect x="410" y="330" width="375" height="105" rx="8" fill="#fffbe6" stroke="#ffd23f"/>
+<g font-size="12" fill="#222">
+<text x="420" y="350">• wirkt eingehend (ip policy) oder lokal erzeugt</text>
+<text x="420" y="366">  (ip local policy route-map …)</text>
+<text x="420" y="386">• set ip next-hop: vor der Routing-Tabelle</text>
+<text x="420" y="404">• set ip default next-hop: nur ohne explizite Route</text>
+<text x="420" y="424">• Tabelle wird umgangen, nicht verändert</text>
+</g>
+</svg>

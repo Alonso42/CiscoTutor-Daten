@@ -40,3 +40,33 @@ Geprüft: 111 Fragen (slg-ec-001 bis slg-ec-111), außerdem die Lektion (7 Seite
 - slg-ec-098: Das Verhalten bei einem nicht adjazenten Next Hop ist nur über die Cisco Community KB belegt. Der Command Reference nennt nur die Pflicht zur Adjazenz.
 - slg-ec-062/071/092 und die Lektionstabelle: Ob ein Port ohne LACP-Partner I oder s zeigt, hängt von der Plattform ab (standalone mode vs. suspend). Die Fragen beziehen sich auf das Lab bzw. den Cat9300-Leitfaden (suspended) und sind so in sich konsistent.
 - slg-ec-049: Der Begriff "hash polarization" stammt eher aus der CEF-Welt, wird aber für EtherChannel genauso verwendet.
+
+## Wissen & Bilder (Checker, 2026-11-24)
+
+Geprüft: encor-1.4.10/wissen/06-etherchannel.md sowie 9 SVGs in bilder/06-etherchannel. Alle SVGs sind wohlgeformt, UTF-8 ohne BOM, haben <title> als erstes Kind und keinen Text außerhalb der viewBox (nach der Korrektur).
+
+Quellen:
+- E1: Cat9300 17.9 Configuring EtherChannels: https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/lyr2/b_179_lyr2_9300_cg/configuring_etherchannels.html
+- E2: Understanding EtherChannel Load Balancing (TN 12023): https://www.cisco.com/c/en/us/support/docs/lan-switching/etherchannel/12023-4.html
+- E3: Errdisable Recovery (TN 69980): https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/69980-errdisable-recovery.html
+- E4: standalone-disable / I vs. s: Cisco Community, z. B. https://community.cisco.com/t5/switching/when-should-lacp-in-passive-mode-cause-ports-to-become-suspended/m-p/4637700 (nur Community)
+
+Belegt (ohne Änderung): Default load-balance src-mac, min-links 2–8, max-bundle 1–8, LACP-Prioritäten 32768 / 1–65535, lacp rate fast 1 s statt 30 s, bis 16 LACP-Ports (8 aktiv + 8 Standby), PAgP max. 8 Ports, Allowed-VLAN-Konsistenz (E1). Ohne `non-silent` gilt silent, für auto und desirable (E1: „If you do not specify non-silent … silent mode is assumed“). Damit ist der offene Punkt PAgP-Default geklärt; die Wissensdatei war bereits korrekt. errdisable recovery channel-misconfig 300 s (E3). PBR-Abschnitt stimmt mit den im Fragenprotokoll belegten Quellen überein.
+
+Korrekturen in der Wissensdatei:
+| Stelle | Problem | Änderung | Quelle |
+|---|---|---|---|
+| Lastverteilung „3 Links → 2:1:1“ | Falsch: Catalyst verteilt 8 Hash-Werte, 3 Links ergeben 3:3:2 | Korrigiert. Verhältnisse für 5/6/7 Links ergänzt. Hinweis, dass das Bitmodell eine Vereinfachung ist. Neuer Kursfehler 9 | E2 |
+| I vs. s (offener Punkt) | Die Ursache war unklar | Geklärt: `port-channel standalone-disable` entscheidet. Aktiv → `s`, sonst `I`. Der Default hängt von Plattform und Release ab. Der Cat9300-CG beschreibt Suspend | E1, E4 |
+| Discovery-6-Begründung (offener Punkt) | Unsicher formuliert | Präzisiert: Die Allowed-VLAN-Regel gilt laut E1 für die Member eines Switches. LACP vergleicht keine VLAN-Listen mit dem Partner. Eine Abweichung zwischen den Switches kostet nur VLAN-11-Verkehr. Das SD im Lab ist so nicht belegbar und wohl eine noch laufende Neuverhandlung oder eine lokale Inkonsistenz | E1 |
+| min-links | Bereich fehlte | `<2–8>` | E1 |
+| EtherChannel Guard | Log ergänzt | `%SPANTREE-2-CHNL_MISCFG: Detected loop due to etherchannel misconfiguration of …` | E3 |
+
+Bilder:
+| Datei | Problem | Änderung |
+|---|---|---|
+| 06-buckets.svg | Zeigte 3 Links als 2:1:1 (4 Werte) | Neu gezeichnet: 8 Hash-Werte (0–7), 4 Links je 2 Werte (1:1:1:1), 3 Links 3:3:2. 6-Link-Hinweis mit 2:2:1:1:1:1 |
+| 05-hash-xor.svg | Eine Zeile ragte über die viewBox hinaus. Hinweis auf das vereinfachte Modell fehlte | Zeile gekürzt, Fußnote „Vereinfachtes Kursmodell – intern 8 Hash-Werte“ ergänzt. XOR-Beispiele nachgerechnet, alle korrekt |
+| übrige 7 | Inhaltlich korrekt (Modi-Matrix, LACP-Wahl mit max-bundle 4, Konsistenzregeln, Flags, Lab-Topologie, PBR) | – |
+
+Fragen: Es ist keine geprüfte Frage als falsch aufgefallen. slg-ec-038 („einige Links tragen mehr“) passt zu 3:3:2. slg-ec-043/044 nutzen ausdrücklich das „simple XOR model“. slg-ec-055/071 sind mit der I/s-Klärung vereinbar.

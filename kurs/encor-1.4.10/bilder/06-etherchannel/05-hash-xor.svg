@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>EtherChannel-Hash: XOR der letzten Bits wählt den Link</title>
+<rect width="800" height="450" fill="#fff"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#222"/></marker></defs>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Lastverteilung per Hash (Methode src-dst-ip)</text>
+<!-- Ablauf -->
+<g font-size="13" fill="#222" text-anchor="middle">
+<rect x="20" y="50" width="160" height="60" rx="8" fill="#eee" stroke="#222"/><text x="100" y="75">Frame</text><text x="100" y="95" font-size="11">Quell-IP + Ziel-IP</text>
+<rect x="220" y="50" width="160" height="60" rx="8" fill="#ffd23f"/><text x="300" y="75">Felder XOR</text><text x="300" y="95" font-size="11">(nur 1 Feld: direkt)</text>
+<rect x="420" y="50" width="160" height="60" rx="8" fill="#b08aff"/><text x="500" y="75" fill="#fff">letzte Bits</text><text x="500" y="95" font-size="11" fill="#fff">2 Links: 1 · 4: 2 · 8: 3</text>
+<rect x="620" y="50" width="160" height="60" rx="8" fill="#39c86a"/><text x="700" y="75" fill="#fff">Index</text><text x="700" y="95" font-size="11" fill="#fff">= Member-Link</text>
+</g>
+<line x1="180" y1="80" x2="218" y2="80" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<line x1="380" y1="80" x2="418" y2="80" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<line x1="580" y1="80" x2="618" y2="80" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<!-- Tabelle 2 Links -->
+<text x="20" y="145" font-size="14" font-weight="bold" fill="#222">2 Links – letztes Bit</text>
+<g font-size="12" fill="#222">
+<rect x="20" y="155" width="370" height="26" fill="#4a9cff"/>
+<text x="30" y="173" fill="#fff" font-weight="bold">Quelle → Ziel</text><text x="200" y="173" fill="#fff" font-weight="bold">Bits</text><text x="270" y="173" fill="#fff" font-weight="bold">XOR</text><text x="330" y="173" fill="#fff" font-weight="bold">Link</text>
+<text x="30" y="200">10.0.0.2 → 10.0.0.4</text><text x="200" y="200">0 ⊕ 0</text><text x="270" y="200">0</text><text x="330" y="200">0</text>
+<rect x="20" y="208" width="370" height="24" fill="#f3f3f3"/>
+<text x="30" y="225">10.0.0.20 → 10.0.0.21</text><text x="200" y="225">0 ⊕ 1</text><text x="270" y="225">1</text><text x="330" y="225">1</text>
+<text x="30" y="250">10.0.0.1 → 10.0.0.2</text><text x="200" y="250">1 ⊕ 0</text><text x="270" y="250">1</text><text x="330" y="250">1</text>
+<rect x="20" y="258" width="370" height="24" fill="#f3f3f3"/>
+<text x="30" y="275">10.0.0.101 → 10.0.0.103</text><text x="200" y="275">1 ⊕ 1</text><text x="270" y="275">0</text><text x="330" y="275">0</text>
+</g>
+<!-- Tabelle 4 Links -->
+<text x="410" y="145" font-size="14" font-weight="bold" fill="#222">4 Links – letzte 2 Bits</text>
+<g font-size="12" fill="#222">
+<rect x="410" y="155" width="375" height="26" fill="#4a9cff"/>
+<text x="420" y="173" fill="#fff" font-weight="bold">Quelle → Ziel (Ende)</text><text x="590" y="173" fill="#fff" font-weight="bold">Bits</text><text x="670" y="173" fill="#fff" font-weight="bold">XOR</text><text x="730" y="173" fill="#fff" font-weight="bold">Link</text>
+<text x="420" y="200">.5 → .14</text><text x="590" y="200">01 ⊕ 10</text><text x="670" y="200">11</text><text x="730" y="200">3</text>
+<rect x="410" y="208" width="375" height="24" fill="#f3f3f3"/>
+<text x="420" y="225">.4 → .8</text><text x="590" y="225">00 ⊕ 00</text><text x="670" y="225">00</text><text x="730" y="225">0</text>
+<text x="420" y="250">.3 → .1</text><text x="590" y="250">11 ⊕ 01</text><text x="670" y="250">10</text><text x="730" y="250">2</text>
+<rect x="410" y="258" width="375" height="24" fill="#f3f3f3"/>
+<text x="420" y="275">.6 → .7</text><text x="590" y="275">10 ⊕ 11</text><text x="670" y="275">01</text><text x="730" y="275">1</text>
+</g>
+<text x="20" y="298" font-size="11" fill="#222">Vereinfachtes Kursmodell – Catalyst-Switches bilden intern 8 Hash-Werte (3 Bit) und verteilen sie auf die Member.</text>
+<rect x="20" y="305" width="765" height="130" rx="8" fill="#fffbe6" stroke="#ffd23f"/>
+<g font-size="12" fill="#222">
+<text x="32" y="327" font-weight="bold">Merke</text>
+<text x="32" y="349">• Gleiches Adresspaar → immer derselbe Link: keine Umsortierung, aber ein Flow nie schneller als ein Member</text>
+<text x="32" y="371">• Global für alle Po: port-channel load-balance &lt;methode&gt; · prüfen: show etherchannel load-balance</text>
+<text x="32" y="393">• Default plattformabhängig – Catalyst 9300: src-mac (Kurs: „meist src-dst-ip“)</text>
+<text x="32" y="415">• Ein Host-Paar dominiert → Methode mit mehr Varianz wählen (z. B. L4-Ports), nicht den Port steuern</text>
+</g>
+</svg>

@@ -54,3 +54,26 @@ Ergebnis: 6 Fragen korrigiert, 1 entfernt, 139 verbleibend. pruefen.ps1 (ohne -M
 - 096: Begründung "Mapping-Änderung im MST-Modus löst Neuberechnung aus" stammt aus dem Kurs; Cisco-Doku nennt nur, dass MST-Parameter vor dem Moduswechsel konfiguriert werden können (Q4). Fachlich plausibel (geänderter Digest = Regionsgrenze), belassen.
 - 060: "Nicht-Root nutzt Root-Timer" gilt für PVST+ (Frage nennt PVST+), bei RSTP sendet jede Bridge im eigenen Hello-Takt.
 - Course-Notizen nennen "Cisco-MST bis 16 Instanzen" (Cat9k-Troubleshooting-Doc: 16), Cat9300-CG nennt 65 – in keiner Frage verwendet.
+
+## Wissen & Bilder (Checker, 2026-11-24)
+
+Geprüft: encor-1.4.10/wissen/05-stp.md (alle Abschnitte, Tabellen, Befehle, Logmeldungen) sowie 10 SVGs in bilder/05-stp. Alle SVGs sind wohlgeformt ([xml]), UTF-8 ohne BOM, haben <title> als erstes Kind, kein Text außerhalb der viewBox 0 0 800 450.
+
+Belegt (ohne Änderung): Default-Modus Rapid PVST+, Kostenmethode long als Default, Kostentabellen kurz/lang, Timer 2/15/20 mit Bereichen 1–10/4–30/6–40, Priorität 0–61440 in 4096er-Schritten, root primary/secondary (24576/4096 darunter/28672), Port-Priorität 0–240 in 16er-Schritten, Kosten 1–200000000 (Q1, Q3). TC 35 s und Aging = FD (Q6). RSTP: 3 Hellos, TC nur bei Nonedge→Forwarding, TC-While 2 × Hello, Flush außer Empfangsport, Link-Type aus Duplex, Root Ports ohne Link-Type (Q5). Root Guard/Loop Guard (Q8, Q9). BPDU-Guard-Logs (Q10). Region (Name 32 Zeichen, Revision 0–65535, Digest, M-Records) (Q3, Q4).
+
+Korrekturen in der Wissensdatei:
+| Stelle | Problem | Änderung | Quelle |
+|---|---|---|---|
+| STP-Varianten, MST-Motivation | „PVST+ bis zu 4094 Instanzen“ ist nur theoretisch | Ergänzt: eine Instanz pro VLAN, theoretisch 4094; der Cat9300 unterstützt 300 STP-Instanzen (ab 17.2.1, vorher 256) | Q1 |
+| MST-Instanzanzahl (offener Punkt) | 16 gegen 65 war ungeklärt | Geklärt: TAC 218351 nennt 16 (IST + 15 MSTIs, MSTI 1–15). Der Cat9300 17.9 CG sagt „up to 65 MST instances“ (IST + 64). Die Zahl hängt von Plattform und Release ab und ist nicht als feste Zahl zu lernen. Kursfehler 6 umformuliert, mit URLs | Q3, Q4 |
+| BPDU-Guard-Log | Kurzname im ersten Log | `Received BPDU on port GigabitEthernet1/0/5 …` (voller Name wie in Q10). Hinweis auf die `-SP-`-Form beim Cat6500 ergänzt | Q10 |
+| errdisable recovery | Es fehlte, dass Recovery per Default aus ist | Ergänzt: Default aus, Intervall 300 s, `errdisable recovery interval` | Q10 |
+
+Bilder:
+| Datei | Problem | Änderung |
+|---|---|---|
+| 03-rollen.svg | Label „E0/3 NONDESG“ überlappte „E0/1 ROOT“ an SW3. Die Tie-Breaker-Zeile ragte in den Erklärkasten | Label links neben die Linie gesetzt (text-anchor end). Tie-Breaker-Text gekürzt |
+| 10-guards.svg | Letzte Zeile reichte bis an den Kastenrand | Gekürzt: „Erholung: shut/no shut oder errdisable recovery“ |
+| übrige 8 | inhaltlich korrekt (Rollen, Port-IDs, Kosten 16 < 100, 64.4 < 128.2, States/BPDU-Tabelle, TC-Ablauf, MST-Mapping, Guards) | – |
+
+Fragen: Es ist keine geprüfte Frage als falsch aufgefallen. slg-st-120 (Logtexte) und slg-st-083/084/104 (MST) stimmen mit der Wissensdatei überein.

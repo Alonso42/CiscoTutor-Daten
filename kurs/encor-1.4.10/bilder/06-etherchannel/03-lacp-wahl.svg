@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>LACP: wer entscheidet über aktive und Standby-Ports</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">LACP: System Priority entscheidet, Port Priority wählt aus</text>
+<rect x="40" y="60" width="150" height="300" rx="8" fill="#39c86a"/>
+<text x="115" y="90" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SW1</text>
+<text x="115" y="110" text-anchor="middle" font-size="11" fill="#fff">system-priority 4096</text>
+<text x="115" y="126" text-anchor="middle" font-size="11" fill="#fff">→ entscheidet</text>
+<rect x="470" y="60" width="150" height="300" rx="8" fill="#4a9cff"/>
+<text x="545" y="90" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SW2</text>
+<text x="545" y="110" text-anchor="middle" font-size="11" fill="#fff">system-priority 32768</text>
+<text x="545" y="126" text-anchor="middle" font-size="11" fill="#fff">(Default) → folgt</text>
+<g font-size="11" fill="#222">
+<line x1="190" y1="150" x2="470" y2="150" stroke="#39c86a" stroke-width="4"/>
+<text x="196" y="144">Gi1/0/1 · port-prio 100</text><text x="465" y="144" text-anchor="end">P (aktiv)</text>
+<line x1="190" y1="185" x2="470" y2="185" stroke="#39c86a" stroke-width="4"/>
+<text x="196" y="179">Gi1/0/2 · port-prio 100</text><text x="465" y="179" text-anchor="end">P (aktiv)</text>
+<line x1="190" y1="220" x2="470" y2="220" stroke="#39c86a" stroke-width="4"/>
+<text x="196" y="214">Gi1/0/3 · 32768</text><text x="465" y="214" text-anchor="end">P (aktiv)</text>
+<line x1="190" y1="255" x2="470" y2="255" stroke="#39c86a" stroke-width="4"/>
+<text x="196" y="249">Gi1/0/4 · 32768</text><text x="465" y="249" text-anchor="end">P (aktiv)</text>
+<line x1="190" y1="290" x2="470" y2="290" stroke="#ffd23f" stroke-width="4" stroke-dasharray="8 5"/>
+<text x="196" y="284">Gi1/0/5 · 32768</text><text x="465" y="284" text-anchor="end">H (Hot-Standby)</text>
+<line x1="190" y1="325" x2="470" y2="325" stroke="#ffd23f" stroke-width="4" stroke-dasharray="8 5"/>
+<text x="196" y="319">Gi1/0/6 · 32768</text><text x="465" y="319" text-anchor="end">H (Hot-Standby)</text>
+</g>
+<text x="330" y="380" text-anchor="middle" font-size="12" fill="#222">Port-channel1 mit lacp max-bundle 4 → 4 aktiv, 2 Standby (springen bei Ausfall ein)</text>
+<rect x="640" y="60" width="148" height="300" rx="8" fill="#f7f7f7" stroke="#222"/>
+<g font-size="12" fill="#222">
+<text x="650" y="82" font-weight="bold">Reihenfolge</text>
+<text x="650" y="104">1 System-ID =</text>
+<text x="650" y="120">  Priority + MAC</text>
+<text x="650" y="136">  (kleiner gewinnt)</text>
+<text x="650" y="160">2 dessen Port</text>
+<text x="650" y="176">  Priorities</text>
+<text x="650" y="192">  (kleiner = besser)</text>
+<text x="650" y="216">3 Portnummer</text>
+<text x="650" y="244" font-weight="bold">Defaults</text>
+<text x="650" y="264">beide 32768</text>
+<text x="650" y="280">Bereich 1–65535</text>
+<text x="650" y="304" font-weight="bold">Limits</text>
+<text x="650" y="324">16 Ports pro Po,</text>
+<text x="650" y="340">max. 8 aktiv</text>
+</g>
+<rect x="20" y="395" width="768" height="45" rx="8" fill="#f5f8ff" stroke="#4a9cff"/>
+<g font-size="11" font-family="monospace" fill="#222">
+<text x="30" y="414">(config)# lacp system-priority 4096    (config-if)# lacp port-priority 100</text>
+<text x="30" y="431">(config-if)# channel-group 1 mode active   interface Po1 → lacp max-bundle 4 · port-channel min-links 2</text>
+</g>
+</svg>

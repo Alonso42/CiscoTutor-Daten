@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Port States von 802.1D und RSTP</title>
+<rect width="800" height="450" fill="#fff"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#222"/></marker></defs>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Port States: 802.1D (langsam) und RSTP</text>
+<g font-size="13" fill="#222" text-anchor="middle">
+<rect x="20" y="70" width="130" height="70" rx="8" fill="#eee" stroke="#222"/>
+<text x="85" y="98" font-weight="bold">Disabled</text><text x="85" y="118" font-size="11">shutdown</text>
+<rect x="180" y="70" width="130" height="70" rx="8" fill="#ff6b6b"/>
+<text x="245" y="98" font-weight="bold" fill="#fff">Blocking</text><text x="245" y="118" font-size="11" fill="#fff">bis 20 s (Max Age)</text>
+<rect x="340" y="70" width="130" height="70" rx="8" fill="#ffd23f"/>
+<text x="405" y="98" font-weight="bold">Listening</text><text x="405" y="118" font-size="11">15 s (Fwd Delay)</text>
+<rect x="500" y="70" width="130" height="70" rx="8" fill="#b08aff"/>
+<text x="565" y="98" font-weight="bold" fill="#fff">Learning</text><text x="565" y="118" font-size="11" fill="#fff">15 s (Fwd Delay)</text>
+<rect x="660" y="70" width="120" height="70" rx="8" fill="#39c86a"/>
+<text x="720" y="98" font-weight="bold" fill="#fff">Forwarding</text><text x="720" y="118" font-size="11" fill="#fff">Daten fließen</text>
+</g>
+<line x1="150" y1="105" x2="178" y2="105" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<line x1="310" y1="105" x2="338" y2="105" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<line x1="470" y1="105" x2="498" y2="105" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<line x1="630" y1="105" x2="658" y2="105" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<path d="M405 140 C 405 175, 245 175, 245 142" fill="none" stroke="#ff6b6b" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#a)"/>
+<text x="325" y="185" text-anchor="middle" font-size="11" fill="#222">weder Root noch Designated → zurück</text>
+<!-- Tabelle -->
+<g font-size="12" fill="#222">
+<rect x="20" y="205" width="760" height="28" fill="#4a9cff"/>
+<text x="30" y="224" fill="#fff" font-weight="bold">State</text>
+<text x="170" y="224" fill="#fff" font-weight="bold">BPDU empfangen</text>
+<text x="300" y="224" fill="#fff" font-weight="bold">BPDU senden</text>
+<text x="420" y="224" fill="#fff" font-weight="bold">MAC lernen</text>
+<text x="530" y="224" fill="#fff" font-weight="bold">Daten</text>
+<text x="630" y="224" fill="#fff" font-weight="bold">RSTP-State</text>
+<text x="30" y="252">Disabled</text><text x="170" y="252">nein</text><text x="300" y="252">nein</text><text x="420" y="252">nein</text><text x="530" y="252">nein</text><text x="630" y="252">Discarding</text>
+<rect x="20" y="260" width="760" height="24" fill="#f3f3f3"/>
+<text x="30" y="277">Blocking</text><text x="170" y="277">ja</text><text x="300" y="277">nein</text><text x="420" y="277">nein</text><text x="530" y="277">nein</text><text x="630" y="277">Discarding</text>
+<text x="30" y="302">Listening</text><text x="170" y="302">ja</text><text x="300" y="302">ja</text><text x="420" y="302">nein</text><text x="530" y="302">nein</text><text x="630" y="302">Discarding</text>
+<rect x="20" y="310" width="760" height="24" fill="#f3f3f3"/>
+<text x="30" y="327">Learning</text><text x="170" y="327">ja</text><text x="300" y="327">ja</text><text x="420" y="327">ja</text><text x="530" y="327">nein</text><text x="630" y="327">Learning</text>
+<text x="30" y="352">Forwarding</text><text x="170" y="352">ja</text><text x="300" y="352">ja</text><text x="420" y="352">ja</text><text x="530" y="352">ja</text><text x="630" y="352">Forwarding</text>
+</g>
+<rect x="20" y="372" width="370" height="64" rx="8" fill="#fff0f0" stroke="#ff6b6b"/>
+<text x="32" y="394" font-size="12" fill="#222">802.1D: direkter Ausfall ≈ 30 s (2 × 15 s),</text>
+<text x="32" y="414" font-size="12" fill="#222">indirekter Ausfall bis 50 s (20 + 15 + 15)</text>
+<text x="32" y="430" font-size="11" fill="#222">Timer nur auf der Root ändern (Hello 2, FD 15, Max Age 20)</text>
+<rect x="410" y="372" width="370" height="64" rx="8" fill="#eefaf2" stroke="#39c86a"/>
+<text x="422" y="394" font-size="12" fill="#222">RSTP: 3 States, Alternate/Backup als Ersatz,</text>
+<text x="422" y="414" font-size="12" fill="#222">Proposal/Agreement → Konvergenz &lt; 1 s</text>
+<text x="422" y="430" font-size="11" fill="#222">PortFast-Port: sofort Forwarding</text>
+</svg>

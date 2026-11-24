@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>EtherChannel-Konfiguration und Konsistenzregeln</title>
+<rect width="800" height="450" fill="#fff"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#222"/></marker></defs>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Konfigurieren: erst gleich machen, dann bündeln</text>
+<!-- Ablauf -->
+<g font-size="12" fill="#222" text-anchor="middle">
+<rect x="20" y="50" width="175" height="62" rx="8" fill="#f5f8ff" stroke="#4a9cff"/>
+<text x="107" y="74" font-weight="bold">1 Ports wählen</text><text x="107" y="94">2, 4 oder 8, gleicher Typ</text>
+<rect x="215" y="50" width="175" height="62" rx="8" fill="#f5f8ff" stroke="#4a9cff"/>
+<text x="302" y="74" font-weight="bold">2 channel-group</text><text x="302" y="94">n mode active|on|…</text>
+<rect x="410" y="50" width="175" height="62" rx="8" fill="#f5f8ff" stroke="#4a9cff"/>
+<text x="497" y="74" font-weight="bold">3 interface Po n</text><text x="497" y="94">Trunk, VLANs, (IP bei L3)</text>
+<rect x="605" y="50" width="175" height="62" rx="8" fill="#f5f8ff" stroke="#4a9cff"/>
+<text x="692" y="74" font-weight="bold">4 Verifizieren</text><text x="692" y="94">show etherchannel summary</text>
+</g>
+<line x1="195" y1="81" x2="213" y2="81" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<line x1="390" y1="81" x2="408" y2="81" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<line x1="585" y1="81" x2="603" y2="81" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<!-- Diagramm Po vs Member -->
+<rect x="40" y="150" width="120" height="150" rx="6" fill="#4a9cff"/><text x="100" y="230" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">SW1</text>
+<rect x="340" y="150" width="120" height="150" rx="6" fill="#4a9cff"/><text x="400" y="230" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">SW2</text>
+<ellipse cx="250" cy="225" rx="38" ry="58" fill="none" stroke="#b08aff" stroke-width="3"/>
+<line x1="160" y1="185" x2="340" y2="185" stroke="#39c86a" stroke-width="4"/>
+<line x1="160" y1="225" x2="340" y2="225" stroke="#39c86a" stroke-width="4"/>
+<line x1="160" y1="265" x2="340" y2="265" stroke="#ff6b6b" stroke-width="4"/>
+<text x="250" y="145" text-anchor="middle" font-size="12" fill="#b08aff" font-weight="bold">interface Po1 → wirkt auf alle</text>
+<text x="250" y="290" text-anchor="middle" font-size="11" fill="#ff6b6b">nur Member geändert</text>
+<text x="250" y="305" text-anchor="middle" font-size="11" fill="#ff6b6b">→ inkonsistent → (s)</text>
+<!-- Muss gleich sein -->
+<rect x="490" y="135" width="295" height="175" rx="8" fill="#eefaf2" stroke="#39c86a"/>
+<g font-size="12" fill="#222">
+<text x="502" y="157" font-weight="bold">Muss auf allen Membern gleich sein</text>
+<text x="502" y="179">• Speed und Duplex</text>
+<text x="502" y="199">• Switchport-Mode (access / trunk)</text>
+<text x="502" y="219">• Access-VLAN</text>
+<text x="502" y="239">• Trunk: Native VLAN, Allowed VLANs,</text>
+<text x="502" y="257">  Encapsulation</text>
+<text x="502" y="277">• Layer: alle L2 oder alle no switchport</text>
+<text x="502" y="297">• Porttyp (kein FE + GE gemischt)</text>
+</g>
+<rect x="20" y="325" width="380" height="110" rx="8" fill="#fffbe6" stroke="#ffd23f"/>
+<g font-size="12" fill="#222">
+<text x="32" y="347" font-weight="bold">Stört NICHT</text>
+<text x="32" y="368">• unterschiedliche STP-Port-Kosten</text>
+<text x="32" y="388">• Ports nicht benachbart / anderes Modul</text>
+<text x="32" y="408">• Member shutdown = Linkausfall, Rest trägt</text>
+<text x="32" y="428">• Beschreibung (description)</text>
+</g>
+<rect x="420" y="325" width="365" height="110" rx="8" fill="#f5f8ff" stroke="#4a9cff"/>
+<g font-size="11" font-family="monospace" fill="#222">
+<text x="430" y="345">interface range Gi1/0/1 - 2</text>
+<text x="430" y="361"> no switchport</text>
+<text x="430" y="377"> channel-group 1 mode active</text>
+<text x="430" y="393">interface Port-channel1</text>
+<text x="430" y="409"> no switchport</text>
+<text x="430" y="425"> ip address 10.0.12.1 255.255.255.252</text>
+</g>
+<text x="775" y="345" text-anchor="end" font-size="11" fill="#222" font-weight="bold">L3-EC (RU)</text>
+</svg>

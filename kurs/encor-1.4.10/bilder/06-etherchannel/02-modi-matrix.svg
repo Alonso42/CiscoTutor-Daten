@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>EtherChannel-Modi: welche Kombination bündelt</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Modus-Kombinationen: Bündel oder nicht?</text>
+<g font-size="13" fill="#222" text-anchor="middle">
+<!-- header -->
+<rect x="20" y="50" width="110" height="40" fill="#eee" stroke="#222"/><text x="75" y="75" font-size="11">Seite A \ B</text>
+<rect x="130" y="50" width="80" height="40" fill="#ddd" stroke="#222"/><text x="170" y="75" font-weight="bold">on</text>
+<rect x="210" y="50" width="80" height="40" fill="#4a9cff" stroke="#222"/><text x="250" y="75" font-weight="bold" fill="#fff">active</text>
+<rect x="290" y="50" width="80" height="40" fill="#4a9cff" stroke="#222"/><text x="330" y="75" font-weight="bold" fill="#fff">passive</text>
+<rect x="370" y="50" width="80" height="40" fill="#b08aff" stroke="#222"/><text x="410" y="75" font-weight="bold" fill="#fff">desirable</text>
+<rect x="450" y="50" width="80" height="40" fill="#b08aff" stroke="#222"/><text x="490" y="75" font-weight="bold" fill="#fff">auto</text>
+<!-- rows -->
+<rect x="20" y="90" width="110" height="40" fill="#ddd" stroke="#222"/><text x="75" y="115" font-weight="bold">on</text>
+<rect x="130" y="90" width="80" height="40" fill="#39c86a" stroke="#222"/><text x="170" y="115" fill="#fff">✓</text>
+<rect x="210" y="90" width="80" height="40" fill="#fff" stroke="#222"/><text x="250" y="115">–</text>
+<rect x="290" y="90" width="80" height="40" fill="#fff" stroke="#222"/><text x="330" y="115">–</text>
+<rect x="370" y="90" width="80" height="40" fill="#fff" stroke="#222"/><text x="410" y="115">–</text>
+<rect x="450" y="90" width="80" height="40" fill="#fff" stroke="#222"/><text x="490" y="115">–</text>
+<rect x="20" y="130" width="110" height="40" fill="#4a9cff" stroke="#222"/><text x="75" y="155" font-weight="bold" fill="#fff">active</text>
+<rect x="130" y="130" width="80" height="40" fill="#fff" stroke="#222"/><text x="170" y="155">–</text>
+<rect x="210" y="130" width="80" height="40" fill="#39c86a" stroke="#222"/><text x="250" y="155" fill="#fff">✓</text>
+<rect x="290" y="130" width="80" height="40" fill="#39c86a" stroke="#222"/><text x="330" y="155" fill="#fff">✓</text>
+<rect x="370" y="130" width="80" height="40" fill="#fff" stroke="#222"/><text x="410" y="155">–</text>
+<rect x="450" y="130" width="80" height="40" fill="#fff" stroke="#222"/><text x="490" y="155">–</text>
+<rect x="20" y="170" width="110" height="40" fill="#4a9cff" stroke="#222"/><text x="75" y="195" font-weight="bold" fill="#fff">passive</text>
+<rect x="130" y="170" width="80" height="40" fill="#fff" stroke="#222"/><text x="170" y="195">–</text>
+<rect x="210" y="170" width="80" height="40" fill="#39c86a" stroke="#222"/><text x="250" y="195" fill="#fff">✓</text>
+<rect x="290" y="170" width="80" height="40" fill="#ff6b6b" stroke="#222"/><text x="330" y="195" fill="#fff">✕</text>
+<rect x="370" y="170" width="80" height="40" fill="#fff" stroke="#222"/><text x="410" y="195">–</text>
+<rect x="450" y="170" width="80" height="40" fill="#fff" stroke="#222"/><text x="490" y="195">–</text>
+<rect x="20" y="210" width="110" height="40" fill="#b08aff" stroke="#222"/><text x="75" y="235" font-weight="bold" fill="#fff">desirable</text>
+<rect x="130" y="210" width="80" height="40" fill="#fff" stroke="#222"/><text x="170" y="235">–</text>
+<rect x="210" y="210" width="80" height="40" fill="#fff" stroke="#222"/><text x="250" y="235">–</text>
+<rect x="290" y="210" width="80" height="40" fill="#fff" stroke="#222"/><text x="330" y="235">–</text>
+<rect x="370" y="210" width="80" height="40" fill="#39c86a" stroke="#222"/><text x="410" y="235" fill="#fff">✓</text>
+<rect x="450" y="210" width="80" height="40" fill="#39c86a" stroke="#222"/><text x="490" y="235" fill="#fff">✓</text>
+<rect x="20" y="250" width="110" height="40" fill="#b08aff" stroke="#222"/><text x="75" y="275" font-weight="bold" fill="#fff">auto</text>
+<rect x="130" y="250" width="80" height="40" fill="#fff" stroke="#222"/><text x="170" y="275">–</text>
+<rect x="210" y="250" width="80" height="40" fill="#fff" stroke="#222"/><text x="250" y="275">–</text>
+<rect x="290" y="250" width="80" height="40" fill="#fff" stroke="#222"/><text x="330" y="275">–</text>
+<rect x="370" y="250" width="80" height="40" fill="#39c86a" stroke="#222"/><text x="410" y="275" fill="#fff">✓</text>
+<rect x="450" y="250" width="80" height="40" fill="#ff6b6b" stroke="#222"/><text x="490" y="275" fill="#fff">✕</text>
+</g>
+<text x="20" y="315" font-size="12" fill="#222">✓ Bündel · ✕ beide nur passiv, kein Bündel · – Protokoll-Mismatch, kein Bündel</text>
+<!-- Legende rechts -->
+<g font-size="12" fill="#222">
+<rect x="550" y="50" width="235" height="78" rx="8" fill="#f5f8ff" stroke="#4a9cff"/>
+<text x="560" y="70" font-weight="bold">LACP – IEEE 802.3ad</text>
+<text x="560" y="88">active: sendet LACPDUs</text>
+<text x="560" y="104">passive: antwortet nur</text>
+<text x="560" y="120">herstellerübergreifend</text>
+<rect x="550" y="138" width="235" height="78" rx="8" fill="#f7f4ff" stroke="#b08aff"/>
+<text x="560" y="158" font-weight="bold">PAgP – Cisco-proprietär</text>
+<text x="560" y="176">desirable: sendet PAgP</text>
+<text x="560" y="192">auto: antwortet nur</text>
+<text x="560" y="208">Option silent / non-silent</text>
+<rect x="550" y="226" width="235" height="78" rx="8" fill="#f3f3f3" stroke="#222"/>
+<text x="560" y="246" font-weight="bold">on – statisch</text>
+<text x="560" y="264">keine Pakete, keine Prüfung</text>
+<text x="560" y="280">sofort im Bündel</text>
+<text x="560" y="296">nur mit on auf der Gegenseite</text>
+</g>
+<rect x="20" y="335" width="765" height="100" rx="8" fill="#fff0f0" stroke="#ff6b6b"/>
+<g font-size="12" fill="#222">
+<text x="32" y="357" font-weight="bold">Typische Fehlerbilder</text>
+<text x="32" y="377">• on gegen active: Gegenseite suspendiert ihre LACP-Ports („LACP currently not enabled on the remote port“)</text>
+<text x="32" y="397">• on gegen nicht gebündelte Ports: Schleifengefahr → EtherChannel Guard setzt Ports err-disabled (channel-misconfig)</text>
+<text x="32" y="417">• passive/passive bzw. auto/auto: Po bleibt down (SD), Member stand-alone oder suspended</text>
+</g>
+</svg>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Parallele Links ohne und mit EtherChannel</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Parallele Links: STP blockiert – EtherChannel bündelt</text>
+<!-- ohne -->
+<text x="20" y="65" font-size="14" font-weight="bold" fill="#ff6b6b">Ohne Bündel</text>
+<rect x="60" y="80" width="100" height="70" rx="6" fill="#4a9cff"/><text x="110" y="120" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SW1</text>
+<rect x="400" y="80" width="100" height="70" rx="6" fill="#4a9cff"/><text x="450" y="120" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SW2</text>
+<line x1="160" y1="95" x2="400" y2="95" stroke="#39c86a" stroke-width="4"/>
+<line x1="160" y1="115" x2="400" y2="115" stroke="#bbb" stroke-width="4" stroke-dasharray="7 5"/>
+<line x1="160" y1="135" x2="400" y2="135" stroke="#bbb" stroke-width="4" stroke-dasharray="7 5"/>
+<text x="375" y="122" font-size="18" fill="#ff6b6b">✕</text>
+<text x="375" y="142" font-size="18" fill="#ff6b6b">✕</text>
+<text x="280" y="172" text-anchor="middle" font-size="12" fill="#222">3 × 1 Gbit/s, nutzbar nur 1 Gbit/s – STP blockiert den Rest</text>
+<!-- mit -->
+<text x="20" y="225" font-size="14" font-weight="bold" fill="#39c86a">Mit EtherChannel</text>
+<rect x="60" y="240" width="100" height="70" rx="6" fill="#4a9cff"/><text x="110" y="280" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SW1</text>
+<rect x="400" y="240" width="100" height="70" rx="6" fill="#4a9cff"/><text x="450" y="280" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SW2</text>
+<ellipse cx="280" cy="275" rx="40" ry="36" fill="none" stroke="#b08aff" stroke-width="3"/>
+<line x1="160" y1="255" x2="400" y2="255" stroke="#39c86a" stroke-width="4"/>
+<line x1="160" y1="275" x2="400" y2="275" stroke="#39c86a" stroke-width="4"/>
+<line x1="160" y1="295" x2="400" y2="295" stroke="#39c86a" stroke-width="4"/>
+<text x="280" y="333" text-anchor="middle" font-size="12" fill="#222">Po1: ein logischer Port für STP, 3 Gbit/s gesamt</text>
+<text x="280" y="352" text-anchor="middle" font-size="12" fill="#222">Member fällt aus → Po1 bleibt up, kein STP-Ereignis</text>
+<!-- Vorteile -->
+<rect x="540" y="70" width="245" height="290" rx="8" fill="#eefaf2" stroke="#39c86a"/>
+<g font-size="13" fill="#222">
+<text x="552" y="94" font-weight="bold">Vorteile</text>
+<text x="552" y="120">• Logische Aggregation:</text>
+<text x="552" y="138">  Konfiguration am Po</text>
+<text x="552" y="162">• Mehr Bandbreite ohne</text>
+<text x="552" y="180">  teure Upgrades</text>
+<text x="552" y="204">• Load Sharing per Hash</text>
+<text x="552" y="228">• Ein logischer STP-Port</text>
+<text x="552" y="252">• Redundanz: läuft, solange</text>
+<text x="552" y="270">  ≥ 1 Member up ist</text>
+<text x="552" y="298" font-weight="bold">Grenzen</text>
+<text x="552" y="320">• genau 2 Geräte pro Bündel</text>
+<text x="552" y="340">• 2–8 aktive, gleiche Ports</text>
+</g>
+<rect x="20" y="380" width="765" height="55" rx="8" fill="#fffbe6" stroke="#ffd23f"/>
+<text x="32" y="402" font-size="12" fill="#222">Mehrere EtherChannels zwischen denselben Switches (z. B. Po1 und Po2): STP blockiert dann ein ganzes Bündel.</text>
+<text x="32" y="422" font-size="12" fill="#222">LACP: bis 16 Ports konfigurierbar, davon 8 aktiv und 8 Hot-Standby. Keine Mischung von FE und GE.</text>
+</svg>
