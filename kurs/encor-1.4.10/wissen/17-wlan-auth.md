@@ -14,7 +14,7 @@ Topics: ENCOR-LEGACY-WLAN (Wireless ist im ENCOR-Blueprint v1.2 kein eigenes The
 - **WPA2/WPA3 Personal**: ein gemeinsamer Schlüssel (PSK bzw. SAE-Passwort) für alle Clients des SSID; kein RADIUS. Für Heim/SOHO. Wer das Passwort kennt, gehört dazu – keine individuelle Zuordnung, Widerruf nur durch Passwortwechsel für alle.
 - **WPA2/WPA3 Enterprise**: 802.1X + EAP; jeder Benutzer/jedes Gerät wird einzeln gegen einen **RADIUS-Server** authentifiziert; individuelle, dynamische Sitzungsschlüssel pro Client.
 - **WPA3** (Wi-Fi Alliance, 2018):
-  - **WPA3-Personal** ersetzt PSK durch **SAE** (Simultaneous Authentication of Equals, "Dragonfly", IEEE 802.11-2016). Schutz gegen **Offline-Wörterbuchangriffe** (Mitschnitt des Handshakes reicht nicht zum Knacken) und **Forward Secrecy** (späteres Bekanntwerden des Passworts entschlüsselt alten Verkehr nicht).
+  - **WPA3-Personal** ersetzt PSK durch **SAE** (Simultaneous Authentication of Equals, "Dragonfly", eingeführt mit IEEE 802.11s-2011, seit 802.11-2012 im Basisstandard). Schutz gegen **Offline-Wörterbuchangriffe** (Mitschnitt des Handshakes reicht nicht zum Knacken) und **Forward Secrecy** (späteres Bekanntwerden des Passworts entschlüsselt alten Verkehr nicht).
   - **PMF (802.11w) ist bei WPA3 Pflicht** (Protected Management Frames).
   - **WPA3-Enterprise**: 802.1X wie WPA2-Enterprise, PMF Pflicht. Optional **192-bit-Modus** (CNSA/Suite B): GCMP-256, HMAC-SHA-384, ECDH/ECDSA mit 384-bit-Kurven, nur **EAP-TLS** mit entsprechend starken Zertifikaten.
   - **Transition Mode**: WPA2-PSK und WPA3-SAE auf demselben SSID (PMF "optional/capable"), damit Alt-Clients weiter funktionieren – Sicherheit nur so gut wie das schwächere Verfahren.
@@ -126,7 +126,7 @@ Drei Designentscheidungen: **Pfadisolierung** (lokaler WLC oder Anchor-WLC), **P
 - Gast-SSID auf den Campus-APs, aber Gastverkehr soll in der **DMZ** austreten, ohne Gast-VLAN durch den Campus zu ziehen.
 - **Foreign WLC** (an dem die APs hängen) tunnelt den Client-Verkehr zum **Anchor WLC** in der DMZ (Mobility-Tunnel). Der Anchor vergibt die IP (Gast-VLAN liegt nur dort), stellt meist auch das LWA-Portal bereit und leitet ins Internet.
 - 9800: Mobility-Tunnel ist **CAPWAP** (Control UDP **16666**, Data UDP **16667**); AireOS-Legacy nutzte **EoIP** (IP-Protokoll 97) + UDP 16666 für Control. Diese Ports in der DMZ-Firewall freigeben.
-- 9800-Konfiguration: im Policy Profile des Foreign `mobility anchor <anchor-ip> priority 1`; auf dem Anchor im Policy Profile `mobility anchor` (ohne IP = Export-Anchor). WLAN-Profil (Name, SSID, Security) muss auf beiden WLCs übereinstimmen. Mobility-Peering muss "up" sein.
+- 9800-Konfiguration: im Policy Profile des Foreign `mobility anchor <anchor-ip> priority 1`; auf dem Anchor im Policy Profile `mobility anchor` (ohne IP = Export-Anchor). WLAN-Profil (Name, SSID, Security) **und Policy-Profil (gleicher Name, gleiche Einstellungen; nur das VLAN darf abweichen)** müssen laut Cisco auf beiden WLCs übereinstimmen. Mobility-Peering muss "up" sein.
 - Mehrere Anchors für Redundanz (Prioritäten).
 
 ## Describe EAPOL / 4-Way Handshake
@@ -153,7 +153,7 @@ Drei Designentscheidungen: **Pfadisolierung** (lokaler WLC oder Anchor-WLC), **P
 - Day-0 CLI-Wizard: nur ohne Startup-Config (neu oder nach `write erase` + Reload). Abfragen u. a.: Management-Interface und -IP, statische Route, Management-Credentials, **Wireless Management Interface**, Deployment-Modus (standalone/active/standby), Hostname, AP-Credentials, **Country Code**, NTP/Zeit; optional Zeitzone, Client-Dichte, AAA-Server, SSID, **Virtual IP**, RF Group Name, HA. Abschluss: `[2] Save this configuration to nvram and exit`. Erneut startbar mit `setup` im privileged EXEC; Wizard überspringen mit "no".
 - Day-0 GUI (9800-Hardware): PC an Service Port/Front-Port, `https://<ip>`; Default-Login **webui**, Passwort = **Seriennummer** des Geräts (laut Kurs). Danach Admin-Konto, General Settings (Deployment-Modus, Country, Zeit, NTP, AAA), Wireless Management Settings (Port, VLAN, IP, Gateway), Wireless Networks (Employee/Guest-SSID), Advanced (RF Client Density, AP Certificate) → Finish.
 - EWC: SSID **CiscoAirProvision**, `https://mywifi.cisco.com`, Default webui/cisco; alternativ Cisco Catalyst/Wireless App. Voraussetzungen: kein anderer WLC im Netz, externer DHCP.
-- Default: SSH an, Telnet aus; CLI-Session-Timeout Default 5 min (laut Kurs).
+- Default: SSH an, Telnet aus; CLI-Session-Timeout Default 5 min (laut Kurs; der IOS-XE-Default für `exec-timeout` auf Line-Ebene ist 10 min – im Zweifel am Gerät prüfen).
 
 ### WLC-Interfaces
 

@@ -1,0 +1,2016 @@
+[
+    {
+        "id":  "slg-wu-001",
+        "topic":  "CCNA2-1.5.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A small office uses WPA2-Personal on its only SSID. How are the wireless clients authenticated?",
+        "optionen":  [
+                         "Each client presents a certificate that an internal CA has issued",
+                         "The AP sends the passphrase to each client in its beacon frames",
+                         "Each user is checked against a RADIUS server with individual credentials",
+                         "All clients use the same passphrase, and no RADIUS server is involved"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "WPA2-Personal nutzt einen statisch konfigurierten Pre-Shared Key, den alle Clients und der AP kennen; ein Authentifizierungsserver fehlt. Individuelle Credentials über RADIUS bzw. Zertifikate gehören zu WPA2-Enterprise, und der Schlüssel wird nie über Funk verteilt."
+    },
+    {
+        "id":  "slg-wu-002",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An attacker captures a complete WEP Shared Key Authentication exchange between a client and an AP. Why is this capture valuable to the attacker?",
+        "optionen":  [
+                         "It contains the RADIUS shared secret that the AP uses to protect the WEP key",
+                         "It contains the AES session key, because SKA sends it unencrypted after success",
+                         "It contains the cleartext challenge and its encrypted form, which help recover the key stream",
+                         "It contains nothing useful, because SKA creates a fresh random key for every client"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei SKA sendet der AP eine Challenge im Klartext, und der Client antwortet mit derselben Challenge, verschlüsselt mit dem statischen WEP-Key. Klartext plus Chiffrat liefern den RC4-Keystream und erleichtern das Knacken – deshalb gilt SKA als unsicher und veraltet."
+    },
+    {
+        "id":  "slg-wu-003",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does a WPA2-Personal client prove to the AP that it knows the correct pre-shared key?",
+        "optionen":  [
+                         "By placing the PSK in an EAP-Response/Identity message inside the EAPOL frame",
+                         "With a MIC in 4-way handshake message 2, computed from keys derived from the PSK",
+                         "By encrypting a cleartext challenge from the AP with the PSK, as WEP did before",
+                         "By sending a hash of the PSK in the association request to the access point"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei WPA/WPA2-PSK wird der Schlüssel nie übertragen. Client und AP leiten aus PMK, ANonce, SNonce und MAC-Adressen die PTK ab; der MIC in Nachricht 2 (mit dem KCK berechnet) beweist, dass der Client dieselbe PMK besitzt. Die Klartext-Challenge war das WEP-SKA-Verfahren."
+    },
+    {
+        "id":  "slg-wu-004",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which inputs are used to derive the PMK on a WPA2-Personal network?",
+        "optionen":  [
+                         "The passphrase and the ANonce that the AP sends in handshake message 1",
+                         "The passphrase and the BSSID, processed with SHA-1 in a single round",
+                         "The passphrase and the SSID, processed with PBKDF2 and 4096 iterations",
+                         "The passphrase and the channel number that the client associates on"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei WPA2-Personal gilt PMK = PBKDF2(Passphrase, SSID, 4096 Iterationen, 256 bit). Die Nonces und MAC-Adressen fließen erst in die PTK ein, nicht in die PMK; die PMK ist daher für alle Clients eines SSID gleich."
+    },
+    {
+        "id":  "slg-wu-005",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An attacker publishes precomputed WPA2 PMK tables for common passphrases. Why are these tables only useful against networks with one particular SSID?",
+        "optionen":  [
+                         "The SSID is used as the salt when the PMK is derived from the passphrase",
+                         "The SSID is hashed into the MIC of every data frame sent by the AP",
+                         "The SSID determines the AES key length that is used for CCMP encryption",
+                         "The SSID is encrypted into every 4-way handshake message with the GTK"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die SSID dient bei PBKDF2 als Salt. Dieselbe Passphrase ergibt bei einer anderen SSID eine andere PMK, darum sind vorberechnete Tabellen nur für genau diese SSID brauchbar. Häufige SSIDs wie \"linksys\" oder \"Guest\" sind deshalb besonders gefährdet."
+    },
+    {
+        "id":  "slg-wu-006",
+        "topic":  "CCNA2-1.5.c",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "A WPA2-Personal passphrase must be ___ ASCII characters long; alternatively, a 64-digit hex key can be entered.",
+        "optionen":  [
+                         "8 to 128",
+                         "4 to 32",
+                         "13 or 26",
+                         "8 to 63"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Standard verlangt eine Passphrase mit 8 bis 63 druckbaren ASCII-Zeichen oder direkt einen 256-bit-Schlüssel als 64 Hex-Zeichen. 13 bzw. 26 Zeichen waren die Längen von WEP-Keys (ASCII bzw. Hex für 104 bit)."
+    },
+    {
+        "id":  "slg-wu-007",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A penetration tester captures one 4-way handshake on a WPA2-PSK SSID and cracks the passphrase offline with a word list. Which change best prevents this attack?",
+        "optionen":  [
+                         "Changing the WLAN cipher from AES-CCMP to TKIP",
+                         "Enabling MAC filtering for all known client devices",
+                         "Hiding the SSID so that it is not sent in beacons",
+                         "Migrating the SSID to WPA3-Personal with SAE"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "SAE (Dragonfly) ist gegen Offline-Wörterbuchangriffe resistent: Aus einem mitgeschnittenen Austausch lässt sich das Passwort nicht offline prüfen, jeder Rateversuch erfordert eine aktive Interaktion. Verstecktes SSID und MAC-Filter sind leicht zu umgehen, TKIP ist veraltet."
+    },
+    {
+        "id":  "slg-wu-008",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On a WPA2-Personal SSID, an insider who knows the PSK captures the complete 4-way handshake of a colleague\u0027s laptop. What can the insider do with this capture?",
+        "optionen":  [
+                         "Only replay the handshake to disconnect the laptop from the AP",
+                         "Nothing, because the PTK also depends on the colleague\u0027s password",
+                         "Only read broadcast frames, because unicast uses a RADIUS key",
+                         "Derive the colleague\u0027s PTK and decrypt that laptop\u0027s unicast traffic"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bei WPA2-PSK ist die PMK für alle gleich. Mit PMK, ANonce, SNonce und den MAC-Adressen aus dem Mitschnitt berechnet der Insider die PTK und kann den Unicast-Verkehr entschlüsseln. Bei WPA2-Enterprise hat jeder Client eine eigene PMK, bei WPA3-SAE verhindert die Forward Secrecy das."
+    },
+    {
+        "id":  "slg-wu-009",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An attacker recorded WPA3-Personal (SAE) traffic of a company for months. Later the attacker learns the SSID password. Can the recorded traffic now be decrypted?",
+        "optionen":  [
+                         "Yes, the password is all that is needed to derive every old PMK",
+                         "Yes, but only frames that were sent with the group key (GTK)",
+                         "No, because WPA3 encrypts the recordings with GCMP-256 by default",
+                         "No, SAE provides forward secrecy, so old sessions stay protected"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "SAE erzeugt pro Sitzung eine PMK aus einem Diffie-Hellman-ähnlichen Austausch; das Passwort allein reicht nicht, um alte PMKs zu berechnen (Forward Secrecy). Bei WPA2-PSK wäre der mitgeschnittene Verkehr mit dem Passwort entschlüsselbar. GCMP-256 gibt es nur im 192-bit-Modus von WPA3-Enterprise."
+    },
+    {
+        "id":  "slg-wu-010",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A WLAN runs in WPA3 transition mode so that old WPA2-only clients can still join. What is the main security drawback?",
+        "optionen":  [
+                         "WPA3 clients are forced to fall back to TKIP while WPA2 clients are present",
+                         "WPA2 clients still use PSK, so their handshakes stay open to offline attacks",
+                         "PMF must be disabled completely, so no client is protected from deauth frames",
+                         "SAE clients must share one PMK with all WPA2 clients of the same SSID"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Im Transition Mode sind PSK und SAE auf demselben SSID aktiv, PMF ist optional. WPA3-Clients nutzen SAE, WPA2-Clients aber weiter PSK mit 4-Way Handshake, der offline angreifbar ist. Das SSID ist damit nur so sicher wie sein schwächster Modus; TKIP ist dabei nicht im Spiel."
+    },
+    {
+        "id":  "slg-wu-011",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A company adds Wi-Fi 6E APs and wants to offer its corporate SSID (today WPA2-Enterprise) and its guest SSID (today open with WebAuth) in the 6 GHz band. What is required?",
+        "optionen":  [
+                         "Only TKIP must be removed; PMF stays optional for both SSIDs in 6 GHz",
+                         "Corporate on WPA3-Enterprise and guests on OWE (Enhanced Open), both with PMF",
+                         "Nothing, because the 6 GHz band accepts the same security modes as 5 GHz",
+                         "Corporate may stay WPA2, but guests must move to a WPA2-PSK shared passphrase"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Im 6-GHz-Band sind nur WPA3 (SAE oder Enterprise) und OWE erlaubt, jeweils mit verpflichtendem PMF. WPA2 und reines Open (auch mit WebAuth) sind dort nicht zulässig; ein Gast-SSID braucht daher OWE, ggf. kombiniert mit einem Portal."
+    },
+    {
+        "id":  "slg-wu-012",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about Wi-Fi Enhanced Open (OWE) are true? (Choose two.)",
+        "optionen":  [
+                         "It requires a RADIUS server that checks every client\u0027s MAC address",
+                         "Each client gets individual encryption keys without entering a password",
+                         "It is allowed only in the 2.4 GHz band because of legacy clients",
+                         "It encrypts traffic with one shared passphrase printed at the reception",
+                         "It does not authenticate the network, so it cannot detect an evil twin"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "OWE (RFC 8110) führt bei der Association einen Diffie-Hellman-Austausch durch und verschlüsselt so jeden Client einzeln – ohne Passwort. Es authentifiziert aber weder Client noch Netz: gegen passives Mitlesen hilft es, gegen einen gefälschten AP nicht. OWE ist gerade im 6-GHz-Band das Mittel für offene Netze."
+    },
+    {
+        "id":  "slg-wu-013",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which attack does 802.11w Protected Management Frames (PMF) mitigate?",
+        "optionen":  [
+                         "Offline dictionary attacks against a captured WPA2 4-way handshake",
+                         "Spoofed deauthentication and disassociation frames that kick clients off",
+                         "Co-channel interference caused by neighboring APs on the same channel",
+                         "Rogue DHCP servers that hand out wrong gateways in the client VLAN"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "PMF schützt robuste Management-Frames wie Deauthentication und Disassociation kryptografisch (Unicast mit der PTK, Broadcast mit der IGTK). Gefälschte Deauth-Frames werden verworfen. Gegen Offline-Angriffe hilft SAE, gegen Rogue DHCP z. B. DHCP Snooping."
+    },
+    {
+        "id":  "slg-wu-014",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "After PMF is set to \u0027required\u0027 on a WPA2-Enterprise SSID, most laptops connect, but several older barcode scanners can no longer associate. What is the most likely cause and fix?",
+        "optionen":  [
+                         "The scanners lack 802.11w support; set PMF to optional or move them to another SSID",
+                         "The scanners need new client certificates, because PMF requires EAP-TLS for every client",
+                         "The scanners exceed the PMF client limit per AP; add more APs to the coverage area",
+                         "The scanners use TKIP, which PMF converts to CCMP; enable TKIP again on this WLAN"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit PMF \u0027required\u0027 werden Clients ohne 802.11w-Unterstützung abgewiesen. Lösung: PMF \u0027optional\u0027 (capable) erlauben oder Altgeräte in ein eigenes SSID legen. PMF verlangt keine bestimmte EAP-Methode und hat kein Client-Limit; TKIP würde nur die Sicherheit verschlechtern."
+    },
+    {
+        "id":  "slg-wu-015",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A defense contractor must deploy WPA3-Enterprise in 192-bit mode. Which EAP method can the clients use?",
+        "optionen":  [
+                         "EAP-TTLS/PAP",
+                         "EAP-FAST",
+                         "EAP-TLS",
+                         "PEAP-MSCHAPv2"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der 192-bit-Modus (CNSA-Suite) erlaubt nur EAP-TLS mit entsprechend starken Zertifikaten (ECDSA P-384 bzw. RSA ≥ 3072 bit). Passwortbasierte Methoden wie PEAP, EAP-FAST oder TTLS/PAP sind dort nicht zulässig."
+    },
+    {
+        "id":  "slg-wu-016",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "In WPA3-Enterprise 192-bit mode, data frames are encrypted with ___.",
+        "optionen":  [
+                         "CCMP-128",
+                         "GCMP-256",
+                         "WEP-104",
+                         "TKIP"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der 192-bit-Modus nutzt GCMP-256 für die Daten, HMAC-SHA-384 und ECDH/ECDSA mit 384-bit-Kurven. CCMP-128 ist der Standard-Cipher von WPA2 und WPA3-Personal/-Enterprise, TKIP und WEP sind veraltet."
+    },
+    {
+        "id":  "slg-wu-017",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An old SSID still allows WPA with TKIP. New 802.11ac laptops connect to it, but never above 54 Mbps. What explains this?",
+        "optionen":  [
+                         "TKIP limits every SSID to the 2.4 GHz band, where 802.11ac cannot operate",
+                         "TKIP disables channel bonding on the AP radio, so only 20 MHz channels remain",
+                         "High-throughput 802.11n/ac rates require CCMP; with TKIP only legacy rates remain",
+                         "802.11ac clients must use WEP for compatibility when TKIP is enabled on a WLAN"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Seit 802.11n dürfen HT/VHT/HE-Datenraten nur mit CCMP (AES) genutzt werden. Mit TKIP oder WEP fallen Clients auf Legacy-Raten (max. 54 Mbit/s) zurück. TKIP ist zudem unsicher und gehört abgeschaltet."
+    },
+    {
+        "id":  "slg-wu-018",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A home router offers Wi-Fi Protected Setup (WPS) with a PIN method. What is the recommendation?",
+        "optionen":  [
+                         "Enable WPS only on WPA2-Enterprise SSIDs, where it adds a second factor to 802.1X",
+                         "Enable WPS, because it replaces the PSK with a certificate for each client device",
+                         "Keep WPS, because it is part of WPA2 and cannot be switched off on modern routers",
+                         "Disable WPS, because the PIN method has known weaknesses and can be brute-forced"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "WPS (früher Wi-Fi Simple Config) ist nicht Teil von WPA2 und hat bekannte Schwachstellen, vor allem die per Brute Force angreifbare PIN. Empfehlung: WPS deaktivieren. Es ersetzt weder den PSK durch Zertifikate noch ergänzt es 802.1X."
+    },
+    {
+        "id":  "slg-wu-019",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedem Endgerät die passendste WLAN-Zugangsmethode zu.",
+        "paare":  [
+                      [
+                          "Besucher mit eigenem Smartphone",
+                          "Web Authentication (Portal)"
+                      ],
+                      [
+                          "Domänen-Laptop mit Maschinenzertifikat",
+                          "802.1X mit EAP-TLS"
+                      ],
+                      [
+                          "Etikettendrucker ohne Supplicant",
+                          "MAC Authentication Bypass"
+                      ],
+                      [
+                          "IoT-Sensor, der einen eigenen Schlüssel im gemeinsamen SSID braucht",
+                          "Identity PSK (iPSK)"
+                      ]
+                  ],
+        "erklaerung":  "Gäste melden sich am Portal an, verwaltete Geräte mit Zertifikat nutzen 802.1X/EAP-TLS. Geräte ohne Supplicant und Benutzerinteraktion werden per MAB anhand ihrer MAC erkannt; iPSK gibt Geräten ohne 802.1X trotzdem einen individuellen, einzeln widerrufbaren PSK."
+    },
+    {
+        "id":  "slg-wu-020",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A warehouse runs 200 handheld scanners on one PSK SSID. One scanner is stolen. With Cisco Identity PSK (iPSK) instead of a single PSK, what becomes possible?",
+        "optionen":  [
+                         "Revoking only the stolen scanner\u0027s key while all other scanners keep working",
+                         "Replacing the PSK of all scanners automatically without any downtime",
+                         "Locating the stolen scanner because iPSK sends its GPS position to ISE",
+                         "Blocking the scanner through PMF, which detects a changed client owner"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit iPSK hat jedes Gerät bzw. jede Gerätegruppe einen eigenen PSK im selben SSID. Wird ein Gerät gestohlen, entfernt man nur dessen Eintrag in ISE; die übrigen Geräte bleiben unverändert. Bei einem gemeinsamen PSK müssten alle 200 Geräte umkonfiguriert werden."
+    },
+    {
+        "id":  "slg-wu-021",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "With Cisco Identity PSK on a WLC and Cisco ISE, how does the controller learn which PSK applies to a connecting client?",
+        "optionen":  [
+                         "MAC filtering sends the client MAC to ISE, which returns the PSK in a Cisco AV pair",
+                         "The AP asks the client for its PSK in an EAP-Request/Identity before handshake",
+                         "The client adds its key index to the association request, and the WLC looks it up",
+                         "The client presents a certificate whose subject field contains its personal PSK"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Für iPSK ist am WLAN PSK plus MAC Filtering aktiv. Der WLC schickt die Client-MAC per RADIUS an ISE; ISE antwortet mit Cisco-AV-Pairs (psk-mode, psk) und optional VLAN/ACL. Mit diesem PSK läuft dann der normale 4-Way Handshake – ohne EAP und ohne Zertifikat."
+    },
+    {
+        "id":  "slg-wu-022",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A simple Wi-Fi scanner app reports a corporate WPA2-Enterprise SSID as using \u0027open authentication\u0027. Why can this happen?",
+        "optionen":  [
+                         "Enterprise SSIDs hide their security settings to protect the RADIUS server",
+                         "The WLC disables encryption until RADIUS has sent the final Access-Accept",
+                         "802.1X WLANs first use 802.11 Open System authentication before EAP starts",
+                         "The scanner sees the guest SSID that shares the BSSID with the corporate WLAN"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Auch bei 802.1X laufen zuerst 802.11 Open System Authentication und Association; danach blockiert der logische Port alles außer EAPOL, bis EAP und 4-Way Handshake fertig sind. Die eigentlichen Sicherheitsparameter (AKM 802.1X, CCMP) stehen im RSN-Element des Beacons."
+    },
+    {
+        "id":  "slg-wu-023",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A client has associated to an 802.1X WLAN, but EAP authentication has not finished yet. Which traffic may the client send?",
+        "optionen":  [
+                         "DHCP and DNS so that it can reach the RADIUS server",
+                         "All traffic, but only inside the guest VLAN of the WLAN",
+                         "ARP and ICMP for basic reachability tests to the gateway",
+                         "Only EAPOL frames for the authentication exchange"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bis zur erfolgreichen Authentifizierung ist der logische 802.1X-Port gesperrt; nur EAPOL zwischen Supplicant und Authenticator ist erlaubt. Erst nach EAP-Success und 4-Way Handshake darf der Client Daten (inklusive DHCP) senden."
+    },
+    {
+        "id":  "slg-wu-024",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In a centralized deployment with local-mode APs and a Catalyst 9800, which device acts as the 802.1X authenticator and RADIUS client toward Cisco ISE?",
+        "optionen":  [
+                         "The access switch of the AP",
+                         "The WLC",
+                         "The client supplicant",
+                         "The access point"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Im zentralen Modell tunnelt der AP die EAPOL-Frames per CAPWAP zum WLC; der WLC verpackt EAP in RADIUS und ist bei ISE als Network Access Device eingetragen. Nur bei FlexConnect mit lokaler Authentifizierung übernimmt der AP selbst diese Rolle."
+    },
+    {
+        "id":  "slg-wu-025",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "ISE has the WLC configured as a network device with IP 10.10.10.30/32 and the correct shared secret. ISE logs still show \u0027Unknown NAD\u0027 for the WLC\u0027s 802.1X requests, which arrive from 10.10.20.5. What is the cause?",
+        "optionen":  [
+                         "ISE identifies the NAD by the RADIUS source IP, which does not match the entry",
+                         "ISE accepts RADIUS only from WLCs that were added with a /24 subnet mask",
+                         "The shared secret is checked before the IP, so it must be entered a second time",
+                         "The WLC must be added as a TACACS+ device before it can send RADIUS requests"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "ISE ordnet eingehende RADIUS-Pakete anhand der Quell-IP einem Network Device zu. Sendet der WLC von 10.10.20.5, passt der Eintrag 10.10.10.30/32 nicht. Lösung: die tatsächliche Quell-IP (bzw. das Subnetz) als NAD eintragen oder die Quelladresse des WLC anpassen."
+    },
+    {
+        "id":  "slg-wu-026",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two statements about the PMK in a WPA2-Enterprise WLAN are true? (Choose two.)",
+        "optionen":  [
+                         "It is sent to the client encrypted in 4-way handshake message 3",
+                         "It is derived from the MSK that the EAP method creates on client and server",
+                         "The RADIUS server sends it to the authenticator inside the Access-Accept",
+                         "It is used directly as the AES key to encrypt the data frames",
+                         "It is identical for all clients that connect to the same SSID"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Die EAP-Methode erzeugt auf Client und Server die MSK; daraus entsteht die PMK. Der RADIUS-Server liefert sie dem WLC im Access-Accept (MS-MPPE-Key-Attribute), der Client berechnet sie selbst. Sie ist pro Client und Sitzung individuell, und die Daten werden mit dem TK aus der PTK verschlüsselt, nicht direkt mit der PMK."
+    },
+    {
+        "id":  "slg-wu-027",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Schlüssel seiner Aufgabe im WPA2-Schlüsselsystem zu.",
+        "paare":  [
+                      [
+                          "KCK",
+                          "berechnet den MIC der EAPOL-Key-Frames"
+                      ],
+                      [
+                          "KEK",
+                          "verschlüsselt die GTK im Handshake"
+                      ],
+                      [
+                          "TK",
+                          "verschlüsselt Unicast-Datenframes"
+                      ],
+                      [
+                          "GTK",
+                          "verschlüsselt Broadcast und Multicast an alle Clients"
+                      ]
+                  ],
+        "erklaerung":  "Die PTK zerfällt in KCK (Integrität des Handshakes), KEK (Schutz der GTK-Übertragung in Nachricht 3) und TK (Unicast-Daten). Die GTK erzeugt der AP für Gruppenverkehr; sie ist für alle Clients des BSS gleich."
+    },
+    {
+        "id":  "slg-wu-028",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which values are combined to compute the PTK during the 4-way handshake?",
+        "optionen":  [
+                         "PMK, ANonce, SNonce, and the MAC addresses of AP and client",
+                         "PSK, association ID, and the RADIUS shared secret of the WLC",
+                         "GTK, ANonce, and the IP address that DHCP assigned to the client",
+                         "PMK, SSID, channel number, and the BSSID of the AP only"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "PTK = PRF(PMK, ANonce, SNonce, MAC des AP, MAC des Clients). Durch die beiden Zufallszahlen ist die PTK pro Sitzung neu, auch wenn die PMK gleich bleibt. Eine IP-Adresse hat der Client zu diesem Zeitpunkt noch gar nicht."
+    },
+    {
+        "id":  "slg-wu-029",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Nachricht des 4-Way Handshakes ihrem Inhalt zu.",
+        "paare":  [
+                      [
+                          "Nachricht 1 (AP → Client)",
+                          "ANonce ohne MIC"
+                      ],
+                      [
+                          "Nachricht 2 (Client → AP)",
+                          "SNonce und MIC"
+                      ],
+                      [
+                          "Nachricht 3 (AP → Client)",
+                          "verschlüsselte GTK, MIC und Install-Hinweis"
+                      ],
+                      [
+                          "Nachricht 4 (Client → AP)",
+                          "Bestätigung mit MIC"
+                      ]
+                  ],
+        "erklaerung":  "Der AP beginnt mit der ANonce. Der Client antwortet mit SNonce und MIC, nachdem er die PTK berechnet hat. In Nachricht 3 kommt die mit dem KEK verschlüsselte GTK; Nachricht 4 bestätigt die Installation der Schlüssel."
+    },
+    {
+        "id":  "slg-wu-030",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A user types a wrong passphrase on a WPA2-PSK SSID. What does the AP observe during the 4-way handshake?",
+        "optionen":  [
+                         "The MIC in message 2 fails validation, so the AP does not send message 3",
+                         "The AP sends an EAP-Failure right after the EAP-Response/Identity",
+                         "Message 4 never arrives because the client cannot decrypt the SNonce",
+                         "The association request is rejected with a status code for a wrong key"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit falscher Passphrase berechnet der Client eine andere PMK und damit eine andere PTK. Der MIC in Nachricht 2 ist für den AP ungültig, er bricht ab (wiederholt ggf. Nachricht 1) und der Client wird nach Timeout getrennt. Association und EAP sind bei PSK nicht betroffen."
+    },
+    {
+        "id":  "slg-wu-031",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An AP rotates its group key every hour. How are already associated clients given the new GTK without a full 4-way handshake?",
+        "optionen":  [
+                         "With the Group Key Handshake, a two-message EAPOL-Key exchange",
+                         "With a new EAP-TLS authentication triggered through a RADIUS CoA",
+                         "With a beacon that carries the new GTK in clear text for all clients",
+                         "With a deauthentication frame that forces every client to reconnect"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Für neue Gruppenschlüssel gibt es den Group Key Handshake: Der AP sendet die neue GTK (mit dem KEK des jeweiligen Clients verschlüsselt), der Client bestätigt. Weder ein neuer EAP-Lauf noch eine Trennung ist nötig, und Schlüssel werden nie im Klartext gesendet."
+    },
+    {
+        "id":  "slg-wu-032",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Voice handsets on a WPA2-Enterprise SSID with EAP-TLS lose audio for several hundred milliseconds at every roam, because each roam runs a full EAP exchange with ISE. Which feature addresses this?",
+        "optionen":  [
+                         "Disabling PMF, because protected frames add delay to every reassociation",
+                         "Switching the SSID from AES-CCMP to TKIP to shorten the key calculation",
+                         "Moving the handsets to an open SSID with WebAuth to avoid any key handling",
+                         "802.11r Fast Transition or PMK caching, so roams skip the full EAP exchange"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Fast Transition (802.11r) bzw. PMK Caching/OKC nutzen bereits vorhandenes Schlüsselmaterial, sodass beim Roaming nur noch ein kurzer Schlüsselaustausch statt einer kompletten 802.1X-Authentifizierung läuft. TKIP, PMF-Abschaltung oder ein offenes SSID würden die Sicherheit opfern."
+    },
+    {
+        "id":  "slg-wu-033",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about EAP are true? (Choose two.)",
+        "optionen":  [
+                         "The WLC reads and changes the EAP content before forwarding it to ISE",
+                         "EAP can only carry certificates and therefore always needs a PKI",
+                         "EAP always requires 802.1X port control and cannot be used without it",
+                         "Request, Response, Success, and Failure are the EAP packet codes",
+                         "EAP is a framework; the selected method defines how credentials are checked"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "EAP (RFC 3748) legt nur Nachrichtenformat und Ablauf mit vier Codes fest; die Methode (TLS, PEAP, FAST …) bestimmt die Prüfung. EAP läuft auch ohne 802.1X (z. B. in IKEv2/PPP), und der Authenticator reicht die EAP-Inhalte unverändert in RADIUS weiter."
+    },
+    {
+        "id":  "slg-wu-034",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A supplicant is configured for EAP-TLS only. The ISE policy for this SSID allows only PEAP and starts by proposing PEAP. What happens?",
+        "optionen":  [
+                         "The client answers with a NAK proposing EAP-TLS, and ISE ends with EAP-Failure",
+                         "ISE silently switches to EAP-TLS because the client certificate is stronger",
+                         "The client accepts PEAP and sends its certificate as the inner credential",
+                         "The WLC translates the client\u0027s EAP-TLS messages into PEAP for the server"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Lehnt der Peer eine angebotene Methode ab, sendet er einen NAK mit seiner gewünschten Methode. Erlaubt die Server-Policy diese nicht, endet der Austausch mit EAP-Failure. Methoden müssen auf Client und Server zusammenpassen; der WLC übersetzt nichts."
+    },
+    {
+        "id":  "slg-wu-035",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A branch WLC uses an external RADIUS server for 802.1X. The company wants clients to keep authenticating even if the WLC loses connectivity to that server. Which feature from the course provides this?",
+        "optionen":  [
+                         "Local EAP on the WLC as a backup for RADIUS",
+                         "A second SSID with the same RADIUS settings",
+                         "Open authentication as a fallback for 802.1X",
+                         "Lobby ambassador accounts on the controller"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Local EAP macht den WLC selbst zum Authentication Server (lokale Benutzerdatenbank oder LDAP) und kann als Backup dienen, wenn der RADIUS-Server nicht erreichbar ist. Ein zweites SSID mit demselben Server hätte dasselbe Problem; Lobby Ambassadors verwalten nur Gastkonten."
+    },
+    {
+        "id":  "slg-wu-036",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "With EAP-TLS, client and server have exchanged certificates. Why are their public/private key pairs not used to encrypt the wireless data frames? (Choose two.)",
+        "optionen":  [
+                         "Certificates expire too quickly to protect a whole wireless session",
+                         "The TLS tunnel ends at the server, but radio encryption must end at the AP",
+                         "Asymmetric keys are not allowed by the 802.1X standard for clients",
+                         "Asymmetric encryption is too CPU-intensive for fast per-frame encryption",
+                         "The AP must read the EAP-TLS content to encrypt the user\u0027s frames"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Asymmetrische Verfahren sind für die Paketverschlüsselung zu langsam, und der TLS-Tunnel besteht zwischen Client und Authentication Server, während die Funkverschlüsselung am AP enden muss. Deshalb wird nach EAP ein symmetrischer Schlüssel (PMK → PTK) für AES zwischen Client und AP abgeleitet."
+    },
+    {
+        "id":  "slg-wu-037",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which key does a certificate authority use to sign the certificates it issues?",
+        "optionen":  [
+                         "The server\u0027s shared secret",
+                         "The CA\u0027s own private key",
+                         "The CA\u0027s own public key",
+                         "The requester\u0027s private key"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die CA signiert mit ihrem privaten Schlüssel; jeder, der ihr Zertifikat (Public Key) im Trust Store hat, kann die Signatur prüfen. Mit dem Public Key lässt sich nur prüfen, nicht signieren, und der private Schlüssel des Antragstellers bleibt bei ihm."
+    },
+    {
+        "id":  "slg-wu-038",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "User 1 wants to send credentials so that only the authentication server can read them. Which key does User 1 use to encrypt them?",
+        "optionen":  [
+                         "The server\u0027s public key",
+                         "The server\u0027s private key",
+                         "A key from the CA\u0027s CRL",
+                         "User 1\u0027s own public key"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Was mit dem öffentlichen Schlüssel des Servers verschlüsselt wird, kann nur der passende private Schlüssel des Servers entschlüsseln. Den privaten Schlüssel des Servers kennt User 1 nicht, und die CRL enthält keine Schlüssel, sondern widerrufene Seriennummern."
+    },
+    {
+        "id":  "slg-wu-039",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A server receives a message that is digitally signed by User 1. What does a successful verification with User 1\u0027s public key prove?",
+        "optionen":  [
+                         "The message was signed with User 1\u0027s private key and was not changed",
+                         "The server\u0027s own certificate is trusted by User 1\u0027s operating system",
+                         "User 1\u0027s certificate has not been revoked since it was issued by the CA",
+                         "The message was encrypted so that only the server could have read it"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Nur der Besitzer des privaten Schlüssels kann eine Signatur erzeugen, die mit dem passenden öffentlichen Schlüssel verifizierbar ist – das belegt Herkunft und Unverändertheit. Vertraulichkeit entsteht erst durch Verschlüsselung mit dem Public Key des Empfängers, und den Widerrufsstatus prüft man separat per CRL/OCSP."
+    },
+    {
+        "id":  "slg-wu-040",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Cisco ISE must check during every EAP-TLS authentication, in real time, whether the client certificate has been revoked. Which mechanism fits?",
+        "optionen":  [
+                         "CRL",
+                         "PKCS#10",
+                         "SCEP",
+                         "OCSP"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "OCSP fragt den Status eines einzelnen Zertifikats online beim Responder ab. Eine CRL ist eine periodisch geladene Liste und kann veraltet sein. SCEP dient dem Enrollment, PKCS#10 ist das Format eines Certificate Signing Request."
+    },
+    {
+        "id":  "slg-wu-041",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An employee leaves at 09:00 and the CA revokes the laptop certificate immediately. ISE checks revocation only through a CRL that it downloads once a day at 06:00. The laptop tries EAP-TLS at 10:00. What happens?",
+        "optionen":  [
+                         "Access is granted, because ISE\u0027s cached CRL does not list the certificate yet",
+                         "Access is denied, because a revoked certificate fails its signature check",
+                         "Access is granted only until the client\u0027s current PTK expires an hour later",
+                         "Access is denied, because the CA informs ISE about every revocation instantly"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit CRL kennt ISE nur den Stand des letzten Downloads; bis zum nächsten Abruf gilt das Zertifikat als gültig. Die Signatur eines widerrufenen Zertifikats bleibt mathematisch korrekt. Für sofortige Wirkung braucht man OCSP, kürzere CRL-Intervalle oder eine zusätzliche Sperre in ISE/AD."
+    },
+    {
+        "id":  "slg-wu-042",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "ISE gets a new EAP certificate from a newly built company CA. Immediately afterwards, all PEAP clients fail to connect, while the RADIUS configuration on the WLC is unchanged. What is the most likely cause?",
+        "optionen":  [
+                         "The WLC must receive the new certificate before it relays EAP frames",
+                         "PEAP requires the client certificates to be reissued by the new CA",
+                         "The RADIUS shared secret is derived from the ISE certificate and changed",
+                         "The clients do not trust the new issuing CA of the ISE certificate"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bei PEAP prüft der Supplicant das Server-Zertifikat gegen seine vertrauenswürdigen Root-CAs. Fehlt die neue CA im Trust Store bzw. im WLAN-Profil, bricht der Client ab. Der WLC reicht EAP nur durch, PEAP braucht keine Client-Zertifikate, und das Shared Secret ist unabhängig vom Zertifikat."
+    },
+    {
+        "id":  "slg-wu-043",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After ISE was restored on new hardware, every EAP-TLS authentication fails with \u0027certificate is not yet valid\u0027, although the client certificates were issued last week. What should be checked first?",
+        "optionen":  [
+                         "The VLAN that the policy profile assigns to clients",
+                         "The SSID name configured in the WLAN profile",
+                         "The RADIUS shared secret between ISE and the WLC",
+                         "The system clock and NTP synchronization of the ISE node"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Zertifikate werden gegen ihren Gültigkeitszeitraum geprüft. Geht die Uhr von ISE nach (z. B. Datum in der Vergangenheit), wirken neue Zertifikate \u0027noch nicht gültig\u0027. NTP auf ISE, WLC und Clients ist daher Voraussetzung für zertifikatsbasierte Authentifizierung."
+    },
+    {
+        "id":  "slg-wu-044",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two settings in a PEAP supplicant profile protect users against an evil-twin AP that runs its own RADIUS server? (Choose two.)",
+        "optionen":  [
+                         "Disable fast reconnect so every session runs a full handshake",
+                         "Use an anonymous outer identity instead of the real username",
+                         "Store the user\u0027s password in the profile for faster reconnects",
+                         "Validate the server certificate against a specific trusted root CA",
+                         "Accept only the expected RADIUS server name in that certificate"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Nur wenn der Client das Server-Zertifikat gegen eine bestimmte Root-CA und den erwarteten Servernamen prüft, erkennt er einen fremden RADIUS-Server. Eine anonyme äußere Identität verbirgt nur den Benutzernamen, schützt aber nicht das Passwort im Tunnel des Angreifers."
+    },
+    {
+        "id":  "slg-wu-045",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Laptops are configured for PEAP-MSCHAPv2 but do not validate the server certificate. An attacker runs an evil-twin AP with the corporate SSID and a rogue RADIUS server. What does the attacker most likely obtain?",
+        "optionen":  [
+                         "The MSCHAPv2 challenge and response, which can be cracked offline for the password",
+                         "The corporate ISE private key, because PEAP sends it during the TLS handshake",
+                         "Only the anonymous outer identity, because the inner method stays encrypted to ISE",
+                         "Nothing, because MSCHAPv2 in PEAP is protected by the client certificate"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ohne Zertifikatsprüfung baut der Client den TLS-Tunnel zum Angreifer auf; die innere MSCHAPv2-Challenge/Response landet dort und kann offline geknackt werden. Der Tunnel endet ja beim gefälschten Server, nicht bei ISE, und PEAP verwendet kein Client-Zertifikat."
+    },
+    {
+        "id":  "slg-wu-046",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "When an administrator first opens the web GUI of a newly initialized WLC, the browser shows a certificate warning. Why?",
+        "optionen":  [
+                         "The WLC uses a self-signed certificate that no trusted CA has signed",
+                         "The WLC certificate has been revoked by Cisco and listed in a CRL",
+                         "The WLC encrypts the GUI with the PSK of its first configured WLAN",
+                         "The browser does not support HTTPS on TCP port 443 for controllers"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Nach der Initialisierung erzeugt der WLC ein selbstsigniertes Zertifikat; Issuer und Subject sind identisch, keine bekannte CA bestätigt es. Im Lab wird die Warnung akzeptiert, produktiv ersetzt man es durch ein Zertifikat der eigenen CA."
+    },
+    {
+        "id":  "slg-wu-047",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does a certificate signing request (CSR, PKCS#10) contain when a device asks a CA for a certificate?",
+        "optionen":  [
+                         "The CA\u0027s public key together with a new serial number to use",
+                         "Both keys of its key pair, so that the CA can store a backup copy",
+                         "Its public key and identity, signed with its own private key",
+                         "Its private key and identity, encrypted with the CA public key"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der CSR enthält Public Key und Identitätsdaten und ist mit dem eigenen privaten Schlüssel signiert (Proof of Possession). Der private Schlüssel verlässt das Gerät nie. Der Kurs beschreibt den Antrag vereinfacht als \u0027mit dem CA-Public-Key verschlüsselt\u0027 – das ist so nicht korrekt."
+    },
+    {
+        "id":  "slg-wu-048",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The protocol that lets devices request and retrieve certificates from a CA automatically is ___.",
+        "optionen":  [
+                         "LDAP",
+                         "SCP",
+                         "SNMP",
+                         "SCEP"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "SCEP (Simple Certificate Enrollment Protocol) automatisiert CSR-Übermittlung und Zertifikatsabruf, z. B. für Clients über MDM oder ISE. SNMP ist Management, SCP Dateiübertragung, LDAP ein Verzeichnisprotokoll."
+    },
+    {
+        "id":  "slg-wu-049",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Clients trust only the company root CA. The ISE EAP certificate was issued by an intermediate CA that is not installed on the clients. What must ISE do so that the clients can validate it?",
+        "optionen":  [
+                         "Use a self-signed certificate, because clients accept those for EAP",
+                         "Ask each client to download the intermediate CA through an OCSP request",
+                         "Send its certificate together with the intermediate CA certificate during TLS",
+                         "Sign its certificate again with the root CA private key stored on ISE"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Server muss im TLS-Handshake die Kette bis unterhalb der Root mitliefern (eigenes Zertifikat plus Intermediate). Der Client prüft dann Glied für Glied bis zur vertrauten Root. OCSP liefert nur Statusinformationen, und der Root-Private-Key gehört nie auf ISE."
+    },
+    {
+        "id":  "slg-wu-050",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two items are part of an X.509 certificate that ISE presents during EAP? (Choose two.)",
+        "optionen":  [
+                         "The digital signature of the issuing CA",
+                         "The public key of the certificate subject",
+                         "The private key of the issuing CA",
+                         "The private key of the certificate subject",
+                         "The RADIUS shared secret of the WLC"
+                     ],
+        "richtig":  [
+                        0,
+                        1
+                    ],
+        "erklaerung":  "Ein Zertifikat bindet den öffentlichen Schlüssel an eine Identität (Subject, SAN, Gültigkeit, Seriennummer) und trägt die Signatur der ausstellenden CA. Private Schlüssel stehen nie im Zertifikat, und das RADIUS-Secret hat damit nichts zu tun."
+    },
+    {
+        "id":  "slg-wu-051",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das PKI-Element seiner Funktion zu.",
+        "paare":  [
+                      [
+                          "Certificate Authority",
+                          "signiert Zertifikate mit ihrem privaten Schlüssel"
+                      ],
+                      [
+                          "CRL",
+                          "Liste widerrufener Seriennummern, periodisch geladen"
+                      ],
+                      [
+                          "OCSP",
+                          "Statusabfrage eines einzelnen Zertifikats in Echtzeit"
+                      ],
+                      [
+                          "CSR",
+                          "Antrag mit Public Key und Identität des Antragstellers"
+                      ]
+                  ],
+        "erklaerung":  "Die CA bestätigt Identitäten durch ihre Signatur. Widerruf wird per CRL (Liste) oder OCSP (Einzelabfrage) geprüft. Der CSR ist der Antrag, den die CA nach Prüfung in ein Zertifikat umwandelt."
+    },
+    {
+        "id":  "slg-wu-052",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A hospital wants Wi-Fi access for managed laptops without any user passwords. An MDM system already installs a device certificate on each laptop. Which EAP method fits best?",
+        "optionen":  [
+                         "PEAP-MSCHAPv2",
+                         "EAP-TLS",
+                         "PEAP-GTC",
+                         "LEAP"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "EAP-TLS authentifiziert mit Zertifikaten auf beiden Seiten und braucht keine Passwörter; die vorhandene Zertifikatsverteilung per MDM löst den größten Aufwand von EAP-TLS. PEAP-Varianten nutzen Passwörter oder Tokens, LEAP ist unsicher."
+    },
+    {
+        "id":  "slg-wu-053",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why do many PEAP deployments configure an outer identity such as \u0027anonymous@example.com\u0027 on the clients?",
+        "optionen":  [
+                         "To hide the real username, which is sent only inside the TLS tunnel",
+                         "To let the WLC choose the VLAN before the RADIUS server is contacted",
+                         "To avoid the need for a server certificate on the RADIUS server",
+                         "To allow the client to skip phase 2 of the PEAP authentication"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die äußere Identität geht vor dem Tunnelaufbau unverschlüsselt über Funk. Mit einer anonymen Identität (ggf. mit Realm für das Routing) bleibt der echte Benutzername verborgen; er wird erst in Phase 2 im TLS-Tunnel übertragen. Server-Zertifikat und Phase 2 bleiben nötig."
+    },
+    {
+        "id":  "slg-wu-054",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Users must authenticate to the WLAN with one-time passwords from hardware tokens, protected inside a PEAP tunnel. Which inner method is used?",
+        "optionen":  [
+                         "EAP-MSCHAPv2",
+                         "EAP-TLS",
+                         "EAP-GTC",
+                         "EAP-MD5"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "EAP-GTC (Generic Token Card) transportiert generische Credentials wie OTP- oder LDAP-Passwörter. EAP-MSCHAPv2 ist für Datenbanken mit MSCHAPv2-Unterstützung wie Active Directory gedacht. Im Kurs-Lab wurde PEAP mit GTC verwendet."
+    },
+    {
+        "id":  "slg-wu-055",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is authenticated during phase 1 of PEAP?",
+        "optionen":  [
+                         "Both sides, using certificates that the same CA has issued",
+                         "Only the server, using its certificate to build the TLS tunnel",
+                         "Neither side; phase 1 only exchanges the outer identities",
+                         "Only the client, using its machine certificate from the CA"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "In Phase 1 baut PEAP einen echten TLS-Tunnel auf, bei dem nur der Server ein Zertifikat vorlegt und der Client es prüft. Der Client wird erst in Phase 2 im Tunnel mit MSCHAPv2 oder GTC authentifiziert."
+    },
+    {
+        "id":  "slg-wu-056",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about EAP-FAST are true? (Choose two.)",
+        "optionen":  [
+                         "It was developed by Microsoft and is built into every Windows release",
+                         "It sends the user password in phase 1 before any tunnel is established",
+                         "Every client must have its own certificate issued by a company CA",
+                         "Phase 0 provisions the PAC to the client, automatically or manually",
+                         "A Protected Access Credential (PAC) replaces certificates for building the tunnel"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "EAP-FAST ist eine Cisco-Methode (RFC 4851): Der Tunnel basiert auf der PAC statt auf Zertifikaten. Phase 0 verteilt die PAC, Phase 1 baut den Tunnel, Phase 2 authentifiziert den Benutzer im Tunnel. Client-Zertifikate sind nicht nötig."
+    },
+    {
+        "id":  "slg-wu-057",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "In EAP-FAST, the server decrypts the ___ with its master key to recover the PAC-Key and the client identity.",
+        "optionen":  [
+                         "PAC-Opaque",
+                         "PAC-Info",
+                         "A-ID",
+                         "outer identity"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Das PAC-Opaque enthält PAC-Key, Identität und Lebensdauer, verschlüsselt mit dem Master Key des Servers; nur der Server kann es lesen. PAC-Info liefert dem Client die A-ID, mit der er die passende PAC auswählt."
+    },
+    {
+        "id":  "slg-wu-058",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Why does an EAP-FAST server not need a database that stores the PAC of every client?",
+        "optionen":  [
+                         "The PAC is identical for all clients of one server, so storing one copy is enough",
+                         "The PAC-Key is derived from the client MAC address, so the server can always recompute it",
+                         "The WLC caches every PAC and provides it to the server in the RADIUS Access-Request",
+                         "The client sends its PAC-Opaque, which carries the PAC-Key encrypted with the server master key"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Nach der Erstellung \u0027vergisst\u0027 der Server die PAC. Bei jeder Sitzung schickt der Client das PAC-Opaque mit; der Server entschlüsselt es mit seinem Master Key und erhält PAC-Key und Identität zurück. Jede PAC ist individuell und wird nicht vom WLC zwischengespeichert."
+    },
+    {
+        "id":  "slg-wu-059",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "EAP-FAST uses anonymous in-band PAC provisioning in phase 0. What is the main security risk?",
+        "optionen":  [
+                         "Anonymous provisioning disables phase 2, so users are never authenticated at all",
+                         "Without server authentication, a man-in-the-middle can pose as the server during provisioning",
+                         "The PAC is sent in clear text, so any eavesdropper can copy it directly from the air",
+                         "The PAC expires after the first use, so every connection repeats phase 0 openly"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Beim anonymen Provisioning (anonymer Diffie-Hellman) wird der Server nicht authentifiziert; ein Angreifer könnte sich als Server ausgeben und die nachfolgenden Credentials abgreifen. Authentifiziertes Provisioning mit Server-Zertifikat oder manuelle PAC-Verteilung vermeidet das."
+    },
+    {
+        "id":  "slg-wu-060",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the purpose of the A-ID in EAP-FAST?",
+        "optionen":  [
+                         "It is the account ID of the user inside the Active Directory domain",
+                         "It identifies the server so the client can choose the matching PAC",
+                         "It is the authenticator ID of the AP that relays the EAP messages",
+                         "It is the anonymous identity that hides the username from eavesdroppers"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die A-ID (Authority ID) kennzeichnet den ausstellenden Server. Der Server sendet sie im EAP-FAST-Start, der Client wählt damit aus seinen gespeicherten PACs die passende aus und schickt deren PAC-Opaque."
+    },
+    {
+        "id":  "slg-wu-061",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A university must authenticate users against an old LDAP directory that supports only PAP. The clients must not need certificates. Which EAP method allows a non-EAP inner protocol such as PAP inside a TLS tunnel?",
+        "optionen":  [
+                         "PEAP-MSCHAPv2",
+                         "LEAP",
+                         "EAP-TLS",
+                         "EAP-TTLS"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "EAP-TTLS baut wie PEAP einen TLS-Tunnel mit Server-Zertifikat auf, erlaubt im Tunnel aber auch klassische Nicht-EAP-Protokolle wie PAP, CHAP oder MSCHAPv2. EAP-TLS braucht Client-Zertifikate, PEAP nutzt EAP-Methoden im Tunnel, LEAP ist unsicher."
+    },
+    {
+        "id":  "slg-wu-062",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An old WLAN still uses Cisco LEAP. What should the engineer recommend?",
+        "optionen":  [
+                         "Replace it, because LEAP credentials can be cracked offline from a capture",
+                         "Replace it with WEP shared key authentication for better compatibility",
+                         "Keep it, because LEAP is the only EAP method with rogue AP detection",
+                         "Keep it, but enforce TKIP so that the LEAP exchange becomes encrypted"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "LEAP basiert auf MS-CHAPv1 ohne Tunnel; mitgeschnittene Austausche lassen sich mit Tools wie asleap per Wörterbuch knacken. Es sollte durch EAP-TLS, PEAP oder EAP-FAST/TEAP ersetzt werden. TKIP oder WEP würden nichts verbessern."
+    },
+    {
+        "id":  "slg-wu-063",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which management account on a WLC is meant to create, extend, and delete guest user accounts without giving full admin rights?",
+        "optionen":  [
+                         "Lobby ambassador",
+                         "Read-only admin",
+                         "Local EAP user",
+                         "AP management user"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein Lobby Ambassador ist ein Management-Konto mit der einzigen Aufgabe, Gastkonten anzulegen, zu verlängern und zu löschen. So kann z. B. der Empfang Gäste einrichten, ohne die IT einzubinden oder Zugriff auf die WLC-Konfiguration zu haben."
+    },
+    {
+        "id":  "slg-wu-064",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A company with 40 campus buildings wants all guest traffic to leave the network in the DMZ, without carrying the guest VLAN through the campus. Which design achieves this?",
+        "optionen":  [
+                         "Local web authentication with guest accounts on every campus WLC",
+                         "FlexConnect local switching of the guest SSID at every campus AP",
+                         "Auto-anchor mobility from the campus WLCs to an anchor WLC in the DMZ",
+                         "A guest VLAN trunked from every access switch to the DMZ firewall"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Beim Guest Anchor tunnelt der Foreign-WLC den Gastverkehr zum Anchor-WLC in der DMZ; nur dort existiert das Gast-VLAN. FlexConnect Local Switching würde den Verkehr direkt am Standort ausgeben, und ein durchgezogenes VLAN ist genau das, was vermieden werden soll."
+    },
+    {
+        "id":  "slg-wu-065",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In an auto-anchor guest design, from where does a guest client receive its IP address?",
+        "optionen":  [
+                         "From the guest VLAN behind the anchor WLC in the DMZ",
+                         "From the VLAN of the access switch port where the AP connects",
+                         "From the management VLAN of the foreign WLC in the campus",
+                         "From a private range that the foreign WLC assigns itself"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der gesamte Client-Verkehr inklusive DHCP läuft durch den Mobility-Tunnel zum Anchor; der Client erhält seine Adresse daher im Gast-VLAN hinter dem Anchor. Der Foreign-WLC gibt den Verkehr nicht lokal aus."
+    },
+    {
+        "id":  "slg-wu-066",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A firewall separates a campus Catalyst 9800 (foreign) from a Catalyst 9800 guest anchor in the DMZ. Which traffic must be permitted for the mobility tunnel?",
+        "optionen":  [
+                         "UDP 5246 for control and UDP 5247 for data",
+                         "IP protocol 97 only, without any UDP ports",
+                         "UDP 16666 for control and UDP 16667 for data",
+                         "TCP 443 for control and TCP 22 for data"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Catalyst 9800 nutzt für Mobility-Tunnel CAPWAP mit UDP 16666 (Control) und UDP 16667 (Data). 5246/5247 sind die CAPWAP-Ports zwischen AP und WLC. IP-Protokoll 97 (EtherIP) war der Datentunnel älterer AireOS-Mobility."
+    },
+    {
+        "id":  "slg-wu-067",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "Legacy AireOS controllers carried guest data to the anchor in an EtherIP (EoIP) tunnel, which uses IP protocol number ___.",
+        "optionen":  [
+                         "97",
+                         "50",
+                         "89",
+                         "47"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "EtherIP hat die IP-Protokollnummer 97 und musste zusammen mit UDP 16666 (Mobility Control) durch die DMZ-Firewall erlaubt werden. 47 ist GRE, 50 ESP und 89 OSPF."
+    },
+    {
+        "id":  "slg-wu-068",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "A guest anchor design on Catalyst 9800 controllers does not work. Which two conditions must be met for guests to be tunneled to the anchor? (Choose two.)",
+        "optionen":  [
+                         "The mobility peering between foreign and anchor WLC must be up",
+                         "The guest VLAN must exist and be trunked on the foreign WLC",
+                         "The anchor must have the same hostname as the foreign controller",
+                         "The WLAN profile (name, SSID, security) must match on both WLCs",
+                         "Both WLCs must be in the same IP subnet as the guest clients"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Der Tunnel setzt einen funktionierenden Mobility-Peer voraus, und die WLAN-Konfiguration muss auf Foreign und Anchor übereinstimmen (laut Cisco auch der Name des Policy Profiles; nur das VLAN darf abweichen). Die WLCs dürfen in verschiedenen Subnetzen liegen, und das Gast-VLAN wird gerade nur am Anchor benötigt."
+    },
+    {
+        "id":  "slg-wu-069",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, Policy-Profile-Modus des Gast-WLANs auf dem Foreign-WLC (wireless profile policy PP-GUEST): Lege den Anchor-WLC 10.50.1.10 mit Priorität 1 fest.",
+        "bausteine":  [
+                          "mobility",
+                          "anchor",
+                          "10.50.1.10",
+                          "priority",
+                          "1",
+                          "export",
+                          "tunnel",
+                          "peer"
+                      ],
+        "loesung":  [
+                        "mobility",
+                        "anchor",
+                        "10.50.1.10",
+                        "priority",
+                        "1"
+                    ],
+        "erklaerung":  "Im Policy Profile des Foreign-WLC verweist mobility anchor \u003cIP\u003e priority \u003cn\u003e auf den Anchor; mehrere Anchors mit Prioritäten sind für Redundanz möglich. Auf dem Anchor selbst steht im Policy Profile nur mobility anchor ohne IP."
+    },
+    {
+        "id":  "slg-wu-070",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, Policy-Profile-Modus des Gast-WLANs auf dem Anchor-WLC in der DMZ: Markiere diesen Controller als Anchor (Export-Anchor) für das WLAN.",
+        "bausteine":  [
+                          "mobility",
+                          "anchor",
+                          "export",
+                          "local",
+                          "guest",
+                          "priority"
+                      ],
+        "loesung":  [
+                        "mobility",
+                        "anchor"
+                    ],
+        "erklaerung":  "Auf dem Anchor-WLC macht mobility anchor ohne IP-Adresse den Controller selbst zum Export-Anchor des WLANs. Die Foreign-WLCs verweisen mit mobility anchor \u003cIP\u003e priority \u003cn\u003e auf ihn."
+    },
+    {
+        "id":  "slg-wu-071",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A Catalyst 9800 must use Central Web Authentication with ISE for a guest SSID. Which configuration matches this design?",
+        "optionen":  [
+                         "Layer 2 none with MAC filtering to ISE, plus AAA override and RADIUS NAC in the policy profile",
+                         "802.1X with EAP-TLS, plus a downloadable ACL that ISE pushes after the first login",
+                         "WPA2-PSK with a Layer 3 web policy and a consent parameter map stored on the controller",
+                         "Open SSID with a Layer 3 web policy, a webconsent parameter map, and local guest users"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bei CWA löst die MAC-Filterung eine MAB-Anfrage an ISE aus; ISE antwortet mit url-redirect und Redirect-ACL. AAA Override und NAC State (RADIUS NAC) im Policy Profile erlauben, diese Attribute und später die CoA anzunehmen. Ein Layer-3-Web-Policy mit Parameter-Map ist dagegen Local Web Auth."
+    },
+    {
+        "id":  "slg-wu-072",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A hotel wants guests to reach the internet after simply accepting the terms of use, without entering any credentials. Which 9800 WebAuth parameter map type fits?",
+        "optionen":  [
+                         "webauth",
+                         "consent",
+                         "authbypass",
+                         "webconsent"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Typ consent (Web-Passthrough) zeigt nur eine Nutzungsbedingungsseite mit Accept. webauth verlangt Benutzername/Passwort, webconsent beides, authbypass prüft die MAC-Adresse ohne Benutzerinteraktion."
+    },
+    {
+        "id":  "slg-wu-073",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Contractors on a guest SSID must enter credentials and also explicitly accept the acceptable use policy on the same page. Which 9800 parameter map type is required?",
+        "optionen":  [
+                         "webauth",
+                         "consent",
+                         "webconsent",
+                         "authbypass"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "webconsent kombiniert die Anmeldung mit Benutzername/Passwort und Accept/Deny-Buttons für die AUP. consent kennt keine Credentials, webauth keine AUP-Bestätigung, und authbypass arbeitet ohne Interaktion anhand der MAC."
+    },
+    {
+        "id":  "slg-wu-074",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In the lab, a guest on the WebAuth SSID receives 10.10.40.25, but a ping to the gateway 10.10.40.1 fails. The WLC shows the client state \u0027Webauth Pending\u0027. What is the reason?",
+        "optionen":  [
+                         "The AP still runs the PSK configuration of the employee WLAN",
+                         "The guest VLAN is missing on the WLC uplink, so DHCP worked by accident",
+                         "The gateway blocks ICMP from any client that uses an open SSID",
+                         "The guest has not completed web authentication, so only pre-auth traffic passes"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Im Zustand Webauth Pending hat der Client eine IP-Adresse, darf aber nur Pre-Auth-Verkehr wie DHCP und DNS senden; HTTP wird zum Portal umgeleitet. Erst nach Accept bzw. Login wechselt er in den Zustand Run und erreicht das Gateway."
+    },
+    {
+        "id":  "slg-wu-075",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does a WLC present its WebAuth portal on a virtual IP address such as 192.0.2.1 instead of its management IP?",
+        "optionen":  [
+                         "It allows the AP to answer portal requests without forwarding to the WLC",
+                         "It lets guests manage the WLC through the same address as the web portal",
+                         "It is the only address that DHCP servers accept as a default gateway",
+                         "It is a non-routed address reserved for the portal that never conflicts with real hosts"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Virtual IP ist eine nicht geroutete Adresse (heute empfohlen aus 192.0.2.0/24), unter der der WLC Portal-Umleitung und DHCP-Proxy abwickelt. Gäste sollen gerade nicht die Management-IP erreichen. Früher wurde oft 1.1.1.1 genutzt, das heute im Internet existiert."
+    },
+    {
+        "id":  "slg-wu-076",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Guests roam between APs of two WLCs in the same mobility group. After the roam, their web authentication session breaks and they see certificate errors. One WLC uses virtual IP 192.0.2.1, the other 192.0.2.2. What is the fix?",
+        "optionen":  [
+                         "Configure the same virtual IP on all WLCs of the mobility group",
+                         "Use the management IP of each WLC as its WebAuth portal address",
+                         "Disable PMF on the guest SSID so roaming frames are accepted",
+                         "Give each WLC a different SSID for its share of the guest APs"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Virtual IP muss auf allen Controllern einer Mobility-Gruppe identisch sein, sonst passen Portal-Adresse und Zertifikat nach einem Roam nicht mehr. Eigene SSIDs pro WLC oder die Management-IP als Portal wären Fehlkonfigurationen, PMF spielt hier keine Rolle."
+    },
+    {
+        "id":  "slg-wu-077",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Guests who first open an HTTPS website on a WebAuth SSID get a browser certificate warning instead of a clean portal page. Why?",
+        "optionen":  [
+                         "The virtual IP is missing from DNS, so the browser rejects every certificate it receives",
+                         "The WLC intercepts the HTTPS session and presents its own certificate, which does not match the site",
+                         "HTTPS redirection requires PMF, which the open guest SSID does not provide to clients",
+                         "The guest VLAN blocks TCP port 443, so the browser falls back to an unencrypted page"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Um eine HTTPS-Anfrage umzuleiten, muss der WLC die TLS-Sitzung selbst beantworten – mit seinem Zertifikat, das nicht zum angefragten Hostnamen passt. Deshalb nutzen Portale möglichst HTTP-Umleitung und Captive-Portal-Erkennung; im Kurs-Lab wurde die Portal-IP direkt aufgerufen."
+    },
+    {
+        "id":  "slg-wu-078",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, Modus parameter-map type webauth global: Stelle den WebAuth-Typ so ein, dass Gäste nur die Nutzungsbedingungen akzeptieren müssen.",
+        "bausteine":  [
+                          "type",
+                          "consent",
+                          "webconsent",
+                          "webauth",
+                          "mode",
+                          "authbypass"
+                      ],
+        "loesung":  [
+                        "type",
+                        "consent"
+                    ],
+        "erklaerung":  "type consent im globalen WebAuth-Parameter-Map zeigt nur eine AUP-Seite mit Accept, ohne Benutzername und Passwort. webconsent würde zusätzlich Credentials verlangen, webauth nur Credentials."
+    },
+    {
+        "id":  "slg-wu-079",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, Modus parameter-map type webauth global: Lege die virtuelle Portal-Adresse 192.0.2.1 fest.",
+        "bausteine":  [
+                          "virtual-ip",
+                          "ipv4",
+                          "192.0.2.1",
+                          "ip",
+                          "address",
+                          "virtual"
+                      ],
+        "loesung":  [
+                        "virtual-ip",
+                        "ipv4",
+                        "192.0.2.1"
+                    ],
+        "erklaerung":  "Beim 9800 wird die Virtual IP im globalen WebAuth-Parameter-Map mit virtual-ip ipv4 \u003cAdresse\u003e gesetzt. Sie ersetzt das Virtual Interface von AireOS und muss auf allen WLCs der Mobility-Gruppe gleich sein."
+    },
+    {
+        "id":  "slg-wu-080",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, WLAN-Konfigurationsmodus (wlan ENCOR-Guest 40 ENCOR-Guest): Verknüpfe die Layer-3-Web-Authentifizierung mit dem Parameter-Map global.",
+        "bausteine":  [
+                          "security",
+                          "web-auth",
+                          "parameter-map",
+                          "global",
+                          "webauth",
+                          "map",
+                          "policy"
+                      ],
+        "loesung":  [
+                        "security",
+                        "web-auth",
+                        "parameter-map",
+                        "global"
+                    ],
+        "erklaerung":  "security web-auth aktiviert die Web Policy, security web-auth parameter-map global bestimmt, welcher Parameter-Map (Typ, Virtual IP, Banner) gilt. Für ein reines Portal-SSID wird zusätzlich die Layer-2-Security mit no security wpa abgeschaltet."
+    },
+    {
+        "id":  "slg-wu-081",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "On a Catalyst 9800, which configuration object contains the SSID name and the Layer 2 security settings such as WPA2-PSK or 802.1X?",
+        "optionen":  [
+                         "Policy profile",
+                         "WLAN profile",
+                         "AP join profile",
+                         "RF profile"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Das WLAN Profile beschreibt, was gesendet wird: SSID, WLAN-ID, Layer-2/Layer-3-Security und AAA-Liste. VLAN, ACL und QoS stehen im Policy Profile, CAPWAP-Parameter im AP Join Profile, Funkparameter im RF Profile."
+    },
+    {
+        "id":  "slg-wu-082",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three settings are configured in a Catalyst 9800 policy profile? (Choose three.)",
+        "optionen":  [
+                         "The client VLAN",
+                         "AAA override",
+                         "The mobility anchor",
+                         "The pre-shared key",
+                         "The SSID name"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Das Policy Profile legt fest, wie mit dem Client-Verkehr umgegangen wird: VLAN, ACL, QoS, AAA Override, NAC, Session Timeout und Mobility Anchor. SSID und PSK gehören zum WLAN Profile."
+    },
+    {
+        "id":  "slg-wu-083",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "On a Catalyst 9800, the ___ binds WLAN profiles to policy profiles and is then assigned to access points.",
+        "optionen":  [
+                         "RF tag",
+                         "policy tag",
+                         "AP join profile",
+                         "site tag"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Policy Tag enthält die Zuordnungen WLAN Profile ↔ Policy Profile und bestimmt so, welche SSIDs ein AP mit welcher Policy ausstrahlt. Site Tag (Join/Flex Profile) und RF Tag (Funkprofile) regeln andere Aspekte."
+    },
+    {
+        "id":  "slg-wu-084",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Catalyst-9800-Tag zu, was er für den AP festlegt.",
+        "paare":  [
+                      [
+                          "Policy Tag",
+                          "welche WLANs mit welchem Policy Profile ausgestrahlt werden"
+                      ],
+                      [
+                          "Site Tag",
+                          "AP Join Profile, Flex Profile und Local- oder FlexConnect-Betrieb"
+                      ],
+                      [
+                          "RF Tag",
+                          "Funkprofile für 2,4, 5 und 6 GHz"
+                      ]
+                  ],
+        "erklaerung":  "Jeder AP bekommt genau einen Policy, Site und RF Tag. Der Policy Tag regelt SSIDs und deren Policies, der Site Tag die Join-/Flex-Eigenschaften des Standorts, der RF Tag die Funkparameter je Band."
+    },
+    {
+        "id":  "slg-wu-085",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer creates WLAN \u0027IOT\u0027 with WLAN ID 30 and enables it. The APs still use the default-policy-tag. The SSID is not broadcast. What is the most likely reason?",
+        "optionen":  [
+                         "Only one WLAN per controller can use the default-policy-tag at the same time",
+                         "The default-rf-tag disables every WLAN whose ID is higher than the radio count",
+                         "The default-policy-tag maps only WLANs with IDs 1 to 16 to the default policy profile",
+                         "WLAN IDs above 16 require a FlexConnect site tag before they can be broadcast"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der default-policy-tag bindet laut Cisco-Dokumentation automatisch nur WLANs mit ID 1–16 an das default-policy-profile. Für WLAN-ID 30 braucht es einen eigenen Policy Tag mit der Zuordnung zu einem Policy Profile, der den APs zugewiesen wird."
+    },
+    {
+        "id":  "slg-wu-086",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Via CLI, an engineer creates WLAN CORP, a policy profile PP-EMP with \u0027vlan 30\u0027, and a policy tag that maps CORP to PP-EMP and is applied to the APs. The SSID is not broadcast. \u0027show wireless profile policy summary\u0027 lists PP-EMP with status DISABLED. What is missing?",
+        "optionen":  [
+                         "\u0027no shutdown\u0027 on the VLAN 30 SVI of the WLC",
+                         "A second WLAN ID that matches VLAN 30",
+                         "A site tag that contains the policy profile",
+                         "\u0027no shutdown\u0027 in the policy profile PP-EMP"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Status DISABLED bedeutet, dass das Policy Profile administrativ heruntergefahren ist (shutdown). Erst mit no shutdown wird es aktiv – Cisco-Beispiele schließen jedes Policy Profile deshalb mit no shutdown ab – und die per Policy Tag zugeordneten WLANs werden ausgestrahlt. Ein SVI ist dafür nicht nötig, und Policy Profiles gehören in den Policy Tag, nicht in den Site Tag."
+    },
+    {
+        "id":  "slg-wu-087",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, Modus wireless tag policy PT-CAMPUS: Ordne das WLAN-Profil ENCOR-SALES dem Policy Profile PP-EMP zu.",
+        "bausteine":  [
+                          "wlan",
+                          "ENCOR-SALES",
+                          "policy",
+                          "PP-EMP",
+                          "profile",
+                          "map",
+                          "ssid"
+                      ],
+        "loesung":  [
+                        "wlan",
+                        "ENCOR-SALES",
+                        "policy",
+                        "PP-EMP"
+                    ],
+        "erklaerung":  "Im Policy Tag verknüpft wlan \u003cWLAN-Profil\u003e policy \u003cPolicy-Profil\u003e beide Profile. Der Tag wird anschließend den APs zugewiesen (statisch, per Filter oder über die Location des Setup-Wizards)."
+    },
+    {
+        "id":  "slg-wu-088",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer creates a new WLAN on a Catalyst 9800 and changes nothing under Security. Which security does the WLAN use by default?",
+        "optionen":  [
+                         "Open authentication without any encryption",
+                         "WPA2 with AES-CCMP and 802.1X key management",
+                         "WPA2-PSK with the passphrase \u0027Cisco123\u0027",
+                         "WPA3-SAE with mandatory PMF enabled"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein neues 9800-WLAN ist standardmäßig WPA2 mit AES-CCMP und AKM 802.1X. Für PSK muss man AKM 802.1X abwählen, PSK aktivieren und einen Schlüssel setzen; für ein offenes Portal-SSID die WPA-Security ganz abschalten."
+    },
+    {
+        "id":  "slg-wu-089",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, WLAN-Konfigurationsmodus (wlan ENCOR-SALES 30 ENCOR-SALES), AKM 802.1X wurde bereits entfernt: Aktiviere PSK als Authentication Key Management.",
+        "bausteine":  [
+                          "security",
+                          "wpa",
+                          "akm",
+                          "psk",
+                          "dot1x",
+                          "wpa2",
+                          "key"
+                      ],
+        "loesung":  [
+                        "security",
+                        "wpa",
+                        "akm",
+                        "psk"
+                    ],
+        "erklaerung":  "security wpa akm psk aktiviert PSK als Key Management. Da neue WLANs per Default AKM 802.1X nutzen, wird vorher no security wpa akm dot1x gesetzt; den Schlüssel selbst konfiguriert security wpa psk set-key."
+    },
+    {
+        "id":  "slg-wu-090",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, WLAN-Konfigurationsmodus: Setze den Pre-Shared Key als unverschlüsselt eingegebenen ASCII-Text Cisco123.",
+        "bausteine":  [
+                          "security",
+                          "wpa",
+                          "psk",
+                          "set-key",
+                          "ascii",
+                          "0",
+                          "Cisco123",
+                          "hex",
+                          "7",
+                          "key"
+                      ],
+        "loesung":  [
+                        "security",
+                        "wpa",
+                        "psk",
+                        "set-key",
+                        "ascii",
+                        "0",
+                        "Cisco123"
+                    ],
+        "erklaerung":  "security wpa psk set-key ascii 0 \u003cSchlüssel\u003e setzt eine ASCII-Passphrase; 0 bedeutet, dass der Schlüssel im Klartext eingegeben wird (8 der Typ für bereits verschlüsselte Eingabe). Alternativ kann ein 64-stelliger Hex-Schlüssel gesetzt werden."
+    },
+    {
+        "id":  "slg-wu-091",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, WLAN-Konfigurationsmodus (wlan CORP 20 CORP): Weise dem WLAN die 802.1X-Methodenliste dot1x-method zu, die auf die ISE-Servergruppe zeigt.",
+        "bausteine":  [
+                          "security",
+                          "dot1x",
+                          "authentication-list",
+                          "dot1x-method",
+                          "aaa",
+                          "method-list",
+                          "radius"
+                      ],
+        "loesung":  [
+                        "security",
+                        "dot1x",
+                        "authentication-list",
+                        "dot1x-method"
+                    ],
+        "erklaerung":  "security dot1x authentication-list \u003cName\u003e legt fest, über welche AAA-Methodenliste (aaa authentication dot1x \u003cName\u003e group \u003cServergruppe\u003e) die EAP-Anfragen an RADIUS gehen. Im GUI entspricht das dem AAA-Reiter des WLANs."
+    },
+    {
+        "id":  "slg-wu-092",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, WLAN-Konfigurationsmodus eines WPA3-Personal-WLANs (WPA3 ist aktiviert, AKM 802.1X entfernt): Aktiviere SAE als Authentication Key Management.",
+        "bausteine":  [
+                          "security",
+                          "wpa",
+                          "akm",
+                          "sae",
+                          "psk",
+                          "wpa3",
+                          "owe"
+                      ],
+        "loesung":  [
+                        "security",
+                        "wpa",
+                        "akm",
+                        "sae"
+                    ],
+        "erklaerung":  "security wpa akm sae aktiviert SAE für WPA3-Personal; das Passwort wird wie bei PSK mit security wpa psk set-key gesetzt. Werden PSK und SAE gemeinsam aktiviert (mit PMF optional), entsteht der Transition Mode."
+    },
+    {
+        "id":  "slg-wu-093",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Catalyst 9800, WLAN-Konfigurationsmodus eines reinen WPA3-WLANs: Mache Protected Management Frames verpflichtend.",
+        "bausteine":  [
+                          "security",
+                          "pmf",
+                          "mandatory",
+                          "optional",
+                          "required",
+                          "802.11w"
+                      ],
+        "loesung":  [
+                        "security",
+                        "pmf",
+                        "mandatory"
+                    ],
+        "erklaerung":  "security pmf mandatory erzwingt 802.11w; Clients ohne PMF werden abgewiesen. Für WPA3 ist PMF Pflicht, im Transition Mode mit WPA2-Clients wird security pmf optional verwendet."
+    },
+    {
+        "id":  "slg-wu-094",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "One SSID must serve new WPA3-Personal clients and old WPA2-Personal clients at the same time. Which two settings are required on the WLAN? (Choose two.)",
+        "optionen":  [
+                         "802.1X key management in addition to PSK",
+                         "Both PSK and SAE enabled as key management",
+                         "PMF set to mandatory for all associated clients",
+                         "PMF set to optional instead of mandatory",
+                         "TKIP enabled next to AES for the older clients"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Im WPA3 Transition Mode laufen PSK (für WPA2-Clients) und SAE (für WPA3-Clients) parallel. PMF muss optional sein, da viele WPA2-Clients kein 802.11w beherrschen. 802.1X und TKIP sind für dieses Ziel nicht nötig bzw. unerwünscht."
+    },
+    {
+        "id":  "slg-wu-095",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show wireless client mac-address 3c22.fb11.2233 detail\u0027 shows \u0027Policy Manager State: IP Learn\u0027 for a client on an 802.1X WLAN for several minutes. What does this indicate?",
+        "optionen":  [
+                         "The client is waiting for the RADIUS server to answer its EAP identity request",
+                         "Layer 2 authentication succeeded, but the client has not obtained an IP address",
+                         "The client finished web authentication and is now allowed to send data",
+                         "The client is roaming and its context is being moved to another WLC"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Im Zustand IP Learn ist die Layer-2-Authentifizierung (inkl. 4-Way Handshake) abgeschlossen, der WLC wartet aber auf eine IP-Adresse des Clients. Typische Ursachen sind DHCP-Probleme, ein falsches VLAN oder ein fehlendes VLAN auf dem Trunk. Mit erfolgreicher Adresse wechselt der Client nach Run."
+    },
+    {
+        "id":  "slg-wu-096",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Review this excerpt from \u0027show wireless client mac-address 3c22.fb11.2233 detail\u0027:\n\nWireless LAN Name : CORP\nPolicy Profile : PP-EMP\nVLAN : 30\nPolicy Manager State : Run\nAuthentication : 802.1X\nEAP Type : PEAP\nEncryption Cipher : CCMP (AES)\n\nWhich statement is correct?",
+        "optionen":  [
+                         "The client is still in PEAP phase 1 and can send only EAPOL frames to the WLC",
+                         "The client completed PEAP and the 4-way handshake and can now send data in VLAN 30",
+                         "The client uses TKIP because it has not finished the AES key exchange yet",
+                         "The client authenticated with a PSK and uses PEAP only for its web portal login"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Run ist der Endzustand: 802.1X mit PEAP ist erfolgreich, der 4-Way Handshake hat die AES-CCMP-Schlüssel installiert, und der Client sendet Daten im VLAN 30 des Policy Profiles. In einer laufenden Authentifizierung stünde ein früherer Zustand wie Authenticating."
+    },
+    {
+        "id":  "slg-wu-097",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "To connect to the console port of a new Catalyst 9800 for the Day-0 setup, the terminal emulator is set to ___, 8 data bits, 1 stop bit, no parity, and no flow control.",
+        "optionen":  [
+                         "9600 baud",
+                         "115200 baud",
+                         "19200 baud",
+                         "57600 baud"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Standardeinstellung der Konsole ist 9600 Baud, 8N1 ohne Flusskontrolle. Bei RJ-45 und USB gleichzeitig hat die USB-Konsole Vorrang."
+    },
+    {
+        "id":  "slg-wu-098",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A Catalyst 9800 that was used in a lab boots without showing the Day-0 initial configuration dialog. The engineer wants to start over with the wizard. What is the cause and the fix?",
+        "optionen":  [
+                         "A startup configuration exists; erase it with \u0027write erase\u0027 and reload the WLC",
+                         "The Day-0 dialog needs a DHCP address on the service port before it starts",
+                         "The wizard runs only on 9800-CL; hardware WLCs must be set up through the GUI",
+                         "The console speed is wrong; set 115200 baud so that the wizard appears"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Day-0-Dialog erscheint nur ohne Startup-Config, also bei neuen Geräten oder nach write erase und Reload. Hardware und 9800-CL nutzen denselben Wizard. Alternativ lässt sich der Dialog im privileged EXEC mit setup erneut starten."
+    },
+    {
+        "id":  "slg-wu-099",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "To rerun the initial configuration dialog on an already configured Catalyst 9800, enter ___ in privileged EXEC mode.",
+        "optionen":  [
+                         "configure wizard",
+                         "initial-config",
+                         "wizard start",
+                         "setup"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Befehl setup startet die Setup Command Facility (Day-0-Dialog) erneut. Alternativ beantwortet man beim ersten Boot die Frage nach dem Initial Configuration Dialog mit no und konfiguriert alles manuell per CLI."
+    },
+    {
+        "id":  "slg-wu-100",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three parameters are mandatory in the Catalyst 9800 Day-0 CLI wizard? (Choose three.)",
+        "optionen":  [
+                         "The country code",
+                         "The management credentials",
+                         "The wireless management interface",
+                         "The RF network name",
+                         "The guest SSID name"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Pflicht sind u. a. Management-Interface/-IP mit Route, Credentials, Wireless Management Interface, Deployment-Modus, Hostname, AP-Credentials, Country Code und Zeit/NTP. SSID, Virtual IP, RF Network Name, AAA und HA sind optionale Angaben."
+    },
+    {
+        "id":  "slg-wu-101",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A small office deploys an Embedded Wireless Controller on Catalyst 9100 APs for the first time. How does the administrator reach the setup workflow?",
+        "optionen":  [
+                         "Join the CiscoAirProvision SSID and browse to mywifi.cisco.com",
+                         "Browse to the service port IP of the AP with user webui and its serial",
+                         "Scan for the AP through CAPWAP discovery from a Catalyst 9800 GUI",
+                         "Connect to the AP console at 9600 baud and run the setup command"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein neuer EWC-fähiger AP strahlt die Provisioning-SSID CiscoAirProvision aus. Ein Client verbindet sich, bekommt per DHCP eine Adresse und öffnet https://mywifi.cisco.com (Default webui/cisco laut Kurs); alternativ hilft die Cisco Mobile App per QR-Code."
+    },
+    {
+        "id":  "slg-wu-102",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On a legacy AireOS controller, what was the purpose of the virtual interface?",
+        "optionen":  [
+                         "Serving the WebAuth portal and acting as DHCP relay address for clients",
+                         "Providing out-of-band management on a separate physical port",
+                         "Mapping each WLAN to its client VLAN on the distribution trunk",
+                         "Terminating CAPWAP tunnels from all APs that join the controller"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Das Virtual Interface trug eine nicht geroutete Adresse für WebAuth-Umleitung und DHCP-Relay/Proxy. CAPWAP endete am Management-Interface (früher AP-Manager), Out-of-Band lief über den Service Port, Client-VLANs über Dynamic Interfaces."
+    },
+    {
+        "id":  "slg-wu-103",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das AireOS-Interface (Legacy) seiner Aufgabe zu.",
+        "paare":  [
+                      [
+                          "Management Interface",
+                          "In-Band-Verwaltung und CAPWAP-Terminierung"
+                      ],
+                      [
+                          "Virtual Interface",
+                          "WebAuth-Portal und DHCP-Relay-Adresse"
+                      ],
+                      [
+                          "Service Port",
+                          "Out-of-Band-Verwaltung in eigenem Subnetz"
+                      ],
+                      [
+                          "Dynamic Interface",
+                          "Ausgabe des Client-Verkehrs in ein VLAN"
+                      ]
+                  ],
+        "erklaerung":  "AireOS trennte Verwaltung, Portaladresse, Out-of-Band-Zugang und Client-VLANs in eigene Interfaces. Beim Catalyst 9800 entsprechen dem das Wireless Management Interface, die Virtual IP im Parameter-Map, der Service Port Gi0 und das VLAN im Policy Profile."
+    },
+    {
+        "id":  "slg-wu-104",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In a centralized Catalyst 9800 deployment, the employee policy profile assigns VLAN 30, and the client gateway 10.10.30.1 is on the distribution switch. What is required on the WLC so that clients reach their gateway?",
+        "optionen":  [
+                         "VLAN 30 must exist on the WLC and be allowed on its uplink trunk",
+                         "A dynamic interface with DHCP proxy must be created for VLAN 30",
+                         "A separate AP-manager interface must be placed into VLAN 30",
+                         "An SVI with an IP address in VLAN 30 must be configured on the WLC"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der 9800 gibt den Client-Verkehr als Layer-2-Frames im VLAN des Policy Profiles auf seinen Trunk aus; dafür muss das VLAN existieren und erlaubt sein. Ein SVI im Client-VLAN ist nicht nötig. Dynamic Interfaces und AP-Manager sind AireOS-Begriffe."
+    },
+    {
+        "id":  "slg-wu-105",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Day-0-Weg seinem Zugang zu.",
+        "paare":  [
+                      [
+                          "CLI-Wizard auf 9800-Hardware",
+                          "serielle Konsole mit 9600 Baud"
+                      ],
+                      [
+                          "GUI-Wizard auf 9800-Hardware",
+                          "Browser am Service Port, Benutzer webui"
+                      ],
+                      [
+                          "Embedded Wireless Controller",
+                          "Provisioning-SSID CiscoAirProvision"
+                      ],
+                      [
+                          "9800-CL auf ESXi",
+                          "Konsole der virtuellen Maschine"
+                      ]
+                  ],
+        "erklaerung":  "Hardware-WLCs lassen sich per Konsole oder per GUI-Wizard (webui, Passwort laut Kurs die Seriennummer) einrichten, der EWC über seine Provisioning-SSID und mywifi.cisco.com, der 9800-CL über die VM-Konsole mit demselben CLI-Wizard."
+    },
+    {
+        "id":  "slg-wu-106",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus auf einem Catalyst 9800: Ein Audit verlangt, die unverschlüsselte HTTP-Verwaltung abzuschalten; HTTPS soll aktiv bleiben.",
+        "bausteine":  [
+                          "no",
+                          "ip",
+                          "http",
+                          "server",
+                          "secure-server",
+                          "https",
+                          "disable"
+                      ],
+        "loesung":  [
+                        "no",
+                        "ip",
+                        "http",
+                        "server"
+                    ],
+        "erklaerung":  "no ip http server deaktiviert den HTTP-Server (Port 80); ip http secure-server (Port 443) bleibt für die GUI aktiv. Achtung: Wird HTTP auch für WebAuth-Umleitung gebraucht, lässt sich das im Parameter-Map getrennt steuern."
+    },
+    {
+        "id":  "slg-wu-107",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In the Catalyst 9800 web GUI, under which main menu are packet capture, ping/traceroute, logs, and radioactive tracing found?",
+        "optionen":  [
+                         "Monitoring",
+                         "Administration",
+                         "Troubleshooting",
+                         "Configuration"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das Troubleshooting-Dashboard bündelt Packet Capture, Ping und Traceroute, Logs und Debugging wie Radioactive Tracing. Monitoring zeigt Statistiken, Administration verwaltet Benutzer und Software, Configuration enthält die Einstellungen."
+    },
+    {
+        "id":  "slg-wu-108",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the lab, the engineer assigns two joined APs to the new location \u0027Campus\u0027 and clicks Apply. For about a minute the location shows 0 joined APs. Why?",
+        "optionen":  [
+                         "The APs download a new software image because the location has a new tag",
+                         "The APs restart their CAPWAP association after the new tags are applied",
+                         "The location counts APs only after a client has associated to them",
+                         "The WLC disables the APs until the WLAN profile is saved a second time"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit der Location erhalten die APs neue Tags; laut Kurs bauen sie dabei ihre CAPWAP-Verbindung neu auf. Nach dem Rejoin (ca. 60 Sekunden) zeigt die Location wieder 2 Joined APs. Ein Image-Download oder Client-Zählung hat damit nichts zu tun."
+    },
+    {
+        "id":  "slg-wu-109",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In the lab, the employee WLAN gets WLAN ID 30 because the client VLAN is 30. What is true about this choice?",
+        "optionen":  [
+                         "It is required, because the WLC maps WLANs to VLANs by their ID numbers",
+                         "It is only a good practice for readability; the IDs do not need to match",
+                         "It is forbidden, because WLAN IDs must stay below the lowest VLAN number",
+                         "It is required for 802.1X, because ISE returns the WLAN ID as the VLAN"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die gleiche Nummer erleichtert nur die Übersicht. Die Zuordnung zum VLAN erfolgt über das Policy Profile, das per Policy Tag mit dem WLAN verbunden ist – technisch sind WLAN-ID und VLAN unabhängig."
+    },
+    {
+        "id":  "slg-wu-110",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An employee\u0027s laptop with a saved WPA2-PSK passphrase is stolen. What is the consequence for the network?",
+        "optionen":  [
+                         "Only that laptop\u0027s MAC is blocked automatically, because PSK is bound to the MAC",
+                         "Nothing happens until the PTK expires, after which the laptop must use 802.1X",
+                         "The thief cannot join, because WPA2-PSK asks for the user\u0027s password at every connect",
+                         "The thief can join the WLAN, because the PSK authenticates the device, not the user"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein gespeicherter PSK authentifiziert das Gerät, nicht die Person. Wer das Gerät hat, ist im Netz. Abhilfe bei klassischem PSK: Schlüssel auf allen Geräten ändern – oder iPSK bzw. 802.1X einsetzen, wo einzelne Geräte/Benutzer gesperrt werden können."
+    },
+    {
+        "id":  "slg-wu-111",
+        "topic":  "CCNA2-1.5.c",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which three are limitations of WPA2-Personal (PSK) in an enterprise WLAN? (Choose three.)",
+        "optionen":  [
+                         "Individual users or devices cannot be identified and revoked",
+                         "A RADIUS server is required to distribute the PSK to clients",
+                         "Data frames cannot be encrypted with AES on PSK networks",
+                         "Weak passphrases can be cracked offline from a captured handshake",
+                         "Every device with the PSK gets the same level of access"
+                     ],
+        "richtig":  [
+                        0,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Ein gemeinsamer PSK kennt keine individuellen Identitäten, gibt allen dieselben Rechte und ist bei schwacher Passphrase offline knackbar. AES-CCMP wird auch bei WPA2-PSK verwendet, und ein RADIUS-Server ist gerade nicht beteiligt."
+    },
+    {
+        "id":  "slg-wu-112",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeder Bedrohung im WLAN die passende Gegenmaßnahme zu.",
+        "paare":  [
+                      [
+                          "Gefälschte Deauthentication-Frames",
+                          "Protected Management Frames (802.11w)"
+                      ],
+                      [
+                          "Offline-Wörterbuchangriff auf den Handshake",
+                          "WPA3-Personal mit SAE"
+                      ],
+                      [
+                          "Passives Mitlesen im offenen Hotspot",
+                          "Enhanced Open (OWE)"
+                      ],
+                      [
+                          "Evil Twin sammelt PEAP-Passwörter",
+                          "Prüfung des Server-Zertifikats im Supplicant"
+                      ]
+                  ],
+        "erklaerung":  "PMF schützt Management-Frames, SAE verhindert Offline-Angriffe auf das Passwort, OWE verschlüsselt offene Netze individuell, und nur die strikte Server-Zertifikatsprüfung verhindert, dass PEAP-Clients ihre Credentials an einen fremden RADIUS-Server senden."
+    },
+    {
+        "id":  "slg-wu-113",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Gastzugangs-Variante ihrem Merkmal zu.",
+        "paare":  [
+                      [
+                          "Local Web Authentication",
+                          "Portal und Gastkonten auf dem WLC"
+                      ],
+                      [
+                          "Local WebAuth mit externer Authentifizierung",
+                          "Portal auf dem WLC, Prüfung der Credentials per RADIUS"
+                      ],
+                      [
+                          "Central Web Authentication",
+                          "Portal und Konten auf ISE, danach CoA"
+                      ],
+                      [
+                          "Auto-Anchor",
+                          "Pfadisolierung per Tunnel zum WLC in der DMZ"
+                      ]
+                  ],
+        "erklaerung":  "Bei LWA erledigt der WLC alles selbst; mit externer Authentifizierung prüft ein RADIUS-Server die Eingaben. Bei CWA liefert ISE Portal und Konten und schaltet per CoA frei. Der Auto-Anchor ist unabhängig davon die Methode, den Gastverkehr in die DMZ zu tunneln."
+    },
+    {
+        "id":  "slg-wu-114",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which wireless authentication method takes place only after the client already has an IP address?",
+        "optionen":  [
+                         "Web authentication",
+                         "802.1X with EAP-TLS",
+                         "WPA3-SAE",
+                         "WPA2-PSK"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "WebAuth ist eine Layer-3-Methode: Der Client assoziiert (oft offen), bekommt per DHCP eine Adresse und wird beim ersten HTTP-Zugriff zum Portal umgeleitet. 802.1X, PSK und SAE laufen auf Layer 2 vor jeder IP-Kommunikation."
+    },
+    {
+        "id":  "slg-wu-115",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "A Catalyst 9800 must use ISE for 802.1X on a new WLAN. Which two items must be configured on ISE? (Choose two.)",
+        "optionen":  [
+                         "The SSID and WLAN ID so that ISE can broadcast the network",
+                         "The same RADIUS shared secret that is configured on the WLC",
+                         "A client certificate for the WLC so that it can relay EAP traffic",
+                         "The WLC as a network device with the IP address it uses for RADIUS",
+                         "A TACACS+ profile that allows the WLC to send RADIUS requests"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "ISE akzeptiert RADIUS nur von bekannten Network Devices, erkannt an der Quell-IP, und mit passendem Shared Secret. Der WLC braucht kein Client-Zertifikat, um EAP weiterzuleiten, und SSIDs werden auf dem WLC, nicht auf ISE definiert."
+    },
+    {
+        "id":  "slg-wu-116",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "On legacy AireOS controllers, the non-routed address used for the WebAuth portal was configured on the ___ interface.",
+        "optionen":  [
+                         "virtual",
+                         "management",
+                         "dynamic",
+                         "service-port"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "AireOS nutzte das Virtual Interface für WebAuth und DHCP-Relay, früher oft mit 1.1.1.1, heute empfohlen 192.0.2.1. Beim Catalyst 9800 steht die Adresse als virtual-ip im globalen WebAuth-Parameter-Map."
+    },
+    {
+        "id":  "slg-wu-117",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Public guests in a shopping mall should be protected from neighbors passively sniffing their traffic, but the mall does not want to hand out any password. Which security mode fits?",
+        "optionen":  [
+                         "WPA2-Personal",
+                         "Open with WEP",
+                         "Enhanced Open (OWE)",
+                         "WPA3-Enterprise"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "OWE verschlüsselt den Verkehr jedes Clients individuell ohne Passwort und eignet sich daher für öffentliche Hotspots. WPA2-Personal verlangt eine Passphrase, WPA3-Enterprise individuelle Credentials, WEP ist gebrochen."
+    },
+    {
+        "id":  "slg-wu-118",
+        "topic":  "ENCOR-LEGACY-WLAN",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A mall deploys Enhanced Open (OWE). An attacker sets up an AP with the same SSID that also offers OWE. What happens when visitors\u0027 phones connect to it?",
+        "optionen":  [
+                         "They are blocked, because OWE checks the AP certificate against a public CA",
+                         "They are blocked, because PMF detects that the BSSID belongs to a rogue AP",
+                         "They can connect, because OWE encrypts traffic but does not authenticate the AP",
+                         "They can connect, but only after entering the mall\u0027s shared passphrase"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "OWE schützt nur vor passivem Mitlesen. Ohne Authentifizierung kann ein Client nicht erkennen, ob der AP echt ist; ein Evil Twin mit OWE wird akzeptiert. PMF schützt Management-Frames einer bestehenden Verbindung, erkennt aber keinen fremden AP."
+    }
+]

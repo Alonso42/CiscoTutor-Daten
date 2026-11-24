@@ -34,6 +34,6 @@
 <text x="40" y="380">Pre-Auth immer erlauben: DHCP, DNS</text>
 <text x="40" y="398">Portal-Adresse: Virtual IP (z. B. 192.0.2.1), auf allen WLCs gleich</text>
 <text x="40" y="420">9800: Foreign 'mobility anchor &lt;IP&gt; priority 1', Anchor 'mobility anchor'</text>
-<text x="40" y="438">WLAN-Profil (Name, SSID, Security) auf beiden WLCs identisch</text>
+<text x="40" y="438">WLAN- und Policy-Profil (Namen, Security) auf beiden WLCs identisch</text>
 </g>
 </svg>

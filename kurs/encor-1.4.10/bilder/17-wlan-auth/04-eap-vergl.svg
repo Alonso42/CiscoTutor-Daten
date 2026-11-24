@@ -16,7 +16,7 @@
 <rect x="293" y="90" width="215" height="44" rx="5" fill="#4a9cff" opacity="0.4"/><text x="400" y="108" text-anchor="middle">Phase 1: TLS-Tunnel</text><text x="400" y="125" text-anchor="middle">nur Server-Zertifikat</text>
 <rect x="313" y="142" width="175" height="44" rx="5" fill="#ffd23f"/><text x="400" y="160" text-anchor="middle">Phase 2 im Tunnel:</text><text x="400" y="177" text-anchor="middle">EAP-MSCHAPv2 / GTC</text>
 <text x="293" y="210">+ Outer Identity anonym</text><text x="293" y="228">+ AD-Passwörter nutzbar</text>
-<text x="293" y="260">− Client MUSS Server-Zertifikat</text><text x="293" y="278">  prüfen, sonst Evil Twin</text><text x="293" y="296">  + Offline-Angriff auf MSCHAPv2</text>
+<text x="293" y="260">− Client MUSS Server-Zertifikat</text><text x="293" y="278">  prüfen, sonst Evil Twin</text><text x="293" y="296">  → Offline-Angriff auf MSCHAPv2</text>
 
 <rect x="536" y="50" width="245" height="330" rx="8" fill="none" stroke="#b08aff" stroke-width="3"/>
 <text x="658" y="75" text-anchor="middle" font-weight="bold" font-size="16">EAP-FAST (Cisco)</text>
