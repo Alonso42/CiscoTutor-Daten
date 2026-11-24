@@ -1,101 +1,373 @@
 [
-{
- "id": "campus-lan",
- "titel": "VLANs, Trunks und Inter-VLAN-Routing",
- "topics": ["ENCOR-3.1.a"],
- "seiten": [
-  {
-   "text": "Ein VLAN ist eine eigene Broadcast-Domäne mit eigenem Subnetz. Ein Access-Port gehört zu genau einem Daten-VLAN, optional dazu ein Voice-VLAN fürs IP-Telefon. VLAN 1 und 1002–1005 gibt es immer. Normal-Range-VLANs liegen in vlan.dat im Flash, nicht in der startup-config.",
-   "diagramm": {
-    "typ": "tabelle",
-    "kopf": ["Befehl", "Wirkung"],
-    "zeilen": [
-     ["vlan 2 / name Sales", "VLAN anlegen und benennen"],
-     ["switchport mode access", "Port als Access-Port"],
-     ["switchport access vlan 2", "Daten-VLAN zuweisen"],
-     ["switchport voice vlan 20", "Voice-VLAN fürs IP-Telefon"],
-     ["show vlan brief", "VLANs und Ports im Überblick"]
-    ]
-   }
-  },
-  {
-   "text": "Ein Trunk trägt viele VLANs über einen Link. 802.1Q schiebt einen 4-Byte-Tag zwischen Quell-MAC und Typfeld, deshalb muss die FCS neu berechnet werden. Nur das Native VLAN geht ungetaggt über den Trunk.",
-   "diagramm": {
-    "typ": "tabelle",
-    "kopf": ["Feld", "Größe", "Inhalt"],
-    "zeilen": [
-     ["TPID", "16 Bit", "0x8100 = 802.1Q-Frame"],
-     ["PCP", "3 Bit", "Priorität (CoS 0–7)"],
-     ["DEI", "1 Bit", "Drop Eligible (früher CFI)"],
-     ["VLAN ID", "12 Bit", "VLAN 1–4094"]
-    ]
-   }
-  },
-  {
-   "text": "Native VLAN: Es muss auf beiden Enden gleich sein, sonst landen ungetaggte Frames im falschen VLAN (VLAN-Leaking). CDP meldet dann NATIVE_VLAN_MISMATCH. Best Practice: ein eigenes, sonst unbenutztes VLAN als Native VLAN, Trunks statisch konfigurieren statt per DTP aushandeln.",
-   "diagramm": {
-    "typ": "topologie",
-    "knoten": [
-     {"id": "pc1", "label": "PC1 VLAN 1", "x": "0.08", "y": "0.5", "art": "pc"},
-     {"id": "sw1", "label": "SW1 native 1", "x": "0.35", "y": "0.5", "art": "switch"},
-     {"id": "sw2", "label": "SW2 native 2", "x": "0.65", "y": "0.5", "art": "switch"},
-     {"id": "pc2", "label": "PC2 VLAN 2", "x": "0.92", "y": "0.5", "art": "pc"}
-    ],
-    "kanten": [
-     {"von": "pc1", "nach": "sw1", "label": "Access VLAN 1", "farbe": "39c86a"},
-     {"von": "sw1", "nach": "sw2", "label": "802.1Q-Trunk", "farbe": "4a9cff"},
-     {"von": "sw2", "nach": "pc2", "label": "Access VLAN 2", "farbe": "b08aff"}
-    ],
-    "schritte": [
-     {"von": "pc1", "nach": "sw1", "farbe": "ffd23f", "text": "Frame in VLAN 1 = Native VLAN von SW1"},
-     {"von": "sw1", "nach": "sw2", "farbe": "ff6b6b", "text": "SW1 sendet ihn ungetaggt"},
-     {"von": "sw2", "nach": "pc2", "farbe": "ff6b6b", "text": "SW2 ordnet ihn seinem Native VLAN 2 zu → Leck!"}
-    ]
-   }
-  },
-  {
-   "text": "DTP (Cisco-proprietär) handelt Trunks aus: auto wartet, desirable fragt aktiv. auto + auto ergibt keinen Trunk. Fehlersuche bei Trunks immer mit show interfaces trunk: Läuft der Trunk? Stimmt das Native VLAN? Ist das VLAN erlaubt und aktiv?",
-   "diagramm": {
-    "typ": "tabelle",
-    "kopf": ["", "auto", "desirable", "trunk", "access"],
-    "zeilen": [
-     ["auto", "Access", "Trunk", "Trunk", "Access"],
-     ["desirable", "Trunk", "Trunk", "Trunk", "Access"],
-     ["trunk", "Trunk", "Trunk", "Trunk", "Fehler"],
-     ["access", "Access", "Access", "Fehler", "Access"]
-    ]
-   }
-  },
-  {
-   "text": "Fehlersuche, wenn ein VLAN ausfällt: Ist der Port im richtigen VLAN (show vlan, show mac address-table)? Existiert das VLAN noch? Ports in einem gelöschten VLAN sind inaktiv. Ist das VLAN per shutdown abgeschaltet? Einen Host findest du über IP → MAC (show ip arp am Gateway) → Port (show mac address-table).",
-   "diagramm": {
-    "typ": "ablauf",
-    "stufen": ["IP-Adresse bekannt", "show ip arp am Gateway → MAC", "show mac address-table → Port", "Port zeigt zu Switch? → CDP, dort weiter", "Port gefunden"]
-   }
-  },
-  {
-   "text": "Zwischen VLANs muss geroutet werden. Drei Wege: ein Router-Interface pro VLAN (skaliert nicht), Router on a Stick (ein Trunk mit Subinterfaces und encapsulation dot1Q – die Subinterface-Nummer ist nur ein Name) oder ein Layer-3-Switch mit SVIs und ip routing (am besten skalierbar).",
-   "diagramm": {
-    "typ": "topologie",
-    "knoten": [
-     {"id": "r1", "label": "R1 Gi0/0.10 + .20", "x": "0.5", "y": "0.15", "art": "router"},
-     {"id": "sw", "label": "Switch (Trunk)", "x": "0.5", "y": "0.55", "art": "switch"},
-     {"id": "pca", "label": "PC VLAN 10", "x": "0.15", "y": "0.85", "art": "pc"},
-     {"id": "pcb", "label": "PC VLAN 20", "x": "0.85", "y": "0.85", "art": "pc"}
-    ],
-    "kanten": [
-     {"von": "r1", "nach": "sw", "label": "802.1Q-Trunk", "farbe": "4a9cff"},
-     {"von": "sw", "nach": "pca", "label": "Access 10", "farbe": "39c86a"},
-     {"von": "sw", "nach": "pcb", "label": "Access 20", "farbe": "b08aff"}
-    ],
-    "schritte": [
-     {"von": "pca", "nach": "sw", "farbe": "ffd23f", "text": "PC sendet an sein Gateway (.10-Subinterface)"},
-     {"von": "sw", "nach": "r1", "farbe": "ffd23f", "text": "Über den Trunk mit Tag 10 zum Router"},
-     {"von": "r1", "nach": "sw", "farbe": "ffd23f", "text": "Router routet und schickt mit Tag 20 zurück"},
-     {"von": "sw", "nach": "pcb", "farbe": "ffd23f", "text": "Switch stellt in VLAN 20 zu"}
-    ]
-   }
-  }
- ]
-}
+    {
+        "id":  "campus-lan",
+        "titel":  "VLANs, Trunks und Inter-VLAN-Routing",
+        "topics":  [
+                       "ENCOR-3.1.a"
+                   ],
+        "seiten":  [
+                       {
+                           "text":  "Ein VLAN ist eine eigene Broadcast-Domäne mit eigenem Subnetz. Ein Access-Port gehört zu genau einem Daten-VLAN, optional dazu ein Voice-VLAN fürs IP-Telefon. VLAN 1 und 1002–1005 gibt es immer. Normal-Range-VLANs liegen in vlan.dat im Flash, nicht in der startup-config.",
+                           "diagramm":  {
+                                            "typ":  "tabelle",
+                                            "kopf":  [
+                                                         "Befehl",
+                                                         "Wirkung"
+                                                     ],
+                                            "zeilen":  [
+                                                           [
+                                                               "vlan 2 / name Sales",
+                                                               "VLAN anlegen und benennen"
+                                                           ],
+                                                           [
+                                                               "switchport mode access",
+                                                               "Port als Access-Port"
+                                                           ],
+                                                           [
+                                                               "switchport access vlan 2",
+                                                               "Daten-VLAN zuweisen"
+                                                           ],
+                                                           [
+                                                               "switchport voice vlan 20",
+                                                               "Voice-VLAN fürs IP-Telefon"
+                                                           ],
+                                                           [
+                                                               "show vlan brief",
+                                                               "VLANs und Ports im Überblick"
+                                                           ]
+                                                       ]
+                                        }
+                       },
+                       {
+                           "text":  "Ein Trunk trägt viele VLANs über einen Link. 802.1Q schiebt einen 4-Byte-Tag zwischen Quell-MAC und Typfeld, deshalb muss die FCS neu berechnet werden. Nur das Native VLAN geht ungetaggt über den Trunk.",
+                           "diagramm":  {
+                                            "typ":  "tabelle",
+                                            "kopf":  [
+                                                         "Feld",
+                                                         "Größe",
+                                                         "Inhalt"
+                                                     ],
+                                            "zeilen":  [
+                                                           [
+                                                               "TPID",
+                                                               "16 Bit",
+                                                               "0x8100 = 802.1Q-Frame"
+                                                           ],
+                                                           [
+                                                               "PCP",
+                                                               "3 Bit",
+                                                               "Priorität (CoS 0–7)"
+                                                           ],
+                                                           [
+                                                               "DEI",
+                                                               "1 Bit",
+                                                               "Drop Eligible (früher CFI)"
+                                                           ],
+                                                           [
+                                                               "VLAN ID",
+                                                               "12 Bit",
+                                                               "VLAN 1–4094"
+                                                           ]
+                                                       ]
+                                        }
+                       },
+                       {
+                           "text":  "Native VLAN: Es muss auf beiden Enden gleich sein, sonst landen ungetaggte Frames im falschen VLAN (VLAN-Leaking). CDP meldet dann NATIVE_VLAN_MISMATCH. Best Practice: ein eigenes, sonst unbenutztes VLAN als Native VLAN, Trunks statisch konfigurieren statt per DTP aushandeln.",
+                           "diagramm":  {
+                                            "typ":  "topologie",
+                                            "knoten":  [
+                                                           {
+                                                               "id":  "pc1",
+                                                               "label":  "PC1 VLAN 1",
+                                                               "x":  "0.08",
+                                                               "y":  "0.5",
+                                                               "art":  "pc"
+                                                           },
+                                                           {
+                                                               "id":  "sw1",
+                                                               "label":  "SW1 native 1",
+                                                               "x":  "0.35",
+                                                               "y":  "0.5",
+                                                               "art":  "switch"
+                                                           },
+                                                           {
+                                                               "id":  "sw2",
+                                                               "label":  "SW2 native 2",
+                                                               "x":  "0.65",
+                                                               "y":  "0.5",
+                                                               "art":  "switch"
+                                                           },
+                                                           {
+                                                               "id":  "pc2",
+                                                               "label":  "PC2 VLAN 2",
+                                                               "x":  "0.92",
+                                                               "y":  "0.5",
+                                                               "art":  "pc"
+                                                           }
+                                                       ],
+                                            "kanten":  [
+                                                           {
+                                                               "von":  "pc1",
+                                                               "nach":  "sw1",
+                                                               "label":  "Access VLAN 1",
+                                                               "farbe":  "39c86a"
+                                                           },
+                                                           {
+                                                               "von":  "sw1",
+                                                               "nach":  "sw2",
+                                                               "label":  "802.1Q-Trunk",
+                                                               "farbe":  "4a9cff"
+                                                           },
+                                                           {
+                                                               "von":  "sw2",
+                                                               "nach":  "pc2",
+                                                               "label":  "Access VLAN 2",
+                                                               "farbe":  "b08aff"
+                                                           }
+                                                       ],
+                                            "schritte":  [
+                                                             {
+                                                                 "von":  "pc1",
+                                                                 "nach":  "sw1",
+                                                                 "farbe":  "ffd23f",
+                                                                 "text":  "Frame in VLAN 1 = Native VLAN von SW1"
+                                                             },
+                                                             {
+                                                                 "von":  "sw1",
+                                                                 "nach":  "sw2",
+                                                                 "farbe":  "ff6b6b",
+                                                                 "text":  "SW1 sendet ihn ungetaggt"
+                                                             },
+                                                             {
+                                                                 "von":  "sw2",
+                                                                 "nach":  "pc2",
+                                                                 "farbe":  "ff6b6b",
+                                                                 "text":  "SW2 ordnet ihn seinem Native VLAN 2 zu → Leck!"
+                                                             }
+                                                         ]
+                                        }
+                       },
+                       {
+                           "text":  "DTP (Cisco-proprietär) handelt Trunks aus: auto wartet, desirable fragt aktiv. auto + auto ergibt keinen Trunk. Fehlersuche bei Trunks immer mit show interfaces trunk: Läuft der Trunk? Stimmt das Native VLAN? Ist das VLAN erlaubt und aktiv?",
+                           "diagramm":  {
+                                            "typ":  "tabelle",
+                                            "kopf":  [
+                                                         "",
+                                                         "auto",
+                                                         "desirable",
+                                                         "trunk",
+                                                         "access"
+                                                     ],
+                                            "zeilen":  [
+                                                           [
+                                                               "auto",
+                                                               "Access",
+                                                               "Trunk",
+                                                               "Trunk",
+                                                               "Access"
+                                                           ],
+                                                           [
+                                                               "desirable",
+                                                               "Trunk",
+                                                               "Trunk",
+                                                               "Trunk",
+                                                               "Access"
+                                                           ],
+                                                           [
+                                                               "trunk",
+                                                               "Trunk",
+                                                               "Trunk",
+                                                               "Trunk",
+                                                               "Fehler"
+                                                           ],
+                                                           [
+                                                               "access",
+                                                               "Access",
+                                                               "Access",
+                                                               "Fehler",
+                                                               "Access"
+                                                           ]
+                                                       ]
+                                        }
+                       },
+                       {
+                           "text":  "show interfaces trunk zeigt drei VLAN-Listen, die aufeinander aufbauen: erlaubt (allowed-Liste, Default 1–4094) → erlaubt und lokal aktiv → von STP geforwardet und nicht geprunt. Fehlt ein VLAN schon in Liste 1, ist es nicht erlaubt; fehlt es erst in Liste 2, existiert es lokal nicht; fehlt es nur in Liste 3, blockiert STP. Vorsicht: \u0027switchport trunk allowed vlan 40\u0027 ERSETZT die Liste – zum Ergänzen \u0027add\u0027, zum Entfernen \u0027remove\u0027. Ein VLAN muss auf beiden Trunk-Enden erlaubt sein. Im Lab fehlte VLAN 62 auf SW1 Et0/1 (1-61,63-1000); ein zusätzlich korrigierter Native-VLAN-Mismatch half nicht, weil VLAN 62 getaggt läuft.",
+                           "diagramm":  {
+                                            "typ":  "tabelle",
+                                            "kopf":  [
+                                                         "Befehl",
+                                                         "Wirkung auf die allowed-Liste"
+                                                     ],
+                                            "zeilen":  [
+                                                           [
+                                                               "allowed vlan 10,20",
+                                                               "ersetzt die Liste durch 10 und 20"
+                                                           ],
+                                                           [
+                                                               "allowed vlan add 62",
+                                                               "fügt 62 hinzu (Lab-Fix)"
+                                                           ],
+                                                           [
+                                                               "allowed vlan remove 62",
+                                                               "nimmt 62 heraus"
+                                                           ],
+                                                           [
+                                                               "allowed vlan except 62",
+                                                               "alle VLANs außer 62"
+                                                           ],
+                                                           [
+                                                               "allowed vlan none / all",
+                                                               "keins / alle (Default)"
+                                                           ]
+                                                       ]
+                                        }
+                       },
+                       {
+                           "text":  "DTP ist auch ein Sicherheitsrisiko: Ein Nutzerport im Default \u0027dynamic auto\u0027 wird zum Trunk, wenn ein Angreifer DTP-Anfragen sendet (Switch Spoofing) – dann erreicht er alle erlaubten VLANs. Beim Double Tagging sitzt der Angreifer im Native VLAN des Trunks und schickt doppelt getaggte Frames in ein fremdes VLAN (nur Einweg). Schutz: Nutzerports statisch \u0027switchport mode access\u0027, Trunks \u0027mode trunk\u0027 plus \u0027switchport nonegotiate\u0027, ein unbenutztes Native VLAN und ggf. \u0027vlan dot1q tag native\u0027.",
+                           "diagramm":  {
+                                            "typ":  "tabelle",
+                                            "kopf":  [
+                                                         "Angriff",
+                                                         "Voraussetzung",
+                                                         "Gegenmaßnahme"
+                                                     ],
+                                            "zeilen":  [
+                                                           [
+                                                               "Switch Spoofing",
+                                                               "Port verhandelt per DTP (auto/desirable)",
+                                                               "mode access bzw. mode trunk + nonegotiate"
+                                                           ],
+                                                           [
+                                                               "Double Tagging",
+                                                               "Angreifer-VLAN = Native VLAN, ungetaggt",
+                                                               "unbenutztes Native VLAN, vlan dot1q tag native"
+                                                           ]
+                                                       ]
+                                        }
+                       },
+                       {
+                           "text":  "Fehlersuche, wenn ein VLAN ausfällt: Ist der Port im richtigen VLAN (show vlan, show mac address-table)? Existiert das VLAN noch? Ports in einem gelöschten VLAN sind inaktiv. Ist das VLAN per shutdown abgeschaltet? Einen Host findest du über IP → MAC (show ip arp am Gateway) → Port (show mac address-table).",
+                           "diagramm":  {
+                                            "typ":  "ablauf",
+                                            "stufen":  [
+                                                           "IP-Adresse bekannt",
+                                                           "show ip arp am Gateway → MAC",
+                                                           "show mac address-table → Port",
+                                                           "Port zeigt zu Switch? → CDP, dort weiter",
+                                                           "Port gefunden"
+                                                       ]
+                                        }
+                       },
+                       {
+                           "text":  "Zwischen VLANs muss geroutet werden. Drei Wege: ein Router-Interface pro VLAN (skaliert nicht), Router on a Stick (ein Trunk mit Subinterfaces und encapsulation dot1Q – die Subinterface-Nummer ist nur ein Name) oder ein Layer-3-Switch mit SVIs und ip routing (am besten skalierbar).",
+                           "diagramm":  {
+                                            "typ":  "topologie",
+                                            "knoten":  [
+                                                           {
+                                                               "id":  "r1",
+                                                               "label":  "R1 Gi0/0.10 + .20",
+                                                               "x":  "0.5",
+                                                               "y":  "0.15",
+                                                               "art":  "router"
+                                                           },
+                                                           {
+                                                               "id":  "sw",
+                                                               "label":  "Switch (Trunk)",
+                                                               "x":  "0.5",
+                                                               "y":  "0.55",
+                                                               "art":  "switch"
+                                                           },
+                                                           {
+                                                               "id":  "pca",
+                                                               "label":  "PC VLAN 10",
+                                                               "x":  "0.15",
+                                                               "y":  "0.85",
+                                                               "art":  "pc"
+                                                           },
+                                                           {
+                                                               "id":  "pcb",
+                                                               "label":  "PC VLAN 20",
+                                                               "x":  "0.85",
+                                                               "y":  "0.85",
+                                                               "art":  "pc"
+                                                           }
+                                                       ],
+                                            "kanten":  [
+                                                           {
+                                                               "von":  "r1",
+                                                               "nach":  "sw",
+                                                               "label":  "802.1Q-Trunk",
+                                                               "farbe":  "4a9cff"
+                                                           },
+                                                           {
+                                                               "von":  "sw",
+                                                               "nach":  "pca",
+                                                               "label":  "Access 10",
+                                                               "farbe":  "39c86a"
+                                                           },
+                                                           {
+                                                               "von":  "sw",
+                                                               "nach":  "pcb",
+                                                               "label":  "Access 20",
+                                                               "farbe":  "b08aff"
+                                                           }
+                                                       ],
+                                            "schritte":  [
+                                                             {
+                                                                 "von":  "pca",
+                                                                 "nach":  "sw",
+                                                                 "farbe":  "ffd23f",
+                                                                 "text":  "PC sendet an sein Gateway (.10-Subinterface)"
+                                                             },
+                                                             {
+                                                                 "von":  "sw",
+                                                                 "nach":  "r1",
+                                                                 "farbe":  "ffd23f",
+                                                                 "text":  "Über den Trunk mit Tag 10 zum Router"
+                                                             },
+                                                             {
+                                                                 "von":  "r1",
+                                                                 "nach":  "sw",
+                                                                 "farbe":  "ffd23f",
+                                                                 "text":  "Router routet und schickt mit Tag 20 zurück"
+                                                             },
+                                                             {
+                                                                 "von":  "sw",
+                                                                 "nach":  "pcb",
+                                                                 "farbe":  "ffd23f",
+                                                                 "text":  "Switch stellt in VLAN 20 zu"
+                                                             }
+                                                         ]
+                                        }
+                       },
+                       {
+                           "text":  "Beim Layer-3-Switch ist das SVI (interface vlan X) das Gateway; ohne \u0027ip routing\u0027 erreichen Hosts nur ihr eigenes SVI. Ob ein SVI up/up ist, regelt Autostate: VLAN existiert und ist aktiv, SVI nicht shutdown, mindestens ein L2-Port im VLAN ist up und im STP-Forwarding (Access-Port oder Trunk, der das VLAN führt). Beim Router on a Stick gilt: erst \u0027encapsulation dot1Q\u0027, dann die IP; ist das physische Interface down, sind es alle Subinterfaces.",
+                           "diagramm":  {
+                                            "typ":  "tabelle",
+                                            "kopf":  [
+                                                         "Anzeige Vlan30",
+                                                         "Typische Ursache"
+                                                     ],
+                                            "zeilen":  [
+                                                           [
+                                                               "administratively down / down",
+                                                               "shutdown auf dem SVI"
+                                                           ],
+                                                           [
+                                                               "down / down",
+                                                               "VLAN 30 existiert nicht"
+                                                           ],
+                                                           [
+                                                               "up / down",
+                                                               "kein aktiver Forwarding-Port in VLAN 30"
+                                                           ],
+                                                           [
+                                                               "up / up, aber kein Routing",
+                                                               "ip routing fehlt"
+                                                           ]
+                                                       ]
+                                        }
+                       }
+                   ]
+    }
 ]

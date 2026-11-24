@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>802.1Q-Tag im Ethernet-Frame</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">802.1Q: 4 Byte zwischen Quell-MAC und EtherType</text>
+<text x="30" y="80" font-size="14" fill="#222">Original</text>
+<g font-size="13" fill="#222" text-anchor="middle">
+<rect x="110" y="60" width="130" height="34" fill="#eee" stroke="#222"/><text x="175" y="82">Ziel-MAC</text>
+<rect x="240" y="60" width="130" height="34" fill="#eee" stroke="#222"/><text x="305" y="82">Quell-MAC</text>
+<rect x="370" y="60" width="100" height="34" fill="#eee" stroke="#222"/><text x="420" y="82">Type</text>
+<rect x="470" y="60" width="200" height="34" fill="#eee" stroke="#222"/><text x="570" y="82">Daten</text>
+<rect x="670" y="60" width="80" height="34" fill="#eee" stroke="#222"/><text x="710" y="82">FCS</text>
+</g>
+<text x="30" y="160" font-size="14" fill="#222">Getaggt</text>
+<g font-size="13" fill="#222" text-anchor="middle">
+<rect x="110" y="140" width="110" height="34" fill="#eee" stroke="#222"/><text x="165" y="162">Ziel-MAC</text>
+<rect x="220" y="140" width="110" height="34" fill="#eee" stroke="#222"/><text x="275" y="162">Quell-MAC</text>
+<rect x="330" y="140" width="110" height="34" fill="#4a9cff" stroke="#222"/><text x="385" y="162" fill="#fff" font-weight="bold">802.1Q-Tag</text>
+<rect x="440" y="140" width="70" height="34" fill="#eee" stroke="#222"/><text x="475" y="162">Type</text>
+<rect x="510" y="140" width="160" height="34" fill="#eee" stroke="#222"/><text x="590" y="162">Daten</text>
+<rect x="670" y="140" width="80" height="34" fill="#ff6b6b" stroke="#222"/><text x="710" y="162">FCS neu</text>
+</g>
+<line x1="330" y1="174" x2="110" y2="240" stroke="#4a9cff" stroke-width="2"/>
+<line x1="440" y1="174" x2="750" y2="240" stroke="#4a9cff" stroke-width="2"/>
+<g font-size="14" fill="#222" text-anchor="middle">
+<rect x="110" y="240" width="320" height="46" fill="#f5f8ff" stroke="#4a9cff"/><text x="270" y="262" font-weight="bold">TPID = 0x8100</text><text x="270" y="280" font-size="12">16 Bit</text>
+<rect x="430" y="240" width="90" height="46" fill="#fffbe6" stroke="#ffd23f"/><text x="475" y="262" font-weight="bold">PCP</text><text x="475" y="280" font-size="12">3 Bit</text>
+<rect x="520" y="240" width="60" height="46" fill="#fff" stroke="#222"/><text x="550" y="262" font-weight="bold">DEI</text><text x="550" y="280" font-size="12">1 Bit</text>
+<rect x="580" y="240" width="170" height="46" fill="#f3edff" stroke="#b08aff"/><text x="665" y="262" font-weight="bold">VLAN ID</text><text x="665" y="280" font-size="12">12 Bit</text>
+</g>
+<g font-size="13" fill="#222">
+<text x="110" y="330">• TPID kennzeichnet den Frame als 802.1Q-getaggt</text>
+<text x="110" y="352">• PCP = Priorität / CoS 0–7</text>
+<text x="110" y="374">• DEI = Drop Eligible Indicator (früher CFI)</text>
+<text x="110" y="396">• VLAN ID: 4096 Werte, 0 und 4095 reserviert → VLAN 1–4094</text>
+<text x="110" y="418">• MAC-Adressen bleiben gleich; FCS deckt den ganzen Frame ab → neu berechnen</text>
+<text x="110" y="440">• Native VLAN: per Default ohne Tag</text>
+</g>
+</svg>

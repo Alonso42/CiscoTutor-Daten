@@ -26,12 +26,12 @@
         "typ":  "single",
         "frage":  "You create VLAN 4 without a name. Which name does the switch assign?",
         "optionen":  [
-                         "VLAN0004",
-                         "Unnamed4",
                          "VLAN4",
-                         "default"
+                         "Unnamed4",
+                         "default",
+                         "VLAN0004"
                      ],
-        "richtig":  0,
+        "richtig":  3,
         "erklaerung":  "Ohne Namen vergibt der Switch \u0027VLAN\u0027 plus vierstellige Nummer, also VLAN0004."
     },
     {
@@ -41,12 +41,12 @@
         "typ":  "single",
         "frage":  "Where does a Catalyst switch store the configuration of normal-range VLANs?",
         "optionen":  [
-                         "Only in RAM",
                          "In vlan.dat in flash",
+                         "In NVRAM as vlan.cfg",
                          "In the startup-config only",
-                         "In NVRAM as vlan.cfg"
+                         "Only in RAM"
                      ],
-        "richtig":  1,
+        "richtig":  0,
         "erklaerung":  "Normal-Range-VLANs landen in der VLAN-Datenbank vlan.dat im Flash – nicht in der startup-config. Deshalb bleibt sie nach \u0027erase startup-config\u0027 erhalten."
     },
     {
@@ -74,12 +74,12 @@
         "typ":  "single",
         "frage":  "An access port carries how many data VLANs?",
         "optionen":  [
-                         "All VLANs",
                          "Up to 8",
+                         "One",
                          "Two",
-                         "One"
+                         "All VLANs"
                      ],
-        "richtig":  3,
+        "richtig":  1,
         "erklaerung":  "Ein Access-Port gehört zu genau einem Daten-VLAN (zusätzlich optional ein Voice-VLAN für ein IP-Telefon)."
     },
     {
@@ -89,8 +89,8 @@
         "typ":  "single",
         "frage":  "A PC connects behind an IP phone. Port Fa0/3 has \u0027switchport access vlan 2\u0027 and \u0027switchport voice vlan 20\u0027. Which VLAN does the PC use?",
         "optionen":  [
-                         "VLAN 1",
                          "Both, depending on traffic type",
+                         "VLAN 1",
                          "VLAN 2",
                          "VLAN 20"
                      ],
@@ -104,12 +104,12 @@
         "typ":  "single",
         "frage":  "How many bytes does an 802.1Q tag add to an Ethernet frame?",
         "optionen":  [
-                         "4",
                          "12",
+                         "8",
                          "2",
-                         "8"
+                         "4"
                      ],
-        "richtig":  0,
+        "richtig":  3,
         "erklaerung":  "802.1Q fügt 4 Byte ein (TPID 0x8100, Priorität, DEI, 12-Bit-VLAN-ID). Die FCS muss neu berechnet werden."
     },
     {
@@ -119,12 +119,12 @@
         "typ":  "luecke",
         "frage":  "Ein 802.1Q-getaggter Frame trägt im TPID-Feld den Wert ___.",
         "optionen":  [
-                         "0x86DD",
-                         "0x0800",
+                         "0x8100",
                          "0x88CC",
-                         "0x8100"
+                         "0x0800",
+                         "0x86DD"
                      ],
-        "richtig":  3,
+        "richtig":  0,
         "erklaerung":  "TPID 0x8100 kennzeichnet einen 802.1Q-Tag. 0x0800 = IPv4, 0x86DD = IPv6, 0x88CC = LLDP."
     },
     {
@@ -134,12 +134,12 @@
         "typ":  "single",
         "frage":  "Why must the switch recalculate the FCS when it adds an 802.1Q tag?",
         "optionen":  [
-                         "The FCS covers the whole frame, which now contains the extra tag",
                          "The VLAN ID is encrypted and must be protected by a new checksum",
-                         "The source MAC changes to the switch\u0027s own MAC address",
-                         "The frame is converted to IPv6"
+                         "The FCS covers the whole frame, which now contains the extra tag",
+                         "The frame is converted to IPv6",
+                         "The source MAC changes to the switch\u0027s own MAC address"
                      ],
-        "richtig":  0,
+        "richtig":  1,
         "erklaerung":  "Die FCS wird über den ganzen Frame gebildet. Der eingefügte Tag ändert den Inhalt, also muss die FCS neu berechnet werden; Quell- und Ziel-MAC bleiben gleich."
     },
     {
@@ -171,12 +171,12 @@
         "typ":  "single",
         "frage":  "How are frames of the native VLAN sent on an 802.1Q trunk by default?",
         "optionen":  [
-                         "Untagged",
                          "Dropped",
-                         "Tagged with VLAN 1",
-                         "Encapsulated in ISL"
+                         "Encapsulated in ISL",
+                         "Untagged",
+                         "Tagged with VLAN 1"
                      ],
-        "richtig":  0,
+        "richtig":  2,
         "erklaerung":  "Native-VLAN-Frames gehen standardmäßig ohne Tag über den Trunk; alle anderen VLANs werden getaggt."
     },
     {
@@ -187,11 +187,11 @@
         "frage":  "Which practice does Cisco recommend for the native VLAN on trunks?",
         "optionen":  [
                          "Use a different native VLAN on each end",
+                         "Keep VLAN 1",
                          "Use a dedicated, otherwise unused VLAN on both ends",
-                         "Use the user data VLAN",
-                         "Keep VLAN 1"
+                         "Use the user data VLAN"
                      ],
-        "richtig":  1,
+        "richtig":  2,
         "erklaerung":  "Sicherheits-Best-Practice: ein eigenes, sonst unbenutztes VLAN als Native VLAN – auf beiden Enden gleich."
     },
     {
@@ -249,10 +249,10 @@
         "typ":  "single",
         "frage":  "SW1 uses native VLAN 1 and SW2 uses native VLAN 2 on the same trunk. Ignoring STP protection, what happens to untagged frames that SW1 sends from VLAN 1?",
         "optionen":  [
+                         "SW2 drops them",
                          "The trunk goes err-disabled on both switches",
-                         "SW2 tags them with VLAN 1 and forwards them unchanged",
                          "SW2 puts them into VLAN 2 – traffic leaks between VLANs",
-                         "SW2 drops them"
+                         "SW2 tags them with VLAN 1 and forwards them unchanged"
                      ],
         "richtig":  2,
         "erklaerung":  "Untagged Frames landen beim Empfänger im eigenen Native VLAN: VLAN 1 \u0027leckt\u0027 in VLAN 2. CDP meldet %CDP-4-NATIVE_VLAN_MISMATCH. (In der Praxis erkennt PVST+ den Mismatch und blockiert den Port in den betroffenen VLANs als PVID-inconsistent.)"
@@ -266,8 +266,8 @@
         "optionen":  [
                          "It is an IEEE standard supported by all switch vendors",
                          "It is Cisco proprietary and negotiates trunking between Cisco switches",
-                         "It negotiates EtherChannel bundles between Cisco switches",
-                         "It assigns VLAN numbers automatically across the VTP domain"
+                         "It assigns VLAN numbers automatically across the VTP domain",
+                         "It negotiates EtherChannel bundles between Cisco switches"
                      ],
         "richtig":  1,
         "erklaerung":  "DTP ist Cisco-proprietär und verhandelt Trunks. Best Practice: Trunks statisch konfigurieren (mode trunk + nonegotiate)."
@@ -301,12 +301,12 @@
         "typ":  "single",
         "frage":  "\u0027show interfaces trunk\u0027 shows Status \u0027not-trunking\u0027 and Mode \u0027auto\u0027 on both switches. Fix?",
         "optionen":  [
-                         "Set one side to \u0027switchport mode trunk\u0027 (or desirable)",
-                         "Enable spanning tree",
                          "Change the native VLAN",
-                         "Add \u0027switchport nonegotiate\u0027 on both sides"
+                         "Set one side to \u0027switchport mode trunk\u0027 (or desirable)",
+                         "Add \u0027switchport nonegotiate\u0027 on both sides",
+                         "Enable spanning tree"
                      ],
-        "richtig":  0,
+        "richtig":  1,
         "erklaerung":  "auto + auto verhandelt keinen Trunk. Eine Seite auf trunk oder desirable setzen – besser beide statisch auf trunk."
     },
     {
@@ -317,11 +317,11 @@
         "frage":  "VLAN 10 is deleted while ports are still assigned to it. What happens to those ports?",
         "optionen":  [
                          "They move to VLAN 1 and keep forwarding",
-                         "They become inactive and stop forwarding",
                          "They keep working normally in VLAN 10",
+                         "They become inactive and stop forwarding",
                          "They become trunks"
                      ],
-        "richtig":  1,
+        "richtig":  2,
         "erklaerung":  "Ports in einem gelöschten VLAN werden inaktiv (\u0027Access Mode VLAN: 10 (Inactive)\u0027). Abhilfe: VLAN neu anlegen oder Port einem existierenden VLAN zuweisen."
     },
     {
@@ -331,12 +331,12 @@
         "typ":  "single",
         "frage":  "Which command shows \u0027Access Mode VLAN: 10 (Inactive)\u0027 for a port whose VLAN is missing?",
         "optionen":  [
-                         "show mac address-table",
-                         "show ip interface brief",
                          "show interfaces Fa0/1 switchport",
-                         "show vlan brief"
+                         "show vlan brief",
+                         "show mac address-table",
+                         "show ip interface brief"
                      ],
-        "richtig":  2,
+        "richtig":  0,
         "erklaerung":  "show interfaces \u003cif\u003e switchport zeigt den inaktiven Zustand. In show vlan brief taucht der Port dann gar nicht mehr auf."
     },
     {
@@ -346,14 +346,14 @@
         "typ":  "multi",
         "frage":  "Two PCs in the same VLAN on different switches cannot reach each other. What should you check on the trunk between the switches?",
         "optionen":  [
-                         "Is the VLAN in the allowed list on both sides?",
-                         "Do the native VLANs match?",
                          "Is \u0027ip routing\u0027 enabled?",
-                         "Is the trunk actually trunking?"
+                         "Is the VLAN in the allowed list on both sides?",
+                         "Is the trunk actually trunking?",
+                         "Do the native VLANs match?"
                      ],
         "richtig":  [
-                        0,
                         1,
+                        2,
                         3
                     ],
         "erklaerung":  "Trunk-Checkliste (show interfaces trunk): Trunk aufgebaut? Native VLAN gleich? VLAN erlaubt und aktiv? Routing spielt innerhalb eines VLANs keine Rolle."
@@ -365,12 +365,12 @@
         "typ":  "single",
         "frage":  "A security team gives you only the IP 10.10.10.182 of an infected host. Which sequence finds its switch port?",
         "optionen":  [
-                         "show ip route to find the subnet → show interfaces status to find the port",
                          "show vlan to find the VLAN → show cdp neighbors to find the port",
                          "Ping it from the gateway → show ip arp to get the MAC → show mac address-table to find the port",
-                         "traceroute to the host → show spanning-tree to find the forwarding port"
+                         "traceroute to the host → show spanning-tree to find the forwarding port",
+                         "show ip route to find the subnet → show interfaces status to find the port"
                      ],
-        "richtig":  2,
+        "richtig":  1,
         "erklaerung":  "IP → MAC über die ARP-Tabelle des Gateways, MAC → Port über die MAC-Adresstabelle des Switches. Zeigt der Port auf einen anderen Switch, dort weitersuchen (CDP)."
     },
     {
@@ -380,12 +380,12 @@
         "typ":  "single",
         "frage":  "A router subinterface is named Ethernet0/0.134 and configured with \u0027encapsulation dot1Q 62\u0027. Which VLAN does it serve?",
         "optionen":  [
-                         "VLAN 62",
                          "VLAN 1",
                          "Both 62 and 134",
-                         "VLAN 134"
+                         "VLAN 134",
+                         "VLAN 62"
                      ],
-        "richtig":  0,
+        "richtig":  3,
         "erklaerung":  "Die Subinterface-Nummer ist nur ein Name. Maßgeblich ist \u0027encapsulation dot1Q 62\u0027. Übersichtlicher ist es, beide gleich zu wählen."
     },
     {
@@ -418,11 +418,11 @@
         "frage":  "Why can hosts in different VLANs not communicate without help?",
         "optionen":  [
                          "They use different MAC address formats that the switch cannot translate",
-                         "Each VLAN is its own broadcast domain and subnet; a Layer 3 device must route between them",
+                         "Trunks block inter-VLAN traffic unless the native VLAN matches",
                          "STP blocks all traffic between VLANs to prevent loops",
-                         "Trunks block inter-VLAN traffic unless the native VLAN matches"
+                         "Each VLAN is its own broadcast domain and subnet; a Layer 3 device must route between them"
                      ],
-        "richtig":  1,
+        "richtig":  3,
         "erklaerung":  "VLAN = eigene Broadcast-Domäne mit eigenem Subnetz. Zwischen VLANs muss geroutet werden (Router oder Layer-3-Switch)."
     },
     {
@@ -454,12 +454,12 @@
         "typ":  "single",
         "frage":  "Why does a Layer 3 switch scale better than router on a stick?",
         "optionen":  [
-                         "It removes the need for VLANs, so all hosts share one subnet",
-                         "All inter-VLAN traffic on a router on a stick must cross one trunk link twice",
                          "It uses ISL instead of 802.1Q, which has less tagging overhead",
-                         "It does not need IP addresses on the VLAN interfaces"
+                         "It does not need IP addresses on the VLAN interfaces",
+                         "All inter-VLAN traffic on a router on a stick must cross one trunk link twice",
+                         "It removes the need for VLANs, so all hosts share one subnet"
                      ],
-        "richtig":  1,
+        "richtig":  2,
         "erklaerung":  "Beim Router on a Stick geht jeder Inter-VLAN-Verkehr über denselben Trunk hin und zurück. Der L3-Switch routet intern in Hardware."
     },
     {
@@ -469,14 +469,14 @@
         "typ":  "multi",
         "frage":  "What is required so a Layer 3 switch routes between VLAN 10 and VLAN 20 using SVIs?",
         "optionen":  [
-                         "A trunk to an external router",
                          "VLANs 10 and 20 exist with at least one active port",
-                         "\u0027ip routing\u0027 enabled globally",
-                         "An SVI with an IP address for each VLAN, not shut down"
+                         "An SVI with an IP address for each VLAN, not shut down",
+                         "A trunk to an external router",
+                         "\u0027ip routing\u0027 enabled globally"
                      ],
         "richtig":  [
+                        0,
                         1,
-                        2,
                         3
                     ],
         "erklaerung":  "ip routing, je VLAN ein SVI mit IP (no shutdown), und das VLAN muss existieren und aktive Ports haben – sonst bleibt das SVI down."
@@ -488,12 +488,12 @@
         "typ":  "single",
         "frage":  "Hosts in VLAN 10 on a Layer 3 switch: which address do they use as default gateway?",
         "optionen":  [
-                         "The switch management IP in VLAN 1",
-                         "Any IP in the subnet",
                          "The IP of interface Vlan10 (SVI)",
+                         "Any IP in the subnet",
+                         "The switch management IP in VLAN 1",
                          "The IP of the uplink router"
                      ],
-        "richtig":  2,
+        "richtig":  0,
         "erklaerung":  "Das SVI des VLANs ist das Gateway – z. B. 10.1.10.1 auf \u0027interface Vlan10\u0027."
     },
     {
@@ -503,12 +503,12 @@
         "typ":  "single",
         "frage":  "On the trunk to a router-on-a-stick, the switch shows the router\u0027s MAC in VLAN 1 and in VLAN 62 on the same port. Why?",
         "optionen":  [
+                         "A Layer 2 loop exists between the switch and the router",
                          "Port security is disabled, so the same MAC is learned in every VLAN",
                          "A MAC flapping error between the two VLANs on the trunk",
-                         "The router has subinterfaces in both VLANs that use the same physical MAC",
-                         "A Layer 2 loop exists between the switch and the router"
+                         "The router has subinterfaces in both VLANs that use the same physical MAC"
                      ],
-        "richtig":  2,
+        "richtig":  3,
         "erklaerung":  "Alle Subinterfaces nutzen die MAC des physischen Interfaces. Pro VLAN gibt es eine eigene Zeile in der MAC-Tabelle – das ist normal."
     },
     {
@@ -518,12 +518,12 @@
         "typ":  "single",
         "frage":  "Why is it useful to match VLAN IDs to the IP plan (e.g., VLAN 10 = 10.1.10.0/24)?",
         "optionen":  [
-                         "It is required by 802.1Q for correct tagging",
-                         "It increases trunk bandwidth by reducing lookups",
                          "It disables DTP",
-                         "It makes troubleshooting in an unfamiliar network much faster"
+                         "It is required by 802.1Q for correct tagging",
+                         "It makes troubleshooting in an unfamiliar network much faster",
+                         "It increases trunk bandwidth by reducing lookups"
                      ],
-        "richtig":  3,
+        "richtig":  2,
         "erklaerung":  "Ein einheitliches Schema (VLAN-ID = drittes Oktett) ist keine Pflicht, spart aber beim Troubleshooting viel Zeit."
     },
     {
@@ -533,12 +533,1367 @@
         "typ":  "single",
         "frage":  "A VLAN exists and ports are assigned, but no traffic passes in it. \u0027show vlan\u0027 shows status \u0027act/lshut\u0027. Cause?",
         "optionen":  [
-                         "The ports are configured as trunks instead of access ports",
-                         "The VLAN was shut down with \u0027shutdown\u0027 in VLAN configuration mode",
+                         "DTP is disabled",
                          "The native VLAN on the uplink trunk is wrong",
-                         "DTP is disabled"
+                         "The ports are configured as trunks instead of access ports",
+                         "The VLAN was shut down with \u0027shutdown\u0027 in VLAN configuration mode"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein VLAN lässt sich per \u0027shutdown\u0027 im VLAN-Modus abschalten; show vlan zeigt dann einen shutdown-Status. \u0027no shutdown\u0027 im VLAN behebt es."
+    },
+    {
+        "id":  "slg-vl-033",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "SW1 has four connected ports. \u0027show interfaces status\u0027 lists Et0/0 and Et0/1 with Vlan \u0027trunk\u0027.\nSW1# show vlan brief\nVLAN Name      Status  Ports\n1    default   active\n62   SixtyTwo  active  Et0/2, Et0/3\nWhy are Et0/0 and Et0/1 missing from the output?",
+        "optionen":  [
+                         "Both ports are administratively shut down",
+                         "Both ports were moved into the reserved VLANs 1002–1005",
+                         "Both ports belong to a deleted VLAN and are inactive",
+                         "show vlan brief lists only access ports, not operational trunks"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "show vlan brief zeigt nur Access-Ports. Trunks findet man mit show interfaces trunk bzw. in show interfaces status (Vlan-Spalte \u0027trunk\u0027). Deshalb steht bei VLAN 1 kein Port, obwohl die Trunks VLAN 1 führen."
+    },
+    {
+        "id":  "slg-vl-034",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show vlan brief\u0027 lists Gi1/0/5 under VLAN 10 and also under VLAN 110. Gi1/0/5 does not appear in \u0027show interfaces trunk\u0027. What is the most likely configuration?",
+        "optionen":  [
+                         "A native VLAN mismatch between VLAN 10 and VLAN 110",
+                         "A port moved from VLAN 10 to 110 with a stale entry",
+                         "A trunk that allows only VLANs 10 and 110",
+                         "Access VLAN 10 and voice VLAN 110 on the same port"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein Access-Port mit zusätzlichem Voice VLAN erscheint in show vlan brief unter beiden VLANs. Er bleibt ein Access-Port und taucht daher nicht in show interfaces trunk auf."
+    },
+    {
+        "id":  "slg-vl-035",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "SW# show interfaces Gi1/0/7 switchport\nAdministrative Mode: dynamic auto\nOperational Mode: static access\nNegotiation of Trunking: On\nWhat does this output tell you?",
+        "optionen":  [
+                         "The port is a trunk that currently carries only its native VLAN",
+                         "The port is a static access port and never sends or answers DTP",
+                         "The port runs DTP and becomes a trunk if the neighbor actively requests one",
+                         "The port tries to form a trunk and will retry until the neighbor agrees"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "dynamic auto wartet passiv: Solange der Nachbar keinen Trunk anfragt (desirable/trunk), läuft der Port als static access. Negotiation On zeigt, dass DTP aktiv ist."
+    },
+    {
+        "id":  "slg-vl-036",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two interface commands harden a user-facing switch port against a switch-spoofing (DTP) attack? (Choose two.)",
+        "optionen":  [
+                         "switchport nonegotiate",
+                         "switchport trunk native vlan 999",
+                         "spanning-tree portfast",
+                         "switchport mode access",
+                         "switchport mode dynamic desirable"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Beim Switch Spoofing handelt der Angreifer per DTP einen Trunk aus. Statisch \u0027mode access\u0027 verhindert den Trunk, \u0027nonegotiate\u0027 schaltet DTP-Frames ab. PortFast und das Native VLAN ändern am DTP-Verhalten nichts."
+    },
+    {
+        "id":  "slg-vl-037",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "SW1# show interfaces trunk\nPort   Mode  Encapsulation  Status    Native vlan\nEt0/1  on    802.1q         trunking  1\nHow is Et0/1 configured?",
+        "optionen":  [
+                         "switchport mode dynamic auto",
+                         "switchport mode dynamic desirable",
+                         "switchport mode trunk",
+                         "switchport mode access with a voice VLAN"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Mode \u0027on\u0027 in show interfaces trunk steht für einen statischen Trunk (switchport mode trunk). Dynamische Ports erscheinen als \u0027desirable\u0027 oder \u0027auto\u0027."
+    },
+    {
+        "id":  "slg-vl-038",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In \u0027show interfaces trunk\u0027 the Encapsulation column shows \u0027n-802.1q\u0027 for Gi0/1. What does the \u0027n-\u0027 prefix mean?",
+        "optionen":  [
+                         "The port uses a non-standard 802.1Q TPID value",
+                         "The trunk encapsulation was negotiated by DTP",
+                         "The native VLAN frames are tagged on this trunk",
+                         "The trunk is not active and only negotiating"
                      ],
         "richtig":  1,
-        "erklaerung":  "Ein VLAN lässt sich per \u0027shutdown\u0027 im VLAN-Modus abschalten; show vlan zeigt dann einen shutdown-Status. \u0027no shutdown\u0027 im VLAN behebt es."
+        "erklaerung":  "\u0027n-\u0027 steht für negotiated: Die Encapsulation (ISL oder 802.1Q) wurde per DTP ausgehandelt, weil der Port auf \u0027switchport trunk encapsulation negotiate\u0027 steht."
+    },
+    {
+        "id":  "slg-vl-039",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "SW2 Et0/0 is configured \u0027switchport mode dynamic desirable\u0027 and shows Status \u0027trunking\u0027. Which configurations on the connected SW1 port are consistent with this result? (Choose three.)",
+        "optionen":  [
+                         "switchport mode dynamic desirable",
+                         "switchport mode access",
+                         "switchport mode dynamic auto",
+                         "switchport mode trunk plus switchport nonegotiate",
+                         "switchport mode trunk"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "desirable fragt aktiv an; trunk, desirable und auto antworten per DTP und bilden einen Trunk. Mit nonegotiate sendet SW1 kein DTP, SW2 (desirable) erhält keine Antwort und bleibt Access. access lehnt Trunking ab."
+    },
+    {
+        "id":  "slg-vl-040",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A trunk carries VLANs 10, 20 and 30 (\u0027switchport trunk allowed vlan 10,20,30\u0027). To add VLAN 40, an engineer enters \u0027switchport trunk allowed vlan 40\u0027. What is the result?",
+        "optionen":  [
+                         "The command is rejected because the add keyword is missing",
+                         "Only VLAN 40 is allowed; VLANs 10, 20 and 30 stop crossing the trunk",
+                         "VLANs 10, 20, 30 and 40 are allowed on the trunk after the change",
+                         "VLAN 40 is allowed and the other VLANs are moved to the native VLAN"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ohne \u0027add\u0027 ersetzt der Befehl die komplette allowed-Liste. Richtig wäre \u0027switchport trunk allowed vlan add 40\u0027. Ein klassischer Fehler, der alle anderen VLANs auf dem Trunk abschneidet."
+    },
+    {
+        "id":  "slg-vl-041",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A trunk uses the default allowed VLAN list. The engineer enters \u0027switchport trunk allowed vlan remove 62\u0027. Which line appears in the running configuration?",
+        "optionen":  [
+                         "switchport trunk allowed vlan except 62",
+                         "switchport trunk allowed vlan remove 62",
+                         "switchport trunk allowed vlan 1-61,63-1005",
+                         "switchport trunk allowed vlan 1-61,63-4094"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die running-config speichert immer die resultierende Liste, nicht den eingegebenen Schlüsselbegriff. Aus 1–4094 minus 62 wird 1-61,63-4094 – genau so sah die Lab-Konfiguration (mit 1000 als Obergrenze) aus."
+    },
+    {
+        "id":  "slg-vl-042",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Variante von \u0027switchport trunk allowed vlan ...\u0027 ihrer Wirkung zu.",
+        "paare":  [
+                      [
+                          "add 30",
+                          "Fügt VLAN 30 zur bestehenden Liste hinzu"
+                      ],
+                      [
+                          "remove 30",
+                          "Nimmt VLAN 30 aus der bestehenden Liste"
+                      ],
+                      [
+                          "except 30",
+                          "Erlaubt alle VLANs außer 30"
+                      ],
+                      [
+                          "none",
+                          "Erlaubt kein einziges VLAN"
+                      ]
+                  ],
+        "erklaerung":  "add/remove verändern die aktuelle Liste, except setzt \u0027alles außer\u0027, none leert die Liste. Eine Liste ohne Schlüsselwort (z. B. \u002730\u0027) ersetzt die bisherige komplett."
+    },
+    {
+        "id":  "slg-vl-043",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus des Trunks: Nimm VLAN 30 aus der bestehenden allowed-Liste heraus, ohne die übrigen VLANs zu verändern.",
+        "bausteine":  [
+                          "switchport",
+                          "trunk",
+                          "allowed",
+                          "vlan",
+                          "remove",
+                          "30",
+                          "add",
+                          "except",
+                          "native"
+                      ],
+        "loesung":  [
+                        "switchport",
+                        "trunk",
+                        "allowed",
+                        "vlan",
+                        "remove",
+                        "30"
+                    ],
+        "erklaerung":  "\u0027remove\u0027 entfernt gezielt ein VLAN aus der aktuellen Liste. \u0027except 30\u0027 würde dagegen die Liste auf \u0027alle außer 30\u0027 setzen, auch wenn vorher weniger VLANs erlaubt waren."
+    },
+    {
+        "id":  "slg-vl-044",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Unabhängig von der bisherigen Liste sollen auf dem Trunk alle VLANs außer VLAN 99 erlaubt sein: switchport trunk allowed vlan ___ 99",
+        "optionen":  [
+                         "add",
+                         "remove",
+                         "none",
+                         "except"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027except 99\u0027 setzt die Liste auf 1–4094 ohne 99, egal was vorher konfiguriert war. \u0027remove 99\u0027 nimmt 99 nur aus der aktuellen (evtl. schon eingeschränkten) Liste."
+    },
+    {
+        "id":  "slg-vl-045",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "SW# show interfaces trunk\nPort   Vlans allowed on trunk\nGi0/1  1-4094\nPort   Vlans allowed and active in management domain\nGi0/1  1,10,20\nPort   Vlans in spanning tree forwarding state and not pruned\nGi0/1  1,10\nVLAN 20 traffic does not leave through Gi0/1. What is the most likely reason?",
+        "optionen":  [
+                         "VLAN 20 has not been created on this switch",
+                         "Spanning tree does not forward VLAN 20 on Gi0/1",
+                         "VLAN 20 is missing from the allowed VLAN list",
+                         "A native VLAN mismatch exists for VLAN 20"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "VLAN 20 ist erlaubt und lokal aktiv (Liste 2), fehlt aber in Liste 3: STP blockiert VLAN 20 auf diesem Port (oder VTP-Pruning). Fehlte das VLAN lokal, stünde es schon nicht in Liste 2."
+    },
+    {
+        "id":  "slg-vl-046",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "SW1# show interfaces trunk\nPort   Vlans allowed on trunk\nEt0/0  1-4094\nEt0/1  1-61,63-1000\nPort   Vlans allowed and active in management domain\nEt0/0  1,62\nEt0/1  1\nWhat can you conclude about VLAN 62 on SW1?",
+        "optionen":  [
+                         "VLAN 62 does not exist on SW1 and must be created first",
+                         "VLAN 62 exists locally but is excluded from the allowed list on Et0/1",
+                         "VLAN 62 is blocked by spanning tree on Et0/1 only",
+                         "VLAN 62 is the native VLAN on Et0/0 and therefore untagged"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Auf Et0/0 ist VLAN 62 \u0027allowed and active\u0027 – also existiert es lokal. Auf Et0/1 fehlt es schon in der allowed-Liste (1-61,63-1000). Lab-Fix: switchport trunk allowed vlan add 62."
+    },
+    {
+        "id":  "slg-vl-047",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The trunk between SW1 and SW2 allows VLANs 10,20 on SW1 and VLANs 10,20,30 on SW2. Hosts in VLAN 30 exist on both switches. What happens to VLAN 30 traffic between them?",
+        "optionen":  [
+                         "It works only from SW2 toward SW1, since SW2 still sends tagged frames",
+                         "It fails, because SW1 neither sends nor accepts VLAN 30 frames on this trunk",
+                         "It is carried untagged in the native VLAN and then reaches VLAN 30 hosts",
+                         "It works, because one side of the trunk allowing VLAN 30 is sufficient"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein VLAN muss auf beiden Trunk-Enden erlaubt sein. SW1 sendet keine VLAN-30-Frames und verwirft eingehende VLAN-30-Frames auf diesem Port."
+    },
+    {
+        "id":  "slg-vl-048",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "PC1 (on SW2) reaches PC2 (also on SW2) but not PC4 (on SW1). \u0027show vlan\u0027 confirms that all three PC ports are in active VLAN 62. Which two causes on the SW1–SW2 link can explain this? (Choose two.)",
+        "optionen":  [
+                         "VLAN 62 is not in the allowed list on one side of the trunk",
+                         "PC1 has no default gateway configured",
+                         "Both trunk ports are dynamic auto, so the link is not trunking",
+                         "The router subinterface for VLAN 62 is down",
+                         "A native VLAN mismatch between VLAN 1 and VLAN 2 on the trunk"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "Verkehr im selben VLAN braucht keinen Router/Gateway. VLAN 62 wird getaggt übertragen – ein Native-Mismatch (1 vs. 2) betrifft nur ungetaggte Frames; im Lab half dessen Korrektur deshalb nicht. Fehlende allowed-Einträge oder ein nicht gebildeter Trunk unterbrechen VLAN 62."
+    },
+    {
+        "id":  "slg-vl-049",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "SW1 logs:\n%CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on Ethernet0/1 (1), with SW2 Ethernet0/0 (2).\nWhich statement is correct?",
+        "optionen":  [
+                         "SW1 Et0/1 uses native VLAN 1 and SW2 Et0/0 uses native VLAN 2",
+                         "VLAN 2 is not allowed on the trunk between SW1 and SW2",
+                         "SW1 Et0/1 uses native VLAN 2 and SW2 Et0/0 uses native VLAN 1",
+                         "Both ports use native VLAN 1 but SW2 tags VLAN 2 frames"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Meldung nennt zuerst den lokalen Port mit lokalem Native VLAN in Klammern, dann Nachbar, dessen Port und dessen Native VLAN. Im Lab wurde SW2 Et0/0 auf native vlan 1 korrigiert."
+    },
+    {
+        "id":  "slg-vl-050",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R1# show ip interface brief\nEthernet0/0      unassigned   YES manual up  up\nEthernet0/0.21   10.10.1.1    YES manual up  up\nEthernet0/0.134  10.10.10.1   YES manual up  up\nWhy does Ethernet0/0 have no IP address?",
+        "optionen":  [
+                         "It is shut down, so its address is hidden in this command output",
+                         "It failed to obtain an address through DHCP from the connected switch",
+                         "It is the physical parent of the subinterfaces; the IPs are on the subinterfaces",
+                         "It is a Layer 2 switchport that cannot hold an IP address at all"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Beim Router on a Stick trägt das physische Interface den Trunk; die Gateway-Adressen liegen auf den Subinterfaces. Das physische Interface muss trotzdem up/up sein."
+    },
+    {
+        "id":  "slg-vl-051",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On a router, an engineer enters \u0027interface Gi0/0.30\u0027 and then \u0027ip address 10.1.30.1 255.255.255.0\u0027. IOS rejects the address. Why?",
+        "optionen":  [
+                         "The subinterface number must be below 30 to accept an address",
+                         "The physical interface Gi0/0 must first receive an IP address",
+                         "Subinterfaces only accept addresses with a /30 mask",
+                         "The subinterface needs \u0027encapsulation dot1Q 30\u0027 before an IP address"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "IOS erlaubt IP-Routing auf einem LAN-Subinterface erst, wenn es per encapsulation dot1Q einem VLAN zugeordnet ist. Reihenfolge: encapsulation, dann ip address."
+    },
+    {
+        "id":  "slg-vl-052",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "All subinterfaces Gi0/0.10, Gi0/0.20 and Gi0/0.30 show \u0027administratively down\u0027, although none of them contains \u0027shutdown\u0027. What is the most likely cause?",
+        "optionen":  [
+                         "\u0027ip routing\u0027 is missing on the router",
+                         "The VLANs are not created on the router",
+                         "The physical interface Gi0/0 is shut down",
+                         "The connected switch port is an access port"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Subinterfaces hängen vom physischen Interface ab. Ist Gi0/0 per shutdown deaktiviert, sind alle Subinterfaces ebenfalls administrativ down. Router kennen keine VLAN-Datenbank, und ip routing ist dort Default."
+    },
+    {
+        "id":  "slg-vl-053",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A router uses subinterfaces Gi0/0.10 (dot1Q 10) and Gi0/0.20 (dot1Q 20). The switch port facing the router is configured \u0027switchport mode access\u0027 and \u0027switchport access vlan 10\u0027. What happens?",
+        "optionen":  [
+                         "Inter-VLAN routing fails; untagged frames do not match the tagged subinterfaces",
+                         "The switch negotiates a trunk with the router automatically via DTP",
+                         "VLAN 10 is routed normally, only VLAN 20 loses its gateway",
+                         "Both VLANs work, because the router learns the VLAN from the switch"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Access-Port sendet ungetaggt. Ungetaggte Frames ordnet der Router seinem Native VLAN (physisches Interface) zu, nicht dem Subinterface dot1Q 10. Der Switchport zum Router muss ein Trunk sein; Router sprechen kein DTP."
+    },
+    {
+        "id":  "slg-vl-054",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Router-Subinterface-Modus: Ordne das Subinterface VLAN 99 zu, das auf dem Trunk als Native VLAN (ungetaggt) läuft.",
+        "bausteine":  [
+                          "encapsulation",
+                          "dot1Q",
+                          "99",
+                          "native",
+                          "switchport",
+                          "trunk",
+                          "tag"
+                      ],
+        "loesung":  [
+                        "encapsulation",
+                        "dot1Q",
+                        "99",
+                        "native"
+                    ],
+        "erklaerung":  "Mit \u0027encapsulation dot1Q 99 native\u0027 empfängt und sendet das Subinterface ungetaggte Frames. Das Native VLAN muss zum Native VLAN des Switch-Trunks passen."
+    },
+    {
+        "id":  "slg-vl-055",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Router on a stick: a PC in VLAN 10 sends a packet to a PC in VLAN 20 on the same switch. With which tag does the frame travel from the router back to the switch?",
+        "optionen":  [
+                         "Both tags, stacked (Q-in-Q)",
+                         "VLAN 20",
+                         "VLAN 10",
+                         "No tag, it uses the native VLAN"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Frame kommt mit Tag 10 zum Router, der routet ins Subnetz von VLAN 20 und sendet über dasselbe physische Interface mit Tag 20 zurück. Der Switch stellt ihn dann in VLAN 20 zu."
+    },
+    {
+        "id":  "slg-vl-056",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On a Layer 3 switch, hosts in VLAN 10 can ping their gateway 10.1.10.1 and hosts in VLAN 20 can ping 10.1.20.1. Both SVIs are up/up, but pings between the VLANs fail. What is missing?",
+        "optionen":  [
+                         "A trunk to an external router",
+                         "A native VLAN on both SVIs",
+                         "The global command ip routing",
+                         "The no switchport command on the SVIs"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "SVIs sind als Gateway erreichbar, aber ohne \u0027ip routing\u0027 routet der Switch nicht zwischen ihnen. SVIs sind keine Switchports; Native VLANs gibt es nur auf Trunks."
+    },
+    {
+        "id":  "slg-vl-057",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A PC is connected to Gi1/0/10, the only port in VLAN 30. PortFast is not configured. Interface Vlan30 stays \u0027up/down\u0027 for about 30 seconds and then changes to \u0027up/up\u0027. Why?",
+        "optionen":  [
+                         "The SVI needs 30 seconds to build its ARP table for VLAN 30",
+                         "The SVI comes up only after a port in VLAN 30 reaches STP forwarding",
+                         "The switch must first learn the PC\u0027s MAC in the CAM table",
+                         "The SVI waits for the PC to send a DHCP request in VLAN 30"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Autostate: Das SVI wird erst up/up, wenn mindestens ein L2-Port im VLAN up ist und im STP-Forwarding-Zustand. Ohne PortFast dauern Listening + Learning 2 × 15 s."
+    },
+    {
+        "id":  "slg-vl-058",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ip interface brief\u0027 shows Vlan40 as \u0027down down\u0027 (not administratively down). The SVI has an IP address and no shutdown. What is the most likely cause?",
+        "optionen":  [
+                         "ip routing is not enabled globally",
+                         "VLAN 40 does not exist in the VLAN database",
+                         "VLAN 40 is the native VLAN on a trunk",
+                         "Interface Vlan40 has a duplicate IP address"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Fehlt das VLAN selbst, bleibt das SVI down/down. Existiert das VLAN, aber kein aktiver Port darin, wäre es up/down. ip routing beeinflusst den SVI-Status nicht."
+    },
+    {
+        "id":  "slg-vl-059",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three conditions must be met for an SVI to reach the up/up state with autostate enabled? (Choose three.)",
+        "optionen":  [
+                         "The VLAN exists and is active in the VLAN database",
+                         "At least one Layer 2 port in the VLAN is up and in STP forwarding state",
+                         "The SVI has an IP address configured",
+                         "ip routing is enabled globally",
+                         "The SVI is not administratively shut down"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Der SVI-Zustand hängt von VLAN, aktiven Ports im Forwarding und no shutdown ab. ip routing und eine IP-Adresse sind für das Routing nötig, nicht für den Linkstatus des SVI."
+    },
+    {
+        "id":  "slg-vl-060",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In VLAN 50 only Gi1/0/24 is up; it connects an IDS sensor. The engineer wants Interface Vlan50 to go down when all user ports in VLAN 50 are down, regardless of Gi1/0/24. Which feature fits?",
+        "optionen":  [
+                         "switchport autostate exclude on Gi1/0/24",
+                         "switchport nonegotiate on Gi1/0/24",
+                         "spanning-tree portfast on Gi1/0/24",
+                         "shutdown on Interface Vlan50"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027switchport autostate exclude\u0027 nimmt einen Port aus der Autostate-Berechnung des SVI heraus – typisch für Monitoring-Ports. Dann hält nur ein aktiver Nutzerport das SVI up."
+    },
+    {
+        "id":  "slg-vl-061",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A branch has only a Catalyst 2960 and needs routing between two VLANs plus OSPF to the WAN router. Based on the platform\u0027s capabilities, what applies?",
+        "optionen":  [
+                         "It can run OSPF on SVIs but cannot route between local VLANs",
+                         "It cannot route at all; a router on a stick is the only option",
+                         "It routes between VLANs and runs OSPF once ip routing is enabled",
+                         "It can route between SVIs with static routes but cannot run OSPF"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Catalyst 2960 unterstützt statisches Routing auf SVIs, aber keine Routing-Protokolle. Für OSPF braucht man einen echten Layer-3-Switch oder Router."
+    },
+    {
+        "id":  "slg-vl-062",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Interface-Typ seiner Beschreibung zu.",
+        "paare":  [
+                      [
+                          "interface Vlan10 (SVI)",
+                          "L3-Interface für ein ganzes VLAN auf dem Switch"
+                      ],
+                      [
+                          "no switchport (Routed Port)",
+                          "Physischer Switchport als L3-Interface ohne VLAN-Bindung"
+                      ],
+                      [
+                          "Gi0/0.10 (Subinterface)",
+                          "Logisches Router-Interface für ein getaggtes VLAN auf einem Trunk"
+                      ],
+                      [
+                          "switchport mode access",
+                          "L2-Port in genau einem Daten-VLAN"
+                      ]
+                  ],
+        "erklaerung":  "SVI = Gateway eines VLANs im L3-Switch; Routed Port = Punkt-zu-Punkt-L3-Link; Subinterface = Router on a Stick; Access-Port = Endgeräteanschluss."
+    },
+    {
+        "id":  "slg-vl-063",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "You trace an infected host\u0027s MAC on SW1: \u0027show mac address-table\u0027 shows it on Gi1/0/48, and \u0027show interfaces status\u0027 lists Gi1/0/48 with Vlan \u0027trunk\u0027. What is the next step?",
+        "optionen":  [
+                         "Find the CDP neighbor on Gi1/0/48 and look up the MAC on that switch",
+                         "Shut down Gi1/0/48 to isolate the infected host immediately",
+                         "Remove the host\u0027s VLAN from the allowed list of Gi1/0/48",
+                         "Clear the MAC address table and wait for the host to reappear"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Steht die MAC auf einem Trunk/Uplink, sitzt der Host hinter einem anderen Switch. Per CDP den Nachbarn ermitteln und dort weitersuchen, bis die MAC an einem Endgeräteport auftaucht. Den Trunk abzuschalten träfe viele Unbeteiligte."
+    },
+    {
+        "id":  "slg-vl-064",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC: Zeige aus der MAC-Adresstabelle nur die Zeilen, die \u00275300\u0027 enthalten.",
+        "bausteine":  [
+                          "show",
+                          "mac",
+                          "address-table",
+                          "|",
+                          "include",
+                          "5300",
+                          "begin",
+                          "exclude",
+                          "arp"
+                      ],
+        "loesung":  [
+                        "show",
+                        "mac",
+                        "address-table",
+                        "|",
+                        "include",
+                        "5300"
+                    ],
+        "erklaerung":  "Der Output-Filter \u0027| include\u0027 zeigt nur passende Zeilen – praktisch bei Tausenden Einträgen. Gesucht wird nach den letzten Stellen der MAC aus der ARP-Tabelle."
+    },
+    {
+        "id":  "slg-vl-065",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf dem Gateway-Router: Zeige den ARP-Eintrag für 10.10.10.182.",
+        "bausteine":  [
+                          "show",
+                          "ip",
+                          "arp",
+                          "10.10.10.182",
+                          "mac",
+                          "route",
+                          "address-table"
+                      ],
+        "loesung":  [
+                        "show",
+                        "ip",
+                        "arp",
+                        "10.10.10.182"
+                    ],
+        "erklaerung":  "show ip arp \u003cip\u003e liefert MAC-Adresse und Interface (im Lab Ethernet0/0.134). Vorher ein Ping, damit der Eintrag sicher existiert."
+    },
+    {
+        "id":  "slg-vl-066",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R1 pings a host for the first time and shows \u0027.!!!!\u0027. Why is the first echo request typically lost?",
+        "optionen":  [
+                         "Spanning tree blocks the first packet of every new flow",
+                         "The host drops the first ICMP packet for security reasons",
+                         "The router first has to resolve the host\u0027s MAC address via ARP",
+                         "The switch first has to negotiate a trunk via DTP"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ohne ARP-Eintrag verwirft IOS das erste Paket, während die ARP-Auflösung läuft. Ergebnis: 4 von 5 = 80 %."
+    },
+    {
+        "id":  "slg-vl-067",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "To isolate an infected host, the engineer enters \u0027shutdown\u0027 on Et0/2. Which status does \u0027show interfaces status\u0027 now display for Et0/2?",
+        "optionen":  [
+                         "err-disabled",
+                         "notconnect",
+                         "disabled",
+                         "inactive"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein administrativ abgeschalteter Port erscheint in show interfaces status als \u0027disabled\u0027. notconnect = kein Link, err-disabled = durch eine Schutzfunktion abgeschaltet."
+    },
+    {
+        "id":  "slg-vl-068",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "SW# show interfaces status\nPort     Name         Status     Vlan\nGi1/0/1  Uplink-Core  connected  routed\nGi1/0/2  Link to SW2  connected  trunk\nGi1/0/3  PC3          connected  62\nWhich port is configured with \u0027no switchport\u0027?",
+        "optionen":  [
+                         "Gi1/0/2",
+                         "None of them",
+                         "Gi1/0/1",
+                         "Gi1/0/3"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Vlan-Spalte zeigt \u0027routed\u0027 für L3-Ports (no switchport), \u0027trunk\u0027 für Trunks und die VLAN-Nummer für Access-Ports."
+    },
+    {
+        "id":  "slg-vl-069",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why can an 802.1Q trunk carry at most VLAN IDs 1 to 4094?",
+        "optionen":  [
+                         "The 3-bit priority field consumes two of the VLAN values",
+                         "The 12-bit VID gives 4096 values, and 0 and 4095 are reserved",
+                         "VLANs 4095 and 4096 are reserved for Token Ring and FDDI",
+                         "The 16-bit TPID limits the tag to 4094 different values"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "12 Bit = 4096 Werte (0–4095). VID 0 (nur Priority-Tag) und 4095 sind reserviert, nutzbar bleiben 1–4094."
+    },
+    {
+        "id":  "slg-vl-070",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the maximum size of an 802.1Q-tagged Ethernet frame (without jumbo support), compared with 1518 bytes untagged?",
+        "optionen":  [
+                         "1518 bytes",
+                         "1522 bytes",
+                         "1500 bytes",
+                         "1526 bytes"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der 4-Byte-Tag vergrößert den Frame von maximal 1518 auf 1522 Byte (\u0027baby giant\u0027). Die IP-MTU bleibt 1500 Byte."
+    },
+    {
+        "id":  "slg-vl-071",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In current revisions of IEEE 802.1Q, what does the single bit between the PCP field and the VLAN ID indicate?",
+        "optionen":  [
+                         "The frame is eligible to be dropped first under congestion",
+                         "The MAC addresses in the frame use noncanonical bit order",
+                         "The frame carries a second, inner VLAN tag (Q-in-Q)",
+                         "The frame belongs to the native VLAN of the trunk"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Heute heißt das Bit DEI (Drop Eligible Indicator). Die im Kurs beschriebene Bedeutung als CFI (canonical/noncanonical MAC-Format für Token Ring) ist veraltet."
+    },
+    {
+        "id":  "slg-vl-072",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Das PCP-Feld im 802.1Q-Tag hat 3 Bit und erlaubt damit CoS-Werte von 0 bis ___.",
+        "optionen":  [
+                         "3",
+                         "7",
+                         "63",
+                         "8"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "3 Bit = 8 Werte, also CoS 0–7. 63 ist der höchste DSCP-Wert (6 Bit im IP-Header)."
+    },
+    {
+        "id":  "slg-vl-073",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer enters \u0027vlan 10,20,30-35\u0027 in global configuration mode. How many VLANs are created?",
+        "optionen":  [
+                         "8",
+                         "26",
+                         "6",
+                         "3"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der vlan-Befehl akzeptiert Listen und Bereiche: 10, 20 und 30–35 (6 VLANs) = 8 VLANs."
+    },
+    {
+        "id":  "slg-vl-074",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Ein VLAN-Name ist ein ASCII-String mit ___ Zeichen und muss in der administrativen Domäne eindeutig sein.",
+        "optionen":  [
+                         "1 bis 32",
+                         "1 bis 255",
+                         "1 bis 16",
+                         "1 bis 64"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Befehl \u0027name\u0027 akzeptiert 1–32 Zeichen. Ohne Namen vergibt der Switch VLANxxxx."
+    },
+    {
+        "id":  "slg-vl-075",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A lab switch is reset with \u0027erase startup-config\u0027 and \u0027reload\u0027, but VLANs 10–50 are still present afterwards. What else must be deleted to remove them?",
+        "optionen":  [
+                         "The ARP cache of the switch",
+                         "The file config.text in NVRAM",
+                         "The running configuration in RAM",
+                         "The file vlan.dat in flash"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Normal-Range-VLANs stehen in vlan.dat im Flash, nicht in der startup-config. Für einen VLAN-Werkszustand \u0027delete flash:vlan.dat\u0027 und dann reload."
+    },
+    {
+        "id":  "slg-vl-076",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "VLAN 50 does not exist on a Catalyst switch. The engineer enters \u0027switchport access vlan 50\u0027 on Gi1/0/5. What happens?",
+        "optionen":  [
+                         "The port becomes err-disabled because the VLAN is missing",
+                         "The command is rejected until VLAN 50 is created manually",
+                         "The port is placed in VLAN 1 until VLAN 50 is created",
+                         "The switch creates VLAN 50 automatically and the port uses it"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Catalyst-Switches melden \u0027% Access VLAN does not exist. Creating vlan 50\u0027 und legen das VLAN an. Wird das VLAN später gelöscht, wird der Port dagegen inaktiv."
+    },
+    {
+        "id":  "slg-vl-077",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show interfaces Gi1/0/3 switchport\u0027 shows \u0027Operational Trunking Encapsulation: native\u0027. What does this mean?",
+        "optionen":  [
+                         "The port tags all frames with VLAN 1",
+                         "The port uses ISL instead of 802.1Q encapsulation",
+                         "The port is not trunking and sends its frames untagged",
+                         "The port is a trunk and tags only the native VLAN"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027native\u0027 bedeutet: keine Trunk-Encapsulation aktiv, der Port arbeitet als Access-Port und sendet ungetaggt. Bei einem Trunk stünde hier dot1q."
+    },
+    {
+        "id":  "slg-vl-078",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer enters \u0027switchport nonegotiate\u0027 on a port configured \u0027switchport mode dynamic desirable\u0027. What is the result?",
+        "optionen":  [
+                         "The port keeps negotiating but ignores received DTP frames",
+                         "The port becomes a static access port without DTP frames",
+                         "The command is rejected because nonegotiate conflicts with dynamic modes",
+                         "The port becomes a static trunk without sending DTP frames"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "nonegotiate ist nur mit \u0027mode trunk\u0027 oder \u0027mode access\u0027 erlaubt. Bei dynamic auto/desirable meldet IOS einen Konflikt zwischen nonegotiate und dynamic."
+    },
+    {
+        "id":  "slg-vl-079",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A Cisco switch port set to \u0027dynamic desirable\u0027 connects to a third-party switch configured as a static 802.1Q trunk. What is the result on the Cisco side?",
+        "optionen":  [
+                         "The port forms a trunk but only carries the native VLAN",
+                         "The port stays an access port because the peer never answers DTP",
+                         "The port becomes a trunk because desirable always forces trunking",
+                         "The port becomes err-disabled due to the DTP protocol mismatch"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "DTP ist Cisco-proprietär. Ohne DTP-Antwort bleibt der desirable-Port Access. Zu Fremdherstellern immer statisch \u0027switchport mode trunk\u0027 (plus nonegotiate) konfigurieren."
+    },
+    {
+        "id":  "slg-vl-080",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which condition is required for a classic 802.1Q double-tagging (VLAN hopping) attack?",
+        "optionen":  [
+                         "The attacker\u0027s access VLAN equals the native VLAN of the trunk",
+                         "The attacker\u0027s port runs DTP in dynamic desirable mode",
+                         "The target VLAN is the native VLAN of the attacker\u0027s port",
+                         "The trunk uses ISL encapsulation instead of 802.1Q"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der erste Switch entfernt nur den äußeren Tag, weil er dem Native VLAN entspricht, und sendet den Frame mit dem inneren Tag über den Trunk – der nächste Switch stellt ihn im Ziel-VLAN zu. Der Angriff wirkt nur in eine Richtung."
+    },
+    {
+        "id":  "slg-vl-081",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two measures protect against double-tagging VLAN hopping? (Choose two.)",
+        "optionen":  [
+                         "Configure user ports as dynamic desirable",
+                         "Tag the native VLAN with \u0027vlan dot1q tag native\u0027",
+                         "Keep VLAN 1 as native VLAN on all trunks",
+                         "Use a dedicated native VLAN that has no user ports",
+                         "Enable PortFast on all trunk ports"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Double Tagging funktioniert nur, wenn der Angreifer im Native VLAN sitzt und dieses ungetaggt übertragen wird. Ein unbenutztes Native VLAN oder getaggtes Native VLAN verhindern das."
+    },
+    {
+        "id":  "slg-vl-082",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A user port was left in the default mode \u0027dynamic auto\u0027. An attacker\u0027s laptop sends DTP frames requesting a trunk. What can the attacker gain?",
+        "optionen":  [
+                         "Control over the spanning-tree root election",
+                         "Administrative access to the switch CLI",
+                         "Only access to the native VLAN of the switch",
+                         "A trunk link with access to all VLANs allowed on it"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Switch Spoofing: dynamic auto antwortet auf die DTP-Anfrage, der Port wird Trunk, und der Angreifer kann getaggte Frames in alle erlaubten VLANs senden."
+    },
+    {
+        "id":  "slg-vl-083",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Wenn DTP keinen Trunk aushandeln konnte, zeigt show interfaces trunk in der Spalte Status den Wert ___.",
+        "optionen":  [
+                         "not-trunking",
+                         "err-disabled",
+                         "blocking",
+                         "inactive"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Status \u0027not-trunking\u0027 (z. B. bei auto + auto) zeigt, dass der Port nicht als Trunk arbeitet. \u0027trunking\u0027 wäre der funktionierende Zustand."
+    },
+    {
+        "id":  "slg-vl-084",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On a switch that supports ISL and 802.1Q, \u0027switchport mode trunk\u0027 is rejected with a message that the trunk encapsulation is \u0027Auto\u0027. What fixes this?",
+        "optionen":  [
+                         "Configure \u0027switchport nonegotiate\u0027 first",
+                         "Configure \u0027switchport trunk native vlan 1\u0027 first",
+                         "Configure \u0027switchport trunk encapsulation dot1q\u0027 first",
+                         "Configure \u0027switchport mode dynamic desirable\u0027 instead"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei Encapsulation \u0027negotiate/auto\u0027 kann der Port nicht statisch Trunk werden. Erst die Encapsulation festlegen, dann mode trunk. Catalyst 9000 kennt nur 802.1Q und braucht den Befehl nicht."
+    },
+    {
+        "id":  "slg-vl-085",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus auf einem Switch, der ISL und 802.1Q kann: Lege 802.1Q als Trunk-Encapsulation fest.",
+        "bausteine":  [
+                          "switchport",
+                          "trunk",
+                          "encapsulation",
+                          "dot1q",
+                          "isl",
+                          "negotiate",
+                          "mode"
+                      ],
+        "loesung":  [
+                        "switchport",
+                        "trunk",
+                        "encapsulation",
+                        "dot1q"
+                    ],
+        "erklaerung":  "switchport trunk encapsulation dot1q – danach kann switchport mode trunk konfiguriert werden."
+    },
+    {
+        "id":  "slg-vl-086",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Port Gi1/0/3 has \u0027switchport voice vlan 20\u0027. How does the IP phone send its voice frames to the switch?",
+        "optionen":  [
+                         "Tagged with VLAN 1 and a high CoS value",
+                         "Encapsulated in CDP frames to the switch",
+                         "Tagged with VLAN 20 in an 802.1Q header",
+                         "Untagged in the access VLAN of the port"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das Telefon lernt VLAN 20 per CDP und taggt seinen Sprachverkehr mit VLAN 20 (inkl. CoS). Der PC dahinter sendet ungetaggt ins Access-VLAN."
+    },
+    {
+        "id":  "slg-vl-087",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Option von \u0027switchport voice vlan ...\u0027 dem Verhalten des IP-Telefons zu.",
+        "paare":  [
+                      [
+                          "20",
+                          "Telefon taggt Sprache mit VLAN 20 und CoS"
+                      ],
+                      [
+                          "dot1p",
+                          "Telefon taggt mit VLAN-ID 0, nur zur Priorisierung"
+                      ],
+                      [
+                          "untagged",
+                          "Telefon sendet Sprache ohne Tag"
+                      ],
+                      [
+                          "none",
+                          "Switch gibt dem Telefon keine Voice-VLAN-Vorgabe"
+                      ]
+                  ],
+        "erklaerung":  "Mit VLAN-ID landet Sprache im eigenen VLAN; dot1p nutzt VLAN 0 und damit das Access-VLAN, aber mit CoS; untagged ohne Tag; none ist der Default ohne Anweisung."
+    },
+    {
+        "id":  "slg-vl-088",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "PC1 (VLAN 10, on SW1) pings PC3 (VLAN 10, on SW2). SW1 and SW2 are connected by a trunk; R1 is attached to SW2 as router on a stick. Which path does the traffic take?",
+        "optionen":  [
+                         "No path exists because R1 has no subinterface for VLAN 10",
+                         "PC1 → SW1 → trunk → SW2 → PC3, without R1",
+                         "PC1 → SW1 → R1 → SW1 → SW2 → PC3",
+                         "PC1 → SW1 → SW2 → R1 → SW2 → PC3"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Innerhalb eines VLANs wird geswitcht, auch über Trunks hinweg. Der Router wird nur für Verkehr zwischen verschiedenen VLANs gebraucht."
+    },
+    {
+        "id":  "slg-vl-089",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Same topology: PC1 (VLAN 10, SW1) pings PC6 (VLAN 20, SW2). R1 is a router on a stick attached to SW2. Which path does the request take?",
+        "optionen":  [
+                         "SW1 → trunk (tag 10) → SW2 → PC6 (tag 10), switched without R1",
+                         "SW1 → trunk (tag 10) → SW2 → R1 (tag 10) → SW2 (tag 20) → PC6",
+                         "SW1 → trunk (tag 20) → SW2 → PC6, R1 only answers ARP for PC1",
+                         "SW1 → trunk (untagged) → SW2 → R1 (untagged) → SW2 → PC6"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Frame geht im VLAN 10 bis zum Router (Gateway), R1 routet nach VLAN 20 und schickt ihn mit Tag 20 zurück an SW2, der an PC6 zustellt."
+    },
+    {
+        "id":  "slg-vl-090",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three items are required for router-on-a-stick inter-VLAN routing? (Choose three.)",
+        "optionen":  [
+                         "ip routing on the access switch",
+                         "One subinterface per VLAN with encapsulation dot1Q and an IP address",
+                         "The physical router interface is not shut down",
+                         "The switch port facing the router is a trunk",
+                         "An IP address from every VLAN on the physical router interface"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Trunk am Switch, je VLAN ein Subinterface mit dot1Q und Gateway-IP, physisches Interface up. Der Switch routet nicht selbst, und das physische Interface braucht keine Adresse aus jedem VLAN."
+    },
+    {
+        "id":  "slg-vl-091",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "With inter-VLAN routing using one router interface per VLAN, how are the switch ports facing the router configured?",
+        "optionen":  [
+                         "As one trunk carrying all VLANs",
+                         "As an EtherChannel of trunk ports",
+                         "As access ports, each in a different VLAN",
+                         "As routed ports with no switchport"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Jedes Router-Interface hängt an einem Access-Port des jeweiligen VLANs. Deshalb braucht jedes VLAN je einen Port auf Router und Switch – das skaliert nicht."
+    },
+    {
+        "id":  "slg-vl-092",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "SW1# show mac address-table interface Fa0/1\nVlan  Mac Address     Type     Ports\n10    000c.296a.a21c  DYNAMIC  Fa0/1\nThe user on Fa0/1 belongs in VLAN 20. What fixes the problem?",
+        "optionen":  [
+                         "switchport voice vlan 20 on Fa0/1",
+                         "switchport access vlan 20 on Fa0/1",
+                         "mac address-table static for VLAN 20",
+                         "switchport trunk allowed vlan add 20 on Fa0/1"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die MAC-Tabelle zeigt, in welchem VLAN der Host gelernt wurde. Steht der Port im falschen VLAN, mit switchport access vlan korrigieren."
+    },
+    {
+        "id":  "slg-vl-093",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den show-Befehl der Frage zu, die er am direktesten beantwortet.",
+        "paare":  [
+                      [
+                          "show vlan brief",
+                          "Welche Access-Ports gehören zu welchem VLAN?"
+                      ],
+                      [
+                          "show interfaces trunk",
+                          "Welche VLANs sind auf dem Trunk erlaubt und aktiv?"
+                      ],
+                      [
+                          "show interfaces Gi1/0/1 switchport",
+                          "Administrativer und operativer Modus eines Ports?"
+                      ],
+                      [
+                          "show mac address-table",
+                          "An welchem Port wurde eine MAC gelernt?"
+                      ]
+                  ],
+        "erklaerung":  "Diese vier Befehle bilden das Werkzeug für VLAN- und Trunk-Troubleshooting in Discovery 3."
+    },
+    {
+        "id":  "slg-vl-094",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus auf dem Layer-3-Switch: Lege das SVI für VLAN 30 an.",
+        "bausteine":  [
+                          "interface",
+                          "vlan",
+                          "30",
+                          "switchport",
+                          "encapsulation",
+                          "ip",
+                          "routing"
+                      ],
+        "loesung":  [
+                        "interface",
+                        "vlan",
+                        "30"
+                    ],
+        "erklaerung":  "interface vlan 30 erzeugt das SVI; danach ip address und no shutdown. Das VLAN 30 selbst muss existieren und aktive Ports haben."
+    },
+    {
+        "id":  "slg-vl-095",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "When does a Layer 3 switch route a frame instead of switching it?",
+        "optionen":  [
+                         "When the frame carries a CoS value above 5",
+                         "When source and destination are in different VLANs (subnets)",
+                         "When the destination MAC is unknown in the CAM table",
+                         "When the frame arrives on a trunk port instead of an access port"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Innerhalb eines VLANs wird geswitcht; liegen Quelle und Ziel in verschiedenen VLANs/Subnetzen, wird über die SVIs geroutet (der Host sendet dann an die Gateway-MAC des SVI)."
+    },
+    {
+        "id":  "slg-vl-096",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On a distribution switch, VLAN 30 has no access ports; it reaches the access layer only via trunk Gi1/0/48. Interface Vlan30 is up/up. The engineer enters \u0027switchport trunk allowed vlan remove 30\u0027 on Gi1/0/48. What happens to Vlan30?",
+        "optionen":  [
+                         "It stays up/up but routing to VLAN 30 is disabled automatically",
+                         "It changes to up/down because no forwarding port remains in VLAN 30",
+                         "It changes to administratively down until no shutdown is entered",
+                         "It stays up/up because the VLAN still exists in the VLAN database"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein Trunk, der das VLAN führt und forwardet, hält das SVI per Autostate up. Fällt der letzte solche Port weg, geht das Line-Protokoll des SVI down."
+    },
+    {
+        "id":  "slg-vl-097",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In \u0027show interfaces status\u0027, the Name column shows \u0027Link to PC3\u0027 for Et0/2. Where does this text come from?",
+        "optionen":  [
+                         "The CDP device ID of the neighbor",
+                         "The hostname learned via LLDP",
+                         "The VLAN name of the access VLAN",
+                         "The description command on the interface"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Name-Spalte zeigt die Interface-description. Saubere Beschreibungen halfen im Lab, PC3 schnell zu identifizieren."
+    },
+    {
+        "id":  "slg-vl-098",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027vlan dot1q tag native\u0027 is configured globally on a Catalyst switch. How does an 802.1Q trunk port now send frames of its native VLAN?",
+        "optionen":  [
+                         "Untagged, only control traffic is tagged",
+                         "Tagged with VLAN ID 0 (priority tag)",
+                         "Not at all, they are dropped",
+                         "Tagged with the native VLAN ID"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der globale Befehl taggt auf allen 802.1Q-Trunks auch das Native VLAN – Schutz gegen VLAN-Hopping per Double Tagging. Wie ungetaggt empfangene Frames behandelt werden, beschreiben die Cisco-Guides je nach Release unterschiedlich (16.8: angenommen, 17.14: verworfen)."
+    },
+    {
+        "id":  "slg-vl-099",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Both ends of a trunk use \u0027switchport trunk allowed vlan 1-1000\u0027. A new VLAN 1100 is created on both switches with hosts on each side. What is the result?",
+        "optionen":  [
+                         "VLAN 1100 is rejected because extended VLANs cannot be trunked",
+                         "VLAN 1100 crosses the trunk because it exists on both switches",
+                         "VLAN 1100 is carried untagged in the native VLAN of the trunk",
+                         "VLAN 1100 does not cross the trunk until it is added to both lists"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die allowed-Liste wirkt unabhängig davon, ob das VLAN existiert. 1100 liegt außerhalb von 1-1000 und muss per \u0027allowed vlan add 1100\u0027 auf beiden Seiten erlaubt werden."
+    },
+    {
+        "id":  "slg-vl-100",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A router subinterface Gi0/0.10 has \u0027encapsulation dot1Q 10\u0027. The engineer creates Gi0/0.110 and also enters \u0027encapsulation dot1Q 10\u0027. What happens?",
+        "optionen":  [
+                         "Gi0/0.110 takes over VLAN 10 and Gi0/0.10 goes down",
+                         "Both subinterfaces share VLAN 10 and load-balance the traffic",
+                         "IOS rejects it; two subinterfaces of one interface cannot use the same VLAN",
+                         "Gi0/0.110 automatically uses VLAN 110 instead"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Pro physischem Interface darf eine VLAN-ID nur einem Subinterface zugeordnet sein; IOS lehnt die doppelte Konfiguration ab."
+    },
+    {
+        "id":  "slg-vl-101",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Router on a stick on a 1-Gbps full-duplex trunk: VLAN 10 hosts send 400 Mbps to VLAN 20, and VLAN 20 hosts send 400 Mbps to VLAN 10. What is the load in the switch-to-router direction of the trunk?",
+        "optionen":  [
+                         "200 Mbps",
+                         "1600 Mbps",
+                         "400 Mbps",
+                         "800 Mbps"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beide Ströme müssen zuerst zum Router hoch (400 + 400 = 800 Mbps) und dann wieder herunter (ebenfalls 800 Mbps). Deshalb wird der Trunk schnell zum Engpass."
+    },
+    {
+        "id":  "slg-vl-102",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Symptom der wahrscheinlichsten Ursache zu.",
+        "paare":  [
+                      [
+                          "%CDP-4-NATIVE_VLAN_MISMATCH im Log",
+                          "Native VLAN auf den Trunk-Enden unterschiedlich"
+                      ],
+                      [
+                          "Status not-trunking, Mode auto auf beiden Seiten",
+                          "Beide Ports stehen auf dynamic auto"
+                      ],
+                      [
+                          "VLAN fehlt in \u0027Vlans allowed on trunk\u0027",
+                          "allowed-Liste schließt das VLAN aus"
+                      ],
+                      [
+                          "Access Mode VLAN: 30 (Inactive)",
+                          "VLAN 30 existiert nicht in der VLAN-Datenbank"
+                      ]
+                  ],
+        "erklaerung":  "Jedes dieser Symptome zeigt eine typische Ursache aus dem Troubleshooting-Ablauf für VLANs und Trunks."
+    },
+    {
+        "id":  "slg-vl-103",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In the lab, \u0027show cdp neighbors\u0027 showed which port each PC used. Why does this approach usually fail in production networks?",
+        "optionen":  [
+                         "CDP is disabled by default on all Catalyst switches",
+                         "Normal PCs do not send CDP, so you must use ARP and the MAC table",
+                         "CDP works only on trunk ports, not on access ports",
+                         "CDP only shows routers and never shows any switches"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Im Lab sind die PCs als Router simuliert und senden CDP. Echte PCs tun das nicht – dann IP → ARP am Gateway → MAC-Tabelle → Port."
+    },
+    {
+        "id":  "slg-vl-104",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Where does IEEE 802.1Q insert its tag into the Ethernet frame?",
+        "optionen":  [
+                         "Between the EtherType field and the IP header",
+                         "At the end of the frame, directly before the FCS",
+                         "Between the source MAC address and the EtherType field",
+                         "Before the destination MAC address, after the preamble"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der 4-Byte-Tag sitzt hinter der Quell-MAC; das ursprüngliche EtherType-Feld folgt danach. Die MAC-Adressen bleiben unverändert, die FCS wird neu berechnet."
+    },
+    {
+        "id":  "slg-vl-105",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A trunk is configured with \u0027switchport trunk native vlan 99\u0027 on both ends. A host in VLAN 1 sends a frame that crosses the trunk. How is it sent?",
+        "optionen":  [
+                         "Tagged with VLAN 1",
+                         "Untagged, because VLAN 1 is the default VLAN",
+                         "It is dropped, because VLAN 1 is no longer native",
+                         "Untagged, because VLAN 1 carries control traffic"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Nur das konfigurierte Native VLAN (99) geht ungetaggt. VLAN 1 ist jetzt ein normales VLAN und wird wie alle anderen getaggt."
+    },
+    {
+        "id":  "slg-vl-106",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Modus des Trunks: Erlaube ausschließlich die VLANs 10 und 20 (die bisherige Liste soll ersetzt werden).",
+        "bausteine":  [
+                          "switchport",
+                          "trunk",
+                          "allowed",
+                          "vlan",
+                          "10,20",
+                          "add",
+                          "except",
+                          "native"
+                      ],
+        "loesung":  [
+                        "switchport",
+                        "trunk",
+                        "allowed",
+                        "vlan",
+                        "10,20"
+                    ],
+        "erklaerung":  "Ohne Schlüsselwort ersetzt die Liste die bisherige komplett – hier gewollt. Zum Ergänzen bestehender Listen wäre \u0027add\u0027 nötig."
+    },
+    {
+        "id":  "slg-vl-107",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC: Zeige Administrative und Operational Mode, Native VLAN und Voice VLAN von GigabitEthernet1/0/5.",
+        "bausteine":  [
+                          "show",
+                          "interfaces",
+                          "GigabitEthernet1/0/5",
+                          "switchport",
+                          "trunk",
+                          "vlan",
+                          "brief"
+                      ],
+        "loesung":  [
+                        "show",
+                        "interfaces",
+                        "GigabitEthernet1/0/5",
+                        "switchport"
+                    ],
+        "erklaerung":  "show interfaces \u003cif\u003e switchport zeigt alle L2-Parameter eines Ports: Modus (administrativ/operativ), Access-, Native- und Voice-VLAN, Trunk-Encapsulation."
+    },
+    {
+        "id":  "slg-vl-108",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "show interfaces trunk listet drei VLAN-Listen: \u0027allowed on trunk\u0027, \u0027allowed and active in management domain\u0027 und \u0027___\u0027.",
+        "optionen":  [
+                         "learned in the MAC address table",
+                         "native and untagged on this trunk",
+                         "in spanning tree forwarding state and not pruned",
+                         "assigned to voice and data ports"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die dritte Liste zeigt die VLANs, die STP auf dem Port forwardet und die nicht durch VTP-Pruning entfernt sind – also wirklich über den Trunk laufen."
+    },
+    {
+        "id":  "slg-vl-109",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In show interfaces status steht in der Spalte Vlan für einen operativen Trunk-Port der Wert ___.",
+        "optionen":  [
+                         "native",
+                         "trunk",
+                         "1",
+                         "all"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Access-Ports zeigen ihre VLAN-Nummer, Trunks \u0027trunk\u0027, L3-Ports \u0027routed\u0027. So erkennt man im Lab schnell die Uplinks zu R1 und SW2."
+    },
+    {
+        "id":  "slg-vl-110",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two commands show whether Gi1/0/1 is operationally trunking? (Choose two.)",
+        "optionen":  [
+                         "show mac address-table interface Gi1/0/1",
+                         "show vlan brief",
+                         "show interfaces Gi1/0/1 switchport",
+                         "show ip interface brief",
+                         "show interfaces trunk"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "show interfaces trunk listet nur trunkende Ports mit Status; show interfaces switchport zeigt den Operational Mode. show vlan brief und die MAC-Tabelle verraten den Trunk-Status nicht direkt."
+    },
+    {
+        "id":  "slg-vl-111",
+        "topic":  "ENCOR-3.1.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Switchport-Konfiguration ihrem DTP-Verhalten zu.",
+        "paare":  [
+                      [
+                          "switchport mode trunk",
+                          "Dauerhaft Trunk, sendet weiterhin DTP-Frames"
+                      ],
+                      [
+                          "switchport mode dynamic desirable",
+                          "Fragt aktiv per DTP nach einem Trunk"
+                      ],
+                      [
+                          "switchport mode dynamic auto",
+                          "Wird nur Trunk, wenn der Nachbar anfragt"
+                      ],
+                      [
+                          "switchport nonegotiate",
+                          "Unterdrückt das Senden von DTP-Frames"
+                      ]
+                  ],
+        "erklaerung":  "mode trunk erzwingt den Trunk, sendet aber DTP, bis nonegotiate gesetzt ist. desirable ist aktiv, auto passiv."
     }
 ]

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Access-Port mit Daten- und Voice VLAN</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Ein Port, zwei VLANs: Daten-VLAN + Voice VLAN</text>
+<rect x="60" y="150" width="150" height="70" rx="6" fill="#4a9cff"/>
+<text x="135" y="192" text-anchor="middle" font-size="22" font-weight="bold" fill="#fff">SW</text>
+<text x="135" y="240" text-anchor="middle" font-size="13" fill="#222">Fa0/3</text>
+<rect x="330" y="160" width="90" height="50" rx="8" fill="#ffd23f"/>
+<text x="375" y="190" text-anchor="middle" font-size="14" fill="#222">IP-Telefon</text>
+<rect x="560" y="155" width="90" height="60" rx="4" fill="#eee" stroke="#222"/>
+<text x="605" y="190" text-anchor="middle" font-size="15" fill="#222">PC</text>
+<line x1="210" y1="185" x2="330" y2="185" stroke="#222" stroke-width="3"/>
+<line x1="420" y1="185" x2="560" y2="185" stroke="#222" stroke-width="3"/>
+<rect x="225" y="110" width="95" height="26" rx="4" fill="#ffd23f"/>
+<text x="272" y="128" text-anchor="middle" font-size="12" fill="#222">Tag VLAN 20</text>
+<rect x="225" y="236" width="95" height="26" rx="4" fill="#39c86a"/>
+<text x="272" y="254" text-anchor="middle" font-size="12" fill="#222">ungetaggt</text>
+<rect x="440" y="236" width="100" height="26" rx="4" fill="#39c86a"/>
+<text x="490" y="254" text-anchor="middle" font-size="12" fill="#222">ungetaggt</text>
+<text x="272" y="100" text-anchor="middle" font-size="12" fill="#222">Sprache</text>
+<text x="272" y="280" text-anchor="middle" font-size="12" fill="#222">PC-Daten → VLAN 2</text>
+<rect x="40" y="310" width="340" height="120" rx="8" fill="#f5f8ff" stroke="#4a9cff"/>
+<g font-size="13" fill="#222" font-family="monospace">
+<text x="55" y="335">interface Fa0/3</text>
+<text x="55" y="357"> switchport mode access</text>
+<text x="55" y="379"> switchport access vlan 2</text>
+<text x="55" y="401"> switchport voice vlan 20</text>
+</g>
+<rect x="410" y="310" width="360" height="120" rx="8" fill="#eefaf2" stroke="#39c86a"/>
+<g font-size="13" fill="#222">
+<text x="425" y="335">• Telefon lernt VLAN 20 per CDP (oder LLDP-MED)</text>
+<text x="425" y="357">• show vlan brief: Fa0/3 unter VLAN 2 UND 20</text>
+<text x="425" y="379">• show int switchport: Voice VLAN: 20</text>
+<text x="425" y="401">• bleibt Access-Port (kein Eintrag in</text>
+<text x="425" y="421">  show interfaces trunk)</text>
+</g>
+</svg>

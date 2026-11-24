@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>show interfaces trunk lesen</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">show interfaces trunk: drei VLAN-Listen als Filterkette</text>
+<g font-size="14" fill="#222">
+<rect x="40" y="60" width="220" height="150" rx="8" fill="#f5f8ff" stroke="#4a9cff"/>
+<text x="150" y="85" text-anchor="middle" font-weight="bold">1. allowed on trunk</text>
+<text x="55" y="112" font-size="12">konfigurierte Liste</text>
+<text x="55" y="132" font-size="12">(Default 1-4094)</text>
+<text x="55" y="165" font-size="12" font-family="monospace">Et0/0  1-4094</text>
+<text x="55" y="187" font-size="12" font-family="monospace">Et0/1  1-61,63-1000</text>
+<rect x="290" y="60" width="220" height="150" rx="8" fill="#eefaf2" stroke="#39c86a"/>
+<text x="400" y="85" text-anchor="middle" font-weight="bold">2. allowed and active</text>
+<text x="305" y="112" font-size="12">∩ VLANs, die lokal</text>
+<text x="305" y="132" font-size="12">existieren und aktiv sind</text>
+<text x="305" y="165" font-size="12" font-family="monospace">Et0/0  1,62</text>
+<text x="305" y="187" font-size="12" font-family="monospace">Et0/1  1</text>
+<rect x="540" y="60" width="220" height="150" rx="8" fill="#fffbe6" stroke="#ffd23f"/>
+<text x="650" y="85" text-anchor="middle" font-weight="bold">3. forwarding, not pruned</text>
+<text x="555" y="112" font-size="12">∩ STP forwarding und</text>
+<text x="555" y="132" font-size="12">nicht per VTP geprunt</text>
+<text x="555" y="165" font-size="12" font-family="monospace">Et0/0  1,62</text>
+<text x="555" y="187" font-size="12" font-family="monospace">Et0/1  1</text>
+</g>
+<path d="M260 135 L290 135" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<path d="M510 135 L540 135" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#222"/></marker></defs>
+<rect x="40" y="235" width="720" height="195" rx="8" fill="#fff" stroke="#222"/>
+<text x="55" y="260" font-size="14" font-weight="bold" fill="#222">Was fehlt wo? → Ursache</text>
+<g font-size="13" fill="#222">
+<text x="55" y="287">• VLAN fehlt in Liste 1 → nicht erlaubt: switchport trunk allowed vlan add X</text>
+<text x="55" y="312">• In 1, fehlt in 2 → VLAN existiert lokal nicht (oder ist suspended/shutdown)</text>
+<text x="55" y="337">• In 2, fehlt in 3 → STP blockiert das VLAN auf diesem Port (oder VTP-Pruning)</text>
+<text x="55" y="362">• Kopfzeile: Mode (on/desirable/auto) · Status trunking/not-trunking · Native vlan</text>
+<text x="55" y="387" fill="#ff6b6b">Lab: SW1 Et0/1 erlaubt 62 nicht → PC1 (SW2) erreicht PC4 (SW1) nicht</text>
+<text x="55" y="412">Achtung: allowed vlan 10,20 ERSETZT die Liste – add / remove / except nutzen</text>
+</g>
+</svg>
