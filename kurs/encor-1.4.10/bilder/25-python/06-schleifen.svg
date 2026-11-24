@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Schleifen mit for, while, break und continue</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Schleifen: for, while, range(), break, continue</text>
+<rect x="20" y="55" width="370" height="170" rx="8" fill="#4a9cff" fill-opacity="0.15" stroke="#4a9cff"/>
+<text x="35" y="80" font-size="16" font-weight="bold" fill="#222">for: über eine Sequenz</text>
+<g font-size="14" font-family="monospace" fill="#222">
+<text x="35" y="108">for vlan in [1, 5, 10]:</text>
+<text x="35" y="130">    print(vlan)      # 1 5 10</text>
+<text x="35" y="160">range(4)        → 0 1 2 3</text>
+<text x="35" y="182">range(2, 10, 3) → 2 5 8</text>
+<text x="35" y="204">range(10, 0, -3)→ 10 7 4 1</text>
+</g>
+<rect x="410" y="55" width="370" height="170" rx="8" fill="#b08aff" fill-opacity="0.15" stroke="#b08aff"/>
+<text x="425" y="80" font-size="16" font-weight="bold" fill="#222">while: solange Bedingung True</text>
+<g font-size="14" font-family="monospace" fill="#222">
+<text x="425" y="108">n = 3</text>
+<text x="425" y="130">while n &gt; 0:</text>
+<text x="425" y="152">    print(n)         # 3 2 1</text>
+<text x="425" y="174">    n -= 1</text>
+</g>
+<text x="425" y="204" font-size="13" fill="#ff6b6b">Ohne n -= 1: Endlosschleife (Ctrl+C)</text>
+<rect x="20" y="240" width="760" height="120" rx="8" fill="#f4f4f4" stroke="#ccc"/>
+<g font-size="14" font-family="monospace" fill="#222">
+<text x="35" y="266">for i in range(1, 6):</text>
+<text x="35" y="288">    if i == 3:</text>
+<text x="35" y="310">        <tspan fill="#39c86a" font-weight="bold">continue</tspan>   # Rest überspringen</text>
+<text x="35" y="332">    if i == 5:</text>
+<text x="35" y="354">        <tspan fill="#ff6b6b" font-weight="bold">break</tspan>      # Schleife beenden</text>
+</g>
+<g font-size="20" font-family="monospace" text-anchor="middle">
+<rect x="470" y="282" width="44" height="40" fill="#39c86a" fill-opacity="0.35"/><text x="492" y="309">1</text>
+<rect x="520" y="282" width="44" height="40" fill="#39c86a" fill-opacity="0.35"/><text x="542" y="309">2</text>
+<rect x="570" y="282" width="44" height="40" fill="#dddddd"/><text x="592" y="309" fill="#888">3</text>
+<rect x="620" y="282" width="44" height="40" fill="#39c86a" fill-opacity="0.35"/><text x="642" y="309">4</text>
+<rect x="670" y="282" width="44" height="40" fill="#ff6b6b" fill-opacity="0.35"/><text x="692" y="309">5</text>
+</g>
+<text x="470" y="345" font-size="13" fill="#222">Ausgabe: 1, 2, 4 (3 übersprungen, bei 5 Abbruch)</text>
+<rect x="20" y="375" width="760" height="60" rx="8" fill="#ffd23f" fill-opacity="0.3"/>
+<text x="35" y="400" font-size="14" fill="#222">pass = leere Anweisung · Schleifenvariable bleibt nach der Schleife erhalten (letzter Wert)</text>
+<text x="35" y="424" font-size="14" fill="#222">Was eingerückt ist, gehört zum Schleifenrumpf; eine nicht eingerückte Zeile läuft danach genau einmal.</text>
+</svg>

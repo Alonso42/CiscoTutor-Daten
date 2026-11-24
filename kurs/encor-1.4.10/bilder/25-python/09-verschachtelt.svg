@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Zugriff auf verschachtelte Dictionaries und Listen</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Verschachtelte Daten: Schlüssel, Schlüssel, Index</text>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect x="30" y="60" width="200" height="200" rx="8" fill="#4a9cff" fill-opacity="0.2" stroke="#4a9cff" stroke-width="2"/>
+<text x="130" y="84" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">facts (dict)</text>
+<g font-size="14" font-family="monospace" fill="#222"><text x="45" y="120">'sw1' → facts_1</text><text x="45" y="160" font-weight="bold">'sw2' → facts_2</text><text x="45" y="200">'sw3' → facts_3</text></g>
+<rect x="290" y="60" width="240" height="200" rx="8" fill="#b08aff" fill-opacity="0.2" stroke="#b08aff" stroke-width="2"/>
+<text x="410" y="84" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">facts_2 (dict)</text>
+<g font-size="14" font-family="monospace" fill="#222"><text x="305" y="115">'os': '7.2'</text><text x="305" y="140">'location': 'syd'</text><text x="305" y="165">'vlans_list': [1,10,20]</text><text x="305" y="200" font-weight="bold">'neighbors' → list</text></g>
+<rect x="590" y="60" width="180" height="200" rx="8" fill="#39c86a" fill-opacity="0.2" stroke="#39c86a" stroke-width="2"/>
+<text x="680" y="84" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">neighbors (list)</text>
+<g font-size="14" font-family="monospace" fill="#222"><text x="605" y="130">[0] 'sw1'</text><text x="605" y="170" font-weight="bold">[1] 'sw3'</text><text x="605" y="210">[-1] = [1]</text></g>
+<g stroke="#222" stroke-width="2" marker-end="url(#a)"><line x1="225" y1="155" x2="288" y2="155"/><line x1="500" y1="195" x2="588" y2="165"/></g>
+<rect x="30" y="285" width="740" height="50" rx="8" fill="#ffd23f" fill-opacity="0.35"/>
+<text x="400" y="317" text-anchor="middle" font-size="18" font-family="monospace" fill="#222">facts['sw2']['neighbors'][1]  →  'sw3'</text>
+<g font-size="14" fill="#222">
+<text x="40" y="365">type(facts) → dict: Wert nur per Schlüssel   ·   type(facts['sw2']['neighbors']) → list: Wert per Index</text>
+<text x="40" y="392">Falscher Schlüssel ('vlan_list' statt 'vlans_list') → KeyError · Index 2 bei 2 Elementen → IndexError</text>
+<text x="40" y="419">'sw2' in facts prüft Schlüssel (True), 'syd' in facts dagegen False (nur Werte)</text>
+</g>
+</svg>

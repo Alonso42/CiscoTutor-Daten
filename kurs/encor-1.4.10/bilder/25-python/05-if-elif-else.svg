@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Ablauf von if, elif und else</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">if / elif / else: nur der erste wahre Zweig läuft</text>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect x="20" y="60" width="330" height="200" rx="8" fill="#f4f4f4" stroke="#ccc"/>
+<g font-size="14" font-family="monospace" fill="#222">
+<text x="32" y="86">switch = 'catalyst 3850'</text>
+<text x="32" y="114">if 'catalyst' in switch<tspan fill="#ff6b6b" font-weight="bold">:</tspan></text>
+<text x="32" y="138">    switch_type = 'catalyst'</text>
+<text x="32" y="166">elif 'nexus' in switch<tspan fill="#ff6b6b" font-weight="bold">:</tspan></text>
+<text x="32" y="190">    switch_type = 'nexus'</text>
+<text x="32" y="218">else<tspan fill="#ff6b6b" font-weight="bold">:</tspan></text>
+<text x="32" y="242">    switch_type = 'unknown'</text>
+</g>
+<line x1="62" y1="124" x2="62" y2="250" stroke="#39c86a" stroke-width="2" stroke-dasharray="5,4"/>
+<text x="30" y="285" font-size="13" fill="#222"><tspan fill="#ff6b6b">rot</tspan>: Doppelpunkt Pflicht · <tspan fill="#39c86a">grün</tspan>: einheitliche Einrückung (4 Leerzeichen)</text>
+<g font-size="14" fill="#222" text-anchor="middle">
+<polygon points="560,60 650,95 560,130 470,95" fill="#4a9cff" fill-opacity="0.3" stroke="#4a9cff"/><text x="560" y="100">Bedingung 1?</text>
+<polygon points="560,165 650,200 560,235 470,200" fill="#4a9cff" fill-opacity="0.3" stroke="#4a9cff"/><text x="560" y="205">Bedingung 2?</text>
+<rect x="680" y="77" width="105" height="36" rx="6" fill="#39c86a" fill-opacity="0.35"/><text x="732" y="100">if-Block</text>
+<rect x="680" y="182" width="105" height="36" rx="6" fill="#39c86a" fill-opacity="0.35"/><text x="732" y="205">elif-Block</text>
+<rect x="505" y="270" width="110" height="36" rx="6" fill="#ffd23f" fill-opacity="0.5"/><text x="560" y="293">else-Block</text>
+<rect x="480" y="345" width="300" height="36" rx="6" fill="#b08aff" fill-opacity="0.3"/><text x="630" y="368">weiter nach der Kette</text>
+<text x="665" y="88" font-size="12">True</text><text x="665" y="193" font-size="12">True</text>
+<text x="578" y="150" font-size="12">False</text><text x="578" y="255" font-size="12">False</text>
+</g>
+<g stroke="#222" stroke-width="1.5" fill="none" marker-end="url(#a)">
+<line x1="650" y1="95" x2="678" y2="95"/><line x1="650" y1="200" x2="678" y2="200"/>
+<line x1="560" y1="130" x2="560" y2="163"/><line x1="560" y1="235" x2="560" y2="268"/>
+<line x1="560" y1="306" x2="560" y2="343"/>
+<polyline points="785,113 795,113 795,330 700,330 700,343"/>
+<line x1="732" y1="218" x2="732" y2="343"/>
+</g>
+<rect x="20" y="300" width="440" height="135" rx="8" fill="#ffd23f" fill-opacity="0.2"/>
+<g font-size="14" fill="#222">
+<text x="32" y="324">• if: genau einmal, am Anfang</text>
+<text x="32" y="348">• elif: optional, beliebig oft</text>
+<text x="32" y="372">• else: optional, nur am Ende, ohne Bedingung</text>
+<text x="32" y="396">• Zwei getrennte if-Anweisungen werden BEIDE geprüft</text>
+<text x="32" y="420">• in und == sind case-sensitive ('Nexus' ≠ 'nexus')</text>
+</g>
+</svg>

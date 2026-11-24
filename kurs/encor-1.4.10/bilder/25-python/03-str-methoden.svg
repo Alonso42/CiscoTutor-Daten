@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Wichtige String-Methoden</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">String-Methoden: Eingabe → Rückgabe</text>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#4a9cff"/></marker></defs>
+<g font-size="15" font-family="monospace" fill="#222">
+<text x="30" y="80">'nxos1'.upper()</text><text x="480" y="80">'NXOS1'</text>
+<text x="30" y="118">'00:11:22'.replace(':', '.')</text><text x="480" y="118">'00.11.22'</text>
+<text x="30" y="156">'10.1.1.1'.startswith('10')</text><text x="480" y="156">True</text>
+<text x="30" y="194">'10.{}.1.1'.format('200')</text><text x="480" y="194">'10.200.1.1'</text>
+<text x="30" y="232">'10.4.8.1'.split('.')</text><text x="480" y="232">['10', '4', '8', '1']</text>
+<text x="30" y="270">'.'.join(['10','4'])</text><text x="480" y="270">'10.4'</text>
+<text x="30" y="308">'  Gi1 \n'.strip()</text><text x="480" y="308">'Gi1'</text>
+<text x="30" y="346">'core-sw1'.find('sw')</text><text x="480" y="346">5   (fehlt: -1)</text>
+<text x="30" y="384">f'{name} = {len(ip)}'</text><text x="480" y="384">'R1 = 8'</text>
+</g>
+<g stroke="#4a9cff" stroke-width="2" marker-end="url(#a)">
+<line x1="380" y1="75" x2="465" y2="75"/><line x1="380" y1="113" x2="465" y2="113"/><line x1="380" y1="151" x2="465" y2="151"/><line x1="380" y1="189" x2="465" y2="189"/><line x1="380" y1="227" x2="465" y2="227"/><line x1="380" y1="265" x2="465" y2="265"/><line x1="380" y1="303" x2="465" y2="303"/><line x1="380" y1="341" x2="465" y2="341"/><line x1="380" y1="379" x2="465" y2="379"/>
+</g>
+<rect x="30" y="400" width="740" height="38" rx="8" fill="#b08aff" fill-opacity="0.22"/>
+<text x="45" y="424" font-size="15" fill="#222">Merke: Methoden ändern den String nie – sie geben ein NEUES Objekt zurück (split → Liste, startswith → bool).</text>
+</svg>

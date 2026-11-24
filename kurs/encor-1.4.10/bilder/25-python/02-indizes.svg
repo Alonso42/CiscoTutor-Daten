@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 800 450" font-family="sans-serif">
+<title>String-Indizes und Slicing</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Indizes und Slicing: intf = 'Gi0/1'</text>
+<g font-size="15" fill="#222" text-anchor="middle">
+<text x="110" y="92">positiv</text>
+<text x="110" y="182">negativ</text>
+<g fill="#4a9cff"><text x="220" y="92">0</text><text x="320" y="92">1</text><text x="420" y="92">2</text><text x="520" y="92">3</text><text x="620" y="92">4</text></g>
+<g fill="#b08aff"><text x="220" y="182">-5</text><text x="320" y="182">-4</text><text x="420" y="182">-3</text><text x="520" y="182">-2</text><text x="620" y="182">-1</text></g>
+</g>
+<g stroke="#222" stroke-width="2" fill="#ffffff">
+<rect x="175" y="105" width="90" height="56"/><rect x="275" y="105" width="90" height="56"/><rect x="375" y="105" width="90" height="56" fill="#39c86a" fill-opacity="0.3"/><rect x="475" y="105" width="90" height="56" fill="#39c86a" fill-opacity="0.3"/><rect x="575" y="105" width="90" height="56" fill="#39c86a" fill-opacity="0.3"/>
+</g>
+<g font-size="28" font-family="monospace" text-anchor="middle" fill="#222">
+<text x="220" y="142">G</text><text x="320" y="142">i</text><text x="420" y="142">0</text><text x="520" y="142">/</text><text x="620" y="142">1</text>
+</g>
+<g font-size="16" font-family="monospace" fill="#222">
+<text x="70" y="235">intf[0]    → 'G'          intf[-1]   → '1'</text>
+<text x="70" y="265">intf[:2]   → 'Gi'         intf[2:]   → '0/1'  (grün)</text>
+<text x="70" y="295">intf[-3:]  → '0/1'        intf[1:3]  → 'i0'  (Stopp exklusiv)</text>
+<text x="70" y="325">intf[::-1] → '1/0iG'      intf[5]    → IndexError</text>
+</g>
+<rect x="60" y="350" width="680" height="80" rx="8" fill="#ff6b6b" fill-opacity="0.18"/>
+<text x="75" y="377" font-size="15" fill="#222">[start:stop:step] – start inklusive, stop exklusiv; Slice ergibt String bzw. Liste.</text>
+<text x="75" y="403" font-size="15" fill="#222">Strings sind unveränderlich: intf[0] = 'g' → TypeError (item assignment).</text>
+<text x="75" y="424" font-size="15" fill="#222">Listen funktionieren gleich: ['s1','s2','s3'][-1] → 's3'</text>
+</svg>

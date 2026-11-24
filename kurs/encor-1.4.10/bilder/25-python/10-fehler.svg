@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Typische Python-Fehlermeldungen</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Fehlermeldungen lesen und beheben</text>
+<g font-size="14" fill="#222">
+<rect x="20" y="52" width="760" height="30" fill="#ff6b6b" fill-opacity="0.3"/>
+<text x="30" y="72" font-weight="bold">Fehler</text><text x="200" y="72" font-weight="bold">Auslöser (Beispiel)</text><text x="520" y="72" font-weight="bold">Lösung</text>
+<text x="30" y="108">SyntaxError</text><text x="200" y="108" font-family="monospace">def f()   /   print 'x'</text><text x="520" y="108">Doppelpunkt, print(...)</text>
+<text x="30" y="140">IndentationError</text><text x="200" y="140" font-family="monospace">Block nicht/zu viel eingerückt</text><text x="520" y="140">4 Leerzeichen, einheitlich</text>
+<text x="30" y="172">NameError</text><text x="200" y="172" font-family="monospace">print(hostnme) / json ohne import</text><text x="520" y="172">Name prüfen, importieren</text>
+<text x="30" y="204">TypeError</text><text x="200" y="204" font-family="monospace">'Vlan' + 10 / s[0] = 'x'</text><text x="520" y="204">str(10); neuen String bauen</text>
+<text x="30" y="236">KeyError</text><text x="200" y="236" font-family="monospace">facts['vlan_list']</text><text x="520" y="236">Schlüssel exakt schreiben</text>
+<text x="30" y="268">IndexError</text><text x="200" y="268" font-family="monospace">['s1','s2'][2]</text><text x="520" y="268">Index ab 0, len() prüfen</text>
+<text x="30" y="300">ValueError</text><text x="200" y="300" font-family="monospace">int('10.5') / s.index('x')</text><text x="520" y="300">Wert prüfen, find() nutzen</text>
+</g>
+<g stroke="#ddd"><line x1="20" y1="118" x2="780" y2="118"/><line x1="20" y1="150" x2="780" y2="150"/><line x1="20" y1="182" x2="780" y2="182"/><line x1="20" y1="214" x2="780" y2="214"/><line x1="20" y1="246" x2="780" y2="246"/><line x1="20" y1="278" x2="780" y2="278"/></g>
+<rect x="20" y="320" width="440" height="115" rx="8" fill="#222"/>
+<g font-size="13" font-family="monospace" fill="#ffffff">
+<text x="32" y="344">Traceback (most recent call last):</text>
+<text x="32" y="364">  File "lab.py", line 17, in &lt;module&gt;</text>
+<text x="32" y="384">    print(facts['sw2']['vlan_list'])</text>
+<text x="32" y="410" fill="#ff6b6b">KeyError: 'vlan_list'</text>
+</g>
+<g font-size="13" fill="#222">
+<text x="480" y="344">Traceback von unten lesen:</text>
+<text x="480" y="366">1. letzte Zeile = Fehlertyp + Detail</text>
+<text x="480" y="388">2. darüber Datei und Zeilennummer</text>
+<text x="480" y="410">Syntax-/Einrückungsfehler: vor dem Start,</text>
+<text x="480" y="430">alle anderen: erst zur Laufzeit</text>
+</g>
+</svg>

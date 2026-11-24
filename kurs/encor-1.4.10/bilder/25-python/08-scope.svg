@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Globale und lokale Variablen</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Variablen-Scope: global vs. lokal</text>
+<rect x="20" y="55" width="460" height="330" rx="10" fill="#4a9cff" fill-opacity="0.12" stroke="#4a9cff" stroke-width="2"/>
+<text x="35" y="78" font-size="14" font-weight="bold" fill="#4a9cff">globaler Scope (Modul)</text>
+<g font-size="14" font-family="monospace" fill="#222">
+<text x="35" y="104">ipaddr = '10.1.10.1'</text>
+<text x="35" y="126">mask = '24'</text>
+</g>
+<rect x="45" y="140" width="415" height="105" rx="8" fill="#b08aff" fill-opacity="0.2" stroke="#b08aff" stroke-width="2"/>
+<text x="58" y="160" font-size="13" font-weight="bold" fill="#b08aff">lokaler Scope der Funktion</text>
+<g font-size="14" font-family="monospace" fill="#222">
+<text x="58" y="182">def get_ip(ip):</text>
+<text x="58" y="204">    print(ip, mask, ipaddr)</text>
+<text x="58" y="226">    # ip existiert nur hier</text>
+</g>
+<g font-size="14" font-family="monospace" fill="#222">
+<text x="35" y="272">if __name__ == '__main__':</text>
+<text x="35" y="294">    ipaddr = '200.100.1.1'  <tspan fill="#ff6b6b"># global!</tspan></text>
+<text x="35" y="316">    get_ip(ipaddr)</text>
+<text x="35" y="338">    print(ip)</text>
+</g>
+<text x="35" y="368" font-size="13" fill="#222">Der Entry-Point-Block hat KEINEN eigenen Scope.</text>
+<rect x="500" y="55" width="280" height="200" rx="8" fill="#222"/>
+<g font-size="14" font-family="monospace" fill="#ffffff">
+<text x="512" y="80">$ python3 scope.py</text>
+<text x="512" y="112" fill="#39c86a">200.100.1.1 24 200.100.1.1</text>
+<text x="512" y="156" fill="#ff6b6b">NameError: name 'ip'</text>
+<text x="512" y="176" fill="#ff6b6b">is not defined</text>
+</g>
+<text x="512" y="210" font-size="12" fill="#ffd23f">Funktion liest globales ipaddr zur</text>
+<text x="512" y="228" font-size="12" fill="#ffd23f">Laufzeit → schon überschrieben</text>
+<rect x="20" y="395" width="760" height="45" rx="8" fill="#ffd23f" fill-opacity="0.3"/>
+<text x="35" y="415" font-size="13" fill="#222">Zuweisung in einer Funktion erzeugt eine lokale Variable (verdeckt die globale). Lesen vor dem Zuweisen</text>
+<text x="35" y="433" font-size="13" fill="#222">derselben Variable in der Funktion → UnboundLocalError. Parameter sind immer lokal.</text>
+</svg>

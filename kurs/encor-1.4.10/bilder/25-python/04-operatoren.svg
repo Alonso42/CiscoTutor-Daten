@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Operatoren und Rangfolge</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Operatoren und Rangfolge (Python 3)</text>
+<g font-size="15" fill="#222">
+<text x="30" y="70" font-weight="bold">Arithmetik mit 7 und 2</text>
+<g font-family="monospace">
+<text x="30" y="100">7 + 2  → 9</text><text x="30" y="126">7 - 2  → 5</text><text x="30" y="152">7 * 2  → 14</text>
+<text x="30" y="178">7 / 2  → 3.5  (immer float)</text><text x="30" y="204">7 // 2 → 3    (abrunden)</text>
+<text x="30" y="230">7 % 2  → 1    (Rest)</text><text x="30" y="256">7 ** 2 → 49   (Potenz)</text>
+<text x="30" y="282">-7 // 2 → -4  (floor!)</text>
+</g>
+<text x="430" y="70" font-weight="bold">Rangfolge (oben = bindet stärker)</text>
+</g>
+<g font-size="15" fill="#222">
+<rect x="430" y="82" width="340" height="30" fill="#ff6b6b" fill-opacity="0.35"/><text x="445" y="102">1. **  (rechtsassoziativ)</text>
+<rect x="430" y="116" width="340" height="30" fill="#ffd23f" fill-opacity="0.45"/><text x="445" y="136">2. *  /  //  %</text>
+<rect x="430" y="150" width="340" height="30" fill="#ffd23f" fill-opacity="0.25"/><text x="445" y="170">3. +  -</text>
+<rect x="430" y="184" width="340" height="30" fill="#4a9cff" fill-opacity="0.3"/><text x="445" y="204">4. ==  !=  &lt;  &gt;  in  not in  is</text>
+<rect x="430" y="218" width="340" height="30" fill="#b08aff" fill-opacity="0.35"/><text x="445" y="238">5. not</text>
+<rect x="430" y="252" width="340" height="30" fill="#b08aff" fill-opacity="0.25"/><text x="445" y="272">6. and</text>
+<rect x="430" y="286" width="340" height="30" fill="#b08aff" fill-opacity="0.15"/><text x="445" y="306">7. or</text>
+</g>
+<rect x="30" y="330" width="740" height="104" rx="8" fill="#39c86a" fill-opacity="0.18"/>
+<g font-size="15" font-family="monospace" fill="#222">
+<text x="45" y="356">2 + 3 * 4 ** 2       → 2 + 3*16 → 50</text>
+<text x="45" y="380">2 ** 3 ** 2          → 2 ** 9   → 512</text>
+<text x="45" y="404">True or False and False → True or False → True</text>
+<text x="45" y="428">not 1 == 2           → not False → True     1 &lt; 2 &lt; 3 → True</text>
+</g>
+</svg>
