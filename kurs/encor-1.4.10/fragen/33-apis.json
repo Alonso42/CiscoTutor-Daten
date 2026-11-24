@@ -1,0 +1,1850 @@
+[
+    {
+        "id":  "slg-ap-001",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A ticketing application asks the SDN controller to provide a new segment for a project. Over which interface does this request reach the controller?",
+        "optionen":  [
+                         "Data plane interface",
+                         "Southbound API",
+                         "Northbound API",
+                         "East-west controller link"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Anwendungen der Application Plane sprechen den Controller über die Northbound API an. Southbound verbindet den Controller mit den Netzgeräten."
+    },
+    {
+        "id":  "slg-ap-002",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "The course describes the SDN architecture as three stacked layers. Which plane is NOT one of these three layers?",
+        "optionen":  [
+                         "Management plane",
+                         "Data plane",
+                         "Control plane",
+                         "Application plane"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die drei SDN-Schichten sind Data (Forwarding) Plane, Control Plane mit den Controllern und Application Plane mit den SDN-Anwendungen. Eine Management Plane ist in diesem Modell keine eigene Schicht."
+    },
+    {
+        "id":  "slg-ap-003",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which organization defines the OpenFlow southbound protocol?",
+        "optionen":  [
+                         "Cisco Systems as a proprietary standard",
+                         "Open Networking Foundation (ONF)",
+                         "Internet Engineering Task Force (IETF)",
+                         "Institute of Electrical and Electronics Engineers (IEEE)"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "OpenFlow ist ein Industriestandard der Open Networking Foundation (ONF). NETCONF dagegen wurde von der IETF standardisiert."
+    },
+    {
+        "id":  "slg-ap-004",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A controller must change NTP, AAA, and logging settings on 200 switches as transactions, using XML-encoded remote procedure calls. Which southbound protocol fits?",
+        "optionen":  [
+                         "NETCONF",
+                         "OpFlex",
+                         "LLDP",
+                         "OpenFlow"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "NETCONF (IETF) installiert, ändert und löscht Gerätekonfiguration per RPC, XML-kodiert und transaktional. OpenFlow schreibt Flow-Tabellen, OpFlex überträgt abstrakte Policies, LLDP ist ein Discovery-Protokoll."
+    },
+    {
+        "id":  "slg-ap-005",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A research team needs a forwarding behavior that the switch software cannot be configured to do. According to the course, which approach fits best?",
+        "optionen":  [
+                         "Create a feature template in SD-WAN Manager",
+                         "Program the forwarding tables directly with OpenFlow",
+                         "Send an abstract policy to the switches with OpFlex",
+                         "Push a new running configuration with NETCONF"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "NETCONF ändert die Konfiguration eines Geräts – wenn eine Funktion so nicht konfigurierbar ist, kann OpenFlow die Forwarding Plane direkt programmieren. OpFlex überlässt die Umsetzung gerade der Gerätesoftware."
+    },
+    {
+        "id":  "slg-ap-006",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the main difference between the SDN models of OpenFlow and OpFlex?",
+        "optionen":  [
+                         "OpenFlow is declarative and OpFlex is imperative",
+                         "OpenFlow is imperative and OpFlex is declarative",
+                         "Both are imperative but OpFlex uses JSON encoding",
+                         "Both are declarative but OpenFlow requires a controller"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei OpenFlow (imperativ) schickt der Controller detaillierte Anweisungen, wie weitergeleitet wird. Bei OpFlex (deklarativ) schickt er nur das gewünschte Ergebnis und vertraut der Control Plane der Geräte bei der Umsetzung."
+    },
+    {
+        "id":  "slg-ap-007",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In an OpFlex-based design, a controller must allow the web tier to reach the app tier only on TCP 8080. What does the controller send to the network elements?",
+        "optionen":  [
+                         "An abstract policy that the elements render with their own control planes",
+                         "A complete running configuration that replaces the current one on each switch",
+                         "An SNMP SET for each access list entry in the relevant interface MIB tables",
+                         "Individual flow-table entries with match fields and output ports for each switch"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "OpFlex ist deklarativ: Der Controller (Cisco APIC) überträgt eine abstrakte Policy, die Geräte setzen die Details selbst um. Einzelne Flow-Einträge wären das imperative OpenFlow-Modell."
+    },
+    {
+        "id":  "slg-ap-008",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which Cisco controller is named in the course as the controller that uses the OpFlex declarative model?",
+        "optionen":  [
+                         "Cisco ISE",
+                         "Cisco SD-WAN Manager",
+                         "Cisco APIC",
+                         "Cisco Catalyst Center"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Kurs nennt den Cisco Application Policy Infrastructure Controller (APIC) als OpFlex-Controller. Er sendet abstrakte Policies an die Netzelemente."
+    },
+    {
+        "id":  "slg-ap-009",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A developer wants to write one application that works unchanged with the northbound interfaces of several SDN controllers. Why is this difficult?",
+        "optionen":  [
+                         "All northbound APIs require OpenFlow sessions to the application",
+                         "Northbound APIs may only be used by the controller vendor",
+                         "Northbound APIs are always XML-based and need vendor-specific parsers",
+                         "No single northbound standard exists; each controller has its own API"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Für Northbound gibt es bisher kaum Vereinheitlichung: Jeder Controller bietet eigene APIs, die nur mit bestimmten Anwendungen zusammenarbeiten. Southbound gibt es dagegen Standards wie OpenFlow und NETCONF."
+    },
+    {
+        "id":  "slg-ap-010",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two are southbound protocols between an SDN controller and network devices? (Choose two.)",
+        "optionen":  [
+                         "ITSM integration adapter",
+                         "Catalyst Center Intent API",
+                         "NETCONF",
+                         "OpenFlow",
+                         "Webhook notification"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "OpenFlow und NETCONF (ebenso OpFlex) verbinden den Controller mit den Geräten. Intent API, Webhooks und ITSM-Adapter dienen dem Austausch mit Anwendungen und externen Systemen."
+    },
+    {
+        "id":  "slg-ap-011",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jede Schnittstelle bzw. jedes Protokoll seiner Eigenschaft zu.",
+        "paare":  [
+                      [
+                          "OpenFlow",
+                          "Schreibt die Flow-Tabellen der Switches"
+                      ],
+                      [
+                          "NETCONF",
+                          "Konfiguration per XML-RPC, transaktional"
+                      ],
+                      [
+                          "OpFlex",
+                          "Überträgt abstrakte, deklarative Policies"
+                      ],
+                      [
+                          "Catalyst Center Intent API",
+                          "Northbound-REST-API für Anwendungen"
+                      ]
+                  ],
+        "erklaerung":  "OpenFlow (ONF) steuert die Flow-Tabellen, NETCONF (IETF) die Konfiguration, OpFlex arbeitet deklarativ mit Policies. Die Intent API ist die Northbound-Schnittstelle von Catalyst Center."
+    },
+    {
+        "id":  "slg-ap-012",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Not all devices support NETCONF; those that do advertise their ___ when the session is established.",
+        "optionen":  [
+                         "capabilities",
+                         "flow tables",
+                         "webhooks",
+                         "MIB objects"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "NETCONF-Geräte kündigen ihre Capabilities an, damit der Client weiß, welche Operationen und Datenmodelle verfügbar sind. Flow-Tabellen gehören zu OpenFlow, MIBs zu SNMP."
+    },
+    {
+        "id":  "slg-ap-013",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeder SDN-Ebene ein passendes Beispiel zu.",
+        "paare":  [
+                      [
+                          "Application Plane",
+                          "Ticketing-App, die Netzressourcen anfordert"
+                      ],
+                      [
+                          "Control Plane",
+                          "Catalyst Center als zentraler Controller"
+                      ],
+                      [
+                          "Data Plane",
+                          "Access-Switch, der Benutzerverkehr weiterleitet"
+                      ]
+                  ],
+        "erklaerung":  "Anwendungen formulieren Anforderungen (Application Plane), der Controller steuert zentral (Control Plane), die Geräte leiten den Verkehr weiter (Data Plane)."
+    },
+    {
+        "id":  "slg-ap-014",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A script sends an XML body to a REST API that accepts only JSON. Which status code is the expected response?",
+        "optionen":  [
+                         "415 Unsupported Media Type",
+                         "406 Not Acceptable",
+                         "404 Not Found",
+                         "501 Not Implemented"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "415 bedeutet, dass der Server das Format des Request-Bodys nicht unterstützt, z. B. XML an eine reine JSON-API. 406 betrifft dagegen das gewünschte Antwortformat (Accept-Header)."
+    },
+    {
+        "id":  "slg-ap-015",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A GET request contains a Range header, and the server returns only the requested part of the resource. Which status code does it use?",
+        "optionen":  [
+                         "202 Accepted",
+                         "200 OK",
+                         "204 No Content",
+                         "206 Partial Content"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "206 Partial Content ist die Antwort auf einen GET mit Range-Header, wenn der Server nur den angeforderten Ausschnitt liefert. 200 würde die komplette Ressource zurückgeben."
+    },
+    {
+        "id":  "slg-ap-016",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A reverse proxy in front of a controller forwards an API request, but the backend service does not answer within the time limit. Which status code does the client most likely receive?",
+        "optionen":  [
+                         "504 Gateway Timeout",
+                         "503 Service Unavailable",
+                         "500 Internal Server Error",
+                         "408 Request Timeout"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "504 Gateway Timeout meldet, dass die nachgelagerte Instanz nicht rechtzeitig geantwortet hat. 503 steht für einen vorübergehend nicht verfügbaren Dienst, 408 für einen Client, der seinen Request nicht rechtzeitig gesendet hat."
+    },
+    {
+        "id":  "slg-ap-017",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "During a controller upgrade, all API calls return the same 5xx code that indicates the service is only temporarily unavailable. Which code is it?",
+        "optionen":  [
+                         "503 Service Unavailable",
+                         "501 Not Implemented",
+                         "505 HTTP Version Not Supported",
+                         "500 Internal Server Error"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "503 Service Unavailable bedeutet, dass der Server die Anfrage momentan nicht bedienen kann, z. B. wegen Wartung oder Überlast; ein späterer Versuch kann funktionieren. 501 heißt, dass die Funktion gar nicht implementiert ist."
+    },
+    {
+        "id":  "slg-ap-018",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "With the same Catalyst Center token, a script can read the device list with GET, but a DELETE on a device returns 403. What is the most likely cause?",
+        "optionen":  [
+                         "The token has expired and must be requested again",
+                         "The DELETE request is missing a JSON body",
+                         "The user behind the token lacks write permission",
+                         "The device UUID in the URL does not exist"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "403 bedeutet: Der Client ist authentifiziert, darf die Aktion aber nicht ausführen – typisch für eine Rolle mit nur Leserechten. Ein abgelaufenes Token ergäbe 401 auch beim GET, eine falsche UUID 404."
+    },
+    {
+        "id":  "slg-ap-019",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A script gets a valid Catalyst Center token but then receives 401 for every Intent API call. It sends the header \u0027Authorization: Bearer \u003ctoken\u003e\u0027. What fixes the problem?",
+        "optionen":  [
+                         "Request the token with GET instead of POST",
+                         "Add the header Content-Type: application/json",
+                         "Encode the token with Base64 before sending",
+                         "Send the token in the X-Auth-Token header"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Catalyst Center erwartet das Token im Header X-Auth-Token. Im falschen Header fehlt aus Sicht des Servers die Authentifizierung, daher 401."
+    },
+    {
+        "id":  "slg-ap-020",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A POST to add a device returned 202 with a taskId. Polling the task returns {\"response\": {\"isError\": true, \"failureReason\": \"Device already exists\", ...}}. How do you interpret this?",
+        "optionen":  [
+                         "The token expired while the task was still running",
+                         "The device was added successfully and the message is informational",
+                         "The request was accepted, but the task itself failed",
+                         "The request was rejected by the server before it was ever queued"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "202 bedeutet nur, dass der Auftrag angenommen wurde. Ob er gelungen ist, zeigt die Task-API: isError true mit failureReason bedeutet, dass die Ausführung fehlgeschlagen ist."
+    },
+    {
+        "id":  "slg-ap-021",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A Catalyst Center POST returns {\"response\": {\"taskId\": \"6f5a...\", \"url\": \"/api/v1/task/6f5a...\"}, \"version\": \"1.0\"}. What does the url value point to?",
+        "optionen":  [
+                         "The log file that contains the device CLI output",
+                         "The task resource that is queried for the job status",
+                         "The newly created device resource in the inventory",
+                         "The Swagger documentation page of the API call"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Asynchrone Intent-API-Aufrufe liefern eine taskId und den Pfad der Task-Ressource. Über die Task-API fragt das Skript ab, ob und mit welchem Ergebnis der Auftrag beendet wurde."
+    },
+    {
+        "id":  "slg-ap-022",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "r = requests.post(...) returned the body {\"response\": {\"taskId\": \"6f5a...\", \"url\": \"/api/v1/task/6f5a...\"}, \"version\": \"1.0\"}. Which expression returns the task ID?",
+        "optionen":  [
+                         "r[\u0027response\u0027][\u0027taskId\u0027]",
+                         "r.text[\u0027response\u0027][\u0027taskId\u0027]",
+                         "r.json()[\u0027response\u0027][\u0027taskId\u0027]",
+                         "r.json()[\u0027taskId\u0027]"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "r.json() wandelt den Body in ein Dictionary; taskId liegt unter dem Key response. Das Response-Objekt selbst und r.text (String) lassen sich nicht so indizieren."
+    },
+    {
+        "id":  "slg-ap-023",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the output of this Python 3 code?\ndata = {\u0027response\u0027: [\n  {\u0027hostname\u0027: \u0027edge-1\u0027, \u0027reachabilityStatus\u0027: \u0027Reachable\u0027},\n  {\u0027hostname\u0027: \u0027edge-2\u0027, \u0027reachabilityStatus\u0027: \u0027Unreachable\u0027},\n  {\u0027hostname\u0027: \u0027core-1\u0027, \u0027reachabilityStatus\u0027: \u0027Reachable\u0027}],\n  \u0027version\u0027: \u00271.0\u0027}\nprint([d[\u0027hostname\u0027] for d in data[\u0027response\u0027] if d[\u0027reachabilityStatus\u0027] != \u0027Reachable\u0027])",
+        "optionen":  [
+                         "[\u0027edge-1\u0027, \u0027core-1\u0027]",
+                         "edge-2",
+                         "[\u0027Unreachable\u0027]",
+                         "[\u0027edge-2\u0027]"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die List Comprehension sammelt die Hostnamen aller Einträge, deren Status nicht Reachable ist – nur edge-2. print gibt eine Liste aus, daher mit Klammern und Anführungszeichen."
+    },
+    {
+        "id":  "slg-ap-024",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "GET /dna/intent/api/v1/network-device/count returns {\"response\": 42, \"version\": \"1.0\"}. What does 42 represent?",
+        "optionen":  [
+                         "The number of devices in the inventory",
+                         "The HTTP status code of the request",
+                         "The number of API calls left for today",
+                         "The ID of the task that counts devices"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der count-Endpunkt liefert die Anzahl der verwalteten Geräte direkt als Zahl unter response. Der HTTP-Statuscode steht in der Status-Line, nicht im Body."
+    },
+    {
+        "id":  "slg-ap-025",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Catalyst Center manages 1234 devices. A script reads /network-device with limit=500 and an offset that starts at 1 and increases by the limit after each page. Which offset values does it send?",
+        "optionen":  [
+                         "1, 500, 1000, 1500",
+                         "0, 501, 1002",
+                         "0, 500, 1000",
+                         "1, 501, 1001"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Mit Start bei 1 und Schrittweite 500 ergeben sich die Offsets 1, 501 und 1001; die dritte Seite enthält die Geräte 1001–1234. Danach ist offset 1501 größer als 1234 und die Schleife endet."
+    },
+    {
+        "id":  "slg-ap-026",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A Command Runner task returns {\"response\": {\"isError\": false, \"progress\": \"{\\\"fileId\\\":\\\"9f2c\\\"}\"}}. The script runs print(task[\u0027response\u0027][\u0027progress\u0027][\u0027fileId\u0027]). What happens?",
+        "optionen":  [
+                         "It prints 9f2c",
+                         "It raises a KeyError for progress",
+                         "It prints {\"fileId\":\"9f2c\"}",
+                         "It raises a TypeError"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "progress ist hier ein JSON-String, kein Dictionary; ein String lässt sich nicht mit \u0027fileId\u0027 indizieren (TypeError: string indices must be integers). Erst json.loads(progress)[\u0027fileId\u0027] liefert die ID."
+    },
+    {
+        "id":  "slg-ap-027",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The Catalyst Center token call returns {\"Token\": \"eyJhbGciOi...\"}. The script uses data = r.json() and then token = data[\u0027token\u0027]. What happens?",
+        "optionen":  [
+                         "A JSONDecodeError is raised",
+                         "token is set to None",
+                         "A KeyError is raised",
+                         "token contains the string eyJhbGciOi..."
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Dictionary-Keys sind case-sensitive: Der Key heißt Token mit großem T. data[\u0027token\u0027] löst daher einen KeyError aus; .get() würde None liefern, eckige Klammern nicht."
+    },
+    {
+        "id":  "slg-ap-028",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the output of this Python 3 code?\nd = {\u0027header\u0027: {}, \u0027data\u0027: [\n  {\u0027host-name\u0027: \u0027Manager-1\u0027, \u0027personality\u0027: \u0027vmanage\u0027, \u0027reachability\u0027: \u0027reachable\u0027},\n  {\u0027host-name\u0027: \u0027BR1-Edge\u0027, \u0027personality\u0027: \u0027vedge\u0027, \u0027reachability\u0027: \u0027unreachable\u0027},\n  {\u0027host-name\u0027: \u0027BR2-Edge\u0027, \u0027personality\u0027: \u0027vedge\u0027, \u0027reachability\u0027: \u0027reachable\u0027}]}\nprint([x[\u0027host-name\u0027] for x in d[\u0027data\u0027] if x[\u0027personality\u0027] == \u0027vedge\u0027 and x[\u0027reachability\u0027] == \u0027reachable\u0027])",
+        "optionen":  [
+                         "[\u0027Manager-1\u0027, \u0027BR2-Edge\u0027]",
+                         "[\u0027BR1-Edge\u0027, \u0027BR2-Edge\u0027]",
+                         "[]",
+                         "[\u0027BR2-Edge\u0027]"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beide Bedingungen müssen gelten: personality vedge und reachability reachable. Das trifft nur auf BR2-Edge zu; der Manager hat eine andere personality, BR1-Edge ist unreachable."
+    },
+    {
+        "id":  "slg-ap-029",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "dev holds one entry of the SD-WAN Manager response to GET /dataservice/device. Which expression returns its system IP?",
+        "optionen":  [
+                         "dev.system_ip",
+                         "dev[\u0027system_ip\u0027]",
+                         "dev[\u0027system-ip\u0027]",
+                         "dev.get(system-ip)"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die SD-WAN-API verwendet Keys mit Bindestrich wie system-ip und host-name. In Python greift man darauf per dev[\u0027system-ip\u0027] zu; Attributzugriff oder ein Unterstrich-Key funktionieren nicht."
+    },
+    {
+        "id":  "slg-ap-030",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "GET /dna/intent/api/v1/network-device?hostname=branch-99 returns 200 OK with {\"response\": [], \"version\": \"1.0\"}. What does this mean?",
+        "optionen":  [
+                         "The request syntax was invalid",
+                         "The device is still being discovered",
+                         "No managed device matches the filter",
+                         "The token lacks read permission"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "200 mit leerer Liste heißt: Die Abfrage war gültig und erlaubt, aber kein Gerät passt zum Filter. Syntaxfehler gäben 400, fehlende Rechte 401 oder 403."
+    },
+    {
+        "id":  "slg-ap-031",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A script calls requests.post(url, data=device_object, headers={\u0027X-Auth-Token\u0027: token}), where device_object is a Python dictionary. Catalyst Center rejects the request. Why?",
+        "optionen":  [
+                         "A POST body may contain only a single key-value pair",
+                         "The X-Auth-Token header is not allowed on POST requests",
+                         "requests converts the dictionary to XML automatically",
+                         "requests sends the dictionary form-encoded instead of as JSON"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Mit data=\u003cdict\u003e kodiert requests den Body als Formular (key=value\u0026...). Die Intent API erwartet JSON: entweder json=device_object oder data=json.dumps(device_object) plus Content-Type: application/json."
+    },
+    {
+        "id":  "slg-ap-032",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about response.raise_for_status() in the Python requests library is correct?",
+        "optionen":  [
+                         "It returns the status code as an integer value",
+                         "It retries the request until a 2xx code is returned",
+                         "It raises an HTTPError for 4xx and 5xx status codes",
+                         "It raises an exception for every code other than 200"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "raise_for_status() löst bei Client- und Serverfehlern (4xx/5xx) eine HTTPError-Exception aus und tut bei Erfolg nichts. So scheitern Skripte nicht stillschweigend; den Code selbst liefert response.status_code."
+    },
+    {
+        "id":  "slg-ap-033",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two responses can reasonably be retried later without changing the request? (Choose two.)",
+        "optionen":  [
+                         "400 Bad Request",
+                         "409 Conflict",
+                         "404 Not Found",
+                         "503 Service Unavailable",
+                         "415 Unsupported Media Type"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Bei 409 ist die Ressource gerade im Konflikt (z. B. parallele Bearbeitung), bei 503 ist der Dienst vorübergehend nicht verfügbar – ein späterer Versuch kann gelingen. 400, 404 und 415 erfordern eine Korrektur des Requests."
+    },
+    {
+        "id":  "slg-ap-034",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "If a GET request includes a ___ header, the server can answer with 206 Partial Content.",
+        "optionen":  [
+                         "Location",
+                         "Range",
+                         "Content-Length",
+                         "Accept"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit dem Range-Header fordert der Client nur einen Teil der Ressource an; der Server antwortet dann mit 206 und dem passenden Ausschnitt."
+    },
+    {
+        "id":  "slg-ap-035",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "A webhook is an HTTP callback: when a subscribed event occurs, Catalyst Center sends an HTTP ___ to the configured external URL.",
+        "optionen":  [
+                         "PUT",
+                         "GET",
+                         "OPTIONS",
+                         "POST"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein Webhook ist ein HTTP-POST, den Catalyst Center bei einem Event an das Zielsystem schickt. So erfährt das externe System Ereignisse per Push, ohne selbst zu pollen."
+    },
+    {
+        "id":  "slg-ap-036",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jede Situation dem passenden HTTP-Statuscode zu.",
+        "paare":  [
+                      [
+                          "Skript schickt XML an eine reine JSON-API",
+                          "415 Unsupported Media Type"
+                      ],
+                      [
+                          "GET mit Range-Header, nur Teil der Daten",
+                          "206 Partial Content"
+                      ],
+                      [
+                          "Proxy wartet vergeblich auf den Backend-Dienst",
+                          "504 Gateway Timeout"
+                      ],
+                      [
+                          "Controller ist wegen Wartung kurz nicht erreichbar",
+                          "503 Service Unavailable"
+                      ]
+                  ],
+        "erklaerung":  "415 betrifft das Body-Format, 206 den Teilabruf per Range. 504 meldet eine Zeitüberschreitung beim Upstream, 503 einen vorübergehend nicht verfügbaren Dienst."
+    },
+    {
+        "id":  "slg-ap-037",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedes Feld eines asynchronen Catalyst-Center-Auftrags (202-Antwort bzw. Task-API) seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "taskId",
+                          "Kennung des asynchronen Auftrags"
+                      ],
+                      [
+                          "isError",
+                          "Zeigt, ob der Auftrag fehlgeschlagen ist"
+                      ],
+                      [
+                          "failureReason",
+                          "Begründung, warum der Auftrag scheiterte"
+                      ],
+                      [
+                          "endTime",
+                          "Zeitpunkt, an dem der Auftrag beendet wurde"
+                      ]
+                  ],
+        "erklaerung":  "Asynchrone Aufrufe liefern eine taskId; die Task-API meldet dann isError, bei Fehlern failureReason und nach Abschluss endTime. Fehlt endTime, läuft der Auftrag meist noch."
+    },
+    {
+        "id":  "slg-ap-038",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Catalyst Center answers a POST with 400 and the body {\"response\": {\"errorCode\": \"Bad request\", \"message\": \"Invalid IP address format\"}, \"version\": \"1.0\"}. What should the engineer do?",
+        "optionen":  [
+                         "Ask the administrator to grant write permissions",
+                         "Correct the IP address value in the request body",
+                         "Wait a few minutes and send the same request again",
+                         "Request a new token and resend the same request"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein 4xx-Code bedeutet einen Fehler im Request; die Fehlermeldung im Body nennt die Ursache – hier ein ungültiges IP-Format. Ein neues Token (401) oder mehr Rechte (403) helfen nicht."
+    },
+    {
+        "id":  "slg-ap-039",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A script sends this body to /dataservice/template/device/config/input:\n{\"templateId\": \"41f6...\", \"deviceIds\": [\"5e5f...\"], \"isEdited\": false, \"isMasterEdited\": false}}\nWhich response is most likely?",
+        "optionen":  [
+                         "204 No Content",
+                         "201 Created",
+                         "400 Bad Request",
+                         "409 Conflict"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Am Ende steht eine überzählige schließende Klammer, der Body ist kein gültiges JSON. Der Server kann den Request nicht verstehen und antwortet mit 400. (Genau dieser Tippfehler steht im Kursbeispiel.)"
+    },
+    {
+        "id":  "slg-ap-040",
+        "topic":  "ENCOR-5.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Catalyst Center pushes TrustSec configuration to Cisco ISE through a REST API. Which device must present an X.509v3 identity certificate for the TLS session?",
+        "optionen":  [
+                         "Both, because REST APIs require mutual TLS",
+                         "Catalyst Center as the HTTPS client",
+                         "Neither, because Basic Auth replaces certificates",
+                         "Cisco ISE as the HTTPS server"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "ISE ist der HTTPS-Server und legt sein Identitätszertifikat vor; Catalyst Center prüft es, bevor der Tunnel steht. Den Client authentifiziert ISE hier per Basic Auth, nicht per Zertifikat."
+    },
+    {
+        "id":  "slg-ap-041",
+        "topic":  "ENCOR-5.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The ISE node uses a self-signed certificate. How can Catalyst Center validate it before sending configuration?",
+        "optionen":  [
+                         "Generate a new certificate on Catalyst Center",
+                         "Switch the connection from HTTPS to plain HTTP",
+                         "Install the ISE identity certificate itself as trusted",
+                         "Disable certificate checks for the ISE address"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei Self-Signed gibt es keine Root-CA, daher wird das Identitätszertifikat selbst als vertrauenswürdig installiert. Bei CA-signierten Zertifikaten installiert man das Root-CA-Zertifikat."
+    },
+    {
+        "id":  "slg-ap-042",
+        "topic":  "ENCOR-5.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "According to the course, how often does ISE authenticate Catalyst Center when it receives REST API requests that use HTTP Basic authentication?",
+        "optionen":  [
+                         "Once per day, then a cookie is used",
+                         "Only during the initial TLS handshake",
+                         "For every single API request",
+                         "Only for PUT, POST, and DELETE"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei Basic Auth steht der Authorization-Header in jedem Request, und der Server prüft ihn jedes Mal. Es gibt keine Session; deshalb muss der Kanal immer per TLS geschützt sein."
+    },
+    {
+        "id":  "slg-ap-043",
+        "topic":  "ENCOR-5.3",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Catalyst Center must configure only the genuine ISE node, and ISE must accept configuration only from an authorized source. Which two measures provide this? (Choose two.)",
+        "optionen":  [
+                         "The REST API is moved to a dedicated management VLAN without TLS",
+                         "Catalyst Center validates the signature of the ISE identity certificate",
+                         "Catalyst Center adds its serial number to the JSON body",
+                         "An ISE admin user with REST API rights authenticates each request",
+                         "ISE sends SNMPv3 traps to Catalyst Center after each change"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Das Serverzertifikat beweist Catalyst Center die Identität von ISE; Basic Auth mit einem berechtigten ISE-Admin beweist ISE die Identität des Clients. TLS verschlüsselt zusätzlich den Kanal."
+    },
+    {
+        "id":  "slg-ap-044",
+        "topic":  "ENCOR-5.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A Cisco ASA REST API user has privilege level 5. Which API calls can this user perform?",
+        "optionen":  [
+                         "Only monitoring APIs, but no GET APIs",
+                         "No REST API calls, because level 15 is required",
+                         "Monitoring and GET APIs, but not PUT, POST, or DELETE",
+                         "All APIs including PUT, POST, and DELETE"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Laut Kurs braucht man auf der ASA Level 3 für Monitoring-APIs, Level 5 für GET-APIs und Level 15 für PUT/POST/DELETE. Mit Level 5 sind also lesende Aufrufe erlaubt, ändernde nicht."
+    },
+    {
+        "id":  "slg-ap-045",
+        "topic":  "ENCOR-5.3",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedem ASA-User-Privilege-Level die REST-API-Aufrufe zu, die er mindestens erlaubt.",
+        "paare":  [
+                      [
+                          "Level 3",
+                          "Monitoring-APIs"
+                      ],
+                      [
+                          "Level 5",
+                          "GET-APIs"
+                      ],
+                      [
+                          "Level 15",
+                          "PUT-, POST- und DELETE-APIs"
+                      ]
+                  ],
+        "erklaerung":  "Die ASA begrenzt REST-Zugriffe über Privilege Levels: 3 für Monitoring, 5 für lesende GET-Aufrufe und 15 (Maximum) für ändernde Aufrufe."
+    },
+    {
+        "id":  "slg-ap-046",
+        "topic":  "ENCOR-5.3",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A script calling Catalyst Center fails with \u0027SSLError: certificate verify failed\u0027. The server certificate is signed by the company CA. What is the best fix for production use?",
+        "optionen":  [
+                         "Add the certificate to the X-Auth-Token",
+                         "Set verify=False in every requests call",
+                         "Pass the CA certificate file path in verify",
+                         "Switch the base URL from https to http"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "requests kennt die Firmen-CA nicht. Mit verify=\u0027\u003cpfad\u003e/ca.pem\u0027 wird der Server weiter geprüft und vertraut; verify=False oder HTTP würden die Absicherung gegen Man-in-the-Middle aufgeben."
+    },
+    {
+        "id":  "slg-ap-047",
+        "topic":  "ENCOR-5.3",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A script authenticates as admin with the password C1sco12345 using HTTP Basic authentication. Which header does it send?",
+        "optionen":  [
+                         "Authorization: Basic admin:C1sco12345",
+                         "Authorization: Basic YWRtaW46QzFzY28xMjM0NQ==",
+                         "Authorization: Bearer YWRtaW46QzFzY28xMjM0NQ==",
+                         "Authorization: Basic YWRtaW4=:QzFzY28xMjM0NQ=="
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Basic Auth kodiert die Zeichenkette user:passwort als Ganzes mit Base64 und setzt Basic davor. Bearer ist für Tokens, Klartext oder getrennt kodierte Teile sind falsch."
+    },
+    {
+        "id":  "slg-ap-048",
+        "topic":  "ENCOR-5.3",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jeder Plattform das typische Verfahren zur API-Authentifizierung zu.",
+        "paare":  [
+                      [
+                          "Catalyst Center",
+                          "Token per POST mit Basic Auth, dann Header X-Auth-Token"
+                      ],
+                      [
+                          "SD-WAN Manager",
+                          "Formular-Login an j_security_check, dann JSESSIONID-Cookie"
+                      ],
+                      [
+                          "Cisco ISE (Kursbeispiel)",
+                          "HTTP Basic Auth in jedem einzelnen Request"
+                      ],
+                      [
+                          "Meraki Dashboard",
+                          "API-Key als Bearer-Token im Authorization-Header"
+                      ]
+                  ],
+        "erklaerung":  "Catalyst Center arbeitet mit Tokens, SD-WAN Manager mit einer Session (Cookie plus XSRF-Token für Änderungen), ISE im Kursbeispiel mit Basic Auth pro Request. Meraki nutzt einen API-Key im Authorization-Header."
+    },
+    {
+        "id":  "slg-ap-049",
+        "topic":  "ENCOR-5.3",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A monitoring script only reads device data from SD-WAN Manager. Which account setup follows best practice?",
+        "optionen":  [
+                         "Use a user in a group with limited read rights",
+                         "Create a user without any group membership",
+                         "Use the default admin account for simplicity",
+                         "Share one admin account among all scripts"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "SD-WAN Manager unterstützt RBAC mit Gruppen wie admin, network-operators oder eigenen Gruppen. Ein reines Monitoring-Skript sollte nur die nötigen Leserechte haben (Least Privilege)."
+    },
+    {
+        "id":  "slg-ap-050",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Where in the Catalyst Center GUI does an engineer find the documentation of each Intent API call, including a link to the Swagger interface?",
+        "optionen":  [
+                         "Provision \u003e Inventory",
+                         "Design \u003e Network Settings",
+                         "Platform \u003e Developer Toolkit",
+                         "System \u003e Data Platform"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Platform \u003e Developer Toolkit dokumentiert jeden Aufruf nach Funktionsbereichen mit Methode, URL, Parametern, Headern, Schema und Testmöglichkeit; von dort öffnet sich auch Swagger."
+    },
+    {
+        "id":  "slg-ap-051",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A team deploys a current Catalyst Center release and wants to start using the Intent API. What is required before the first API call?",
+        "optionen":  [
+                         "Nothing extra: platform and REST APIs are enabled; just authenticate",
+                         "Install the platform application and enable the REST API bundles",
+                         "Enable RESTCONF globally on the Catalyst Center appliance",
+                         "Request an API license key from Cisco for each user"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "In älteren Releases mussten die Platform-App installiert und die REST-API-Bundles aktiviert werden. Aktuelle Releases bringen beides standardmäßig mit; nötig ist nur noch die Authentifizierung."
+    },
+    {
+        "id":  "slg-ap-052",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jede API-Funktion ihrer Intent-API-Domäne zu.",
+        "paare":  [
+                      [
+                          "SWIM (Images verteilen und aktivieren)",
+                          "Site management"
+                      ],
+                      [
+                          "Path Trace",
+                          "Operational tasks"
+                      ],
+                      [
+                          "Fabric wired (SD-Access)",
+                          "Connectivity"
+                      ],
+                      [
+                          "Topology (L2-, L3- und VLAN-Sicht)",
+                          "Know your network"
+                      ]
+                  ],
+        "erklaerung":  "SWIM gehört wie PnP und Templates zu Site management, Path Trace wie Command Runner zu Operational tasks. SDA und Nonfabric Wireless bilden Connectivity, Topology ist Teil von Know your network."
+    },
+    {
+        "id":  "slg-ap-053",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A script must manage plug-and-play onboarding projects and virtual accounts for zero-touch deployment of new routers. Which Intent API domain contains these methods?",
+        "optionen":  [
+                         "Event management",
+                         "Connectivity",
+                         "Site management",
+                         "Know your network"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Device Onboarding (PnP) gehört zur Domäne Site management – zusammen mit Site Design, Network Settings, SWIM und Configuration Templates."
+    },
+    {
+        "id":  "slg-ap-054",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An engineer needs \u0027show ip interface brief\u0027 output from 50 switches through the Catalyst Center API without logging in to each device. Which API is used?",
+        "optionen":  [
+                         "Path Trace",
+                         "Network Discovery",
+                         "Configuration Templates",
+                         "Command Runner"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Command Runner führt read-only CLI-Befehle auf Geräten aus und liefert deren aktuelle Ausgabe. Path Trace analysiert Flows, Discovery findet Geräte, Templates verteilen Konfiguration."
+    },
+    {
+        "id":  "slg-ap-055",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A script tries to shut down an interface by sending \u0027interface Gi1/0/5\u0027 and \u0027shutdown\u0027 through the Command Runner API. Why does this approach not work?",
+        "optionen":  [
+                         "Command Runner accepts only read-only commands",
+                         "Command Runner needs SNMP write credentials first",
+                         "Command Runner requires the PATCH method for changes",
+                         "Command Runner works only on third-party devices"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Command Runner ist für lesende Befehle gedacht, um die Echtzeit-Konfiguration und den Zustand abzufragen. Konfigurationsänderungen verteilt man z. B. über Configuration Templates."
+    },
+    {
+        "id":  "slg-ap-056",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Users complain about a slow application. An engineer wants per-hop statistics for the flow between a client and a server through the API. Which API fits?",
+        "optionen":  [
+                         "Topology",
+                         "Path Trace",
+                         "Issues",
+                         "Client Detail"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Path Trace verfolgt den Applikationspfad zwischen zwei Endpunkten und liefert Statistiken pro Hop; frühere Analysen lassen sich abrufen, zusammenfassen oder löschen."
+    },
+    {
+        "id":  "slg-ap-057",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A script must download a software image and a digital certificate that are stored on Catalyst Center. Which Operational Tasks API is used?",
+        "optionen":  [
+                         "Task API",
+                         "Tag API",
+                         "SWIM import API",
+                         "File API"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die File API ruft Dateien von Catalyst Center ab, z. B. Images oder Zertifikate. Die Task API meldet nur den Status asynchroner Aufträge, Tags gruppieren Objekte."
+    },
+    {
+        "id":  "slg-ap-058",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does the Client Health Intent API organize the overall client health information it returns?",
+        "optionen":  [
+                         "By VLAN and by SSID",
+                         "By site and by building floor",
+                         "By device role and platform",
+                         "By wired and wireless categories"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Client Health liefert die Gesamtgesundheit getrennt nach wired und wireless; Details zu einem einzelnen Client liefert die Client Detail API."
+    },
+    {
+        "id":  "slg-ap-059",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two identifiers can the Issues API use to return details and recommended mitigation for an issue? (Choose two.)",
+        "optionen":  [
+                         "MAC address",
+                         "Device serial number",
+                         "Site name",
+                         "Issue ID",
+                         "VLAN ID"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Die Issues-API liefert Details und Gegenmaßnahmen anhand einer Issue-ID oder einer MAC-Adresse. Ebenso arbeitet die Users-API mit Network-User-ID oder MAC."
+    },
+    {
+        "id":  "slg-ap-060",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two values can the Network Device Detail Intent API use to look up a device? (Choose two.)",
+        "optionen":  [
+                         "Interface description",
+                         "SNMP community string",
+                         "Device UUID",
+                         "MAC address",
+                         "OSPF router ID"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Network Device Detail sucht Geräte nach Zeitstempel, MAC-Adresse, UUID, Name oder Gerätename. Community-Strings, Router-IDs oder Interface-Beschreibungen sind keine Suchschlüssel."
+    },
+    {
+        "id":  "slg-ap-061",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A script must create CLI templates grouped in projects and keep versions of them. Which part of the Intent API provides this?",
+        "optionen":  [
+                         "Configuration Templates",
+                         "Command Runner",
+                         "Network Settings",
+                         "Application Policy"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Configuration Templates (Template Programmer/Editor) verwaltet CLI-Templates in Projekten: anlegen, ansehen, bearbeiten, löschen und versionieren."
+    },
+    {
+        "id":  "slg-ap-062",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which data does the Network Settings subdomain of the Intent API let a script get or delete?",
+        "optionen":  [
+                         "Client health scores and wireless RF statistics",
+                         "Device credentials, global IP pools, and SP profiles",
+                         "Fabric edge and border role assignments",
+                         "Event subscriptions and webhook destinations"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Network Settings (Domäne Site management) betrifft Geräte-Credentials, globale IP-Pools und Service-Provider-Angaben. Health, Fabric-Rollen und Events gehören zu anderen Domänen."
+    },
+    {
+        "id":  "slg-ap-063",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "A third-party switch is managed through a Catalyst Center multivendor device package. Which two capabilities does this provide? (Choose two.)",
+        "optionen":  [
+                         "The switch receives golden images through SWIM",
+                         "The switch can act as an SD-Access fabric edge node",
+                         "Interfaces and their up/down status are shown",
+                         "The switch is identified correctly instead of showing as unknown",
+                         "The switch is onboarded with PnP zero-touch"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Das Multivendor SDK bietet Basis-Sichtbarkeit, Monitoring und Command Runner: richtige Identifikation, Chassis, OS-Version, Interfaces mit Status. Fabric-Rollen, SWIM und PnP gehören nicht dazu."
+    },
+    {
+        "id":  "slg-ap-064",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which SDK is used to create device packages for non-Cisco devices in Catalyst Center?",
+        "optionen":  [
+                         "An Ansible collection",
+                         "A Java SDK",
+                         "A YANG SDK",
+                         "A Go SDK"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Multivendor-Unterstützung nutzt ein Java-SDK, mit dem Device Packages für Fremdgeräte erstellt werden. Die Packages sprechen die Geräte dann z. B. per NETCONF, SNMP oder SSH an."
+    },
+    {
+        "id":  "slg-ap-065",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How can Catalyst Center draw the physical topology between Cisco and non-Cisco devices that are managed through device packages?",
+        "optionen":  [
+                         "By running traceroute between all managed loopbacks",
+                         "By reading neighbor information from discovery protocols such as LLDP",
+                         "By analyzing NetFlow records from the fabric border nodes",
+                         "By importing the topology from the ITSM change records"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Über Discovery-Protokolle der Nachbarn wie LLDP lässt sich die physische Topologie auch mit Fremdgeräten aufbauen, denn CDP sprechen Fremdgeräte meist nicht."
+    },
+    {
+        "id":  "slg-ap-066",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about the Catalyst Center Integration Adapter APIs is correct?",
+        "optionen":  [
+                         "They use NETCONF to talk to external ITSM systems",
+                         "They are bidirectional: publish data and consume external info",
+                         "They replace the Intent API for all northbound access",
+                         "They only export data and cannot receive information"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die REST-basierten Integration Adapter APIs sind bidirektional: Catalyst Center veröffentlicht Netzdaten, Events und Notifications und nimmt Informationen von verbundenen Systemen auf."
+    },
+    {
+        "id":  "slg-ap-067",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A company maintains all IP address pools in Infoblox. Which benefit does the Catalyst Center IPAM integration provide?",
+        "optionen":  [
+                         "DHCP is moved from Infoblox into Catalyst Center",
+                         "IP pools are converted into SD-Access virtual networks",
+                         "IP pools are imported and their usage is synchronized",
+                         "Infoblox takes over device provisioning workflows"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die IPAM-Integration (out of the box mit Infoblox und BlueCat) importiert IP-Pools in Catalyst-Center-Workflows und synchronisiert die Nutzung von Pools und Subpools; DDI-Daten verbessern zudem Assurance."
+    },
+    {
+        "id":  "slg-ap-068",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Every change provisioned by Catalyst Center must pass the ServiceNow approval chain and be scheduled in an approved maintenance window. Which capability provides this?",
+        "optionen":  [
+                         "Command Runner read-only requests",
+                         "ITSM integration with change workflows",
+                         "Event subscriptions to SNMP traps",
+                         "Multivendor SDK device packages"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die ITSM-Integration bindet Catalyst Center an Incident-, Change- und Problem-Management an, inklusive Approval-Chains und Maintenance-Window-Planung."
+    },
+    {
+        "id":  "slg-ap-069",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A monitoring tool queries the Catalyst Center Issues API every 30 seconds, which causes load and still delays alerts. What is a better design?",
+        "optionen":  [
+                         "Subscribe to events and receive webhook notifications",
+                         "Use Command Runner to read the device logs",
+                         "Run Network Discovery to refresh the device inventory",
+                         "Query the Issues API every 5 seconds instead"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit Event-Subscriptions schickt Catalyst Center bei einem Ereignis selbst einen Webhook (HTTP POST) an das Tool. Push statt Polling spart Last und meldet Probleme sofort."
+    },
+    {
+        "id":  "slg-ap-070",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "In the Event Management domain, event ___ associate a notification method with a Catalyst Center event.",
+        "optionen":  [
+                         "templates",
+                         "bundles",
+                         "adapters",
+                         "subscriptions"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Event-Subscriptions verknüpfen ein Ereignis mit einer Benachrichtigungsart, z. B. Webhook. Die Methoden dieser Domäne erstellen, lesen, ändern und löschen solche Subscriptions."
+    },
+    {
+        "id":  "slg-ap-071",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What does the \u0027intent\u0027 in Catalyst Center Intent APIs mean for an API user?",
+        "optionen":  [
+                         "The user can only read data and never change anything",
+                         "The user describes the desired outcome, not the mechanism",
+                         "The user controls the forwarding tables of each switch",
+                         "The user must send device-specific CLI for each platform"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Intent APIs bieten eine policy-basierte Abstraktion: Man formuliert das Ziel, Catalyst Center übersetzt es in geräte-spezifische Konfiguration."
+    },
+    {
+        "id":  "slg-ap-072",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about webhooks from Catalyst Center are correct? (Choose two.)",
+        "optionen":  [
+                         "Webhooks are delivered as SNMP traps to the configured receiver",
+                         "Assurance events can be published to third-party systems as webhooks",
+                         "The external system must poll Catalyst Center to receive the webhook",
+                         "A webhook is an HTTP POST sent when a specific event occurs",
+                         "Webhooks require a NETCONF session to the external system"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Ein Webhook ist ein HTTP-Callback (POST), den Catalyst Center beim Eintreten eines Events an eine externe URL sendet, z. B. für Assurance-Events. Das Zielsystem muss dafür nicht pollen."
+    },
+    {
+        "id":  "slg-ap-073",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about a 202 Accepted response from the Catalyst Center Intent API are correct? (Choose two.)",
+        "optionen":  [
+                         "The result must be checked through the Task API",
+                         "The configuration has already been applied to all devices",
+                         "The request was accepted, but processing is not yet complete",
+                         "The token must be renewed before the next API call",
+                         "The client must resend the request until it gets 200"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "202 kommt, wenn Catalyst Center für den Auftrag mit Geräten interagieren muss und asynchron arbeitet. Den Ausgang prüft das Skript über die taskId bei der Task API; ein erneutes Senden würde den Auftrag doppelt starten."
+    },
+    {
+        "id":  "slg-ap-074",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which body encoding does the SD-WAN Manager login request to /j_security_check use for j_username and j_password?",
+        "optionen":  [
+                         "application/json",
+                         "application/xml",
+                         "application/x-www-form-urlencoded",
+                         "application/yang-data+json"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Login an j_security_check ist ein Formular-POST (x-www-form-urlencoded) mit den Feldern j_username und j_password. Danach liefert der Manager das JSESSIONID-Cookie."
+    },
+    {
+        "id":  "slg-ap-075",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A script sends the SD-WAN Manager login as requests.post(base + \u0027/j_security_check\u0027, json={\u0027j_username\u0027: u, \u0027j_password\u0027: p}). The credentials are correct, but later calls are rejected. Why?",
+        "optionen":  [
+                         "The username must be sent in the X-Auth-Token header",
+                         "The login must use GET with credentials in the URL",
+                         "The login resource requires the PUT method instead",
+                         "The login expects form-encoded fields, not a JSON body"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "j_security_check erwartet ein Formular (data={...} in requests), kein JSON. Mit JSON-Body gilt die Anmeldung als gescheitert, es entsteht keine gültige Session; Credentials gehören zudem nie in die URL."
+    },
+    {
+        "id":  "slg-ap-076",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A script logs in to SD-WAN Manager and gets 200 OK, but the next GET to /dataservice/device returns an HTML login page instead of JSON. What is the most likely cause?",
+        "optionen":  [
+                         "The /dataservice/device resource does not exist",
+                         "The X-XSRF-TOKEN header is required for every GET",
+                         "The Manager returns HTML for all GET requests",
+                         "The login failed because the credentials were wrong"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Login an j_security_check antwortet auch bei falschen Credentials mit 200, liefert dann aber eine HTML-Loginseite und keine gültige Session. Skripte sollten daher den Body bzw. das Cookie prüfen, nicht nur den Statuscode."
+    },
+    {
+        "id":  "slg-ap-077",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "After a successful SD-WAN Manager login, GET requests to /dataservice work, but a POST that attaches a template is rejected with 403. What is missing?",
+        "optionen":  [
+                         "Basic Auth credentials in the POST request",
+                         "The X-Auth-Token header from the token call",
+                         "The X-XSRF-TOKEN header with the CSRF token",
+                         "A new JSESSIONID from a second login"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Seit Release 19.2 brauchen ändernde Aufrufe (POST, PUT, DELETE) zusätzlich das CSRF-Token aus GET /dataservice/client/token im Header X-XSRF-TOKEN. Lesende GETs kommen mit dem Session-Cookie aus."
+    },
+    {
+        "id":  "slg-ap-078",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why do SD-WAN Manager scripts usually create a requests.Session() object for all API calls?",
+        "optionen":  [
+                         "It retries every failed call without limit",
+                         "It keeps the JSESSIONID cookie for later calls",
+                         "It encrypts the body with an extra layer",
+                         "It converts form fields into JSON automatically"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein Session-Objekt speichert die Cookies des Logins und sendet JSESSIONID automatisch bei jedem weiteren Aufruf mit. Header wie X-XSRF-TOKEN lassen sich dort ebenfalls einmal setzen."
+    },
+    {
+        "id":  "slg-ap-079",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An external dashboard shows SD-WAN interface counters that are up to 10 minutes old. The team needs values that refresh about once per second. Which API collection should it use?",
+        "optionen":  [
+                         "Device Inventory",
+                         "Real-Time Monitoring",
+                         "Troubleshooting Tools",
+                         "Monitoring"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die normale Monitoring-Collection basiert auf Daten, die die Edges alle 10 Minuten sammeln. Real-Time Monitoring holt die Werte in Echtzeit, etwa einmal pro Sekunde."
+    },
+    {
+        "id":  "slg-ap-080",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "WAN Edge devices collect monitoring information about themselves every ___ minutes and place it in a zip file that SD-WAN Manager retrieves.",
+        "optionen":  [
+                         "10",
+                         "1",
+                         "5",
+                         "30"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Edges sammeln alle 10 Minuten Statistiken, packen sie in eine zip-Datei, und der Manager holt sie alle 10 Minuten ab – oder beim nächsten möglichen Login."
+    },
+    {
+        "id":  "slg-ap-081",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In GET /dataservice/device/interface?deviceId=..., which value is used for the required deviceId parameter?",
+        "optionen":  [
+                         "The UUID of the device template",
+                         "The serial number of the device",
+                         "The system IP address of the device",
+                         "The site ID of the device location"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "deviceId ist die System-IP des Geräts; in der Antwort von /dataservice/device sind deviceId und system-ip deshalb identisch. Der Aufruf entspricht inhaltlich show interface."
+    },
+    {
+        "id":  "slg-ap-082",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two optional query parameters can narrow the result of GET /dataservice/device/interface? (Choose two.)",
+        "optionen":  [
+                         "ifname",
+                         "color",
+                         "host-name",
+                         "vpn-id",
+                         "site-id"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Neben dem Pflichtparameter deviceId nennt der Kurs vpn-id, ifname und af-type als optionale Parameter. site-id, color und host-name gehören nicht zu diesem Aufruf."
+    },
+    {
+        "id":  "slg-ap-083",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A script posts to /dataservice/template/device/config/input. Which values belong in the deviceIds list?",
+        "optionen":  [
+                         "The host names of the devices",
+                         "The site IDs of the devices",
+                         "The system IP addresses of the devices",
+                         "The UUIDs of the devices"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "deviceIds ist laut API eine Liste von Geräte-UUIDs. Die UUID steht z. B. im Feld uuid der Inventar-Antworten; System-IPs nutzt man dagegen als deviceId bei Monitoring-Aufrufen."
+    },
+    {
+        "id":  "slg-ap-084",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jedes Feld im Body von POST /dataservice/template/device/config/input seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "templateId",
+                          "Kennung des Device-Templates"
+                      ],
+                      [
+                          "deviceIds",
+                          "Liste der Geräte-UUIDs"
+                      ],
+                      [
+                          "isEdited",
+                          "true: bestehendes CLI- oder Feature-Template geändert"
+                      ],
+                      [
+                          "isMasterEdited",
+                          "true: aus Feature-Templates erstelltes Device-Template geändert"
+                      ]
+                  ],
+        "erklaerung":  "templateId und deviceIds legen Template und Zielgeräte fest. isEdited unterscheidet ein geändertes von einem neuen Template, isMasterEdited markiert Änderungen am Device-Template aus Feature-Templates."
+    },
+    {
+        "id":  "slg-ap-085",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne jede Collection der SD-WAN-Manager-API einem passenden Endpunkt zu.",
+        "paare":  [
+                      [
+                          "Monitoring",
+                          "GET /dataservice/device"
+                      ],
+                      [
+                          "Administration",
+                          "GET /dataservice/admin/user"
+                      ],
+                      [
+                          "Device Inventory",
+                          "GET /dataservice/system/device/vedges"
+                      ],
+                      [
+                          "Certificate Management",
+                          "GET /dataservice/certificate/view"
+                      ]
+                  ],
+        "erklaerung":  "/device liefert das Overlay-Inventar mit Status, /admin/user die Benutzer, /system/device/vedges die WAN-Edge-Details mit Seriennummern, /certificate/view die Zertifikatsansichten."
+    },
+    {
+        "id":  "slg-ap-086",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "GET /dataservice/system/device/vedges shows a WAN Edge with \"validity\": \"invalid\". What does this indicate?",
+        "optionen":  [
+                         "The device certificate has expired and must be renewed",
+                         "The device is known but not authorized to join the overlay",
+                         "The device configuration template contains syntax errors",
+                         "The device has joined the overlay and is fully operational"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "validity zeigt den Status in der autorisierten WAN-Edge-Liste. Ist ein Gerät als invalid markiert, lassen die Controller es nicht ins Overlay; erst als valid markiert und an die Controller verteilt darf es beitreten."
+    },
+    {
+        "id":  "slg-ap-087",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "From where is the WAN Edge authorized serial number file obtained before it is distributed to the controllers?",
+        "optionen":  [
+                         "From the SD-WAN Validator CLI",
+                         "From the Cisco Smart Account",
+                         "From the DHCP server of the site",
+                         "From the Cisco TAC case portal"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Datei mit den Seriennummern aller gültigen WAN Edges kommt aus dem Cisco Smart Account. Im Manager markiert man die Edges als valid oder invalid und sendet die Liste an die Controller."
+    },
+    {
+        "id":  "slg-ap-088",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A monitoring system polls 2000 WAN Edges one by one through the SD-WAN Manager API, which creates high overhead. What does Cisco recommend?",
+        "optionen":  [
+                         "Increase the edge statistics interval to 60 minutes",
+                         "Query each edge directly through its own REST API",
+                         "Use the Real-Time Monitoring APIs for every edge",
+                         "Use the bulk APIs to collect data for many edges per call"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bulk-APIs sammeln mit einem Aufruf Daten vieler WAN Edges und liefern sie in Batches mit wählbarer Größe – ideal für externe Monitoring-Tools."
+    },
+    {
+        "id":  "slg-ap-089",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which type of SD-WAN bulk API returns the number and state of OMP and BFD sessions of the WAN Edges?",
+        "optionen":  [
+                         "Inventory",
+                         "Real-Time",
+                         "Statistics",
+                         "State"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bulk-State-APIs liefern Zustände der Overlay-Geräte, etwa OMP- und BFD-Sessions. Bulk-Statistics-APIs liefern Zähler wie Pakete, Flows, Alarme, Events und Logs."
+    },
+    {
+        "id":  "slg-ap-090",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A bulk API loop reads pages until hasMoreData is false. The pages contain [1, 2] (hasMoreData true), [3, 4] (true) and [5] (false). How many requests are sent, and how many records are collected?",
+        "optionen":  [
+                         "3 requests, 4 records",
+                         "2 requests, 4 records",
+                         "3 requests, 5 records",
+                         "4 requests, 5 records"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Schleife holt jede Seite und bricht erst nach der Seite ab, die hasMoreData false meldet. Also drei Requests mit insgesamt fünf Datensätzen; die letzte Seite wird noch verarbeitet."
+    },
+    {
+        "id":  "slg-ap-091",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Where can an engineer browse the REST API documentation directly on an SD-WAN Manager?",
+        "optionen":  [
+                         "https://\u003cmanager\u003e:\u003cport\u003e/restconf",
+                         "https://\u003cmanager\u003e:\u003cport\u003e/apidocs",
+                         "https://\u003cmanager\u003e:\u003cport\u003e/dna/docs",
+                         "https://\u003cmanager\u003e:\u003cport\u003e/j_security_check"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die selbstdokumentierende API ist auf dem Manager selbst unter /apidocs abrufbar. j_security_check ist der Login, /restconf und /dna gehören zu anderen Plattformen."
+    },
+    {
+        "id":  "slg-ap-092",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two are benefits of using the SD-WAN Manager APIs? (Choose two.)",
+        "optionen":  [
+                         "The SD-WAN Controllers are no longer required",
+                         "Change fabric policy dynamically and automatically",
+                         "WAN Edges can forward traffic without IPsec",
+                         "Integrate the SD-WAN fabric with third-party monitoring",
+                         "OMP is replaced by a REST-based protocol"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Die API erlaubt Automatisierung (Policies dynamisch ändern, Templates automatisch zuweisen, DevOps/ChatOps) und Integration mit Monitoring-, CRM- und Ticketing-Systemen. Controller, IPsec und OMP bleiben unverändert."
+    },
+    {
+        "id":  "slg-ap-093",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "d = r.json() holds the SD-WAN Manager response to GET /dataservice/device with the structure {\"header\": {...}, \"data\": [...]}. Which expression returns the number of devices?",
+        "optionen":  [
+                         "d[\u0027data\u0027].count()",
+                         "len(d)",
+                         "len(d[\u0027header\u0027])",
+                         "len(d[\u0027data\u0027])"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Geräte stehen als Liste unter data, header enthält nur Metadaten. len(d) würde die zwei Top-Level-Keys zählen."
+    },
+    {
+        "id":  "slg-ap-094",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "In the SD-WAN REST API, resources are grouped into collections, and each collection contains a single ___ of resource.",
+        "optionen":  [
+                         "version",
+                         "tenant",
+                         "device",
+                         "type"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Eine Collection ist homogen: Sie enthält nur Ressourcen eines Typs. Eine Ressource ist ein Objekt mit Typ, Daten, Beziehungen und Methoden."
+    },
+    {
+        "id":  "slg-ap-095",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The Catalyst Center token call returns a JSON object in which the token is stored under the key ___.",
+        "optionen":  [
+                         "X-Auth-Token",
+                         "sessionId",
+                         "access_token",
+                         "Token"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "POST /dna/system/api/v1/auth/token liefert {\"Token\": \"...\"}. Der Wert wird danach im Header X-Auth-Token mitgeschickt; der Header-Name ist nicht der JSON-Key."
+    },
+    {
+        "id":  "slg-ap-096",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "To log in to the SD-WAN Manager API, a client sends a POST to the resource ___ and receives a JSESSIONID cookie.",
+        "optionen":  [
+                         "/dna/system/api/v1/auth/token",
+                         "/dataservice/client/token",
+                         "/apidocs/login",
+                         "/j_security_check"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Login erfolgt per POST an /j_security_check mit j_username und j_password. /dataservice/client/token liefert erst danach das XSRF-Token für ändernde Aufrufe."
+    },
+    {
+        "id":  "slg-ap-097",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Python (requests ist importiert, HTTPBasicAuth aus requests.auth): Hole ein Catalyst-Center-Token von cc, ignoriere im Lab das Zertifikat und speichere die Antwort in r (Argumente in der Reihenfolge URL, auth, verify).",
+        "bausteine":  [
+                          "r",
+                          "=",
+                          "requests.post(",
+                          "\u0027https://cc/dna/system/api/v1/auth/token\u0027,",
+                          "auth=HTTPBasicAuth(user, pw),",
+                          "verify=False",
+                          ")",
+                          "requests.get(",
+                          "headers={\u0027X-Auth-Token\u0027: pw},",
+                          "\u0027https://cc/j_security_check\u0027,"
+                      ],
+        "loesung":  [
+                        "r",
+                        "=",
+                        "requests.post(",
+                        "\u0027https://cc/dna/system/api/v1/auth/token\u0027,",
+                        "auth=HTTPBasicAuth(user, pw),",
+                        "verify=False",
+                        ")"
+                    ],
+        "erklaerung":  "Das Token holt man per POST an /dna/system/api/v1/auth/token mit Basic Auth. verify=False ist nur im Lab vertretbar; j_security_check gehört zum SD-WAN Manager."
+    },
+    {
+        "id":  "slg-ap-098",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Python: Baue das Header-Dictionary für einen Intent-API-POST mit JSON-Body; das Token steht in der Variablen token.",
+        "bausteine":  [
+                          "headers",
+                          "=",
+                          "{\u0027X-Auth-Token\u0027: token,",
+                          "\u0027Content-Type\u0027: \u0027application/json\u0027}",
+                          "{\u0027Authorization\u0027: \u0027Bearer \u0027 + token,",
+                          "\u0027Content-Type\u0027: \u0027application/xml\u0027}",
+                          "{\u0027X-XSRF-TOKEN\u0027: token,"
+                      ],
+        "loesung":  [
+                        "headers",
+                        "=",
+                        "{\u0027X-Auth-Token\u0027: token,",
+                        "\u0027Content-Type\u0027: \u0027application/json\u0027}"
+                    ],
+        "erklaerung":  "Catalyst Center erwartet das Token im Header X-Auth-Token und bei JSON-Bodys Content-Type: application/json. X-XSRF-TOKEN gehört zum SD-WAN Manager."
+    },
+    {
+        "id":  "slg-ap-099",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Baue die URL, die bei Catalyst Center cc die Anzahl der verwalteten Geräte liefert.",
+        "bausteine":  [
+                          "https://cc",
+                          "/dna/intent/api/v1",
+                          "/network-device",
+                          "/count",
+                          "/dataservice",
+                          "/restconf/data",
+                          "/devices"
+                      ],
+        "loesung":  [
+                        "https://cc",
+                        "/dna/intent/api/v1",
+                        "/network-device",
+                        "/count"
+                    ],
+        "erklaerung":  "Intent-API-Pfade beginnen mit /dna/intent/api/v1; /network-device/count liefert die Anzahl als Zahl unter response. /dataservice gehört zum SD-WAN Manager, /restconf zu IOS XE."
+    },
+    {
+        "id":  "slg-ap-100",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Baue die URL, mit der ein Skript bei Catalyst Center cc den Status des Auftrags mit der ID in task_id abfragt (f-String).",
+        "bausteine":  [
+                          "f\u0027https://cc",
+                          "/dna/intent/api/v1",
+                          "/task",
+                          "/{task_id}\u0027",
+                          "/file",
+                          "/network-device",
+                          "/dataservice"
+                      ],
+        "loesung":  [
+                        "f\u0027https://cc",
+                        "/dna/intent/api/v1",
+                        "/task",
+                        "/{task_id}\u0027"
+                    ],
+        "erklaerung":  "Asynchrone Aufträge fragt man über GET /dna/intent/api/v1/task/{taskId} ab. Die File API (/file/{fileId}) holt erst danach z. B. Command-Runner-Ausgaben."
+    },
+    {
+        "id":  "slg-ap-101",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Python: Speichere die taskId aus der Catalyst-Center-Antwort r (Body {\"response\": {\"taskId\": ...}, \"version\": \"1.0\"}) in der Variablen task_id.",
+        "bausteine":  [
+                          "task_id",
+                          "=",
+                          "r.json()",
+                          "[\u0027response\u0027]",
+                          "[\u0027taskId\u0027]",
+                          "r.text",
+                          "[\u0027version\u0027]",
+                          "[\u0027task_id\u0027]"
+                      ],
+        "loesung":  [
+                        "task_id",
+                        "=",
+                        "r.json()",
+                        "[\u0027response\u0027]",
+                        "[\u0027taskId\u0027]"
+                    ],
+        "erklaerung":  "r.json() macht aus dem Body ein Dictionary, die taskId liegt verschachtelt unter response. r.text ist nur der rohe String und lässt sich nicht per Key indizieren."
+    },
+    {
+        "id":  "slg-ap-102",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Python (json ist importiert): Das Command-Runner-Task-Objekt task enthält unter task[\u0027response\u0027][\u0027progress\u0027] den JSON-String \u0027{\"fileId\":\"...\"}\u0027. Speichere die fileId in file_id.",
+        "bausteine":  [
+                          "file_id",
+                          "=",
+                          "json.loads(",
+                          "task[\u0027response\u0027][\u0027progress\u0027]",
+                          ")",
+                          "[\u0027fileId\u0027]",
+                          "json.dumps(",
+                          "[\u0027progress\u0027][\u0027fileId\u0027]"
+                      ],
+        "loesung":  [
+                        "file_id",
+                        "=",
+                        "json.loads(",
+                        "task[\u0027response\u0027][\u0027progress\u0027]",
+                        ")",
+                        "[\u0027fileId\u0027]"
+                    ],
+        "erklaerung":  "progress ist ein String mit JSON-Inhalt und muss erst mit json.loads geparst werden; danach liefert [\u0027fileId\u0027] die ID für GET /file/{fileId}. json.dumps würde in die Gegenrichtung serialisieren."
+    },
+    {
+        "id":  "slg-ap-103",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Python (s = requests.Session(), base enthält https://manager:443): Melde dich beim SD-WAN Manager an; Benutzer u, Passwort p (Argumente in der Reihenfolge URL, Body, verify).",
+        "bausteine":  [
+                          "s.post(",
+                          "base + \u0027/j_security_check\u0027,",
+                          "data={\u0027j_username\u0027: u, \u0027j_password\u0027: p},",
+                          "verify=False",
+                          ")",
+                          "json={\u0027j_username\u0027: u, \u0027j_password\u0027: p},",
+                          "base + \u0027/dataservice/client/token\u0027,",
+                          "auth=(u, p),"
+                      ],
+        "loesung":  [
+                        "s.post(",
+                        "base + \u0027/j_security_check\u0027,",
+                        "data={\u0027j_username\u0027: u, \u0027j_password\u0027: p},",
+                        "verify=False",
+                        ")"
+                    ],
+        "erklaerung":  "Der Login ist ein Formular-POST an j_security_check; data= erzeugt x-www-form-urlencoded. Die Session speichert danach das JSESSIONID-Cookie für alle weiteren Aufrufe."
+    },
+    {
+        "id":  "slg-ap-104",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Python (Session s ist am SD-WAN Manager angemeldet, base gesetzt): Hole das XSRF-Token und setze es als Header für alle weiteren Requests der Session.",
+        "bausteine":  [
+                          "s.headers[\u0027X-XSRF-TOKEN\u0027]",
+                          "=",
+                          "s.get(base + \u0027/dataservice/client/token\u0027)",
+                          ".text",
+                          "s.headers[\u0027X-Auth-Token\u0027]",
+                          ".json()[\u0027Token\u0027]",
+                          "s.post(base + \u0027/j_security_check\u0027)"
+                      ],
+        "loesung":  [
+                        "s.headers[\u0027X-XSRF-TOKEN\u0027]",
+                        "=",
+                        "s.get(base + \u0027/dataservice/client/token\u0027)",
+                        ".text"
+                    ],
+        "erklaerung":  "/dataservice/client/token liefert das CSRF-Token als reinen Text (daher .text, nicht .json()). In s.headers gesetzt, geht es bei jedem POST/PUT/DELETE als X-XSRF-TOKEN mit."
+    },
+    {
+        "id":  "slg-ap-105",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Baue die URL, die beim SD-WAN Manager mgr die Interfaces des Geräts mit der System-IP 1.1.1.20 abfragt.",
+        "bausteine":  [
+                          "https://mgr",
+                          "/dataservice",
+                          "/device",
+                          "/interface",
+                          "?deviceId=1.1.1.20",
+                          "/dna/intent/api/v1",
+                          "?uuid=1.1.1.20",
+                          "/template"
+                      ],
+        "loesung":  [
+                        "https://mgr",
+                        "/dataservice",
+                        "/device",
+                        "/interface",
+                        "?deviceId=1.1.1.20"
+                    ],
+        "erklaerung":  "Alle Ressourcen der Manager-API liegen unter /dataservice; /device/interface braucht den Pflichtparameter deviceId mit der System-IP. Optional lassen sich vpn-id, ifname und af-type ergänzen."
+    },
+    {
+        "id":  "slg-ap-106",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Python: Erzeuge aus der SD-WAN-Manager-Antwort r eine Liste aller Hostnamen (Key host-name) und speichere sie in names.",
+        "bausteine":  [
+                          "names",
+                          "=",
+                          "[d[\u0027host-name\u0027]",
+                          "for d in",
+                          "r.json()[\u0027data\u0027]]",
+                          "r.json()[\u0027response\u0027]]",
+                          "[d.host_name",
+                          "r.json()[\u0027header\u0027]]"
+                      ],
+        "loesung":  [
+                        "names",
+                        "=",
+                        "[d[\u0027host-name\u0027]",
+                        "for d in",
+                        "r.json()[\u0027data\u0027]]"
+                    ],
+        "erklaerung":  "Die Geräte stehen in der Liste unter data; der Key mit Bindestrich wird per d[\u0027host-name\u0027] gelesen. response ist die Struktur von Catalyst Center, nicht vom SD-WAN Manager."
+    },
+    {
+        "id":  "slg-ap-107",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A script must send device_object as JSON to the Intent API. Which call sends a correctly encoded JSON body with the matching Content-Type header without further code?",
+        "optionen":  [
+                         "requests.post(url, json=device_object, headers=h)",
+                         "requests.post(url, params=device_object, headers=h)",
+                         "requests.post(url, data=device_object, headers=h)",
+                         "requests.post(url, files=device_object, headers=h)"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "json= serialisiert das Dictionary und setzt Content-Type: application/json automatisch. data= mit einem Dictionary erzeugt ein Formular, params= hängt die Werte an die URL, files= baut multipart."
+    },
+    {
+        "id":  "slg-ap-108",
+        "topic":  "ENCOR-6.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In the Python requests library, response.ok is True for which status codes?",
+        "optionen":  [
+                         "Only for codes 200 to 204",
+                         "For all codes below 500",
+                         "For all codes below 400",
+                         "Only for 200"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "response.ok prüft, ob der Statuscode kleiner als 400 ist, also kein Client- oder Serverfehler vorliegt. Auch 201, 202 und 204 gelten damit als ok."
+    }
+]

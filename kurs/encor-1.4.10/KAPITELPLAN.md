@@ -17,7 +17,7 @@ Status: ✅ fertig · ⏳ in Arbeit · ☐ offen · ⚠ nicht mehr in ENCOR v1.2
 | 12 | Implementing NAT | 118–126 | 12-nat | ✅ 117 Fragen, geprüft (1 entf.) |
 | 13 | Virtualization Protocols (VRF, GRE) | 127–137 | 13-virtualization | ✅ 120 Fragen, geprüft (2 korr.) |
 | 14 | VPNs and Interfaces (IPsec, VTI) | 138–148 | 14-vpn | ✅ 122 Fragen + Wissen + 10 SVGs, geprüft (3 korr.) |
-| 15 | Wireless Deployment Options | 149–158 | 15-wlan-deploy | ⚠ |
+| 15 | Wireless Deployment Options | 149–158 | 15-wlan-deploy | ⚠ ⏳ Writer läuft |
 | 16 | Wireless AP Operation | 159–167 | 16-wlan-ap | ⚠ |
 | 17 | Wireless Client Authentication | 168–183 | 17-wlan-auth | ⚠ |
 | 18 | Troubleshooting Wireless Client Connectivity | 184–197 | 18-wlan-ts | ⚠ |
@@ -35,7 +35,7 @@ Status: ✅ fertig · ⏳ in Arbeit · ☐ offen · ⚠ nicht mehr in ENCOR v1.2
 | 30 | Cisco Catalyst Center | 333–347 | 30-catalyst-center | ✅ 133 Fragen + Wissen + 10 SVGs, geprüft inkl. Web (14 korr., 2 entf.) |
 | 31 | Cisco SD-Access | 348–359 | 31-sda | ✅ 121 Fragen + Wissen + 9 SVGs, geprüft (7 korr., 1 entf.) |
 | 32 | Cisco Catalyst SD-WAN | 360–373 | 32-sdwan | ✅ 118 Fragen + Wissen + 9 SVGs, geprüft (4 korr.) |
-| 33 | APIs in Cisco Platforms | 374–381 | 33-apis | ⏳ Writer läuft |
+| 33 | APIs in Cisco Platforms | 374–381 | 33-apis | ✅ 108 Fragen + Wissen + 8 SVGs, geprüft (2 korr.) |
 
 Regeln: Fragen in eigenen Worten (keine Übernahme der Kurs-Wissensfragen), Topic-IDs nach ENCOR v1.2,
 Erklärungen aus dem Bestand wiederverwenden, wo sie passen. Jede Datei wird gegengeprüft.
