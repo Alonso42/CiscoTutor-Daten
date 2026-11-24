@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Bidirectional PIM mit Designated Forwarder</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">BiDir-PIM: ein (*,G)-Baum in beide Richtungen</text>
+<circle cx="400" cy="80" r="26" fill="#ffd23f" stroke="#222" stroke-width="2"/><text x="400" y="85" text-anchor="middle" font-size="13" fill="#222">RP</text>
+<circle cx="250" cy="180" r="24" fill="#fff" stroke="#222" stroke-width="2"/><text x="250" y="185" text-anchor="middle" font-size="12" fill="#222">R1</text>
+<circle cx="550" cy="180" r="24" fill="#fff" stroke="#222" stroke-width="2"/><text x="550" y="185" text-anchor="middle" font-size="12" fill="#222">R2</text>
+<line x1="380" y1="96" x2="268" y2="164" stroke="#39c86a" stroke-width="4"/>
+<line x1="420" y1="96" x2="532" y2="164" stroke="#ccc" stroke-width="3"/>
+<text x="290" y="120" font-size="12" fill="#222">Kosten 10</text>
+<text x="480" y="120" font-size="12" fill="#222">Kosten 30</text>
+<line x1="150" y1="260" x2="650" y2="260" stroke="#222" stroke-width="3"/>
+<text x="660" y="265" font-size="12" fill="#222">LAN</text>
+<line x1="250" y1="204" x2="250" y2="260" stroke="#39c86a" stroke-width="4"/>
+<line x1="550" y1="204" x2="550" y2="260" stroke="#ccc" stroke-width="3"/>
+<text x="180" y="235" font-size="13" fill="#39c86a" font-weight="bold">DF</text>
+<text x="565" y="235" font-size="12" fill="#222">kein DF</text>
+<rect x="200" y="290" width="90" height="30" fill="#fff" stroke="#222"/><text x="245" y="310" text-anchor="middle" font-size="12" fill="#222">Sender+Empf.</text>
+<rect x="500" y="290" width="90" height="30" fill="#fff" stroke="#222"/><text x="545" y="310" text-anchor="middle" font-size="12" fill="#222">Sender+Empf.</text>
+<line x1="245" y1="260" x2="245" y2="290" stroke="#222"/><line x1="545" y1="260" x2="545" y2="290" stroke="#222"/>
+<g font-size="13" fill="#222">
+<text x="30" y="355">• Pro Link und pro RP wird ein Designated Forwarder (DF) gewählt: bester Unicast-Pfad zum RP.</text>
+<text x="30" y="377">• Nur der DF leitet Traffic vom Link Richtung RP (upstream) und vom RP auf den Link (downstream).</text>
+<text x="30" y="399">• Keine Register, keine (S,G)-Einträge, kein SPT-Switchover – nur (*,G), Flag B in show ip mroute.</text>
+<text x="30" y="421">• Ideal für many-to-many (z. B. Trading-Floor, Videokonferenz mit vielen Sendern).</text>
+</g>
+</svg>

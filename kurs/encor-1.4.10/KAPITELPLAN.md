@@ -21,8 +21,8 @@ Status: ✅ fertig · ⏳ in Arbeit · ☐ offen · ⚠ nicht mehr in ENCOR v1.2
 | 16 | Wireless AP Operation | 159–167 | 16-wlan-ap | ⚠ |
 | 17 | Wireless Client Authentication | 168–183 | 17-wlan-auth | ⚠ |
 | 18 | Troubleshooting Wireless Client Connectivity | 184–197 | 18-wlan-ts | ⚠ |
-| 19 | Network Services (NTP, PTP, Syslog, SNMP, NetFlow, EEM) | 198–209 | 19-services | ⏳ Writer läuft |
-| 20 | Multicast | 210–220 | 20-multicast | ☐ |
+| 19 | Network Services (NTP, PTP, Syslog, SNMP, NetFlow, EEM) | 198–209 | 19-services | ✅ 143 Fragen + Wissen + 10 SVGs, geprüft (2 präzisiert) |
+| 20 | Multicast | 210–220 | 20-multicast | ⏳ Writer läuft |
 | 21 | QoS | 221–227 | 21-qos | ☐ |
 | 22 | Network Analysis Tools (IP SLA, SPAN) | 228–242 | 22-analysis | ☐ |
 | 23 | Infrastructure Security (ACL, CoPP) | 243–254 | 23-infra-sec | ☐ |

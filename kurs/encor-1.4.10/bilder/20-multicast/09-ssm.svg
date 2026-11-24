@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Source-Specific Multicast mit IGMPv3</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">SSM: Empfänger nennt Quelle UND Gruppe – kein RP</text>
+<rect x="30" y="160" width="90" height="34" fill="#fff" stroke="#222"/><text x="75" y="182" text-anchor="middle" font-size="12" fill="#222">S 10.9.9.9</text>
+<circle cx="220" cy="177" r="24" fill="#fff" stroke="#222" stroke-width="2"/><text x="220" y="182" text-anchor="middle" font-size="12" fill="#222">FHR</text>
+<circle cx="400" cy="177" r="24" fill="#fff" stroke="#222" stroke-width="2"/><text x="400" y="182" text-anchor="middle" font-size="12" fill="#222">R2</text>
+<circle cx="580" cy="177" r="24" fill="#fff" stroke="#222" stroke-width="2"/><text x="580" y="182" text-anchor="middle" font-size="12" fill="#222">LHR</text>
+<rect x="670" y="160" width="100" height="34" fill="#fff" stroke="#222"/><text x="720" y="182" text-anchor="middle" font-size="12" fill="#222">Empfänger</text>
+<line x1="120" y1="177" x2="196" y2="177" stroke="#39c86a" stroke-width="4"/>
+<line x1="244" y1="177" x2="376" y2="177" stroke="#39c86a" stroke-width="4"/>
+<line x1="424" y1="177" x2="556" y2="177" stroke="#39c86a" stroke-width="4"/>
+<line x1="604" y1="177" x2="670" y2="177" stroke="#39c86a" stroke-width="4"/>
+<text x="720" y="140" text-anchor="middle" font-size="12" fill="#4a9cff">① IGMPv3 Report</text>
+<text x="720" y="125" text-anchor="middle" font-size="12" fill="#4a9cff">INCLUDE {10.9.9.9}, 232.1.1.1</text>
+<text x="400" y="140" text-anchor="middle" font-size="12" fill="#b08aff">② (10.9.9.9, 232.1.1.1)-Join hop-by-hop zur Quelle</text>
+<text x="400" y="225" text-anchor="middle" font-size="12" fill="#39c86a">③ Daten fließen sofort über den SPT</text>
+<g font-size="13" fill="#222">
+<text x="30" y="275">• Bereich 232.0.0.0/8 (Default bei ip pim ssm default); eigene Bereiche: ip pim ssm range ACL</text>
+<text x="30" y="298">• Kein Shared Tree, keine Register, kein RP, kein MSDP für diese Gruppen</text>
+<text x="30" y="321">• Gruppenadresse muss nicht eindeutig sein: (S1,G) und (S2,G) sind getrennte Kanäle</text>
+<text x="30" y="344">• Host braucht IGMPv3 (LHR-Interface: ip igmp version 3)</text>
+<text x="30" y="367">• Ausnahme: SSM-Mapping – LHR übersetzt IGMPv1/v2-Reports per statischer</text>
+<text x="30" y="385">  Zuordnung oder DNS in (S,G)-Joins</text>
+<text x="30" y="410">• Quelle wird außerhalb von PIM bekannt (Webseite, Verzeichnisdienst, Session-Ankündigung)</text>
+</g>
+</svg>

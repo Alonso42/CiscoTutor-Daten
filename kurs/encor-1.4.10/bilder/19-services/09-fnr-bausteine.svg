@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Flexible NetFlow Bausteine</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Flexible NetFlow: Record + Exporter → Monitor → Interface</text>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect x="20" y="55" width="300" height="165" rx="8" fill="#4a9cff" opacity="0.25" stroke="#4a9cff"/>
+<text x="35" y="78" font-size="14" font-weight="bold" fill="#222">flow record LANCOPE1</text>
+<g font-size="12" font-family="monospace" fill="#222"><text x="35" y="100">match ipv4 source address</text><text x="35" y="118">match transport destination-port</text><text x="35" y="136">match interface input  …</text><text x="35" y="160">collect counter bytes</text><text x="35" y="178">collect timestamp sys-uptime first</text></g>
+<text x="35" y="205" font-size="11" fill="#222">match = Key (Eindeutigkeit) · collect = Non-Key</text>
+<rect x="20" y="235" width="300" height="140" rx="8" fill="#39c86a" opacity="0.25" stroke="#39c86a"/>
+<text x="35" y="258" font-size="14" font-weight="bold" fill="#222">flow exporter EXPORTER1</text>
+<g font-size="12" font-family="monospace" fill="#222"><text x="35" y="280">destination 10.1.1.10</text><text x="35" y="298">source Loopback0</text><text x="35" y="316">transport udp 2055</text><text x="35" y="334">export-protocol netflow-v9</text></g>
+<text x="35" y="360" font-size="11" fill="#ff6b6b">genau EIN Ziel pro Exporter</text>
+<line x1="322" y1="140" x2="410" y2="200" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<line x1="322" y1="300" x2="410" y2="245" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<rect x="415" y="150" width="200" height="140" rx="8" fill="#ffd23f" opacity="0.5" stroke="#222"/>
+<text x="425" y="173" font-size="14" font-weight="bold" fill="#222">flow monitor MONITOR1</text>
+<g font-size="12" font-family="monospace" fill="#222"><text x="425" y="195">record LANCOPE1</text><text x="425" y="213">exporter EXPORTER1</text><text x="425" y="231">cache timeout active 60</text></g>
+<text x="425" y="255" font-size="11" fill="#222">= Cache im RAM</text><text x="425" y="272" font-size="11" fill="#222">1 Record, n Exporter</text>
+<line x1="617" y1="220" x2="660" y2="220" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<circle cx="710" cy="220" r="40" fill="#b08aff"/><text x="710" y="225" text-anchor="middle" font-size="14" fill="#fff">R1</text>
+<text x="640" y="290" font-size="12" font-family="monospace" fill="#222">interface Et0/0</text>
+<text x="640" y="308" font-size="11" font-family="monospace" fill="#222">ip flow monitor</text>
+<text x="640" y="324" font-size="11" font-family="monospace" fill="#222"> MONITOR1 input</text>
+<text x="640" y="348" font-size="11" fill="#222">auf allen L3-IFs input</text>
+<text x="640" y="364" font-size="11" fill="#222">= beide Richtungen</text>
+<text x="20" y="410" font-size="13" fill="#222">Prüfen: show flow monitor · show flow monitor MONITOR1 cache · show flow exporter · show flow record</text>
+<text x="20" y="432" font-size="13" fill="#222">IPv6: eigener Record (match ipv6 …) + ipv6 flow monitor NAME input</text>
+</svg>

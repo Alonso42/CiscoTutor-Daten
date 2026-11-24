@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>RPF-Check: bestanden und fehlgeschlagen</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">Reverse Path Forwarding (RPF) Check</text>
+<rect x="30" y="190" width="80" height="34" fill="#fff" stroke="#222"/><text x="70" y="212" text-anchor="middle" font-size="12" fill="#222">S 10.1.1.10</text>
+<circle cx="220" cy="120" r="24" fill="#fff" stroke="#222" stroke-width="2"/><text x="220" y="125" text-anchor="middle" font-size="13" fill="#222">R1</text>
+<circle cx="220" cy="300" r="24" fill="#fff" stroke="#222" stroke-width="2"/><text x="220" y="305" text-anchor="middle" font-size="13" fill="#222">R2</text>
+<circle cx="420" cy="210" r="28" fill="#ffd23f" opacity="0.6" stroke="#222" stroke-width="2"/><text x="420" y="215" text-anchor="middle" font-size="13" fill="#222">R3</text>
+<line x1="110" y1="200" x2="198" y2="130" stroke="#222"/>
+<line x1="110" y1="214" x2="198" y2="290" stroke="#222"/>
+<line x1="244" y1="125" x2="394" y2="200" stroke="#39c86a" stroke-width="4"/>
+<line x1="244" y1="295" x2="394" y2="222" stroke="#ff6b6b" stroke-width="4"/>
+<text x="320" y="145" font-size="13" fill="#39c86a">Gi0/1</text>
+<text x="320" y="290" font-size="13" fill="#ff6b6b">Gi0/2</text>
+<line x1="448" y1="210" x2="540" y2="210" stroke="#39c86a" stroke-width="4"/>
+<rect x="540" y="195" width="70" height="30" fill="#fff" stroke="#222"/><text x="575" y="215" text-anchor="middle" font-size="12" fill="#222">Empf.</text>
+<rect x="440" y="60" width="340" height="56" fill="#4a9cff" opacity="0.15" stroke="#4a9cff"/>
+<text x="452" y="82" font-size="13" fill="#222">R3 Unicast-Tabelle: 10.1.1.0/24 via R1, Gi0/1</text>
+<text x="452" y="104" font-size="13" fill="#222">→ RPF-Interface für Quelle S = Gi0/1</text>
+<text x="452" y="265" font-size="13" fill="#39c86a">Paket von S auf Gi0/1: RPF OK → weiter an OIL</text>
+<text x="452" y="287" font-size="13" fill="#ff6b6b">Kopie von S auf Gi0/2: RPF-Fehler → Drop</text>
+<g font-size="13" fill="#222">
+<text x="30" y="360">• Geprüft wird die QUELL-Adresse gegen die Unicast-Routing-Tabelle (PIM ist protokollunabhängig).</text>
+<text x="30" y="382">• Auf dem Shared Tree (*,G) wird gegen die RP-Adresse geprüft, auf dem SPT (S,G) gegen die Quelle.</text>
+<text x="30" y="404">• Abweichung zwischen Unicast-Pfad und Multicast-Pfad? → static mroute (ip mroute) oder MBGP.</text>
+<text x="30" y="426">• Prüfen: show ip rpf 10.1.1.10 · Incoming interface in show ip mroute = RPF-Interface</text>
+</g>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>SNMP Manager und Agent</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">SNMP: Manager, Agent, MIB</text>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect x="40" y="70" width="160" height="90" rx="8" fill="#4a9cff"/><text x="120" y="105" text-anchor="middle" font-size="15" fill="#fff">NMS (Manager)</text><text x="120" y="128" text-anchor="middle" font-size="12" fill="#fff">Polling, Historie,</text><text x="120" y="144" text-anchor="middle" font-size="12" fill="#fff">Alarme</text>
+<circle cx="600" cy="115" r="40" fill="#39c86a"/><text x="600" y="112" text-anchor="middle" font-size="14" fill="#222">R</text><text x="600" y="130" text-anchor="middle" font-size="11" fill="#222">Agent</text>
+<rect x="660" y="85" width="120" height="60" rx="6" fill="#ffd23f"/><text x="720" y="108" text-anchor="middle" font-size="13" fill="#222">MIB</text><text x="720" y="126" text-anchor="middle" font-size="11" fill="#222">Objekte per OID</text>
+<line x1="205" y1="90" x2="555" y2="90" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<text x="380" y="82" text-anchor="middle" font-size="12" fill="#222">Get / GetNext / GetBulk / Set → UDP 161</text>
+<line x1="555" y1="110" x2="205" y2="110" stroke="#222" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#a)"/>
+<text x="380" y="125" text-anchor="middle" font-size="12" fill="#222">Response</text>
+<line x1="555" y1="145" x2="205" y2="145" stroke="#ff6b6b" stroke-width="2" marker-end="url(#a)"/>
+<text x="380" y="162" text-anchor="middle" font-size="12" fill="#ff6b6b">Trap (unbestätigt) / Inform (bestätigt) → UDP 162</text>
+<g font-size="12" fill="#222">
+<rect x="20" y="200" width="760" height="30" fill="#eee"/>
+<text x="30" y="220" font-weight="bold">Version</text><text x="150" y="220" font-weight="bold">Sicherheit</text><text x="480" y="220" font-weight="bold">Besonderheiten</text>
+<text x="30" y="250">SNMPv1</text><text x="150" y="250">Community im Klartext</text><text x="480" y="250">Get, GetNext, Set, Response, Trap</text>
+<text x="30" y="275">SNMPv2c</text><text x="150" y="275">Community im Klartext</text><text x="480" y="275">+ GetBulk, Inform, 64-bit-Counter</text>
+<text x="30" y="300">SNMPv3</text><text x="150" y="300">User/Gruppe, Auth + Verschlüsselung</text><text x="480" y="300">Security-Level pro Gruppe</text>
+</g>
+<rect x="20" y="325" width="245" height="100" rx="6" fill="#ffd23f" opacity="0.5"/><text x="30" y="350" font-size="14" font-weight="bold" fill="#222">noAuthNoPriv</text><text x="30" y="372" font-size="12" fill="#222">nur Benutzername</text><text x="30" y="390" font-size="12" fill="#222">Keyword: noauth</text>
+<rect x="277" y="325" width="245" height="100" rx="6" fill="#4a9cff" opacity="0.5"/><text x="287" y="350" font-size="14" font-weight="bold" fill="#222">authNoPriv</text><text x="287" y="372" font-size="12" fill="#222">HMAC MD5/SHA</text><text x="287" y="390" font-size="12" fill="#222">keine Verschlüsselung · auth</text>
+<rect x="535" y="325" width="245" height="100" rx="6" fill="#39c86a" opacity="0.6"/><text x="545" y="350" font-size="14" font-weight="bold" fill="#222">authPriv</text><text x="545" y="372" font-size="12" fill="#222">Auth + DES/3DES/AES</text><text x="545" y="390" font-size="12" fill="#222">Keyword: priv · empfohlen</text>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>PIM-SM: Join, Register, Register-Stop und SPT-Switchover</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">PIM Sparse Mode – Ablauf in 6 Schritten</text>
+<rect x="20" y="150" width="70" height="30" fill="#fff" stroke="#222"/><text x="55" y="170" text-anchor="middle" font-size="12" fill="#222">Quelle S</text>
+<circle cx="160" cy="165" r="24" fill="#fff" stroke="#222" stroke-width="2"/><text x="160" y="170" text-anchor="middle" font-size="12" fill="#222">FHR</text>
+<circle cx="400" cy="75" r="26" fill="#ffd23f" stroke="#222" stroke-width="2"/><text x="400" y="80" text-anchor="middle" font-size="13" fill="#222">RP</text>
+<circle cx="400" cy="255" r="24" fill="#fff" stroke="#222" stroke-width="2"/><text x="400" y="260" text-anchor="middle" font-size="12" fill="#222">R-mid</text>
+<circle cx="640" cy="165" r="24" fill="#fff" stroke="#222" stroke-width="2"/><text x="640" y="170" text-anchor="middle" font-size="12" fill="#222">LHR</text>
+<rect x="705" y="150" width="75" height="30" fill="#fff" stroke="#222"/><text x="742" y="170" text-anchor="middle" font-size="12" fill="#222">Empfänger</text>
+<line x1="90" y1="165" x2="136" y2="165" stroke="#222"/>
+<line x1="180" y1="152" x2="376" y2="85" stroke="#222"/>
+<line x1="424" y1="85" x2="620" y2="152" stroke="#222"/>
+<line x1="180" y1="178" x2="378" y2="248" stroke="#222"/>
+<line x1="422" y1="248" x2="620" y2="178" stroke="#222"/>
+<line x1="664" y1="165" x2="705" y2="165" stroke="#222"/>
+<text x="540" y="100" font-size="13" fill="#4a9cff" font-weight="bold">1</text>
+<text x="270" y="100" font-size="13" fill="#ff6b6b" font-weight="bold">2 3 4</text>
+<text x="520" y="240" font-size="13" fill="#39c86a" font-weight="bold">5 6</text>
+<g font-size="13" fill="#222">
+<text x="30" y="310"><tspan fill="#4a9cff" font-weight="bold">1</tspan> Empfänger sendet IGMP-Report → LHR (DR) schickt (*,G)-Join hop-by-hop zum RP → Shared Tree.</text>
+<text x="30" y="332"><tspan fill="#ff6b6b" font-weight="bold">2</tspan> Quelle sendet → FHR (DR) kapselt Daten in PIM-Register (Unicast) an den RP.</text>
+<text x="30" y="354"><tspan fill="#ff6b6b" font-weight="bold">3</tspan> RP packt aus, leitet den (*,G)-Baum hinab und sendet (S,G)-Join Richtung Quelle.</text>
+<text x="30" y="376"><tspan fill="#ff6b6b" font-weight="bold">4</tspan> Daten kommen nativ über den (S,G)-Baum am RP an → RP sendet Register-Stop (Unicast) an FHR.</text>
+<text x="30" y="398"><tspan fill="#39c86a" font-weight="bold">5</tspan> LHR erhält das erste Paket (SPT-Threshold Default 0) → (S,G)-Join direkt Richtung Quelle.</text>
+<text x="30" y="420"><tspan fill="#39c86a" font-weight="bold">6</tspan> Traffic läuft über R-mid (SPT); LHR schickt (S,G,rpt)-Prune (RP-Bit) zum RP → Shared-Pfad für S gekappt.</text>
+</g>
+</svg>

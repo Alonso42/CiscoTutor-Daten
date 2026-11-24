@@ -1,0 +1,2512 @@
+[
+    {
+        "id":  "slg-sv-001",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 shows:\n  address        ref clock      st  when  poll reach  delay  offset  disp\n*~10.1.1.1       127.127.1.1     2    36    64   377   1.01   -0.21  0.95\n+~10.2.2.2       10.1.1.1        3    12    64   377   1.85    0.34  1.10\n * sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured\nWhich stratum does R1 report in \u0027show ntp status\u0027?",
+        "optionen":  [
+                         "Stratum 2",
+                         "Stratum 1",
+                         "Stratum 3",
+                         "Stratum 4"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "R1 ist auf den sys.peer (*) 10.1.1.1 synchronisiert, der Stratum 2 hat. Ein Client meldet immer das Stratum seiner Quelle plus eins, also Stratum 3."
+    },
+    {
+        "id":  "slg-sv-002",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Same output on R1:\n*~10.1.1.1   127.127.1.1  2  36  64  377  1.01  -0.21  0.95\n+~10.2.2.2   10.1.1.1     3  12  64  377  1.85   0.34  1.10\nWhat is the role of 10.2.2.2?",
+        "optionen":  [
+                         "The current synchronization source, because it has the larger offset",
+                         "A candidate that passed the selection checks and could become sys.peer",
+                         "A configured server that has not answered a single poll so far",
+                         "A falseticker that was rejected because its time disagrees with others"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Das Pluszeichen markiert einen Kandidaten: Der Server ist erreichbar (reach 377) und plausibel, wird aber derzeit nicht als Quelle genutzt. Die aktuelle Quelle ist mit * markiert, ein Falseticker mit x."
+    },
+    {
+        "id":  "slg-sv-003",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 has three NTP servers: S1 (stratum 1), S2 and S3 (both stratum 2). S2 and S3 agree within a few milliseconds, but the time of S1 is 40 seconds off. What does R1 do?",
+        "optionen":  [
+                         "It rejects S1 as a falseticker and synchronizes to S2 or S3",
+                         "It averages all three servers and applies a 13-second offset",
+                         "It stops synchronizing until S1 is removed from the configuration",
+                         "It synchronizes to S1 because the lowest stratum always wins"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "NTP vergleicht die Zeit mehrerer Quellen und synchronisiert nicht auf ein Gerät, dessen Zeit deutlich von den anderen abweicht – auch wenn dessen Stratum niedriger ist. S1 wird als Falseticker (x) verworfen."
+    },
+    {
+        "id":  "slg-sv-004",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer enters \u0027ntp master\u0027 without a stratum value. Which stratum does the router advertise to its clients?",
+        "optionen":  [
+                         "15",
+                         "1",
+                         "16",
+                         "8"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne Angabe verwendet \u0027ntp master\u0027 Stratum 8. Mit dem optionalen Wert (1–15) kann man ein anderes Stratum festlegen; 16 bedeutet unsynchronisiert."
+    },
+    {
+        "id":  "slg-sv-005",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A branch router is configured with:\nntp authentication-key 1 md5 MyPassword\nntp authenticate\nntp server 10.0.1.22 key 1\nThe server uses the same key, but \u0027show ntp status\u0027 reports \u0027Clock is unsynchronized\u0027. What is missing on the branch router?",
+        "optionen":  [
+                         "ntp master 3",
+                         "ntp trusted-key 1",
+                         "ntp source Loopback0",
+                         "ntp access-group peer 1"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein definierter Schlüssel wird erst durch \u0027ntp trusted-key\u0027 als gültig markiert. Ohne trusted-key kann der Client den Server nicht authentisieren und bleibt unsynchronisiert."
+    },
+    {
+        "id":  "slg-sv-006",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Branch routers use \u0027ntp server 172.16.1.5\u0027, the Ethernet0/0 address of the Central router. When Ethernet0/0 fails, the branches lose NTP sync, although a backup path to Central exists. What is the best fix?",
+        "optionen":  [
+                         "Configure \u0027ntp master 1\u0027 on each branch so that they keep their own time",
+                         "Point the clients to a Central loopback and use \u0027ntp source\u0027 for that loopback",
+                         "Configure the branch routers as NTP broadcast clients on all WAN links",
+                         "Increase the NTP poll interval on the branch routers to 1024 seconds"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Eine Loopback ist immer up/up und bleibt über jeden verfügbaren Pfad erreichbar. Mit \u0027ntp source Loopback\u0027 antwortet Central auch von dieser Adresse, sodass die Clients bei einem Interface-Ausfall synchron bleiben."
+    },
+    {
+        "id":  "slg-sv-007",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about NTP authentication on Cisco IOS are true? (Choose two.)",
+        "optionen":  [
+                         "It authenticates the time source to the client",
+                         "It encrypts the time information between server and client",
+                         "The device still answers unauthenticated requests, so ACLs are needed",
+                         "It requires X.509 certificates on every Cisco NTP client",
+                         "It prevents unauthenticated clients from receiving any time"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "NTP-Authentifizierung prüft nur die Quelle, nicht den Client – ein Server beantwortet weiterhin auch nicht authentisierte Anfragen. Deshalb begrenzt man den Zugriff zusätzlich mit \u0027ntp access-group\u0027. Verschlüsselt wird nichts, es wird nur ein Hash geprüft."
+    },
+    {
+        "id":  "slg-sv-008",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Synchronisiere den Router authentifiziert mit Schlüssel 1 auf den NTP-Server 10.0.1.22.",
+        "bausteine":  [
+                          "ntp",
+                          "server",
+                          "10.0.1.22",
+                          "key",
+                          "1",
+                          "peer",
+                          "trusted-key",
+                          "master"
+                      ],
+        "loesung":  [
+                        "ntp",
+                        "server",
+                        "10.0.1.22",
+                        "key",
+                        "1"
+                    ],
+        "erklaerung":  "\u0027ntp server \u003cip\u003e key \u003cn\u003e\u0027 macht den Router zum Client und verlangt, dass die Antworten mit Schlüssel n signiert sind. Zusätzlich müssen \u0027ntp authenticate\u0027, der Schlüssel und \u0027ntp trusted-key\u0027 konfiguriert sein."
+    },
+    {
+        "id":  "slg-sv-009",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege den NTP-Schlüssel 1 als MD5-Schlüssel mit dem Wert MyPassword an.",
+        "bausteine":  [
+                          "ntp",
+                          "authentication-key",
+                          "1",
+                          "md5",
+                          "MyPassword",
+                          "trusted-key",
+                          "authenticate",
+                          "key-string"
+                      ],
+        "loesung":  [
+                        "ntp",
+                        "authentication-key",
+                        "1",
+                        "md5",
+                        "MyPassword"
+                    ],
+        "erklaerung":  "\u0027ntp authentication-key\u0027 definiert Nummer, Algorithmus und Wert des Schlüssels. Erst \u0027ntp authenticate\u0027 schaltet die Prüfung ein und \u0027ntp trusted-key 1\u0027 erklärt den Schlüssel für gültig."
+    },
+    {
+        "id":  "slg-sv-010",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Erlaube den Geräten aus ACL 1 an diesem Router ausschließlich Zeit-Synchronisationsanfragen.",
+        "bausteine":  [
+                          "ntp",
+                          "access-group",
+                          "serve-only",
+                          "1",
+                          "peer",
+                          "query-only",
+                          "access-class",
+                          "serve"
+                      ],
+        "loesung":  [
+                        "ntp",
+                        "access-group",
+                        "serve-only",
+                        "1"
+                    ],
+        "erklaerung":  "serve-only erlaubt nur Zeitanfragen, keine Control-Queries und keine Synchronisation des Routers auf diese Geräte. \u0027serve\u0027 würde zusätzlich Queries erlauben, \u0027peer\u0027 sogar die eigene Synchronisation."
+    },
+    {
+        "id":  "slg-sv-011",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Einschränkung von \u0027ntp access-group\u0027 ihrer Wirkung zu.",
+        "paare":  [
+                      [
+                          "peer",
+                          "Requests and queries; the device may also sync to these systems"
+                      ],
+                      [
+                          "serve",
+                          "Requests and queries; the device does not sync to these systems"
+                      ],
+                      [
+                          "serve-only",
+                          "Only time synchronization requests are allowed"
+                      ],
+                      [
+                          "query-only",
+                          "Only NTP control queries are allowed"
+                      ]
+                  ],
+        "erklaerung":  "Die Stufen sind abnehmend großzügig: peer erlaubt alles inklusive eigener Synchronisation, serve alles außer dieser, serve-only nur Zeitanfragen und query-only nur Control-Queries."
+    },
+    {
+        "id":  "slg-sv-012",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Core1 and Core2 should back each other up as NTP sources and serve all devices in 10.1.0.0/16, but must never synchronize to these devices. Which \u0027ntp access-group\u0027 combination fits on each core router?",
+        "optionen":  [
+                         "query-only for the other core router, serve for the 10.1.0.0/16 devices",
+                         "peer for the 10.1.0.0/16 devices, serve-only for the other core router",
+                         "peer for the other core router, serve-only for the 10.1.0.0/16 devices",
+                         "serve for the other core router, peer for the 10.1.0.0/16 devices"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Zwischen den Core-Routern braucht man \u0027peer\u0027, damit sie sich gegenseitig synchronisieren dürfen. Die übrigen Geräte bekommen \u0027serve-only\u0027: Sie erhalten Zeit, aber die Cores synchronisieren sich nie auf sie."
+    },
+    {
+        "id":  "slg-sv-013",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which NTP mode is intended for a group of servers at a similar stratum that act as mutual backups?",
+        "optionen":  [
+                         "Broadcast mode",
+                         "Symmetric (peer) mode",
+                         "Client mode",
+                         "Multicast client mode"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Im Peer-Modus (ntp peer) tauschen gleichrangige Server Zeit in beide Richtungen aus. Verliert einer seine Referenz, synchronisiert er sich über die verbleibenden Peers."
+    },
+    {
+        "id":  "slg-sv-014",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about NTP broadcast mode on Cisco devices is correct?",
+        "optionen":  [
+                         "It gives higher accuracy than client/server mode because packets are smaller",
+                         "Clients must use \u0027ntp server\u0027 with the broadcast address of the subnet",
+                         "Clients need no server address, but the server must be in the same subnet",
+                         "Routers forward NTP broadcasts, so one server can cover all the subnets"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Broadcast-Clients müssen keinen Server kennen, was die Konfiguration vereinfacht. Weil Router Broadcasts nicht weiterleiten, muss der Broadcast-Server im selben Subnetz liegen; die Genauigkeit ist durch den einseitigen Informationsfluss etwas geringer."
+    },
+    {
+        "id":  "slg-sv-015",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus: Lass dieses Interface NTP-Broadcasts als Client empfangen.",
+        "bausteine":  [
+                          "ntp",
+                          "broadcast",
+                          "client",
+                          "server",
+                          "multicast",
+                          "listen"
+                      ],
+        "loesung":  [
+                        "ntp",
+                        "broadcast",
+                        "client"
+                    ],
+        "erklaerung":  "\u0027ntp broadcast client\u0027 auf dem Interface lässt das Gerät NTP-Broadcasts annehmen. Auf der Serverseite sendet \u0027ntp broadcast\u0027 im Interface die Zeit ins lokale Subnetz."
+    },
+    {
+        "id":  "slg-sv-016",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A router configured with \u0027ntp master 3\u0027 gets \u0027ntp access-group peer 10\u0027, where ACL 10 permits only a partner router. Afterwards the router itself shows \u0027Clock is unsynchronized\u0027. What is the most likely cause?",
+        "optionen":  [
+                         "ACL 10 does not permit the internal reference clock address 127.127.x.1",
+                         "ACL 10 must use serve-only, because a master cannot use the peer keyword",
+                         "NTP access groups block UDP 123 and therefore all incoming NTP replies",
+                         "\u0027ntp master\u0027 needs a stratum lower than 3 as soon as any ACL is applied"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027ntp master\u0027 erzeugt eine interne Referenzuhr mit der Adresse 127.127.x.1. Eine peer-ACL muss diese Quelle erlauben, sonst kann sich das Gerät nicht mehr auf seine eigene Referenz synchronisieren."
+    },
+    {
+        "id":  "slg-sv-017",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "By default, a Cisco IOS NTP client adjusts its polling interval dynamically between 64 and ___ seconds.",
+        "optionen":  [
+                         "512",
+                         "128",
+                         "1024",
+                         "3600"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das Poll-Intervall liegt zwischen 2^6 = 64 und 2^10 = 1024 Sekunden und passt sich den Netzbedingungen an. Für die Synchronisation zweier Systeme genügt etwa eine Transaktion pro Minute."
+    },
+    {
+        "id":  "slg-sv-018",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den NTP-Wert seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "Offset",
+                          "Correction applied to the client clock"
+                      ],
+                      [
+                          "Delay",
+                          "Round-trip time of the NTP exchange"
+                      ],
+                      [
+                          "Dispersion",
+                          "Estimated maximum error of the time exchange"
+                      ],
+                      [
+                          "Stratum",
+                          "Number of NTP hops to the reference clock"
+                      ]
+                  ],
+        "erklaerung":  "NTP schätzt Delay, Offset und Dispersion pro Server, um trotz variabler Paketlaufzeiten genau zu bleiben. Das Stratum beschreibt dagegen die Position in der Hierarchie."
+    },
+    {
+        "id":  "slg-sv-019",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two capabilities did NTPv4 add compared with NTPv3? (Choose two.)",
+        "optionen":  [
+                         "A security framework based on public key cryptography",
+                         "Stratum values extended up to 255",
+                         "Support for IPv6",
+                         "TCP transport instead of UDP port 123",
+                         "Poll intervals down to one millisecond"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "NTPv4 bringt IPv6-Unterstützung (mit IPv6-Multicast statt IPv4-Broadcast) und ein Sicherheitsframework auf Basis von Public-Key-Kryptografie und X.509. Transport bleibt UDP 123."
+    },
+    {
+        "id":  "slg-sv-020",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "SW1 is configured with \u0027ntp server 10.1.1.1\u0027 (the branch router). SW2 is configured with \u0027ntp server\u0027 pointing to SW1. What happens?",
+        "optionen":  [
+                         "SW1 redirects SW2 to the branch router 10.1.1.1 automatically",
+                         "SW2 synchronizes to SW1 and reports SW1\u0027s stratum plus one",
+                         "SW2 fails, because SW1 has no \u0027ntp master\u0027 command configured",
+                         "SW2 synchronizes only if SW1 is also configured with \u0027ntp peer\u0027"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein synchronisierter Cisco-NTP-Client beantwortet selbst Zeitanfragen und wirkt damit als Server. So kann SW2 von SW1 lernen und liegt eine Stratum-Stufe tiefer in der Hierarchie."
+    },
+    {
+        "id":  "slg-sv-021",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The core routers are synchronized to a GPS-based stratum 1 server. A technician configures \u0027ntp master 1\u0027 on a lab router whose clock was set manually and is wrong, and connects it to the network. What is the main risk?",
+        "optionen":  [
+                         "NTP authentication is disabled on all devices in the same subnet",
+                         "The lab router floods NTP broadcasts that overload the core CPUs",
+                         "The core routers demote the GPS server to stratum 16 automatically",
+                         "Devices may prefer the lab router\u0027s low stratum and take on a wrong time"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027ntp master\u0027 sollte nur auf Geräten mit autoritativer Zeit stehen. Ein niedriges Stratum kann gültige Quellen übertrumpfen; mehrere uneinige Master machen die Zeithaltung instabil."
+    },
+    {
+        "id":  "slg-sv-022",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Central has \u0027ntp master 4\u0027. Branch has \u0027ntp server\u0027 pointing to Central, and SW1 has \u0027ntp server\u0027 pointing to Branch. When everything is synchronized, SW1 reports stratum ___.",
+        "optionen":  [
+                         "6",
+                         "5",
+                         "4",
+                         "7"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Jeder NTP-Hop erhöht das Stratum um eins: Central 4, Branch 5, SW1 6."
+    },
+    {
+        "id":  "slg-sv-023",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which command makes a router periodically copy its NTP-synchronized time into the hardware calendar, so that a valid time is available right after a reload?",
+        "optionen":  [
+                         "clock save",
+                         "clock calendar-valid",
+                         "ntp update-calendar",
+                         "ntp master"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027ntp update-calendar\u0027 schreibt die NTP-Zeit regelmäßig in die batteriegepufferte Hardware-Uhr. \u0027clock calendar-valid\u0027 erklärt dagegen den Calendar selbst zur autoritativen Quelle."
+    },
+    {
+        "id":  "slg-sv-024",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two NTP servers with the same stratum are configured on a router. Which configuration makes the router favor 10.1.1.1 when both are usable?",
+        "optionen":  [
+                         "ntp server 10.1.1.1 prefer",
+                         "ntp server 10.1.1.1 primary",
+                         "ntp server 10.1.1.1 priority 1",
+                         "ntp peer 10.1.1.1 master"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Das Schlüsselwort \u0027prefer\u0027 gibt einem Server bei der Auswahl Vorrang vor gleichwertigen Quellen. \u0027primary\u0027 und \u0027priority\u0027 gibt es beim ntp-server-Befehl nicht."
+    },
+    {
+        "id":  "slg-sv-025",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Verwende die Adresse von Loopback10 als Absenderadresse aller NTP-Pakete.",
+        "bausteine":  [
+                          "ntp",
+                          "source",
+                          "Loopback10",
+                          "update-source",
+                          "source-interface",
+                          "master"
+                      ],
+        "loesung":  [
+                        "ntp",
+                        "source",
+                        "Loopback10"
+                    ],
+        "erklaerung":  "\u0027ntp source\u0027 legt das Interface fest, dessen IP als Quelladresse der NTP-Pakete dient. Mit einer Loopback bleibt diese Adresse auch bei Ausfall eines physischen Interfaces erreichbar."
+    },
+    {
+        "id":  "slg-sv-026",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why should NTP be protected with authentication and access lists?",
+        "optionen":  [
+                         "Wrong time can break certificate checks and time-based security policies",
+                         "NTP packets carry device passwords that attackers could read in cleartext",
+                         "Unprotected NTP lets attackers change the router\u0027s running configuration",
+                         "NTP is a TCP service that is vulnerable to SYN flooding attacks by default"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Zertifikate und zeitbasierte Sicherheitsmechanismen hängen von korrekter Zeit ab. Ein Angreifer, der Geräte auf eine falsche Zeitquelle lenkt, kann sie dadurch stören; zudem können Anfragefluten einen NTP-Server überlasten."
+    },
+    {
+        "id":  "slg-sv-027",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which command shows the address of the internal reference clock that \u0027ntp master\u0027 created?",
+        "optionen":  [
+                         "show running-config | include ntp",
+                         "show clock detail",
+                         "show ntp associations",
+                         "show ntp status"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027show ntp associations\u0027 listet alle Assoziationen inklusive der internen Referenz 127.127.x.1. \u0027show ntp status\u0027 zeigt nur Synchronisationszustand, Stratum und Referenz zusammengefasst."
+    },
+    {
+        "id":  "slg-sv-028",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which synchronization accuracy does NTP routinely achieve on a LAN?",
+        "optionen":  [
+                         "About 100 milliseconds",
+                         "About 1 millisecond",
+                         "About 1 second",
+                         "About 1 nanosecond"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "NTP erreicht im LAN typischerweise etwa 1 ms und über WAN-Strecken etwa 10 ms. Für Genauigkeit im Sub-Mikrosekundenbereich braucht man PTP."
+    },
+    {
+        "id":  "slg-sv-029",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In \u0027show ntp status\u0027, a clock that is not synchronized is reported with stratum ___.",
+        "optionen":  [
+                         "16",
+                         "15",
+                         "0",
+                         "1"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Stratum 16 bedeutet in NTP \u0027unsynchronisiert\u0027. Nutzbare Strata reichen von 1 bis 15."
+    },
+    {
+        "id":  "slg-sv-030",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den PTP-Clock-Typ seiner Funktion zu.",
+        "paare":  [
+                      [
+                          "Grandmaster clock",
+                          "Primary time source of the domain, often fed by GPS"
+                      ],
+                      [
+                          "Ordinary clock",
+                          "End node with a single PTP port"
+                      ],
+                      [
+                          "Boundary clock",
+                          "Syncs upstream on one port and serves downstream ports"
+                      ],
+                      [
+                          "Transparent clock",
+                          "Forwards PTP and adds its residence time to the correction field"
+                      ]
+                  ],
+        "erklaerung":  "Der Grandmaster ist die Referenz, Ordinary Clocks sind Endgeräte mit einem Port. Boundary Clocks terminieren PTP und versorgen ihre Downstream-Ports neu, Transparent Clocks leiten weiter und korrigieren die Verweilzeit."
+    },
+    {
+        "id":  "slg-sv-031",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which attribute does the IEEE 1588-2008 Best Master Clock Algorithm compare first?",
+        "optionen":  [
+                         "Priority1",
+                         "Clock accuracy",
+                         "Clock class",
+                         "Clock identity"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Reihenfolge lautet Priority1, Clock Class, Accuracy, Variance, Priority2 und zuletzt die Clock Identity als Tie-Breaker. Priority1 kann der Administrator setzen und steht deshalb ganz vorn."
+    },
+    {
+        "id":  "slg-sv-032",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Clock A: Priority1 128, clock class 6 (locked to GPS). Clock B: Priority1 100, clock class 248 (free-running). All other attributes use defaults. Which clock becomes grandmaster?",
+        "optionen":  [
+                         "Clock B, because Priority1 is compared first and 100 is lower",
+                         "Clock A, because BMCA prefers the higher Priority1 value of 128",
+                         "Clock A, because GPS clock quality always overrides priorities",
+                         "Clock B, because a higher clock class value means better quality"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "BMCA vergleicht zuerst Priority1, und der niedrigere Wert gewinnt. Erst bei Gleichstand würde die bessere Clock Class von A zählen – deshalb sollte man Priority1 nur bewusst verändern."
+    },
+    {
+        "id":  "slg-sv-033",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Two PTP clocks have identical Priority1, class, accuracy, variance and Priority2 values. How does BMCA decide between them?",
+        "optionen":  [
+                         "The clock with the lower clock identity (EUI-64) wins",
+                         "The clock with the higher MAC-based identity wins",
+                         "Both clocks become grandmaster for half of the ports",
+                         "The clock that sent the first Announce message wins"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die 64-Bit-Clock-Identity ist eindeutig und dient als letzter Tie-Breaker; der niedrigere Wert gewinnt. So gibt es nie zwei oder keinen Grandmaster."
+    },
+    {
+        "id":  "slg-sv-034",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does a peer-to-peer (P2P) transparent clock do that an end-to-end (E2E) transparent clock does not?",
+        "optionen":  [
+                         "It also selects the grandmaster for the whole domain",
+                         "It also measures the link delay to its upstream neighbor",
+                         "It also translates PTP into NTP for legacy clients",
+                         "It also terminates PTP and acts as primary downstream"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Beide Typen messen die Verweilzeit der Event-Messages im Switch. Die P2P-Variante misst zusätzlich per Peer-Delay die Laufzeit des Links zum Upstream-Nachbarn und addiert beides ins Correction Field."
+    },
+    {
+        "id":  "slg-sv-035",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does a PTP boundary clock handle timing?",
+        "optionen":  [
+                         "It syncs to the upstream primary on one port and acts as primary on others",
+                         "It forwards all PTP messages unchanged and only adds its residence time",
+                         "It has a single PTP port and is always an end node of the PTP domain",
+                         "It converts PTP into NTP and serves the time to attached NTP clients"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Eine Boundary Clock terminiert PTP: Ihr Secondary-Port synchronisiert sich auf die beste Clock upstream, ihre Primary-Ports versorgen die angeschlossenen Geräte downstream. Das Weiterleiten mit Korrektur ist die Aufgabe einer Transparent Clock."
+    },
+    {
+        "id":  "slg-sv-036",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which PTP clock type has a single PTP port and is the most common type, typically found on end devices?",
+        "optionen":  [
+                         "Ordinary clock",
+                         "Transparent clock",
+                         "Grandmaster clock",
+                         "Boundary clock"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ordinary Clocks haben genau einen PTP-Port und sind die Endknoten, die synchronisiert werden müssen. Per BMCA können sie auch Primary einer Subdomäne werden."
+    },
+    {
+        "id":  "slg-sv-037",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A switch runs \u0027ptp mode boundary delay-req\u0027. BMCA finds no better clock on any port. What does the switch do?",
+        "optionen":  [
+                         "It becomes the grandmaster for the connected devices",
+                         "It stops sending PTP until a grandmaster appears",
+                         "It changes to e2etransparent mode on its own",
+                         "It falls back to the NTP server it has configured"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Im Boundary-Modus nimmt der Switch an der Wahl der besten Clock teil. Findet er keine bessere, wird er selbst Grandmaster und Parent-Clock für alle angeschlossenen Geräte."
+    },
+    {
+        "id":  "slg-sv-038",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Betreibe den Switch als PTP Boundary Clock mit dem Delay-Request-Mechanismus.",
+        "bausteine":  [
+                          "ptp",
+                          "mode",
+                          "boundary",
+                          "delay-req",
+                          "pdelay-req",
+                          "e2etransparent",
+                          "clock",
+                          "master"
+                      ],
+        "loesung":  [
+                        "ptp",
+                        "mode",
+                        "boundary",
+                        "delay-req"
+                    ],
+        "erklaerung":  "\u0027ptp mode boundary delay-req\u0027 aktiviert den Boundary-Modus mit Delay_Req/Delay_Resp. \u0027pdelay-req\u0027 wäre der Peer-Delay-Mechanismus, e2etransparent ein anderer Clock-Modus."
+    },
+    {
+        "id":  "slg-sv-039",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A boundary-clock switch has \u0027ptp vlan 5\u0027 on trunk Gi1/0/1 but never synchronizes. VLAN 5 exists but is not in the trunk\u0027s allowed VLAN list. Why does this matter?",
+        "optionen":  [
+                         "Only PTP packets in the PTP VLAN are processed, so VLAN 5 must be allowed",
+                         "PTP needs a routed SVI in VLAN 5 before a trunk can carry PTP messages",
+                         "PTP requires VLAN 1 on every trunk to elect the grandmaster clock",
+                         "PTP always uses the native VLAN, so \u0027ptp vlan 5\u0027 is ignored anyway"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Im Boundary-Modus verarbeitet der Switch nur PTP-Pakete im konfigurierten PTP-VLAN, alle anderen werden verworfen. Das VLAN muss angelegt und auf dem Trunk erlaubt sein; ohne \u0027ptp vlan\u0027 gilt das Native VLAN."
+    },
+    {
+        "id":  "slg-sv-040",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "PTP must run on an SVI of a Cisco IOS XE switch. Which transport command is supported for Layer 3 PTP?",
+        "optionen":  [
+                         "ptp transport ipv4 tcp",
+                         "ptp transport ethernet",
+                         "ptp transport ipv6 udp",
+                         "ptp transport ipv4 udp"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Für Layer-3-PTP unterstützt IOS XE (Catalyst 9000) nur IPv4 über UDP; IPv6 wird für PTP nicht unterstützt. Auf Layer 2 läuft PTP direkt über Ethernet im PTP-VLAN."
+    },
+    {
+        "id":  "slg-sv-041",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which command identifies the grandmaster clock that a boundary-clock switch is synchronized to?",
+        "optionen":  [
+                         "show ptp parent",
+                         "show ptp clock",
+                         "show ptp brief",
+                         "show ptp port"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027show ptp parent\u0027 zeigt Parent und Grandmaster-Identity. \u0027show ptp brief\u0027 listet die Port-States, \u0027show ptp clock\u0027 die eigene Identity sowie Priority1/2."
+    },
+    {
+        "id":  "slg-sv-042",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The grandmaster sends PTP messages in domain 0. A boundary clock is configured with \u0027ptp domain 8\u0027. What happens?",
+        "optionen":  [
+                         "The boundary clock syncs anyway, as domains matter only for multicast",
+                         "The boundary clock drops the packets because the domain does not match",
+                         "The grandmaster changes its domain to 8 after the BMCA comparison",
+                         "Both domains merge and the lower domain number becomes the primary"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Eine PTP-Domäne ist eine Gruppe von Clocks, die sich untereinander synchronisieren. Eine Boundary Clock verwirft Pakete mit falscher Domänennummer; Default ist Domäne 0."
+    },
+    {
+        "id":  "slg-sv-043",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does PTP achieve much higher accuracy than NTP in a LAN?",
+        "optionen":  [
+                         "It polls the time source every 64 ms instead of every 64 seconds",
+                         "Every PTP switch has a GPS receiver built in as a local reference",
+                         "It uses TCP, so that lost timing packets are always retransmitted",
+                         "Hardware timestamps and per-hop delay correction in PTP-aware switches"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "PTP setzt Zeitstempel in Hardware und lässt Boundary- bzw. Transparent-Clocks die Verzögerung jedes Hops ausgleichen. Dadurch erreicht es Sub-Mikrosekunden-Genauigkeit, während NTP im LAN bei etwa 1 ms liegt."
+    },
+    {
+        "id":  "slg-sv-044",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two BMCA attributes are priorities that an administrator configures on a PTP clock? (Choose two.)",
+        "optionen":  [
+                         "Priority1",
+                         "Clock class",
+                         "Clock accuracy",
+                         "Priority2",
+                         "Clock identity"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Priority1 und Priority2 (0–255, Default 128) sind frei setzbare Prioritäten. Class, Accuracy und Variance ergeben sich aus der Qualität der Uhr, die Identity aus der EUI-64."
+    },
+    {
+        "id":  "slg-sv-045",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which PTP message type does the BMCA use to learn the properties of other clocks?",
+        "optionen":  [
+                         "Delay_Req",
+                         "Announce",
+                         "Follow_Up",
+                         "Sync"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Announce-Messages enthalten die Clock-Eigenschaften (Prioritäten, Klasse, Genauigkeit, Identity), die BMCA vergleicht. Sync, Follow_Up und Delay_Req dienen der eigentlichen Zeit- und Laufzeitmessung."
+    },
+    {
+        "id":  "slg-sv-046",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "PTP Priority1 and Priority2 range from 0 to 255; the default value of both is ___.",
+        "optionen":  [
+                         "128",
+                         "255",
+                         "0",
+                         "100"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beide Prioritäten stehen standardmäßig auf 128. Ein niedrigerer Wert macht eine Clock im BMCA attraktiver."
+    },
+    {
+        "id":  "slg-sv-047",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "PTP is enabled globally with the default profile, which enables it on all interfaces. Gi1/0/24 connects to a device that must not take part in PTP. What do you configure?",
+        "optionen":  [
+                         "no ptp enable under Gi1/0/24",
+                         "ptp domain 0 under Gi1/0/24",
+                         "no ptp vlan under Gi1/0/24",
+                         "ptp mode p2ptransparent globally"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Nach globaler Aktivierung läuft PTP auf allen Interfaces. Mit \u0027no ptp enable\u0027 im Interface-Modus nimmt man einzelne Ports gezielt heraus."
+    },
+    {
+        "id":  "slg-sv-048",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about \u0027ptp mode e2etransparent\u0027 on a Cisco IE switch is correct?",
+        "optionen":  [
+                         "The switch measures every link delay with Pdelay request messages",
+                         "The switch becomes grandmaster when no better clock is detected",
+                         "The switch corrects for the delay each PTP packet spends inside it",
+                         "The switch ignores PTP and forwards it like any other traffic"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Im E2E-Transparent-Modus korrigiert der Switch die Verweilzeit jedes PTP-Pakets, ohne selbst an der Primary-Wahl teilzunehmen. Laut Kurs ist das der Default-Modus und erzeugt weniger Jitter als der Boundary-Modus."
+    },
+    {
+        "id":  "slg-sv-049",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "R1 is configured with \u0027logging trap errors\u0027. Which two of these messages are sent to the syslog server? (Choose two.)",
+        "optionen":  [
+                         "%LINEPROTO-5-UPDOWN",
+                         "%SYS-6-LOGGINGHOST_STARTSTOP",
+                         "%LINK-3-UPDOWN",
+                         "%LINK-5-CHANGED",
+                         "%SYS-2-MALLOCFAIL"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "errors ist Level 3; gesendet werden alle Meldungen mit Level 0 bis 3. Die Zahl zwischen den Bindestrichen ist die Severity: 3 und 2 werden gesendet, 5 und 6 nicht."
+    },
+    {
+        "id":  "slg-sv-050",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show logging\u0027 on R1 displays:\nConsole logging: level debugging\nMonitor logging: level debugging\nBuffer logging: level debugging\nTrap logging: level informational\nAn engineer connected via SSH, without \u0027terminal monitor\u0027, enables \u0027debug ip ospf adj\u0027. Where do the debug messages appear?",
+        "optionen":  [
+                         "On the syslog server only, because trap logging is enabled on R1",
+                         "Nowhere, because debug output first requires \u0027logging debug\u0027 on R1",
+                         "In the SSH session and on the syslog server, but not on the console",
+                         "On the console and in the buffer, not in the SSH session or on the server"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Debug-Meldungen haben Severity 7. Console und Buffer stehen auf debugging und zeigen sie; der Server erhält nur bis Level 6. Die SSH-Sitzung zeigt Log-Meldungen erst nach \u0027terminal monitor\u0027."
+    },
+    {
+        "id":  "slg-sv-051",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An engineer connected via SSH sees no log messages, although \u0027logging monitor debugging\u0027 is configured. What must the engineer enter in the session?",
+        "optionen":  [
+                         "show logging",
+                         "terminal monitor",
+                         "logging console",
+                         "logging synchronous"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Für VTY- und AUX-Sitzungen muss man die Ausgabe von Log-Meldungen pro Sitzung mit \u0027terminal monitor\u0027 einschalten. \u0027logging monitor\u0027 legt nur das Level dafür fest."
+    },
+    {
+        "id":  "slg-sv-052",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What happens when the local logging buffer is full?",
+        "optionen":  [
+                         "Logging stops until the buffer is cleared",
+                         "The buffer grows into flash automatically",
+                         "New messages go only to the console",
+                         "New messages overwrite the oldest ones"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Logging-Buffer ist zirkulär: Ist er voll, überschreiben neue Meldungen die ältesten. Deshalb sollte man ihn ausreichend, aber nicht zu groß dimensionieren, um den Speicher nicht zu erschöpfen."
+    },
+    {
+        "id":  "slg-sv-053",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An intermittent problem causes a router to reload, and the buffered log is lost every time. Which command keeps log messages across reloads on the router itself?",
+        "optionen":  [
+                         "logging host 10.1.1.10",
+                         "logging persistent",
+                         "logging buffered 64000",
+                         "logging trap debugging"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027logging persistent\u0027 schreibt Log-Meldungen in Dateien auf dem Flash, die einen Reload überstehen. Der Buffer liegt im RAM und geht beim Neustart verloren; ein Syslog-Server liegt außerhalb des Routers."
+    },
+    {
+        "id":  "slg-sv-054",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In which order does \u0027show logging\u0027 list the messages stored in the buffer?",
+        "optionen":  [
+                         "Sorted by severity, most severe message first",
+                         "Sorted by facility in alphabetical order",
+                         "Oldest message first, newest message last",
+                         "Newest message first, oldest message last"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die erste angezeigte Meldung ist die älteste im Buffer, aktuelle Ereignisse stehen am Ende der Ausgabe."
+    },
+    {
+        "id":  "slg-sv-055",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Bestandteile der Meldung \u0027%LINEPROTO-5-UPDOWN: Line protocol on Interface Fa0/22, changed state to up\u0027 zu.",
+        "paare":  [
+                      [
+                          "LINEPROTO",
+                          "Facility"
+                      ],
+                      [
+                          "5",
+                          "Severity"
+                      ],
+                      [
+                          "UPDOWN",
+                          "Mnemonic"
+                      ],
+                      [
+                          "Line protocol on Interface Fa0/22, changed state to up",
+                          "Description"
+                      ]
+                  ],
+        "erklaerung":  "Das Format lautet %FACILITY-SEVERITY-MNEMONIC: Beschreibung. Die Facility nennt das Subsystem, die Severity (0–7) die Schwere, das Mnemonic identifiziert die Meldung eindeutig."
+    },
+    {
+        "id":  "slg-sv-056",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Versieh alle Log-Meldungen mit Datum und Uhrzeit inklusive Millisekunden.",
+        "bausteine":  [
+                          "service",
+                          "timestamps",
+                          "log",
+                          "datetime",
+                          "msec",
+                          "uptime",
+                          "debug",
+                          "sequence-numbers"
+                      ],
+        "loesung":  [
+                        "service",
+                        "timestamps",
+                        "log",
+                        "datetime",
+                        "msec"
+                    ],
+        "erklaerung":  "\u0027service timestamps log datetime msec\u0027 setzt Datum und Uhrzeit mit Millisekunden vor jede Log-Meldung. \u0027uptime\u0027 würde stattdessen die Zeit seit dem Boot anzeigen, \u0027debug\u0027 betrifft nur Debug-Meldungen."
+    },
+    {
+        "id":  "slg-sv-057",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Log messages on R1 suddenly begin with \u0027000123:\u0027. Which command produced this?",
+        "optionen":  [
+                         "logging count",
+                         "service timestamps log uptime",
+                         "service sequence-numbers",
+                         "logging buffered 123"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027service sequence-numbers\u0027 nummeriert die Log-Meldungen fortlaufend. So erkennt man auf dem Server Lücken, etwa wenn UDP-Pakete verloren gingen."
+    },
+    {
+        "id":  "slg-sv-058",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two syslog messages are lost on their way to the syslog server. What happens?",
+        "optionen":  [
+                         "The server requests the missing sequence numbers from the router",
+                         "The router stores them in flash and resends them at the next poll",
+                         "The router resends them after its TCP retransmission timer expires",
+                         "Nothing; syslog over UDP has no acknowledgment or retransmission"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Syslog nutzt UDP 514 und ist damit unzuverlässig: Es gibt weder Bestätigung noch Wiederholung. Verlorene Meldungen sind schlicht weg."
+    },
+    {
+        "id":  "slg-sv-059",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The console should show only warnings and more severe messages, while the local buffer must keep everything, including debug output. Which configuration achieves this?",
+        "optionen":  [
+                         "logging console warnings and logging buffered debugging",
+                         "logging trap warnings and logging buffered informational",
+                         "logging console debugging and logging buffered warnings",
+                         "logging console errors and logging buffered informational"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "warnings (4) zeigt Level 0–4 auf der Console, debugging (7) speichert im Buffer alle Level 0–7. \u0027logging trap\u0027 betrifft nur den Syslog-Server, nicht die Console."
+    },
+    {
+        "id":  "slg-sv-060",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "To send only emergency and alert messages to the syslog server, configure \u0027logging trap ___\u0027.",
+        "optionen":  [
+                         "alerts",
+                         "emergencies",
+                         "errors",
+                         "critical"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "alerts ist Level 1, und ein Level schließt alle kleineren Zahlen ein – also 0 (emergencies) und 1 (alerts). emergencies allein würde nur Level 0 senden."
+    },
+    {
+        "id":  "slg-sv-061",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer configures only \u0027logging host 10.1.1.10\u0027 and no \u0027logging trap\u0027 command. Which severity levels are sent to the server?",
+        "optionen":  [
+                         "0 to 4 (up to warnings)",
+                         "0 to 7 (up to debugging)",
+                         "0 to 3 (up to errors)",
+                         "0 to 6 (up to informational)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Default für \u0027logging trap\u0027 ist informational (6); Debug-Meldungen gehen also nicht an den Server. Console, Monitor und Buffer stehen dagegen per Default auf debugging."
+    },
+    {
+        "id":  "slg-sv-062",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which statement about syslog severity numbers is correct?",
+        "optionen":  [
+                         "Severity numbers range from 1 to 8",
+                         "A lower number means a more severe message",
+                         "A higher number means a more severe message",
+                         "Level 7 is the most severe level of all"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Skala reicht von 0 (emergencies, schwerste Stufe) bis 7 (debugging, geringste Schwere). Level 7 hat also die höchste Nummer, ist aber am wenigsten kritisch."
+    },
+    {
+        "id":  "slg-sv-063",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The CPU of a router spikes while extensive debug output is printed to a 9600-baud console. Which change reduces the load but still keeps the debug messages?",
+        "optionen":  [
+                         "Enable \u0027terminal monitor\u0027 on the console line to speed it up",
+                         "Use \u0027logging trap debugging\u0027 so that the console stops output",
+                         "Lower the console logging level and send debugs to the buffer",
+                         "Raise the console level to debugging and disable the buffer"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die langsame Console verarbeitet jede Meldung, die ihr Level erlaubt, was bei vielen Debugs die CPU belastet. Speichert man Debugs nur im RAM-Buffer und begrenzt die Console, bleiben die Daten erhalten."
+    },
+    {
+        "id":  "slg-sv-064",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The syslog server accepts messages only from 192.168.255.1, the loopback of R1. Messages from R1 arrive with the address of the outgoing interface instead. What fixes this?",
+        "optionen":  [
+                         "logging host 192.168.255.1",
+                         "logging source-interface Loopback0",
+                         "ntp source Loopback0",
+                         "logging origin-id ip"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027logging source-interface\u0027 legt fest, welche Interface-Adresse als Absender der Syslog-Pakete dient. \u0027logging origin-id\u0027 fügt nur eine Kennung in den Meldungstext ein und ändert die IP-Quelle nicht."
+    },
+    {
+        "id":  "slg-sv-065",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Log messages from three routers cannot be correlated, because their timestamps differ by several minutes. What is the best solution?",
+        "optionen":  [
+                         "Send all logs to one syslog server",
+                         "Synchronize all devices with NTP",
+                         "Increase the logging buffer size",
+                         "Enable sequence numbers everywhere"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Nur mit synchronisierter Zeit lassen sich Ereignisse verschiedener Geräte zeitlich zuordnen. Sequenznummern zeigen lediglich die Reihenfolge innerhalb eines Geräts."
+    },
+    {
+        "id":  "slg-sv-066",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show logging\u0027 on R1 contains:\nLogging to 10.1.1.10 (udp port 514, audit disabled, link up), 2 message lines logged\nWhat does this tell you?",
+        "optionen":  [
+                         "R1 has sent two messages to 10.1.1.10, but delivery is not confirmed",
+                         "Only two messages are stored in the local logging buffer of R1",
+                         "Server 10.1.1.10 has acknowledged two messages received from R1",
+                         "R1 may send at most two messages per second to 10.1.1.10"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Zähler zeigt, wie viele Meldungen R1 an diesen Host geschickt hat. Da Syslog über UDP läuft, gibt es keine Empfangsbestätigung – ob sie ankamen, sieht man nur auf dem Server."
+    },
+    {
+        "id":  "slg-sv-067",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 has \u0027logging trap warnings\u0027. Bringing Ethernet0/3 up and shutting it down generates:\n%LINK-3-UPDOWN: ... changed state to up\n%LINEPROTO-5-UPDOWN: ... changed state to up\n%LINK-5-CHANGED: ... administratively down\n%LINEPROTO-5-UPDOWN: ... changed state to down\n%SYS-5-CONFIG_I: Configured from console\nHow many of these messages are sent to the syslog server?",
+        "optionen":  [
+                         "5",
+                         "4",
+                         "2",
+                         "1"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "warnings ist Level 4, gesendet werden nur Meldungen mit Severity 0–4. Lediglich %LINK-3-UPDOWN (Level 3) erfüllt das; alle anderen haben Level 5."
+    },
+    {
+        "id":  "slg-sv-068",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Log-Ziel dem passenden Befehl zu.",
+        "paare":  [
+                      [
+                          "Console port",
+                          "logging console"
+                      ],
+                      [
+                          "Current SSH or Telnet session",
+                          "terminal monitor"
+                      ],
+                      [
+                          "Local RAM buffer",
+                          "logging buffered"
+                      ],
+                      [
+                          "Remote syslog server",
+                          "logging host"
+                      ]
+                  ],
+        "erklaerung":  "Jedes Ziel hat einen eigenen Befehl und ein eigenes Level. Für VTY-Sitzungen braucht man zusätzlich pro Sitzung \u0027terminal monitor\u0027, damit Meldungen erscheinen."
+    },
+    {
+        "id":  "slg-sv-069",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A log message starts with \u0027*Dec  1 08:04:49.998:\u0027. What does the leading asterisk indicate?",
+        "optionen":  [
+                         "The message was already forwarded to the configured syslog server",
+                         "The clock was not authoritative, for example not NTP-synchronized",
+                         "The message was generated by an EEM applet running on the device",
+                         "The message has severity 0 and needs immediate attention"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein Stern vor dem Zeitstempel zeigt, dass die Systemzeit nicht als autoritativ gilt, etwa weil sie nicht per NTP synchronisiert ist. Solche Zeitstempel sind für die Korrelation mit anderen Geräten unzuverlässig."
+    },
+    {
+        "id":  "slg-sv-070",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which three mechanisms send event or traffic information from network devices to external systems for logging and monitoring? (Choose three.)",
+        "optionen":  [
+                         "Syslog messages",
+                         "ARP replies",
+                         "NetFlow export",
+                         "SNMP traps",
+                         "CDP advertisements"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Syslog liefert Ereignismeldungen, SNMP-Traps melden Zustände und Schwellwerte, NetFlow exportiert Verkehrsflüsse. CDP und ARP dienen der Nachbar- bzw. Adressauflösung, nicht dem Logging."
+    },
+    {
+        "id":  "slg-sv-071",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An NMS polls a 10-Gbps interface every 5 minutes using the 32-bit ifInOctets counter. Why are the utilization graphs wrong under high load?",
+        "optionen":  [
+                         "The counter can wrap in about 3.4 s at line rate, so 64-bit counters are needed",
+                         "SNMPv1 cannot read any interface counters on links faster than 1 Gbps",
+                         "The counter is reset after each poll, so only the last poll interval is shown",
+                         "The counter counts packets instead of bytes, so the rates appear too low"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "2^32 Byte sind rund 34 Gbit; bei 10 Gbit/s läuft der Zähler also nach etwa 3,4 Sekunden über, und die NMS kann die Umläufe nicht zählen. Die 64-Bit-Zähler (ifHCInOctets) gibt es ab SNMPv2c."
+    },
+    {
+        "id":  "slg-sv-072",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An NMS polls every 5 minutes. A link flaps for 30 seconds between two polls. How can the NMS learn about such events right away?",
+        "optionen":  [
+                         "Limit the MIB view to the interfaces subtree only",
+                         "Use SNMP Set requests to query the link state",
+                         "Change the device from SNMPv2c back to SNMPv1",
+                         "Configure the device to send SNMP traps or informs"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Polling erkennt Ereignisse erst beim nächsten Abfragezyklus. Traps bzw. Informs sendet der Agent ereignisbasiert und fast in Echtzeit an den Manager."
+    },
+    {
+        "id":  "slg-sv-073",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege die SNMP-Community NMSro mit reinem Lesezugriff an, nutzbar nur für die Manager aus ACL 10.",
+        "bausteine":  [
+                          "snmp-server",
+                          "community",
+                          "NMSro",
+                          "ro",
+                          "10",
+                          "rw",
+                          "host",
+                          "view"
+                      ],
+        "loesung":  [
+                        "snmp-server",
+                        "community",
+                        "NMSro",
+                        "ro",
+                        "10"
+                    ],
+        "erklaerung":  "\u0027snmp-server community \u003cname\u003e ro \u003cacl\u003e\u0027 erlaubt nur Lesezugriff und nur den Managern, die die ACL zulässt. Schreibzugriff (rw) sollte man nur vergeben, wenn er wirklich nötig ist."
+    },
+    {
+        "id":  "slg-sv-074",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Sende SNMPv2c-Benachrichtigungen an den Manager 10.1.1.50 mit der Community NMStrap.",
+        "bausteine":  [
+                          "snmp-server",
+                          "host",
+                          "10.1.1.50",
+                          "version",
+                          "2c",
+                          "NMStrap",
+                          "informs",
+                          "community",
+                          "3"
+                      ],
+        "loesung":  [
+                        "snmp-server",
+                        "host",
+                        "10.1.1.50",
+                        "version",
+                        "2c",
+                        "NMStrap"
+                    ],
+        "erklaerung":  "\u0027snmp-server host\u0027 legt Ziel, Version und Community für Notifications fest; ohne das Schlüsselwort \u0027informs\u0027 werden Traps gesendet. Welche Traps erzeugt werden, steuert \u0027snmp-server enable traps\u0027."
+    },
+    {
+        "id":  "slg-sv-075",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege die SNMPv3-Gruppe NETADMIN mit Authentifizierung und Verschlüsselung an.",
+        "bausteine":  [
+                          "snmp-server",
+                          "group",
+                          "NETADMIN",
+                          "v3",
+                          "priv",
+                          "auth",
+                          "noauth",
+                          "user",
+                          "v2c"
+                      ],
+        "loesung":  [
+                        "snmp-server",
+                        "group",
+                        "NETADMIN",
+                        "v3",
+                        "priv"
+                    ],
+        "erklaerung":  "Das Security-Level wird in der Gruppe festgelegt: noauth = noAuthNoPriv, auth = authNoPriv, priv = authPriv. Benutzer werden danach der Gruppe zugeordnet."
+    },
+    {
+        "id":  "slg-sv-076",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege den SNMPv3-Benutzer ADMIN in der Gruppe NETADMIN an – Authentifizierung SHA mit AuthPass123, Verschlüsselung AES-128 mit PrivPass123.",
+        "bausteine":  [
+                          "snmp-server",
+                          "user",
+                          "ADMIN",
+                          "NETADMIN",
+                          "v3",
+                          "auth",
+                          "sha",
+                          "AuthPass123",
+                          "priv",
+                          "aes",
+                          "128",
+                          "PrivPass123",
+                          "md5",
+                          "des",
+                          "group"
+                      ],
+        "loesung":  [
+                        "snmp-server",
+                        "user",
+                        "ADMIN",
+                        "NETADMIN",
+                        "v3",
+                        "auth",
+                        "sha",
+                        "AuthPass123",
+                        "priv",
+                        "aes",
+                        "128",
+                        "PrivPass123"
+                    ],
+        "erklaerung":  "Beim SNMPv3-Benutzer stehen zuerst Name und Gruppe, dann Version, Authentifizierungsalgorithmus mit Passwort und optional der Verschlüsselungsalgorithmus mit Passwort. Für eine priv-Gruppe sind beide Teile nötig."
+    },
+    {
+        "id":  "slg-sv-077",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die SNMP-Variante bzw. das SNMPv3-Security-Level dem Schutz zu.",
+        "paare":  [
+                      [
+                          "SNMPv2c",
+                          "Community string sent in cleartext"
+                      ],
+                      [
+                          "noAuthNoPriv",
+                          "Username match only, no hash and no encryption"
+                      ],
+                      [
+                          "authNoPriv",
+                          "HMAC-based authentication without encryption"
+                      ],
+                      [
+                          "authPriv",
+                          "Authentication plus encryption of the payload"
+                      ]
+                  ],
+        "erklaerung":  "v2c schützt nur durch eine Klartext-Community. SNMPv3 bietet drei Stufen: nur Benutzername, zusätzlich Authentifizierung per MD5/SHA, oder zusätzlich Verschlüsselung (DES/3DES/AES)."
+    },
+    {
+        "id":  "slg-sv-078",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An SNMPv3 group is assigned a read view that includes only the ifMIB subtree. The NMS polls a CPU utilization OID outside ifMIB. What happens?",
+        "optionen":  [
+                         "The agent switches the user to a default view that contains all MIBs",
+                         "The value is returned, because views restrict only Set requests",
+                         "The agent sends a trap about the attempt and then returns the value",
+                         "The value is not returned, because objects outside the view are excluded"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Eine SNMP-View wirkt wie eine Access-List: Was nicht eingeschlossen ist, ist implizit verboten. So begrenzt man Manager auf die wirklich benötigten MIB-Teilbäume."
+    },
+    {
+        "id":  "slg-sv-079",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which three practices harden SNMP on a network device? (Choose three.)",
+        "optionen":  [
+                         "Use SNMPv3 with authentication and encryption",
+                         "Grant read-only access unless write access is really needed",
+                         "Restrict SNMP access to known managers with an ACL",
+                         "Keep the community \u0027public\u0027, because NMS tools expect it",
+                         "Grant RW access, so that the NMS can fix problems itself"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Empfohlen sind Read-only-Zugriff, ACLs auf bekannte Manager, Views auf die nötigen MIBs und SNMPv3 mit authPriv. Triviale Communities wie \u0027public\u0027 und unnötiger Schreibzugriff sind Sicherheitsrisiken."
+    },
+    {
+        "id":  "slg-sv-080",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die SNMP-Operation ihrer Aufgabe zu.",
+        "paare":  [
+                      [
+                          "GetNext",
+                          "Retrieves the next object in the MIB tree"
+                      ],
+                      [
+                          "GetBulk",
+                          "Retrieves large blocks of data in one request"
+                      ],
+                      [
+                          "Set",
+                          "Changes the value of a MIB object"
+                      ],
+                      [
+                          "Inform",
+                          "Notification that the manager acknowledges"
+                      ]
+                  ],
+        "erklaerung":  "GetNext durchläuft den MIB-Baum (Basis für einen Walk), GetBulk holt große Datenmengen in einem Request. Set schreibt Werte, und ein Inform ist ein Trap mit Empfangsbestätigung."
+    },
+    {
+        "id":  "slg-sv-081",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is SNMPv2c?",
+        "optionen":  [
+                         "The party-based security model of SNMPv2 that is widely deployed today",
+                         "The community-based variant of SNMPv2 that became the de facto standard",
+                         "A Cisco-proprietary SNMP version with encryption built into every packet",
+                         "The cryptographic framework on which the SNMPv3 user model is based"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Das ursprüngliche SNMPv2 mit komplexem Sicherheitsmodell setzte sich nie durch. Die \u0027leichte\u0027 community-basierte Variante v2c wurde zum De-facto-Standard, bietet aber keine echte Sicherheit."
+    },
+    {
+        "id":  "slg-sv-082",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "The NMS can read values from a router but fails to change an interface description via SNMP. The router has \u0027snmp-server community Mon1tor ro\u0027. What is the cause?",
+        "optionen":  [
+                         "Set operations always require SNMPv1 on Cisco IOS devices",
+                         "The community allows only reads; a Set needs read-write access",
+                         "Interface descriptions can only be changed with SNMP traps",
+                         "The NMS must send its Set request to UDP port 162 instead"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit \u0027ro\u0027 sind nur Get-Operationen erlaubt. Ein Set braucht eine rw-Community bzw. bei SNMPv3 eine Gruppe mit Write-View."
+    },
+    {
+        "id":  "slg-sv-083",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Why must an NMS use SNMPv2c or SNMPv3 to read the 64-bit ifHCInOctets counter?",
+        "optionen":  [
+                         "SNMPv1 limits the polling interval to at least 15 minutes per device",
+                         "64-bit counters exist only in Cisco-private MIBs available with SNMPv3",
+                         "SNMPv1 encrypts counter values, which hides the high-order bits",
+                         "SNMPv1 has no Counter64 data type, so these objects are not available"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Datentyp Counter64 kam erst mit SNMPv2 hinzu. Über SNMPv1 sind die High-Capacity-Zähler deshalb nicht abfragbar, was bei schnellen Interfaces zu Überläufen der 32-Bit-Zähler führt."
+    },
+    {
+        "id":  "slg-sv-084",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which SNMP component runs on the managed device, keeps the values defined in the MIB and answers polls?",
+        "optionen":  [
+                         "The NMS collector",
+                         "The SNMP agent",
+                         "The MIB browser",
+                         "The SNMP manager"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Agent sammelt lokal die Gerätedaten, legt sie gemäß MIB ab und beantwortet Anfragen des Managers. Außerdem erzeugt er Traps."
+    },
+    {
+        "id":  "slg-sv-085",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die NetFlow-Komponente ihrer Aufgabe zu.",
+        "paare":  [
+                      [
+                          "Flow exporter (device)",
+                          "Collects flow data and sends export packets"
+                      ],
+                      [
+                          "Flow collector",
+                          "Server that receives and stores exported flows"
+                      ],
+                      [
+                          "Flow analyzer",
+                          "Application that builds reports from flow data"
+                      ],
+                      [
+                          "NetFlow cache",
+                          "Memory table of the active flows on the device"
+                      ]
+                  ],
+        "erklaerung":  "Das Gerät erfasst Flows im Cache und exportiert sie. Der Collector nimmt sie an und speichert sie, der Analyzer wertet sie aus (z. B. Secure Network Analytics)."
+    },
+    {
+        "id":  "slg-sv-086",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A Flexible NetFlow cache shows two entries from 10.20.20.10 port 23 to 10.10.10.10 port 45288 on the same input interface. One has IP TOS 0xC0 and 23 packets, the other IP TOS 0x00 and 1 packet. Why are there two entries?",
+        "optionen":  [
+                         "The second entry is a duplicate that the active timeout has created",
+                         "The collector requested a separate entry for the unmarked traffic",
+                         "ToS is a key field, so packets with a different ToS form a separate flow",
+                         "Telnet always creates one flow per direction and per TCP flag value"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Record enthält \u0027match ipv4 tos\u0027. Weil ToS ein Key Field ist, bildet jedes Paket mit abweichendem ToS-Wert einen eigenen Flow, selbst wenn Adressen und Ports gleich sind."
+    },
+    {
+        "id":  "slg-sv-087",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A flow cache entry shows \u0027IP PROTOCOL: 1\u0027 and \u0027TRNS DESTINATION PORT: 2048\u0027. Which traffic does this entry represent?",
+        "optionen":  [
+                         "ICMP echo reply packets",
+                         "ICMP destination unreachable",
+                         "UDP traffic to port 2048",
+                         "ICMP echo request packets"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Für ICMP trägt NetFlow im Zielport-Feld Typ·256 + Code ein. Echo Request hat Typ 8, Code 0, also 8·256 = 2048; ein Echo Reply (Typ 0) erscheint als Port 0."
+    },
+    {
+        "id":  "slg-sv-088",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A flow cache entry shows \u0027IP TOS: 0xC0\u0027 and \u0027ip dscp: 0x30\u0027. Which DSCP value is this in decimal?",
+        "optionen":  [
+                         "48 (CS6)",
+                         "192 (CS6)",
+                         "46 (EF)",
+                         "12 (AF12)"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "DSCP sind die oberen 6 Bit des ToS-Bytes: 0xC0 = 1100 0000, zwei Bit nach rechts geschoben ergibt 0x30 = 48. Das entspricht CS6, der typischen Markierung für Steuerverkehr des Routers."
+    },
+    {
+        "id":  "slg-sv-089",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three events make a flow ready for export? (Choose three.)",
+        "optionen":  [
+                         "An SNMP manager has polled the NetFlow MIB",
+                         "A TCP FIN or RST flag indicates the end of the flow",
+                         "No packets for the flow arrived during the inactive timeout",
+                         "Every 100th packet of the flow has been received",
+                         "The flow has lasted longer than the active timeout"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Flows werden exportiert, wenn sie inaktiv werden, das Active-Timeout überschreiten oder per TCP FIN/RST enden (zusätzlich bei vollem Cache). NetFlow pusht die Daten, es wird nicht per SNMP abgefragt."
+    },
+    {
+        "id":  "slg-sv-090",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "With default timers, a flow is exported after it has been inactive for ___ seconds.",
+        "optionen":  [
+                         "15",
+                         "60",
+                         "30",
+                         "1800"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Das Inactive-Timeout beträgt standardmäßig 15 Sekunden, das Active-Timeout 30 Minuten (1800 s). Beide Timer sind konfigurierbar."
+    },
+    {
+        "id":  "slg-sv-091",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A file transfer runs for 2 hours without pause. The active timeout is at its default of 30 minutes. How does the collector receive this transfer?",
+        "optionen":  [
+                         "As one flow record every 15 seconds while data is being sent",
+                         "Not at all, because long flows are removed from the cache unsent",
+                         "As about four flow records that it can combine into one transfer",
+                         "As one single flow record after the TCP session has been closed"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das Active-Timeout exportiert lange Flows periodisch, damit der Collector zeitnah Daten erhält. Die Teil-Records eines Transfers kann der Collector anschließend wieder zusammenfassen."
+    },
+    {
+        "id":  "slg-sv-092",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show flow monitor MONITOR1 cache\u0027 shows:\nFlows aged: 57\n - Active timeout (60 secs) 57\n - Inactive timeout (60 secs) 0\nWhat does this tell you?",
+        "optionen":  [
+                         "57 flows were removed because no packets arrived for 60 seconds",
+                         "57 flows failed to reach the collector and will be sent again",
+                         "57 flows were dropped because the cache of 4096 entries was full",
+                         "All 57 aged flows were exported because they stayed active for 60 s"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Zeile \u0027Active timeout\u0027 zählt Flows, die exportiert wurden, weil sie länger als das Active-Timeout liefen. Durch Inaktivität wurde kein Flow gealtert, und ein voller Cache würde unter Emergency- bzw. Watermark-Aging erscheinen."
+    },
+    {
+        "id":  "slg-sv-093",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which flow export format is the IETF standard that is based on NetFlow version 9?",
+        "optionen":  [
+                         "NetFlow v5",
+                         "IPFIX",
+                         "SNMPv3",
+                         "NetFlow v7"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "IPFIX (manchmal \u0027Version 10\u0027 genannt) basiert auf dem Template-Format von NetFlow v9 und ist in RFC 7011 standardisiert."
+    },
+    {
+        "id":  "slg-sv-094",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A NetFlow v9 collector is restarted. For a while it receives flow data from the router but cannot decode it. Why?",
+        "optionen":  [
+                         "v9 needs a TCP session that is rebuilt only after a router reload",
+                         "It must first send a poll to restart the export session on the router",
+                         "It must first receive the template that describes the record fields",
+                         "v9 data stays encrypted until the router resends its session key"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "NetFlow v9 ist template-basiert: Die Daten-Records verweisen nur auf eine Template-ID. Erst wenn der Collector das Template (Feldtypen und -längen) erneut empfangen hat, kann er die Daten interpretieren; der Router sendet Templates periodisch."
+    },
+    {
+        "id":  "slg-sv-095",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Flow data from MONITOR1 must go to two collectors, 10.1.1.10 and 10.1.1.20. How is this done with Flexible NetFlow?",
+        "optionen":  [
+                         "Apply two monitors with the same name to the interface",
+                         "Create two flow records and apply both to the interface",
+                         "Create two flow exporters and reference both in the flow monitor",
+                         "Add two destination commands to one single flow exporter"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein Flow Exporter unterstützt genau ein Ziel. Für mehrere Collector legt man mehrere Exporter an und trägt sie alle im Flow Monitor ein."
+    },
+    {
+        "id":  "slg-sv-096",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Flow-Exporter-Konfigurationsmodus: Sende die Exportpakete per UDP an Port 2055 des Collectors.",
+        "bausteine":  [
+                          "transport",
+                          "udp",
+                          "2055",
+                          "tcp",
+                          "port",
+                          "destination"
+                      ],
+        "loesung":  [
+                        "transport",
+                        "udp",
+                        "2055"
+                    ],
+        "erklaerung":  "\u0027transport udp \u003cport\u003e\u0027 legt den Zielport fest, auf dem der Collector lauscht. Die Collector-Adresse selbst kommt mit \u0027destination\u0027."
+    },
+    {
+        "id":  "slg-sv-097",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Flow-Record-Konfigurationsmodus: Mache die Quell-IPv4-Adresse zu einem Key Field.",
+        "bausteine":  [
+                          "match",
+                          "ipv4",
+                          "source",
+                          "address",
+                          "collect",
+                          "ipv6",
+                          "destination",
+                          "key"
+                      ],
+        "loesung":  [
+                        "match",
+                        "ipv4",
+                        "source",
+                        "address"
+                    ],
+        "erklaerung":  "match-Befehle definieren Key Fields, die über die Eindeutigkeit eines Flows entscheiden. collect-Befehle fügen nur Zusatzinformationen (Non-Key Fields) hinzu."
+    },
+    {
+        "id":  "slg-sv-098",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Flow-Monitor-Konfigurationsmodus: Ordne dem Monitor den Flow Record LANCOPE1 zu.",
+        "bausteine":  [
+                          "record",
+                          "LANCOPE1",
+                          "exporter",
+                          "flow",
+                          "apply"
+                      ],
+        "loesung":  [
+                        "record",
+                        "LANCOPE1"
+                    ],
+        "erklaerung":  "Im Flow Monitor verbindet \u0027record\u0027 die Felddefinition und \u0027exporter\u0027 das Exportziel mit dem Cache. Pro Monitor gibt es genau einen Record."
+    },
+    {
+        "id":  "slg-sv-099",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer changes \u0027collect ipv4 dscp\u0027 to \u0027match ipv4 dscp\u0027 in the flow record. What is the effect?",
+        "optionen":  [
+                         "Packets of one conversation with different DSCP values become separate flows",
+                         "The DSCP value is no longer exported to the collector with the flow data",
+                         "The DSCP field of all monitored packets is rewritten to the matched value",
+                         "Only packets with a DSCP value other than 0 are monitored from now on"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Aus dem Non-Key wird ein Key Field: DSCP bestimmt nun mit über die Eindeutigkeit eines Flows. Unterschiedlich markierte Pakete derselben Verbindung erzeugen dadurch eigene Cache-Einträge; NetFlow verändert die Pakete nie."
+    },
+    {
+        "id":  "slg-sv-100",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about a user-defined Flexible NetFlow record is correct?",
+        "optionen":  [
+                         "It can only use the seven traditional key fields",
+                         "It must contain both IPv4 and IPv6 match fields",
+                         "It needs collect fields only and no match fields",
+                         "It needs at least one match field to identify flows"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein eigener Record braucht mindestens ein match-Kriterium als Key Field und hat typischerweise collect-Felder für Zusatzinformationen. Die Felder sind frei wählbar, nicht auf die klassischen sieben beschränkt."
+    },
+    {
+        "id":  "slg-sv-101",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 routes between PC1 on Et0/0 and PC2 on Et0/2. \u0027ip flow monitor MONITOR1 input\u0027 is configured only on Et0/0. Which traffic is missing from the cache?",
+        "optionen":  [
+                         "Nothing, because an input monitor sees both directions",
+                         "ICMP traffic, because input monitors record only TCP",
+                         "Traffic from PC2 to PC1, which enters R1 on Et0/2",
+                         "Traffic from PC1 to PC2, which enters R1 on Et0/0"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein Input-Monitor erfasst nur Pakete, die auf diesem Interface ankommen. Damit beide Richtungen erfasst werden, aktiviert man Input-Monitoring auf jedem L3-Interface, über das Verkehr in den Router kommt."
+    },
+    {
+        "id":  "slg-sv-102",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which command shows whether R1 actually sends export packets to its collector and how many it has sent?",
+        "optionen":  [
+                         "show flow exporter EXPORTER1 statistics",
+                         "show flow interface Ethernet0/0",
+                         "show flow record LANCOPE1",
+                         "show flow monitor MONITOR1 cache"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Exporter-Statistik zählt gesendete Pakete und Fehler pro Exporter. Der Cache zeigt nur die erfassten Flows, der Record nur die Felddefinition."
+    },
+    {
+        "id":  "slg-sv-103",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why is \u0027source Loopback0\u0027 configured under the flow exporter?",
+        "optionen":  [
+                         "It enables NetFlow monitoring for traffic to the loopback",
+                         "All export packets use the same, always-up source address",
+                         "It encrypts the export packets with the loopback address",
+                         "It makes the loopback the destination of all flow records"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit einer Loopback als Quelle kommen alle Exportpakete von derselben stabilen Adresse. Der Collector ordnet die Flows so eindeutig einem Gerät zu, unabhängig vom Ausgangsinterface."
+    },
+    {
+        "id":  "slg-sv-104",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "How does NetFlow export differ from SNMP polling?",
+        "optionen":  [
+                         "The collector copies the flow cache with a TFTP transfer",
+                         "The device pushes flow records periodically to the collector",
+                         "The device sends flows only when an NMS requests them",
+                         "The collector pulls flow records with SNMP Get requests"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "NetFlow ist ein Push-Verfahren: Das Gerät exportiert abgelaufene Flows selbstständig. SNMP-Polling dagegen fragt Werte periodisch vom Manager aus ab."
+    },
+    {
+        "id":  "slg-sv-105",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which Flexible NetFlow component represents the memory-resident flow cache?",
+        "optionen":  [
+                         "Flow monitor",
+                         "Flow exporter",
+                         "Flow sampler",
+                         "Flow record"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Flow Monitor ist die Datenbank im Speicher des Routers; er verbindet Record und Exporter. Mehrere Monitore sind möglich, belegen aber entsprechend mehr Speicher."
+    },
+    {
+        "id":  "slg-sv-106",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 must monitor both IPv4 and IPv6 flows on Gi0/0 with Flexible NetFlow. Which approach is valid?",
+        "optionen":  [
+                         "One record that matches IPv4 and IPv6 addresses in a single shared monitor",
+                         "One IPv4 monitor via \u0027ip flow monitor\u0027, which learns IPv6 flows automatically",
+                         "One monitor with both records, applied once with \u0027ip flow monitor\u0027 on Gi0/0",
+                         "Two monitors with an IPv4 and an IPv6 record, applied with ip and ipv6 flow monitor"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein Monitor nimmt genau einen Record auf, und IPv4- und IPv6-Felder stehen in getrennten Records. Man braucht daher zwei Monitore, die mit \u0027ip flow monitor\u0027 bzw. \u0027ipv6 flow monitor\u0027 am Interface aktiviert werden."
+    },
+    {
+        "id":  "slg-sv-107",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Flexible-NetFlow-Objekt seinem Inhalt zu.",
+        "paare":  [
+                      [
+                          "flow record",
+                          "Key (match) and non-key (collect) fields"
+                      ],
+                      [
+                          "flow exporter",
+                          "Destination, source and transport of the export"
+                      ],
+                      [
+                          "flow monitor",
+                          "Record, exporters and cache timeouts"
+                      ],
+                      [
+                          "ip flow monitor ... input",
+                          "Activation of monitoring on an interface"
+                      ]
+                  ],
+        "erklaerung":  "Record und Exporter werden im Monitor zusammengeführt, der den Cache bildet. Erst der Interface-Befehl aktiviert die Erfassung tatsächlich."
+    },
+    {
+        "id":  "slg-sv-108",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A new collector accepts only IPFIX. Which command in flow exporter configuration mode changes the export format?",
+        "optionen":  [
+                         "version 10",
+                         "export-protocol ipfix",
+                         "record ipfix",
+                         "transport ipfix"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit \u0027export-protocol\u0027 wählt man im Flow Exporter zwischen NetFlow v5, v9 und IPFIX. \u0027transport\u0027 bestimmt nur das Transportprotokoll und den Port."
+    },
+    {
+        "id":  "slg-sv-109",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which of these is NOT one of the seven traditional NetFlow key fields?",
+        "optionen":  [
+                         "Type of service",
+                         "Layer 3 protocol type",
+                         "Input interface",
+                         "Next-hop IP address"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die klassischen Key Fields sind Quell- und Ziel-IP, Quell- und Zielport, L3-Protokoll, ToS und Input-Interface. Der Next Hop ist eine zusätzliche Information (Non-Key)."
+    },
+    {
+        "id":  "slg-sv-110",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Where is NetFlow typically enabled to characterize the traffic of all remote sites with the fewest devices?",
+        "optionen":  [
+                         "On the collector, which sniffs all the WAN links",
+                         "On the central site\u0027s aggregation or WAN edge router",
+                         "On every access switch port that connects end hosts",
+                         "On the IP phones and wireless clients at each site"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Am zentralen Aggregationspunkt läuft der Verkehr aller Außenstellen zusammen und kann dort vollständig erfasst werden. Export an entfernten Standorten kostet zusätzlich WAN-Bandbreite."
+    },
+    {
+        "id":  "slg-sv-111",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show flow monitor\u0027 displays \u0027Inactive Timeout: 60 secs\u0027 and \u0027Active Timeout: 60 secs\u0027. Where were these values configured?",
+        "optionen":  [
+                         "With \u0027timers\u0027 commands under the flow exporter",
+                         "With \u0027cache timeout\u0027 commands under the flow monitor",
+                         "With \u0027collect timestamp\u0027 under the flow record",
+                         "With \u0027ip flow-cache timeout\u0027 on each interface"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Timeouts gehören zum Cache und damit zum Flow Monitor (\u0027cache timeout active|inactive\u0027). Exporter und Record kennen diese Timer nicht."
+    },
+    {
+        "id":  "slg-sv-112",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In a Flexible NetFlow record, key fields are configured with the keyword ___.",
+        "optionen":  [
+                         "collect",
+                         "match",
+                         "define",
+                         "key"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "match-Felder bestimmen, ob ein Paket zu einem bestehenden Flow gehört. collect-Felder liefern nur Zusatzwerte wie Zähler und Zeitstempel."
+    },
+    {
+        "id":  "slg-sv-113",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An applet uses \u0027action 1.0 cli command \"configure terminal\"\u0027 as its first action, but the configuration change is never made. What is the most likely reason?",
+        "optionen":  [
+                         "Applets cannot enter configuration mode; only Tcl policies can",
+                         "The applet CLI starts in user EXEC, so \u0027enable\u0027 must come first",
+                         "The command must be abbreviated as \u0027conf t\u0027 inside an applet",
+                         "The label 1.0 is invalid, because labels must be whole numbers"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die CLI-Sitzung eines Applets beginnt im User-EXEC-Modus (Prompt R1\u003e). Deshalb lautet die erste Aktion typischerweise \u0027cli command \"enable\"\u0027, bevor in den Konfigurationsmodus gewechselt wird."
+    },
+    {
+        "id":  "slg-sv-114",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An applet has actions labeled 1, 2 and 10. In which order are they executed?",
+        "optionen":  [
+                         "2, 10, 1",
+                         "1, 10, 2",
+                         "10, 2, 1",
+                         "1, 2, 10"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "EEM sortiert die Labels alphanumerisch als Zeichenketten, nicht numerisch – \u002710\u0027 steht daher vor \u00272\u0027. Deshalb verwendet man Labels wie 1.0, 1.5, 2.0 oder mit führenden Nullen."
+    },
+    {
+        "id":  "slg-sv-115",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 has an applet with \u0027event cli pattern \"debug\" sync no skip yes\u0027. An administrator enters \u0027debug all\u0027. What happens?",
+        "optionen":  [
+                         "The command is not executed, and the applet\u0027s actions run",
+                         "The applet waits for the user to confirm the command first",
+                         "The command runs, and the applet only logs who entered it",
+                         "Both the command and the applet run after the next reload"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027skip yes\u0027 unterdrückt den passenden CLI-Befehl, \u0027sync no\u0027 lässt die Policy asynchron laufen. Im Lab zeigt \u0027show debugging\u0027 danach keine aktiven Debugs."
+    },
+    {
+        "id":  "slg-sv-116",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What is the difference between \u0027sync yes\u0027 and \u0027sync no\u0027 in an \u0027event cli\u0027 statement?",
+        "optionen":  [
+                         "With sync yes the applet is copied to the standby supervisor in real time",
+                         "With sync yes the command runs first and the policy then runs in the background",
+                         "With sync yes the CLI waits for the policy, whose result decides if the command runs",
+                         "With sync yes the command is logged to syslog before the policy is triggered"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei \u0027sync yes\u0027 läuft die Policy synchron vor dem Befehl, und ihr Exit-Status bestimmt, ob der Befehl ausgeführt wird. Bei \u0027sync no\u0027 läuft sie asynchron, und \u0027skip\u0027 legt fest, ob der Befehl ausgeführt wird."
+    },
+    {
+        "id":  "slg-sv-117",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Applet-Konfigurationsmodus: Löse das Applet aus, sobald eine Syslog-Meldung den Text LINEPROTO-5-UPDOWN enthält.",
+        "bausteine":  [
+                          "event",
+                          "syslog",
+                          "pattern",
+                          "\"LINEPROTO-5-UPDOWN\"",
+                          "cli",
+                          "match",
+                          "occurs"
+                      ],
+        "loesung":  [
+                        "event",
+                        "syslog",
+                        "pattern",
+                        "\"LINEPROTO-5-UPDOWN\""
+                    ],
+        "erklaerung":  "Der Syslog-Event-Detector vergleicht jede erzeugte Meldung per regulärem Ausdruck mit dem Pattern. Trifft er zu, startet das Applet."
+    },
+    {
+        "id":  "slg-sv-118",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Applet-Konfigurationsmodus: Führe das Applet wiederkehrend alle 300 Sekunden aus.",
+        "bausteine":  [
+                          "event",
+                          "timer",
+                          "watchdog",
+                          "time",
+                          "300",
+                          "countdown",
+                          "cron",
+                          "interval"
+                      ],
+        "loesung":  [
+                        "event",
+                        "timer",
+                        "watchdog",
+                        "time",
+                        "300"
+                    ],
+        "erklaerung":  "Ein watchdog-Timer löst periodisch immer wieder aus. Ein countdown-Timer löst nur einmal nach Ablauf der Zeit aus, cron nutzt eine Zeitplan-Angabe."
+    },
+    {
+        "id":  "slg-sv-119",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Applet-Konfigurationsmodus: Starte das Applet montags bis freitags jeweils um 08:00 Uhr.",
+        "bausteine":  [
+                          "event",
+                          "timer",
+                          "cron",
+                          "cron-entry",
+                          "\"0 8 * * 1-5\"",
+                          "\"8 0 * * 1-5\"",
+                          "watchdog",
+                          "absolute"
+                      ],
+        "loesung":  [
+                        "event",
+                        "timer",
+                        "cron",
+                        "cron-entry",
+                        "\"0 8 * * 1-5\""
+                    ],
+        "erklaerung":  "Ein Cron-Eintrag hat die Felder Minute, Stunde, Tag, Monat, Wochentag. \u00270 8 * * 1-5\u0027 bedeutet Minute 0, Stunde 8, an den Wochentagen 1 bis 5."
+    },
+    {
+        "id":  "slg-sv-120",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Applet-Konfigurationsmodus: Erzeuge als Aktion 3.0 eine Syslog-Meldung mit dem Text \"Uplink down\".",
+        "bausteine":  [
+                          "action",
+                          "3.0",
+                          "syslog",
+                          "msg",
+                          "\"Uplink down\"",
+                          "cli",
+                          "command",
+                          "mail"
+                      ],
+        "loesung":  [
+                        "action",
+                        "3.0",
+                        "syslog",
+                        "msg",
+                        "\"Uplink down\""
+                    ],
+        "erklaerung":  "\u0027action \u003clabel\u003e syslog msg\u0027 erzeugt eine eigene Log-Meldung, die wie jede andere an Console, Buffer und Syslog-Server geht. Optional lässt sich mit \u0027priority\u0027 die Severity setzen."
+    },
+    {
+        "id":  "slg-sv-121",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An applet collects several long show outputs. It always stops before its last action, and \u0027show event manager policy registered\u0027 shows \u0027maxrun 20.000\u0027. What is the fix?",
+        "optionen":  [
+                         "Increase the exec-timeout of the vty lines used by EEM",
+                         "Add a larger maxrun value to the applet\u0027s event statement",
+                         "Split the actions into several applets with the same name",
+                         "Renumber the labels so that the last action runs first"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein Applet darf standardmäßig 20 Sekunden laufen und wird dann abgebrochen. Mit \u0027maxrun \u003csekunden\u003e\u0027 im event-Befehl erlaubt man längere Laufzeiten."
+    },
+    {
+        "id":  "slg-sv-122",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How is an applet with \u0027event none\u0027 triggered?",
+        "optionen":  [
+                         "By the first CLI command after a login",
+                         "Automatically once after every reload",
+                         "Manually with \u0027event manager run \u003cname\u003e\u0027",
+                         "By any syslog message without a pattern"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der None-Detector hat keinen automatischen Auslöser. Solche Applets startet man gezielt mit \u0027event manager run\u0027, etwa zum Testen oder als eigenes Kommando."
+    },
+    {
+        "id":  "slg-sv-123",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After an applet ran, the log shows:\n%HA_EM-3-FMPD_SMTP: Error occurred when sending mail to SMTP server: 192.168.1.1\n%HA_EM-3-FMPD_ERROR: Error executing applet interface_Shutdown statement 4.0\nThe cli actions 1.0 to 3.5 come before 4.0. What happened?",
+        "optionen":  [
+                         "The applet was unregistered because the mail server is down",
+                         "All actions ran, and the mail was queued for a later retry",
+                         "The CLI actions ran, but the mail in action 4.0 was not delivered",
+                         "No action ran, since EEM checks the mail server before it starts"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Aktionen laufen der Reihe nach; die CLI-Befehle wurden ausgeführt (das Interface kam wieder hoch). Erst bei Aktion 4.0 schlug die Verbindung zum SMTP-Server fehl, und das Applet brach an dieser Stelle ab."
+    },
+    {
+        "id":  "slg-sv-124",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An applet action is \u0027mail server ... body \"Current users $_cli_result\"\u0027. What does $_cli_result contain?",
+        "optionen":  [
+                         "The exit status of the complete applet run",
+                         "The output of the preceding \u0027cli command\u0027 action",
+                         "The name of the user who configured the applet",
+                         "The syslog message that triggered the applet"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "$_cli_result enthält die Ausgabe des zuletzt ausgeführten cli-Befehls – im Lab die Ausgabe von \u0027who\u0027. Die auslösende Syslog-Meldung steht in $_syslog_msg."
+    },
+    {
+        "id":  "slg-sv-125",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The log shows \u0027%SYS-5-CONFIG_I: Configured from console by on vty0 (EEM:interface_Shutdown)\u0027. What does this reveal about EEM?",
+        "optionen":  [
+                         "EEM can only run while a user is logged in on vty 0",
+                         "EEM runs the applet\u0027s CLI actions in its own vty session",
+                         "The administrator edited the applet from the console line",
+                         "The applet was triggered by a user login on line vty 0"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "EEM öffnet für CLI-Aktionen eine eigene VTY-Sitzung; in \u0027who\u0027 erscheint sie als \u0027vty 0 ... EEM:interface_Shutdown\u0027. Deshalb muss für EEM eine freie VTY-Line verfügbar sein."
+    },
+    {
+        "id":  "slg-sv-126",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 runs an applet that matches \u0027Interface Ethernet0/0, changed state to administratively down\u0027 and then issues \u0027no shutdown\u0027 on Et0/0. An engineer must shut down Et0/0 for maintenance. What happens?",
+        "optionen":  [
+                         "R1 rejects the shutdown command as long as the applet exists",
+                         "Et0/0 stays down, because applets ignore manual changes",
+                         "The applet reloads R1 to restore the original interface state",
+                         "The applet brings Et0/0 back up right after every shutdown"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Jedes administrative Abschalten erzeugt genau die Meldung, auf die das Applet reagiert, und es schaltet das Interface sofort wieder ein. Für Wartungsarbeiten muss man das Applet vorher entfernen oder anpassen."
+    },
+    {
+        "id":  "slg-sv-127",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den EEM-Event-Befehl seinem Auslöser zu.",
+        "paare":  [
+                      [
+                          "event syslog",
+                          "Regular expression match on log messages"
+                      ],
+                      [
+                          "event cli",
+                          "Regular expression match on entered commands"
+                      ],
+                      [
+                          "event timer",
+                          "Scheduled or periodic trigger"
+                      ],
+                      [
+                          "event none",
+                          "Manual start with \u0027event manager run\u0027"
+                      ]
+                  ],
+        "erklaerung":  "Jedes Applet hat genau einen Event-Detector als Auslöser. syslog und cli arbeiten mit regulären Ausdrücken, timer mit Zeitangaben, none nur auf manuellen Aufruf."
+    },
+    {
+        "id":  "slg-sv-128",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What distinguishes an EEM applet from an EEM Tcl policy?",
+        "optionen":  [
+                         "An applet is configured in the CLI; a Tcl policy is a script file",
+                         "An applet supports only timers; a Tcl policy supports all events",
+                         "An applet runs only on IOS XR; a Tcl policy runs only on IOS",
+                         "An applet needs a license; a Tcl policy is always included"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Applets entstehen direkt in der Konfiguration aus event- und action-Zeilen. Tcl-Policies sind Skripte in Tool Command Language, die mehr Logik erlauben und als Datei registriert werden."
+    },
+    {
+        "id":  "slg-sv-129",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Applet-Konfigurationsmodus: Löse das Applet aus, wenn das Tracking-Objekt 1 in den Zustand down wechselt.",
+        "bausteine":  [
+                          "event",
+                          "track",
+                          "1",
+                          "state",
+                          "down",
+                          "up",
+                          "object",
+                          "interface"
+                      ],
+        "loesung":  [
+                        "event",
+                        "track",
+                        "1",
+                        "state",
+                        "down"
+                    ],
+        "erklaerung":  "Über den Object-Tracking-Detector kann ein Applet auf Track-Objekte reagieren, etwa auf IP-SLA-Ergebnisse oder Interface-Zustände. So lassen sich automatische Reaktionen auf Ausfälle bauen."
+    },
+    {
+        "id":  "slg-sv-130",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die EEM-Aktion ihrer Wirkung zu.",
+        "paare":  [
+                      [
+                          "action cli command",
+                          "Runs an IOS command"
+                      ],
+                      [
+                          "action syslog msg",
+                          "Generates a log message"
+                      ],
+                      [
+                          "action mail",
+                          "Sends an e-mail via an SMTP server"
+                      ],
+                      [
+                          "action reload",
+                          "Restarts the device"
+                      ]
+                  ],
+        "erklaerung":  "Applets können Befehle ausführen, eigene Log-Meldungen erzeugen, E-Mails versenden, SNMP-Traps senden oder das Gerät neu starten."
+    },
+    {
+        "id":  "slg-sv-131",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which command shows, step by step, every CLI command that an applet sends and the output it receives?",
+        "optionen":  [
+                         "show event manager policy registered",
+                         "show event manager history events",
+                         "debug event manager action cli",
+                         "debug event manager detector all"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Mit \u0027debug event manager action cli\u0027 erscheinen IN- und OUT-Zeilen als %HA_EM-6-LOG-Meldungen. \u0027show event manager policy registered\u0027 zeigt nur die registrierten Policies und ihre Definition."
+    },
+    {
+        "id":  "slg-sv-132",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An applet appends \u0027show users\u0027 to one file and \u0027show clock\u0027 to another whenever someone types a command containing \u0027debug\u0027. What is the purpose?",
+        "optionen":  [
+                         "To e-mail the debug output to the administrator at a later time",
+                         "To record which line tried to run a debug and when it happened",
+                         "To run the debug safely after storing the current time stamp",
+                         "To lock out the user who tried to enable debugging on the line"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die erste Datei zeigt die angemeldeten Lines und Benutzer, die zweite den Zeitpunkt. Ordnet man die Einträge beider Dateien der Reihe nach zu, sieht man, wer wann einen Debug versucht hat."
+    },
+    {
+        "id":  "slg-sv-133",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two are typical reasons to use EEM? (Choose two.)",
+        "optionen":  [
+                         "Apply a temporary workaround until the root cause is fixed",
+                         "Replace the routing protocol on unstable WAN links",
+                         "Increase the hardware forwarding performance of the router",
+                         "Collect show outputs automatically when an intermittent problem occurs",
+                         "Encrypt management traffic between the device and the NMS"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "EEM hilft beim Troubleshooting sporadischer Fehler, weil es Daten genau im richtigen Moment sammelt. Außerdem kann es Workarounds automatisieren, etwa ein Interface zurücksetzen, bis die Ursache behoben ist."
+    },
+    {
+        "id":  "slg-sv-134",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An applet uses \u0027event syslog pattern \"Ethernet0/0, changed state to down\"\u0027. The router has interfaces Ethernet0/0 and GigabitEthernet0/0. Which messages can trigger the applet?",
+        "optionen":  [
+                         "Only Ethernet0/0 messages, because the pattern is exact",
+                         "Down messages of both interfaces, from LINK and LINEPROTO",
+                         "Only LINEPROTO messages, as LINK messages are not logged",
+                         "None, because a pattern must start with the % facility"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Das Pattern ist ein regulärer Ausdruck und wird als Teilstring gesucht. \u0027GigabitEthernet0/0, changed state to down\u0027 enthält ihn ebenso wie die LINK- und die LINEPROTO-Meldung – das Applet kann also mehrfach auslösen."
+    },
+    {
+        "id":  "slg-sv-135",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A Tcl policy file \u0027check.tcl\u0027 is stored in flash:/eem. Which commands register it with EEM?",
+        "optionen":  [
+                         "event manager applet check.tcl, then action 1.0 policy flash:/eem/check.tcl",
+                         "event manager directory user policy flash:/eem, then event manager policy check.tcl",
+                         "event manager environment flash:/eem, then event manager applet check",
+                         "tclsh flash:/eem/check.tcl, then event manager run check.tcl on the CLI"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Zuerst teilt man EEM mit, in welchem Verzeichnis Benutzer-Policies liegen, dann registriert man die Datei mit \u0027event manager policy\u0027. Den Auslöser definiert das Skript selbst in seiner event-Zeile."
+    },
+    {
+        "id":  "slg-sv-136",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An applet has \u0027event timer cron cron-entry \"0 23 * * *\"\u0027. When does it run?",
+        "optionen":  [
+                         "Every 23 minutes",
+                         "Once, 23 hours after configuration",
+                         "On day 23 of each month",
+                         "Every day at 23:00"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die fünf Cron-Felder sind Minute, Stunde, Tag, Monat und Wochentag. \u00270 23 * * *\u0027 heißt Minute 0 der Stunde 23 an jedem Tag."
+    },
+    {
+        "id":  "slg-sv-137",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three are event detectors that can trigger a Cisco IOS EEM policy? (Choose three.)",
+        "optionen":  [
+                         "Spanning-tree root election",
+                         "DHCP lease",
+                         "Syslog",
+                         "SNMP",
+                         "Object tracking"
+                     ],
+        "richtig":  [
+                        2,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "EEM kennt u. a. Detectors für Syslog, SNMP (MIB-Werte, Notifications), Object Tracking, Interface-Zähler, IP SLA, NetFlow, Routing, Timer und CLI. Für DHCP-Leases oder STP-Root-Wahlen gibt es keinen eigenen Detector."
+    },
+    {
+        "id":  "slg-sv-138",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "By default, an EEM applet may run for ___ seconds before EEM terminates it.",
+        "optionen":  [
+                         "20",
+                         "300",
+                         "5",
+                         "60"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Default für maxrun beträgt 20 Sekunden, sichtbar als \u0027maxrun 20.000\u0027 in \u0027show event manager policy registered\u0027. Längere Applets brauchen einen höheren maxrun-Wert."
+    },
+    {
+        "id":  "slg-sv-139",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two conditions prevent an NTP client from synchronizing to a configured server, even if it is reachable? (Choose two.)",
+        "optionen":  [
+                         "Another configured server has a lower stratum but wrong time",
+                         "The server answers from a loopback address via ntp source",
+                         "The server\u0027s time differs significantly from other sources",
+                         "The server itself is not synchronized",
+                         "The server is a Cisco device that is itself an NTP client"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "NTP synchronisiert nie auf eine Quelle, die selbst unsynchronisiert ist, und verwirft Quellen, deren Zeit deutlich von den anderen abweicht. Ein synchronisierter Cisco-Client kann dagegen problemlos als Server dienen, und eine Loopback-Quelle ist sogar empfohlen."
+    },
+    {
+        "id":  "slg-sv-140",
+        "topic":  "ENCOR-3.3.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about PTP domains are true? (Choose two.)",
+        "optionen":  [
+                         "Different domains always require separate physical links",
+                         "A boundary clock drops PTP packets that carry a different domain",
+                         "Each VLAN automatically forms its own separate PTP domain",
+                         "The clock with the lowest domain number becomes grandmaster",
+                         "The default PTP domain number is 0"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Eine Domäne ist eine Gruppe von Clocks, die sich untereinander synchronisieren; Default ist 0. Mehrere Domänen können sich ein Medium teilen, eine Boundary Clock verarbeitet aber nur Pakete ihrer eigenen Domäne. Den Grandmaster bestimmt BMCA, nicht die Domänennummer."
+    },
+    {
+        "id":  "slg-sv-141",
+        "topic":  "ENCOR-4.2",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about Flexible NetFlow objects are true? (Choose two.)",
+        "optionen":  [
+                         "A flow record can be applied directly to an interface without a monitor",
+                         "A flow monitor can only be applied in the output direction",
+                         "A flow exporter defines the key fields that identify a flow",
+                         "A flow exporter sends to exactly one destination",
+                         "A flow monitor uses one record but can reference several exporters"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Für mehrere Collector braucht man mehrere Exporter, die alle im selben Monitor stehen; der Monitor selbst nimmt genau einen Record auf. Am Interface wird immer der Monitor aktiviert, input oder output."
+    },
+    {
+        "id":  "slg-sv-142",
+        "topic":  "ENCOR-4.1",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "R1 has \u0027logging monitor informational\u0027. An engineer connected via SSH wants to see the output of \u0027debug ip ospf adj\u0027 live in the session. Which two steps are required? (Choose two.)",
+        "optionen":  [
+                         "Enter \u0027terminal monitor\u0027 in the SSH session",
+                         "Configure \u0027logging monitor debugging\u0027",
+                         "Configure \u0027logging console debugging\u0027",
+                         "Configure \u0027logging buffered debugging\u0027",
+                         "Configure \u0027logging trap debugging\u0027"
+                     ],
+        "richtig":  [
+                        0,
+                        1
+                    ],
+        "erklaerung":  "Debug-Meldungen haben Level 7, daher muss das Monitor-Level auf debugging stehen. Zusätzlich muss jede VTY-Sitzung die Ausgabe per \u0027terminal monitor\u0027 einschalten. Console, Trap und Buffer betreffen andere Ziele."
+    },
+    {
+        "id":  "slg-sv-143",
+        "topic":  "ENCOR-6.6",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two statements about the CLI actions of an EEM applet are true? (Choose two.)",
+        "optionen":  [
+                         "The CLI session starts in user EXEC mode",
+                         "The commands are executed through a vty session",
+                         "The commands run in numeric order of their labels",
+                         "Applet CLI actions cannot enter configuration mode",
+                         "The session starts in global configuration mode"
+                     ],
+        "richtig":  [
+                        0,
+                        1
+                    ],
+        "erklaerung":  "Applet-CLI beginnt im User EXEC, daher steht \u0027enable\u0027 am Anfang, und sie belegt eine VTY-Line (sichtbar als \u0027EEM:\u003cname\u003e\u0027 in \u0027who\u0027). Die Labels werden alphanumerisch als Text sortiert, nicht numerisch, und Konfigurationsmodus ist nach \u0027enable\u0027 und \u0027config t\u0027 möglich."
+    }
+]

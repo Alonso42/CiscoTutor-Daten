@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>NTP-Stratum-Hierarchie</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">NTP-Stratum: Abstand zur Referenzuhr</text>
+<g stroke="#222" stroke-width="1.5">
+<line x1="400" y1="85" x2="400" y2="125"/>
+<line x1="400" y1="165" x2="250" y2="215"/><line x1="400" y1="165" x2="550" y2="215"/>
+<line x1="250" y1="255" x2="180" y2="305"/><line x1="250" y1="255" x2="320" y2="305"/>
+<line x1="550" y1="255" x2="550" y2="305"/>
+<line x1="320" y1="345" x2="320" y2="385"/>
+</g>
+<rect x="335" y="50" width="130" height="35" rx="6" fill="#ffd23f"/>
+<text x="400" y="73" text-anchor="middle" font-size="14" fill="#222">GPS / Atomuhr</text>
+<rect x="320" y="125" width="160" height="40" rx="6" fill="#39c86a"/>
+<text x="400" y="150" text-anchor="middle" font-size="14" fill="#222">Server Stratum 1</text>
+<circle cx="250" cy="235" r="20" fill="#4a9cff"/><text x="250" y="240" text-anchor="middle" font-size="13" fill="#fff">R</text>
+<text x="190" y="225" text-anchor="end" font-size="13" fill="#222">Core1: Stratum 2</text>
+<circle cx="550" cy="235" r="20" fill="#4a9cff"/><text x="550" y="240" text-anchor="middle" font-size="13" fill="#fff">R</text>
+<text x="580" y="240" font-size="13" fill="#222">Core2: Stratum 2</text>
+<text x="400" y="238" text-anchor="middle" font-size="12" fill="#b08aff">ntp peer</text>
+<line x1="272" y1="235" x2="528" y2="235" stroke="#b08aff" stroke-width="2" stroke-dasharray="6 4"/>
+<rect x="150" y="305" width="60" height="40" fill="#b08aff"/><text x="180" y="330" text-anchor="middle" font-size="13" fill="#fff">SW</text>
+<text x="180" y="365" text-anchor="middle" font-size="12" fill="#222">Stratum 3</text>
+<circle cx="320" cy="325" r="20" fill="#4a9cff"/><text x="320" y="330" text-anchor="middle" font-size="13" fill="#fff">R</text>
+<text x="350" y="330" font-size="12" fill="#222">Branch: Stratum 3</text>
+<rect x="520" y="305" width="60" height="40" fill="#b08aff"/><text x="550" y="330" text-anchor="middle" font-size="13" fill="#fff">SW</text>
+<text x="550" y="365" text-anchor="middle" font-size="12" fill="#222">Stratum 3</text>
+<rect x="290" y="385" width="60" height="30" fill="#b08aff"/><text x="320" y="405" text-anchor="middle" font-size="12" fill="#fff">SW</text>
+<text x="360" y="405" font-size="12" fill="#222">Stratum 4 (Client des Branch)</text>
+<rect x="600" y="80" width="185" height="135" rx="8" fill="none" stroke="#222"/>
+<text x="610" y="102" font-size="13" font-weight="bold" fill="#222">Regeln</text>
+<text x="610" y="122" font-size="12" fill="#222">Client = Stratum Server + 1</text>
+<text x="610" y="142" font-size="12" fill="#222">niedriger = bevorzugt</text>
+<text x="610" y="162" font-size="12" fill="#222">ntp master: 1–15 (Default 8)</text>
+<text x="610" y="182" font-size="12" fill="#ff6b6b">Stratum 16 = unsynchronisiert</text>
+<text x="610" y="202" font-size="12" fill="#222">UDP 123, Poll 64–1024 s</text>
+<text x="20" y="440" font-size="12" fill="#222">Nie Sync auf unsynchrone Quelle oder auf stark abweichende Quelle (Falseticker), auch bei niedrigerem Stratum.</text>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Source Tree (S,G) und Shared Tree (*,G)</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">Source Tree (S,G) vs. Shared Tree (*,G)</text>
+<!-- left: source tree -->
+<text x="200" y="60" text-anchor="middle" font-size="15" fill="#39c86a" font-weight="bold">Source Tree / SPT (10.1.1.10, 239.1.1.1)</text>
+<rect x="20" y="90" width="60" height="30" fill="#fff" stroke="#222"/><text x="50" y="110" text-anchor="middle" font-size="12" fill="#222">Quelle S</text>
+<circle cx="130" cy="105" r="20" fill="#fff" stroke="#222" stroke-width="2"/><text x="130" y="110" text-anchor="middle" font-size="12" fill="#222">A</text>
+<circle cx="250" cy="105" r="20" fill="#fff" stroke="#222" stroke-width="2"/><text x="250" y="110" text-anchor="middle" font-size="12" fill="#222">B</text>
+<circle cx="130" cy="230" r="20" fill="#fff" stroke="#222" stroke-width="2"/><text x="130" y="235" text-anchor="middle" font-size="12" fill="#222">C</text>
+<circle cx="250" cy="230" r="20" fill="#fff" stroke="#222" stroke-width="2"/><text x="250" y="235" text-anchor="middle" font-size="12" fill="#222">D</text>
+<rect x="100" y="300" width="60" height="30" fill="#fff" stroke="#222"/><text x="130" y="320" text-anchor="middle" font-size="12" fill="#222">Empf. 1</text>
+<rect x="300" y="300" width="60" height="30" fill="#fff" stroke="#222"/><text x="330" y="320" text-anchor="middle" font-size="12" fill="#222">Empf. 2</text>
+<line x1="80" y1="105" x2="110" y2="105" stroke="#39c86a" stroke-width="4"/>
+<line x1="130" y1="125" x2="130" y2="210" stroke="#39c86a" stroke-width="4"/>
+<line x1="150" y1="105" x2="230" y2="105" stroke="#39c86a" stroke-width="4"/>
+<line x1="130" y1="250" x2="130" y2="300" stroke="#39c86a" stroke-width="4"/>
+<line x1="262" y1="122" x2="320" y2="300" stroke="#39c86a" stroke-width="4"/>
+<line x1="250" y1="125" x2="250" y2="210" stroke="#ccc" stroke-width="2"/>
+<line x1="150" y1="230" x2="230" y2="230" stroke="#ccc" stroke-width="2"/>
+<text x="200" y="370" text-anchor="middle" font-size="13" fill="#222">Wurzel = Quelle, kürzester Weg, minimale Latenz</text>
+<text x="200" y="390" text-anchor="middle" font-size="13" fill="#222">aber: State pro Quelle und Gruppe</text>
+<line x1="400" y1="45" x2="400" y2="430" stroke="#ccc" stroke-dasharray="6 4"/>
+<!-- right: shared tree -->
+<text x="600" y="60" text-anchor="middle" font-size="15" fill="#4a9cff" font-weight="bold">Shared Tree / RPT (*, 239.1.1.1)</text>
+<rect x="420" y="90" width="60" height="30" fill="#fff" stroke="#222"/><text x="450" y="110" text-anchor="middle" font-size="12" fill="#222">Quelle S</text>
+<circle cx="530" cy="105" r="20" fill="#fff" stroke="#222" stroke-width="2"/><text x="530" y="110" text-anchor="middle" font-size="12" fill="#222">A</text>
+<circle cx="650" cy="105" r="20" fill="#fff" stroke="#222" stroke-width="2"/><text x="650" y="110" text-anchor="middle" font-size="12" fill="#222">B</text>
+<circle cx="530" cy="230" r="20" fill="#fff" stroke="#222" stroke-width="2"/><text x="530" y="235" text-anchor="middle" font-size="12" fill="#222">C</text>
+<circle cx="650" cy="230" r="24" fill="#ffd23f" stroke="#222" stroke-width="2"/><text x="650" y="235" text-anchor="middle" font-size="12" fill="#222">D = RP</text>
+<rect x="500" y="300" width="60" height="30" fill="#fff" stroke="#222"/><text x="530" y="320" text-anchor="middle" font-size="12" fill="#222">Empf. 1</text>
+<rect x="700" y="300" width="60" height="30" fill="#fff" stroke="#222"/><text x="730" y="320" text-anchor="middle" font-size="12" fill="#222">Empf. 2</text>
+<line x1="480" y1="105" x2="510" y2="105" stroke="#39c86a" stroke-width="4"/>
+<line x1="550" y1="105" x2="630" y2="105" stroke="#39c86a" stroke-width="4"/>
+<line x1="650" y1="125" x2="650" y2="206" stroke="#39c86a" stroke-width="4"/>
+<line x1="626" y1="230" x2="550" y2="230" stroke="#4a9cff" stroke-width="4"/>
+<line x1="530" y1="250" x2="530" y2="300" stroke="#4a9cff" stroke-width="4"/>
+<line x1="666" y1="248" x2="720" y2="300" stroke="#4a9cff" stroke-width="4"/>
+<line x1="530" y1="125" x2="530" y2="210" stroke="#ccc" stroke-width="2"/>
+<text x="600" y="370" text-anchor="middle" font-size="13" fill="#222">Grün: Quelle → RP (SPT) · Blau: RP → Empfänger</text>
+<text x="600" y="390" text-anchor="middle" font-size="13" fill="#222">wenig State, aber Umweg A→B→D→C statt A→C</text>
+<text x="400" y="430" text-anchor="middle" font-size="13" fill="#b08aff">Beide Bäume sind schleifenfrei; repliziert wird nur an Verzweigungen.</text>
+</svg>

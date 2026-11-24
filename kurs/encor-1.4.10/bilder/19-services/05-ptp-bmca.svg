@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>PTP BMCA Reihenfolge</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">BMCA: Wer wird Grandmaster?</text>
+<text x="400" y="55" text-anchor="middle" font-size="13" fill="#222">Vergleich der Announce-Daten Schritt für Schritt – bei Gleichstand nächstes Kriterium, jeweils gewinnt der NIEDRIGERE Wert</text>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<g font-size="13" fill="#222">
+<rect x="20" y="90" width="115" height="70" rx="8" fill="#ffd23f"/><text x="77" y="118" text-anchor="middle" font-weight="bold">1 Priority1</text><text x="77" y="138" text-anchor="middle" font-size="11">0–255, Def. 128</text><text x="77" y="152" text-anchor="middle" font-size="11">Admin</text>
+<rect x="150" y="90" width="115" height="70" rx="8" fill="#39c86a"/><text x="207" y="118" text-anchor="middle" font-weight="bold">2 Class</text><text x="207" y="138" text-anchor="middle" font-size="11">Uhrklasse</text><text x="207" y="152" text-anchor="middle" font-size="11">(z. B. GPS-locked)</text>
+<rect x="280" y="90" width="115" height="70" rx="8" fill="#39c86a"/><text x="337" y="118" text-anchor="middle" font-weight="bold">3 Accuracy</text><text x="337" y="138" text-anchor="middle" font-size="11">Abweichung</text><text x="337" y="152" text-anchor="middle" font-size="11">zu UTC</text>
+<rect x="410" y="90" width="115" height="70" rx="8" fill="#39c86a"/><text x="467" y="118" text-anchor="middle" font-weight="bold">4 Variance</text><text x="467" y="138" text-anchor="middle" font-size="11">Stabilität</text><text x="467" y="152" text-anchor="middle" font-size="11">des Oszillators</text>
+<rect x="540" y="90" width="115" height="70" rx="8" fill="#ffd23f"/><text x="597" y="118" text-anchor="middle" font-weight="bold">5 Priority2</text><text x="597" y="138" text-anchor="middle" font-size="11">0–255, Def. 128</text><text x="597" y="152" text-anchor="middle" font-size="11">Admin</text>
+<rect x="670" y="90" width="115" height="70" rx="8" fill="#b08aff"/><text x="727" y="118" text-anchor="middle" font-weight="bold" fill="#fff">6 Identity</text><text x="727" y="138" text-anchor="middle" font-size="11" fill="#fff">64-bit EUI</text><text x="727" y="152" text-anchor="middle" font-size="11" fill="#fff">Tie-Breaker</text>
+</g>
+<g stroke="#222"><line x1="135" y1="125" x2="148" y2="125" marker-end="url(#a)"/><line x1="265" y1="125" x2="278" y2="125" marker-end="url(#a)"/><line x1="395" y1="125" x2="408" y2="125" marker-end="url(#a)"/><line x1="525" y1="125" x2="538" y2="125" marker-end="url(#a)"/><line x1="655" y1="125" x2="668" y2="125" marker-end="url(#a)"/></g>
+<rect x="20" y="200" width="760" height="110" rx="8" fill="none" stroke="#222"/>
+<text x="35" y="225" font-size="14" font-weight="bold" fill="#222">Beispiel</text>
+<text x="35" y="250" font-size="13" fill="#222">Clock A: Priority1 128, Class 6 (GPS)      Clock B: Priority1 100, Class 248 (freilaufend)</text>
+<text x="35" y="275" font-size="13" fill="#ff6b6b">→ B gewinnt: Priority1 wird ZUERST verglichen, 100 &lt; 128 – die bessere Uhrqualität von A zählt nicht mehr.</text>
+<text x="35" y="298" font-size="13" fill="#222">Darum Priority1 nur bewusst ändern (z. B. GPS-Grandmaster gezielt bevorzugen).</text>
+<text x="35" y="345" font-size="13" fill="#222">BMCA läuft lokal auf jedem Port in jedem Announce-Intervall – keine Verhandlung zwischen den Clocks,</text>
+<text x="35" y="365" font-size="13" fill="#222">nie zwei oder keine Primary Clock. Ergebnis prüfen: show ptp parent (GM-Identity), show ptp clock (Priority1/2).</text>
+</svg>

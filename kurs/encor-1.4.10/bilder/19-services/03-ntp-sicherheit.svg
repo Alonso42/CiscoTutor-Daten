@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>NTP absichern</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">NTP absichern: Authentifizierung und access-group</text>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<circle cx="110" cy="110" r="28" fill="#39c86a"/><text x="110" y="115" text-anchor="middle" font-size="12" fill="#222">Server</text>
+<circle cx="390" cy="110" r="28" fill="#4a9cff"/><text x="390" y="115" text-anchor="middle" font-size="12" fill="#fff">Client</text>
+<line x1="140" y1="110" x2="360" y2="110" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<text x="250" y="100" text-anchor="middle" font-size="12" fill="#222">Zeit + MD5-Hash (Key 1)</text>
+<text x="250" y="135" text-anchor="middle" font-size="12" fill="#ff6b6b">authentisiert wird die QUELLE</text>
+<rect x="20" y="160" width="220" height="95" rx="6" fill="#f4f4f4" stroke="#39c86a"/>
+<text x="30" y="180" font-size="11" fill="#222">ntp authentication-key 1 md5 PW</text>
+<text x="30" y="198" font-size="11" fill="#222">ntp authenticate</text>
+<text x="30" y="216" font-size="11" fill="#222">ntp trusted-key 1</text>
+<text x="30" y="240" font-size="11" fill="#222">antwortet trotzdem jedem Client</text>
+<rect x="260" y="160" width="230" height="95" rx="6" fill="#f4f4f4" stroke="#4a9cff"/>
+<text x="270" y="180" font-size="11" fill="#222">ntp authentication-key 1 md5 PW</text>
+<text x="270" y="198" font-size="11" fill="#222">ntp authenticate</text>
+<text x="270" y="216" font-size="11" fill="#222">ntp trusted-key 1</text>
+<text x="270" y="234" font-size="11" fill="#222">ntp server 10.0.1.22 key 1</text>
+<text x="270" y="250" font-size="10" fill="#ff6b6b">Key falsch/fehlt → unsynchronisiert</text>
+<text x="520" y="70" font-size="15" font-weight="bold" fill="#222">ntp access-group …</text>
+<rect x="520" y="85" width="260" height="40" fill="#39c86a"/><text x="530" y="102" font-size="12" font-weight="bold" fill="#222">peer</text><text x="530" y="118" font-size="11" fill="#222">Requests + Queries, darf sich selbst syncen</text>
+<rect x="520" y="130" width="260" height="40" fill="#4a9cff"/><text x="530" y="147" font-size="12" font-weight="bold" fill="#fff">serve</text><text x="530" y="163" font-size="11" fill="#fff">Requests + Queries, kein eigener Sync</text>
+<rect x="520" y="175" width="260" height="40" fill="#b08aff"/><text x="530" y="192" font-size="12" font-weight="bold" fill="#fff">serve-only</text><text x="530" y="208" font-size="11" fill="#fff">nur Zeit-Requests</text>
+<rect x="520" y="220" width="260" height="40" fill="#ffd23f"/><text x="530" y="237" font-size="12" font-weight="bold" fill="#222">query-only</text><text x="530" y="253" font-size="11" fill="#222">nur Control-Queries</text>
+<rect x="20" y="290" width="760" height="140" rx="8" fill="none" stroke="#222"/>
+<text x="35" y="315" font-size="14" font-weight="bold" fill="#222">Typisches Design</text>
+<circle cx="120" cy="370" r="22" fill="#b08aff"/><text x="120" y="375" text-anchor="middle" font-size="11" fill="#fff">Core1</text>
+<circle cx="280" cy="370" r="22" fill="#b08aff"/><text x="280" y="375" text-anchor="middle" font-size="11" fill="#fff">Core2</text>
+<line x1="143" y1="370" x2="257" y2="370" stroke="#39c86a" stroke-width="3"/><text x="200" y="360" text-anchor="middle" font-size="11" fill="#222">peer-ACL</text>
+<text x="340" y="345" font-size="12" fill="#222">Core ↔ Core: access-group peer (gegenseitiges Backup)</text>
+<text x="340" y="367" font-size="12" fill="#222">Clients 10.1.0.0/16: access-group serve-only</text>
+<text x="340" y="389" font-size="12" fill="#222">Bei ntp master: interne Quelle 127.127.x.1 in der ACL erlauben!</text>
+<text x="340" y="411" font-size="12" fill="#222">Ziel: kein Fremd-Sync, keine Zeitmanipulation (Zertifikate!)</text>
+</svg>

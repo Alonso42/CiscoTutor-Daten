@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>RP-Ermittlung: Static RP, Auto-RP und BSR</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">Wie lernen alle Router denselben RP für Gruppe G?</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="50" width="240" height="380" fill="#4a9cff" opacity="0.1" stroke="#4a9cff"/>
+<text x="140" y="75" text-anchor="middle" font-size="16" font-weight="bold" fill="#4a9cff">Static RP</text>
+<text x="32" y="105">ip pim rp-address 10.0.0.1</text>
+<text x="32" y="130">• auf JEDEM Router gleich</text>
+<text x="32" y="152">• einfach, kleine Netze</text>
+<text x="32" y="174">• kein Failover, kein</text>
+<text x="32" y="192">  Load-Balancing</text>
+<text x="32" y="214">• Redundanz nur mit</text>
+<text x="32" y="232">  Anycast-RP (+ MSDP)</text>
+<text x="32" y="260">• dynamisch gelernter RP</text>
+<text x="32" y="278">  hat Vorrang – außer mit</text>
+<text x="32" y="296">  Schlüsselwort override</text>
+<rect x="280" y="50" width="240" height="380" fill="#b08aff" opacity="0.1" stroke="#b08aff"/>
+<text x="400" y="75" text-anchor="middle" font-size="16" font-weight="bold" fill="#b08aff">Auto-RP (Cisco)</text>
+<text x="292" y="105">Candidate-RP: RP-Announce</text>
+<text x="292" y="123">  → 224.0.1.39</text>
+<text x="292" y="150">Mapping Agent: hört .39,</text>
+<text x="292" y="168">  wählt (höchste IP gewinnt),</text>
+<text x="292" y="186">  RP-Discovery → 224.0.1.40</text>
+<text x="292" y="213">Alle Router hören .40</text>
+<text x="292" y="240">• .39/.40 sind Dense-Gruppen:</text>
+<text x="292" y="258">  in reinem Sparse Mode</text>
+<text x="292" y="276">  ip pim autorp listener</text>
+<text x="292" y="303">• kein IPv6</text>
+<rect x="540" y="50" width="240" height="380" fill="#39c86a" opacity="0.1" stroke="#39c86a"/>
+<text x="660" y="75" text-anchor="middle" font-size="16" font-weight="bold" fill="#39c86a">BSR (Standard, RFC 5059)</text>
+<text x="552" y="105">C-BSR-Wahl: höchste</text>
+<text x="552" y="123">  Priorität, dann höchste IP</text>
+<text x="552" y="150">C-RPs melden sich per</text>
+<text x="552" y="168">  Unicast beim BSR</text>
+<text x="552" y="195">BSR flutet Bootstrap-</text>
+<text x="552" y="213">  Nachrichten (RP-Set)</text>
+<text x="552" y="231">  hop-by-hop an 224.0.0.13</text>
+<text x="552" y="258">Jeder Router wählt per</text>
+<text x="552" y="276">  gleichem Hash-Algorithmus</text>
+<text x="552" y="303">• PIMv2, auch IPv6,</text>
+<text x="552" y="321">  herstellerneutral</text>
+</g>
+<text x="400" y="420" text-anchor="middle" font-size="13" fill="#ff6b6b">Auto-RP und BSR nicht gemeinsam im selben Netz betreiben.</text>
+</svg>

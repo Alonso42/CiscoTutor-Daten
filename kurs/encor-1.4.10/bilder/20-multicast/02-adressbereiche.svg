@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>IPv4-Multicast-Adressbereiche 224.0.0.0/4</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">IPv4-Multicast: 224.0.0.0/4 (Klasse D, erste 4 Bit = 1110)</text>
+<rect x="40" y="55" width="720" height="40" fill="#4a9cff" opacity="0.25" stroke="#4a9cff"/>
+<text x="400" y="81" text-anchor="middle" font-size="15" fill="#222">224.0.0.0 – 239.255.255.255 (RFC 5771)</text>
+<g font-size="14" fill="#222">
+<rect x="40" y="115" width="720" height="44" fill="#ffd23f" opacity="0.35"/>
+<text x="55" y="142" font-weight="bold">224.0.0.0/24</text><text x="230" y="142">Link-local (Local Network Control): TTL 1, nie geroutet</text>
+<rect x="40" y="165" width="720" height="44" fill="#ffd23f" opacity="0.2"/>
+<text x="55" y="192" font-weight="bold">224.0.1.0/24</text><text x="230" y="192">Internetwork Control: wird geroutet (z. B. Auto-RP .39/.40)</text>
+<rect x="40" y="215" width="720" height="44" fill="#39c86a" opacity="0.3"/>
+<text x="55" y="242" font-weight="bold">232.0.0.0/8</text><text x="230" y="242">Source-Specific Multicast (SSM): nur (S,G), kein RP</text>
+<rect x="40" y="265" width="720" height="44" fill="#4a9cff" opacity="0.15"/>
+<text x="55" y="292" font-weight="bold">233.0.0.0/8</text><text x="230" y="292">GLOP: statisch aus 16-Bit-AS-Nummer abgeleitet</text>
+<rect x="40" y="315" width="720" height="44" fill="#b08aff" opacity="0.3"/>
+<text x="55" y="342" font-weight="bold">239.0.0.0/8</text><text x="230" y="342">Administratively scoped: privat, nur innerhalb der Organisation</text>
+</g>
+<text x="400" y="385" text-anchor="middle" font-size="13" fill="#222">Bekannte Link-local-Adressen: 224.0.0.1 All Hosts · 224.0.0.2 All Routers · 224.0.0.5/.6 OSPF</text>
+<text x="400" y="405" text-anchor="middle" font-size="13" fill="#222">224.0.0.9 RIPv2 · 224.0.0.10 EIGRP · 224.0.0.13 All PIM Routers · 224.0.0.22 IGMPv3-Reports</text>
+<text x="400" y="432" text-anchor="middle" font-size="12" fill="#ff6b6b">Der Kurs fasst 224.0.1.0–238.255.255.255 als „Global scope“ zusammen – darin liegen auch SSM (232/8) und GLOP (233/8).</text>
+</svg>

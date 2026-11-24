@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Unicast vs. Multicast: Kopien pro Link</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">Unicast vs. Multicast – wie viele Kopien laufen über jeden Link?</text>
+<!-- Unicast -->
+<text x="200" y="65" text-anchor="middle" font-size="16" fill="#ff6b6b" font-weight="bold">Unicast: 1 Kopie pro Empfänger</text>
+<rect x="30" y="180" width="60" height="40" fill="#fff" stroke="#222"/><text x="60" y="205" text-anchor="middle" font-size="13" fill="#222">Quelle</text>
+<circle cx="190" cy="200" r="24" fill="#fff" stroke="#222" stroke-width="2"/><text x="190" y="205" text-anchor="middle" font-size="14" fill="#222">R1</text>
+<circle cx="300" cy="200" r="24" fill="#fff" stroke="#222" stroke-width="2"/><text x="300" y="205" text-anchor="middle" font-size="14" fill="#222">R2</text>
+<rect x="340" y="100" width="44" height="30" fill="#fff" stroke="#222"/><text x="362" y="120" text-anchor="middle" font-size="12" fill="#222">PC A</text>
+<rect x="350" y="185" width="44" height="30" fill="#fff" stroke="#222"/><text x="372" y="205" text-anchor="middle" font-size="12" fill="#222">PC B</text>
+<rect x="340" y="270" width="44" height="30" fill="#fff" stroke="#222"/><text x="362" y="290" text-anchor="middle" font-size="12" fill="#222">PC C</text>
+<line x1="90" y1="200" x2="166" y2="200" stroke="#ff6b6b" stroke-width="7"/>
+<line x1="214" y1="200" x2="276" y2="200" stroke="#ff6b6b" stroke-width="7"/>
+<line x1="318" y1="184" x2="345" y2="128" stroke="#ff6b6b" stroke-width="2"/>
+<line x1="324" y1="200" x2="350" y2="200" stroke="#ff6b6b" stroke-width="2"/>
+<line x1="318" y1="216" x2="345" y2="272" stroke="#ff6b6b" stroke-width="2"/>
+<text x="128" y="185" text-anchor="middle" font-size="13" fill="#ff6b6b">3 Kopien</text>
+<text x="245" y="185" text-anchor="middle" font-size="13" fill="#ff6b6b">3 Kopien</text>
+<text x="200" y="350" text-anchor="middle" font-size="13" fill="#222">Last wächst 1:1 mit der Zahl der Empfänger.</text>
+<text x="200" y="370" text-anchor="middle" font-size="13" fill="#222">Quelle muss jede Empfängeradresse kennen.</text>
+<line x1="400" y1="50" x2="400" y2="430" stroke="#ccc" stroke-dasharray="6 4"/>
+<!-- Multicast -->
+<text x="600" y="65" text-anchor="middle" font-size="16" fill="#39c86a" font-weight="bold">Multicast: 1 Kopie pro Link</text>
+<rect x="430" y="180" width="60" height="40" fill="#fff" stroke="#222"/><text x="460" y="205" text-anchor="middle" font-size="13" fill="#222">Quelle</text>
+<circle cx="580" cy="200" r="24" fill="#fff" stroke="#222" stroke-width="2"/><text x="580" y="205" text-anchor="middle" font-size="14" fill="#222">R1</text>
+<circle cx="680" cy="200" r="24" fill="#fff" stroke="#222" stroke-width="2"/><text x="680" y="205" text-anchor="middle" font-size="14" fill="#222">R2</text>
+<rect x="730" y="100" width="44" height="30" fill="#fff" stroke="#222"/><text x="752" y="120" text-anchor="middle" font-size="12" fill="#222">PC A</text>
+<rect x="740" y="185" width="44" height="30" fill="#fff" stroke="#222"/><text x="762" y="205" text-anchor="middle" font-size="12" fill="#222">PC B</text>
+<rect x="730" y="270" width="44" height="30" fill="#fff" stroke="#222"/><text x="752" y="290" text-anchor="middle" font-size="12" fill="#222">PC C</text>
+<line x1="490" y1="200" x2="556" y2="200" stroke="#39c86a" stroke-width="3"/>
+<line x1="604" y1="200" x2="656" y2="200" stroke="#39c86a" stroke-width="3"/>
+<line x1="698" y1="184" x2="735" y2="128" stroke="#39c86a" stroke-width="3"/>
+<line x1="704" y1="200" x2="740" y2="200" stroke="#39c86a" stroke-width="3"/>
+<line x1="698" y1="216" x2="735" y2="272" stroke="#39c86a" stroke-width="3"/>
+<text x="525" y="185" text-anchor="middle" font-size="13" fill="#39c86a">1 Kopie</text>
+<text x="630" y="185" text-anchor="middle" font-size="13" fill="#39c86a">1 Kopie</text>
+<text x="680" y="250" text-anchor="middle" font-size="12" fill="#4a9cff">R2 repliziert</text>
+<text x="600" y="350" text-anchor="middle" font-size="13" fill="#222">Ziel = Gruppenadresse G (z. B. 239.1.1.1).</text>
+<text x="600" y="370" text-anchor="middle" font-size="13" fill="#222">Replikation erst dort, wo sich Pfade teilen.</text>
+<text x="400" y="420" text-anchor="middle" font-size="13" fill="#b08aff">Nachteil Multicast: meist UDP – best effort, keine Staukontrolle, gelegentlich Duplikate/Umordnung</text>
+</svg>

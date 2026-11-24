@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Syslog-Format und Severity</title>
+<rect width="800" height="450" fill="#fff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Syslog: Aufbau einer Meldung und Severity-Filter</text>
+<g font-family="monospace" font-size="14">
+<rect x="20" y="50" width="90" height="30" fill="#ffd23f"/><text x="65" y="70" text-anchor="middle" fill="#222">000042:</text>
+<rect x="112" y="50" width="200" height="30" fill="#4a9cff"/><text x="212" y="70" text-anchor="middle" fill="#fff">*Dec 1 08:10:54.261:</text>
+<rect x="314" y="50" width="100" height="30" fill="#39c86a"/><text x="364" y="70" text-anchor="middle" fill="#222">%LINEPROTO</text>
+<rect x="416" y="50" width="30" height="30" fill="#ff6b6b"/><text x="431" y="70" text-anchor="middle" fill="#fff">5</text>
+<rect x="448" y="50" width="80" height="30" fill="#b08aff"/><text x="488" y="70" text-anchor="middle" fill="#fff">UPDOWN</text>
+<rect x="530" y="50" width="250" height="30" fill="#eee"/><text x="540" y="70" fill="#222">: Line protocol on …</text>
+</g>
+<g font-size="11" fill="#222">
+<text x="65" y="98" text-anchor="middle">seq no</text><text x="65" y="112" text-anchor="middle">service sequence-</text><text x="65" y="124" text-anchor="middle">numbers</text>
+<text x="212" y="98" text-anchor="middle">Zeitstempel</text><text x="212" y="112" text-anchor="middle">service timestamps log datetime msec</text>
+<text x="364" y="98" text-anchor="middle">Facility</text><text x="431" y="98" text-anchor="middle">Sev.</text><text x="488" y="98" text-anchor="middle">Mnemonic</text>
+<text x="650" y="98" text-anchor="middle">Beschreibung</text>
+</g>
+<g font-size="13">
+<rect x="20" y="145" width="380" height="32" fill="#ff6b6b"/><text x="30" y="166" fill="#fff">0 emergencies – System unbenutzbar</text>
+<rect x="20" y="179" width="380" height="32" fill="#ff6b6b" opacity="0.85"/><text x="30" y="200" fill="#fff">1 alerts – sofort handeln</text>
+<rect x="20" y="213" width="380" height="32" fill="#ff6b6b" opacity="0.7"/><text x="30" y="234" fill="#fff">2 critical – kritischer Zustand</text>
+<rect x="20" y="247" width="380" height="32" fill="#ffd23f"/><text x="30" y="268" fill="#222">3 errors – Fehler (z. B. LINK-3-UPDOWN)</text>
+<rect x="20" y="281" width="380" height="32" fill="#ffd23f" opacity="0.7"/><text x="30" y="302" fill="#222">4 warnings – Warnung</text>
+<rect x="20" y="315" width="380" height="32" fill="#4a9cff"/><text x="30" y="336" fill="#fff">5 notifications – normal, signifikant</text>
+<rect x="20" y="349" width="380" height="32" fill="#4a9cff" opacity="0.7"/><text x="30" y="370" fill="#fff">6 informational – Information</text>
+<rect x="20" y="383" width="380" height="32" fill="#39c86a"/><text x="30" y="404" fill="#222">7 debugging – Debug-Ausgaben</text>
+</g>
+<path d="M410 145 L430 145 L430 313 L410 313" fill="none" stroke="#222" stroke-width="2"/>
+<text x="440" y="225" font-size="13" fill="#222">logging trap warnings (4)</text>
+<text x="440" y="243" font-size="13" fill="#222">→ sendet Level 0 bis 4</text>
+<text x="440" y="290" font-size="13" fill="#222">Kleinere Zahl = schwerer.</text>
+<text x="440" y="308" font-size="13" fill="#222">Level x schließt alle Zahlen ≤ x ein.</text>
+<rect x="440" y="330" width="340" height="95" rx="6" fill="none" stroke="#222"/>
+<text x="450" y="350" font-size="12" fill="#222">console: logging console (Default debugging)</text>
+<text x="450" y="368" font-size="12" fill="#222">SSH/VTY: logging monitor + terminal monitor</text>
+<text x="450" y="386" font-size="12" fill="#222">RAM: logging buffered (zirkulär)</text>
+<text x="450" y="404" font-size="12" fill="#222">Server: logging host + logging trap (Def. 6)</text>
+<text x="450" y="420" font-size="12" fill="#222">Flash: logging persistent · Server: UDP 514</text>
+</svg>

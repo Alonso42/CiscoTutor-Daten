@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>IGMPv1, IGMPv2 und IGMPv3 im Vergleich</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">IGMP-Versionen (Host ↔ erster Router, TTL 1)</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="50" width="760" height="34" fill="#4a9cff" opacity="0.3"/>
+<text x="30" y="72" font-weight="bold">Merkmal</text><text x="230" y="72" font-weight="bold">IGMPv1 (RFC 1112)</text><text x="420" y="72" font-weight="bold">IGMPv2 (RFC 2236)</text><text x="610" y="72" font-weight="bold">IGMPv3 (RFC 3376)</text>
+<text x="30" y="110">General Query an</text><text x="230" y="110">224.0.0.1</text><text x="420" y="110">224.0.0.1</text><text x="610" y="110">224.0.0.1</text>
+<text x="30" y="140">Report an</text><text x="230" y="140">Gruppe G</text><text x="420" y="140">Gruppe G</text><text x="610" y="140">224.0.0.22</text>
+<text x="30" y="170">Leave</text><text x="230" y="170">nein (Timeout)</text><text x="420" y="170">Leave an 224.0.0.2</text><text x="610" y="170">Report: Quelle/Gruppe weg</text>
+<text x="30" y="200">Group-Specific Query</text><text x="230" y="200">nein</text><text x="420" y="200">ja (an G)</text><text x="610" y="200">ja (+ Group-and-Source)</text>
+<text x="30" y="230">Querier-Wahl</text><text x="230" y="230">keine (PIM-DR fragt)</text><text x="420" y="230">niedrigste IP</text><text x="610" y="230">niedrigste IP</text>
+<text x="30" y="260">Max Response Time</text><text x="230" y="260">fest</text><text x="420" y="260">in Query (Default 10 s)</text><text x="610" y="260">in Query</text>
+<text x="30" y="290">Report Suppression</text><text x="230" y="290">ja</text><text x="420" y="290">ja</text><text x="610" y="290">nein</text>
+<text x="30" y="320">Source Filtering</text><text x="230" y="320">nein</text><text x="420" y="320">nein</text><text x="610" y="320" fill="#39c86a" font-weight="bold">INCLUDE / EXCLUDE</text>
+<line x1="20" y1="92" x2="780" y2="92" stroke="#ccc"/>
+</g>
+<rect x="20" y="345" width="760" height="90" fill="#39c86a" opacity="0.12" stroke="#39c86a"/>
+<text x="35" y="370" font-size="13" fill="#222" font-weight="bold">IGMPv2-Leave-Ablauf:</text>
+<text x="35" y="392" font-size="13" fill="#222">Host → Leave (224.0.0.2) · Querier → Group-Specific Query an G (Last Member Query, Default 2× im Abstand 1 s)</text>
+<text x="35" y="414" font-size="13" fill="#222">Antwortet niemand mit einem Report → Gruppe auf dem Segment gelöscht. Antwortet ein Host → Gruppe bleibt.</text>
+</svg>
