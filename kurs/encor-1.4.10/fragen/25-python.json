@@ -1,0 +1,2381 @@
+[
+ {
+  "id": "slg-py-001",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint(type('1.1.1.1'))",
+  "optionen": [
+   "<class 'str'>",
+   "<class 'float'>",
+   "<type 'str'>",
+   "<class 'list'>"
+  ],
+  "richtig": 0,
+  "erklaerung": "Alles in Anführungszeichen ist ein String – egal, ob der Inhalt wie eine IP-Adresse aussieht. Python 3 zeigt den Typ als <class 'str'>; die Form <type 'str'> stammt aus Python 2."
+ },
+ {
+  "id": "slg-py-002",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint(144 / 12)",
+  "optionen": [
+   "12.0",
+   "12",
+   "12.00",
+   "'12'"
+  ],
+  "richtig": 0,
+  "erklaerung": "In Python 3 liefert der Operator / immer ein float-Ergebnis, auch wenn die Division aufgeht. Nur Python 2 gab bei zwei Integern 12 zurück; für ganzzahlige Division nutzt man //."
+ },
+ {
+  "id": "slg-py-003",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint(17 // 5, 17 % 5)",
+  "optionen": [
+   "3 2",
+   "3.4 2",
+   "3 3.4",
+   "2 3"
+  ],
+  "richtig": 0,
+  "erklaerung": "// ist die ganzzahlige (Floor-)Division: 17 // 5 = 3. % liefert den Rest der Division: 17 - 3*5 = 2. print() trennt mehrere Argumente mit einem Leerzeichen."
+ },
+ {
+  "id": "slg-py-004",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint(2 ** 3 ** 2)",
+  "optionen": [
+   "512",
+   "64",
+   "12",
+   "36"
+  ],
+  "richtig": 0,
+  "erklaerung": "Der Potenzoperator ** ist rechtsassoziativ: zuerst 3 ** 2 = 9, dann 2 ** 9 = 512. (2 ** 3) ** 2 = 64 wäre nur mit Klammern das Ergebnis."
+ },
+ {
+  "id": "slg-py-005",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint(2 + 3 * 4 ** 2)",
+  "optionen": [
+   "50",
+   "80",
+   "400",
+   "196"
+  ],
+  "richtig": 0,
+  "erklaerung": "Rangfolge: ** vor * vor +. Also 4 ** 2 = 16, dann 3 * 16 = 48, dann 2 + 48 = 50."
+ },
+ {
+  "id": "slg-py-006",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint(-7 // 2)",
+  "optionen": [
+   "-4",
+   "-3",
+   "-3.5",
+   "3"
+  ],
+  "richtig": 0,
+  "erklaerung": "// rundet immer zur nächstkleineren ganzen Zahl ab (floor), nicht Richtung null. -3.5 wird daher zu -4."
+ },
+ {
+  "id": "slg-py-007",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint(type(10 / 2))",
+  "optionen": [
+   "<class 'float'>",
+   "<class 'int'>",
+   "<class 'number'>",
+   "<class 'decimal'>"
+  ],
+  "richtig": 0,
+  "erklaerung": "10 / 2 ergibt in Python 3 den float 5.0, also <class 'float'>. Ein int entstünde nur mit 10 // 2."
+ },
+ {
+  "id": "slg-py-008",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nx = '5'\ny = 3\nprint(x * y)",
+  "optionen": [
+   "555",
+   "15",
+   "53",
+   "TypeError"
+  ],
+  "richtig": 0,
+  "erklaerung": "Ein String multipliziert mit einem int wird wiederholt: '5' * 3 = '555'. Für eine Rechnung müsste x erst mit int(x) umgewandelt werden."
+ },
+ {
+  "id": "slg-py-009",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What happens when this Python 3 code runs?\n\nx = '5'\ny = 3\nprint(x + y)",
+  "optionen": [
+   "A TypeError is raised",
+   "It prints 8",
+   "It prints 53",
+   "A ValueError is raised"
+  ],
+  "richtig": 0,
+  "erklaerung": "+ zwischen str und int ist nicht definiert; Python wandelt nicht automatisch um und meldet TypeError: can only concatenate str (not \"int\") to str. Lösung: int(x) + y oder x + str(y)."
+ },
+ {
+  "id": "slg-py-010",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What happens when this Python 3 code runs?\n\nprint(int('10.5'))",
+  "optionen": [
+   "A ValueError is raised",
+   "It prints 10",
+   "It prints 11",
+   "It prints 10.5"
+  ],
+  "richtig": 0,
+  "erklaerung": "int() akzeptiert nur Strings, die eine ganze Zahl darstellen; '10.5' führt zu ValueError: invalid literal for int(). int(float('10.5')) würde 10 liefern."
+ },
+ {
+  "id": "slg-py-011",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint(str(10) + str(20), float('3') + 1)",
+  "optionen": [
+   "1020 4.0",
+   "30 4.0",
+   "1020 4",
+   "30 4"
+  ],
+  "richtig": 0,
+  "erklaerung": "str(10) + str(20) verkettet zwei Strings zu '1020'. float('3') ist 3.0, plus 1 ergibt den float 4.0."
+ },
+ {
+  "id": "slg-py-012",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nintf = 'GigabitEthernet0/1'\nprint(intf[-3:])",
+  "optionen": [
+   "0/1",
+   "/1",
+   "t0/",
+   "1/0"
+  ],
+  "richtig": 0,
+  "erklaerung": "Negative Indizes zählen von hinten (-1 = letztes Zeichen). Der Slice [-3:] liefert die letzten drei Zeichen: '0/1'."
+ },
+ {
+  "id": "slg-py-013",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nplatform = 'nexus'\nprint(platform[1:3])",
+  "optionen": [
+   "ex",
+   "nex",
+   "exu",
+   "ne"
+  ],
+  "richtig": 0,
+  "erklaerung": "Ein Slice [start:stop] beginnt bei Index start und endet VOR stop. Index 1 = 'e', Index 2 = 'x' → 'ex'."
+ },
+ {
+  "id": "slg-py-014",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nip = '10.1.10.1'\nprint(ip[::-1])",
+  "optionen": [
+   "1.01.1.01",
+   "1.10.1.10",
+   "10.1.10.1",
+   "1.01.1.10"
+  ],
+  "richtig": 0,
+  "erklaerung": "Schrittweite -1 kehrt den String Zeichen für Zeichen um (nicht oktettweise). Aus '10.1.10.1' wird '1.01.1.01'."
+ },
+ {
+  "id": "slg-py-015",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What happens when this Python 3 code runs?\n\nhostname = 'nxos2'\nhostname[4] = '3'\nprint(hostname)",
+  "optionen": [
+   "A TypeError is raised",
+   "It prints nxos3",
+   "It prints nxos23",
+   "An IndexError is raised"
+  ],
+  "richtig": 0,
+  "erklaerung": "Strings sind unveränderlich (immutable); ein einzelnes Zeichen lässt sich nicht zuweisen: TypeError: 'str' object does not support item assignment. Man erzeugt stattdessen einen neuen String, z. B. hostname[:4] + '3'."
+ },
+ {
+  "id": "slg-py-016",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nline = '  Gi0/1  \\n'\nprint(len(line.strip()))",
+  "optionen": [
+   "5",
+   "7",
+   "10",
+   "9"
+  ],
+  "richtig": 0,
+  "erklaerung": "strip() entfernt Whitespace (Leerzeichen, Tabs, Zeilenumbrüche) an Anfang und Ende. Übrig bleibt 'Gi0/1' mit 5 Zeichen; der Originalstring hat 10."
+ },
+ {
+  "id": "slg-py-017",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nname = 'core-sw1'\nprint(name.find('sw'), name.find('rtr'))",
+  "optionen": [
+   "5 -1",
+   "6 -1",
+   "5 None",
+   "4 0"
+  ],
+  "richtig": 0,
+  "erklaerung": "find() liefert den 0-basierten Index des ersten Treffers ('s' steht an Position 5) und -1, wenn der Teilstring fehlt – ohne Exception."
+ },
+ {
+  "id": "slg-py-018",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What happens when this Python 3 code runs?\n\nname = 'core-sw1'\nprint(name.index('rtr'))",
+  "optionen": [
+   "ValueError: substring not found",
+   "It prints -1 for the missing value",
+   "It prints None for the missing value",
+   "IndexError: string index out of range"
+  ],
+  "richtig": 0,
+  "erklaerung": "index() sucht wie find(), wirft aber ValueError, wenn der Teilstring nicht vorkommt. find() würde stattdessen -1 zurückgeben."
+ },
+ {
+  "id": "slg-py-019",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nip = '10.1.1.1'\nprint(ip.startswith('10'), ip.endswith('.2'))",
+  "optionen": [
+   "True False",
+   "True True",
+   "False False",
+   "10 False"
+  ],
+  "richtig": 0,
+  "erklaerung": "startswith()/endswith() geben einen Boolean zurück. '10.1.1.1' beginnt mit '10', endet aber nicht mit '.2'."
+ },
+ {
+  "id": "slg-py-020",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nip = '10.{}.1.{}'\nprint(ip.format(200, 5))",
+  "optionen": [
+   "10.200.1.5",
+   "10.5.1.200",
+   "10.{200}.1.{5}",
+   "10.{}.1.{}"
+  ],
+  "richtig": 0,
+  "erklaerung": "format() füllt die Platzhalter {} der Reihe nach mit den Argumenten: erst 200, dann 5. Der ursprüngliche String bleibt unverändert, format() gibt einen neuen zurück."
+ },
+ {
+  "id": "slg-py-021",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nname = 'R1'\nip = '10.0.0.1'\nprint(f'{name.lower()} has {len(ip)} characters')",
+  "optionen": [
+   "r1 has 8 characters",
+   "R1 has 8 characters",
+   "r1 has 10.0.0.1 characters",
+   "{name.lower()} has {len(ip)} characters"
+  ],
+  "richtig": 0,
+  "erklaerung": "In einem f-String werden Ausdrücke in {} ausgewertet: name.lower() ergibt 'r1', len('10.0.0.1') ergibt 8. Ohne das f-Präfix würden die Klammern wörtlich ausgegeben."
+ },
+ {
+  "id": "slg-py-022",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nline = 'interface GigabitEthernet1'\nprint(line.split()[1])",
+  "optionen": [
+   "GigabitEthernet1",
+   "interface",
+   "n",
+   "['GigabitEthernet1']"
+  ],
+  "richtig": 0,
+  "erklaerung": "split() ohne Argument trennt an Whitespace und liefert ['interface', 'GigabitEthernet1']; Index 1 ist das zweite Element. 'n' wäre line[1] ohne split()."
+ },
+ {
+  "id": "slg-py-023",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nmac = '00-11-22-33-44-55'\nprint('.'.join(mac.split('-')[:3]))",
+  "optionen": [
+   "00.11.22",
+   "00.11.22.33.44.55",
+   "00-11-22",
+   "33.44.55"
+  ],
+  "richtig": 0,
+  "erklaerung": "split('-') erzeugt eine Liste mit sechs Elementen, [:3] nimmt die ersten drei, '.'.join() verbindet sie mit Punkten zu '00.11.22'."
+ },
+ {
+  "id": "slg-py-024",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "An engineer enters the following in the Python 3 interactive interpreter:\n\n>>> banner = 'WELCOME\\nR1'\n>>> banner\n\nWhat does the interpreter display?",
+  "optionen": [
+   "'WELCOME\\nR1'",
+   "WELCOME and R1 on two lines",
+   "WELCOME\\nR1 without quotes",
+   "Nothing, because print() is missing"
+  ],
+  "richtig": 0,
+  "erklaerung": "Gibt man im Interpreter nur den Variablennamen ein, zeigt er die Repräsentation (repr) mit Anführungszeichen und ungerenderten Escape-Sequenzen. Erst print(banner) wertet \\n als Zeilenumbruch aus."
+ },
+ {
+  "id": "slg-py-025",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "A file calc.py contains only the single line below. What is printed when you run 'python3 calc.py'?\n\n5 * 8",
+  "optionen": [
+   "Nothing is printed",
+   "40",
+   "5 * 8",
+   "A SyntaxError is raised"
+  ],
+  "richtig": 0,
+  "erklaerung": "Nur der interaktive Interpreter zeigt den Wert eines Ausdrucks automatisch an. In einem Skript wird 5 * 8 berechnet und verworfen; für eine Ausgabe braucht man print()."
+ },
+ {
+  "id": "slg-py-026",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint(False or True and False)",
+  "optionen": [
+   "False",
+   "True",
+   "None",
+   "SyntaxError"
+  ],
+  "richtig": 0,
+  "erklaerung": "and bindet stärker als or: zuerst True and False = False, dann False or False = False. Von links nach rechts gelesen käme man fälschlich auf False."
+ },
+ {
+  "id": "slg-py-027",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint('nexus' in 'nexus 9396', '9372' not in 'nexus 9396')",
+  "optionen": [
+   "True True",
+   "True False",
+   "False True",
+   "False False"
+  ],
+  "richtig": 0,
+  "erklaerung": "in/not in sind Membership-Operatoren: 'nexus' ist Teilstring von 'nexus 9396' (True), '9372' kommt darin nicht vor, also ist not in ebenfalls True."
+ },
+ {
+  "id": "slg-py-028",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint(1 < 2 < 3, 3 > 2 > 2)",
+  "optionen": [
+   "True False",
+   "True True",
+   "False False",
+   "TypeError"
+  ],
+  "richtig": 0,
+  "erklaerung": "Python verkettet Vergleiche: a < b < c bedeutet a < b and b < c. 3 > 2 > 2 ist daher 3 > 2 and 2 > 2 = False."
+ },
+ {
+  "id": "slg-py-029",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint(not 1 == 2)",
+  "optionen": [
+   "True",
+   "False",
+   "TypeError",
+   "-1"
+  ],
+  "richtig": 0,
+  "erklaerung": "Vergleichsoperatoren binden stärker als not. Python wertet also not (1 == 2) = not False = True aus."
+ },
+ {
+  "id": "slg-py-030",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint('10' < '9', 10 < 9)",
+  "optionen": [
+   "True False",
+   "False False",
+   "True True",
+   "TypeError"
+  ],
+  "richtig": 0,
+  "erklaerung": "Strings werden zeichenweise verglichen: '1' kommt vor '9', also ist '10' < '9' True. Zahlen werden numerisch verglichen. Deshalb VLAN-IDs oder Oktette vor dem Vergleich mit int() umwandeln."
+ },
+ {
+  "id": "slg-py-031",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nhostname = ''\nif hostname:\n    print('configured')\nelse:\n    print('no hostname')",
+  "optionen": [
+   "no hostname",
+   "configured",
+   "Nothing is printed",
+   "NameError"
+  ],
+  "richtig": 0,
+  "erklaerung": "Ein leerer String ist 'falsy' und gilt im if als False, daher läuft der else-Zweig. Jeder nicht leere String wäre True."
+ },
+ {
+  "id": "slg-py-032",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint(bool('False'), bool(0.0))",
+  "optionen": [
+   "True False",
+   "False False",
+   "False True",
+   "True True"
+  ],
+  "richtig": 0,
+  "erklaerung": "Jeder nicht leere String ist truthy – auch der Text 'False'. 0.0 ist wie 0 falsy."
+ },
+ {
+  "id": "slg-py-033",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nswitch = 'Nexus 9396'\nif 'catalyst' in switch:\n    switch_type = 'catalyst'\nelif 'nexus' in switch:\n    switch_type = 'nexus'\nelse:\n    switch_type = 'unknown'\nprint(switch_type)",
+  "optionen": [
+   "unknown",
+   "nexus",
+   "catalyst",
+   "Nexus"
+  ],
+  "richtig": 0,
+  "erklaerung": "in ist case-sensitive: 'nexus' kommt in 'Nexus 9396' nicht vor (großes N). Keine Bedingung trifft zu, also läuft der else-Zweig. Abhilfe: switch.lower() prüfen."
+ },
+ {
+  "id": "slg-py-034",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nx = 15\nif x > 10:\n    print('A')\nelif x > 5:\n    print('B')\nelse:\n    print('C')",
+  "optionen": [
+   "A",
+   "A and B on two lines",
+   "B",
+   "C"
+  ],
+  "richtig": 0,
+  "erklaerung": "In einer if/elif/else-Kette läuft nur der erste Zweig, dessen Bedingung True ist; danach wird die Kette verlassen. x > 5 wäre zwar auch wahr, wird aber nicht mehr geprüft."
+ },
+ {
+  "id": "slg-py-035",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nx = 15\nif x > 10:\n    print('A')\nif x > 5:\n    print('B')\nelse:\n    print('C')",
+  "optionen": [
+   "A and B on two lines",
+   "A only",
+   "B only",
+   "A, B and C on three lines"
+  ],
+  "richtig": 0,
+  "erklaerung": "Es sind zwei unabhängige if-Anweisungen (kein elif). Beide Bedingungen sind wahr, also werden A und B ausgegeben; das else gehört nur zum zweiten if."
+ },
+ {
+  "id": "slg-py-036",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nvendor = 'cisco'\nplatform = 'nexus'\nmodel = '9372'\nif vendor == 'cisco':\n    if platform == 'catalyst':\n        print('catalyst')\n    elif platform == 'nexus':\n        print('nexus')\n    if model == '9396':\n        print('9396')\n    else:\n        print('other')",
+  "optionen": [
+   "nexus and other on two lines",
+   "nexus only",
+   "nexus and 9396 on two lines",
+   "other only"
+  ],
+  "richtig": 0,
+  "erklaerung": "Das zweite if steht auf derselben Einrückungsebene wie das erste und wird daher immer geprüft, wenn vendor 'cisco' ist. platform trifft 'nexus', model ist nicht '9396', also folgt 'other'."
+ },
+ {
+  "id": "slg-py-037",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nvlans = [1, 5, 10]\ntotal = 0\nfor v in vlans:\n    total += v\nprint(total)",
+  "optionen": [
+   "16",
+   "10",
+   "3",
+   "[1, 5, 10]"
+  ],
+  "richtig": 0,
+  "erklaerung": "Die for-Schleife addiert jedes Element zu total: 0+1+5+10 = 16. print steht nicht eingerückt und läuft einmal nach der Schleife."
+ },
+ {
+  "id": "slg-py-038",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint(list(range(10, 0, -3)))",
+  "optionen": [
+   "[10, 7, 4, 1]",
+   "[10, 7, 4, 1, -2]",
+   "[10, 7, 4]",
+   "[]"
+  ],
+  "richtig": 0,
+  "erklaerung": "Mit negativer Schrittweite zählt range rückwärts und stoppt vor dem Endwert 0. 1 liegt noch über 0 und ist enthalten, -2 nicht mehr."
+ },
+ {
+  "id": "slg-py-039",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nfor i in range(1, 6):\n    if i == 3:\n        continue\n    if i == 5:\n        break\n    print(i)",
+  "optionen": [
+   "1, 2, 4 (one per line)",
+   "1, 2 (one per line)",
+   "1, 2, 4, 5 (one per line)",
+   "1, 2, 3, 4 (one per line)"
+  ],
+  "richtig": 0,
+  "erklaerung": "continue überspringt den Rest des Schleifendurchlaufs (3 wird nicht gedruckt), break beendet die Schleife sofort (5 wird nicht gedruckt). Übrig bleiben 1, 2, 4."
+ },
+ {
+  "id": "slg-py-040",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nn = 0\nwhile n < 3:\n    n += 1\nprint(n)",
+  "optionen": [
+   "3",
+   "0, 1, 2 (one per line)",
+   "1, 2, 3 (one per line)",
+   "2"
+  ],
+  "richtig": 0,
+  "erklaerung": "print ist nicht eingerückt und gehört damit nicht zur while-Schleife. Die Schleife zählt n bis 3 hoch, danach wird einmal 3 ausgegeben."
+ },
+ {
+  "id": "slg-py-041",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nfor vlan in [10, 20, 30]:\n    pass\nprint(vlan)",
+  "optionen": [
+   "30",
+   "10",
+   "NameError",
+   "None"
+  ],
+  "richtig": 0,
+  "erklaerung": "Die Schleifenvariable bleibt nach der Schleife erhalten und behält den letzten Wert. pass ist eine leere Anweisung und tut nichts."
+ },
+ {
+  "id": "slg-py-042",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What happens when this Python 3 code runs?\n\nn = 3\nwhile n > 0:\n    print(n)",
+  "optionen": [
+   "It prints 3 over and over and never stops",
+   "It prints 3, 2, 1 and then stops normally",
+   "It prints 3 once and then stops normally",
+   "It prints nothing because n is never changed"
+  ],
+  "richtig": 0,
+  "erklaerung": "n wird in der Schleife nie verringert, die Bedingung bleibt also immer True: eine Endlosschleife. Abbruch mit Ctrl+C; die Korrektur ist n -= 1 im Schleifenrumpf."
+ },
+ {
+  "id": "slg-py-043",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "What happens when this Python 3 code runs?\n\nneighbors = ['s1', 's2', 's3']\nprint(neighbors[3])",
+  "optionen": [
+   "An IndexError is raised",
+   "It prints s3",
+   "It prints None",
+   "A KeyError is raised"
+  ],
+  "richtig": 0,
+  "erklaerung": "Listenindizes beginnen bei 0; die gültigen Indizes sind 0 bis 2. neighbors[3] liegt außerhalb und führt zu IndexError: list index out of range."
+ },
+ {
+  "id": "slg-py-044",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nfacts = {'hostname': 'cisco', 'os': '7.0.2', 'neighbors': ['s1', 's2', 's3']}\nprint(facts['neighbors'][-1])",
+  "optionen": [
+   "s3",
+   "s1",
+   "['s3']",
+   "os"
+  ],
+  "richtig": 0,
+  "erklaerung": "facts['neighbors'] liefert per Schlüssel die Liste, [-1] daraus per Index das letzte Element. Bei verschachtelten Objekten werden Schlüssel und Index einfach hintereinander gesetzt."
+ },
+ {
+  "id": "slg-py-045",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What happens when this Python 3 code runs?\n\nfacts = {'hostname': 'cisco', 'os': '7.0.2'}\nprint(facts['Hostname'])",
+  "optionen": [
+   "A KeyError is raised",
+   "It prints cisco",
+   "It prints None",
+   "An IndexError is raised"
+  ],
+  "richtig": 0,
+  "erklaerung": "Dictionary-Schlüssel sind case-sensitive; 'Hostname' existiert nicht, daher KeyError: 'Hostname'. Wer einen fehlenden Schlüssel tolerieren will, nutzt facts.get('Hostname')."
+ },
+ {
+  "id": "slg-py-046",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nfacts = {\n    'sw1': {'vlans_list': [1, 5, 10]},\n    'sw2': {'vlans_list': [1, 10, 20]},\n}\nprint(facts['sw2']['vlans_list'][1:])",
+  "optionen": [
+   "[10, 20]",
+   "[1, 10]",
+   "[5, 10]",
+   "10"
+  ],
+  "richtig": 0,
+  "erklaerung": "facts['sw2'] liefert das innere Dictionary, ['vlans_list'] die Liste [1, 10, 20] und der Slice [1:] alles ab Index 1. Ein Slice ergibt immer wieder eine Liste."
+ },
+ {
+  "id": "slg-py-047",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "In a lab script, the dictionary was created with the key 'vlans_list', but the loop below was typed later. What happens when it runs?\n\nfacts = {'sw2': {'vlans_list': [1, 10, 20]}}\nfor vlan in facts['sw2']['vlan_list']:\n    print(vlan)",
+  "optionen": [
+   "KeyError: 'vlan_list' is raised",
+   "It prints 1, 10, 20 (one per line)",
+   "NameError: name 'vlan' is not defined",
+   "It prints nothing and exits normally"
+  ],
+  "richtig": 0,
+  "erklaerung": "Der Schlüssel muss exakt stimmen; 'vlan_list' ≠ 'vlans_list', also KeyError. Die Traceback-Zeile zeigt den fehlenden Schlüssel – Schreibweise im Dictionary und im Zugriff angleichen."
+ },
+ {
+  "id": "slg-py-048",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nfacts = {'hostname': 'cisco', 'os': '7.0.2'}\nprint('os' in facts, 'cisco' in facts)",
+  "optionen": [
+   "True False",
+   "True True",
+   "False True",
+   "False False"
+  ],
+  "richtig": 0,
+  "erklaerung": "Der in-Operator prüft bei einem Dictionary nur die Schlüssel. 'os' ist ein Schlüssel, 'cisco' nur ein Wert. Für Werte: 'cisco' in facts.values()."
+ },
+ {
+  "id": "slg-py-049",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nstate = {'Gi1': 'up'}\nstate['Gi2'] = 'down'\nstate['Gi1'] = 'admin-down'\nprint(state)",
+  "optionen": [
+   "{'Gi1': 'admin-down', 'Gi2': 'down'}",
+   "{'Gi1': 'up', 'Gi2': 'down', 'Gi1': 'admin-down'}",
+   "{'Gi2': 'down', 'Gi1': 'admin-down'}",
+   "{'Gi1': 'up', 'Gi2': 'down'}"
+  ],
+  "richtig": 0,
+  "erklaerung": "Zuweisung an einen neuen Schlüssel fügt ihn hinzu, an einen vorhandenen überschreibt den Wert. Schlüssel sind eindeutig, und seit Python 3.7 bleibt die Einfügereihenfolge erhalten."
+ },
+ {
+  "id": "slg-py-050",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nfacts = {'hostname': 'cisco', 'os': '7.0.2', 'neighbors': ['s1', 's2', 's3']}\nprint(len(facts))",
+  "optionen": [
+   "3",
+   "5",
+   "2",
+   "6"
+  ],
+  "richtig": 0,
+  "erklaerung": "len() eines Dictionarys zählt die Schlüssel-Wert-Paare: hostname, os, neighbors = 3. Die Elemente der inneren Liste zählen nicht mit."
+ },
+ {
+  "id": "slg-py-051",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3.7+ code?\n\nfacts_1 = {'os': '7.2', 'location': 'sjc'}\nprint(facts_1)",
+  "optionen": [
+   "{'os': '7.2', 'location': 'sjc'}",
+   "{\"os\": \"7.2\", \"location\": \"sjc\"}",
+   "{'location': 'sjc', 'os': '7.2'}",
+   "{os: 7.2, location: sjc}"
+  ],
+  "richtig": 0,
+  "erklaerung": "print() eines Dictionarys zeigt die Python-Darstellung mit einfachen Anführungszeichen. Seit Python 3.7 bleibt die Einfügereihenfolge erhalten. Doppelte Anführungszeichen (JSON) liefert erst json.dumps()."
+ },
+ {
+  "id": "slg-py-052",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nimport json\nprint(json.dumps({'name': 'Gi1', 'enabled': True}))",
+  "optionen": [
+   "{\"name\": \"Gi1\", \"enabled\": true}",
+   "{'name': 'Gi1', 'enabled': True}",
+   "{\"name\": \"Gi1\", \"enabled\": True}",
+   "{name: Gi1, enabled: true}"
+  ],
+  "richtig": 0,
+  "erklaerung": "json.dumps() wandelt ein Python-Objekt in einen JSON-String um: doppelte Anführungszeichen und true/false in Kleinbuchstaben statt True/False."
+ },
+ {
+  "id": "slg-py-053",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "A script starts directly with the line below (no import statements). What happens when it runs?\n\nprint(json.dumps({'vlan': 10}, indent=4))",
+  "optionen": [
+   "NameError: name 'json' is not defined",
+   "It prints the dictionary in JSON format",
+   "ModuleNotFoundError: No module named 'json'",
+   "SyntaxError: invalid syntax"
+  ],
+  "richtig": 0,
+  "erklaerung": "json ist ein Standardmodul, muss aber mit 'import json' geladen werden, bevor der Name existiert. Ohne Import kennt Python den Namen json nicht → NameError."
+ },
+ {
+  "id": "slg-py-054",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\ndata = {'interfaces': {'interface': [\n    {'name': 'Gi1', 'enabled': True},\n    {'name': 'Gi2', 'enabled': False}]}}\nprint(data['interfaces']['interface'][1]['enabled'])",
+  "optionen": [
+   "False",
+   "True",
+   "Gi2",
+   "{'name': 'Gi2', 'enabled': False}"
+  ],
+  "richtig": 0,
+  "erklaerung": "Schlüssel 'interfaces', dann 'interface' liefert die Liste; Index 1 ist das zweite Interface-Dictionary, dessen 'enabled' False ist."
+ },
+ {
+  "id": "slg-py-055",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\ninterfaces = [\n    {'name': 'Gi1', 'enabled': True},\n    {'name': 'Gi2', 'enabled': False},\n    {'name': 'Gi3', 'enabled': False}]\nfor intf in interfaces:\n    if not intf['enabled']:\n        print(intf['name'])",
+  "optionen": [
+   "Gi2 and Gi3 (one per line)",
+   "Gi1 only",
+   "Gi1, Gi2 and Gi3 (one per line)",
+   "False and False (one per line)"
+  ],
+  "richtig": 0,
+  "erklaerung": "Die Schleife durchläuft jedes Interface-Dictionary; not intf['enabled'] ist nur bei False wahr. Ausgegeben wird der Wert von 'name', nicht der Boolean."
+ },
+ {
+  "id": "slg-py-056",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What happens when this Python 3 code runs?\n\nvlans = (10, 20, 30)\nvlans[0] = 99",
+  "optionen": [
+   "A TypeError is raised",
+   "vlans becomes (99, 20, 30)",
+   "vlans becomes (99, 10, 20, 30)",
+   "An IndexError is raised"
+  ],
+  "richtig": 0,
+  "erklaerung": "Ein Tupel ist wie ein String unveränderlich: TypeError: 'tuple' object does not support item assignment. Für veränderbare Sequenzen verwendet man eine Liste."
+ },
+ {
+  "id": "slg-py-057",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint(type((10)), type((10,)))",
+  "optionen": [
+   "<class 'int'> <class 'tuple'>",
+   "<class 'tuple'> <class 'tuple'>",
+   "<class 'int'> <class 'int'>",
+   "<class 'tuple'> <class 'list'>"
+  ],
+  "richtig": 0,
+  "erklaerung": "Klammern allein bilden kein Tupel, (10) ist nur der int 10. Erst das Komma macht ein Tupel mit einem Element: (10,)."
+ },
+ {
+  "id": "slg-py-058",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\ndef add(a, b):\n    print(a + b)\n\nresult = add(2, 3)\nprint(result)",
+  "optionen": [
+   "5 and None (one per line)",
+   "5 and 5 (one per line)",
+   "5 only",
+   "None only"
+  ],
+  "richtig": 0,
+  "erklaerung": "add() gibt 5 per print aus, hat aber kein return. Eine Funktion ohne return liefert None, also wird danach None gedruckt."
+ },
+ {
+  "id": "slg-py-059",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\ndef vlan_exists(vlan_id):\n    vlans_list = [1, 5, 10, 20]\n    return vlan_id in vlans_list\n\nprint(8, vlan_exists(8))",
+  "optionen": [
+   "8 False",
+   "8 True",
+   "False",
+   "8 None"
+  ],
+  "richtig": 0,
+  "erklaerung": "Die Funktion gibt das Ergebnis des Membership-Tests zurück. 8 ist nicht in der Liste, also False; print zeigt beide Argumente mit Leerzeichen getrennt."
+ },
+ {
+  "id": "slg-py-060",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\ndef scale(x, factor=2):\n    return x * factor\n\nprint(scale(3), scale(3, 3))",
+  "optionen": [
+   "6 9",
+   "6 6",
+   "9 9",
+   "3 9"
+  ],
+  "richtig": 0,
+  "erklaerung": "factor hat den Default-Wert 2 und wird nur verwendet, wenn kein zweites Argument übergeben wird. scale(3) = 6, scale(3, 3) = 9."
+ },
+ {
+  "id": "slg-py-061",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 script?\n\nipaddr = '10.1.10.1'\n\ndef get_ip(ip):\n    print(ip, ipaddr)\n\nif __name__ == '__main__':\n    ipaddr = '200.100.1.1'\n    get_ip('1.1.1.1')",
+  "optionen": [
+   "1.1.1.1 200.100.1.1",
+   "1.1.1.1 10.1.10.1",
+   "200.100.1.1 10.1.10.1",
+   "NameError: name 'ipaddr' is not defined"
+  ],
+  "richtig": 0,
+  "erklaerung": "Der Block unter if __name__ == '__main__' bildet keinen eigenen Scope; die Zuweisung dort überschreibt die globale Variable ipaddr. Die Funktion liest ipaddr zur Laufzeit und sieht deshalb 200.100.1.1."
+ },
+ {
+  "id": "slg-py-062",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What happens when this Python 3 code runs?\n\ndef get_ip(ip):\n    return ip\n\nget_ip('10.1.1.1')\nprint(ip)",
+  "optionen": [
+   "NameError: name 'ip' is not defined",
+   "It prints 10.1.1.1",
+   "It prints None",
+   "TypeError: missing argument 'ip'"
+  ],
+  "richtig": 0,
+  "erklaerung": "Der Parameter ip ist eine lokale Variable der Funktion und existiert außerhalb nicht. Den Rückgabewert müsste man einer Variablen zuweisen, z. B. ip = get_ip('10.1.1.1')."
+ },
+ {
+  "id": "slg-py-063",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What happens when this Python 3 code runs?\n\ncount = 0\n\ndef increment():\n    count = count + 1\n\nincrement()\nprint(count)",
+  "optionen": [
+   "UnboundLocalError is raised",
+   "It prints 1",
+   "It prints 0",
+   "SyntaxError is raised"
+  ],
+  "richtig": 0,
+  "erklaerung": "Weil count in der Funktion zugewiesen wird, gilt es dort als lokale Variable; das Lesen auf der rechten Seite passiert vor der Zuweisung → UnboundLocalError (Unterklasse von NameError). Mit 'global count' oder Parameter/return lösen."
+ },
+ {
+  "id": "slg-py-064",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nx = 10\n\ndef f():\n    x = 20\n    return x\n\nprint(f(), x)",
+  "optionen": [
+   "20 10",
+   "20 20",
+   "10 10",
+   "10 20"
+  ],
+  "richtig": 0,
+  "erklaerung": "Die Zuweisung x = 20 in der Funktion erzeugt eine lokale Variable, die das globale x nur verdeckt. Das globale x bleibt 10."
+ },
+ {
+  "id": "slg-py-065",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nvlans = [1]\nvlans.append([2, 3])\nprint(len(vlans))",
+  "optionen": [
+   "2",
+   "3",
+   "1",
+   "4"
+  ],
+  "richtig": 0,
+  "erklaerung": "append() fügt genau ein Element an – hier die ganze Liste [2, 3] als ein Element. vlans ist danach [1, [2, 3]] mit Länge 2. extend() würde die Elemente einzeln anhängen."
+ },
+ {
+  "id": "slg-py-066",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nhostname = 'nxos1'\nhostname.upper()\nprint(hostname)",
+  "optionen": [
+   "nxos1",
+   "NXOS1",
+   "Nxos1",
+   "None"
+  ],
+  "richtig": 0,
+  "erklaerung": "String-Methoden ändern das Original nie (Strings sind immutable), sie geben einen neuen String zurück. Ohne hostname = hostname.upper() bleibt der Wert 'nxos1'."
+ },
+ {
+  "id": "slg-py-067",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nvlans = [30, 10, 20]\nresult = vlans.sort()\nprint(result, vlans)",
+  "optionen": [
+   "None [10, 20, 30]",
+   "[10, 20, 30] [10, 20, 30]",
+   "[10, 20, 30] [30, 10, 20]",
+   "None [30, 10, 20]"
+  ],
+  "richtig": 0,
+  "erklaerung": "list.sort() sortiert die Liste an Ort und Stelle und gibt None zurück. Eine neue sortierte Liste liefert sorted(vlans). Typische Frage: ändert die Methode das Objekt oder gibt sie etwas zurück?"
+ },
+ {
+  "id": "slg-py-068",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nresult = None\nprint(result is None, result == 0)",
+  "optionen": [
+   "True False",
+   "True True",
+   "False False",
+   "False True"
+  ],
+  "richtig": 0,
+  "erklaerung": "None ist ein eigenes Objekt (Typ NoneType) und nicht gleich 0. Auf None prüft man mit dem Identitätsoperator is."
+ },
+ {
+  "id": "slg-py-069",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\ndef find_vlan(v):\n    for x in [1, 5, 10]:\n        if x == v:\n            return 'found'\n    return 'missing'\n\nprint(find_vlan(5), find_vlan(7))",
+  "optionen": [
+   "found missing",
+   "found found",
+   "missing missing",
+   "found None"
+  ],
+  "richtig": 0,
+  "erklaerung": "return beendet die Funktion sofort, auch mitten in der Schleife. Bei 7 läuft die Schleife ganz durch und das return nach der Schleife liefert 'missing'."
+ },
+ {
+  "id": "slg-py-070",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "The code below raises a TypeError. Which replacement for the second line prints Vlan10?\n\nvlan = 10\nprint('Vlan' + vlan)",
+  "optionen": [
+   "print('Vlan' + str(vlan))",
+   "print('Vlan' + int(vlan))",
+   "print('Vlan' + vlan.str())",
+   "print(str('Vlan' + vlan))"
+  ],
+  "richtig": 0,
+  "erklaerung": "Für die Verkettung müssen beide Operanden Strings sein; str(vlan) wandelt den int um. Bei der letzten Option wird das fehlerhafte 'Vlan' + vlan trotzdem zuerst ausgewertet."
+ },
+ {
+  "id": "slg-py-071",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint('R1'.isalnum(), 'R1-core'.isalnum(), 'R1'.isalpha())",
+  "optionen": [
+   "True False False",
+   "True True False",
+   "True False True",
+   "False False False"
+  ],
+  "richtig": 0,
+  "erklaerung": "isalnum() ist nur True, wenn ALLE Zeichen Buchstaben oder Ziffern sind – der Bindestrich macht 'R1-core' False. isalpha() erlaubt nur Buchstaben, die Ziffer 1 macht es False."
+ },
+ {
+  "id": "slg-py-072",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nprint('A')  # print('B')",
+  "optionen": [
+   "A",
+   "A and B on two lines",
+   "Nothing is printed",
+   "SyntaxError"
+  ],
+  "richtig": 0,
+  "erklaerung": "Ab # ist der Rest der Zeile ein Kommentar und wird nicht ausgeführt – auch dann nicht, wenn er wie Code aussieht."
+ },
+ {
+  "id": "slg-py-073",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "What happens when this Python 3 code runs?\n\nhostname = R1\nprint(hostname)",
+  "optionen": [
+   "NameError: name 'R1' is not defined",
+   "It prints R1",
+   "It prints 'R1' with quotes",
+   "SyntaxError: missing quotes"
+  ],
+  "richtig": 0,
+  "erklaerung": "Ohne Anführungszeichen ist R1 kein String, sondern ein Verweis auf ein Objekt namens R1, das nicht existiert. Richtig wäre hostname = 'R1'."
+ },
+ {
+  "id": "slg-py-074",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nx = 5\nx = 'five'\nprint(type(x))",
+  "optionen": [
+   "<class 'str'>",
+   "<class 'int'>",
+   "TypeError",
+   "<class 'int'> <class 'str'>"
+  ],
+  "richtig": 0,
+  "erklaerung": "Python ist dynamisch typisiert: Variablen werden nicht deklariert, und derselbe Name kann später auf ein Objekt eines anderen Typs zeigen. type() zeigt den aktuellen Typ."
+ },
+ {
+  "id": "slg-py-075",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nipaddr = '10.1.10.1'\nmask = '255.255.255.0'\nprint(ipaddr + ' ' + mask)",
+  "optionen": [
+   "10.1.10.1 255.255.255.0",
+   "10.1.10.1255.255.255.0",
+   "10.1.10.1 + 255.255.255.0",
+   "TypeError"
+  ],
+  "richtig": 0,
+  "erklaerung": "+ verkettet Strings ohne eigenes Trennzeichen. Das Leerzeichen entsteht nur durch den mittleren String ' '."
+ },
+ {
+  "id": "slg-py-076",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "An engineer copies the line below from an old Python 2 example into a script and runs it with python3. What happens?\n\nprint banner",
+  "optionen": [
+   "A SyntaxError is raised",
+   "The value of banner is printed",
+   "The word banner is printed",
+   "A NameError is raised"
+  ],
+  "richtig": 0,
+  "erklaerung": "In Python 3 ist print eine Funktion und braucht Klammern: print(banner). Die Python-2-Anweisungsform führt zu SyntaxError (Missing parentheses in call to 'print')."
+ },
+ {
+  "id": "slg-py-077",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "Running 'python3 simulator.py' shows this error:\n\n  File \"simulator.py\", line 14\n    def get_interface_info()\n                            ^\nSyntaxError: expected ':'\n\nWhat fixes it?",
+  "optionen": [
+   "Add a colon at the end of line 14",
+   "Indent line 14 by four spaces",
+   "Add 'import json' above line 14",
+   "Rename the function on line 14"
+  ],
+  "richtig": 0,
+  "erklaerung": "Funktionsdefinitionen, if/elif/else, for und while enden mit einem Doppelpunkt; danach folgt der eingerückte Block. Der Caret ^ zeigt die Stelle, an der der Parser den Doppelpunkt erwartet."
+ },
+ {
+  "id": "slg-py-078",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "Which error does this Python 3 code produce?\n\ndef get_hostname():\nreturn 'R1'",
+  "optionen": [
+   "IndentationError: expected an indented block",
+   "SyntaxError: expected ':'",
+   "NameError: name 'R1' is not defined",
+   "TypeError: function has no body"
+  ],
+  "richtig": 0,
+  "erklaerung": "Nach einer Zeile mit Doppelpunkt muss ein eingerückter Block folgen. Python erkennt Blöcke nur an der Einrückung, nicht an Klammern."
+ },
+ {
+  "id": "slg-py-079",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "Which error does this Python 3 code produce?\n\nhostname = 'R1'\n    print(hostname)",
+  "optionen": [
+   "IndentationError: unexpected indent",
+   "SyntaxError: expected ':'",
+   "NameError: name 'hostname' is not defined",
+   "It prints R1 without any error"
+  ],
+  "richtig": 0,
+  "erklaerung": "Eine Einrückung ist nur nach einer Block-Zeile mit Doppelpunkt erlaubt. Eine grundlos eingerückte Zeile führt zu IndentationError: unexpected indent."
+ },
+ {
+  "id": "slg-py-080",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "Which error does this Python 3 code produce?\n\nhostname = 'R1'\nprint(hostnme)",
+  "optionen": [
+   "NameError: name 'hostnme' is not defined",
+   "KeyError: 'hostnme'",
+   "SyntaxError: invalid syntax",
+   "AttributeError: 'str' has no 'hostnme'"
+  ],
+  "richtig": 0,
+  "erklaerung": "Ein Tippfehler im Variablennamen erzeugt einen unbekannten Namen → NameError. Die Syntax selbst ist korrekt, der Fehler tritt erst zur Laufzeit auf."
+ },
+ {
+  "id": "slg-py-081",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\ndef get_interface_info():\n    try:\n        return interface_data\n    except Exception as e:\n        print(f'Error fetching data: {e}')\n        return None\n\nprint(get_interface_info())",
+  "optionen": [
+   "Error fetching data: name 'interface_data' is not defined, then None",
+   "None only, because the except block hides the message",
+   "A NameError traceback, because except cannot catch NameError",
+   "Error fetching data: interface_data, then an empty line"
+  ],
+  "richtig": 0,
+  "erklaerung": "interface_data existiert nicht, also entsteht ein NameError; except Exception fängt ihn ab, gibt die Meldung über den f-String aus und liefert None zurück, das anschließend gedruckt wird."
+ },
+ {
+  "id": "slg-py-082",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\ntry:\n    vlan = int('abc')\n    print('ok')\nexcept ValueError:\n    print('invalid')\nprint('done')",
+  "optionen": [
+   "invalid and done (one per line)",
+   "ok and done (one per line)",
+   "invalid only",
+   "A ValueError traceback"
+  ],
+  "richtig": 0,
+  "erklaerung": "int('abc') löst ValueError aus; der Rest des try-Blocks (print('ok')) wird übersprungen, der passende except-Block läuft. Danach geht das Skript normal weiter."
+ },
+ {
+  "id": "slg-py-083",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "A script begins with '#!/usr/bin/env python3'. What does this line do when the script is started as ./script.py?",
+  "optionen": [
+   "The shell runs the first python3 found in the PATH",
+   "Python imports the env module before running",
+   "The shell runs /usr/bin/python3 only, ignoring PATH",
+   "Python treats it as a comment and the shell ignores it"
+  ],
+  "richtig": 0,
+  "erklaerung": "Der Shebang sagt der Shell, welches Programm die Datei ausführen soll; /usr/bin/env sucht python3 im PATH der Umgebung. Für Python selbst ist die Zeile nur ein Kommentar."
+ },
+ {
+  "id": "slg-py-084",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "A Linux user runs ./vlan_check.py and gets 'bash: ./vlan_check.py: Permission denied'. 'python3 vlan_check.py' works. What is missing?",
+  "optionen": [
+   "Execute permission on the file (chmod +x)",
+   "A .pyc file in the same directory",
+   "An entry point if __name__ == '__main__'",
+   "An import statement for the os module"
+  ],
+  "richtig": 0,
+  "erklaerung": "Um eine Datei direkt als Programm zu starten, braucht sie das Ausführungsrecht und einen Shebang. Beim Aufruf über python3 liest der Interpreter die Datei nur und braucht kein x-Recht."
+ },
+ {
+  "id": "slg-py-085",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "An executable Python 3 script has no shebang line. It is started as ./check.py from bash. What is the most likely result?",
+  "optionen": [
+   "bash runs it as a shell script and reports errors",
+   "The system automatically selects python3 for .py files",
+   "Python 2 is used because no version is specified",
+   "The script runs normally because #! is optional"
+  ],
+  "richtig": 0,
+  "erklaerung": "Ohne Shebang interpretiert die Shell die Datei als Shell-Skript; Python-Zeilen wie import erzeugen dann Fehler wie 'import: command not found'. Linux wertet die Dateiendung .py nicht aus."
+ },
+ {
+  "id": "slg-py-086",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "main.py imports helpers.py. After 'python3 main.py' runs once, which compiled file typically appears?",
+  "optionen": [
+   "A .pyc file for helpers inside a __pycache__ directory",
+   "A main.pyc file directly next to main.py",
+   "A helpers.exe file in the script directory",
+   "A main.class file inside a __pycache__ directory"
+  ],
+  "richtig": 0,
+  "erklaerung": "Python übersetzt Quellcode intern in Bytecode und cacht ihn für importierte Module als .pyc unter __pycache__ (z. B. helpers.cpython-312.pyc). Das direkt gestartete Hauptskript wird nicht gecacht."
+ },
+ {
+  "id": "slg-py-087",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "single",
+  "frage": "netcheck.py contains the code below. Another script runs 'import netcheck'. What is printed?\n\nprint('A')\nif __name__ == '__main__':\n    print('B')",
+  "optionen": [
+   "A only",
+   "A and B on two lines",
+   "B only",
+   "Nothing is printed"
+  ],
+  "richtig": 0,
+  "erklaerung": "Beim Import ist __name__ der Modulname ('netcheck'), nicht '__main__'. Code auf oberster Ebene läuft trotzdem; nur der Block unter dem Entry Point wird übersprungen."
+ },
+ {
+  "id": "slg-py-088",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "Why is the main logic of a script placed under 'if __name__ == \"__main__\":'?",
+  "optionen": [
+   "It runs only when the file is executed directly, not when imported",
+   "It makes the script run faster by compiling it to native code",
+   "It is required syntax; without it Python will not run any code",
+   "It marks the variables in the block as private to the script"
+  ],
+  "richtig": 0,
+  "erklaerung": "Der Entry Point ist optional. Er verhindert, dass beim Import des Skripts als Modul die Hauptlogik ungewollt ausgeführt wird; ohne ihn läuft der Code von oben nach unten."
+ },
+ {
+  "id": "slg-py-089",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "Which statement about the Python interactive interpreter (shell) is correct?",
+  "optionen": [
+   "It runs each statement immediately, which suits quick tests",
+   "It must be compiled from source before each new session",
+   "It needs an IDE such as VS Code to run statements",
+   "It can only run complete .py files, not single lines"
+  ],
+  "richtig": 0,
+  "erklaerung": "Die Python-Shell (Prompt >>>) führt jede Zeile sofort aus und eignet sich zum schnellen Ausprobieren. Sie ist auf Linux und z. B. auf Cisco-Nexus-Switches eingebaut, ein Editor ist nicht nötig."
+ },
+ {
+  "id": "slg-py-090",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "What is PEP 8?",
+  "optionen": [
+   "The official style guide for writing Python code",
+   "The Python module used to parse JSON data",
+   "The bytecode format stored in .pyc files",
+   "The protocol Python uses to reach network devices"
+  ],
+  "richtig": 0,
+  "erklaerung": "PEP 8 definiert Konventionen für lesbaren, einheitlichen ('pythonic') Code, z. B. 4 Leerzeichen pro Einrückungsebene und Namensregeln."
+ },
+ {
+  "id": "slg-py-091",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "single",
+  "frage": "Which statement about Python 2 and Python 3 is correct?",
+  "optionen": [
+   "Python 2 is end-of-life; Python 3 is the maintained version",
+   "Python 3 still uses print as a statement without parentheses",
+   "Python 2 is the newer release and replaces Python 3",
+   "Both versions are fully compatible with each other"
+  ],
+  "richtig": 0,
+  "erklaerung": "Python 2 wird seit 2020 nicht mehr gepflegt. Python 3 ist nicht abwärtskompatibel, u. a. ist print eine Funktion und / liefert einen float."
+ },
+ {
+  "id": "slg-py-092",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "single",
+  "frage": "What is the output of this Python 3 code?\n\nfor intf, state in {'Gi1': 'up', 'Gi2': 'down'}.items():\n    print(f'{intf}={state}')",
+  "optionen": [
+   "Gi1=up and Gi2=down (one per line)",
+   "Gi1 and Gi2 (one per line)",
+   "up and down (one per line)",
+   "('Gi1', 'up') and ('Gi2', 'down') (one per line)"
+  ],
+  "richtig": 0,
+  "erklaerung": "items() liefert Schlüssel-Wert-Paare, die in der for-Zeile in intf und state entpackt werden. Der f-String setzt beide ein."
+ },
+ {
+  "id": "slg-py-093",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "multi",
+  "frage": "Which values evaluate to False in an if statement? (Choose three.)",
+  "optionen": [
+   "''",
+   "0",
+   "'False'",
+   "[]",
+   "' '"
+  ],
+  "richtig": [
+   0,
+   1,
+   3
+  ],
+  "erklaerung": "Leere Strings, die Zahl 0 und leere Container (Liste, Dictionary, Tupel) sowie None sind falsy. 'False' und ' ' sind nicht leere Strings und damit truthy."
+ },
+ {
+  "id": "slg-py-094",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "multi",
+  "frage": "Which data types are immutable in Python? (Choose three.)",
+  "optionen": [
+   "str",
+   "tuple",
+   "list",
+   "dict",
+   "int"
+  ],
+  "richtig": [
+   0,
+   1,
+   4
+  ],
+  "erklaerung": "Strings, Tupel und Zahlen lassen sich nach dem Erzeugen nicht ändern; Methoden geben neue Objekte zurück. Listen und Dictionaries sind veränderbar (mutable)."
+ },
+ {
+  "id": "slg-py-095",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "multi",
+  "frage": "Which are valid ways to leave the Python interactive interpreter on Linux? (Choose three.)",
+  "optionen": [
+   "exit()",
+   "quit()",
+   "Ctrl+D",
+   "end",
+   "logout()"
+  ],
+  "richtig": [
+   0,
+   1,
+   2
+  ],
+  "erklaerung": "exit(), quit() und Ctrl+D (EOF unter Linux) beenden die Python-Shell. end und logout() sind keine Python-Befehle zum Beenden."
+ },
+ {
+  "id": "slg-py-096",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "multi",
+  "frage": "Given intf = 'GigabitEthernet0/1', which statements print exactly Gi0/1? (Choose three.)",
+  "optionen": [
+   "print(intf[:2] + intf[-3:])",
+   "print(intf[0:2] + intf[15:])",
+   "print(intf[:2] + intf[-4:])",
+   "print(intf[1:3] + intf[-3:])",
+   "print(intf.replace('gabitEthernet', ''))"
+  ],
+  "richtig": [
+   0,
+   1,
+   4
+  ],
+  "erklaerung": "'GigabitEthernet' hat 15 Zeichen, daher liefern intf[-3:] und intf[15:] beide '0/1'; [:2] bzw. [0:2] ergibt 'Gi'. replace() entfernt den Mittelteil. [-4:] wäre 't0/1', [1:3] wäre 'ig'."
+ },
+ {
+  "id": "slg-py-097",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "multi",
+  "frage": "Which expressions evaluate to True in Python 3? (Choose three.)",
+  "optionen": [
+   "'Gi' in 'Gi0/1'",
+   "5 // 2 == 2",
+   "10 % 3 == 0",
+   "2 ** 3 == 6",
+   "'a' < 'b'"
+  ],
+  "richtig": [
+   0,
+   1,
+   4
+  ],
+  "erklaerung": "'Gi' ist Teilstring, 5 // 2 ist 2, und 'a' kommt alphabetisch vor 'b'. 10 % 3 ist 1 (nicht 0), 2 ** 3 ist 8."
+ },
+ {
+  "id": "slg-py-098",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "multi",
+  "frage": "Which statements about a shebang line such as #!/usr/bin/env python3 are correct? (Choose three.)",
+  "optionen": [
+   "It must be the first line of the script",
+   "It is not needed when the script is started with python3 script.py",
+   "Python itself treats the line as a comment",
+   "It must be repeated inside every function definition",
+   "It replaces the need for import statements"
+  ],
+  "richtig": [
+   0,
+   1,
+   2
+  ],
+  "erklaerung": "Der Shebang wird nur als erste Zeile ausgewertet und nur, wenn die Datei direkt (./script.py) gestartet wird. Für den Interpreter beginnt die Zeile mit # und ist damit ein Kommentar."
+ },
+ {
+  "id": "slg-py-099",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "multi",
+  "frage": "Which lines cause a SyntaxError in Python 3? (Choose two.)",
+  "optionen": [
+   "print 'hello'",
+   "if x == 1",
+   "print('hello')",
+   "x == 1",
+   "def get_info():"
+  ],
+  "richtig": [
+   0,
+   1
+  ],
+  "erklaerung": "print ohne Klammern ist Python-2-Syntax, und if-Zeilen brauchen einen abschließenden Doppelpunkt. x == 1 ist ein gültiger (wenn auch nutzloser) Ausdruck."
+ },
+ {
+  "id": "slg-py-100",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "multi",
+  "frage": "Which statements describe dynamic typing in Python? (Choose three.)",
+  "optionen": [
+   "A variable does not need to be declared before it is assigned",
+   "A variable can later refer to a value of a different type",
+   "type() shows the type of the value a variable currently holds",
+   "Each variable must be declared with a type keyword such as str",
+   "An int is converted to str automatically when concatenated"
+  ],
+  "richtig": [
+   0,
+   1,
+   2
+  ],
+  "erklaerung": "Python legt den Typ zur Laufzeit am Objekt fest; Variablen sind nur Namen. Eine automatische Umwandlung von int nach str gibt es nicht – 'a' + 1 ergibt TypeError."
+ },
+ {
+  "id": "slg-py-101",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "multi",
+  "frage": "Which statements about if/elif/else are correct? (Choose three.)",
+  "optionen": [
+   "elif is optional and may appear several times",
+   "Only the first branch whose condition is True runs",
+   "else runs only when no previous condition was True",
+   "elif must be placed after the else branch",
+   "Each elif needs its own matching else branch"
+  ],
+  "richtig": [
+   0,
+   1,
+   2
+  ],
+  "erklaerung": "if ist Pflicht, beliebig viele elif und ein optionales else am Ende folgen. Sobald ein Zweig zutrifft, wird die Kette verlassen."
+ },
+ {
+  "id": "slg-py-102",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "multi",
+  "frage": "Which loops print 0, 1 and 2, one value per line? (Choose three.)",
+  "optionen": [
+   "for i in range(3): print(i)",
+   "for i in [0, 1, 2]: print(i)",
+   "for i in '012': print(i)",
+   "for i in range(1, 3): print(i)",
+   "for i in range(0, 3, 2): print(i)"
+  ],
+  "richtig": [
+   0,
+   1,
+   2
+  ],
+  "erklaerung": "range(3) liefert 0,1,2; eine Liste oder ein String wird Element für Element durchlaufen. range(1, 3) beginnt bei 1, range(0, 3, 2) liefert 0 und 2."
+ },
+ {
+  "id": "slg-py-103",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "multi",
+  "frage": "Which expressions return a float in Python 3? (Choose three.)",
+  "optionen": [
+   "7 / 7",
+   "2 * 1.0",
+   "7 // 2",
+   "int('7')",
+   "float(7)"
+  ],
+  "richtig": [
+   0,
+   1,
+   4
+  ],
+  "erklaerung": "/ liefert immer float (1.0), ein float in der Rechnung macht das Ergebnis zum float, float() wandelt um. 7 // 2 zweier ints und int('7') sind int."
+ },
+ {
+  "id": "slg-py-104",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "multi",
+  "frage": "Which characteristics of Python make it attractive for network engineers? (Choose three.)",
+  "optionen": [
+   "It is interpreted, so no separate compile step is needed",
+   "Its English-like syntax gives a low barrier to entry",
+   "An execution engine is available on NX-OS and most Linux systems",
+   "Scripts must be compiled to a binary for each switch model",
+   "It runs only on Windows management stations"
+  ],
+  "richtig": [
+   0,
+   1,
+   2
+  ],
+  "erklaerung": "Python wird direkt interpretiert, ist leicht lesbar und auf Linux sowie auf Cisco-Plattformen wie Nexus verfügbar, sodass Skripte portabel zwischen Server und Switch sind."
+ },
+ {
+  "id": "slg-py-105",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "multi",
+  "frage": "Which changes improve the lab script simulator.py according to Python best practices? (Choose three.)",
+  "optionen": [
+   "Wrap risky code in try/except and report the error",
+   "Put the main logic under if __name__ == '__main__':",
+   "Print data with json.dumps(data, indent=4)",
+   "Remove all functions and put the code at the top level",
+   "Replace the dictionaries with one long string"
+  ],
+  "richtig": [
+   0,
+   1,
+   2
+  ],
+  "erklaerung": "Fehlerbehandlung verhindert Abstürze, der Entry Point verhindert ungewollte Ausführung beim Import, und json.dumps mit indent macht die Ausgabe lesbar. Funktionen zu entfernen verschlechtert Struktur und Wiederverwendbarkeit."
+ },
+ {
+  "id": "slg-py-106",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "multi",
+  "frage": "Given facts = {'sw2': {'neighbors': ['sw1', 'sw3']}}, which expressions return 'sw3'? (Choose two.)",
+  "optionen": [
+   "facts['sw2']['neighbors'][1]",
+   "facts['sw2']['neighbors'][-1]",
+   "facts['sw2']['neighbors'][2]",
+   "facts['neighbors']['sw2'][1]",
+   "facts['sw2'][1]"
+  ],
+  "richtig": [
+   0,
+   1
+  ],
+  "erklaerung": "Erst per Schlüssel ins Dictionary ('sw2', dann 'neighbors'), dann per Index in die Liste: [1] und [-1] treffen beide das zweite/letzte Element. [2] ergibt IndexError, die anderen KeyError."
+ },
+ {
+  "id": "slg-py-107",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "multi",
+  "frage": "Which statements about string methods are correct? (Choose two.)",
+  "optionen": [
+   "split() returns a list",
+   "replace() returns a new string and leaves the original unchanged",
+   "upper() changes the original string in place",
+   "find() raises ValueError when the value is missing",
+   "startswith() returns the matching prefix"
+  ],
+  "richtig": [
+   0,
+   1
+  ],
+  "erklaerung": "Strings sind unveränderlich, daher geben Methoden wie replace() und upper() neue Strings zurück. find() liefert -1 bei Fehlschlag, startswith() einen Boolean."
+ },
+ {
+  "id": "slg-py-108",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "cli",
+  "frage": "Linux-Terminal: Starte das Skript vlan_check.py mit dem Python-3-Interpreter.",
+  "bausteine": [
+   "python3",
+   "vlan_check.py",
+   "run",
+   "vlan_check.pyc",
+   "-c"
+  ],
+  "loesung": [
+   "python3",
+   "vlan_check.py"
+  ],
+  "erklaerung": "Ein Skript startet man, indem man dem Interpreter den Dateinamen übergibt. -c würde einen Code-String statt einer Datei erwarten, .pyc ist nur der Bytecode-Cache."
+ },
+ {
+  "id": "slg-py-109",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "cli",
+  "frage": "Linux-Terminal: Mache vlan_check.py ausführbar, damit es als ./vlan_check.py gestartet werden kann.",
+  "bausteine": [
+   "chmod",
+   "+x",
+   "vlan_check.py",
+   "-x",
+   "python3",
+   "exec"
+  ],
+  "loesung": [
+   "chmod",
+   "+x",
+   "vlan_check.py"
+  ],
+  "erklaerung": "chmod +x setzt das Ausführungsrecht. Zusammen mit einem Shebang in der ersten Zeile kann die Datei dann direkt gestartet werden."
+ },
+ {
+  "id": "slg-py-110",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "cli",
+  "frage": "Schreibe die erste Zeile eines Skripts, die den python3 aus dem PATH der Umgebung als Interpreter festlegt.",
+  "bausteine": [
+   "#!/usr/bin/env",
+   "python3",
+   "#/usr/bin/python3",
+   "//",
+   "import"
+  ],
+  "loesung": [
+   "#!/usr/bin/env",
+   "python3"
+  ],
+  "erklaerung": "Der Shebang beginnt mit #! und muss in Zeile 1 stehen. /usr/bin/env sucht python3 im PATH, sodass das Skript auf verschiedenen Systemen funktioniert."
+ },
+ {
+  "id": "slg-py-111",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "cli",
+  "frage": "Python-Skript: Schreibe die Kopfzeile des Entry Points, dessen Block nur beim direkten Start des Skripts läuft.",
+  "bausteine": [
+   "if",
+   "__name__",
+   "==",
+   "'__main__':",
+   "=",
+   "'main':",
+   "elif"
+  ],
+  "loesung": [
+   "if",
+   "__name__",
+   "==",
+   "'__main__':"
+  ],
+  "erklaerung": "Beim direkten Start setzt Python __name__ auf '__main__'. Verglichen wird mit == (nicht Zuweisung =), und die Zeile endet mit Doppelpunkt."
+ },
+ {
+  "id": "slg-py-112",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "cli",
+  "frage": "Python: facts['sw2'] ist ein Dictionary mit dem Schlüssel 'neighbors' (Liste). Gib den zweiten Nachbarn von sw2 aus.",
+  "bausteine": [
+   "print(",
+   "facts",
+   "['sw2']",
+   "['neighbors']",
+   "[1]",
+   ")",
+   "[2]",
+   "['sw1']",
+   ".neighbors"
+  ],
+  "loesung": [
+   "print(",
+   "facts",
+   "['sw2']",
+   "['neighbors']",
+   "[1]",
+   ")"
+  ],
+  "erklaerung": "Erst Schlüssel 'sw2', dann Schlüssel 'neighbors', dann Index 1 – Listenindizes beginnen bei 0, das zweite Element hat also Index 1."
+ },
+ {
+  "id": "slg-py-113",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "cli",
+  "frage": "Python: Gib das Dictionary interface_info als lesbares JSON mit 4 Leerzeichen Einrückung aus (json ist importiert).",
+  "bausteine": [
+   "print(",
+   "json.dumps(",
+   "interface_info,",
+   "indent=4",
+   ")",
+   ")",
+   "json.loads(",
+   "pretty=True"
+  ],
+  "loesung": [
+   "print(",
+   "json.dumps(",
+   "interface_info,",
+   "indent=4",
+   ")",
+   ")"
+  ],
+  "erklaerung": "json.dumps() wandelt ein Python-Objekt in einen JSON-String; indent=4 sorgt für die eingerückte Darstellung. json.loads() wäre die umgekehrte Richtung (String → Objekt)."
+ },
+ {
+  "id": "slg-py-114",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "cli",
+  "frage": "Python: Schreibe die Kopfzeile einer Schleife, die jedes Element der Liste facts['sw2']['vlans_list'] in der Variablen vlan bereitstellt.",
+  "bausteine": [
+   "for",
+   "vlan",
+   "in",
+   "facts['sw2']['vlans_list']:",
+   "foreach",
+   "of",
+   "range"
+  ],
+  "loesung": [
+   "for",
+   "vlan",
+   "in",
+   "facts['sw2']['vlans_list']:"
+  ],
+  "erklaerung": "Python iteriert mit for <variable> in <sequenz>: direkt über die Elemente einer Liste. foreach und of gibt es in Python nicht."
+ },
+ {
+  "id": "slg-py-115",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "cli",
+  "frage": "Python: Definiere die Funktion vlan_exists mit dem Parameter vlan_id (nur die Kopfzeile).",
+  "bausteine": [
+   "def",
+   "vlan_exists(vlan_id):",
+   "function",
+   "vlan_exists(vlan_id)",
+   "func"
+  ],
+  "loesung": [
+   "def",
+   "vlan_exists(vlan_id):"
+  ],
+  "erklaerung": "Funktionen werden mit def eingeleitet; die Kopfzeile endet mit Doppelpunkt, der Funktionsrumpf folgt eingerückt."
+ },
+ {
+  "id": "slg-py-116",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "cli",
+  "frage": "Linux-Terminal (Lab): Öffne die Datei python-intro.py in Visual Studio Code.",
+  "bausteine": [
+   "code",
+   "python-intro.py",
+   "open",
+   "python3",
+   "vscode.exe"
+  ],
+  "loesung": [
+   "code",
+   "python-intro.py"
+  ],
+  "erklaerung": "Der Befehl code <datei> öffnet bzw. erzeugt die Datei in VS Code. python3 würde das Skript ausführen, nicht bearbeiten."
+ },
+ {
+  "id": "slg-py-117",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "cli",
+  "frage": "Python: Schreibe die Zeile, die jede Exception des vorangehenden try-Blocks abfängt und sie in der Variablen e bereitstellt.",
+  "bausteine": [
+   "except",
+   "Exception",
+   "as",
+   "e:",
+   "catch",
+   "error",
+   "finally:"
+  ],
+  "loesung": [
+   "except",
+   "Exception",
+   "as",
+   "e:"
+  ],
+  "erklaerung": "Python nutzt try/except (nicht catch). Mit 'as e' steht das Exception-Objekt zur Verfügung, z. B. für print(f'Error: {e}')."
+ },
+ {
+  "id": "slg-py-118",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "cli",
+  "frage": "Python: Zerlege den String ip = '10.4.8.1' in eine Liste der Oktette und speichere sie in octets.",
+  "bausteine": [
+   "octets",
+   "=",
+   "ip.split('.')",
+   "==",
+   "split(ip)",
+   "ip.split"
+  ],
+  "loesung": [
+   "octets",
+   "=",
+   "ip.split('.')"
+  ],
+  "erklaerung": "split() ist eine Methode des String-Objekts und braucht das Trennzeichen als Argument; das Ergebnis ist ['10', '4', '8', '1']. = weist zu, == vergleicht."
+ },
+ {
+  "id": "slg-py-119",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "zuordnung",
+  "frage": "Ordne jede Hilfsfunktion ihrer Aufgabe zu.",
+  "paare": [
+   [
+    "help()",
+    "Zeigt die eingebettete Dokumentation"
+   ],
+   [
+    "dir()",
+    "Listet Attribute und Methoden"
+   ],
+   [
+    "type()",
+    "Zeigt den Datentyp eines Objekts"
+   ],
+   [
+    "len()",
+    "Liefert die Anzahl der Elemente"
+   ]
+  ],
+  "erklaerung": "help(), dir() und type() sind die wichtigsten Helfer im interaktiven Interpreter, um unbekannte Objekte zu untersuchen; len() zählt Zeichen bzw. Elemente."
+ },
+ {
+  "id": "slg-py-120",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "zuordnung",
+  "frage": "Ordne jede Fehlermeldung der typischen Ursache zu.",
+  "paare": [
+   [
+    "SyntaxError",
+    "Doppelpunkt fehlt nach def oder if"
+   ],
+   [
+    "IndentationError",
+    "Block nach Doppelpunkt nicht eingerückt"
+   ],
+   [
+    "NameError",
+    "Variable wurde nie definiert oder vertippt"
+   ],
+   [
+    "TypeError",
+    "'5' + 3 kombiniert str und int"
+   ]
+  ],
+  "erklaerung": "Syntax- und Einrückungsfehler meldet Python schon beim Einlesen, bevor Code läuft. NameError und TypeError entstehen erst zur Laufzeit."
+ },
+ {
+  "id": "slg-py-121",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "zuordnung",
+  "frage": "Ordne jede Exception dem auslösenden Code zu.",
+  "paare": [
+   [
+    "KeyError",
+    "facts['Hostname'] bei Schlüssel 'hostname'"
+   ],
+   [
+    "IndexError",
+    "['s1', 's2'][2]"
+   ],
+   [
+    "ValueError",
+    "int('10.5')"
+   ],
+   [
+    "AttributeError",
+    "'R1'.uppercase()"
+   ]
+  ],
+  "erklaerung": "KeyError = fehlender Dictionary-Schlüssel, IndexError = Index außerhalb der Liste, ValueError = richtiger Typ, ungültiger Wert, AttributeError = Methode/Attribut existiert nicht (richtig wäre upper())."
+ },
+ {
+  "id": "slg-py-122",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "zuordnung",
+  "frage": "Ordne jeden Ausdruck seinem Ergebnis in Python 3 zu.",
+  "paare": [
+   [
+    "7 / 2",
+    "3.5"
+   ],
+   [
+    "7 // 2",
+    "3"
+   ],
+   [
+    "7 % 2",
+    "1"
+   ],
+   [
+    "7 ** 2",
+    "49"
+   ]
+  ],
+  "erklaerung": "/ ist echte Division (float), // ganzzahlige Division, % der Rest, ** die Potenz."
+ },
+ {
+  "id": "slg-py-123",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "zuordnung",
+  "frage": "Ordne jeden Wert seinem Datentyp zu.",
+  "paare": [
+   [
+    "'R1'",
+    "str"
+   ],
+   [
+    "24",
+    "int"
+   ],
+   [
+    "2.5",
+    "float"
+   ],
+   [
+    "True",
+    "bool"
+   ]
+  ],
+  "erklaerung": "Anführungszeichen machen einen String, Zahlen ohne Punkt sind int, mit Punkt float; True/False (großgeschrieben) sind bool."
+ },
+ {
+  "id": "slg-py-124",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "zuordnung",
+  "frage": "Ordne jeden Wert seinem Datentyp zu.",
+  "paare": [
+   [
+    "['s1', 's2']",
+    "list"
+   ],
+   [
+    "{'os': '7.2'}",
+    "dict"
+   ],
+   [
+    "('s1', 's2')",
+    "tuple"
+   ],
+   [
+    "None",
+    "NoneType"
+   ]
+  ],
+  "erklaerung": "Eckige Klammern = Liste (veränderbar), geschweifte mit Schlüssel:Wert = Dictionary, runde Klammern mit Komma = Tupel (unveränderlich); None steht für 'kein Wert'."
+ },
+ {
+  "id": "slg-py-125",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "zuordnung",
+  "frage": "Ordne jeden Operator seiner Kategorie zu.",
+  "paare": [
+   [
+    "!=",
+    "Vergleichsoperator"
+   ],
+   [
+    "and",
+    "Logischer Operator"
+   ],
+   [
+    "not in",
+    "Membership-Operator"
+   ],
+   [
+    "is not",
+    "Identitätsoperator"
+   ]
+  ],
+  "erklaerung": "Vergleich: ==, !=, <, >, <=, >=. Logik: and, or, not. Membership: in, not in. Identität: is, is not (prüft, ob es dasselbe Objekt ist)."
+ },
+ {
+  "id": "slg-py-126",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "zuordnung",
+  "frage": "Gegeben s = 'Gi0/1'. Ordne jeden Ausdruck seinem Ergebnis zu.",
+  "paare": [
+   [
+    "s.upper()",
+    "'GI0/1'"
+   ],
+   [
+    "s.startswith('gi')",
+    "False"
+   ],
+   [
+    "s.replace('/', '-')",
+    "'Gi0-1'"
+   ],
+   [
+    "s.split('/')",
+    "['Gi0', '1']"
+   ]
+  ],
+  "erklaerung": "upper() liefert Großbuchstaben, startswith() ist case-sensitive ('gi' ≠ 'Gi') und gibt einen Boolean zurück, replace() ersetzt Zeichen, split() liefert eine Liste. s selbst bleibt 'Gi0/1'."
+ },
+ {
+  "id": "slg-py-127",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "zuordnung",
+  "frage": "Ordne jedes Element eines Python-Skripts seiner Aufgabe zu.",
+  "paare": [
+   [
+    "#!/usr/bin/env python3",
+    "Legt für die Shell den Interpreter fest"
+   ],
+   [
+    "if __name__ == '__main__':",
+    "Definiert den Einstiegspunkt"
+   ],
+   [
+    "# prüft VLANs",
+    "Kommentar für Leser des Codes"
+   ],
+   [
+    "import json",
+    "Lädt ein Modul"
+   ]
+  ],
+  "erklaerung": "Shebang und Entry Point sind optional, aber empfohlen. Kommentare beginnen mit # und werden nicht ausgeführt; import macht Module wie json verfügbar."
+ },
+ {
+  "id": "slg-py-128",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "zuordnung",
+  "frage": "Ordne jede Anweisung ihrer Wirkung in einer Schleife bzw. Funktion zu.",
+  "paare": [
+   [
+    "break",
+    "Beendet die Schleife sofort"
+   ],
+   [
+    "continue",
+    "Springt zum nächsten Schleifendurchlauf"
+   ],
+   [
+    "pass",
+    "Tut nichts (Platzhalter)"
+   ],
+   [
+    "return",
+    "Verlässt die Funktion mit einem Wert"
+   ]
+  ],
+  "erklaerung": "break und continue steuern Schleifen, pass füllt einen syntaktisch nötigen, aber leeren Block, return beendet eine Funktion (ohne Wert: None)."
+ },
+ {
+  "id": "slg-py-129",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "zuordnung",
+  "frage": "Ordne jeden Ausdruck seinem Ergebnis zu.",
+  "paare": [
+   [
+    "int('42')",
+    "42"
+   ],
+   [
+    "str(42)",
+    "'42'"
+   ],
+   [
+    "float('4')",
+    "4.0"
+   ],
+   [
+    "bool('')",
+    "False"
+   ]
+  ],
+  "erklaerung": "int(), str(), float() und bool() wandeln Werte in den jeweiligen Typ um. Ein leerer String wird zu False, jeder andere zu True."
+ },
+ {
+  "id": "slg-py-130",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "zuordnung",
+  "frage": "Ordne die Anzeige im interaktiven Interpreter ihrer Bedeutung zu.",
+  "paare": [
+   [
+    ">>>",
+    "Wartet auf eine neue Anweisung"
+   ],
+   [
+    "...",
+    "Wartet auf die Fortsetzung eines Blocks"
+   ],
+   [
+    "exit()",
+    "Beendet den Interpreter"
+   ],
+   [
+    "help(str.upper)",
+    "Zeigt die Doku einer Methode"
+   ]
+  ],
+  "erklaerung": ">>> ist der Primär-Prompt, ... der Fortsetzungs-Prompt nach einer Zeile mit Doppelpunkt; ein Block wird mit einer Leerzeile abgeschlossen."
+ },
+ {
+  "id": "slg-py-131",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "luecke",
+  "frage": "In Python 3, the ___ operator performs floor division and returns 3 for 7 and 2.",
+  "optionen": [
+   "//",
+   "/",
+   "%",
+   "**"
+  ],
+  "richtig": 0,
+  "erklaerung": "// ist die ganzzahlige Division. / liefert 3.5, % den Rest 1, ** die Potenz 49."
+ },
+ {
+  "id": "slg-py-132",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "luecke",
+  "frage": "Headers of if, elif, else, for, while and def statements must end with a ___.",
+  "optionen": [
+   "colon",
+   "semicolon",
+   "closing brace",
+   "backslash"
+  ],
+  "richtig": 0,
+  "erklaerung": "Der Doppelpunkt leitet den eingerückten Block ein. Geschweifte Klammern oder Semikolons zur Blockbildung gibt es in Python nicht."
+ },
+ {
+  "id": "slg-py-133",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "luecke",
+  "frage": "Python list and string indices start at ___.",
+  "optionen": [
+   "0",
+   "1",
+   "-1",
+   "any value set by the user"
+  ],
+  "richtig": 0,
+  "erklaerung": "Das erste Element hat Index 0, das letzte -1. Eine Liste mit 3 Elementen hat die Indizes 0, 1, 2."
+ },
+ {
+  "id": "slg-py-134",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "luecke",
+  "frage": "When a file is executed directly with python3 file.py, the built-in variable __name__ contains ___.",
+  "optionen": [
+   "'__main__'",
+   "the file name without .py",
+   "None",
+   "'main.py'"
+  ],
+  "richtig": 0,
+  "erklaerung": "Beim direkten Start ist __name__ = '__main__'; beim Import enthält es den Modulnamen. Darauf basiert der Entry Point if __name__ == '__main__':."
+ },
+ {
+  "id": "slg-py-135",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 1,
+  "typ": "luecke",
+  "frage": "The string method ___ splits a string at a separator and returns a list.",
+  "optionen": [
+   "split()",
+   "join()",
+   "strip()",
+   "replace()"
+  ],
+  "richtig": 0,
+  "erklaerung": "split() liefert eine Liste, z. B. '10.4.8.1'.split('.') → ['10', '4', '8', '1']. join() ist das Gegenstück, das eine Liste zu einem String verbindet."
+ },
+ {
+  "id": "slg-py-136",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "luecke",
+  "frage": "Python 3 caches the compiled bytecode of imported modules as .pyc files in the ___ directory.",
+  "optionen": [
+   "__pycache__",
+   "site-packages",
+   "__main__",
+   "/usr/bin/env"
+  ],
+  "richtig": 0,
+  "erklaerung": "Python ist interpretiert, übersetzt Quellcode aber intern in Bytecode. Für importierte Module wird er unter __pycache__ abgelegt, damit der nächste Start schneller ist."
+ },
+ {
+  "id": "slg-py-137",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "luecke",
+  "frage": "PEP 8 recommends ___ per indentation level.",
+  "optionen": [
+   "4 spaces",
+   "1 tab",
+   "2 spaces",
+   "8 spaces"
+  ],
+  "richtig": 0,
+  "erklaerung": "PEP 8 empfiehlt 4 Leerzeichen pro Ebene und keine Mischung aus Tabs und Leerzeichen; Python 3 verweigert inkonsistent gemischte Einrückung mit TabError."
+ },
+ {
+  "id": "slg-py-138",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "luecke",
+  "frage": "To check whether two names refer to the very same object, such as x and None, use the ___ operator.",
+  "optionen": [
+   "is",
+   "==",
+   "in",
+   "and"
+  ],
+  "richtig": 0,
+  "erklaerung": "is ist der Identitätsoperator; == vergleicht nur die Werte. Für None ist 'x is None' die übliche Prüfung."
+ },
+ {
+  "id": "slg-py-139",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 2,
+  "typ": "luecke",
+  "frage": "A function that ends without a return statement returns ___.",
+  "optionen": [
+   "None",
+   "0",
+   "False",
+   "an empty string"
+  ],
+  "richtig": 0,
+  "erklaerung": "Fehlt return (oder steht es ohne Wert), gibt die Funktion automatisch None zurück. Das ist ein häufiger Fehler, wenn print() statt return verwendet wird."
+ },
+ {
+  "id": "slg-py-140",
+  "topic": "ENCOR-6.1",
+  "schwierigkeit": 3,
+  "typ": "luecke",
+  "frage": "The expression 'Gi0/1'[___] returns '0/1'.",
+  "optionen": [
+   "2:",
+   "-3",
+   "3:",
+   "1:"
+  ],
+  "richtig": 0,
+  "erklaerung": "Der Slice [2:] beginnt bei Index 2 ('0') und läuft bis zum Ende. [-3] (ohne Doppelpunkt) wäre nur das einzelne Zeichen '0', [3:] ergibt '/1'."
+ }
+]

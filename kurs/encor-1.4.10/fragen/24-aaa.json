@@ -1,0 +1,2353 @@
+[
+    {
+        "id":  "slg-aa-001",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "\u0027show running-config | include enable\u0027 displays \u0027enable secret 9 $9$iZCzjXK/...\u0027. Which algorithm protects this secret?",
+        "optionen":  [
+                         "Salted MD5",
+                         "Vigenère cipher",
+                         "PBKDF2 with SHA-256",
+                         "scrypt"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Zahl vor dem Wert nennt den Typ: 9 = scrypt, 8 = PBKDF2-SHA-256, 5 = MD5, 7 = Vigenère. Typ 9 entsteht z. B. mit \u0027enable algorithm-type scrypt secret …\u0027."
+    },
+    {
+        "id":  "slg-aa-002",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A router contains both \u0027enable password Cisco1\u0027 and \u0027enable secret Cisco2\u0027. Which password grants access to privileged EXEC mode?",
+        "optionen":  [
+                         "Cisco2 only, because the enable secret takes precedence",
+                         "Neither, because IOS disables enable when both exist",
+                         "Either Cisco1 or Cisco2, because both are valid",
+                         "Cisco1 only, because it was configured before the secret"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ist ein enable secret konfiguriert, ignoriert IOS das enable password. Das enable password existiert nur noch aus Kompatibilitätsgründen und wird im Klartext bzw. als Typ 7 gespeichert."
+    },
+    {
+        "id":  "slg-aa-003",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer enters \u0027service password-encryption\u0027. Which configuration line stays exactly as it was?",
+        "optionen":  [
+                         "enable password Cisco1",
+                         "password cisco (under line con 0)",
+                         "username ops password ops123",
+                         "username admin secret 9 $9$SDMCRT..."
+                     ],
+        "richtig":  3,
+        "erklaerung":  "service password-encryption wandelt nur Klartext-\u0027password\u0027-Einträge (Line, enable password, username … password) in Typ 7 um. Secrets sind bereits gehasht und bleiben unverändert."
+    },
+    {
+        "id":  "slg-aa-004",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An auditor finds a configuration backup containing \u0027line vty 0 4 / password 7 1511021F0725\u0027. What is the risk?",
+        "optionen":  [
+                         "The password can only be recovered with the router\u0027s private RSA key",
+                         "The password can be recovered in seconds because Type 7 is reversible",
+                         "The value is useless outside the router because it is device-specific",
+                         "The value is a salted hash that requires a long brute-force attack"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Typ 7 ist eine schwache, umkehrbare Vigenère-Verschlüsselung. Frei verfügbare Tools liefern sofort den Klartext – sie schützt nur vor einem flüchtigen Blick auf den Bildschirm."
+    },
+    {
+        "id":  "slg-aa-005",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A policy requires that the local user \u0027tier2\u0027 is stored as a PBKDF2 (SHA-256) hash. Which command meets the requirement?",
+        "optionen":  [
+                         "username tier2 algorithm-type md5 secret tier2secret",
+                         "username tier2 algorithm-type sha256 secret tier2secret",
+                         "username tier2 password 8 tier2secret",
+                         "username tier2 algorithm-type scrypt secret tier2secret"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "algorithm-type sha256 erzeugt einen Typ-8-Hash (PBKDF2 mit SHA-256), scrypt erzeugt Typ 9, md5 Typ 5. \u0027password 8 …\u0027 ist kein gültiger Weg, einen Klartext als Typ 8 zu speichern."
+    },
+    {
+        "id":  "slg-aa-006",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "The console line is configured with \u0027password cisco\u0027 and \u0027login\u0027. What must a user enter to get to the user EXEC prompt?",
+        "optionen":  [
+                         "Only the line password cisco",
+                         "The enable secret of the router",
+                         "A local username and its secret",
+                         "A RADIUS username and password"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027login\u0027 ohne Zusatz fragt nur das Line-Passwort ab – ohne Benutzernamen. Deshalb ist keine Nachvollziehbarkeit pro Administrator möglich."
+    },
+    {
+        "id":  "slg-aa-007",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The vty lines contain \u0027password cisco\u0027 and \u0027login local\u0027. Local user \u0027admin\u0027 exists. What happens when a user connects and only knows the password cisco?",
+        "optionen":  [
+                         "The user is asked for a username and the line password is ignored",
+                         "The user logs in directly at privilege level 15 without a prompt",
+                         "The user logs in with any username plus the password cisco",
+                         "The user logs in, because the line password is checked first"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027login local\u0027 verwendet die lokale Benutzerdatenbank. Das zusätzlich konfigurierte Line-Passwort wird dann nicht mehr benutzt – ohne gültigen Benutzer kein Login."
+    },
+    {
+        "id":  "slg-aa-008",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which effect does \u0027exec-timeout 0 0\u0027 have on a line?",
+        "optionen":  [
+                         "Idle sessions are disconnected after the default 10 minutes",
+                         "Idle sessions are never disconnected automatically",
+                         "The line is disabled until \u0027exec-timeout\u0027 is removed",
+                         "Idle sessions are disconnected immediately after login"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "exec-timeout erwartet Minuten und Sekunden. 0 0 schaltet den Inaktivitäts-Timeout ab – eine vergessene Konsolensitzung bleibt dann offen, was aus Sicherheitssicht vermieden werden sollte."
+    },
+    {
+        "id":  "slg-aa-009",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 has \u0027login block-for 100 attempts 5 within 60\u0027 and \u0027login quiet-mode access-class MGMT\u0027. During the quiet period, who can still open a Telnet or SSH session?",
+        "optionen":  [
+                         "No host until the 100 seconds expire",
+                         "Any host that uses SSH instead of Telnet",
+                         "Hosts permitted by ACL MGMT",
+                         "Only users connected to the console"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Während der Quiet Period nimmt das Gerät keine virtuellen Logins an – außer von Hosts, die die mit \u0027login quiet-mode access-class\u0027 angegebene ACL erlaubt. So bleibt das Management-Netz immer handlungsfähig."
+    },
+    {
+        "id":  "slg-aa-010",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Only \u0027login block-for 120 attempts 3 within 60\u0027 is configured; \u0027login delay\u0027 is not. Which delay is enforced between login attempts?",
+        "optionen":  [
+                         "No delay, because login delay is missing",
+                         "120 seconds",
+                         "1 second",
+                         "3 seconds"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Wird nur login block-for konfiguriert, erzwingt IOS automatisch eine Standardverzögerung von einer Sekunde zwischen Login-Versuchen. Mit \u0027login delay\u0027 lässt sie sich anpassen."
+    },
+    {
+        "id":  "slg-aa-011",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which Login Enhancement command must be configured before \u0027login delay\u0027 or \u0027login quiet-mode access-class\u0027 can be used?",
+        "optionen":  [
+                         "login on-failure log",
+                         "security passwords min-length",
+                         "login local",
+                         "login block-for"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Login-Enhancement-Funktion wird mit \u0027login block-for\u0027 eingeschaltet. Erst danach lassen sich login delay und login quiet-mode access-class sinnvoll konfigurieren."
+    },
+    {
+        "id":  "slg-aa-012",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which type of attack is the Login Block feature (login block-for) primarily designed to slow down?",
+        "optionen":  [
+                         "Dictionary attacks against Telnet and SSH logins",
+                         "ARP spoofing attacks on the management VLAN",
+                         "Spoofed routing updates from rogue neighbors",
+                         "MAC flooding attacks against the CAM table"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Login Block sperrt nach zu vielen Fehlversuchen weitere Logins für eine Quiet Period und bremst so Wörterbuch- und Brute-Force-Angriffe (eine Form von DoS) auf virtuelle Verbindungen."
+    },
+    {
+        "id":  "slg-aa-013",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After \u0027security passwords min-length 10\u0027, an engineer enters \u0027username ops secret ops123\u0027. What is the result?",
+        "optionen":  [
+                         "The command is rejected because the password is too short",
+                         "The user is created, but a syslog warning is generated",
+                         "The user is created with the secret padded to 10 characters",
+                         "The user is created and must change the password at login"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "security passwords min-length gilt für Benutzer-, enable- und Line-Passwörter. Kürzere Passwörter werden mit einer Fehlermeldung abgelehnt und nicht übernommen."
+    },
+    {
+        "id":  "slg-aa-014",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Administrators should log in to the router\u0027s HTTPS GUI with the same local accounts they use for SSH. Which command is required?",
+        "optionen":  [
+                         "ip http secure-trustpoint local",
+                         "ip http access-class local",
+                         "ip http authentication local",
+                         "ip http server local-users"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Mit \u0027ip http authentication local\u0027 nutzt der HTTP/HTTPS-Server die lokale Benutzerdatenbank (username … secret …) zur Anmeldung."
+    },
+    {
+        "id":  "slg-aa-015",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 (no AAA) has \u0027username ops privilege 5 secret X\u0027, \u0027privilege exec level 5 show ip route\u0027 and \u0027login local\u0027 on the vty lines. After ops logs in via SSH, what does \u0027show privilege\u0027 report?",
+        "optionen":  [
+                         "Current privilege level is 5",
+                         "Current privilege level is 15",
+                         "Current privilege level is 0",
+                         "Current privilege level is 1"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ohne AAA übernimmt \u0027login local\u0027 das Privilege Level aus dem username-Eintrag. ops landet auf Level 5 und darf alle Level-5-Befehle wie das zugewiesene \u0027show ip route\u0027 ausführen."
+    },
+    {
+        "id":  "slg-aa-016",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A user logs in with only a line password and lands at the \u0027\u003e\u0027 prompt. Which privilege level does the user have?",
+        "optionen":  [
+                         "7",
+                         "15",
+                         "1",
+                         "0"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Level 1 ist der normale User-EXEC-Modus (\u0027\u003e\u0027). Mit \u0027enable\u0027 und dem enable secret wechselt man auf Level 15 (\u0027#\u0027)."
+    },
+    {
+        "id":  "slg-aa-017",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Helpdesk staff should reach privilege level 7 with their own password, separate from the level 15 secret. Which combination achieves this?",
+        "optionen":  [
+                         "\u0027enable secret 7 Help123\u0027 and the staff enter \u0027enable\u0027",
+                         "\u0027enable secret level 7 Help123\u0027 and the staff enter \u0027enable 7\u0027",
+                         "\u0027privilege level 7 secret Help123\u0027 and the staff enter \u0027login 7\u0027",
+                         "\u0027enable password level 15 Help123\u0027 and the staff enter \u0027enable 7\u0027"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027enable secret level 7 …\u0027 setzt ein Secret für Level 7, mit \u0027enable 7\u0027 wechselt man dorthin. Eine Zahl direkt nach \u0027enable secret\u0027 wäre dagegen eine Typangabe für einen bereits gehashten Wert, kein Level."
+    },
+    {
+        "id":  "slg-aa-018",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does SSH protect an administrator against a man-in-the-middle attack, while Telnet does not?",
+        "optionen":  [
+                         "SSH uses UDP, so no session can be hijacked",
+                         "The router verifies the client\u0027s MAC address",
+                         "SSH sends the password twice for verification",
+                         "The client can verify the server\u0027s public host key"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der SSH-Server präsentiert seinen öffentlichen Schlüssel; der Client prüft ihn (Fingerprint, Known Hosts). Ein Angreifer ohne den passenden privaten Schlüssel kann sich nicht als Router ausgeben. Telnet hat keine Server-Authentifizierung und überträgt alles im Klartext."
+    },
+    {
+        "id":  "slg-aa-019",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On router Rtr-1, \u0027crypto key generate rsa\u0027 returns \u0027% Please define a domain-name first.\u0027 Which command fixes the problem?",
+        "optionen":  [
+                         "hostname Rtr-1.cisco.com",
+                         "ip domain-lookup",
+                         "ip domain-name cisco.com",
+                         "ip ssh version 2"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Name des RSA-Schlüsselpaars wird aus Hostname und Domainname gebildet (z. B. Rtr-1.cisco.com). Fehlt der Domainname, verweigert IOS die Schlüsselerzeugung."
+    },
+    {
+        "id":  "slg-aa-020",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "\u0027show ip ssh\u0027 displays \u0027SSH Enabled - version 1.99\u0027. What does this mean?",
+        "optionen":  [
+                         "A beta release of SSH version 2 is running",
+                         "Only SSH version 1 connections are accepted",
+                         "An SSHv2 server that also accepts SSHv1 clients",
+                         "SSH is enabled but no RSA key exists yet"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "1.99 bedeutet: Der Server spricht SSH 2, nimmt aber auch Version-1-Verbindungen an. Mit \u0027ip ssh version 2\u0027 wird nur noch v2 zugelassen, da v1 keine starke Integritätssicherung bietet."
+    },
+    {
+        "id":  "slg-aa-021",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Hostname and domain name are configured on a router. Which action actually enables the SSH server?",
+        "optionen":  [
+                         "Entering \u0027transport input ssh\u0027 on the vty lines",
+                         "Entering \u0027ip ssh server enable\u0027",
+                         "Generating an RSA key pair",
+                         "Entering \u0027ip ssh version 2\u0027"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Sobald ein RSA-Schlüsselpaar erzeugt wurde, ist der SSH-Server automatisch aktiv. \u0027ip ssh version 2\u0027 und \u0027transport input ssh\u0027 schränken nur Version bzw. erlaubte Protokolle ein."
+    },
+    {
+        "id":  "slg-aa-022",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A router has a 512-bit RSA key. The engineer enters \u0027ip ssh version 2\u0027 and receives an error. What is the cause?",
+        "optionen":  [
+                         "SSHv2 requires a DSA key instead of an RSA key",
+                         "SSHv2 requires the enable secret to be Type 9",
+                         "SSHv2 requires an RSA key of at least 768 bits",
+                         "SSHv2 requires \u0027transport input ssh\u0027 to be set first"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "SSH Version 2 verlangt einen RSA-Schlüssel mit mindestens 768 Bit. Der Schlüssel muss mit \u0027crypto key generate rsa modulus 2048\u0027 (empfohlen) neu erzeugt werden. Ab IOS XE 17.11.1 lehnt SSH RSA-Schlüssel unter 2048 Bit standardmäßig ohnehin ab."
+    },
+    {
+        "id":  "slg-aa-023",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Rtr-1 shows:\n\nConnection Version Mode Encryption Hmac          State           Username\n0          2.0     IN   aes256-ctr hmac-sha2-256 Session started admin\n0          2.0     OUT  aes256-ctr hmac-sha2-256 Session started admin\n\nWhich statement is correct?",
+        "optionen":  [
+                         "Two SSH connections exist, one from and one to the router",
+                         "Two different admins are connected via SSH version 2",
+                         "One SSH connection by admin exists, shown as inbound and outbound session",
+                         "One SSH connection uses AES-256 for integrity and SHA2-256 for encryption"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027show ssh\u0027 zeigt pro Verbindung eine IN- und eine OUT-Session (beide Richtungen). Verschlüsselt wird mit aes256-ctr, die Integrität sichert hmac-sha2-256."
+    },
+    {
+        "id":  "slg-aa-024",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027show ip ssh\u0027 displays \u0027Authentication timeout: 120 secs; Authentication retries: 3\u0027. What happens after a client enters a wrong password three times in one SSH session?",
+        "optionen":  [
+                         "The router blocks the client IP for 120 seconds",
+                         "The client gets three more attempts after 120 seconds",
+                         "The SSH session is disconnected",
+                         "The router falls back to Telnet authentication"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Nach der eingestellten Anzahl Fehlversuche (Default 3) beendet der Router die SSH-Sitzung. Eine IP-Sperre wäre Aufgabe von login block-for."
+    },
+    {
+        "id":  "slg-aa-025",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer enters \u0027crypto key zeroize rsa\u0027 on a router that is managed only via SSH. What is the consequence for new management sessions?",
+        "optionen":  [
+                         "New SSH sessions fail because the SSH server is disabled",
+                         "New sessions fall back to SSH version 1",
+                         "New sessions use a temporary key generated on demand",
+                         "Nothing changes until the router is reloaded"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Laut Cisco wird der SSH-Server automatisch deaktiviert, wenn das RSA-Schlüsselpaar gelöscht wird. Neue SSH-Verbindungen schlagen fehl, bis wieder ein Schlüsselpaar erzeugt wird."
+    },
+    {
+        "id":  "slg-aa-026",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Router Rtr-1 has \u0027ip domain-name cisco.com\u0027. Which default name does \u0027crypto key generate rsa\u0027 give the key pair?",
+        "optionen":  [
+                         "Rtr-1.cisco.com",
+                         "Rtr-1-rsa-key",
+                         "cisco.com.Rtr-1",
+                         "TP-self-signed-Rtr-1"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Das Standardlabel des Schlüsselpaars ist Hostname.Domainname. \u0027show crypto key mypubkey rsa\u0027 zeigt dann \u0027Key name: Rtr-1.cisco.com\u0027."
+    },
+    {
+        "id":  "slg-aa-027",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "PuTTY shows the fingerprint of Rtr-1\u0027s public key when connecting for the first time. Why?",
+        "optionen":  [
+                         "The router\u0027s certificate has expired",
+                         "The key is not yet stored in PuTTY\u0027s known host list",
+                         "The router demands that the user\u0027s key is uploaded",
+                         "PuTTY falls back to SSH version 1 for unknown hosts"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Beim ersten Kontakt kennt der Client den Server-Schlüssel noch nicht. Der Benutzer soll den Fingerprint prüfen; nach dem Akzeptieren wird er gespeichert und künftig automatisch verglichen."
+    },
+    {
+        "id":  "slg-aa-028",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The running configuration shows \u0027username badexample password 7 011107004B0A151C36435C0D\u0027. What can you conclude?",
+        "optionen":  [
+                         "The password was hashed with MD5 because no algorithm was specified",
+                         "The user was created with \u0027password\u0027 and service password-encryption is on",
+                         "The user was created with \u0027secret\u0027 and the algorithm Type 7",
+                         "The password is stored in AES because a master key is configured"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Typ 7 entsteht, wenn ein mit \u0027password\u0027 eingegebenes Passwort durch service password-encryption verschlüsselt wird. Mit \u0027secret\u0027 entstünde ein Hash (5, 8 oder 9), mit AES-Master-Key Typ 6."
+    },
+    {
+        "id":  "slg-aa-029",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which AAA function determines whether an authenticated administrator may execute \u0027configure terminal\u0027?",
+        "optionen":  [
+                         "Auditing",
+                         "Accounting",
+                         "Authorization",
+                         "Authentication"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Authorization legt fest, was ein bereits identifizierter Benutzer tun darf – z. B. welche Befehle oder welches Privilege Level. Authentication klärt nur, wer er ist."
+    },
+    {
+        "id":  "slg-aa-030",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A company manages 300 switches with local usernames, and several admins share one account. Which AAA benefit addresses both problems?",
+        "optionen":  [
+                         "Hardware encryption of all management traffic",
+                         "Central user database with per-user accountability",
+                         "Automatic backup of device configurations",
+                         "Faster convergence of management VLANs"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "AAA skaliert: Benutzer werden zentral gepflegt statt auf jedem Gerät. Jeder Admin bekommt ein eigenes Konto, Aktionen lassen sich per Accounting einer Person zuordnen."
+    },
+    {
+        "id":  "slg-aa-031",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 has \u0027aaa authentication login SRVAUTH group RADSRVGROUP local\u0027, but no line contains \u0027login authentication SRVAUTH\u0027. What is the effect of SRVAUTH?",
+        "optionen":  [
+                         "It has no effect until it is applied to a line",
+                         "It replaces the default list on all lines",
+                         "It is used on the console only",
+                         "It is used on all vty lines automatically"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Benannte Method Lists wirken nur dort, wo sie explizit zugewiesen werden (z. B. \u0027login authentication SRVAUTH\u0027 unter der Line). Nur die default-Liste gilt automatisch."
+    },
+    {
+        "id":  "slg-aa-032",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "R1 has a default login list using TACACS+ and a named list VTY using RADIUS. \u0027line vty 0 4\u0027 contains \u0027login authentication VTY\u0027. Which list authenticates SSH users?",
+        "optionen":  [
+                         "The VTY list, because it is applied to the line",
+                         "Neither, because two lists on one device conflict",
+                         "Both lists, first default and then VTY",
+                         "The default list, because it always has priority"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Eine auf der Line zugewiesene benannte Liste überschreibt dort die default-Liste. Die default-Liste gilt nur für Lines ohne eigene Liste."
+    },
+    {
+        "id":  "slg-aa-033",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 uses \u0027aaa authentication login default group tacacs+ local\u0027. The TACACS+ server is reachable but has no account \u0027admin\u0027; \u0027admin\u0027 exists only in R1\u0027s local database. What happens when admin logs in?",
+        "optionen":  [
+                         "R1 marks the server dead and uses local for all users",
+                         "Login succeeds, because R1 then checks the local database",
+                         "Login succeeds after a timeout of the TACACS+ server",
+                         "Login fails, because the server\u0027s reject ends the method list"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die nächste Methode wird nur bei ERROR (keine Antwort) probiert. Antwortet der Server mit FAIL (unbekannter Benutzer, falsches Passwort), ist die Anmeldung beendet – die lokale Datenbank wird nicht gefragt."
+    },
+    {
+        "id":  "slg-aa-034",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why is \u0027aaa authentication login default group tacacs+ none\u0027 discouraged in production?",
+        "optionen":  [
+                         "Users must enter their password twice",
+                         "Every user is authenticated without TACACS+",
+                         "Local users are tried before the TACACS+ servers",
+                         "Anyone gets in without credentials if the servers fail"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027none\u0027 als letzte Methode lässt die Anmeldung ohne Prüfung gelingen, wenn alle vorherigen Methoden ERROR liefern. Fällt der Server aus (oder wird er gezielt unerreichbar gemacht), ist das Gerät offen."
+    },
+    {
+        "id":  "slg-aa-035",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the difference between the methods \u0027local\u0027 and \u0027local-case\u0027 in an AAA authentication list?",
+        "optionen":  [
+                         "local-case checks usernames case-sensitively",
+                         "local-case converts passwords to lowercase",
+                         "local-case accepts only Type 9 secrets",
+                         "local-case uses the RADIUS server\u0027s local cache"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beide nutzen die lokale Benutzerdatenbank. Bei local-case wird der Benutzername case-sensitiv geprüft (Admin ≠ admin), bei local nicht. Passwörter sind in beiden Fällen case-sensitiv."
+    },
+    {
+        "id":  "slg-aa-036",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 uses \u0027aaa authentication login default group radius enable\u0027. All RADIUS servers are down. What must an administrator enter at the login prompt?",
+        "optionen":  [
+                         "The line password of the vty line",
+                         "Any password, because enable means no check",
+                         "The enable secret of R1",
+                         "A local username and secret"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Methode \u0027enable\u0027 authentifiziert mit dem enable-Passwort bzw. enable secret. Sie greift hier nur, weil RADIUS einen ERROR liefert."
+    },
+    {
+        "id":  "slg-aa-037",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Consider:\n\naaa authentication login default group radius local line\naaa authentication login NO_AUTH none\nline console 0\n login authentication NO_AUTH\n\nWhat happens when someone connects to the console?",
+        "optionen":  [
+                         "Only the line password is checked on the console",
+                         "RADIUS is tried first, then local, then the line password",
+                         "The console is disabled because none blocks all access",
+                         "The console user gets the CLI without any authentication"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Konsole nutzt die zugewiesene Liste NO_AUTH, und deren einzige Methode \u0027none\u0027 bedeutet: keine Authentifizierung. Die default-Liste gilt nur auf Lines ohne eigene Liste."
+    },
+    {
+        "id":  "slg-aa-038",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On a router with no local users and no other AAA commands, an engineer enters \u0027aaa new-model\u0027 via SSH and then disconnects. Which access still works?",
+        "optionen":  [
+                         "SSH with the old vty line password",
+                         "SSH with the enable secret as password",
+                         "The console port without authentication",
+                         "No access at all until password recovery"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "aaa new-model aktiviert ohne default-Liste sofort lokale Authentifizierung auf allen Lines außer der Konsole. Ohne lokale Benutzer kommt per vty niemand mehr hinein; die Konsole bleibt ohne Authentifizierung erreichbar."
+    },
+    {
+        "id":  "slg-aa-039",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which step should always be done before \u0027aaa new-model\u0027 is entered on a remotely managed router?",
+        "optionen":  [
+                         "Remove all vty line passwords",
+                         "Configure a local user with a strong secret",
+                         "Configure \u0027aaa authorization console\u0027",
+                         "Enable \u0027service password-encryption\u0027"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "aaa new-model schaltet sofort lokale Authentifizierung auf den vty-Lines ein. Ein vorher angelegter lokaler Benutzer (username … secret …) verhindert, dass man sich aussperrt."
+    },
+    {
+        "id":  "slg-aa-040",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A server group contains two RADIUS servers. The first server is reachable and answers a login with Access-Reject. What does the router do next?",
+        "optionen":  [
+                         "It tries the local database before the second server",
+                         "It queries the second server in the group",
+                         "It retries the first server three times, then the second",
+                         "It denies the login without asking the second server"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der nächste Server einer Gruppe wird nur gefragt, wenn der vorherige nicht antwortet (ERROR). Ein Access-Reject ist eine gültige Antwort (FAIL) und beendet die Authentifizierung."
+    },
+    {
+        "id":  "slg-aa-041",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 has two RADIUS servers defined, and only RADSRV1 is a member of group RADGRP. What is the difference between \u0027group radius\u0027 and \u0027group RADGRP\u0027 in a method list?",
+        "optionen":  [
+                         "There is no difference, both use every RADIUS server",
+                         "group radius uses all RADIUS servers, group RADGRP only RADSRV1",
+                         "group radius uses UDP 1645, group RADGRP uses UDP 1812",
+                         "group radius uses only the first server, group RADGRP uses all"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027group radius\u0027 (bzw. \u0027group tacacs+\u0027) spricht alle Server dieses Typs an. \u0027group NAME\u0027 beschränkt sich auf die Mitglieder der mit \u0027aaa group server\u0027 definierten Gruppe."
+    },
+    {
+        "id":  "slg-aa-042",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which RADIUS message delivers the authorization attributes, such as a privilege level or a downloadable ACL, to the NAS?",
+        "optionen":  [
+                         "Access-Accept",
+                         "Access-Request",
+                         "Access-Challenge",
+                         "Accounting-Response"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "RADIUS kombiniert Authentifizierung und Autorisierung: Das Access-Accept bestätigt den Benutzer und enthält zugleich die AV-Paare (z. B. IP-Adresse, ACL, VLAN, Privilege)."
+    },
+    {
+        "id":  "slg-aa-043",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A user logs in with a one-time token. The RADIUS server answers the first Access-Request with an Access-Challenge. What is the purpose of this message?",
+        "optionen":  [
+                         "It starts the accounting session for the user",
+                         "It tells the NAS that the shared secret is wrong",
+                         "It requests additional information, such as a token PIN",
+                         "It asks the NAS to switch from UDP to TCP"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Mit Access-Challenge fordert der RADIUS-Server zusätzliche Daten an (z. B. PIN, Token-Code), bevor er mit Accept oder Reject antwortet."
+    },
+    {
+        "id":  "slg-aa-044",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An attacker captures a RADIUS Access-Request between a switch and its server. Which information can the attacker read in clear text?",
+        "optionen":  [
+                         "The username, NAS IP address and NAS port",
+                         "The user password and the shared secret",
+                         "Nothing, because RADIUS runs inside IPsec by default",
+                         "Only the UDP header, because the payload is encrypted"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "RADIUS verschleiert nur das Passwort-Attribut. Benutzername, NAS-IP, NAS-Port und alle übrigen Attribute stehen im Klartext im Paket."
+    },
+    {
+        "id":  "slg-aa-045",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An attacker captures TACACS+ traffic between a router and its server. What remains readable?",
+        "optionen":  [
+                         "The usernames, but not the passwords",
+                         "Everything, because TACACS+ only encrypts the password",
+                         "The IP/TCP headers and the TACACS+ header, but not the body",
+                         "The entered commands, but not the usernames"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "TACACS+ verschlüsselt den gesamten Paket-Body (Benutzer, Passwort, Befehle, Attribute). Lesbar bleiben IP/TCP-Header und der 12-Byte-TACACS+-Header (Version, Typ, Sequenznummer, Flags, Session-ID, Länge; RFC 8907)."
+    },
+    {
+        "id":  "slg-aa-046",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An enterprise deploys 802.1X port authentication on its access switches. Which AAA protocol is used between the switches and the AAA server?",
+        "optionen":  [
+                         "RADIUS, because 802.1X/EAP is carried in RADIUS",
+                         "TACACS+, because it encrypts the whole body",
+                         "SSH, because it encrypts the EAP exchange",
+                         "TACACS+, because it separates the three A\u0027s"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "802.1X-Authentifizierung (EAP) wird zwischen Switch und Server in RADIUS transportiert. RADIUS ist das typische Protokoll für Network Access, TACACS+ für Device Administration."
+    },
+    {
+        "id":  "slg-aa-047",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement describes a consequence of TACACS+ using TCP instead of UDP?",
+        "optionen":  [
+                         "Authentication and accounting share one UDP port",
+                         "No shared secret is needed because TCP is secure",
+                         "Delivery reliability is handled by the transport protocol",
+                         "The packets can be sent as broadcasts to all servers"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "TACACS+ nutzt TCP Port 49; Zustellung und Wiederholungen übernimmt TCP. RADIUS (UDP) muss Timeouts und Retransmits selbst behandeln. Ein Shared Secret braucht TACACS+ trotzdem."
+    },
+    {
+        "id":  "slg-aa-048",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Cisco ISE listens on UDP 1812/1813. R1 has \u0027radius server ISE\u0027, \u0027address ipv4 10.1.1.5\u0027 (no ports) and the correct key. ISE never sees R1\u0027s requests. What is the most likely cause?",
+        "optionen":  [
+                         "IOS requires TCP 49 for RADIUS unless changed",
+                         "The server group is missing a \u0027port 1812\u0027 command",
+                         "ISE requires the key to be entered as Type 7",
+                         "IOS sends RADIUS to UDP 1645/1646 by default"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne auth-port/acct-port verwendet IOS die alten Cisco-Defaults 1645 (Authentifizierung) und 1646 (Accounting). Läuft der Server auf 1812/1813, müssen die Ports mit \u0027address ipv4 … auth-port 1812 acct-port 1813\u0027 gesetzt werden."
+    },
+    {
+        "id":  "slg-aa-049",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "R1 has \u0027address ipv4 10.255.255.101 auth-port 1812 acct-port 1813\u0027 for its RADIUS server. To which destination port are \u0027aaa accounting exec … start-stop\u0027 records sent?",
+        "optionen":  [
+                         "UDP 1813",
+                         "UDP 1646",
+                         "UDP 1812",
+                         "TCP 49"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "RADIUS trennt Accounting vom kombinierten Authc/Authz-Austausch. Accounting-Requests gehen an den acct-port, hier UDP 1813; Authentifizierung und Autorisierung laufen über 1812."
+    },
+    {
+        "id":  "slg-aa-050",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "How is the RADIUS shared secret (\u0027key\u0027) used between the NAS and the server?",
+        "optionen":  [
+                         "It is sent in every Access-Request so the server can compare it",
+                         "It is sent only in Accounting-Requests to protect the records",
+                         "It is sent once at startup and cached by the server",
+                         "It is never sent; both sides use it to hide the password"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Das Shared Secret wird nie übertragen. NAS und Server verschleiern damit das Passwort (MD5-basiert) und berechnen die Authenticator-Felder (RFC 2865). Die Kursaussage, der Server vergleiche das \u0027gesendete\u0027 Secret, ist ungenau."
+    },
+    {
+        "id":  "slg-aa-051",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In the AAA client-server model, which role does a router play that forwards a user\u0027s login request to a TACACS+ server?",
+        "optionen":  [
+                         "Certificate authority",
+                         "Identity provider",
+                         "Network access server (NAS)",
+                         "AAA server"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das Netzwerkgerät (Router, Switch, Firewall, AP) ist der AAA-Client und heißt NAS (Network Access Server). Der eigentliche AAA-Server ist z. B. Cisco ISE."
+    },
+    {
+        "id":  "slg-aa-052",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 has \u0027username admin privilege 15 secret X\u0027, \u0027aaa new-model\u0027 and \u0027aaa authentication login default local\u0027, nothing else. admin logs in via SSH and gets the \u0027\u003e\u0027 prompt. What fixes this so admin lands at level 15 directly?",
+        "optionen":  [
+                         "aaa authorization exec default local",
+                         "aaa accounting exec default start-stop local",
+                         "privilege exec level 15 login",
+                         "aaa authentication enable default local"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit aaa new-model wird das Privilege Level beim Login über die EXEC-Autorisierung zugewiesen. \u0027aaa authorization exec default local\u0027 liest das Level 15 aus der lokalen Datenbank – genau wie im Discovery-Lab."
+    },
+    {
+        "id":  "slg-aa-053",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does \u0027aaa authorization exec\u0027 control?",
+        "optionen":  [
+                         "Whether each configuration command is permitted",
+                         "Whether a CLI shell may start, and at which level",
+                         "Whether the enable command requires a password",
+                         "Whether session start and stop are recorded"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "EXEC-Autorisierung entscheidet, ob ein Benutzer überhaupt eine EXEC-Sitzung starten darf. Der Server kann dabei ein Privilege Level mitgeben, sodass der Benutzer ohne \u0027enable\u0027 im \u0027#\u0027-Modus landet."
+    },
+    {
+        "id":  "slg-aa-054",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 has \u0027aaa authorization commands 15 default group tacacs+\u0027. An administrator on the console can still run every command without TACACS+ checks. Why?",
+        "optionen":  [
+                         "The console always uses the RADIUS method list",
+                         "TACACS+ cannot authorize commands entered on serial lines",
+                         "Command authorization works only for level 1 commands",
+                         "Authorization skips the console unless explicitly enabled"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Standardmäßig wird AAA-Autorisierung auf der Konsole nicht angewendet. Erst \u0027aaa authorization console\u0027 bezieht sie ein. Das ist ein Schutz, damit man fehlerhafte Autorisierung über die Konsole reparieren kann."
+    },
+    {
+        "id":  "slg-aa-055",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What does the method \u0027if-authenticated\u0027 at the end of \u0027aaa authorization exec MYTACAUTH group TACSRVGROUP local if-authenticated\u0027 do?",
+        "optionen":  [
+                         "It repeats the authentication before authorization is checked",
+                         "It moves every authenticated user directly to privilege level 15",
+                         "It grants authorization if the user has already been authenticated",
+                         "It sends the authorization request only if TACACS+ authenticated"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "if-authenticated ist eine Rückfallmethode: Die Autorisierung gilt als erteilt, sobald der Benutzer authentifiziert ist. Ein Privilege Level vergibt sie nicht – die Kursaussage \u0027direkt in den enable-Modus\u0027 ist falsch."
+    },
+    {
+        "id":  "slg-aa-056",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which command makes commands entered in global configuration mode subject to the configured command authorization?",
+        "optionen":  [
+                         "aaa authorization config-commands",
+                         "aaa authorization reverse-access",
+                         "aaa authorization configuration",
+                         "aaa authorization network"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "aaa authorization config-commands bezieht Konfigurationsbefehle in die Befehlsautorisierung ein. \u0027configuration\u0027 betrifft das Herunterladen von Konfigurationen vom Server, \u0027network\u0027 z. B. PPP-Dienste."
+    },
+    {
+        "id":  "slg-aa-057",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1 has \u0027aaa authorization commands 15 default group tacacs+\u0027 without a second method. The TACACS+ server becomes unreachable. An admin is connected at level 15 via SSH. What happens?",
+        "optionen":  [
+                         "Only show commands are blocked, configuration still works",
+                         "Commands still work because authorization falls back to local",
+                         "Level 15 commands fail on the vty, but the console still works",
+                         "All sessions are disconnected and the console is locked"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ohne Rückfallmethode liefert der Ausfall des Servers einen Fehler → jeder Level-15-Befehl wird auf vty-Lines abgelehnt. Die Konsole ist ohne \u0027aaa authorization console\u0027 nicht betroffen. Abhilfe: \u0027local\u0027 oder \u0027if-authenticated\u0027 als zweite Methode."
+    },
+    {
+        "id":  "slg-aa-058",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027debug aaa authorization\u0027 shows:\n\nAAA/AUTHOR (0xFAE): Pick method list \u0027default\u0027\nAAA/AUTHOR/EXEC(00000FAE): processing AV priv-lvl 15\nAAA/AUTHOR/EXEC(00000FAE): Authorization successful\n\nWhat does this output indicate?",
+        "optionen":  [
+                         "The user failed authentication and was moved to level 15",
+                         "Command accounting recorded a level 15 command",
+                         "A named authorization list was applied to the console",
+                         "The default EXEC authorization list granted the user level 15"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die default-Liste für EXEC-Autorisierung wurde gewählt, das AV-Paar priv-lvl 15 verarbeitet und die Autorisierung war erfolgreich – der Benutzer erhält direkt Level 15."
+    },
+    {
+        "id":  "slg-aa-059",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027debug tacacs\u0027 shows \u0027TPLUS: Received authen response status GET_PASSWORD (8)\u0027. What does the server ask the NAS to do?",
+        "optionen":  [
+                         "Collect the password from the user and send it",
+                         "Use the local database because the server is busy",
+                         "Encrypt the next packet with the shared secret",
+                         "Re-send the username because it was invalid"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "TACACS+ führt die Anmeldung als Dialog: Nach dem Benutzernamen fordert der Server mit GETPASS das Passwort an. Der NAS fragt den Benutzer und sendet es in einem CONTINUE-Paket."
+    },
+    {
+        "id":  "slg-aa-060",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "After the admin enters \u0027show running-config\u0027, \u0027debug tacacs\u0027 shows \u0027AUTHOR/START processed\u0027 followed by \u0027received author response status PASS_ADD\u0027. What does this mean?",
+        "optionen":  [
+                         "The command was rejected and logged for auditing",
+                         "An accounting stop record was written successfully",
+                         "The admin\u0027s password was accepted for a second time",
+                         "The command was authorized by the TACACS+ server"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Mit Befehlsautorisierung fragt der Router für jeden Befehl beim TACACS+-Server nach (AUTHOR START). PASS_ADD bedeutet: erlaubt (ggf. mit zusätzlichen Attributen)."
+    },
+    {
+        "id":  "slg-aa-061",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which accounting record type sends a record when an EXEC session begins and another when it ends?",
+        "optionen":  [
+                         "stop-only",
+                         "wait-only",
+                         "start-stop",
+                         "none"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "start-stop meldet Beginn und Ende (inklusive Dauer). stop-only meldet nur das Ende, none schaltet Accounting für die Liste ab."
+    },
+    {
+        "id":  "slg-aa-062",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An auditor wants a record of every command that administrators enter in privileged EXEC mode, including the username. Which command provides this?",
+        "optionen":  [
+                         "aaa accounting exec default start-stop group tacacs+",
+                         "aaa accounting system default start-stop group tacacs+",
+                         "aaa accounting commands 15 default start-stop group tacacs+",
+                         "aaa authorization commands 15 default group tacacs+"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "\u0027aaa accounting commands 15\u0027 sendet zu jedem Befehl auf Level 15 einen Record mit Benutzer und Befehl. exec protokolliert nur Sitzungen, system Geräteereignisse; Autorisierung erzeugt keine Protokolle."
+    },
+    {
+        "id":  "slg-aa-063",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which events does \u0027aaa accounting system default start-stop group tacacs+\u0027 record?",
+        "optionen":  [
+                         "Major device events such as a reload",
+                         "Every privileged command entered by users",
+                         "EXEC session start and stop per user",
+                         "PPP sessions and their byte counters"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Accounting-Typ \u0027system\u0027 meldet Ereignisse des Geräts selbst (z. B. Reload), nicht benutzerbezogene Sitzungen oder Befehle."
+    },
+    {
+        "id":  "slg-aa-064",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the lab, local AAA is configured for authentication and authorization only. Why is accounting enabled only after a TACACS+ server is added?",
+        "optionen":  [
+                         "Accounting is only possible on the console line",
+                         "Accounting records need a central server with storage",
+                         "Accounting is only supported by RADIUS servers",
+                         "Local accounting requires a special IOS license"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Netzwerkgeräte haben keinen dauerhaften Speicher für Accounting-Daten. Die Records gehen an einen zentralen Server, der sie speichert (im Lab /var/log/tac_plus.acct)."
+    },
+    {
+        "id":  "slg-aa-065",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027test aaa group tacacs+ admin Cisco123 new-code\u0027 returns \u0027User successfully authenticated\u0027. Which conclusion is valid?",
+        "optionen":  [
+                         "Command authorization for admin is working correctly",
+                         "The server is reachable, the key matches and the credentials are valid",
+                         "The local database contains a matching admin account",
+                         "The vty lines are now using the TACACS+ server for logins"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "test aaa prüft den kompletten Austausch mit dem Server: Erreichbarkeit, passendes Shared Secret und gültige Zugangsdaten. Ob eine Method List die Gruppe tatsächlich auf den Lines nutzt, zeigt der Test nicht."
+    },
+    {
+        "id":  "slg-aa-066",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "\u0027debug aaa authentication\u0027 shows \u0027AAA/AUTHEN/LOGIN (00000FAE): Pick method list \u0027default\u0027\u0027. What does this tell you about the vty line?",
+        "optionen":  [
+                         "The console\u0027s method list was copied to the vty line",
+                         "Authentication was skipped because default means none",
+                         "No named login list is applied, so the default list is used",
+                         "A named list called default was applied manually"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Router wählt die default-Liste, weil auf der Line keine benannte Liste zugewiesen ist. Erscheint ein anderer Name, ist die benannte Liste der Line aktiv."
+    },
+    {
+        "id":  "slg-aa-067",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "R1: \u0027aaa authentication login default group tacacs+ local\u0027 and \u0027aaa authorization exec default group tacacs+\u0027. The TACACS+ server is down. User admin (local, privilege 15) logs in via SSH. What happens?",
+        "optionen":  [
+                         "Authentication fails because the server is down",
+                         "admin logs in at level 1 because exec authorization is skipped",
+                         "admin logs in at level 15 from the local database",
+                         "Local login succeeds, but exec authorization refuses the session"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Authentifizierung fällt bei ERROR auf local zurück und gelingt. Die EXEC-Autorisierung hat aber keine Rückfallmethode – der Serverfehler führt zur Ablehnung, die Sitzung wird beendet. Abhilfe: \u0027local\u0027 oder \u0027if-authenticated\u0027 anhängen."
+    },
+    {
+        "id":  "slg-aa-068",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer must change AAA settings via SSH on a remote router without console access. Which precaution lets the router recover automatically if the engineer is locked out?",
+        "optionen":  [
+                         "Enable \u0027service password-encryption\u0027 before the change",
+                         "Configure \u0027exec-timeout 0 0\u0027 on the vty lines first",
+                         "Enter \u0027aaa authorization console\u0027 before making the change",
+                         "Enter \u0027reload in 10\u0027 first and save only after a successful test"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Mit \u0027reload in 10\u0027 startet der Router nach 10 Minuten mit der gespeicherten (alten) Konfiguration neu, falls man sich aussperrt. Klappt alles, bricht man mit \u0027reload cancel\u0027 ab und speichert."
+    },
+    {
+        "id":  "slg-aa-069",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer types \u0027aaa authentication login default local\u0027 but IOS replies with \u0027% Invalid input detected\u0027. What is the most likely reason?",
+        "optionen":  [
+                         "\u0027aaa new-model\u0027 has not been entered yet",
+                         "A local user must exist before the command is accepted",
+                         "Login lists can only be named, not default",
+                         "The keyword local must be written as local-case"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Solange aaa new-model nicht aktiv ist, sind die übrigen aaa-Befehle nicht verfügbar. Erst danach lassen sich Method Lists konfigurieren."
+    },
+    {
+        "id":  "slg-aa-070",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Users authenticated by RADIUS should land in privileged EXEC mode immediately. How does the RADIUS server provide this?",
+        "optionen":  [
+                         "It returns a Cisco AV pair such as shell:priv-lvl=15 in the Access-Accept",
+                         "It sends an Access-Challenge asking the user for the enable secret",
+                         "It sends priv-lvl in a separate authorization exchange on TCP 49",
+                         "It sends an Accounting-Response that contains the privilege level"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bei RADIUS steckt die Autorisierung im Access-Accept. Das Privilege Level wird als Cisco-AV-Paar (shell:priv-lvl=15) übertragen; zusätzlich muss am Router \u0027aaa authorization exec … group radius\u0027 konfiguriert sein."
+    },
+    {
+        "id":  "slg-aa-071",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What does \u0027login authentication SRVAUTH\u0027 under \u0027line con 0\u0027 do?",
+        "optionen":  [
+                         "It applies SRVAUTH to all lines of the device",
+                         "It sets SRVAUTH as the console line password",
+                         "It creates a new method list called SRVAUTH",
+                         "It applies the method list SRVAUTH to the console"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Line-Befehl login authentication weist eine (vorher global definierte) Method List zu. Die Liste selbst wird mit \u0027aaa authentication login SRVAUTH …\u0027 angelegt."
+    },
+    {
+        "id":  "slg-aa-072",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "On IOS XE, entering \u0027key Cisco123!\u0027 under \u0027tacacs server\u0027 produces a warning about clear-text keys. Which pair of commands stores such keys AES-encrypted (Type 6)?",
+        "optionen":  [
+                         "key config-key password-encrypt and password encryption aes",
+                         "key chain TACKEYS and key-string 6 Cisco123!",
+                         "service password-encryption and enable algorithm-type scrypt",
+                         "crypto key generate rsa and ip ssh version 2"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Mit \u0027key config-key password-encrypt \u003cMaster-Key\u003e\u0027 wird ein Master-Key festgelegt (nicht in der Konfiguration sichtbar), \u0027password encryption aes\u0027 verschlüsselt damit Keys als Typ 6. service password-encryption erzeugt nur das schwache Typ 7."
+    },
+    {
+        "id":  "slg-aa-073",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why must a Cisco device use TACACS+ rather than RADIUS when each command at level 15 must be approved by the server?",
+        "optionen":  [
+                         "RADIUS combines authentication and authorization in one exchange",
+                         "RADIUS requires a separate server for each device",
+                         "RADIUS does not support privilege level 15 at all",
+                         "RADIUS cannot carry usernames longer than eight characters"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "RADIUS liefert die Autorisierung zusammen mit dem Access-Accept beim Login (\u0027alles oder nichts\u0027). TACACS+ trennt die Funktionen und kann jeden Befehl einzeln beim Server autorisieren lassen."
+    },
+    {
+        "id":  "slg-aa-074",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer configures \u0027tacacs server TACSRV\u0027 with \u0027address ipv4 10.255.255.102\u0027 but forgets the \u0027key\u0027 command. What is the effect?",
+        "optionen":  [
+                         "Communication works, because TCP itself encrypts the session",
+                         "The NAS uses the enable secret as the shared secret instead",
+                         "The NAS automatically switches to RADIUS for this server",
+                         "The exchange with the server fails because the keys do not match"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Shared Key muss auf NAS und Server identisch sein; er verschlüsselt den TACACS+-Body. Fehlt er auf dem Router, passt er nicht zum Key des Servers – eine Anmeldung über diesen Server gelingt nicht. Lösung: \u0027key\u0027 im tacacs-server-Block setzen."
+    },
+    {
+        "id":  "slg-aa-075",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The TACACS+ server listens on TCP port 4949 instead of the default. Where is the port configured on the router?",
+        "optionen":  [
+                         "In the method list with \u0027group tacacs+ port 4949\u0027",
+                         "Under the vty lines with \u0027transport tacacs 4949\u0027",
+                         "In \u0027aaa group server tacacs+\u0027 with \u0027server port 4949\u0027",
+                         "In \u0027tacacs server NAME\u0027 with \u0027port 4949\u0027"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Im Modus config-server-tacacs legt \u0027port\u0027 einen abweichenden TCP-Port fest; ohne Angabe gilt Port 49."
+    },
+    {
+        "id":  "slg-aa-076",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An authorization list MYTACAUTH is configured with \u0027aaa authorization exec MYTACAUTH …\u0027. Which command applies it to the vty lines?",
+        "optionen":  [
+                         "exec authorization MYTACAUTH",
+                         "aaa authorization line vty MYTACAUTH",
+                         "authorization exec MYTACAUTH",
+                         "login authentication MYTACAUTH"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Benannte Autorisierungslisten werden unter der Line mit \u0027authorization exec NAME\u0027 bzw. \u0027authorization commands 15 NAME\u0027 zugewiesen. Ohne diesen Befehl gilt die default-Liste."
+    },
+    {
+        "id":  "slg-aa-077",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which statement about the three AAA functions is correct?",
+        "optionen":  [
+                         "Authorization can be performed without any authentication",
+                         "Accounting replaces authorization when a server is used",
+                         "Authorization is always performed before authentication",
+                         "Authentication can be used alone, without authorization or accounting"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Authentifizierung funktioniert für sich allein. Autorisierung setzt immer einen authentifizierten Benutzer voraus; Accounting kann laut Cisco auch allein eingesetzt werden."
+    },
+    {
+        "id":  "slg-aa-078",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Telnet to R1 fails with \u0027% Connection refused by remote host\u0027. \u0027line vty 0 15\u0027 contains \u0027transport input ssh\u0027 and \u0027login local\u0027. What is the reason?",
+        "optionen":  [
+                         "login local requires \u0027login block-for\u0027 first",
+                         "The vty lines accept only SSH connections",
+                         "The RSA key size is too small for Telnet",
+                         "No local user exists for the Telnet client"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "transport input ssh lässt auf den vty-Lines nur SSH zu; Telnet wird abgewiesen, bevor überhaupt nach Zugangsdaten gefragt wird."
+    },
+    {
+        "id":  "slg-aa-079",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does Cisco recommend authenticating line access with username/secret combinations instead of line passwords with \u0027service password-encryption\u0027?",
+        "optionen":  [
+                         "Secrets are strong hashes and each admin has a personal account",
+                         "Line passwords cannot be longer than eight characters",
+                         "Usernames are required for the console port to work",
+                         "service password-encryption slows down the CPU"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Line-Passwörter sind höchstens Typ 7 (umkehrbar) und werden geteilt. username … secret speichert einen starken Hash und ermöglicht persönliche Konten – Voraussetzung für Nachvollziehbarkeit."
+    },
+    {
+        "id":  "slg-aa-080",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which statement about \u0027enable algorithm-type\u0027 is correct?",
+        "optionen":  [
+                         "It encrypts all line passwords with the chosen algorithm",
+                         "It changes the hashing algorithm used by \u0027enable secret\u0027",
+                         "It selects the cipher for SSH sessions to the device",
+                         "It changes the algorithm used by \u0027enable password\u0027"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "enable algorithm-type {md5 | sha256 | scrypt} secret … legt fest, wie das enable secret gehasht wird (Typ 5, 8 oder 9). Auf Line-Passwörter oder SSH-Cipher hat es keinen Einfluss."
+    },
+    {
+        "id":  "slg-aa-081",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which characteristic of TACACS+ makes it the typical choice for device administration?",
+        "optionen":  [
+                         "It runs over UDP, which reduces the load on the server",
+                         "It is defined in RFC 2865 and supported by all vendors",
+                         "It encrypts only the password, which keeps packets small",
+                         "Authentication, authorization and accounting are separate exchanges"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Weil TACACS+ die drei A trennt, kann es jede Funktion einzeln abwickeln – bis hin zur Autorisierung einzelner Befehle. RFC 2865 und UDP sowie \u0027nur Passwort verschlüsselt\u0027 beschreiben RADIUS."
+    },
+    {
+        "id":  "slg-aa-083",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is required for a server to be listed with \u0027server name RADSRV\u0027 inside \u0027aaa group server radius RADSRVGROUP\u0027?",
+        "optionen":  [
+                         "RADSRV must be listed in the default method list",
+                         "RADSRV must first be defined with \u0027radius server RADSRV\u0027",
+                         "RADSRV must be reachable when the command is entered",
+                         "RADSRV must use UDP ports 1812 and 1813"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "In eine Server-Gruppe lassen sich nur Server aufnehmen, die vorher mit \u0027radius server NAME\u0027 (Adresse, Key) definiert wurden. Erreichbarkeit oder bestimmte Ports sind dafür keine Voraussetzung."
+    },
+    {
+        "id":  "slg-aa-084",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer has just entered \u0027no service password-encryption\u0027. How do the line passwords that were already stored as Type 7 appear in the running configuration?",
+        "optionen":  [
+                         "They are converted back to clear text immediately",
+                         "They are deleted and must be re-entered",
+                         "They are converted to Type 9 hashes",
+                         "They remain stored as Type 7"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Das Abschalten von service password-encryption entschlüsselt nichts. Bereits verschlüsselte Passwörter bleiben Typ 7; nur neu eingegebene Passwörter würden wieder im Klartext gespeichert."
+    },
+    {
+        "id":  "slg-aa-085",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements describe RADIUS? (Choose two.)",
+        "optionen":  [
+                         "It encrypts the entire packet body",
+                         "It authorizes each CLI command separately",
+                         "It combines authentication and authorization in one exchange",
+                         "It uses TCP port 49",
+                         "It uses UDP for transport"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "RADIUS (RFC 2865/2866) nutzt UDP 1812/1813 und liefert die Autorisierung im Access-Accept mit. Ganzer Body verschlüsselt, Befehlsautorisierung und TCP 49 sind Merkmale von TACACS+."
+    },
+    {
+        "id":  "slg-aa-086",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two statements about \u0027service password-encryption\u0027 are correct? (Choose two.)",
+        "optionen":  [
+                         "It protects passwords against offline cracking",
+                         "It requires \u0027aaa new-model\u0027 to be enabled",
+                         "It converts enable secrets into Type 9 hashes",
+                         "It affects line passwords and \u0027enable password\u0027",
+                         "It stores clear-text passwords as reversible Type 7"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Der Befehl verschlüsselt Klartext-Passwörter (Line, enable password, username … password) mit dem umkehrbaren Typ 7. Secrets bleiben unverändert, gegen Offline-Angriffe schützt Typ 7 nicht."
+    },
+    {
+        "id":  "slg-aa-087",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "R1 uses \u0027aaa authentication login default group TACGRP local\u0027. In which two situations does R1 check its local user database? (Choose two.)",
+        "optionen":  [
+                         "The user does not exist on the TACACS+ server",
+                         "The TACACS+ server rejects the user\u0027s password",
+                         "The servers in TACGRP are unreachable because of a routing problem",
+                         "The TACACS+ server authenticates the user successfully",
+                         "All servers in TACGRP time out"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "local ist Rückfallmethode für ERROR – also wenn kein Server der Gruppe antwortet (Timeout, nicht erreichbar). Ein Reject (falsches Passwort, unbekannter Benutzer) ist FAIL und beendet die Anmeldung."
+    },
+    {
+        "id":  "slg-aa-088",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three are benefits of the AAA framework compared to local passwords? (Choose three.)",
+        "optionen":  [
+                         "Central, scalable user management",
+                         "Authentication of routing protocol updates",
+                         "Per-command authorization",
+                         "Faster packet forwarding on the device",
+                         "Redundancy through server groups"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "AAA bietet granulare Autorisierung (pro Befehl), Redundanz über mehrere Server und zentrale Benutzerverwaltung. Routing-Protokoll-Authentifizierung und Forwarding-Leistung haben mit AAA nichts zu tun."
+    },
+    {
+        "id":  "slg-aa-089",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "The named list SRVAUTH must protect both the console and the vty lines 0 4. Which two commands are required in addition to the list definition? (Choose two.)",
+        "optionen":  [
+                         "\u0027aaa authorization console\u0027",
+                         "\u0027login local\u0027 under line vty 0 4",
+                         "\u0027login authentication SRVAUTH\u0027 under line vty 0 4",
+                         "\u0027aaa authentication login default SRVAUTH\u0027",
+                         "\u0027login authentication SRVAUTH\u0027 under line con 0"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Eine benannte Liste wirkt nur auf Lines, denen sie mit \u0027login authentication NAME\u0027 zugewiesen wird – also unter line con 0 und line vty 0 4. login local würde die Liste umgehen, authorization console betrifft die Autorisierung."
+    },
+    {
+        "id":  "slg-aa-090",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "\u0027aaa new-model\u0027 is entered on a router that has no \u0027aaa authentication login default\u0027 list. Which two statements are correct? (Choose two.)",
+        "optionen":  [
+                         "All existing SSH sessions are disconnected",
+                         "The console immediately requires a TACACS+ login",
+                         "The vty lines immediately use the local user database",
+                         "The vty line passwords keep working as before",
+                         "The console line is not affected and needs no login"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Ohne default-Liste gilt nach aaa new-model auf allen Lines außer der Konsole lokale Authentifizierung; das alte Line-Passwort zählt nicht mehr. Die Konsole bleibt ohne Authentifizierung, bestehende Sitzungen bleiben bestehen."
+    },
+    {
+        "id":  "slg-aa-091",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two pieces of information are contained in a RADIUS Access-Request sent by a NAS? (Choose two.)",
+        "optionen":  [
+                         "The shared secret in clear text",
+                         "The username",
+                         "The NAS IP address",
+                         "The enable secret of the NAS",
+                         "The TACACS+ session ID"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Ein Access-Request enthält u. a. Benutzername, verschleiertes Passwort, NAS-IP und NAS-Port. Das Shared Secret wird nie übertragen."
+    },
+    {
+        "id":  "slg-aa-092",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "An engineer configures AAA on a remote router via SSH. Which two measures reduce the risk of a lockout? (Choose two.)",
+        "optionen":  [
+                         "Remove the enable secret before the change",
+                         "Add \u0027local\u0027 as the last method of the login list",
+                         "Enter \u0027aaa authorization console\u0027 first",
+                         "Create a local user before entering \u0027aaa new-model\u0027",
+                         "Configure \u0027exec-timeout 0 0\u0027 on all lines"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "Ein lokaler Benutzer plus \u0027local\u0027 als Rückfallmethode ermöglicht den Zugang, wenn der Server ausfällt. aaa authorization console erhöht das Risiko eher, die anderen Optionen helfen nicht."
+    },
+    {
+        "id":  "slg-aa-093",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Review the debug output:\n\nTPLUS: Received authen response status PASS (2)\nTPLUS: Sending AV service shell\nTPLUS: Processed AV priv-lvl 15\nTPLUS: received authorization response for 4020: PASS\nTPLUS: Received accounting response with status PASS\n\nWhich two conclusions are correct? (Choose two.)",
+        "optionen":  [
+                         "The server authorized an EXEC shell at privilege level 15",
+                         "The router uses RADIUS for accounting",
+                         "The user\u0027s commands were rejected by the server",
+                         "The user was authenticated by the TACACS+ server",
+                         "The router fell back to the local user database"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "PASS bei der Authentifizierung, danach EXEC-Autorisierung (service shell) mit priv-lvl 15 und PASS. Auch das Accounting ging an TACACS+; ein lokaler Fallback oder eine Ablehnung ist nicht zu sehen."
+    },
+    {
+        "id":  "slg-aa-094",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two commands help to slow down brute-force login attempts on the vty lines? (Choose two.)",
+        "optionen":  [
+                         "ip ssh version 2",
+                         "service password-encryption",
+                         "login delay 2",
+                         "login block-for 120 attempts 3 within 60",
+                         "exec-timeout 5 0"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "login block-for sperrt nach zu vielen Fehlversuchen für eine Quiet Period, login delay erzwingt eine Pause zwischen Versuchen. Die übrigen Befehle betreffen Leerlauf, Passwortdarstellung bzw. SSH-Version."
+    },
+    {
+        "id":  "slg-aa-095",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which three statements about AAA method lists are correct? (Choose three.)",
+        "optionen":  [
+                         "Only one named login list may exist per device",
+                         "The next method is tried when the previous one returns FAIL",
+                         "A named list applied to a line overrides the default list there",
+                         "The default list applies to every line without a named list",
+                         "A named list must be applied to a line to take effect"
+                     ],
+        "richtig":  [
+                        2,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "default gilt automatisch, benannte Listen nur nach Zuweisung und haben dort Vorrang. Es darf mehrere benannte Listen geben. Die nächste Methode greift nur bei ERROR, nicht bei FAIL."
+    },
+    {
+        "id":  "slg-aa-096",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Rtr-1 shows:\n\nSSH Enabled - version 2.0\nAuthentication methods:publickey,keyboard-interactive,password\nAuthentication timeout: 120 secs; Authentication retries: 3\n\nWhich two statements are correct? (Choose two.)",
+        "optionen":  [
+                         "Three SSH sessions can be open at the same time",
+                         "Only SSH version 2 clients are accepted",
+                         "A client has 120 seconds to complete authentication",
+                         "The router has no RSA key pair yet",
+                         "SSH version 1 clients are still accepted"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "\u0027version 2.0\u0027 (statt 1.99) heißt: nur SSHv2. Die Authentifizierung muss in 120 Sekunden mit höchstens 3 Versuchen abgeschlossen sein. Da SSH aktiv ist, existiert ein RSA-Schlüssel."
+    },
+    {
+        "id":  "slg-aa-097",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two statements about IOS privilege levels are correct? (Choose two.)",
+        "optionen":  [
+                         "Level 15 cannot be assigned to local usernames",
+                         "Levels 2 to 14 can be customized with the privilege command",
+                         "Level 1 is the default user EXEC level after login",
+                         "Custom levels range from 16 to 31",
+                         "Level 0 contains all show commands"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Level 1 ist User EXEC, Level 15 privileged EXEC (auch per \u0027username … privilege 15\u0027 vergebbar). Level 2–14 werden mit \u0027privilege exec level N \u003cBefehl\u003e\u0027 gefüllt. Level 0 enthält nur disable, enable, exit, help, logout."
+    },
+    {
+        "id":  "slg-aa-098",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two keywords define the record type in an \u0027aaa accounting\u0027 command? (Choose two.)",
+        "optionen":  [
+                         "per-command",
+                         "on-change",
+                         "stop-only",
+                         "start-stop",
+                         "start-only"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Gültige Record-Typen sind start-stop, stop-only und none. start-only, on-change oder per-command gibt es nicht."
+    },
+    {
+        "id":  "slg-aa-099",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two statements about TACACS+ are correct? (Choose two.)",
+        "optionen":  [
+                         "It combines authentication and authorization",
+                         "It uses TCP port 49",
+                         "It uses UDP ports 1812 and 1813",
+                         "It can authorize individual commands",
+                         "It encrypts only the password attribute"
+                     ],
+        "richtig":  [
+                        1,
+                        3
+                    ],
+        "erklaerung":  "TACACS+ nutzt TCP 49, trennt die drei A und kann einzelne Befehle autorisieren. Nur Passwort verschlüsselt, UDP 1812/1813 und Kombination von Authc/Authz beschreiben RADIUS."
+    },
+    {
+        "id":  "slg-aa-100",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Setze das enable secret \u0027cisco\u0027 mit dem scrypt-Algorithmus (Typ 9).",
+        "bausteine":  [
+                          "enable",
+                          "algorithm-type",
+                          "scrypt",
+                          "secret",
+                          "cisco",
+                          "password",
+                          "sha256",
+                          "9"
+                      ],
+        "loesung":  [
+                        "enable",
+                        "algorithm-type",
+                        "scrypt",
+                        "secret",
+                        "cisco"
+                    ],
+        "erklaerung":  "enable algorithm-type scrypt secret cisco erzeugt einen Typ-9-Hash. \u0027enable password\u0027 wäre Klartext/Typ 7, sha256 ergäbe Typ 8."
+    },
+    {
+        "id":  "slg-aa-101",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege den lokalen Benutzer \u0027admin\u0027 mit Privilege Level 15 und dem scrypt-gehashten Secret \u0027Cisco123\u0027 an.",
+        "bausteine":  [
+                          "username",
+                          "admin",
+                          "privilege",
+                          "15",
+                          "algorithm-type",
+                          "scrypt",
+                          "secret",
+                          "Cisco123",
+                          "password",
+                          "level"
+                      ],
+        "loesung":  [
+                        "username",
+                        "admin",
+                        "privilege",
+                        "15",
+                        "algorithm-type",
+                        "scrypt",
+                        "secret",
+                        "Cisco123"
+                    ],
+        "erklaerung":  "username NAME privilege 15 algorithm-type scrypt secret … – so wie im Discovery-Lab. Mit \u0027password\u0027 entstünde nur Klartext bzw. Typ 7."
+    },
+    {
+        "id":  "slg-aa-102",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Sperre Logins für 300 Sekunden, wenn 4 Fehlversuche innerhalb von 90 Sekunden auftreten.",
+        "bausteine":  [
+                          "login",
+                          "block-for",
+                          "300",
+                          "attempts",
+                          "4",
+                          "within",
+                          "90",
+                          "delay",
+                          "quiet-mode"
+                      ],
+        "loesung":  [
+                        "login",
+                        "block-for",
+                        "300",
+                        "attempts",
+                        "4",
+                        "within",
+                        "90"
+                    ],
+        "erklaerung":  "Syntax: login block-for \u003cSperrdauer\u003e attempts \u003cAnzahl\u003e within \u003cZeitfenster\u003e. Die Sperrdauer (Quiet Period) steht direkt nach block-for."
+    },
+    {
+        "id":  "slg-aa-103",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Erzeuge ein RSA-Schlüsselpaar mit 2048 Bit ohne interaktive Abfrage der Größe.",
+        "bausteine":  [
+                          "crypto",
+                          "key",
+                          "generate",
+                          "rsa",
+                          "modulus",
+                          "2048",
+                          "zeroize",
+                          "size"
+                      ],
+        "loesung":  [
+                        "crypto",
+                        "key",
+                        "generate",
+                        "rsa",
+                        "modulus",
+                        "2048"
+                    ],
+        "erklaerung":  "crypto key generate rsa modulus 2048 legt die Schlüssellänge direkt fest. Danach ist der SSH-Server aktiv; zeroize würde die Schlüssel löschen."
+    },
+    {
+        "id":  "slg-aa-104",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Modus config-radius-server (radius server RADSRV): Setze die Serveradresse 10.255.255.101 mit Authentifizierungsport 1812 und Accounting-Port 1813.",
+        "bausteine":  [
+                          "address",
+                          "ipv4",
+                          "10.255.255.101",
+                          "auth-port",
+                          "1812",
+                          "acct-port",
+                          "1813",
+                          "host",
+                          "port"
+                      ],
+        "loesung":  [
+                        "address",
+                        "ipv4",
+                        "10.255.255.101",
+                        "auth-port",
+                        "1812",
+                        "acct-port",
+                        "1813"
+                    ],
+        "erklaerung":  "address ipv4 \u003cIP\u003e [auth-port N] [acct-port N] – ohne Portangaben würde IOS die alten Defaults 1645/1646 verwenden."
+    },
+    {
+        "id":  "slg-aa-105",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Modus config-sg-radius (aaa group server radius RADSRVGROUP): Nimm den zuvor definierten Server RADSRV in die Gruppe auf.",
+        "bausteine":  [
+                          "server",
+                          "name",
+                          "RADSRV",
+                          "host",
+                          "address",
+                          "radius"
+                      ],
+        "loesung":  [
+                        "server",
+                        "name",
+                        "RADSRV"
+                    ],
+        "erklaerung":  "In der Server-Gruppe referenziert \u0027server name NAME\u0027 einen mit \u0027radius server NAME\u0027 angelegten Server."
+    },
+    {
+        "id":  "slg-aa-106",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege die benannte Login-Liste SRVAUTH an, die zuerst die Gruppe RADSRVGROUP und bei Serverausfall die lokale Datenbank nutzt.",
+        "bausteine":  [
+                          "aaa",
+                          "authentication",
+                          "login",
+                          "SRVAUTH",
+                          "group",
+                          "RADSRVGROUP",
+                          "local",
+                          "default",
+                          "none"
+                      ],
+        "loesung":  [
+                        "aaa",
+                        "authentication",
+                        "login",
+                        "SRVAUTH",
+                        "group",
+                        "RADSRVGROUP",
+                        "local"
+                    ],
+        "erklaerung":  "aaa authentication login \u003cListe\u003e group \u003cGruppe\u003e local. local steht am Ende und greift nur, wenn die Server nicht antworten."
+    },
+    {
+        "id":  "slg-aa-107",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Line-Konfigurationsmodus (line vty 0 4): Weise die Login-Liste SRVAUTH zu.",
+        "bausteine":  [
+                          "login",
+                          "authentication",
+                          "SRVAUTH",
+                          "local",
+                          "aaa",
+                          "authorization"
+                      ],
+        "loesung":  [
+                        "login",
+                        "authentication",
+                        "SRVAUTH"
+                    ],
+        "erklaerung":  "Benannte Listen müssen mit \u0027login authentication NAME\u0027 unter der Line zugewiesen werden, sonst gilt die default-Liste."
+    },
+    {
+        "id":  "slg-aa-108",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lass alle Level-15-Befehle per default-Liste von TACACS+ autorisieren, mit der lokalen Datenbank als Rückfall bei Serverausfall.",
+        "bausteine":  [
+                          "aaa",
+                          "authorization",
+                          "commands",
+                          "15",
+                          "default",
+                          "group",
+                          "tacacs+",
+                          "local",
+                          "exec",
+                          "none"
+                      ],
+        "loesung":  [
+                        "aaa",
+                        "authorization",
+                        "commands",
+                        "15",
+                        "default",
+                        "group",
+                        "tacacs+",
+                        "local"
+                    ],
+        "erklaerung":  "aaa authorization commands 15 default group tacacs+ local – genau wie im Lab. local verhindert, dass bei Serverausfall jeder Level-15-Befehl abgelehnt wird."
+    },
+    {
+        "id":  "slg-aa-109",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Melde Beginn und Ende jeder EXEC-Sitzung über die default-Liste an die TACACS+-Server.",
+        "bausteine":  [
+                          "aaa",
+                          "accounting",
+                          "exec",
+                          "default",
+                          "start-stop",
+                          "group",
+                          "tacacs+",
+                          "stop-only",
+                          "commands"
+                      ],
+        "loesung":  [
+                        "aaa",
+                        "accounting",
+                        "exec",
+                        "default",
+                        "start-stop",
+                        "group",
+                        "tacacs+"
+                    ],
+        "erklaerung":  "aaa accounting exec default start-stop group tacacs+ sendet Start- und Stop-Records pro Sitzung. stop-only würde nur das Ende melden."
+    },
+    {
+        "id":  "slg-aa-110",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC: Prüfe, ob der TACACS+-Server den Benutzer admin mit dem Passwort Cisco123 akzeptiert (neue Code-Variante).",
+        "bausteine":  [
+                          "test",
+                          "aaa",
+                          "group",
+                          "tacacs+",
+                          "admin",
+                          "Cisco123",
+                          "new-code",
+                          "debug",
+                          "legacy"
+                      ],
+        "loesung":  [
+                        "test",
+                        "aaa",
+                        "group",
+                        "tacacs+",
+                        "admin",
+                        "Cisco123",
+                        "new-code"
+                    ],
+        "erklaerung":  "test aaa group tacacs+ \u003cuser\u003e \u003cpasswort\u003e new-code schickt eine echte Anfrage an den Server und zeigt das Ergebnis, ohne dass man sich ein- und ausloggen muss."
+    },
+    {
+        "id":  "slg-aa-111",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Weise beim Login über die default-Liste das Privilege Level aus der lokalen Benutzerdatenbank zu (EXEC-Autorisierung).",
+        "bausteine":  [
+                          "aaa",
+                          "authorization",
+                          "exec",
+                          "default",
+                          "local",
+                          "authentication",
+                          "login",
+                          "commands"
+                      ],
+        "loesung":  [
+                        "aaa",
+                        "authorization",
+                        "exec",
+                        "default",
+                        "local"
+                    ],
+        "erklaerung":  "Mit aaa new-model wird das Level eines lokalen Benutzers erst über \u0027aaa authorization exec default local\u0027 beim Login zugewiesen."
+    },
+    {
+        "id":  "slg-aa-112",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Mache den Befehl \u0027show ip route\u0027 bereits auf Privilege Level 5 verfügbar.",
+        "bausteine":  [
+                          "privilege",
+                          "exec",
+                          "level",
+                          "5",
+                          "show",
+                          "ip",
+                          "route",
+                          "enable",
+                          "configure"
+                      ],
+        "loesung":  [
+                        "privilege",
+                        "exec",
+                        "level",
+                        "5",
+                        "show",
+                        "ip",
+                        "route"
+                    ],
+        "erklaerung":  "privilege \u003cModus\u003e level \u003cN\u003e \u003cBefehl\u003e verschiebt einen Befehl auf ein eigenes Level. Benutzer mit Level 5 (oder höher) dürfen ihn dann ausführen."
+    },
+    {
+        "id":  "slg-aa-113",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Line-Konfigurationsmodus (line vty 0 4): Weise die Accounting-Liste MYTACACC für Befehle auf Level 15 zu.",
+        "bausteine":  [
+                          "accounting",
+                          "commands",
+                          "15",
+                          "MYTACACC",
+                          "authorization",
+                          "exec",
+                          "start-stop"
+                      ],
+        "loesung":  [
+                        "accounting",
+                        "commands",
+                        "15",
+                        "MYTACACC"
+                    ],
+        "erklaerung":  "Unter der Line lautet die Syntax \u0027accounting commands \u003cLevel\u003e \u003cListe\u003e\u0027. Der Record-Typ (start-stop) gehört in die globale Listendefinition."
+    },
+    {
+        "id":  "slg-aa-114",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Typnummer im Running-Config dem Verfahren zu.",
+        "paare":  [
+                      [
+                          "Typ 5",
+                          "MD5-Hash"
+                      ],
+                      [
+                          "Typ 7",
+                          "Vigenère (umkehrbar)"
+                      ],
+                      [
+                          "Typ 8",
+                          "PBKDF2 mit SHA-256"
+                      ],
+                      [
+                          "Typ 9",
+                          "scrypt"
+                      ]
+                  ],
+        "erklaerung":  "5 = MD5 (veraltet), 7 = service password-encryption (umkehrbar), 8 = sha256/PBKDF2, 9 = scrypt (am stärksten)."
+    },
+    {
+        "id":  "slg-aa-115",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Befehl dem Eintrag zu, der danach in der Running-Config erscheint.",
+        "paare":  [
+                      [
+                          "username a algorithm-type scrypt secret x",
+                          "username a secret 9 …"
+                      ],
+                      [
+                          "username b algorithm-type sha256 secret x",
+                          "username b secret 8 …"
+                      ],
+                      [
+                          "username c password x + service password-encryption",
+                          "username c password 7 …"
+                      ],
+                      [
+                          "username d password x (ohne Verschlüsselung)",
+                          "username d password 0 x"
+                      ]
+                  ],
+        "erklaerung":  "Der Algorithmus bestimmt die Typnummer: scrypt → 9, sha256 → 8. \u0027password\u0027 bleibt Klartext, bis service password-encryption ihn in Typ 7 umwandelt."
+    },
+    {
+        "id":  "slg-aa-116",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die AAA-Funktion der passenden Frage zu.",
+        "paare":  [
+                      [
+                          "Authentication",
+                          "Wer bist du?"
+                      ],
+                      [
+                          "Authorization",
+                          "Was darfst du?"
+                      ],
+                      [
+                          "Accounting",
+                          "Was hast du getan?"
+                      ]
+                  ],
+        "erklaerung":  "Authentifizierung prüft die Identität, Autorisierung die Rechte, Accounting protokolliert die Aktivitäten."
+    },
+    {
+        "id":  "slg-aa-117",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Methode einer AAA-Login-Liste ihrer Bedeutung zu.",
+        "paare":  [
+                      [
+                          "local-case",
+                          "lokale Datenbank, Benutzername case-sensitiv"
+                      ],
+                      [
+                          "enable",
+                          "enable secret bzw. enable password"
+                      ],
+                      [
+                          "line",
+                          "Passwort der jeweiligen Line"
+                      ],
+                      [
+                          "none",
+                          "keine Authentifizierung"
+                      ]
+                  ],
+        "erklaerung":  "Die Methoden werden der Reihe nach versucht (nächste nur bei ERROR). none sollte höchstens auf Spezial-Lines wie im Kursbeispiel stehen."
+    },
+    {
+        "id":  "slg-aa-118",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die RADIUS-Nachricht ihrem Zweck zu.",
+        "paare":  [
+                      [
+                          "Access-Request",
+                          "NAS sendet Benutzer und Passwort"
+                      ],
+                      [
+                          "Access-Accept",
+                          "Zugang erlaubt, enthält AV-Paare"
+                      ],
+                      [
+                          "Access-Reject",
+                          "Zugang verweigert"
+                      ],
+                      [
+                          "Access-Challenge",
+                          "Server fordert weitere Daten an"
+                      ]
+                  ],
+        "erklaerung":  "Authentifizierung und Autorisierung laufen über Request/Accept. Accounting nutzt getrennte Accounting-Request/-Response-Nachrichten."
+    },
+    {
+        "id":  "slg-aa-119",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Prompt dem Befehl zu, der in diesen Modus führt.",
+        "paare":  [
+                      [
+                          "(config-radius-server)#",
+                          "radius server RADSRV"
+                      ],
+                      [
+                          "(config-sg-radius)#",
+                          "aaa group server radius RADGRP"
+                      ],
+                      [
+                          "(config-server-tacacs)#",
+                          "tacacs server TACSRV"
+                      ],
+                      [
+                          "(config-sg-tacacs+)#",
+                          "aaa group server tacacs+ TACGRP"
+                      ]
+                  ],
+        "erklaerung":  "Server werden mit radius server / tacacs server definiert (Adresse, Key), Gruppen mit aaa group server … und darin per \u0027server name\u0027 befüllt."
+    },
+    {
+        "id":  "slg-aa-120",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Port seiner Verwendung zu.",
+        "paare":  [
+                      [
+                          "UDP 1812",
+                          "RADIUS Authentifizierung/Autorisierung"
+                      ],
+                      [
+                          "UDP 1813",
+                          "RADIUS Accounting"
+                      ],
+                      [
+                          "TCP 49",
+                          "TACACS+"
+                      ],
+                      [
+                          "TCP 22",
+                          "SSH"
+                      ]
+                  ],
+        "erklaerung":  "RADIUS nutzt UDP 1812/1813 (alt 1645/1646), TACACS+ TCP 49, SSH TCP 22."
+    },
+    {
+        "id":  "slg-aa-121",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Härtungsbefehl seiner Wirkung zu.",
+        "paare":  [
+                      [
+                          "login block-for",
+                          "Quiet Period nach zu vielen Fehlversuchen"
+                      ],
+                      [
+                          "login quiet-mode access-class",
+                          "ACL-Hosts dürfen auch in der Quiet Period verbinden"
+                      ],
+                      [
+                          "login delay",
+                          "Wartezeit zwischen Login-Versuchen"
+                      ],
+                      [
+                          "security passwords min-length",
+                          "Mindestlänge für Passwörter"
+                      ]
+                  ],
+        "erklaerung":  "Die Login Enhancements bremsen Wörterbuch- und DoS-Angriffe; min-length verhindert zu kurze Passwörter wie \u0027lab\u0027 oder \u0027cisco\u0027."
+    },
+    {
+        "id":  "slg-aa-122",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Accounting-Typ dem zu, was aufgezeichnet wird.",
+        "paare":  [
+                      [
+                          "system",
+                          "Geräteereignisse wie ein Reload"
+                      ],
+                      [
+                          "exec",
+                          "EXEC-Sitzungen mit Benutzer, Adresse und Dauer"
+                      ],
+                      [
+                          "commands 15",
+                          "jeder Befehl auf Level 15 mit Benutzer"
+                      ]
+                  ],
+        "erklaerung":  "Der Accounting-Typ legt fest, welches Ereignis einen Record auslöst; start-stop/stop-only legt fest, wann gemeldet wird."
+    },
+    {
+        "id":  "slg-aa-123",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Authentifizierungsfaktor dem Beispiel zu.",
+        "paare":  [
+                      [
+                          "etwas, das man weiß",
+                          "Benutzername und Passwort"
+                      ],
+                      [
+                          "etwas, das man hat",
+                          "digitales Zertifikat einer CA"
+                      ],
+                      [
+                          "etwas, das man ist",
+                          "Fingerabdruck oder Netzhaut"
+                      ]
+                  ],
+        "erklaerung":  "Wissen, Besitz und Biometrie sind die drei klassischen Faktoren; die Angaben werden mit der Authentifizierungsdatenbank verglichen."
+    },
+    {
+        "id":  "slg-aa-124",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Privilege Level seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "Level 0",
+                          "nur disable, enable, exit, help, logout"
+                      ],
+                      [
+                          "Level 1",
+                          "User EXEC nach dem Login (\u003e)"
+                      ],
+                      [
+                          "Level 2–14",
+                          "frei mit \u0027privilege\u0027 belegbar"
+                      ],
+                      [
+                          "Level 15",
+                          "privileged EXEC, alle Befehle"
+                      ]
+                  ],
+        "erklaerung":  "Standardmäßig gibt es nur Level 1 und 15 mit Inhalt; eigene Stufen dazwischen werden mit \u0027privilege exec level N …\u0027 gefüllt."
+    },
+    {
+        "id":  "slg-aa-125",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Schlüsselwort von \u0027aaa authorization\u0027 seiner Wirkung zu.",
+        "paare":  [
+                      [
+                          "exec",
+                          "Start der CLI-Sitzung und Privilege Level"
+                      ],
+                      [
+                          "commands 15",
+                          "jeder Befehl auf Level 15 wird geprüft"
+                      ],
+                      [
+                          "config-commands",
+                          "auch Konfigurationsbefehle werden geprüft"
+                      ],
+                      [
+                          "if-authenticated",
+                          "erlaubt, sofern der Benutzer authentifiziert ist"
+                      ]
+                  ],
+        "erklaerung":  "exec und commands sind Autorisierungstypen, config-commands erweitert die Befehlsautorisierung, if-authenticated ist eine Rückfallmethode am Ende der Liste."
+    },
+    {
+        "id":  "slg-aa-126",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Without an explicit \u0027exec-timeout\u0027 command, an idle console session is disconnected after ___ minutes.",
+        "optionen":  [
+                         "30",
+                         "5",
+                         "10",
+                         "15"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Default ist 10 Minuten. Im Kurs wird er mit \u0027exec-timeout 5 0\u0027 auf 5 Minuten verkürzt."
+    },
+    {
+        "id":  "slg-aa-127",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The service keyword for CLI logins via console, Telnet and SSH is used in \u0027aaa authentication ___ default local\u0027.",
+        "optionen":  [
+                         "enable",
+                         "login",
+                         "dot1x",
+                         "exec"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027login\u0027 steht für die CLI-Anmeldung. \u0027enable\u0027 betrifft den Wechsel in den privilegierten Modus, \u0027dot1x\u0027 die Port-Authentifizierung, \u0027exec\u0027 gibt es nur bei authorization/accounting."
+    },
+    {
+        "id":  "slg-aa-128",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "\u0027show ip ssh\u0027 displays \u0027SSH Enabled - version ___\u0027 when the server accepts both SSHv1 and SSHv2 clients.",
+        "optionen":  [
+                         "1.5",
+                         "1.99",
+                         "2.0",
+                         "2.1"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "1.99 signalisiert Kompatibilität mit v1 und v2. Nach \u0027ip ssh version 2\u0027 zeigt die Ausgabe 2.0."
+    },
+    {
+        "id":  "slg-aa-129",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "For SSH version 2, the router\u0027s RSA key must have a modulus of at least ___ bits.",
+        "optionen":  [
+                         "360",
+                         "512",
+                         "4096",
+                         "768"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Laut Cisco Secure-Shell-Guide muss der Modulus für SSH Version 2 mindestens 768 Bit betragen. Empfohlen sind heute 2048 Bit oder mehr; ab IOS XE 17.11.1 weist SSH kleinere RSA-Schlüssel standardmäßig ab (\u0027crypto key generate rsa\u0027 mit modulus 2048 verwenden)."
+    },
+    {
+        "id":  "slg-aa-130",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "AAA authorization is not applied to line con 0 unless the global command \u0027aaa authorization ___\u0027 is configured.",
+        "optionen":  [
+                         "exec",
+                         "commands",
+                         "line",
+                         "console"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Standardmäßig ist die Konsole von der Autorisierung ausgenommen – als Notzugang, falls die Autorisierung falsch konfiguriert wurde."
+    },
+    {
+        "id":  "slg-aa-131",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "TACACS+ encrypts the entire packet ___, while its 12-byte header remains in clear text.",
+        "optionen":  [
+                         "trailer",
+                         "preamble",
+                         "body",
+                         "checksum"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Verschlüsselt wird der Body mit allen AAA-Daten. Der Header (Version, Typ, Sequenznummer, Flags, Session-ID, Länge) bleibt lesbar."
+    },
+    {
+        "id":  "slg-aa-132",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The command \u0027show ___\u0027 displays the privilege level of the current session.",
+        "optionen":  [
+                         "sessions",
+                         "line",
+                         "users",
+                         "privilege"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "show privilege antwortet z. B. mit \u0027Current privilege level is 15\u0027. show users listet die angemeldeten Benutzer und Lines."
+    },
+    {
+        "id":  "slg-aa-133",
+        "topic":  "ENCOR-5.1.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "\u0027crypto key ___ rsa\u0027 deletes the RSA key pairs and thereby disables the SSH server.",
+        "optionen":  [
+                         "remove",
+                         "zeroize",
+                         "clear",
+                         "export"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "crypto key zeroize rsa löscht die Schlüsselpaare. Ohne Schlüssel kann der SSH-Server keine neuen Verbindungen annehmen."
+    },
+    {
+        "id":  "slg-aa-134",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Named authentication lists are applied to a line with \u0027___ authentication LISTNAME\u0027.",
+        "optionen":  [
+                         "login",
+                         "exec",
+                         "line",
+                         "aaa"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Unter der Line: login authentication \u003cListe\u003e. Für Autorisierung und Accounting lauten die Line-Befehle authorization … bzw. accounting …."
+    },
+    {
+        "id":  "slg-aa-135",
+        "topic":  "ENCOR-5.1.b",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "Unlike \u0027local\u0027, the method \u0027___\u0027 compares the username case-sensitively.",
+        "optionen":  [
+                         "local-exact",
+                         "case-local",
+                         "local-case",
+                         "local-strict"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "local-case prüft den Benutzernamen case-sensitiv. Passwörter und Secrets sind in beiden Varianten case-sensitiv."
+    }
+]

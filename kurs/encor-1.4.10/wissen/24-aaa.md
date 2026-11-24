@@ -110,7 +110,7 @@ Prüfen mit `show privilege`. `disable` kehrt zu Level 1 zurück.
 | **Authorization** | Was darfst du? | Rechte: welche EXEC-Befehle, Zugang zur Shell, Privilege Level, PPP/SLIP; als Attribut-Wert-Paare (AV pairs) lokal oder auf dem Server |
 | **Accounting** | Was hast du getan? | Logins, Befehle, Sitzungsdauer, Bytes → AV-Paare an den Accounting-Server; Billing, Audit, Reporting |
 
-- Authorization und Accounting setzen eine Authentifizierung voraus; Authentication funktioniert allein.
+- Authentication funktioniert allein; Authorization setzt immer eine Authentifizierung voraus. Accounting kann laut Cisco allein oder zusammen mit den anderen beiden eingesetzt werden (z. B. `aaa accounting system` für Geräteereignisse).
 - Bei jeder einzelnen Funktion (z. B. ein Befehl) kann das Gerät den Server um Erlaubnis fragen (Command Authorization).
 
 ## 3. Vorteile von AAA (S. 258)
@@ -250,7 +250,7 @@ line vty 0 4
  login local
 ```
 - Nach dem Erzeugen des RSA-Schlüssels ist SSH automatisch aktiv. „SSH 1.99“ = Version 2, die auch v1 annimmt. SSHv1 vermeiden (schwache Integrität).
-- *(Ergänzung)* SSHv2 braucht einen Schlüssel mit mindestens 768 Bit; Hostname darf nicht der Default `Router` sein, sonst lehnt `crypto key generate rsa` ab.
+- *(Ergänzung)* SSHv2 braucht einen Schlüssel mit mindestens 768 Bit (Cisco Secure Shell Config Guide); ab IOS XE 17.11.1 werden RSA-Schlüssel unter 2048 Bit für SSH standardmäßig abgelehnt (Field Notice FN72511). `crypto key zeroize rsa` löscht die Schlüssel und deaktiviert damit den SSH-Server; Hostname darf nicht der Default `Router` sein, sonst lehnt `crypto key generate rsa` ab.
 - `show crypto key mypubkey rsa`: Schlüsselpaar `Rtr-1.cisco.com` (General Purpose) plus temporärer Schlüssel `Rtr-1.cisco.com.server`.
 - `show ip ssh`:
 ```

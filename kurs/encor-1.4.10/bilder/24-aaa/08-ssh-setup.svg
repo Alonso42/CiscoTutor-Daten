@@ -9,7 +9,7 @@
 <rect x="30" y="122" width="360" height="52" rx="8" fill="#4a9cff" fill-opacity="0.2"/>
 <text x="45" y="145" font-weight="bold">2 ip domain-name cisco.com</text><text x="45" y="164" font-size="12">Schlüsselname = Hostname.Domain</text>
 <rect x="30" y="184" width="360" height="52" rx="8" fill="#ffd23f" fill-opacity="0.35"/>
-<text x="45" y="207" font-weight="bold">3 crypto key generate rsa modulus 2048</text><text x="45" y="226" font-size="12">mind. 768 Bit für SSHv2; danach ist SSH aktiv</text>
+<text x="45" y="207" font-weight="bold">3 crypto key generate rsa modulus 2048</text><text x="45" y="226" font-size="11">SSHv2: mind. 768 Bit (ab XE 17.11.1: 2048); dann SSH aktiv</text>
 <rect x="30" y="246" width="360" height="52" rx="8" fill="#b08aff" fill-opacity="0.25"/>
 <text x="45" y="269" font-weight="bold">4 ip ssh version 2</text><text x="45" y="288" font-size="12">sonst "1.99" = v2 und v1 erlaubt</text>
 <rect x="30" y="308" width="360" height="52" rx="8" fill="#39c86a" fill-opacity="0.25"/>
