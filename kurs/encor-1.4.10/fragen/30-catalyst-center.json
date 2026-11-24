@@ -1,0 +1,2226 @@
+[
+    {
+        "id":  "slg-cc-001",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An engineer must change the NTP server used by all devices in the building \u0027HQ-Berlin\u0027. Where is this done in Cisco Catalyst Center (formerly DNA Center)?",
+        "optionen":  [
+                         "Design \u003e Network Settings, selected for the HQ-Berlin building",
+                         "Assurance \u003e Device 360 of every device in the HQ-Berlin building",
+                         "Platform \u003e Developer Toolkit, filtered for the HQ-Berlin building",
+                         "Policy \u003e Group-Based Access Control, scoped to the HQ-Berlin building"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Gemeinsame Dienste wie NTP, DNS, DHCP, AAA, Syslog und SNMP werden im Design-Bereich unter Network Settings pro Hierarchieebene gepflegt. Weisen Geräte die Site zu, übernimmt Catalyst Center die Einstellungen auf die Geräte."
+    },
+    {
+        "id":  "slg-cc-002",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In an SD-Access fabric, contractors may reach only the internet while employees may reach all internal servers. In which Cisco Catalyst Center area is this rule defined?",
+        "optionen":  [
+                         "Policy",
+                         "Assurance",
+                         "Design",
+                         "Provision"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Im Bereich Policy werden Benutzer- und Gerätegruppen sowie Zugriffsregeln zwischen Gruppen (Segmentierung) definiert. Design beschreibt Standorte und Settings, Provision bringt Konfiguration auf Geräte, Assurance überwacht."
+    },
+    {
+        "id":  "slg-cc-003",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Catalyst-Center-Persona der passenden Beschreibung zu.",
+        "paare":  [
+                      [
+                          "NetOps",
+                          "Netz automatisiert aufbauen und pflegen – von manuell bis selektiv autonom"
+                      ],
+                      [
+                          "SecOps",
+                          "Endpunkte klassifizieren und Security-Policies für Zero Trust durchsetzen"
+                      ],
+                      [
+                          "AIOps",
+                          "AI-gestützte Health-Analyse, Insights und Root-Cause-Ermittlung"
+                      ],
+                      [
+                          "DevOps",
+                          "APIs, SDKs und Closed-Loop-Integrationen ins Ökosystem"
+                      ]
+                  ],
+        "erklaerung":  "Catalyst Center ordnet seine Funktionen vier Einsatzsichten zu: NetOps (Automatisierung), SecOps (Sicherheit/Zero Trust), AIOps (Visibility, Observability, Troubleshooting) und DevOps (Programmierbarkeit und Integration)."
+    },
+    {
+        "id":  "slg-cc-004",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the role of the Machine Reasoning Engine (MRE) in Cisco Catalyst Center Assurance?",
+        "optionen":  [
+                         "It builds statistical baselines of client behavior in the Cisco cloud to spot anomalies",
+                         "It translates business intent into device configuration and pushes it through NETCONF",
+                         "It applies a Cisco expert knowledge base to find root causes and propose remediation steps",
+                         "It collects NetFlow records from all devices and keeps them for capacity reports"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die MRE automatisiert Expertenwissen: Mit Knowledge Packs (Workflows von Cisco-Experten) ermittelt sie Ursachen und schlägt Lösungsschritte bzw. Korrekturaktionen vor. Baselining in der Cloud ist Aufgabe des Machine Learning der AI Network Analytics."
+    },
+    {
+        "id":  "slg-cc-005",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In an intent-based network, which building block captures a requirement expressed through a GUI or a YANG/JSON model and converts it into a common, model-based policy?",
+        "optionen":  [
+                         "Orchestration",
+                         "Activation",
+                         "Assurance",
+                         "Translation"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Translation erfasst den Intent (GUI, Modell, definierte Syntax) und harmonisiert ihn zu einer einheitlichen modellbasierten Policy. Activation verteilt diese Policy in die Domänen und programmiert die Geräte, Assurance prüft das Ergebnis."
+    },
+    {
+        "id":  "slg-cc-006",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Assurance-Aspekt eines Intent-Based Network seiner Aufgabe zu.",
+        "paare":  [
+                      [
+                          "Continuous Verification",
+                          "Vor, während und nach dem Deployment prüfen, ob das Verhalten dem Intent entspricht"
+                      ],
+                      [
+                          "Insights and Visibility",
+                          "Ereignisse korrelieren, mit ML Trends und Anomalien erkennen und vorhersagen"
+                      ],
+                      [
+                          "Corrective Actions",
+                          "Abweichungen im Closed Loop über die Activation korrigieren oder empfehlen"
+                      ]
+                  ],
+        "erklaerung":  "Die Assurance im IBN-Modell besteht aus laufender Verifikation, analytischen Einblicken und Korrekturmaßnahmen. Korrekturen können automatisch laufen oder dem Operator als Empfehlung vorgelegt werden."
+    },
+    {
+        "id":  "slg-cc-007",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An operator defined the intent \u0027only golden images are allowed on network devices\u0027. Weeks later, Catalyst Center flags several switches that run a different release. Which intent-based networking function detected this?",
+        "optionen":  [
+                         "Discovery, by scanning the network with CDP from a seed device",
+                         "Activation, by distributing the policy into the relevant domains",
+                         "Assurance, by continuously verifying the network against the intent",
+                         "Translation, by converting the intent into a model-based policy"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Assurance vergleicht fortlaufend den Ist-Zustand mit dem ausgedrückten Intent (Continuous Verification). Intent kann auch eine Betriebsregel wie „nur Golden Images“ sein – Abweichungen werden als Non-Compliance gemeldet."
+    },
+    {
+        "id":  "slg-cc-008",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In discussions of intent-based networking, what does the term \u0027human middleware\u0027 describe?",
+        "optionen":  [
+                         "Controllers that relay policy information between ISE and the switches",
+                         "Administrators who manually translate business needs into per-device CLI",
+                         "Help desk staff who open ITSM tickets on behalf of affected end users",
+                         "Software agents that translate REST calls into NETCONF RPCs on devices"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Im traditionellen Betrieb übersetzt der Mensch Geschäftsanforderungen von Hand in VLAN-, ACL- und QoS-Befehle auf jedem Gerät – langsam und fehleranfällig. IBN ersetzt das durch einen Controller, der Intent automatisch übersetzt und verifiziert."
+    },
+    {
+        "id":  "slg-cc-009",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In Cisco Catalyst Center, an engineer tries to create the area \u0027West Wing\u0027 inside the existing building \u0027HQ\u0027. What is the result?",
+        "optionen":  [
+                         "Not possible, because buildings can contain floors but not areas",
+                         "Allowed only as long as the building HQ does not contain floors yet",
+                         "Allowed, but the new area does not inherit any network settings",
+                         "Allowed, because areas can be nested under any hierarchy element"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Hierarchie ist festgelegt: Areas (ohne Adresse) enthalten Sub-Areas und Buildings, Buildings (mit Adresse und Koordinaten) enthalten nur Floors. Unterteilungen innerhalb eines Gebäudes werden als Floors abgebildet."
+    },
+    {
+        "id":  "slg-cc-010",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Global network settings define DNS server 10.1.1.53. The area \u0027Germany\u0027 overrides DNS with 10.49.1.53. The building \u0027Berlin\u0027 below Germany has no DNS override. Which DNS server is provisioned to a switch on floor 2 of Berlin?",
+        "optionen":  [
+                         "10.1.1.53 first, then 10.49.1.53",
+                         "No DNS server until floor 2 defines one",
+                         "10.49.1.53",
+                         "10.1.1.53"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Settings werden von oben nach unten vererbt und können auf jeder Ebene überschrieben werden. Berlin und Floor 2 erben vom nächsthöheren Element mit Override, also von Germany."
+    },
+    {
+        "id":  "slg-cc-011",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the network settings of a site, the DHCP server value is displayed without the inheritance icon. What does this indicate?",
+        "optionen":  [
+                         "The value was overridden at this site level",
+                         "The value is invalid and blocks provisioning",
+                         "The value has not been pushed to devices yet",
+                         "The value is inherited from the Global site"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Das Vererbungssymbol markiert geerbte Werte. Fehlt es, wurde der Wert auf dieser Ebene überschrieben und gilt für diese Site und alle darunterliegenden Elemente."
+    },
+    {
+        "id":  "slg-cc-012",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about AAA settings in Cisco Catalyst Center are correct? (Choose two.)",
+        "optionen":  [
+                         "Network device authentication can use RADIUS or TACACS+",
+                         "AAA servers can be defined only at the Global level of the hierarchy",
+                         "Only Cisco ISE can be configured as an AAA server",
+                         "AAA server settings reach devices only through Day-0 templates",
+                         "Separate AAA servers can be set for network devices and for clients"
+                     ],
+        "richtig":  [
+                        0,
+                        4
+                    ],
+        "erklaerung":  "Unter Network Settings > AAA gibt es getrennte Bereiche für Network (Geräteverwaltung, RADIUS oder TACACS+) und Client/Endpoint; beide können auf unterschiedliche Server zeigen. AAA-Server lassen sich wie alle Network Settings pro Site überschreiben und werden beim Provisioning verteilt, und neben ISE ist auch ein generischer AAA-Server möglich."
+    },
+    {
+        "id":  "slg-cc-013",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about device credentials in Cisco Catalyst Center is correct?",
+        "optionen":  [
+                         "HTTPS credentials are required to discover Catalyst 9300 access switches",
+                         "Telnet is not supported as a CLI protocol during device discovery",
+                         "Device credentials can only be defined at the Global level",
+                         "CLI credentials must already exist on the device and match the values in Catalyst Center"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Catalyst Center muss sich per SSH/Telnet anmelden können, daher müssen die CLI-Credentials vorab auf dem Gerät konfiguriert sein. HTTPS-Credentials sind nur für Compute-Geräte (NFVIS) nötig, und Credentials lassen sich auch site-spezifisch definieren."
+    },
+    {
+        "id":  "slg-cc-014",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "For which device type does Cisco Catalyst Center need HTTP or HTTPS credentials during discovery?",
+        "optionen":  [
+                         "Catalyst 9800 wireless LAN controllers",
+                         "Compute devices running Cisco NFVIS",
+                         "ISR 4000 series branch routers",
+                         "Catalyst 9300 access layer switches"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "HTTP(S)-Credentials dienen der Discovery von Compute-Geräten mit NFVIS (z. B. ENCS). Switches und Router werden per CLI und SNMP entdeckt, Catalyst-9800-WLCs zusätzlich per NETCONF."
+    },
+    {
+        "id":  "slg-cc-015",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A site already has a switching network profile assigned. The engineer now associates a second switching profile with the same site. What happens?",
+        "optionen":  [
+                         "Both profiles are merged and applied in alphabetical order",
+                         "The second profile is applied only to stacked switches at the site",
+                         "The site keeps both profiles and applies the newer one first",
+                         "Catalyst Center offers to replace the existing switching profile"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Pro Site ist nur ein Network Profile je Typ erlaubt; Profile verschiedener Typen (Switching, Routing, Wireless …) können parallel zugewiesen sein. Beim zweiten Profil desselben Typs schlägt Catalyst Center das Ersetzen vor."
+    },
+    {
+        "id":  "slg-cc-016",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In Cisco Catalyst Center, a network profile takes effect only after it is ___.",
+        "optionen":  [
+                         "exported as a CSV file",
+                         "approved in Cisco ISE",
+                         "assigned to a site",
+                         "converted to a YANG model"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Network Profiles bündeln Day-0- und Day-N-Templates für eine Gerätefamilie. Erst durch die Zuweisung zu Sites wissen PnP und Provisioning, welche Templates für Geräte an diesem Standort gelten."
+    },
+    {
+        "id":  "slg-cc-017",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which sequence matches the recommended Cisco Catalyst Center design workflow?",
+        "optionen":  [
+                         "Network profiles, hierarchy, templates, golden image, network settings, assign to sites",
+                         "Hierarchy, network settings, golden image, templates, network profiles, assign to sites",
+                         "Templates, golden image, hierarchy, network profiles, network settings, assign to sites",
+                         "Golden image, templates, network settings, hierarchy, assign to sites, network profiles"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Zuerst entsteht die Standorthierarchie, an die globale und site-spezifische Settings gehängt werden. Danach folgen Golden Image, Templates und Network Profiles, die zuletzt Standorten zugewiesen werden."
+    },
+    {
+        "id":  "slg-cc-018",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In an SD-Access fabric managed by Cisco Catalyst Center, voice traffic from the group \u0027Doctors\u0027 must receive priority treatment. Which policy type is used?",
+        "optionen":  [
+                         "Traffic copy policy",
+                         "Group-based routing policy",
+                         "Application policy",
+                         "Access control policy"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Application Policies legen fest, wie Verkehr behandelt wird (QoS, Application Caching). Access Control Policies regeln, wer mit wem kommunizieren darf, Traffic Copy Policies spiegeln Verkehr per SPAN."
+    },
+    {
+        "id":  "slg-cc-019",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den SD-Access-Policy-Typ in Catalyst Center der Frage zu, die er beantwortet.",
+        "paare":  [
+                      [
+                          "Access control policy",
+                          "Wer darf auf was zugreifen? (Permit/Deny von Gruppe zu Gruppe)"
+                      ],
+                      [
+                          "Application policy",
+                          "Wie wird der Verkehr behandelt? (QoS, Caching)"
+                      ],
+                      [
+                          "Traffic copy policy",
+                          "Welcher Verkehr wird zur Analyse gespiegelt? (SPAN)"
+                      ]
+                  ],
+        "erklaerung":  "SD-Access kennt drei Policy-Typen: Zugriffskontrolle zwischen Gruppen, Behandlung des Verkehrs und das Kopieren von Verkehr zu einem Analysesystem."
+    },
+    {
+        "id":  "slg-cc-020",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which Cisco Plug and Play (PnP) component is embedded in Cisco devices and locates the PnP server through DHCP, DNS, or other methods?",
+        "optionen":  [
+                         "PnP agent",
+                         "PnP Connect",
+                         "PnP helper app",
+                         "PnP server"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der PnP Agent läuft im Cisco-Gerät, sucht den PnP Server (Catalyst Center) und spricht mit ihm das PnP-Protokoll über HTTPS. PnP Connect ist der Cloud-Redirect-Dienst, die Helper App ein optionales Werkzeug für Installateure."
+    },
+    {
+        "id":  "slg-cc-021",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "When does the PnP agent on a new Catalyst switch start its server discovery automatically?",
+        "optionen":  [
+                         "When the switch detects an active DHCP server on VLAN 99",
+                         "When the switch boots without a startup configuration",
+                         "When the switch receives an SNMP trap from Catalyst Center",
+                         "When an administrator enters \u0027pnp start\u0027 in configuration mode"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Fehlt beim Booten die Startup-Config, startet der PnP Agent automatisch die Discovery (DHCP, DNS, Cloud). Deshalb muss ein Gerät für PnP im Werkszustand bzw. ohne gespeicherte Konfiguration starten."
+    },
+    {
+        "id":  "slg-cc-022",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A new router sends a DHCP Discover with option 60 \u0027ciscopnp\u0027. The DHCP server does not return option 43 but provides the domain name corp.local. What does the PnP agent try next?",
+        "optionen":  [
+                         "Query the controller address via LLDP",
+                         "Contact devicehelper.cisco.com immediately",
+                         "Resolve pnpserver.corp.local through DNS",
+                         "Load router-confg from a TFTP server"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ohne Option 43 fällt der Agent auf DNS zurück: Er bildet aus dem per DHCP gelernten Domainnamen den FQDN pnpserver.\u003cdomain\u003e. Erst wenn auch das scheitert, folgt die Cloud-Umleitung über PnP Connect."
+    },
+    {
+        "id":  "slg-cc-023",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "If neither DHCP option 43 nor the DNS lookup of pnpserver succeeds, the PnP agent falls back to ___.",
+        "optionen":  [
+                         "the Cisco Installer App on a smartphone",
+                         "cloud redirection through Cisco PnP Connect",
+                         "a USB stick with a bootstrap configuration",
+                         "DHCP option 150 pointing to a TFTP server"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die automatische Reihenfolge lautet DHCP (Option 43) → DNS (pnpserver) → Cloud Redirect (devicehelper.cisco.com). USB-Bootstrap und Installer App sind manuelle Methoden."
+    },
+    {
+        "id":  "slg-cc-024",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which DHCP option 43 ASCII string directs a PnP agent to Cisco Catalyst Center at 10.1.1.100 using HTTPS on port 443?",
+        "optionen":  [
+                         "f104.0a01.0164 (hex TLV)",
+                         "5A1N;B2;K5;J10.1.1.100;I443",
+                         "5A1N;B2;K4;I10.1.1.100;J443",
+                         "5A1N;B2;K5;I10.1.1.100;J443"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Im PnP-Format steht B2 für IPv4, K4 für HTTP und K5 für HTTPS, I für die Server-IP und J für den Port. Der Hex-Wert f104… ist das TLV-Format, mit dem Access Points ihren WLC per Option 43 finden."
+    },
+    {
+        "id":  "slg-cc-025",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "DHCP-Pool-Konfigurationsmodus (ip dhcp pool PNP): Konfiguriere Option 43 so, dass PnP-Agents Catalyst Center 10.1.1.100 per HTTP auf Port 80 finden.",
+        "bausteine":  [
+                          "option",
+                          "43",
+                          "ascii",
+                          "\"5A1N;B2;K4;I10.1.1.100;J80\"",
+                          "60",
+                          "hex",
+                          "\"5A1N;B2;K5;I10.1.1.100;J443\"",
+                          "150"
+                      ],
+        "loesung":  [
+                        "option",
+                        "43",
+                        "ascii",
+                        "\"5A1N;B2;K4;I10.1.1.100;J80\""
+                    ],
+        "erklaerung":  "Option 43 liefert dem PnP Agent die Controller-Adresse; K4 bedeutet HTTP, J80 den Port 80. Der Agent signalisiert seinerseits mit Option 60 „ciscopnp“, dass er diese Information erwartet."
+    },
+    {
+        "id":  "slg-cc-026",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "DHCP-Pool-Konfigurationsmodus: Verteile den Domainnamen corp.local, damit PnP-Agents ohne Option 43 den Server pnpserver.corp.local per DNS finden.",
+        "bausteine":  [
+                          "domain-name",
+                          "corp.local",
+                          "ip",
+                          "domain",
+                          "name",
+                          "pnpserver.corp.local",
+                          "dns-server"
+                      ],
+        "loesung":  [
+                        "domain-name",
+                        "corp.local"
+                    ],
+        "erklaerung":  "Im DHCP-Pool heißt der Befehl domain-name; der Agent hängt den Domainnamen an den festen Hostnamen pnpserver an. Zusätzlich braucht der Pool einen dns-server, und im DNS muss ein A-Record pnpserver.corp.local existieren."
+    },
+    {
+        "id":  "slg-cc-027",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privilegierter EXEC-Modus auf einem neuen Switch, der manuell konfiguriert werden soll: Beende den laufenden PnP-Discovery-Prozess.",
+        "bausteine":  [
+                          "pnpa",
+                          "service",
+                          "discovery",
+                          "stop",
+                          "pnp",
+                          "no",
+                          "profile",
+                          "disable"
+                      ],
+        "loesung":  [
+                        "pnpa",
+                        "service",
+                        "discovery",
+                        "stop"
+                    ],
+        "erklaerung":  "Solange keine Startup-Config existiert, sucht der PnP Agent fortlaufend nach einem Server und erzeugt Meldungen. Mit pnpa service discovery stop wird die Discovery beendet, damit das Gerät manuell konfiguriert werden kann."
+    },
+    {
+        "id":  "slg-cc-028",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which mechanism allows Cisco Catalyst Center to verify the identity of a PnP device cryptographically during onboarding?",
+        "optionen":  [
+                         "The SNMP engine ID it reports during the first poll",
+                         "The MAC address included in its DHCP Discover message",
+                         "The serial number advertised in its CDP neighbor TLV",
+                         "Its SUDI certificate (Secure Unique Device Identifier)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der SUDI ist ein ab Werk im Gerät hinterlegtes X.509-Zertifikat, das Seriennummer und Produkt-ID kryptografisch bindet. MAC-Adresse, Engine-ID oder CDP-Daten lassen sich fälschen und beweisen keine Identität."
+    },
+    {
+        "id":  "slg-cc-029",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den PnP-Gerätezustand in Catalyst Center seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "Unclaimed",
+                          "Gerät ist bekannt, aber noch keiner Site und Konfiguration zugeordnet"
+                      ],
+                      [
+                          "Planned",
+                          "Gerät wurde geclaimt, hat sich aber noch nicht gemeldet"
+                      ],
+                      [
+                          "Onboarding",
+                          "Gerät hat Kontakt aufgenommen und erhält Image und Day-0-Konfiguration"
+                      ],
+                      [
+                          "Provisioned",
+                          "Onboarding abgeschlossen, Gerät steht im Inventory"
+                      ]
+                  ],
+        "erklaerung":  "Ein Gerät durchläuft Unclaimed → (Claim) Planned → (Gerät bootet und meldet sich) Onboarding → Provisioned. Der Claim ordnet Site, Template-Variablen und Image zu."
+    },
+    {
+        "id":  "slg-cc-030",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about a Day-0 onboarding template in Cisco Catalyst Center are correct? (Choose two.)",
+        "optionen":  [
+                         "It must be stored in the Onboarding Configuration project",
+                         "It can override the AAA settings defined for the site",
+                         "It does not need device credentials or site-specific settings",
+                         "It supports interactive commands with the IQ and R tags",
+                         "It is applied again each time the device is reprovisioned"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "Day-0-Templates liegen im Projekt Onboarding Configuration und werden nur beim ersten Kontakt über PnP angewendet. Credentials und Site-Settings ergänzt Catalyst Center automatisch; interaktive Befehle gibt es nur in Day-N-Templates."
+    },
+    {
+        "id":  "slg-cc-031",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How is a Day-0 template delivered to a device compared with a Day-N template?",
+        "optionen":  [
+                         "Day-0 is downloaded as one file and copied to running-config; Day-N is pushed line by line",
+                         "Day-0 is pushed line by line over SSH; Day-N is downloaded as one file over HTTPS",
+                         "Both are converted into NETCONF edit-config RPCs and sent as one transaction",
+                         "Day-0 is written with SNMP set operations; Day-N is sent through the console"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beim Onboarding lädt das Gerät die gerenderte Day-0-Konfiguration als Datei über PnP und kopiert sie in die Running-Config. Day-N-Templates werden zeilenweise übertragen, was interaktive Befehle ermöglicht."
+    },
+    {
+        "id":  "slg-cc-032",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Day-N-CLI-Template in Catalyst Center: Führe \u0027show running-config\u0027 im Enable-Modus statt im Global Configuration Mode aus (eine Zeile je Baustein).",
+        "bausteine":  [
+                          "#MODE_ENABLE",
+                          "show running-config",
+                          "#MODE_END_ENABLE",
+                          "#INTERACTIVE",
+                          "#ENDS_INTERACTIVE",
+                          "enable",
+                          "configure terminal"
+                      ],
+        "loesung":  [
+                        "#MODE_ENABLE",
+                        "show running-config",
+                        "#MODE_END_ENABLE"
+                    ],
+        "erklaerung":  "Template-Befehle laufen standardmäßig im Global Configuration Mode. Befehle für den EXEC-/Enable-Modus werden zwischen #MODE_ENABLE und #MODE_END_ENABLE gesetzt."
+    },
+    {
+        "id":  "slg-cc-033",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Day-N-CLI-Template: Erzeuge RSA-Schlüssel und beantworte die Rückfrage, ob bestehende Schlüssel ersetzt werden sollen, automatisch mit \u0027no\u0027 (eine Zeile je Baustein; Frage und Antwort stehen als Tags in derselben Zeile wie der Befehl).",
+        "bausteine":  [
+                          "#INTERACTIVE",
+                          "crypto key generate rsa general-keys\u003cIQ\u003eyes/no\u003cR\u003eno",
+                          "#ENDS_INTERACTIVE",
+                          "#MODE_ENABLE",
+                          "crypto key generate rsa general-keys\u003cIQ\u003eyes/no\u003cR\u003eyes",
+                          "#INTERACTIVE_END",
+                          "\u003cMLTCMD\u003e"
+                      ],
+        "loesung":  [
+                        "#INTERACTIVE",
+                        "crypto key generate rsa general-keys\u003cIQ\u003eyes/no\u003cR\u003eno",
+                        "#ENDS_INTERACTIVE"
+                    ],
+        "erklaerung":  "Interaktive Befehle stehen zwischen #INTERACTIVE und #ENDS_INTERACTIVE. In derselben Zeile wie der Befehl gibt \u003cIQ\u003e den erwarteten Fragetext des Geräts an und \u003cR\u003e die Antwort; das funktioniert nur in Day-N-Templates."
+    },
+    {
+        "id":  "slg-cc-034",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Day-N-CLI-Template: Setze im Enable-Modus die Interface-Zähler zurück und bestätige die Rückfrage \u0027[confirm]\u0027 automatisch mit \u0027y\u0027 (eine Zeile je Baustein).",
+        "bausteine":  [
+                          "#MODE_ENABLE",
+                          "#INTERACTIVE",
+                          "clear counters\u003cIQ\u003e[confirm]\u003cR\u003ey",
+                          "#ENDS_INTERACTIVE",
+                          "#MODE_END_ENABLE",
+                          "#ENABLE_MODE_END",
+                          "configure terminal",
+                          "#ENDS_ENABLE"
+                      ],
+        "loesung":  [
+                        "#MODE_ENABLE",
+                        "#INTERACTIVE",
+                        "clear counters\u003cIQ\u003e[confirm]\u003cR\u003ey",
+                        "#ENDS_INTERACTIVE",
+                        "#MODE_END_ENABLE"
+                    ],
+        "erklaerung":  "Für interaktive EXEC-Befehle werden beide Blöcke verschachtelt: außen #MODE_ENABLE … #MODE_END_ENABLE, innen #INTERACTIVE … #ENDS_INTERACTIVE. Ohne Enable-Block würde clear counters im Konfigurationsmodus fehlschlagen."
+    },
+    {
+        "id":  "slg-cc-035",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why do the commands in a Cisco Catalyst Center CLI template not begin with \u0027enable\u0027 and \u0027configure terminal\u0027?",
+        "optionen":  [
+                         "Templates are executed in ROMMON before the IOS image boots",
+                         "Both commands are blocklisted and rejected in every template",
+                         "Catalyst Center converts all templates into NETCONF RPCs first",
+                         "Template commands run in global configuration mode by default"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Catalyst Center öffnet für Templates automatisch den Global Configuration Mode. Nur für Enable-Befehle, interaktive oder mehrzeilige Befehle sind spezielle Schlüsselwörter nötig."
+    },
+    {
+        "id":  "slg-cc-036",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A Day-N template contains a banner that spans several lines. Which tag ensures the banner is sent as one command instead of line by line?",
+        "optionen":  [
+                         "#INTERACTIVE ... #ENDS_INTERACTIVE",
+                         "\u003cMLTCMD\u003e ... \u003c/MLTCMD\u003e",
+                         "\u003cIQ\u003e ... \u003cR\u003e",
+                         "#MODE_ENABLE ... #MODE_END_ENABLE"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ohne MLTCMD-Tags sendet Catalyst Center jede Zeile einzeln. Mit \u003cMLTCMD\u003e umschlossene Zeilen werden als zusammenhängender mehrzeiliger Befehl übertragen."
+    },
+    {
+        "id":  "slg-cc-037",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A CLI template contains an EEM applet that uses the string \u0027$_cli_result\u0027. Catalyst Center must pass this string to the device unchanged instead of treating it as a template variable. Which form editor setting is used?",
+        "optionen":  [
+                         "Instructional Text",
+                         "Required",
+                         "Default Value",
+                         "Not a Variable"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Mit „Not a Variable“ (in neueren Releases: Variable-Schalter aus) interpretiert Catalyst Center den String nicht als Template-Variable, sondern reicht ihn unverändert an das Gerät durch. Das ist z. B. für EEM- oder TCL-Variablen nötig, die erst auf dem Gerät ausgewertet werden."
+    },
+    {
+        "id":  "slg-cc-038",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three data types can be chosen for a template variable in the Catalyst Center form editor? (Choose three.)",
+        "optionen":  [
+                         "String",
+                         "Date and Time",
+                         "Integer",
+                         "IP Address",
+                         "Boolean"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Der Form Editor bietet die Datentypen String, Integer, IP Address und MAC Address. Daraus erzeugt Catalyst Center beim Provisioning passende Eingabefelder mit Validierung."
+    },
+    {
+        "id":  "slg-cc-039",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer edited and saved a Day-N template, but provisioning still deploys the old content. What is the most likely reason?",
+        "optionen":  [
+                         "The template was saved but not committed, so the last committed version is used",
+                         "Templates must be exported to a CSV file before a new version becomes active",
+                         "Template changes are applied only after the next periodic inventory resync",
+                         "Saved templates are deployed only after the target devices have been rebooted"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Nur committete Templates können angewendet werden; jeder Commit erzeugt automatisch eine neue Versionsnummer. Gespeicherte, aber nicht committete Änderungen bleiben ein Entwurf."
+    },
+    {
+        "id":  "slg-cc-040",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about composite templates in Cisco Catalyst Center is correct?",
+        "optionen":  [
+                         "They group committed regular templates and deploy them in a defined order",
+                         "They are generated automatically from Model Config Editor designs",
+                         "They replace the global network settings of the assigned sites",
+                         "They may contain uncommitted drafts and other composite templates"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ein Composite Template fasst mehrere bereits committete Regular Templates zusammen; die Reihenfolge der Ausführung wird festgelegt. So lassen sich kleine Bausteine flexibel kombinieren."
+    },
+    {
+        "id":  "slg-cc-041",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer plans a Day-N template with \u0027radius server\u0027 and \u0027aaa\u0027 commands that differ from the AAA servers configured in Design \u003e Network Settings. What is the recommended approach?",
+        "optionen":  [
+                         "Wrap the AAA lines in #MODE_ENABLE so that they bypass the configured network settings",
+                         "Keep the template, because template commands always take precedence over network settings",
+                         "Change AAA in Network Settings; templates must not override settings that Catalyst Center manages",
+                         "Mark the AAA lines as \u0027Not a Variable\u0027 so that Catalyst Center applies them unchanged"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Templates ergänzen nur Funktionen, die Catalyst Center nicht selbst konfiguriert; globale Settings wie AAA, DHCP oder SD-Access-Konfiguration dürfen sie nicht überschreiben. Solche Befehle erzeugen eine Blocklist-Warnung, weil sie mit dem Provisioning kollidieren."
+    },
+    {
+        "id":  "slg-cc-042",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In a Catalyst Center CLI template based on Apache Velocity, the variable hostname is referenced as ___.",
+        "optionen":  [
+                         "%hostname%",
+                         "\u003chostname\u003e",
+                         "{{ hostname }}",
+                         "$hostname"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Velocity kennzeichnet Variablen mit $ (optional ${hostname}). Die Schreibweise {{ hostname }} gehört zu Jinja2, das aktuelle Catalyst-Center-Releases als zweite Template-Sprache unterstützen."
+    },
+    {
+        "id":  "slg-cc-043",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A Velocity template contains:\n#foreach( $i in [1..3] )\ninterface GigabitEthernet1/0/$i\n description USER-$i\n#end\nWhat configuration does it render?",
+        "optionen":  [
+                         "Gi1/0/1 to Gi1/0/3 with descriptions USER-1 to USER-3",
+                         "One interface Gi1/0/$i with the description USER-$i",
+                         "Gi1/0/0 to Gi1/0/3 with descriptions USER-0 to USER-3",
+                         "An error, because #foreach is allowed only in Day-0 templates"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Velocity-Bereich [1..3] ist inklusiv und liefert 1, 2 und 3; $i wird in jeder Iteration ersetzt. Schleifen sind in Day-0- wie Day-N-Templates erlaubt."
+    },
+    {
+        "id":  "slg-cc-044",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Velocity-Template: Schreibe die Kopfzeile einer Bedingung, deren Inhalt nur gilt, wenn die Variable role den Wert access hat.",
+        "bausteine":  [
+                          "#if(",
+                          "$role",
+                          "==",
+                          "\"access\"",
+                          ")",
+                          "=",
+                          "{%",
+                          "#elseif(",
+                          "if"
+                      ],
+        "loesung":  [
+                        "#if(",
+                        "$role",
+                        "==",
+                        "\"access\"",
+                        ")"
+                    ],
+        "erklaerung":  "Velocity-Bedingungen lauten #if( Ausdruck ) … #end, verglichen wird mit ==. Die Schreibweise {% if %} gehört zu Jinja2."
+    },
+    {
+        "id":  "slg-cc-045",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Velocity-Template: Weise der Template-Variablen mgmtVlan den festen Wert 99 zu.",
+        "bausteine":  [
+                          "#set(",
+                          "$mgmtVlan",
+                          "=",
+                          "99",
+                          ")",
+                          "#var(",
+                          "==",
+                          "let",
+                          "{{"
+                      ],
+        "loesung":  [
+                        "#set(",
+                        "$mgmtVlan",
+                        "=",
+                        "99",
+                        ")"
+                    ],
+        "erklaerung":  "Mit #set( $name = Wert ) werden in Velocity Variablen gesetzt. Anders als bei Eingabevariablen wird der Wert damit im Template selbst festgelegt; == ist der Vergleichsoperator in #if."
+    },
+    {
+        "id":  "slg-cc-046",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Velocity-Template: Schreibe die Kopfzeile einer Schleife, die die Variable port nacheinander auf die Werte 1 bis 24 setzt.",
+        "bausteine":  [
+                          "#foreach(",
+                          "$port",
+                          "in",
+                          "[1..24]",
+                          ")",
+                          "for",
+                          "[1-24]",
+                          "{%",
+                          "#each("
+                      ],
+        "loesung":  [
+                        "#foreach(",
+                        "$port",
+                        "in",
+                        "[1..24]",
+                        ")"
+                    ],
+        "erklaerung":  "Velocity-Schleifen lauten #foreach( $var in Liste ) … #end; [1..24] ist ein inklusiver Zahlenbereich. So lassen sich z. B. alle Access-Ports eines Switches einheitlich konfigurieren."
+    },
+    {
+        "id":  "slg-cc-047",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the main advantage of Model Configs (Model Config Editor) compared with device-specific CLI templates?",
+        "optionen":  [
+                         "Designs are used only to upgrade ROMMON on older hardware platforms",
+                         "Designs are pushed via SNMP, so no CLI credentials are needed on devices",
+                         "Designs are defined once in a GUI and translated into the CLI of each platform",
+                         "Designs may override the global AAA and DHCP settings of the sites"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Model Configs sind modellbasierte, plattformunabhängige Konfigurationsbausteine (z. B. Wireless-Funktionen wie CleanAir oder RRM). Catalyst Center validiert sie und übersetzt sie beim Provisioning in gerätespezifische CLI."
+    },
+    {
+        "id":  "slg-cc-048",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "When does the scheduled compliance check in Cisco Catalyst Center run, and for which devices?",
+        "optionen":  [
+                         "Daily at 1:00 a.m., for devices that failed their previous compliance run",
+                         "Weekly on Sunday at midnight, for every device assigned to the Global site",
+                         "Every hour, for all devices with a configuration change since the last run",
+                         "Daily at 11:00 p.m., for devices not checked within the last seven days"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Neben automatischen (ereignisgesteuerten) und manuellen Prüfungen gibt es einen täglichen Job um 23:00 Uhr. Er prüft Geräte, deren letzte Compliance-Prüfung länger als sieben Tage zurückliegt."
+    },
+    {
+        "id":  "slg-cc-049",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An administrator changes an interface description on a switch via SSH, bypassing Catalyst Center, and does not save the configuration. Which compliance type flags this device?",
+        "optionen":  [
+                         "Software Image",
+                         "Startup vs. Running Configuration",
+                         "Critical Security (PSIRT)",
+                         "EoX (End of Life)"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Prüfung Startup vs. Running erkennt Out-of-Band-Änderungen, die nicht gespeichert wurden. Image-, PSIRT- und EoX-Compliance betreffen Softwarestand, Sicherheitslücken und Lebenszyklus."
+    },
+    {
+        "id":  "slg-cc-050",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which three compliance audit types does Cisco Catalyst Center provide for network devices? (Choose three.)",
+        "optionen":  [
+                         "BGP Route Table",
+                         "Spanning Tree Root Placement",
+                         "Network Profile",
+                         "Software Image",
+                         "Critical Security (PSIRT)"
+                     ],
+        "richtig":  [
+                        2,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Zu den Compliance-Typen gehören u. a. Startup vs. Running, Software Image, PSIRT, Network Profile, Fabric, Application Visibility, Model Config, CLI Template, EoX, Network Settings und Umbrella. Routing-Tabellen oder STP-Root-Platzierung werden nicht als Compliance geprüft."
+    },
+    {
+        "id":  "slg-cc-051",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A failed switch is replaced with an identical model. How can Cisco Catalyst Center restore the previous configuration on the new switch?",
+        "optionen":  [
+                         "From the Day-0 template, which always contains the full running configuration",
+                         "Through PnP Connect, which stores a backup of every device in the Cisco cloud",
+                         "Through the RMA workflow using the configuration it archived during regular syncs",
+                         "By pulling the configuration from the neighbor switch through CDP messages"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Catalyst Center synchronisiert Gerätekonfigurationen regelmäßig und speichert sie. Im RMA-Workflow wird diese Konfiguration (und das Image) auf das Ersatzgerät übertragen."
+    },
+    {
+        "id":  "slg-cc-052",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which three methods can a Cisco Catalyst Center discovery job use to find devices? (Choose three.)",
+        "optionen":  [
+                         "Reading the OSPF neighbor table",
+                         "Scanning the ARP cache of the core",
+                         "An IP address range",
+                         "CDP with a seed IP address",
+                         "LLDP with a seed IP address"
+                     ],
+        "richtig":  [
+                        2,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Discovery arbeitet mit CDP oder LLDP ab einer Seed-IP oder mit einem IP-Adressbereich. Weitere Geräte lassen sich manuell, per CSV-Import oder über PnP hinzufügen."
+    },
+    {
+        "id":  "slg-cc-053",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A CDP-based discovery from seed 10.1.1.1 takes very long in a large campus, although only nearby devices are needed. Which change reduces the scope?",
+        "optionen":  [
+                         "Raise the CDP level above its default of 16 hops",
+                         "Switch to LLDP, which is limited to a single hop",
+                         "Disable device controllability for the discovery job",
+                         "Lower the CDP level below its default of 16 hops"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der CDP- bzw. LLDP-Level gibt an, wie viele Hops ab dem Seed-Gerät durchsucht werden; Default ist 16. Ein kleinerer Wert verkürzt die Discovery deutlich."
+    },
+    {
+        "id":  "slg-cc-054",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "A single IP address range discovery in Cisco Catalyst Center can cover up to ___ devices.",
+        "optionen":  [
+                         "16384",
+                         "256",
+                         "1024",
+                         "4096"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein Discovery-Job mit IP-Bereich ist auf 4096 Geräte begrenzt. Größere Netze werden mit mehreren Bereichen bzw. Jobs entdeckt."
+    },
+    {
+        "id":  "slg-cc-055",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A planned IP range discovery includes the addresses of ISP-owned customer premises equipment (CPE). What should the engineer do?",
+        "optionen":  [
+                         "Reduce the CDP level to 1 so that only the seed device is found",
+                         "Remove SNMP from the credential set for the entire discovery job",
+                         "Use LLDP instead, because it skips third-party devices automatically",
+                         "Add an exclusion range so the CPE is not probed with company credentials"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ausschlussbereiche verhindern, dass fremde Geräte gescannt und die eigenen Credentials an Dritte geschickt werden. Gleichzeitig wird die Discovery schneller."
+    },
+    {
+        "id":  "slg-cc-056",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A router has Loopback0 10.255.0.1, Loopback1 10.255.0.9, and Gi0/0 192.168.1.1. The discovery is set to prefer the loopback as management IP. Which address does Catalyst Center choose?",
+        "optionen":  [
+                         "The seed IP of the discovery job",
+                         "192.168.1.1",
+                         "10.255.0.9",
+                         "10.255.0.1"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei mehreren Loopbacks wählt Catalyst Center die Loopback-Adresse mit der höchsten IP. Logische Interfaces werden bevorzugt, weil sie nicht von einem einzelnen Link abhängen."
+    },
+    {
+        "id":  "slg-cc-057",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A device without loopbacks has Gi0/0 10.1.1.1, Gi0/1 10.1.2.1, subinterface Gi0/1.100 10.9.9.1, and Serial0/0/0 172.16.1.1. Loopback preference is enabled. Which management IP does Catalyst Center choose?",
+        "optionen":  [
+                         "10.1.2.1",
+                         "10.9.9.1",
+                         "172.16.1.1",
+                         "10.1.1.1"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Ohne Loopback nimmt Catalyst Center das Ethernet-Interface mit der höchsten IP; Subinterfaces werden dabei nicht berücksichtigt. Serial-Interfaces kommen erst zum Zug, wenn es keine Ethernet-Interfaces gibt."
+    },
+    {
+        "id":  "slg-cc-058",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A discovery job contains three CLI credential sets. How does Cisco Catalyst Center use them?",
+        "optionen":  [
+                         "It uses only the first set and marks all other devices unreachable",
+                         "It applies all three sets to every device and keeps the last one",
+                         "It requires exactly one set per device, matched by its hostname",
+                         "It tries the sets one after another until one works for the device"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Mehrere Credential-Sets ersparen die Eingabe pro Gerät: Discovery probiert alle konfigurierten Sets durch, bis eines funktioniert."
+    },
+    {
+        "id":  "slg-cc-059",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A switch was Managed for months. After the security team changed its local password, the next inventory collection shows a new Last Sync Status. Which status appears?",
+        "optionen":  [
+                         "Unassigned",
+                         "Partial Collection Failure",
+                         "In Progress",
+                         "Wrong Credentials"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Werden die Credentials nach dem Hinzufügen geändert, meldet das Inventory „Wrong Credentials“. Abhilfe: Credentials über Edit Device anpassen und das Gerät neu synchronisieren."
+    },
+    {
+        "id":  "slg-cc-060",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Last Sync Status im Inventory seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "Managed",
+                          "Gerät vollständig verwaltet, alle Inventory-Daten gesammelt"
+                      ],
+                      [
+                          "Partial Collection Failure",
+                          "Nur ein Teil der Daten gesammelt, Details über das Info-Symbol"
+                      ],
+                      [
+                          "Unreachable",
+                          "Keine Verbindung, bei der periodischen Sammlung keine Daten erhalten"
+                      ],
+                      [
+                          "In Progress",
+                          "Die Inventory-Sammlung läuft gerade"
+                      ]
+                  ],
+        "erklaerung":  "Der Last Sync Status zeigt das Ergebnis der letzten Inventory-Sammlung. Vor dem Zuweisen zu Sites sollten alle Geräte Managed sein."
+    },
+    {
+        "id":  "slg-cc-061",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer needs current inventory data for several switches immediately and selects them in the inventory and chooses Resync. What happens?",
+        "optionen":  [
+                         "The switches are rebooted so that a fresh inventory can be collected",
+                         "The request is queued until the next periodic resync interval expires",
+                         "The switches are removed and must be rediscovered with a new job",
+                         "Inventory collection starts now, independent of the periodic interval"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein manueller Resync startet die Inventory-Sammlung sofort, unabhängig vom periodischen Resync-Intervall; währenddessen zeigt das Inventory den Status Syncing. Geräte werden dabei weder neu gestartet noch neu entdeckt."
+    },
+    {
+        "id":  "slg-cc-062",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "In Cisco Catalyst Center 2.3.7, the default periodic inventory resync interval for a network device is ___.",
+        "optionen":  [
+                         "12 hours",
+                         "5 minutes",
+                         "24 hours",
+                         "60 minutes"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Laut User Guide 2.3.7 synchronisiert Catalyst Center das Inventory standardmäßig alle 24 Stunden (1440 Minuten); das Intervall lässt sich anpassen. Ältere DNA-Center-Releases nutzten kürzere Defaults (Kursstand: 25 Minuten)."
+    },
+    {
+        "id":  "slg-cc-063",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An engineer wants to run \u0027show ip interface brief\u0027 on 20 switches at once from the Catalyst Center inventory without opening SSH sessions. Which tool is used?",
+        "optionen":  [
+                         "Path Trace",
+                         "Command Runner",
+                         "Template Editor",
+                         "Intelligent Capture"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Command Runner führt show-Befehle auf ausgewählten Geräten aus und zeigt die Ausgaben zentral an. Path Trace analysiert Pfade, der Template Editor ändert Konfigurationen, Intelligent Capture erfasst WLAN-Pakete."
+    },
+    {
+        "id":  "slg-cc-064",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Device Controllability is disabled when a switch is discovered. What is the consequence?",
+        "optionen":  [
+                         "The switch is discovered but can never be assigned to a site in the hierarchy",
+                         "Catalyst Center does not configure SNMP, NETCONF, IPDT or trustpoint settings on it",
+                         "The switch is removed from the inventory automatically after 24 hours",
+                         "Catalyst Center configures these settings during discovery but not at runtime"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Device Controllability (Default: an) konfiguriert benötigte Einstellungen wie SNMP-Credentials und Trap-Receiver, NETCONF-Credentials, IP Device Tracking, Zertifikat-Trustpoint und TrustSec-Credentials. Ist sie aus, wird nichts davon gesetzt – weder bei der Discovery noch zur Laufzeit."
+    },
+    {
+        "id":  "slg-cc-065",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Device Controllability ist aktiv. Ordne die Situation der Aktion zu, die Catalyst Center mit den SNMP-, Syslog- und NetFlow-Einstellungen auf dem Gerät durchführt.",
+        "paare":  [
+                      [
+                          "Gerät wird von Global nach Site A verschoben",
+                          "Settings von Site A werden auf das Gerät geschrieben"
+                      ],
+                      [
+                          "Gerät wird von Site A nach Site B verschoben",
+                          "Settings von Site B ersetzen die von Site A"
+                      ],
+                      [
+                          "Gerät wird aus Site A entfernt",
+                          "Settings verbleiben ohne Rückfrage auf dem Gerät"
+                      ],
+                      [
+                          "Gerät wird aus Catalyst Center gelöscht",
+                          "Bleiben per Default, Entfernen wird optional angeboten"
+                      ]
+                  ],
+        "erklaerung":  "Geräte in Global behalten zunächst ihre Settings; erst die Zuweisung zu einer Site schreibt deren Werte. Beim Entfernen aus einer Site bleibt die Konfiguration stehen, beim Löschen kann man sie optional entfernen lassen."
+    },
+    {
+        "id":  "slg-cc-066",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Device Controllability was disabled while devices were assigned to sites with new network settings. Later it is enabled again. What happens to those existing site settings?",
+        "optionen":  [
+                         "They cause all devices to be moved back to the Global site automatically",
+                         "They are pushed immediately to all devices that are assigned to the sites",
+                         "They are applied only after each device is rediscovered from the beginning",
+                         "They are not pushed retroactively; only later setting changes are configured"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beim erneuten Aktivieren werden bereits vorhandene Site-Settings nicht nachträglich verteilt. Erst neu angelegte oder geänderte Settings werden auf die zugeordneten Geräte konfiguriert."
+    },
+    {
+        "id":  "slg-cc-067",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three telemetry functions can be enabled for a site under Design \u003e Network Settings \u003e Telemetry in Cisco Catalyst Center? (Choose three.)",
+        "optionen":  [
+                         "Syslog",
+                         "NetFlow",
+                         "SPAN sessions",
+                         "IP SLA probes",
+                         "SNMP traps"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Unter Telemetry werden SNMP Traps, Syslog, NetFlow, Wired Endpoint Data Collection und Wireless-Health aktiviert; Catalyst Center trägt sich dabei als Ziel auf den Geräten ein. SPAN und IP SLA gehören nicht zu diesen Telemetrie-Settings."
+    },
+    {
+        "id":  "slg-cc-068",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In Catalyst Center image management, 12 switches are flagged as outdated (\u0027Needs Update\u0027 in older releases). What does this mean?",
+        "optionen":  [
+                         "They have a ROMMON version that is older than the latest Cisco release",
+                         "They lack the Catalyst Advantage license required for SWIM upgrades",
+                         "They do not run the image tagged golden for their family, role, or site",
+                         "They run an image whose checksum failed the Known Good Values check"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das Golden-Image-Tag definiert den Soll-Softwarestand. Geräte mit abweichendem Image sind nicht compliant und werden als veraltet (Outdated, früher „Needs Update“) markiert."
+    },
+    {
+        "id":  "slg-cc-069",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Catalyst 9300 access switches must run 17.12, while Catalyst 9300 core switches must stay on 17.9. How is this achieved with SWIM?",
+        "optionen":  [
+                         "Not possible, because only one golden image per family is allowed",
+                         "Tag each image as golden for the respective device role",
+                         "Create two network profiles, each with its own image repository",
+                         "Use a Day-N template with a role-specific \u0027boot system\u0027 command"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Golden Images lassen sich pro Gerätefamilie, Site und Geräterolle (z. B. Access, Distribution, Core, Border Router) festlegen. So entstehen unterschiedliche Soll-Images innerhalb einer Familie."
+    },
+    {
+        "id":  "slg-cc-070",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How does Cisco Catalyst Center verify the integrity of a software image during import?",
+        "optionen":  [
+                         "It validates the image with the SUDI certificate of the target device",
+                         "It boots the image in a sandbox virtual machine and runs automated tests",
+                         "It compares only the file size with the value published on cisco.com",
+                         "It compares the image checksum with the Known Good Values (KGV) file from Cisco"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beim Import wird die Checksumme mit dem Wert für die Plattform in der KGV-Datei verglichen; passt sie, zeigt das Repository „verified“. Die Integrity Verification erkennt so manipulierte Images."
+    },
+    {
+        "id":  "slg-cc-071",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "After an administrator loads the Known Good Values (KGV) file initially, Cisco Catalyst Center downloads it automatically every ___.",
+        "optionen":  [
+                         "7 days",
+                         "24 hours",
+                         "90 days",
+                         "30 days"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die KGV-Datei wird einmalig als Systemaufgabe eingespielt und danach wöchentlich automatisch aktualisiert, damit neue Images verifiziert werden können."
+    },
+    {
+        "id":  "slg-cc-072",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "A traditional NMS can distribute and activate software images. Which two SWIM steps does Cisco Catalyst Center add beyond that? (Choose two.)",
+        "optionen":  [
+                         "Activating the image with a reload",
+                         "Copying the image to device flash",
+                         "Post-deploy validation after the upgrade",
+                         "Precheck validation before the upgrade"
+                     ],
+        "richtig":  [
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Catalyst Center bettet Distribution und Activation in einen Lebenszyklus ein: Golden Image, Change Request, Prechecks, Post-Checks und Abschluss. Kopieren und Aktivieren beherrscht auch ein klassisches NMS."
+    },
+    {
+        "id":  "slg-cc-073",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What is the difference between image distribution and image activation in SWIM?",
+        "optionen":  [
+                         "Distribution reloads the device; activation copies the image to the device flash",
+                         "Distribution copies the image to the device; activation makes it run, with a reload",
+                         "Distribution verifies the KGV checksum; activation runs only the post-checks",
+                         "Distribution uploads the image to Catalyst Center; activation copies it to flash"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Distribution überträgt das Image auf das Gerät (Flash), Activation setzt es als laufendes Image und lädt das Gerät neu. Beide Schritte können getrennt und zeitversetzt („Later“) geplant werden."
+    },
+    {
+        "id":  "slg-cc-074",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which check is a typical SWIM precheck before an image is distributed?",
+        "optionen":  [
+                         "Number of active DHCP leases on the switch",
+                         "Enough free flash space for the new image",
+                         "Current size of the BGP table on the router",
+                         "Number of wireless clients on the access point"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Prechecks stellen sicher, dass das Upgrade gelingen kann, z. B. Flash-Platz, Config-Register und Startup-Config. Post-Checks vergleichen danach u. a. CDP-Nachbarn, Interfaces und Spanning Tree."
+    },
+    {
+        "id":  "slg-cc-075",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer wants SWIM to upgrade the ROMMON together with the IOS XE base image. What is a prerequisite in Catalyst Center?",
+        "optionen":  [
+                         "The ROMMON file must be copied to each device flash through USB first",
+                         "Device Controllability must be disabled for the devices being upgraded",
+                         "The devices must be moved back to the Global site before the upgrade",
+                         "A cisco.com connection must be configured so the ROMMON file downloads"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Für ROMMON-Upgrades ist die cisco.com-Konfiguration Pflicht: Beim Import bzw. Golden-Tagging des Base Images lädt Catalyst Center die passende ROMMON-Datei automatisch herunter und aktualisiert sie zusammen mit dem Image. USB-Kopien oder Site-Wechsel sind dafür nicht nötig."
+    },
+    {
+        "id":  "slg-cc-076",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A base image and an SMU are both tagged golden. A switch already runs the golden base image but lacks the SMU. What does SWIM do during the upgrade?",
+        "optionen":  [
+                         "It marks the switch compliant without changes",
+                         "It reinstalls the base image, then the SMU",
+                         "It installs only the missing SMU",
+                         "It removes the base image before adding the SMU"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "SWIM vergleicht Base Image und SMU getrennt mit dem Golden-Standard. Fehlt nur das SMU, wird nur dieses installiert; ein Golden SMU setzt immer ein Golden Base Image voraus."
+    },
+    {
+        "id":  "slg-cc-077",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is a Software Maintenance Update (SMU) in the context of Cisco Catalyst Center SWIM?",
+        "optionen":  [
+                         "A template that updates the device\u0027s running configuration",
+                         "A license file that unlocks Catalyst Advantage features",
+                         "A patch with specific fixes for an existing base image",
+                         "A full software image that also replaces the ROMMON"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ein SMU behebt gezielt einzelne Fehler eines Base Images, ohne die ganze Software zu tauschen – teils ohne Reboot. Das senkt Risiko und Aufwand gegenüber einem kompletten Upgrade."
+    },
+    {
+        "id":  "slg-cc-078",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Under System \u003e Settings \u003e Image Distribution Servers, up to ___ external image distribution servers can be configured and then associated with sites.",
+        "optionen":  [
+                         "three",
+                         "ten",
+                         "one",
+                         "five"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bis zu drei externe Server (z. B. SFTP in verschiedenen Regionen) lassen sich anlegen und über Design \u003e Network Settings Sites zuordnen. Geräte laden Images dann von einem nahen Server."
+    },
+    {
+        "id":  "slg-cc-079",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the Catalyst Center image repository, which label marks an image that Cisco recommends because of demonstrated stability?",
+        "optionen":  [
+                         "Latest",
+                         "Golden",
+                         "Verified",
+                         "Suggested"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "„Suggested“ ist Ciscos Empfehlung, „Latest“ das neueste Release. „Golden“ ist ein Tag, das der Administrator selbst setzt, „Verified“ bedeutet bestandene KGV-Prüfung."
+    },
+    {
+        "id":  "slg-cc-080",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Cisco Catalyst Center has no connection to cisco.com, and images are imported manually. What must the administrator additionally do?",
+        "optionen":  [
+                         "Enable Device Controllability so devices download images directly",
+                         "Assign each imported image to its device family and models manually",
+                         "Configure a DHCP option 43 entry that points to the image repository",
+                         "Convert every image into an SMU before it can be distributed"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Online mit cisco.com ordnet Catalyst Center Images automatisch den passenden Gerätefamilien zu. Offline listet es alle Familien, und der Administrator muss die Zuordnung selbst vornehmen."
+    },
+    {
+        "id":  "slg-cc-081",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "New routers ordered through Cisco Commerce Workspace should appear automatically in the Catalyst Center PnP list. What is required?",
+        "optionen":  [
+                         "A ServiceNow integration that imports the serial numbers from purchase orders into the Catalyst Center",
+                         "A Smart Account with the NETWORK-PNP-LIC option on the order and Catalyst Center registered in PnP Connect",
+                         "A DHCP option 43 entry on the vendor\u0027s network and a DNS entry that points to devicehelper.cisco.com",
+                         "A Day-N template for each router and a Catalyst Advantage license that is installed on every router"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit Smart Account und NETWORK-PNP-LIC werden Seriennummer und PID automatisch in PnP Connect registriert. Ist Catalyst Center dort als Controller eingetragen, synchronisiert es die Geräte (Quelle Smart Account) für den Claim."
+    },
+    {
+        "id":  "slg-cc-082",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "What is the first action a device performs when it contacts Cisco PnP Connect?",
+        "optionen":  [
+                         "It downloads and installs the Cisco trust pool bundle",
+                         "It requests an IP address through DHCP option 43 from the cloud",
+                         "It registers its MAC address in the customer Smart Account",
+                         "It uploads its current running configuration to the cloud"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Um die Kommunikation abzusichern, lädt das Gerät zuerst das Cisco Trust Pool Bundle. Danach erhält es die Adresse des für die Organisation hinterlegten Controllers."
+    },
+    {
+        "id":  "slg-cc-083",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which host does a PnP agent contact for cloud-based redirection to the on-premises Catalyst Center?",
+        "optionen":  [
+                         "software.cisco.com",
+                         "api.use1.prd.kairos.ciscolabs.com",
+                         "pnpserver.cisco.com",
+                         "devicehelper.cisco.com"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "PnP Connect ist unter devicehelper.cisco.com erreichbar und leitet das Gerät zum im Smart Account hinterlegten Controller um. Kairos ist die Cloud für AI Network Analytics, pnpserver der lokale DNS-Name."
+    },
+    {
+        "id":  "slg-cc-084",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which PnP server discovery method is NOT supported for wireless access points?",
+        "optionen":  [
+                         "DHCP with options 60 and 43",
+                         "USB-based bootstrap configuration",
+                         "DNS lookup of pnpserver",
+                         "Cloud redirection via PnP Connect"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die manuellen Methoden (USB-Bootstrap mit router-confg bzw. Installer App) gelten nur für Router und Switches. APs nutzen die automatischen Methoden DHCP, DNS und Cloud."
+    },
+    {
+        "id":  "slg-cc-085",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "When LAN automation starts in Cisco Catalyst Center, how do factory-default switches below the seed obtain an IP address and the controller address?",
+        "optionen":  [
+                         "Catalyst Center acts as DHCP server and sends option 150 with the TFTP address",
+                         "The switches use IPv6 link-local addresses and find the controller via LLDP",
+                         "The seed acts as DHCP server in VLAN 1 with option 43 pointing to Catalyst Center",
+                         "Cisco ISE assigns the addresses through RADIUS Framed-IP-Address attributes"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Beim Start erhält das Seed-Gerät eine temporäre Konfiguration als DHCP-Server in VLAN 1 mit Option 43. Neue Geräte bekommen so IP und Controller-Adresse und werden per PnP onboardet."
+    },
+    {
+        "id":  "slg-cc-086",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "LAN automation runs with seed (primary) device P. Below P are Disc-1 (1 hop), Disc-2 connected to Disc-1, and Disc-3 connected to Disc-2. The session is started with a discovery depth (level) of 2. Which link is NOT configured by this LAN automation run?",
+        "optionen":  [
+                         "Disc-2 to Disc-3",
+                         "P to Disc-1",
+                         "None; all links are automated",
+                         "Disc-1 to Disc-2"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Discovery Level legt fest, bis zu welcher Ebene unter dem Primary Seed neue Geräte automatisiert werden (je nach Release bis 3 bzw. 5 einstellbar). Bei Level 2 werden Disc-1 und Disc-2 erfasst, Disc-3 auf Ebene 3 nicht; dafür startet man einen weiteren Lauf oder erhöht den Level."
+    },
+    {
+        "id":  "slg-cc-087",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What happens when an engineer stops a LAN automation session in Cisco Catalyst Center?",
+        "optionen":  [
+                         "All links become Layer 2 trunks and Spanning Tree is disabled completely",
+                         "Point-to-point links become Layer 3 and temporary configuration is removed",
+                         "All discovered devices are reset to factory defaults and rediscovered",
+                         "The seed device is removed from the inventory and the session restarts"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Beim Stopp schreibt Catalyst Center die permanente Konfiguration, wandelt die Links zwischen den Geräten in geroutete L3-Links und entfernt die temporäre Seed-Konfiguration. Dabei sind kurze Unterbrechungen und STP-Änderungen möglich."
+    },
+    {
+        "id":  "slg-cc-088",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In which order does LAN automation convert Layer 2 links to Layer 3 when the session is stopped?",
+        "optionen":  [
+                         "All tiers in parallel to minimize the outage",
+                         "Distribution tier first, then core, then access",
+                         "Access tier first, then distribution, then core",
+                         "Core tier first, then distribution, then access"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Umwandlung folgt der beim Onboarding gelernten Topologie von unten nach oben: Tier 3 (Access), Tier 2 (Distribution), Tier 1 (Core). Untere Geräte können kurz unerreichbar sein, bis der obere Link konfiguriert ist."
+    },
+    {
+        "id":  "slg-cc-089",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "LAN automation was stopped accidentally while several PnP devices were still in progress. How are their links configured correctly?",
+        "optionen":  [
+                         "Restart the stopped session so that the in-progress devices resume",
+                         "Run a manual inventory resync on all devices that are still in progress",
+                         "Convert their remaining links to Layer 3 with a Day-N CLI template",
+                         "Delete them, start a new session, reset them to factory default and reload"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Für zu früh gestoppte Sessions werden keine Links an In-Progress-Geräten konfiguriert. Sie müssen aus dem Inventory gelöscht, auf Werkseinstellungen gesetzt und in einer neuen Session erneut entdeckt werden."
+    },
+    {
+        "id":  "slg-cc-090",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Schnittstellenrichtung der Catalyst-Center-Plattform dem passenden Beispiel zu.",
+        "paare":  [
+                      [
+                          "Northbound (Intent API)",
+                          "Python-Skript liest per REST die Geräteliste aus"
+                      ],
+                      [
+                          "Southbound",
+                          "Controller konfiguriert einen Switch über NETCONF oder SSH"
+                      ],
+                      [
+                          "Westbound (Integration)",
+                          "ServiceNow-Ticket wird automatisch eröffnet und geschlossen"
+                      ],
+                      [
+                          "Eastbound (Events)",
+                          "Webhook meldet ein neues P1-Issue an ein externes System"
+                      ]
+                  ],
+        "erklaerung":  "Catalyst Center ist in vier Richtungen erweiterbar: Intent API nach Norden, Gerätezugriff bzw. Multivendor SDK nach Süden, Integrationen wie ITSM/IPAM nach Westen und Events/Notifications nach Osten."
+    },
+    {
+        "id":  "slg-cc-091",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which Catalyst Center platform capability integrates with ITSM, IPAM, and reporting systems such as ServiceNow, Infoblox, and Tableau?",
+        "optionen":  [
+                         "Intent-based APIs",
+                         "Multivendor SDKs",
+                         "Domain adapters",
+                         "Process adapters"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Process Adapters verbinden Catalyst Center mit IT-Prozessen (ITSM, IPAM, Reporting). Domain Adapters koppeln andere Domänen-Controller, SDKs binden Fremdgeräte an, die Intent API dient Anwendungen und Skripten."
+    },
+    {
+        "id":  "slg-cc-092",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Cisco Catalyst Center should exchange intent with the Cisco Meraki dashboard to provide consistent policy across infrastructure domains. Which platform capability is used?",
+        "optionen":  [
+                         "Intelligent Capture",
+                         "Process adapters",
+                         "Multivendor SDKs",
+                         "Domain adapters"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Domain Adapters integrieren andere Infrastruktur-Domänen und deren Controller, z. B. Meraki Dashboard oder Secure Network Analytics (Stealthwatch), sowie Rechenzentrum, WAN und Security."
+    },
+    {
+        "id":  "slg-cc-093",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which request returns the list of managed network devices through the Cisco Catalyst Center Intent API?",
+        "optionen":  [
+                         "GET /restconf/data/network-device",
+                         "GET /dna/intent/api/v1/network-device",
+                         "GET /api/v1/discovery/devices?all",
+                         "GET /dataservice/device"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Intent API liegt unter /dna/intent/api/v1/; network-device liefert das Inventory als JSON. /dataservice/device gehört zur SD-WAN-Manager-API, /restconf/data zu RESTCONF auf einem einzelnen Gerät."
+    },
+    {
+        "id":  "slg-cc-094",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A Python script calls the Catalyst Center Intent API successfully for about an hour and then receives HTTP 401 on every request. What is the most likely cause?",
+        "optionen":  [
+                         "The script used GET instead of POST for the network-device call",
+                         "The device inventory changed and the old device IDs became invalid",
+                         "The X-Auth-Token has expired and a new token must be requested",
+                         "The API rate limit was exceeded and the server blocks the client"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das per POST auf /dna/system/api/v1/auth/token erhaltene Token ist 60 Minuten gültig; danach antwortet die API mit 401 Unauthorized. Ein Rate-Limit würde mit 429 Too Many Requests gemeldet."
+    },
+    {
+        "id":  "slg-cc-095",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A POST request that starts a discovery job through the Catalyst Center Intent API returns HTTP 202 with a taskId. What should the script do next?",
+        "optionen":  [
+                         "Wait for an SNMP trap from Catalyst Center that contains the task ID",
+                         "Poll GET /dna/intent/api/v1/task/{taskId} until the task has finished",
+                         "Resend the same POST request until the server finally returns 200 OK",
+                         "Open Device 360 in the GUI to read the result of the API request"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Lang laufende Vorgänge arbeitet die Intent API asynchron ab: 202 Accepted bestätigt nur die Annahme. Fortschritt und Ergebnis liefert der Task-Endpunkt mit der zurückgegebenen taskId."
+    },
+    {
+        "id":  "slg-cc-096",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which transport and data format does the Cisco Catalyst Center Intent API use?",
+        "optionen":  [
+                         "REST over HTTPS with JSON",
+                         "NETCONF over SSH with XML",
+                         "SNMP over UDP with ASN.1",
+                         "gRPC over HTTP/2 with protobuf"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die northbound Intent API ist eine REST-API über HTTPS mit JSON-Nutzdaten. NETCONF, gNMI und SNMP sind Protokolle für den direkten Gerätezugriff (southbound)."
+    },
+    {
+        "id":  "slg-cc-097",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Besides CLI and SNMP, which southbound protocol does Cisco Catalyst Center use to discover and configure Catalyst 9800 wireless LAN controllers?",
+        "optionen":  [
+                         "HTTPS",
+                         "RESTCONF",
+                         "gNMI",
+                         "NETCONF"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Für Catalyst-9800-WLCs werden NETCONF-Credentials (und ggf. der NETCONF-Port) in der Discovery angegeben. Darüber stellt Catalyst Center Wireless-Konfiguration bereit."
+    },
+    {
+        "id":  "slg-cc-098",
+        "topic":  "ENCOR-6.4",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three functions are exposed through the Cisco Catalyst Center Intent API? (Choose three.)",
+        "optionen":  [
+                         "Command Runner",
+                         "Spanning-tree root bridge election",
+                         "Hardware forwarding of data plane packets",
+                         "Path Trace",
+                         "Software Image Management (SWIM)"
+                     ],
+        "richtig":  [
+                        0,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Die Intent API bietet u. a. Inventory, Discovery, Topology, Templates, PnP, SWIM, Path Trace, Command Runner und Assurance-Daten. Weiterleitung von Datenpaketen und STP laufen weiterhin auf den Geräten selbst."
+    },
+    {
+        "id":  "slg-cc-099",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which four main health dashboards does Cisco Catalyst Center Assurance provide?",
+        "optionen":  [
+                         "Wired, Wireless, Cloud, and Data Center Health",
+                         "Device, Interface, Link, and Port Utilization Health",
+                         "Overall, Network Device, Client, and Application Health",
+                         "Overall, Fabric, WAN, and Security Policy Health"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die vier Health-Dashboards zeigen die Gesundheit des Gesamtnetzes, der Infrastrukturgeräte, der wired/wireless Clients und der Applikationen. Von dort führen Drill-downs in die 360-Ansichten."
+    },
+    {
+        "id":  "slg-cc-100",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Catalyst Center Assurance prioritizes issues from P1 to P4, where ___ is the most severe.",
+        "optionen":  [
+                         "P3",
+                         "P4",
+                         "P1",
+                         "P2"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "P1 ist die höchste Priorität. Die Prioritäten sind in der Assurance-Wissensbasis vordefiniert und können angepasst werden."
+    },
+    {
+        "id":  "slg-cc-101",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three sources does Catalyst Center Assurance use to detect issues? (Choose three.)",
+        "optionen":  [
+                         "Manually created ITSM tickets",
+                         "AI-driven baseline deviations",
+                         "Thresholds on collected telemetry",
+                         "End-user satisfaction surveys",
+                         "Syslog messages from devices"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Issues entstehen aus Syslog-Meldungen, aus Schwellwertverletzungen in der Telemetrie und aus AI-erkannten Abweichungen (meist mit Cloud-AI). ITSM-Tickets werden eher aus Issues erzeugt als umgekehrt."
+    },
+    {
+        "id":  "slg-cc-102",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A user reports that Wi-Fi dropped yesterday during lunch, but everything works now. Which Assurance capability helps most?",
+        "optionen":  [
+                         "Time Travel in Client 360 to view the KPIs at that moment",
+                         "A Path Trace from the client to its gateway right now",
+                         "A sensor test scheduled for the next lunch break",
+                         "Command Runner on the access point the client uses now"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Time Travel zeigt den Zustand und die KPIs eines Clients oder Geräts zu einem vergangenen Zeitpunkt. So muss das Problem nicht reproduziert werden; aktuelle Tests zeigen dagegen nur den Ist-Zustand."
+    },
+    {
+        "id":  "slg-cc-103",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which input does an engineer provide to start a Path Trace in Catalyst Center Assurance?",
+        "optionen":  [
+                         "An ACL name and the interface where it is applied",
+                         "Source and destination IP, optionally ports and protocol",
+                         "Only the hostname of the first-hop switch on the path",
+                         "The VLAN ID and the MAC address of the default gateway"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Path Trace berechnet aus Quell- und Ziel-IP (optional Ports und Protokoll) den Pfad Hop für Hop bis auf Interface-Ebene und zeigt dabei z. B. ACLs, die den Verkehr blockieren."
+    },
+    {
+        "id":  "slg-cc-104",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An engineer needs packet-level decodes of a wireless client\u0027s association and authentication frames. Which Assurance tool is used?",
+        "optionen":  [
+                         "Command Runner",
+                         "Path Trace",
+                         "Intelligent Capture",
+                         "Application 360"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Intelligent Capture erfasst und dekodiert Wireless-Pakete eines Clients, automatisch oder manuell ausgelöst. Path Trace arbeitet auf IP-Pfadebene, Command Runner führt nur show-Befehle aus."
+    },
+    {
+        "id":  "slg-cc-105",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which Assurance feature proactively tests wireless onboarding and connectivity before users report problems?",
+        "optionen":  [
+                         "Time Travel through the last 14 days of issues",
+                         "Sensor tests that use access points as sensors",
+                         "Path Trace from a client to its default gateway",
+                         "Intelligent Capture of a live client session"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei Sensor Tests simulieren APs bzw. Sensoren Clients und testen Onboarding, Authentifizierung und Dienste regelmäßig. Probleme fallen so auf, bevor Benutzer betroffen sind."
+    },
+    {
+        "id":  "slg-cc-107",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The security team asks which firewall rules cloud-based AI Network Analytics requires for Cisco Catalyst Center. What is correct?",
+        "optionen":  [
+                         "Outbound HTTPS (TCP 443) only; no inbound connections are needed",
+                         "Bidirectional TCP 830, because the cloud uses NETCONF to the system",
+                         "Inbound TCP 443 from the Cisco cloud to Catalyst Center is required",
+                         "Outbound UDP 2055, because NetFlow is exported directly to the cloud"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Alle Verbindungen zur AI-Analytics-Cloud baut Catalyst Center ausgehend über TCP 443 mit TLS 1.2 auf; die Cloud initiiert keine Verbindungen. Ein Proxy ist möglich, DNS-Auflösung der Cloud-Hosts ist nötig."
+    },
+    {
+        "id":  "slg-cc-108",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which license is required to use Cisco AI Network Analytics in Cisco Catalyst Center?",
+        "optionen":  [
+                         "Cisco Smart Net Total Care",
+                         "Cisco ISE Base",
+                         "Cisco Catalyst Advantage",
+                         "Cisco Catalyst Essentials"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "AI Analytics setzt die Catalyst-Advantage-Lizenz (früher DNA Advantage) voraus. Essentials deckt Grundfunktionen ab, ISE- und Supportverträge sind keine Catalyst-Center-Feature-Lizenzen."
+    },
+    {
+        "id":  "slg-cc-109",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three features are affected when cloud-based AI Analytics is disabled in Cisco Catalyst Center? (Choose three.)",
+        "optionen":  [
+                         "Command Runner",
+                         "Peer comparison",
+                         "Path Trace",
+                         "AI-driven issues",
+                         "Network heatmap"
+                     ],
+        "richtig":  [
+                        1,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Betroffen sind AI-Driven Issues, Network Trends, Network Heatmap, Site Comparison und Peer Comparison. Path Trace und Command Runner arbeiten lokal ohne Cloud."
+    },
+    {
+        "id":  "slg-cc-110",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Kategorie von Cisco AI Network Analytics einer passenden Funktion zu.",
+        "paare":  [
+                      [
+                          "Intelligent Issue Detection and Analysis",
+                          "AI-Driven Anomaly Detection"
+                      ],
+                      [
+                          "Trends and Insights",
+                          "AP Performance Advisories"
+                      ],
+                      [
+                          "Comparative Benchmarking",
+                          "AI-Driven Peer Comparisons"
+                      ]
+                  ],
+        "erklaerung":  "Issue Detection umfasst Baselining und Anomaly Detection, Trends and Insights u. a. Trend Deviations und AP Performance Advisories, Benchmarking die AP-, Peer- und Netzwerkvergleiche."
+    },
+    {
+        "id":  "slg-cc-111",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How are the Machine Reasoning Engine knowledge packs kept up to date in Cisco Catalyst Center?",
+        "optionen":  [
+                         "Only by upgrading Catalyst Center to a newer software release",
+                         "By downloading them together with the weekly KGV file update",
+                         "By an automatic daily update from the Cisco cloud or a manual update",
+                         "By importing them from Cisco ISE during the pxGrid integration"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Knowledge Packs liegen in einer cloud-gehosteten Wissensbasis, die Cisco-Experten laufend erweitern. Catalyst Center kann sie täglich automatisch oder manuell aktualisieren."
+    },
+    {
+        "id":  "slg-cc-112",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Assurance detects an issue for which the knowledge base knows a fix. What happens by default in current Catalyst Center releases?",
+        "optionen":  [
+                         "A Cisco TAC case is opened automatically with the attached diagnostics",
+                         "Nothing happens until the issue is escalated to priority P1 manually",
+                         "The fix is applied automatically and the issue is closed without review",
+                         "Suggested actions are shown, and the operator decides whether to run them"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Guided Remediation zeigt Ursache und empfohlene Schritte bzw. Korrekturaktionen, die der Operator ausführt. Vollautomatisches Self-Healing ist das Zielbild, aber nicht der Standard."
+    },
+    {
+        "id":  "slg-cc-113",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Assurance-Werkzeug seiner typischen Nutzung zu.",
+        "paare":  [
+                      [
+                          "Device 360",
+                          "Health, KPIs und Issues eines Switches, Routers oder APs"
+                      ],
+                      [
+                          "Client 360",
+                          "Onboarding und Erlebnis eines einzelnen Endgeräts"
+                      ],
+                      [
+                          "Application 360",
+                          "Performance einer Applikation über das Netz hinweg"
+                      ],
+                      [
+                          "Path Trace",
+                          "Hop-für-Hop-Pfad zwischen Quelle und Ziel"
+                      ]
+                  ],
+        "erklaerung":  "Die 360-Ansichten bündeln alle Daten zu einem Gerät, Client oder einer Applikation inklusive Time Travel. Path Trace beantwortet dagegen die Frage nach dem Weg eines Flows."
+    },
+    {
+        "id":  "slg-cc-114",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In Catalyst Center Assurance, a network device shows a health score of 3. How is this score classified?",
+        "optionen":  [
+                         "Poor (1–3)",
+                         "No data (0)",
+                         "Fair (4–7)",
+                         "Good (8–10)"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Health Scores reichen von 1 bis 10: 1–3 Poor (rot), 4–7 Fair (orange), 8–10 Good (grün). Geräte ohne Daten werden gesondert als „No Data“ geführt."
+    },
+    {
+        "id":  "slg-cc-115",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A switch reports KPI subscores of CPU 9, memory 9, and link errors 2. Which overall device health score does Catalyst Center Assurance display?",
+        "optionen":  [
+                         "20",
+                         "2",
+                         "7",
+                         "9"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Health Score eines Netzwerkgeräts entspricht dem niedrigsten KPI-Subscore. Ein einzelnes schlechtes KPI wie Link Errors zieht so die Gesamtbewertung nach unten und fällt sofort auf."
+    },
+    {
+        "id":  "slg-cc-117",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "The preferred latency between network devices and Catalyst Center Assurance is 100 ms; the maximum supported latency is ___.",
+        "optionen":  [
+                         "150 ms",
+                         "200 ms",
+                         "300 ms",
+                         "500 ms"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Für Assurance gelten 100 ms als empfohlener und 200 ms als maximaler Wert. Bei höherer Latenz werden Telemetrie und Polling unzuverlässig."
+    },
+    {
+        "id":  "slg-cc-118",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which two credential types must be defined at a minimum so that Cisco Catalyst Center can discover and manage a switch? (Choose two.)",
+        "optionen":  [
+                         "CLI",
+                         "HTTPS",
+                         "NETCONF",
+                         "RESTCONF",
+                         "SNMP"
+                     ],
+        "richtig":  [
+                        0,
+                        4
+                    ],
+        "erklaerung":  "Für die Discovery sind mindestens eine CLI- und eine SNMP-Credential nötig. NETCONF wird zusätzlich für WLCs, HTTP(S) für Compute-Geräte ohne CLI verwendet."
+    },
+    {
+        "id":  "slg-cc-119",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The CLI account used for discovery has privilege level 1, and no enable password is configured in Catalyst Center. What is the result?",
+        "optionen":  [
+                         "Collection fails, because the account needs privilege 15 or the enable password",
+                         "Discovery succeeds, but only Telnet can be used for the inventory collection",
+                         "Discovery succeeds, because SNMP read access alone is sufficient for management",
+                         "Catalyst Center elevates the account automatically through TACACS+ authorization"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Für die Inventory-Sammlung braucht Catalyst Center privilegierten EXEC-Zugriff: Der Account muss Level 15 haben oder das Enable-Passwort muss hinterlegt sein. SSH oder Telnet ändern daran nichts."
+    },
+    {
+        "id":  "slg-cc-120",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "For device discovery in Cisco Catalyst Center, SNMPv2c or SNMPv3 ___ access is sufficient.",
+        "optionen":  [
+                         "read-write",
+                         "trap-only",
+                         "inform-only",
+                         "read-only"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Discovery benötigt nur lesenden SNMP-Zugriff. Konfigurationsänderungen erfolgen über CLI bzw. NETCONF, nicht per SNMP-Write."
+    },
+    {
+        "id":  "slg-cc-121",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which deployment options exist for Cisco Catalyst Center?",
+        "optionen":  [
+                         "A container hosted on Catalyst 9300 switches in the campus",
+                         "Only a SaaS service hosted and operated in the Meraki cloud",
+                         "Only a physical Cisco UCS appliance installed in the data center",
+                         "Physical appliance, or virtual appliance on VMware ESXi or in AWS"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Catalyst Center läuft auf einer dedizierten Hardware-Appliance (DN3) oder als virtuelle Appliance auf ESXi bzw. in AWS. Damit lässt sich die Plattform flexibel an Betriebsmodelle anpassen."
+    },
+    {
+        "id":  "slg-cc-122",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A customer without SD-Access fabric has 1800 switches, routers, and WLCs plus 5500 access points (7300 devices in total). Which Catalyst Center 2.3.7 appliance is the smallest that fits?",
+        "optionen":  [
+                         "DN-SW-APL (virtual)",
+                         "DN3-HW-APL-XL (80 cores)",
+                         "DN3-HW-APL-L (56 cores)",
+                         "DN3-HW-APL (32 cores)"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "APL und virtuelle Appliance sind auf insgesamt 5000 Geräte begrenzt. Die APL-L (56 Cores) trägt ohne Fabric 2000 Netzwerkgeräte und 6000 APs, insgesamt 8000 Geräte – das passt; die XL (18000 Geräte) wäre überdimensioniert."
+    },
+    {
+        "id":  "slg-cc-123",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The site hierarchy is already maintained in Cisco Prime Infrastructure 3.10. What is the most efficient way to build it in Catalyst Center?",
+        "optionen":  [
+                         "Rebuild it with a Day-0 template in Onboarding Configuration",
+                         "Discover it automatically with CDP from a core seed",
+                         "Synchronize it from Cisco ISE network device groups",
+                         "Export it from Prime Infrastructure as CSV and import it"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ab Prime Infrastructure 3.1 lässt sich die Hierarchie als CSV exportieren und in Catalyst Center importieren. Alternativ kommen Ekahau-Projekte oder eine CMX-Synchronisation in Frage."
+    },
+    {
+        "id":  "slg-cc-124",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A Catalyst 9800 WLC was discovered through its service port IP address, and Assurance data for its access points is missing. What is the correct approach?",
+        "optionen":  [
+                         "Discover the WLC through its management interface IP instead",
+                         "Add HTTPS credentials, because WLCs require them for collection",
+                         "Increase the CDP level so that the access points are found too",
+                         "Assign the WLC to the Global site instead of the building site"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "WLCs müssen über die Management-IP entdeckt werden, nicht über den Service Port (Out-of-Band). Zusätzlich braucht der WLC NETCONF-Credentials."
+    },
+    {
+        "id":  "slg-cc-125",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which Cisco Catalyst Center SecOps capability identifies the types of endpoints on the network so that an appropriate policy can be assigned?",
+        "optionen":  [
+                         "AI Endpoint Analytics",
+                         "Software Image Management",
+                         "Path Trace",
+                         "Rogue Management with aWIPS"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "AI Endpoint Analytics klassifiziert Endpunkte (u. a. per ML und Trust Score) und hilft, ihnen über ISE passende Authentifizierung und Policies zuzuordnen. aWIPS erkennt Funkangriffe, SWIM verwaltet Software."
+    },
+    {
+        "id":  "slg-cc-126",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Cisco publishes a new security advisory. How does Cisco Catalyst Center help determine which network devices are affected?",
+        "optionen":  [
+                         "It asks Cisco ISE to quarantine every device of the affected platform",
+                         "It sends the advisory to all devices, which evaluate and patch themselves",
+                         "It waits for affected devices to report the vulnerability via syslog",
+                         "It scans the inventory against the advisory and reports the matching devices"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Security Advisories (PSIRT) werden mit Plattform und Softwarestand im Inventory abgeglichen; betroffene Geräte erscheinen auch in der Compliance „Critical Security“. Anschließend hilft SWIM beim Upgrade."
+    },
+    {
+        "id":  "slg-cc-127",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is the main operational advantage of controller-based management with Cisco Catalyst Center over device-by-device CLI configuration?",
+        "optionen":  [
+                         "The controller forwards all user traffic, so switches need no tables",
+                         "No device credentials are needed anymore to manage the network devices",
+                         "Consistent, policy-based configuration of many devices from a single source",
+                         "Routing protocols are no longer required inside the campus network"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Controller setzt Settings, Templates und Policies einheitlich für viele Geräte um und prüft die Einhaltung. Die Datenebene bleibt auf den Geräten; Credentials und Routing werden weiterhin benötigt."
+    },
+    {
+        "id":  "slg-cc-128",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "50 new switches will be shipped to a branch. The engineer wants to prepare them in Catalyst Center before they arrive, using serial number and product ID. What is done?",
+        "optionen":  [
+                         "Add them in bulk via CSV in Plug and Play so they are pre-provisioned",
+                         "Create a DHCP reservation for each serial number on the seed switch",
+                         "Add them to the inventory with their future management IP addresses",
+                         "Discover them now with an IP range that covers the branch subnet"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Im PnP-Bereich lassen sich Geräte über den Tab Bulk Devices per CSV (Seriennummer, PID, Name) anlegen und vorab claimen. Melden sie sich später, werden sie nach Plan provisioniert."
+    },
+    {
+        "id":  "slg-cc-129",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A network profile contains a generic Day-0 template for all switches and a second Day-0 template with device-specific commands. A PnP switch matches both. What is pushed during onboarding?",
+        "optionen":  [
+                         "Neither, because only one Day-0 template is allowed",
+                         "Only the generic template; the second one is ignored",
+                         "Only the template that was committed most recently",
+                         "Both the generic and the device-specific configuration"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Mehrere Day-0-Templates sind erlaubt, z. B. ein allgemeines und ein gerätespezifisches. Das Gerät erhält dann beide Konfigurationsteile."
+    },
+    {
+        "id":  "slg-cc-130",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "When are the Day-N templates that are defined in a network profile applied to a device?",
+        "optionen":  [
+                         "During the provisioning process after onboarding",
+                         "Each time the inventory resync interval expires",
+                         "During PnP onboarding, together with the Day-0 file",
+                         "Only after a SWIM upgrade has been activated"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Day-N-Templates im Network Profile werden nicht beim PnP-Onboarding, sondern beim Provisioning des Geräts (z. B. nach Site-Zuweisung) ausgerollt."
+    },
+    {
+        "id":  "slg-cc-131",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A template contains commands that Catalyst Center applications already manage themselves (blocklisted commands). How does the template editor react?",
+        "optionen":  [
+                         "It converts these commands into Model Config designs automatically",
+                         "It shows a warning that the commands may conflict with provisioning",
+                         "It allows them only in Day-0 templates in the Onboarding project",
+                         "It silently removes these commands when the template is saved"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Blocklisted Commands dürfen nur über die jeweiligen Catalyst-Center-Anwendungen konfiguriert werden. Im Template erzeugen sie eine Warnung, weil sie mit dem Provisioning kollidieren können."
+    },
+    {
+        "id":  "slg-cc-132",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Element der Catalyst-Center-Netzwerkhierarchie seiner Eigenschaft zu.",
+        "paare":  [
+                      [
+                          "Global",
+                          "Wurzel der Hierarchie, existiert per Default"
+                      ],
+                      [
+                          "Area",
+                          "Ohne Adresse, enthält Sub-Areas und Buildings"
+                      ],
+                      [
+                          "Building",
+                          "Adresse und Koordinaten Pflicht, enthält Floors"
+                      ],
+                      [
+                          "Floor",
+                          "Nur innerhalb eines Buildings, mit Floor Plan für APs"
+                      ]
+                  ],
+        "erklaerung":  "Die Hierarchie bildet die Geografie ab und dient als Anker für Settings, Credentials und Golden Images. Buildings können keine Areas enthalten, Floors existieren nur in Buildings."
+    },
+    {
+        "id":  "slg-cc-133",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A template is created for device type \u0027Switches and Hubs\u0027 with software type IOS-XE. When provisioning an ISR router, the template is not offered. Why?",
+        "optionen":  [
+                         "Templates apply only to devices that match their device and software type",
+                         "Routers can receive configuration only through Model Config designs",
+                         "Templates must be committed again for each new device family manually",
+                         "ISR routers accept templates only after a SWIM upgrade to the golden image"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beim Anlegen eines Templates sind Gerätetyp und Softwaretyp Pflicht, optional auch Version und Tags. Nur passende Geräte bekommen das Template angeboten."
+    },
+    {
+        "id":  "slg-cc-134",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which statement about projects in the Cisco Catalyst Center Template Editor is correct?",
+        "optionen":  [
+                         "Projects are needed only for composite templates, not regular ones",
+                         "A project can hold only a single template of each device family",
+                         "Templates must be created inside a project, which acts as a folder",
+                         "Projects contain the configuration commands that templates inherit"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Projekte sind Ordner zur Strukturierung und enthalten selbst keine Konfiguration. Für das Anlegen genügt ein Name; Templates existieren nur innerhalb eines Projekts."
+    },
+    {
+        "id":  "slg-cc-135",
+        "topic":  "ENCOR-4.5",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Two switches are first discovered and placed in the Global site. Global has a syslog server defined. When are the syslog settings configured on the switches by Device Controllability?",
+        "optionen":  [
+                         "Only after the first successful SWIM image upgrade",
+                         "Never; syslog is configured only through Day-N templates",
+                         "Immediately after discovery, using the Global site settings",
+                         "When the switches are assigned to a site with syslog settings"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Geräte in Global werden nicht mit SNMP-, Syslog- oder NetFlow-Settings verändert, auch wenn Global solche definiert. Erst die Zuweisung zu einer Site schreibt die Settings dieser Site auf die Geräte."
+    }
+]

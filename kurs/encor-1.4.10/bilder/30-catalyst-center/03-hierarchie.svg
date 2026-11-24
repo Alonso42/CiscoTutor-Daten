@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Netzwerkhierarchie und Vererbung der Network Settings</title>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="21" font-weight="bold" fill="#222">Design: Hierarchie und Vererbung</text>
+<g font-size="14" fill="#222">
+<rect x="30" y="55" width="200" height="44" rx="8" fill="#b08aff" fill-opacity="0.25" stroke="#b08aff" stroke-width="2"/>
+<text x="130" y="82" text-anchor="middle" font-weight="bold">Global (Default)</text>
+<rect x="70" y="125" width="200" height="44" rx="8" fill="#4a9cff" fill-opacity="0.2" stroke="#4a9cff" stroke-width="2"/>
+<text x="170" y="145" text-anchor="middle" font-weight="bold">Area: Europe</text><text x="170" y="162" text-anchor="middle" font-size="12">ohne Adresse</text>
+<rect x="110" y="195" width="200" height="44" rx="8" fill="#4a9cff" fill-opacity="0.2" stroke="#4a9cff" stroke-width="2"/>
+<text x="210" y="215" text-anchor="middle" font-weight="bold">Sub-Area: Germany</text><text x="210" y="232" text-anchor="middle" font-size="12">Areas schachtelbar</text>
+<rect x="150" y="265" width="200" height="44" rx="8" fill="#39c86a" fill-opacity="0.22" stroke="#39c86a" stroke-width="2"/>
+<text x="250" y="285" text-anchor="middle" font-weight="bold">Building: HQ-Berlin</text><text x="250" y="302" text-anchor="middle" font-size="12">Adresse + Lat/Long Pflicht</text>
+<rect x="190" y="335" width="200" height="44" rx="8" fill="#ffd23f" fill-opacity="0.35" stroke="#222" stroke-width="1.5"/>
+<text x="290" y="355" text-anchor="middle" font-weight="bold">Floor: 2. OG</text><text x="290" y="372" text-anchor="middle" font-size="12">nur in Buildings, Floor Plan</text>
+<path d="M50,99 V147 H70" fill="none" stroke="#222"/>
+<path d="M90,169 V217 H110" fill="none" stroke="#222"/>
+<path d="M130,239 V287 H150" fill="none" stroke="#222"/>
+<path d="M170,309 V357 H190" fill="none" stroke="#222"/>
+<text x="30" y="410" font-size="13">Building kann keine Area enthalten · Floor nur unter Building</text>
+</g>
+<g font-size="13" fill="#222">
+<rect x="440" y="55" width="340" height="120" rx="8" fill="#eeeeee" stroke="#222"/>
+<text x="610" y="78" text-anchor="middle" font-size="15" font-weight="bold">Global Settings</text>
+<text x="455" y="102">DNS 10.1.1.53 · NTP 10.1.1.1</text>
+<text x="455" y="122">AAA: ISE (Geräte RADIUS/TACACS+,</text>
+<text x="455" y="140">Clients nur RADIUS)</text>
+<text x="455" y="160">Syslog/SNMP-Trap: Catalyst Center</text>
+<line x1="610" y1="175" x2="610" y2="215" stroke="#222" marker-end="url(#a)"/>
+<text x="620" y="200">erbt nach unten</text>
+<rect x="440" y="220" width="340" height="105" rx="8" fill="#39c86a" fill-opacity="0.12" stroke="#39c86a"/>
+<text x="610" y="243" text-anchor="middle" font-size="15" font-weight="bold">Site Germany: Override</text>
+<text x="455" y="267">DNS 10.49.1.53 (überschrieben,</text>
+<text x="455" y="285">kein Vererbungssymbol)</text>
+<text x="455" y="307">NTP, AAA: geerbt (Symbol sichtbar)</text>
+<rect x="440" y="340" width="340" height="80" rx="8" fill="#ffd23f" fill-opacity="0.25" stroke="#222"/>
+<text x="610" y="362" text-anchor="middle" font-size="15" font-weight="bold">Network Profile an Site</text>
+<text x="455" y="385">pro Site nur 1 Profil je Typ</text>
+<text x="455" y="405">(Switching, Routing, Wireless …)</text>
+</g>
+</svg>

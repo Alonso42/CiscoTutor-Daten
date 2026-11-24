@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>IOS XE universalk9: Autonomous und Controller Mode</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Ein Image (universalk9, ab 17.2) – zwei Modi</text>
+<rect x="40" y="70" width="260" height="110" rx="10" fill="#4a9cff" fill-opacity="0.25" stroke="#222"/>
+<text x="170" y="100" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Autonomous Mode</text>
+<text x="170" y="122" text-anchor="middle" font-size="12" fill="#222">klassisches IOS XE (Default)</text>
+<text x="170" y="142" text-anchor="middle" font-size="12" fill="#222">configure terminal</text>
+<text x="170" y="162" text-anchor="middle" font-size="12" fill="#222">show ip route ...</text>
+<rect x="500" y="70" width="260" height="110" rx="10" fill="#39c86a" fill-opacity="0.25" stroke="#222"/>
+<text x="630" y="100" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Controller Mode</text>
+<text x="630" y="122" text-anchor="middle" font-size="12" fill="#222">IOS XE SD-WAN</text>
+<text x="630" y="142" text-anchor="middle" font-size="12" fill="#222">config-transaction ... commit</text>
+<text x="630" y="162" text-anchor="middle" font-size="12" fill="#222">show sdwan ...</text>
+<defs><marker id="m" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#222"/></marker></defs>
+<line x1="300" y1="105" x2="496" y2="105" stroke="#222" stroke-width="2" marker-end="url(#m)"/>
+<text x="400" y="98" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">controller-mode enable</text>
+<line x1="500" y1="150" x2="304" y2="150" stroke="#222" stroke-width="2" marker-end="url(#m)"/>
+<text x="400" y="170" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">controller-mode disable</text>
+<rect x="40" y="215" width="720" height="95" rx="8" fill="#ff6b6b" fill-opacity="0.15" stroke="#222"/>
+<text x="60" y="240" font-size="13" font-weight="bold" fill="#222">Autonomous → Controller</text>
+<text x="60" y="260" font-size="12" fill="#222">NVRAM + Startup-Config gelöscht (wie write erase, inkl. Zertifikate) → Day-0-Zustand.</text>
+<text x="60" y="280" font-size="12" fill="#222">Vorherige Running-Config liegt als Backup im bootflash, wird aber nicht automatisch zurückgespielt.</text>
+<text x="60" y="298" font-size="12" fill="#222">Zurück nach Autonomous: IOS-Konfig fehlt → manuell aus Backup wiederherstellen.</text>
+<rect x="40" y="325" width="720" height="75" rx="8" fill="#39c86a" fill-opacity="0.15" stroke="#222"/>
+<text x="60" y="350" font-size="13" font-weight="bold" fill="#222">Controller → Autonomous</text>
+<text x="60" y="370" font-size="12" fill="#222">YANG-basierte Controller-Konfiguration bleibt in der Datenbank erhalten.</text>
+<text x="60" y="388" font-size="12" fill="#222">Wieder nach Controller: ursprüngliche SD-WAN-Konfig ist sofort wieder da.</text>
+<text x="400" y="430" text-anchor="middle" font-size="11" fill="#222">Plattformen: ISR 1000/4000, ASR 1000, IR1101, Catalyst 8000 Edge, Catalyst 8000V</text>
+</svg>

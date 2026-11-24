@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>SWIM: Lebenszyklus eines Software-Upgrades</title>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="21" font-weight="bold" fill="#222">Software Image Management (SWIM)</text>
+<g font-size="13" fill="#222">
+<rect x="15" y="50" width="135" height="60" rx="8" fill="#ffd23f" fill-opacity="0.35" stroke="#222"/><text x="82" y="75" text-anchor="middle" font-weight="bold">Golden Image</text><text x="82" y="95" text-anchor="middle">pro Familie/Rolle</text>
+<rect x="170" y="50" width="135" height="60" rx="8" fill="#eeeeee" stroke="#222"/><text x="237" y="75" text-anchor="middle" font-weight="bold">Geräte wählen</text><text x="237" y="95" text-anchor="middle">„Needs Update“</text>
+<rect x="325" y="50" width="135" height="60" rx="8" fill="#eeeeee" stroke="#222"/><text x="392" y="75" text-anchor="middle" font-weight="bold">Change Request</text><text x="392" y="95" text-anchor="middle">erstellen, genehmigen</text>
+<rect x="480" y="50" width="135" height="60" rx="8" fill="#4a9cff" fill-opacity="0.2" stroke="#4a9cff" stroke-width="2"/><text x="547" y="75" text-anchor="middle" font-weight="bold">Precheck</text><text x="547" y="95" text-anchor="middle">Flash, Config-Reg …</text>
+<rect x="635" y="50" width="150" height="60" rx="8" fill="#39c86a" fill-opacity="0.2" stroke="#39c86a" stroke-width="2"/><text x="710" y="75" text-anchor="middle" font-weight="bold">Distribute</text><text x="710" y="95" text-anchor="middle">Image auf Flash</text>
+<rect x="635" y="140" width="150" height="60" rx="8" fill="#39c86a" fill-opacity="0.2" stroke="#39c86a" stroke-width="2"/><text x="710" y="165" text-anchor="middle" font-weight="bold">Activate</text><text x="710" y="185" text-anchor="middle">Reload, jetzt/später</text>
+<rect x="480" y="140" width="135" height="60" rx="8" fill="#4a9cff" fill-opacity="0.2" stroke="#4a9cff" stroke-width="2"/><text x="547" y="165" text-anchor="middle" font-weight="bold">Post-Check</text><text x="547" y="185" text-anchor="middle">CDP, STP, Interfaces</text>
+<rect x="325" y="140" width="135" height="60" rx="8" fill="#eeeeee" stroke="#222"/><text x="392" y="165" text-anchor="middle" font-weight="bold">CR schließen</text>
+<line x1="150" y1="80" x2="168" y2="80" stroke="#222" marker-end="url(#a)"/>
+<line x1="305" y1="80" x2="323" y2="80" stroke="#222" marker-end="url(#a)"/>
+<line x1="460" y1="80" x2="478" y2="80" stroke="#222" marker-end="url(#a)"/>
+<line x1="615" y1="80" x2="633" y2="80" stroke="#222" marker-end="url(#a)"/>
+<line x1="710" y1="110" x2="710" y2="138" stroke="#222" marker-end="url(#a)"/>
+<line x1="635" y1="170" x2="617" y2="170" stroke="#222" marker-end="url(#a)"/>
+<line x1="480" y1="170" x2="462" y2="170" stroke="#222" marker-end="url(#a)"/>
+<text x="20" y="160">Klassisches NMS:</text><text x="20" y="178">nur Distribute + Activate</text>
+<rect x="15" y="225" width="380" height="210" rx="8" fill="#eeeeee" stroke="#222"/>
+<text x="205" y="248" text-anchor="middle" font-size="15" font-weight="bold">Image Repository</text>
+<text x="28" y="272">• Images, SMUs, Subpackages, ROMMON</text>
+<text x="28" y="294">• Import lokal oder von cisco.com/URL</text>
+<text x="28" y="316">• Checksumme vs. KGV-Datei → „verified“</text>
+<text x="40" y="334">(KGV automatisch alle 7 Tage)</text>
+<text x="28" y="356">• Status: Suggested · Latest</text>
+<text x="28" y="378">• bis 3 Image Distribution Server (SFTP),</text>
+<text x="40" y="396">pro Site zuweisbar</text>
+<text x="28" y="418">• Golden SMU nur mit Golden Base Image</text>
+<rect x="405" y="225" width="380" height="210" rx="8" fill="#ff6b6b" fill-opacity="0.1" stroke="#ff6b6b"/>
+<text x="595" y="248" text-anchor="middle" font-size="15" font-weight="bold">Besonderheiten</text>
+<text x="418" y="272">• SMU: Patch für Base Image, oft ohne Reboot</text>
+<text x="418" y="294">• Base Golden, SMU fehlt → nur SMU</text>
+<text x="430" y="312">wird installiert</text>
+<text x="418" y="334">• ROMMON: immer neueste Version, nur mit</text>
+<text x="430" y="352">Base Image, 2 Reboots (ROMMON, Image)</text>
+<text x="418" y="374">• Online mit cisco.com: Images werden</text>
+<text x="430" y="392">Gerätefamilien automatisch zugeordnet</text>
+<text x="418" y="414">• Upgrade: Inventory &gt; Update OS Image</text>
+</g>
+</svg>

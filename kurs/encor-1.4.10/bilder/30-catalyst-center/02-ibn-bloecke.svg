@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Intent-Based Networking: Translation, Activation, Assurance</title>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="30" text-anchor="middle" font-size="21" font-weight="bold" fill="#222">Vom manuellen Übersetzen zum Intent-Based Network</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="50" width="230" height="380" rx="10" fill="#ff6b6b" fill-opacity="0.08" stroke="#ff6b6b" stroke-dasharray="6 4"/>
+<text x="135" y="75" text-anchor="middle" font-size="16" font-weight="bold">Vorher: Gerät für Gerät</text>
+<rect x="40" y="90" width="190" height="44" rx="6" fill="#eeeeee" stroke="#222"/>
+<text x="135" y="108" text-anchor="middle">„SAP soll zum Quartalsende</text><text x="135" y="125" text-anchor="middle">Vorrang haben“</text>
+<line x1="135" y1="134" x2="135" y2="170" stroke="#222" marker-end="url(#a)"/>
+<circle cx="135" cy="195" r="22" fill="#ffffff" stroke="#222"/><text x="135" y="200" text-anchor="middle" font-size="12">Admin</text>
+<text x="135" y="236" text-anchor="middle" font-weight="bold">„Human Middleware“</text>
+<text x="135" y="256" text-anchor="middle">übersetzt Intent manuell</text>
+<text x="135" y="274" text-anchor="middle">in VLAN, ACL, QoS …</text>
+<line x1="135" y1="284" x2="135" y2="320" stroke="#222" marker-end="url(#a)"/>
+<text x="135" y="338" text-anchor="middle">CLI, Skripte – „hoffentlich</text><text x="135" y="355" text-anchor="middle">funktioniert es“</text>
+<rect x="45" y="372" width="40" height="30" fill="#ffffff" stroke="#222"/><text x="65" y="392" text-anchor="middle">SW</text>
+<rect x="115" y="372" width="40" height="30" fill="#ffffff" stroke="#222"/><text x="135" y="392" text-anchor="middle">SW</text>
+<circle cx="205" cy="387" r="16" fill="#ffffff" stroke="#222"/><text x="205" y="392" text-anchor="middle">R</text>
+</g>
+<line x1="260" y1="240" x2="300" y2="240" stroke="#4a9cff" stroke-width="3" marker-end="url(#a)"/>
+<g font-size="13" fill="#222">
+<rect x="310" y="50" width="470" height="380" rx="10" fill="#39c86a" fill-opacity="0.06" stroke="#39c86a" stroke-dasharray="6 4"/>
+<text x="545" y="75" text-anchor="middle" font-size="16" font-weight="bold">Nachher: Intent an den Controller</text>
+<rect x="330" y="90" width="430" height="70" rx="8" fill="#4a9cff" fill-opacity="0.18" stroke="#4a9cff" stroke-width="2"/>
+<text x="545" y="113" text-anchor="middle" font-size="16" font-weight="bold">1 · Translation</text>
+<text x="545" y="133" text-anchor="middle">Intent erfassen (GUI, YANG/JSON, API) → einheitliche Policy</text>
+<text x="545" y="151" text-anchor="middle">bei Migration: Hosts und laufende Policies entdecken</text>
+<rect x="330" y="185" width="205" height="110" rx="8" fill="#39c86a" fill-opacity="0.2" stroke="#39c86a" stroke-width="2"/>
+<text x="432" y="208" text-anchor="middle" font-size="16" font-weight="bold">2 · Activation</text>
+<text x="340" y="232">Policy in Domänen verteilen</text>
+<text x="340" y="252">Gerätekonfig ableiten, prüfen</text>
+<text x="340" y="272">per NETCONF/YANG, REST</text>
+<rect x="555" y="185" width="205" height="110" rx="8" fill="#ffd23f" fill-opacity="0.3" stroke="#222" stroke-width="1.5"/>
+<text x="657" y="208" text-anchor="middle" font-size="16" font-weight="bold">3 · Assurance</text>
+<text x="565" y="232">Continuous Verification</text>
+<text x="565" y="252">Insights and Visibility</text>
+<text x="565" y="272">Corrective Actions</text>
+<line x1="432" y1="160" x2="432" y2="183" stroke="#222" marker-end="url(#a)"/>
+<line x1="657" y1="160" x2="657" y2="183" stroke="#222" marker-end="url(#a)"/>
+<path d="M657,295 C657,345 432,345 432,297" fill="none" stroke="#ff6b6b" stroke-width="2.5" marker-end="url(#a)"/>
+<text x="545" y="360" text-anchor="middle" fill="#ff6b6b" font-weight="bold">Closed Loop: Abweichung → Korrektur</text>
+<text x="545" y="380" text-anchor="middle">(automatisch oder als Empfehlung an den Operator)</text>
+<text x="545" y="410" text-anchor="middle">Telemetrie aus dem Netz speist laufend die Assurance</text>
+</g>
+</svg>

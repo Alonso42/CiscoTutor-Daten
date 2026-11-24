@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Inventory: Workflow, Discovery und Management-IP</title>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="21" font-weight="bold" fill="#222">Geräte ins Inventory bringen</text>
+<g font-size="13" fill="#222">
+<rect x="15" y="45" width="175" height="60" rx="8" fill="#4a9cff" fill-opacity="0.18" stroke="#4a9cff" stroke-width="2"/>
+<text x="102" y="70" text-anchor="middle" font-weight="bold">1 Credential Sets</text><text x="102" y="90" text-anchor="middle">CLI + SNMP (min.)</text>
+<rect x="215" y="45" width="175" height="60" rx="8" fill="#39c86a" fill-opacity="0.18" stroke="#39c86a" stroke-width="2"/>
+<text x="302" y="70" text-anchor="middle" font-weight="bold">2 Discover / Add</text><text x="302" y="90" text-anchor="middle">oder CSV, PnP</text>
+<rect x="415" y="45" width="175" height="60" rx="8" fill="#b08aff" fill-opacity="0.18" stroke="#b08aff" stroke-width="2"/>
+<text x="502" y="70" text-anchor="middle" font-weight="bold">3 Hierarchie</text><text x="502" y="90" text-anchor="middle">Area/Building/Floor</text>
+<rect x="615" y="45" width="170" height="60" rx="8" fill="#ffd23f" fill-opacity="0.3" stroke="#222" stroke-width="1.5"/>
+<text x="700" y="70" text-anchor="middle" font-weight="bold">4 Assign to Site</text><text x="700" y="90" text-anchor="middle">Settings werden gepusht</text>
+<line x1="190" y1="75" x2="213" y2="75" stroke="#222" marker-end="url(#a)"/>
+<line x1="390" y1="75" x2="413" y2="75" stroke="#222" marker-end="url(#a)"/>
+<line x1="590" y1="75" x2="613" y2="75" stroke="#222" marker-end="url(#a)"/>
+<text x="20" y="140" font-size="16" font-weight="bold">Discovery-Methoden</text>
+<rect x="15" y="150" width="370" height="140" rx="8" fill="#eeeeee" stroke="#222"/>
+<text x="28" y="174">• CDP mit Seed-IP – Hop-Level Default 16</text>
+<text x="28" y="196">• LLDP mit Seed-IP – Hop-Level Default 16</text>
+<text x="28" y="218">• IP Address Range – bis 4096 Geräte,</text>
+<text x="40" y="236">Ausschlussbereiche (z. B. fremde CPE)</text>
+<text x="28" y="258">• Credentials: alle Sets werden probiert,</text>
+<text x="40" y="276">bis eines passt</text>
+<text x="420" y="140" font-size="16" font-weight="bold">Bevorzugte Management-IP (Loopback)</text>
+<rect x="415" y="150" width="370" height="140" rx="8" fill="#39c86a" fill-opacity="0.1" stroke="#39c86a"/>
+<text x="428" y="174">1. Ein Loopback → dessen IP</text>
+<text x="428" y="198">2. Mehrere Loopbacks → höchste Loopback-IP</text>
+<text x="428" y="222">3. Kein Loopback → höchste Ethernet-IP</text>
+<text x="446" y="240">(Subinterfaces zählen nicht)</text>
+<text x="428" y="264">4. Kein Ethernet → höchste Serial-IP</text>
+<text x="428" y="284">Später im Inventory änderbar</text>
+<text x="20" y="320" font-size="16" font-weight="bold">Inventory-Betrieb</text>
+<rect x="15" y="330" width="770" height="105" rx="8" fill="#ffd23f" fill-opacity="0.15" stroke="#222"/>
+<text x="28" y="354">Last Sync Status: Managed · Partial Collection Failure · Unreachable · Wrong Credentials · In Progress</text>
+<text x="28" y="378">Polling (Resync Interval): Default 25 min, max. 24 h · manueller Resync: max. 40 Geräte gleichzeitig</text>
+<text x="28" y="402">Actions: Edit, Resync, Reboot, Delete (nur ohne Site-Zuweisung) · Command Runner (show) · View 360</text>
+<text x="28" y="424">Device Controllability (Default an): SNMP/NETCONF-Credentials, IPDT, Trustpoint, TrustSec</text>
+</g>
+</svg>

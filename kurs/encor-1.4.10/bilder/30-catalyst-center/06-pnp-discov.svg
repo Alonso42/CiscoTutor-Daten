@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>PnP: Server-Discovery und Gerätezustände</title>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="21" font-weight="bold" fill="#222">Plug and Play: Wie findet das neue Gerät Catalyst Center?</text>
+<g font-size="13" fill="#222">
+<rect x="15" y="50" width="150" height="120" rx="8" fill="#eeeeee" stroke="#222"/>
+<rect x="55" y="62" width="70" height="34" fill="#ffffff" stroke="#222"/><text x="90" y="84" text-anchor="middle">SW</text>
+<text x="90" y="118" text-anchor="middle" font-weight="bold">Neues Gerät</text>
+<text x="90" y="138" text-anchor="middle">keine Startup-Config</text>
+<text x="90" y="156" text-anchor="middle">→ PnP Agent startet</text>
+<line x1="167" y1="110" x2="195" y2="110" stroke="#222" marker-end="url(#a)"/>
+<rect x="200" y="45" width="190" height="80" rx="8" fill="#39c86a" fill-opacity="0.2" stroke="#39c86a" stroke-width="2"/>
+<text x="295" y="66" text-anchor="middle" font-weight="bold">1 · DHCP</text>
+<text x="210" y="86">Discover mit Option 60</text>
+<text x="210" y="104">„ciscopnp“ → Antwort mit</text>
+<text x="210" y="120">Option 43 = Controller-IP</text>
+<rect x="405" y="45" width="190" height="80" rx="8" fill="#4a9cff" fill-opacity="0.2" stroke="#4a9cff" stroke-width="2"/>
+<text x="500" y="66" text-anchor="middle" font-weight="bold">2 · DNS (Fallback)</text>
+<text x="415" y="86">Domain aus DHCP, Lookup</text>
+<text x="415" y="104">pnpserver.&lt;domain&gt;</text>
+<text x="415" y="120">z. B. pnpserver.example.local</text>
+<rect x="610" y="45" width="175" height="80" rx="8" fill="#b08aff" fill-opacity="0.2" stroke="#b08aff" stroke-width="2"/>
+<text x="697" y="66" text-anchor="middle" font-weight="bold">3 · Cloud Redirect</text>
+<text x="620" y="86">PnP Connect:</text>
+<text x="620" y="104">devicehelper.cisco.com</text>
+<text x="620" y="120">(Smart Account)</text>
+<line x1="390" y1="85" x2="403" y2="85" stroke="#222" marker-end="url(#a)"/>
+<line x1="595" y1="85" x2="608" y2="85" stroke="#222" marker-end="url(#a)"/>
+<text x="200" y="150">Manuell: USB-Bootstrap (router-confg) oder Installer App – nicht für APs</text>
+<text x="200" y="172" font-family="monospace" font-size="12">option 43 ascii "5A1N;B2;K4;I10.1.1.100;J80"   (K4=HTTP, K5=HTTPS)</text>
+<text x="400" y="215" text-anchor="middle" font-size="16" font-weight="bold">Zustände in Provision &gt; Plug and Play</text>
+<rect x="20" y="235" width="170" height="70" rx="8" fill="#ff6b6b" fill-opacity="0.15" stroke="#ff6b6b" stroke-width="2"/>
+<text x="105" y="262" text-anchor="middle" font-weight="bold" font-size="15">Unclaimed</text>
+<text x="105" y="284" text-anchor="middle">hinzugefügt/gemeldet</text>
+<rect x="225" y="235" width="170" height="70" rx="8" fill="#ffd23f" fill-opacity="0.35" stroke="#222" stroke-width="1.5"/>
+<text x="310" y="262" text-anchor="middle" font-weight="bold" font-size="15">Planned</text>
+<text x="310" y="284" text-anchor="middle">geclaimt, noch still</text>
+<rect x="430" y="235" width="170" height="70" rx="8" fill="#4a9cff" fill-opacity="0.2" stroke="#4a9cff" stroke-width="2"/>
+<text x="515" y="262" text-anchor="middle" font-weight="bold" font-size="15">Onboarding</text>
+<text x="515" y="284" text-anchor="middle">Image + Day-0-Config</text>
+<rect x="635" y="235" width="150" height="70" rx="8" fill="#39c86a" fill-opacity="0.25" stroke="#39c86a" stroke-width="2"/>
+<text x="710" y="262" text-anchor="middle" font-weight="bold" font-size="15">Provisioned</text>
+<text x="710" y="284" text-anchor="middle">im Inventory</text>
+<line x1="190" y1="270" x2="223" y2="270" stroke="#222" marker-end="url(#a)"/>
+<line x1="395" y1="270" x2="428" y2="270" stroke="#222" marker-end="url(#a)"/>
+<line x1="600" y1="270" x2="633" y2="270" stroke="#222" marker-end="url(#a)"/>
+<text x="206" y="325" text-anchor="middle" font-size="12">Claim</text>
+<text x="412" y="325" text-anchor="middle" font-size="12">Gerät bootet</text>
+<rect x="20" y="345" width="765" height="90" rx="8" fill="#eeeeee" stroke="#222"/>
+<text x="35" y="368" font-weight="bold">Vorbereitung (Workflow):</text>
+<text x="35" y="390">Day-0-Template (Projekt Onboarding Configuration) → Network Profile → Template an Profil →</text>
+<text x="35" y="410">Sites an Profil → PnP-Gerät hinzufügen (optional, auch CSV) → Claim (Site, Variablen)</text>
+<text x="35" y="428">Sicherheit: SUDI-Geräteidentität, HTTPS zwischen Agent und Server</text>
+</g>
+</svg>

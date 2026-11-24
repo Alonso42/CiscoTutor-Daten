@@ -1,0 +1,2077 @@
+[
+    {
+        "id":  "slg-sd-001",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which statement describes the underlay of a Cisco SD-Access fabric?",
+        "optionen":  [
+                         "Logical virtual networks that carry the end-user subnets between all fabric edges",
+                         "VXLAN tunnels that connect the fabric APs to the WLC for wireless client data",
+                         "Physical switches that provide IP reachability between the loopbacks of fabric nodes",
+                         "The LISP mapping database that tracks the current location of every endpoint"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das Underlay besteht aus den physischen Switches/Routern und stellt per Routingprotokoll IP-Erreichbarkeit zwischen den Fabric-Knoten (RLOC-Loopbacks) her. VNs, VXLAN-Tunnel und die LISP-Datenbank gehören zum Overlay bzw. zur Control Plane."
+    },
+    {
+        "id":  "slg-sd-002",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer builds a manual SD-Access underlay with IS-IS. Which prefixes should NOT be advertised in the underlay IGP?",
+        "optionen":  [
+                         "Loopback0 /32 addresses that serve as RLOCs",
+                         "Point-to-point links between edge and intermediate nodes",
+                         "Endpoint host pool subnets such as 10.10.20.0/24",
+                         "Loopback addresses of the control plane nodes"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Endbenutzer-Subnetze (Host Pools/EIDs) sind nicht Teil des Underlays – sie werden über LISP aufgelöst und nur am Border nach außen annonciert. Das Underlay braucht lediglich die Infrastruktur-Links und die RLOC-Loopbacks."
+    },
+    {
+        "id":  "slg-sd-003",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "An architect lists technologies used in a campus. Which three of them build an overlay network? (Choose three.)",
+        "optionen":  [
+                         "EIGRP",
+                         "OTV",
+                         "DMVPN",
+                         "IS-IS",
+                         "CAPWAP"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "CAPWAP, DMVPN und OTV kapseln Verkehr und bilden eine logische Topologie über einem Transportnetz. EIGRP und IS-IS sind Routingprotokolle, die typischerweise das Underlay aufbauen."
+    },
+    {
+        "id":  "slg-sd-004",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why does Cisco recommend IS-IS as the routing protocol for the SD-Access underlay?",
+        "optionen":  [
+                         "It carries the endpoint EID prefixes so edge nodes need no LISP map-cache at all",
+                         "It is the only IGP that supports equal-cost multipath across routed access links",
+                         "It forms adjacencies without depending on IP addressing and treats IPv4 and IPv6 alike",
+                         "It encapsulates VXLAN traffic natively so no additional MTU must be configured"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "IS-IS läuft direkt auf Layer 2 (CLNS) und braucht für die Nachbarschaft keine IP-Adressen, ist protokollneutral für IPv4/IPv6 und gut automatisierbar (LAN Automation). ECMP können auch OSPF/EIGRP, und EIDs gehören nicht ins Underlay."
+    },
+    {
+        "id":  "slg-sd-005",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "For optimal performance, Cisco recommends a round-trip time of ___ ms or less between Catalyst Center and the fabric devices it manages.",
+        "optionen":  [
+                         "10",
+                         "500",
+                         "100",
+                         "20"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Cisco empfiehlt zwischen Catalyst Center und den verwalteten Geräten eine RTT von höchstens 100 ms; 200 ms sind das unterstützte Maximum. Die 20 ms gelten dagegen für die RTT zwischen Fabric-AP und WLC."
+    },
+    {
+        "id":  "slg-sd-006",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A client sends 1500-byte IP packets across an SD-Access fabric. No 802.1Q tag is used on the underlay links. Which minimum IP MTU must the underlay links support so the VXLAN-encapsulated packets need no fragmentation?",
+        "optionen":  [
+                         "1600 bytes",
+                         "1514 bytes",
+                         "1554 bytes",
+                         "1550 bytes"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Zur Nutzlast kommen innerer Ethernet-Header (14), VXLAN (8), UDP (8) und äußerer IP-Header (20) = 50 Byte, also 1550 Byte IP-MTU. Der äußere Ethernet-Header zählt nicht zur IP-MTU; Catalyst Center setzt deshalb großzügig system mtu 9100."
+    },
+    {
+        "id":  "slg-sd-007",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "In a new SD-Access fabric, pings and SSH sessions between hosts on different edge nodes work. Large file transfers stall, and pings with 1500 bytes and the DF bit set fail. What is the most likely cause?",
+        "optionen":  [
+                         "An underlay link in the path still uses an MTU of 1500 bytes",
+                         "The control plane node has no registration for the server",
+                         "The SGACL between both groups denies all IP traffic",
+                         "The anycast gateway MAC differs between both edge nodes"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "VXLAN fügt rund 50 Byte hinzu; große Pakete passen dann nicht mehr durch einen Link mit MTU 1500 und werden verworfen, kleine kommen durch. Fehlende Registrierung oder ein Deny-SGACL würden auch kleine Pakete betreffen."
+    },
+    {
+        "id":  "slg-sd-008",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is an intermediate node in an SD-Access fabric?",
+        "optionen":  [
+                         "A node that runs the LISP map-server and map-resolver",
+                         "A switch that registers endpoints and acts as anycast gateway",
+                         "A node that connects the fabric to external Layer 3 networks",
+                         "An underlay device that only routes IP traffic between fabric nodes"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Intermediate Nodes sind reine Underlay-Router/Switches zwischen Edge, Border und Control Plane. Sie sind nicht fabric-aware und sehen nur IP-Pakete zwischen RLOCs."
+    },
+    {
+        "id":  "slg-sd-009",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which requirement applies to intermediate nodes in an SD-Access fabric?",
+        "optionen":  [
+                         "They must terminate VXLAN tunnels and act as anycast gateway for hosts",
+                         "They must run LISP and register the endpoints behind them with the CP",
+                         "They must hold a VRF definition for every virtual network in the fabric",
+                         "They must support the larger MTU that VXLAN-encapsulated traffic needs"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Intermediate Nodes leiten nur gekapselte Pakete zwischen RLOCs weiter. Sie brauchen weder LISP noch VRFs, müssen aber die um den Fabric-Header vergrößerten Pakete transportieren können."
+    },
+    {
+        "id":  "slg-sd-010",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A laptop connects to a fabric edge node and is authenticated. Which message does the edge node send so the fabric learns where the laptop is located?",
+        "optionen":  [
+                         "LISP Map-Request to the control plane node",
+                         "LISP Map-Register to the control plane node",
+                         "LISP Solicit-Map-Request to all edges",
+                         "LISP Map-Reply to the border node"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Edge trägt den Endpunkt in ihre lokale EID-Tabelle ein und meldet ihn per Map-Register (EID → eigener RLOC) an den Map-Server des Control Plane Node, der damit die Host Tracking Database füllt."
+    },
+    {
+        "id":  "slg-sd-011",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A fabric edge queries the control plane node for a destination, but the control plane node has no mapping for it. How does the edge forward the traffic?",
+        "optionen":  [
+                         "It routes the packet unencapsulated through the underlay",
+                         "It floods the packet to all edges in the same host pool",
+                         "It drops the packet and sends ICMP unreachable to the host",
+                         "It sends the traffic to the external (default) border node"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Unbekannte Ziele liegen außerhalb der Fabric. Die Edge schickt den Verkehr daher gekapselt zum External Border, der als LISP Proxy-ETR das Gateway of last resort ist."
+    },
+    {
+        "id":  "slg-sd-012",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Where does a fabric edge node store the EID-to-RLOC mapping it received from the map-resolver?",
+        "optionen":  [
+                         "In the BGP table as a VPNv4 prefix that is advertised to all other edges",
+                         "In its own host tracking database, which it replicates to the border node",
+                         "In its LISP map-cache, which is merged into CEF and programmed into hardware",
+                         "In the IS-IS link-state database as a tagged host route for the underlay"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Antwort des Map-Resolvers landet im LISP Map-Cache der Edge; dieser wird in CEF übernommen und in Hardware installiert. Die HTDB liegt nur auf dem Control Plane Node."
+    },
+    {
+        "id":  "slg-sd-013",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Host H moved from Edge1 to Edge2, and the control plane node was updated. Edge3 still has a stale map-cache entry and keeps sending H\u0027s traffic to Edge1. What does Edge1 do to correct this?",
+        "optionen":  [
+                         "It floods an ARP request into the host pool to locate host H again",
+                         "It sends a Map-Register for H\u0027s old location to the control plane node",
+                         "It drops the traffic until Edge3\u0027s cache entry expires after 24 hours",
+                         "It sends a Solicit-Map-Request to Edge3 so Edge3 refreshes its map-cache"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Empfängt eine Edge Verkehr für einen Endpunkt, der nicht mehr lokal ist, schickt sie ein Solicit-Map-Request (SMR) an die sendende Edge. Diese stellt daraufhin einen neuen Map-Request und erhält den aktuellen RLOC."
+    },
+    {
+        "id":  "slg-sd-014",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A user moves from Edge1 to Edge3 within the same host pool. Why does the client not need to learn a new default gateway?",
+        "optionen":  [
+                         "Every edge uses the same gateway IP and MAC address for the pool",
+                         "Edge3 answers ARP requests with the MAC address of Edge1\u0027s SVI",
+                         "The client keeps using Edge1 as its gateway through a VXLAN tunnel",
+                         "HSRP between the edge nodes elects Edge3 as the new active router"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beim Anycast Gateway ist die SVI eines Host Pools auf jeder Edge mit identischer IP- und MAC-Adresse konfiguriert. Der ARP-Eintrag des Clients bleibt daher gültig; anders als bei HSRP sind alle Edges gleichzeitig aktiv."
+    },
+    {
+        "id":  "slg-sd-015",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three functions does a fabric edge node perform? (Choose three.)",
+        "optionen":  [
+                         "VXLAN encapsulation and decapsulation of endpoint traffic",
+                         "Holding the host tracking database for the whole fabric site",
+                         "Registering locally connected endpoints with the control plane node",
+                         "Providing the anycast Layer 3 gateway for its host pools",
+                         "Advertising the EID prefixes to external networks with BGP"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Die Edge registriert Endpunkte, ist Anycast Gateway und VTEP. Die HTDB liegt auf dem Control Plane Node, das Annoncieren der EID-Präfixe nach außen übernimmt der Border."
+    },
+    {
+        "id":  "slg-sd-016",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A printer port must always place the device into the PRINTERS host pool, regardless of authentication. How is this achieved in SD-Access?",
+        "optionen":  [
+                         "Enable Layer 2 flooding in the PRINTERS host pool",
+                         "Assign the host pool statically to the switch port",
+                         "Register the printer MAC as a static EID on the border",
+                         "Configure an SGACL that permits the printer group"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Host Pools werden entweder dynamisch über die Authentifizierung (ISE liefert den Pool/VLAN) oder statisch pro Port zugewiesen. Für einen festen Druckerport ist die statische Port-Zuweisung der passende Weg."
+    },
+    {
+        "id":  "slg-sd-017",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Bauform bzw. den Border-Typ seinem Einsatzzweck zu.",
+        "paare":  [
+                      [
+                          "Internal Border",
+                          "Gateway zu bekannten Netzen wie Shared Services oder Rechenzentrum"
+                      ],
+                      [
+                          "External Border",
+                          "Gateway of last resort für unbekannte Ziele wie das Internet"
+                      ],
+                      [
+                          "Anywhere Border",
+                          "Kombiniert beide Border-Rollen auf einem Knoten"
+                      ],
+                      [
+                          "Fabric in a Box",
+                          "Control Plane, Border und Edge auf einem Switch oder Stack"
+                      ]
+                  ],
+        "erklaerung":  "Internal Borders kennen eine definierte Präfixliste (z. B. DC), External Borders sind der Default-Ausgang (LISP PxTR), Anywhere vereint beides. Fabric in a Box bündelt alle Fabric-Rollen für kleine Standorte."
+    },
+    {
+        "id":  "slg-sd-018",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A fabric site reaches the data center prefix 10.100.0.0/16 only through border B1, and the internet only through border B2. Which border types fit this design?",
+        "optionen":  [
+                         "B1 external border, B2 internal border",
+                         "B1 anywhere border, B2 intermediate node",
+                         "B1 internal border, B2 control plane node",
+                         "B1 internal border, B2 external border"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ein Internal Border ist Gateway für bekannte, definierte Netze wie das DC. Der External Border ist der Ausgang für alle unbekannten Ziele, also typischerweise das Internet."
+    },
+    {
+        "id":  "slg-sd-019",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How are the EID prefixes of a fabric site made known to networks outside the fabric?",
+        "optionen":  [
+                         "The fusion router learns them by sending LISP Map-Requests to the CP",
+                         "The border node advertises them to external peers, preferably with BGP",
+                         "Edge nodes redistribute their host pools into the underlay IGP",
+                         "The control plane node advertises them to the fusion router via IS-IS"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Catalyst Center konfiguriert BGP als bevorzugtes Protokoll, mit dem der Border die EID-Präfixe nach außen annonciert. Verkehr von außen zu den EIDs läuft deshalb über die Border Nodes."
+    },
+    {
+        "id":  "slg-sd-020",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An engineer checks the routing table of an intermediate node and cannot find the host pool 10.10.20.0/24, although hosts in that pool communicate fine. What does this indicate?",
+        "optionen":  [
+                         "There is a fault; the control plane node failed to push the prefix into the underlay",
+                         "There is a fault; edges must redistribute host pools into IS-IS for VXLAN to work",
+                         "Nothing is wrong; the prefix is only missing because IS-IS has not converged yet",
+                         "Nothing is wrong; underlay nodes need only RLOC routes, EID prefixes appear at the border"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "EID-Präfixe stehen nur in der Routing-Tabelle des Borders; innerhalb der Fabric werden sie über den Control Plane Node aufgelöst. Intermediate Nodes routen ausschließlich zwischen RLOCs, daher ist das Verhalten korrekt."
+    },
+    {
+        "id":  "slg-sd-021",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The fabric control plane node combines the LISP map-server and the LISP ___ on the same node.",
+        "optionen":  [
+                         "ingress tunnel router",
+                         "map-resolver",
+                         "proxy ETR",
+                         "ALT router"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Control Plane Node vereint Map-Server (nimmt Map-Register an und füllt die HTDB) und Map-Resolver (beantwortet Map-Requests der Edges)."
+    },
+    {
+        "id":  "slg-sd-022",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A small fabric site cannot afford dedicated hardware for every fabric role. Where may the control plane node function run?",
+        "optionen":  [
+                         "Only on a dedicated appliance outside of the fabric",
+                         "On every edge node so that lookups stay local",
+                         "Collocated with the border node on the same switch",
+                         "On the fabric WLC because it already tracks clients"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Control-Plane-Funktion kann mit dem Border Node auf einem Gerät kombiniert werden; für große Umgebungen sind dedizierte Knoten möglich. Der WLC registriert nur Wireless-Clients beim CP, ist aber selbst kein Map-Server."
+    },
+    {
+        "id":  "slg-sd-023",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A fabric site uses two control plane nodes for resiliency. How do the edge and border nodes use them?",
+        "optionen":  [
+                         "They register with and query both control plane nodes",
+                         "They use only the CP node with the best IS-IS metric",
+                         "They use a VRRP virtual IP shared by both CP nodes",
+                         "They register only with the node that has the lower IP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Border und Edges registrieren sich bei allen Control Plane Nodes und nutzen sie alle. Deshalb sollten die redundanten CP-Knoten die gleiche Plattform sein, damit die Leistung konsistent ist."
+    },
+    {
+        "id":  "slg-sd-024",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which field of the VXLAN-GPO header carries the scalable group tag of the source?",
+        "optionen":  [
+                         "VNI field (24 bits)",
+                         "Outer IP DSCP field (6 bits)",
+                         "Group Policy ID field (16 bits)",
+                         "UDP source port field (16 bits)"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "VXLAN-GPO nutzt 16 vormals reservierte Bits als Group Policy ID für das SGT der Quelle. Das VNI-Feld identifiziert das virtuelle Netz, der UDP-Quellport dient der ECMP-Verteilung."
+    },
+    {
+        "id":  "slg-sd-025",
+        "topic":  "ENCOR-2.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How is the UDP source port of a VXLAN packet in the SD-Access fabric chosen?",
+        "optionen":  [
+                         "It carries the SGT so the egress edge can apply the group policy",
+                         "It is fixed to 4789 so firewalls can always identify VXLAN traffic",
+                         "It is a hash of the inner headers that gives ECMP entropy in the underlay",
+                         "It identifies the virtual network so the receiver can select the VRF"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Quellport wird aus einem Hash der inneren L2/L3/L4-Header gebildet. So verteilen Underlay-Switches verschiedene Flows per ECMP auf alle Pfade und vermeiden Polarisierung; 4789 ist der Zielport."
+    },
+    {
+        "id":  "slg-sd-026",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A capture between two fabric edges shows: outer IP 10.255.0.21 -\u003e 10.255.0.22, UDP destination port 4789, VXLAN VNI 4099, Group Policy ID 17, inner IP 10.10.20.37 -\u003e 10.10.30.5. What can you conclude?",
+        "optionen":  [
+                         "The source host has SGT 4099 and VNI 17 identifies its host pool subnet",
+                         "The packet is LISP control traffic for instance ID 4099 and site ID 17",
+                         "The destination host has SGT 17 and sits in VLAN 4099 on the egress edge",
+                         "The source host has SGT 17 and belongs to the VN that uses VNI 4099"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Im VXLAN-GPO-Header steht die Group Policy ID der Quelle (hier SGT 17) und das VNI des virtuellen Netzes (4099). Die äußeren Adressen sind die RLOCs der Edges; das Ziel-SGT ermittelt erst die Egress-Edge."
+    },
+    {
+        "id":  "slg-sd-027",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "The VXLAN-GPO group policy field is ___ bits long, which allows about 64,000 scalable group tags.",
+        "optionen":  [
+                         "12",
+                         "8",
+                         "24",
+                         "16"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "SD-Access nutzt 16 reservierte Bits des VXLAN-Headers für das SGT, also 2^16 ≈ 64.000 Gruppen. 24 Bit hat das VNI-Feld, 12 Bit die VLAN-ID."
+    },
+    {
+        "id":  "slg-sd-028",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Feld bzw. den Bezeichner im SD-Access-Datenpfad seiner Bedeutung zu.",
+        "paare":  [
+                      [
+                          "L3-VNI",
+                          "identifiziert das virtuelle Netz (VRF) für geroutete Kommunikation"
+                      ],
+                      [
+                          "L2-VNI",
+                          "identifiziert das VLAN-Segment eines Host Pools für Bridging"
+                      ],
+                      [
+                          "Group Policy ID",
+                          "identifiziert die Scalable Group der Quelle"
+                      ],
+                      [
+                          "Äußere Ziel-IP",
+                          "identifiziert den RLOC des Egress-Fabric-Knotens"
+                      ]
+                  ],
+        "erklaerung":  "Das VNI trägt je nach Typ VRF (L3) oder VLAN/Subnetz (L2); die Group Policy ID trägt das Quell-SGT. Die äußere Ziel-IP ist die Loopback (RLOC) des Ziel-Fabric-Knotens."
+    },
+    {
+        "id":  "slg-sd-029",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Why does SD-Access use VXLAN instead of the native LISP encapsulation in the data plane? (Choose three.)",
+        "optionen":  [
+                         "The LISP data plane cannot carry IPv6 packets between the sites",
+                         "VXLAN removes the need for any routing protocol in the underlay",
+                         "VXLAN-GPO provides a header field to carry the scalable group tag",
+                         "VXLAN supports Layer 2 virtual networks by mapping VLANs to VNIs",
+                         "VXLAN preserves the original Ethernet header of the endpoint frame"
+                     ],
+        "richtig":  [
+                        2,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Die LISP-Kapselung verwirft den Ethernet-Header (nur L3) und hat kein Feld für das SGT. VXLAN-GPO trägt den kompletten Frame, das SGT und ermöglicht L2-VNs; IPv6 kann LISP sehr wohl, und ein Underlay-Routing ist weiterhin nötig."
+    },
+    {
+        "id":  "slg-sd-030",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "IoT cameras in VN IOT must reach a video recording server in VN CAMPUS. Both VNs exist in the same fabric site. What is required?",
+        "optionen":  [
+                         "Layer 2 flooding enabled in both affected host pools",
+                         "An SGACL that permits the camera SGT to the server SGT",
+                         "Placing both VNs into the same LISP instance ID range",
+                         "Route leaking between both VRFs on a fusion device or firewall"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "VNs sind getrennte VRFs mit eigenen Routing-Tabellen; ohne Route Leaking gibt es keine Verbindung. Das erledigt typischerweise ein Fusion Router oder eine Firewall außerhalb der Fabric. SGACLs wirken nur innerhalb eines VN."
+    },
+    {
+        "id":  "slg-sd-031",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Employees and contractors share the VN CAMPUS. Contractors must not reach employee laptops, but both groups must stay in the same VN. Which SD-Access mechanism provides this?",
+        "optionen":  [
+                         "A different anycast gateway MAC address for the contractor pool",
+                         "A separate LISP map-server for the contractor endpoints",
+                         "Disabling VXLAN encapsulation for the contractor host pool",
+                         "Different SGTs with a deny rule in the group-based policy matrix"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Innerhalb eines VN sorgt die Mikro-Segmentierung für Trennung: Die Gruppen erhalten unterschiedliche SGTs, und eine SGACL in der Policy-Matrix verbietet Contractor → Employee."
+    },
+    {
+        "id":  "slg-sd-032",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two users in the same VN are connected to different fabric edges. Where is the SGACL between their groups typically enforced?",
+        "optionen":  [
+                         "On the fabric WLC that authenticated the source endpoint",
+                         "On the intermediate nodes that forward the VXLAN packet",
+                         "On the control plane node while it resolves the destination",
+                         "On the egress fabric edge where the destination is connected"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "TrustSec filtert am Egress: Das Quell-SGT kommt im VXLAN-GPO-Header mit, das Ziel-SGT kennt die Edge, an der das Ziel hängt. Ost-West-Verkehr wird daher an der Ziel-Edge durchgesetzt."
+    },
+    {
+        "id":  "slg-sd-033",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A user authenticates with 802.1X on a fabric edge port. How does the edge learn which SGT to assign to the session?",
+        "optionen":  [
+                         "Catalyst Center pushes a static port-to-SGT mapping to the edge",
+                         "The edge derives it from DHCP option 82 data of the client request",
+                         "ISE returns the SGT as a RADIUS attribute in the Access-Accept",
+                         "The control plane node assigns it while processing the Map-Register"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Bei dynamischer Klassifizierung liefert ISE das SGT als Attribut-Wert-Paar im RADIUS Access-Accept an die Edge. Statische Zuordnungen (VLAN, Subnetz, Port) sind die Alternative ohne Authentifizierung."
+    },
+    {
+        "id":  "slg-sd-034",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A firewall outside the fabric is reached through an IP-based transit (VRF-Lite). It should enforce rules based on source SGTs but sees no tags. What is a valid fix?",
+        "optionen":  [
+                         "Advertise the SGTs as BGP extended communities",
+                         "Enable VXLAN-GPO on the firewall\u0027s VRF-Lite subinterface",
+                         "Raise the MTU of the handoff link to 9100 bytes",
+                         "Use SXP so the firewall learns the IP-to-SGT bindings"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Am Border wird der VXLAN-Header entfernt, damit geht das SGT im Datenpfad verloren. Per SXP (vom Border oder von ISE) lernt die Firewall die IP-zu-SGT-Bindings; alternativ ist Inline-Tagging auf dem Handoff-Link möglich."
+    },
+    {
+        "id":  "slg-sd-035",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Begriff der SD-Access-Policy-Ebene seiner Umsetzung zu.",
+        "paare":  [
+                      [
+                          "Makro-Segmentierung",
+                          "Virtual Network als VRF mit eigener Routing-Tabelle"
+                      ],
+                      [
+                          "Mikro-Segmentierung",
+                          "SGT und SGACL innerhalb eines Virtual Network"
+                      ],
+                      [
+                          "SGT-Weitergabe in der Fabric",
+                          "Group Policy ID im VXLAN-GPO-Header"
+                      ],
+                      [
+                          "SGT-Weitergabe bei klassischem TrustSec",
+                          "Hop-by-hop Inline-Tagging oder SXP"
+                      ]
+                  ],
+        "erklaerung":  "SD-Access trennt grob per VN (VRF) und fein per SGT/SGACL. In der Fabric reist das SGT im VXLAN-GPO-Header mit, im klassischen TrustSec dagegen Link für Link inline oder per SXP."
+    },
+    {
+        "id":  "slg-sd-036",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which mechanisms does Cisco Catalyst Center use to integrate with Cisco ISE in an SD-Access deployment?",
+        "optionen":  [
+                         "SNMP and syslog",
+                         "RADIUS and TACACS+",
+                         "pxGrid and REST APIs",
+                         "SXP and NETCONF"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Catalyst Center und ISE tauschen Kontext über pxGrid aus und automatisieren Fabric-relevante Einstellungen (Gruppen, Policies) über REST-APIs. RADIUS/TACACS+ nutzen die Netzgeräte gegenüber ISE."
+    },
+    {
+        "id":  "slg-sd-037",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "With which Cisco ISE node does Catalyst Center primarily communicate when the integration is set up?",
+        "optionen":  [
+                         "Policy Service Node (PSN)",
+                         "Primary Administration Node (PAN)",
+                         "Inline Posture Node (IPN)",
+                         "Monitoring and Troubleshooting node (MnT)"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Integration läuft über die PAN. Sie meldet Catalyst Center alle weiteren ISE-Knoten (PSN, MnT, pxGrid) und synchronisiert Konfigurationsänderungen an die übrigen Nodes."
+    },
+    {
+        "id":  "slg-sd-038",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die ISE-Persona ihrer Aufgabe in einer SD-Access-Umgebung zu.",
+        "paare":  [
+                      [
+                          "PAN",
+                          "nimmt alle Konfigurationsänderungen an und synchronisiert die anderen Knoten"
+                      ],
+                      [
+                          "PSN",
+                          "bearbeitet die RADIUS-Anfragen der Fabric Edges"
+                      ],
+                      [
+                          "MnT",
+                          "speichert Authentifizierungs-Logs für Reports und Troubleshooting"
+                      ],
+                      [
+                          "pxGrid",
+                          "teilt Session- und Gruppenkontext mit Catalyst Center"
+                      ]
+                  ],
+        "erklaerung":  "Konfiguriert wird auf der PAN, authentifiziert über die PSN, protokolliert auf der MnT. pxGrid stellt Kontextinformationen (z. B. Sessions, SGT-Zuordnungen) für Catalyst Center und andere Systeme bereit."
+    },
+    {
+        "id":  "slg-sd-039",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "How does a fabric WLC differ from a traditional WLC for fabric-enabled SSIDs?",
+        "optionen":  [
+                         "It terminates VXLAN tunnels from fabric APs",
+                         "It replaces the control plane node for clients",
+                         "It is not part of the client data path",
+                         "It acts as anycast gateway for wireless clients"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Fabric-WLCs behalten RRM, AP- und Client-Session-Management, leiten aber keine Daten der Fabric-SSIDs weiter. Die Fabric APs schicken die Daten per VXLAN direkt zur Edge."
+    },
+    {
+        "id":  "slg-sd-040",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A wireless client joins a fabric-enabled SSID. What does the fabric WLC register in the host tracking database of the control plane node?",
+        "optionen":  [
+                         "The AP management IP address as an RLOC for every client",
+                         "The client MAC address together with its SGT and Layer 2 VNI",
+                         "The client IP address that it learned through DHCP snooping",
+                         "The SSID name mapped to the client VRF and its LISP site"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der WLC registriert als Proxy die Layer-2-Information des Clients (MAC als L2-EID) mit SGT und L2-VNI beim CP. Die IP-Adresse registriert später die Edge, sobald DHCP Snooping oder ARP sie erkennt."
+    },
+    {
+        "id":  "slg-sd-041",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which device registers the IP address of a fabric wireless client with the control plane node?",
+        "optionen":  [
+                         "The fabric edge, triggered by DHCP snooping or ARP",
+                         "The fabric WLC, right after the client authenticates",
+                         "The control plane node itself, from the WLC MAC entry",
+                         "The fabric AP, through its CAPWAP control tunnel"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der WLC registriert nur die MAC (L2). Nachdem der Client per DHCP eine Adresse erhalten hat, löst DHCP Snooping (bei statischer IP ARP) auf der Edge die Registrierung der IP-EID aus."
+    },
+    {
+        "id":  "slg-sd-042",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A new AP joins the fabric WLC but is shown as non-fabric, and no VXLAN tunnel is built. The AP is plugged into an unmanaged desktop switch below a fabric edge port. What is the most likely reason?",
+        "optionen":  [
+                         "The AP received its IP address from the INFRA_VN pool",
+                         "The AP is not directly connected to a fabric edge node",
+                         "The AP joined in local mode instead of FlexConnect mode",
+                         "The WLC uses CAPWAP for the AP control traffic"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Fabric APs müssen direkt an einer Fabric Edge (oder einem Extended Node) hängen, damit die Edge sie erkennt, registriert und einen VXLAN-Tunnel aufbaut. Local Mode, INFRA_VN und CAPWAP-Control sind dagegen genau die Sollkonfiguration."
+    },
+    {
+        "id":  "slg-sd-043",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Fabric-enabled access points join the WLC in ___ mode.",
+        "optionen":  [
+                         "monitor",
+                         "local",
+                         "bridge",
+                         "FlexConnect"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Fabric APs arbeiten im Local Mode; FlexConnect oder ein WLC über das WAN werden für den Fabric-Modus nicht unterstützt."
+    },
+    {
+        "id":  "slg-sd-044",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The fabric WLC is located in the data center, reachable in the global routing table. In which VN does Catalyst Center place the fabric APs so they can build CAPWAP to the WLC without route leaking?",
+        "optionen":  [
+                         "A separate VN for every SSID defined on the WLC",
+                         "INFRA_VN, which maps to the global routing table",
+                         "DEFAULT_VN, which maps to its own dedicated VRF",
+                         "GUEST_VN, which is leaked via the fusion router"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Catalyst Center legt APs (und Extended Nodes) ins INFRA_VN, das auf die Global Routing Table abgebildet ist. Dadurch erreichen sie den WLC ohne Route Leaking oder Fusion-Router-Dienste."
+    },
+    {
+        "id":  "slg-sd-045",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What does a fabric AP do with a data frame it receives from a client on a fabric-enabled SSID?",
+        "optionen":  [
+                         "Encapsulates it in GRE toward the external border node",
+                         "Encapsulates it in CAPWAP and sends it to the fabric WLC",
+                         "Converts it to 802.3 and VXLAN-encapsulates it to the fabric edge",
+                         "Bridges it untagged into the access VLAN of the edge port"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Fabric AP entfernt den 802.11-Header, bildet einen 802.3-Frame und kapselt ihn in VXLAN mit L2-VNI und SGT zur direkt angeschlossenen Edge. CAPWAP trägt nur noch Control-Verkehr."
+    },
+    {
+        "id":  "slg-sd-046",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three functions remain on the fabric WLC in SD-Access Wireless? (Choose three.)",
+        "optionen":  [
+                         "AP image and configuration management",
+                         "Radio Resource Management",
+                         "Forwarding client data between SSIDs",
+                         "Anycast gateway for wireless clients",
+                         "Client session management and roaming"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Die Wireless-Control-Plane bleibt zentral am WLC: RRM, AP-Management, Client-Sessions und Roaming. Die Daten laufen über AP und Edge, das Anycast Gateway stellt die Edge."
+    },
+    {
+        "id":  "slg-sd-047",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "During the fabric AP join process, how does the fabric edge learn that it must build a VXLAN tunnel to the AP?",
+        "optionen":  [
+                         "The CP node notifies it after the WLC registers the AP",
+                         "Catalyst Center pushes a static tunnel per AP port",
+                         "CDP tells the edge that the AP supports VXLAN tunnels",
+                         "The AP sends a VXLAN hello to its default gateway"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der WLC fragt den CP nach dem RLOC des AP und registriert den AP mit Metadaten (AP-Flag, AP-IP). Der CP gibt diese Information an die Edge weiter, die dann das VXLAN-Tunnel-Interface zum AP anlegt. CDP dient nur der Port-Vorkonfiguration."
+    },
+    {
+        "id":  "slg-sd-048",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A wireless client roams from an AP on Fabric Edge 1 to an AP on Fabric Edge 2. Which device updates the client\u0027s MAC entry in the control plane node with the new RLOC?",
+        "optionen":  [
+                         "The roam-to AP",
+                         "The roam-from edge",
+                         "The border node",
+                         "The fabric WLC"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der AP meldet das Roaming an den WLC; dieser aktualisiert den AP und den MAC-Eintrag des Clients im CP mit dem RLOC von Edge 2. Die IP-Registrierung aktualisiert Edge 2 beim ersten Verkehr."
+    },
+    {
+        "id":  "slg-sd-049",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "After the WLC updates the control plane node for an inter-switch wireless roam, which two devices does the control plane node notify? (Choose two.)",
+        "optionen":  [
+                         "The roam-to fabric edge",
+                         "The ISE policy service node",
+                         "All intermediate nodes in the path",
+                         "The roam-from fabric edge",
+                         "Every fabric AP in the site"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Der CP informiert die neue Edge (Client-MAC auf den AP-Tunnel) und die alte Edge (Aufräumen des Client-Eintrags). Intermediate Nodes und APs kennen keine Client-Mappings, und ISE ist an der LISP-Signalisierung nicht beteiligt."
+    },
+    {
+        "id":  "slg-sd-050",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How is the DHCP request of a new fabric wireless client handled?",
+        "optionen":  [
+                         "The AP sends the request directly to the DHCP server through the underlay",
+                         "The edge maps the L2 VNI to its VLAN and relays DHCP like for wired clients",
+                         "The WLC acts as DHCP proxy and forwards the request over its CAPWAP tunnel",
+                         "The control plane node answers DHCP for all wireless clients of the site"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der AP kapselt den DHCP-Request mit dem L2-VNI in VXLAN; die Edge ordnet das VNI dem VLAN/der SVI zu und leitet DHCP im Overlay weiter – genau wie bei kabelgebundenen Fabric-Clients."
+    },
+    {
+        "id":  "slg-sd-051",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "For fabric-mode APs, the latency between the AP and the WLC should be less than ___ ms.",
+        "optionen":  [
+                         "300",
+                         "100",
+                         "50",
+                         "20"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Fabric APs arbeiten im Local Mode und brauchen eine AP-WLC-Latenz unter 20 ms; deshalb steht der WLC am selben Standort und nicht über ein WAN."
+    },
+    {
+        "id":  "slg-sd-052",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A branch uses Fabric in a Box on a Catalyst 9300 stack. Where does the resiliency of the fabric roles come from?",
+        "optionen":  [
+                         "From the fabric WLC taking over the CP role",
+                         "From the redundant members of the switch stack",
+                         "From a dedicated external border for failover",
+                         "From the anycast gateway of a neighboring edge"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Bei Fabric in a Box laufen Control Plane, Border und Edge gemeinsam auf einem Gerät (Einzelswitch, Hardware-Stack oder StackWise Virtual). Die Ausfallsicherheit der Rollen kommt daher aus der Redundanz dieser Plattform, z. B. den Stack-Mitgliedern."
+    },
+    {
+        "id":  "slg-sd-053",
+        "topic":  "ENCOR-1.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Industrial Ethernet switches on a factory floor cannot run VXLAN or LISP. They need connectivity and policy from the fabric. How are they integrated?",
+        "optionen":  [
+                         "As extended nodes trunked to a fabric edge node",
+                         "As border nodes with a Layer 2 handoff each",
+                         "As intermediate nodes in the routed underlay",
+                         "As fabric APs that join the WLC in local mode"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Extended Nodes hängen per 802.1Q-Trunk an einer Fabric Edge und brauchen selbst kein VXLAN/LISP; Gateway und Policy stellt die Edge. Intermediate Nodes würden keine Endpunkte in die Fabric bringen."
+    },
+    {
+        "id":  "slg-sd-054",
+        "topic":  "ENCOR-1.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A company runs a traditional centralized WLAN over the top of its new SD-Access fabric. Where are the wireless clients located from the fabric\u0027s point of view?",
+        "optionen":  [
+                         "Inside the fabric; the edge is their anycast gateway",
+                         "In a dedicated VN created by the fabric WLC",
+                         "In INFRA_VN together with the access points",
+                         "Outside the fabric; traffic to fabric hosts passes the border"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bei OTT ist die Fabric nur Transport für CAPWAP; die Clients hängen am WLC außerhalb der Fabric. Kommunikation mit Fabric-Hosts läuft deshalb über den Border wie zu jedem externen Ziel."
+    },
+    {
+        "id":  "slg-sd-055",
+        "topic":  "ENCOR-1.3.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about Cisco Unified Wireless Network over-the-top of an SD-Access fabric are true? (Choose two.)",
+        "optionen":  [
+                         "Existing nonfabric WLCs and APs can be kept",
+                         "Wireless clients receive their SGT inside the VXLAN-GPO header",
+                         "Every AP must be directly connected to the WLC",
+                         "CAPWAP traffic is carried inside VXLAN between edge and border",
+                         "The WLC registers client MAC addresses in the HTDB"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "OTT nutzt bestehende Non-Fabric-WLCs und -APs weiter; die Edge kapselt CAPWAP in VXLAN bis zum Border. Fabric-Funktionen wie SGT im VXLAN oder WLC-Registrierung im CP gibt es dabei nicht."
+    },
+    {
+        "id":  "slg-sd-056",
+        "topic":  "ENCOR-1.3.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is a typical reason to run wireless over the top of an SD-Access fabric?",
+        "optionen":  [
+                         "As a migration step when the wired network is moved first",
+                         "To give wireless clients the anycast gateway at the edge",
+                         "To let the WLC act as the fabric control plane node",
+                         "To remove CAPWAP from the wireless network entirely"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "OTT ist ein Migrationsschritt (erst wired, getrennte Teams, Kaufzyklen) oder eine Dauerlösung, wenn WLAN nicht migriert werden kann. Fabric-Vorteile wie Anycast Gateway gibt es dabei für Wireless nicht."
+    },
+    {
+        "id":  "slg-sd-057",
+        "topic":  "ENCOR-1.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In an over-the-top wireless design, how are the access points known to the SD-Access fabric?",
+        "optionen":  [
+                         "As wired endpoints registered in the HTDB",
+                         "As extended nodes registered by the WLC",
+                         "As RLOCs advertised in the underlay IGP",
+                         "As fabric APs with VXLAN tunnels to the edge"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die APs hängen im Overlay an den Edges und werden wie normale wired Clients im HTDB registriert. Sie bauen ihr CAPWAP zum externen WLC auf."
+    },
+    {
+        "id":  "slg-sd-058",
+        "topic":  "ENCOR-1.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A WLC outside the fabric serves APs over the top of the fabric. Which routes must the border advertise into the fabric for this design to work?",
+        "optionen":  [
+                         "The RLOC loopbacks of all fabric edge and border nodes",
+                         "The WLC management subnet and the wireless client subnets",
+                         "The CAPWAP multicast group address used by the WLC",
+                         "Only the AP subnet and the loopbacks of the INFRA_VN"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die APs im Overlay müssen den WLC erreichen, und Fabric-Hosts müssen die Wireless-Clients (hinter dem WLC) erreichen. Deshalb annonciert der Border WLC-Management- und Client-Subnetze in die Fabric und umgekehrt die Fabric-Präfixe nach außen."
+    },
+    {
+        "id":  "slg-sd-059",
+        "topic":  "ENCOR-1.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A border node uses an IP-based transit toward the traditional network. What does the fabric workflow configure on the border for each virtual network?",
+        "optionen":  [
+                         "An MPLS label per VN distributed via LDP to the fusion router",
+                         "A GRE tunnel per VN with OSPF toward the fusion device",
+                         "An 802.1Q VLAN interface in the VN\u0027s VRF plus an eBGP peering",
+                         "A VXLAN tunnel per VN that ends on the fusion router"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der L3-Handoff ist VRF-Lite: pro VN ein VLAN/SVI (bzw. Subinterface) in der jeweiligen VRF und eine eBGP-Session zum externen Gerät. So bleibt die VN-Trennung außerhalb der Fabric erhalten."
+    },
+    {
+        "id":  "slg-sd-060",
+        "topic":  "ENCOR-1.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which part of an IP-based transit handoff is typically configured manually (or by template) instead of by the fabric provisioning workflow?",
+        "optionen":  [
+                         "The VRF and BGP configuration on the fusion device",
+                         "The eBGP neighbor statements on the border node",
+                         "The VRF definitions on the fabric border node",
+                         "The VLAN interfaces for each VN on the border node"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Catalyst Center automatisiert die Border-Seite des Handoffs (VRFs, VLAN-Interfaces, eBGP). Das Gegenüber, z. B. ein Fusion Router außerhalb der Fabric, wird manuell oder per Template passend dazu konfiguriert."
+    },
+    {
+        "id":  "slg-sd-061",
+        "topic":  "ENCOR-1.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Clients in VN CAMPUS get no DHCP address. The DHCP server sits in the global routing table behind a fusion router. The eBGP sessions per VN between border and fusion router are up. What is the most likely cause?",
+        "optionen":  [
+                         "The control plane node has no Map-Register entry for the DHCP server",
+                         "The fusion router does not leak routes between VRF CAMPUS and the GRT",
+                         "The intermediate nodes do not carry VRF CAMPUS in their IS-IS process",
+                         "The fabric edges are not configured as anycast gateway for the pool"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Shared Services in der Global Routing Table erreicht ein VN nur, wenn der Fusion Router Routen zwischen VRF und GRT leakt. Intermediate Nodes brauchen keine VRFs, und Server außerhalb der Fabric werden nicht beim CP registriert."
+    },
+    {
+        "id":  "slg-sd-062",
+        "topic":  "ENCOR-1.3.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Legacy VLAN 50 (10.50.0.0/24, gateway on a legacy SVI) is migrated to the fabric with a Layer 2 handoff, so users keep their addresses. What must happen to the legacy gateway?",
+        "optionen":  [
+                         "Configure HSRP between the legacy SVI and the anycast gateway",
+                         "Keep both gateways active with the same IP address for redundancy",
+                         "Remove the legacy SVI so the fabric anycast gateway serves the subnet",
+                         "Move the legacy SVI into the INFRA_VN on the border node"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Beim Layer-2-Handoff teilen sich Fabric-Host-Pool und Legacy-VLAN ein Subnetz; Gateway ist das Anycast Gateway der Fabric. Ein zweites aktives Gateway mit derselben IP würde Konflikte erzeugen."
+    },
+    {
+        "id":  "slg-sd-063",
+        "topic":  "ENCOR-1.3.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Two fabric sites are connected by a metro link. Virtual network and SGT information must be kept in the data plane between the sites. Which transit type fits?",
+        "optionen":  [
+                         "SD-Access transit using LISP and VXLAN end to end",
+                         "A Layer 2 handoff trunk between both border nodes",
+                         "IP-based transit using VRF-Lite and eBGP per VN",
+                         "IP-based transit using OSPF per VRF toward the WAN"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Beim SD-Access Transit bleiben LISP und VXLAN zwischen den Sites erhalten, VN und SGT reisen im Header mit. Beim IP-based Transit wird der VXLAN-Header am Border entfernt; das SGT muss dann per SXP oder Inline-Tagging transportiert werden."
+    },
+    {
+        "id":  "slg-sd-064",
+        "topic":  "ENCOR-1.3.b",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "A fabric site connects to the traditional WAN through an IP-based transit. Which three statements are true? (Choose three.)",
+        "optionen":  [
+                         "SGTs must be carried by SXP or inline tagging outside the fabric",
+                         "EID /32 host routes are flooded into the underlay IGP",
+                         "VN separation is kept outside the fabric with VRF-Lite",
+                         "The VXLAN header is removed at the border node",
+                         "Hosts outside the fabric must run LISP to reach fabric EIDs"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Beim IP-Transit entkapselt der Border, die VRFs werden per VRF-Lite übergeben und das SGT geht im Datenpfad verloren (SXP/Inline-Tagging nötig). Externe Hosts brauchen kein LISP, und EIDs gelangen nicht ins Underlay."
+    },
+    {
+        "id":  "slg-sd-065",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement about Layer 2 flooding in an SD-Access fabric is true?",
+        "optionen":  [
+                         "It extends a spanning tree instance across all edge nodes",
+                         "It uses the control plane node to replicate the broadcasts",
+                         "It is enabled by default for every host pool in the fabric",
+                         "It requires multicast in the underlay and is enabled per host pool"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Layer-2-Flooding (für Broadcast-abhängige oder Nicht-IP-Endpunkte) arbeitet ähnlich wie VPLS Point-to-Multipoint und braucht ein Multicast-fähiges Underlay. Es wird gezielt pro Host Pool aktiviert."
+    },
+    {
+        "id":  "slg-sd-067",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which capability does the SD-Access control plane add compared with traditional LISP?",
+        "optionen":  [
+                         "Use of an ALT topology to aggregate EID prefixes",
+                         "Registration of RLOCs as A records in the DNS servers",
+                         "Forwarding of Map-Requests from the MS to the ETR",
+                         "Registration of MAC addresses for Layer 2 virtual networks"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Klassisches LISP kennt nur L3-VNs (VRF). SD-Access erweitert den CP um MAC-zu-IP-Bindings und L2-Overlays sowie Wireless-Erweiterungen. Das Weiterleiten von Map-Requests an den ETR ist gerade das klassische Verhalten."
+    },
+    {
+        "id":  "slg-sd-068",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In traditional LISP, a map-server forwards a Map-Request to the ETR that registered the EID. How does the SD-Access control plane node handle a Map-Request?",
+        "optionen":  [
+                         "It forwards the request to the edge that owns the EID",
+                         "It redirects the requester to the external border node",
+                         "It answers with a proxy Map-Reply on behalf of the edge",
+                         "It floods the request to all edges of the fabric site"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "In SD-Access ist der CP Node für Proxy-Reply konfiguriert: Er antwortet selbst mit dem RLOC aus der HTDB. Das spart einen Umweg über die Ziel-Edge."
+    },
+    {
+        "id":  "slg-sd-069",
+        "topic":  "ENCOR-2.3.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die LISP-Rolle ihrer Funktion zu.",
+        "paare":  [
+                      [
+                          "ITR",
+                          "kapselt Verkehr lokaler Hosts zu entfernten RLOCs"
+                      ],
+                      [
+                          "ETR",
+                          "entkapselt Verkehr und registriert lokale EIDs beim Map-Server"
+                      ],
+                      [
+                          "PITR",
+                          "zieht Verkehr von Nicht-LISP-Sites zu LISP-EIDs an"
+                      ],
+                      [
+                          "PETR",
+                          "ermöglicht LISP-EIDs den Zugriff auf Nicht-LISP-Ziele"
+                      ]
+                  ],
+        "erklaerung":  "ITR und ETR sind die Site-Router (zusammen xTR), PITR und PETR verbinden LISP- mit Nicht-LISP-Netzen (zusammen PxTR). In SD-Access ist die Edge ein xTR und der External Border ein PxTR."
+    },
+    {
+        "id":  "slg-sd-070",
+        "topic":  "ENCOR-2.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In a LISP-based fabric, which address type must be routable in the underlay transport network?",
+        "optionen":  [
+                         "Both, because LISP needs end-to-end routes",
+                         "The EID, the address of the endpoint",
+                         "Neither, because LISP forwards on MAC only",
+                         "The RLOC, the loopback of the fabric node"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "RLOCs sind Infrastruktur-Adressen und werden im Underlay geroutet. EIDs sind dort nicht bekannt; Hosts kennen keine RLOCs und der Core kennt keine Hosts."
+    },
+    {
+        "id":  "slg-sd-071",
+        "topic":  "ENCOR-2.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which distribution model does LISP use for its EID-to-RLOC mappings?",
+        "optionen":  [
+                         "Pull: nodes query the mapping system on demand and cache the answer",
+                         "Static: mappings are configured manually on every xTR device",
+                         "Broadcast: mappings are sent to all hosts in the local subnet",
+                         "Push: all mappings are flooded to every node, similar to BGP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "LISP arbeitet wie DNS nach dem Pull-Prinzip: Ein Knoten fragt nur bei Bedarf und speichert die Antwort im Map-Cache. Das skaliert besser als ein Push-Modell, bei dem jeder Knoten alle Informationen halten muss."
+    },
+    {
+        "id":  "slg-sd-072",
+        "topic":  "ENCOR-2.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A firewall between LISP xTRs and the map-server must permit LISP control messages such as Map-Register and Map-Request. Which port is used?",
+        "optionen":  [
+                         "UDP 4341",
+                         "UDP 4342",
+                         "UDP 4789",
+                         "TCP 179"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "LISP-Control-Nachrichten nutzen UDP 4342, die LISP-Data-Plane UDP 4341. UDP 4789 ist VXLAN, TCP 179 BGP."
+    },
+    {
+        "id":  "slg-sd-073",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Host 10.2.1.10 moves from Edge 1 to Edge 2, and Edge 2 registers it. What does the control plane node do next?",
+        "optionen":  [
+                         "Waits for the old entry to expire before accepting the new one",
+                         "Asks the border to flush all map-caches in the fabric site",
+                         "Updates the HTDB with the new RLOC and notifies the old edge",
+                         "Keeps both RLOCs and load-balances traffic between the edges"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der CP ersetzt in der HTDB den alten RLOC durch den von Edge 2 und informiert Edge 1, ihren lokalen Eintrag zu entfernen. Verkehr läuft danach über die neue Edge."
+    },
+    {
+        "id":  "slg-sd-074",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A host moves between two fabric edges in the same host pool. What changes in the fabric\u0027s view of this host?",
+        "optionen":  [
+                         "Its SGT and the virtual network it belongs to",
+                         "Only the RLOC that is associated with its EID",
+                         "Its IP address, but not its MAC address",
+                         "Its EID and its default gateway address"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "LISP trennt Identität (EID) und Ort (RLOC). Beim Umzug bleiben IP, Gateway, VN und SGT gleich; nur der RLOC in der HTDB wechselt auf die neue Edge."
+    },
+    {
+        "id":  "slg-sd-075",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which three campus challenges does Cisco SD-Access address? (Choose three.)",
+        "optionen":  [
+                         "Policy based on static IP addresses and VLANs",
+                         "Common policy for wired and wireless users",
+                         "Loop prevention by tuning STP root placement",
+                         "Network segmentation without implementing MPLS",
+                         "Host mobility without stretching VLANs"
+                     ],
+        "richtig":  [
+                        1,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "SD-Access bietet Mobilität ohne gestreckte VLANs, Segmentierung ohne MPLS und eine gemeinsame Policy für LAN und WLAN. STP-Tuning entfällt im gerouteten Underlay, und Policy hängt an Gruppen statt an IPs/VLANs."
+    },
+    {
+        "id":  "slg-sd-076",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In the SD-Access solution architecture, Assurance relies on a component abbreviated as NDP. What does NDP stand for in this context?",
+        "optionen":  [
+                         "Network Data Platform",
+                         "Network Control Platform",
+                         "Node Discovery Process",
+                         "Neighbor Discovery Protocol"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "NDP ist hier die Network Data Platform, die Analytics-Komponente für Assurance; NCP (Network Control Platform) ist die Automation-Komponente. Das IPv6 Neighbor Discovery Protocol hat damit nichts zu tun – der Kurs schreibt das fälschlich aus."
+    },
+    {
+        "id":  "slg-sd-077",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In which Catalyst Center workflow does an administrator create a new virtual network for the SD-Access fabric?",
+        "optionen":  [
+                         "Design",
+                         "Policy",
+                         "Provision",
+                         "Assurance"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Virtual Networks und Gruppen-Policies entstehen im Policy-Bereich. Design enthält globale Einstellungen und IP-Pools, Provision weist Geräten Fabric-Rollen zu, Assurance überwacht."
+    },
+    {
+        "id":  "slg-sd-078",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In which Catalyst Center workflow are switches assigned the control plane, border, and edge roles of a fabric site?",
+        "optionen":  [
+                         "Provision",
+                         "Design",
+                         "Assurance",
+                         "Policy"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Unter Provision werden Fabric Sites angelegt und Geräte als Control Plane, Border oder Edge hinzugefügt, ebenso Fabric Wireless und Transits."
+    },
+    {
+        "id":  "slg-sd-079",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which basic Cisco ISE deployment does Cisco recommend for an SD-Access network?",
+        "optionen":  [
+                         "Four nodes with two PANs and two PSNs",
+                         "Two nodes, each running all personas",
+                         "One standalone node with only the PAN",
+                         "One ISE node for every fabric edge"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Empfohlen ist mindestens ein Zwei-Knoten-Deployment, bei dem jeder Knoten alle Personas trägt; so ist jede Funktion redundant. Größere Umgebungen verteilen die Personas auf mehr Knoten."
+    },
+    {
+        "id":  "slg-sd-080",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A distributed ISE deployment has several PSNs. Edges in building A should authenticate against the PSN in building A. How is this achieved in SD-Access?",
+        "optionen":  [
+                         "The PAN redirects each RADIUS request to the least loaded PSN",
+                         "Edges find the closest PSN by sending a LISP Map-Request for it",
+                         "Each edge must be configured manually by CLI with all PSNs",
+                         "Catalyst Center learns all PSNs and maps edges to a PSN per site"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Catalyst Center lernt über die PAN alle PSN-Adressen und ordnet die Fabric Edges (über die AAA-Einstellungen der Site) dem zuständigen PSN zu. RADIUS-Anfragen gehen direkt an diesen PSN."
+    },
+    {
+        "id":  "slg-sd-081",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An administrator creates a group-based access policy in Catalyst Center. How does it reach the fabric edges?",
+        "optionen":  [
+                         "It is written to ISE, and the edges download the SGACLs from ISE",
+                         "It is stored on the CP node and sent to the edges together with Map-Replies",
+                         "It is pushed directly to every edge as a static ACL on each host pool SVI",
+                         "It is sent to the fabric WLC, which distributes it via CAPWAP to the edges"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Catalyst Center ist die Oberfläche für das Policy-Authoring, ISE der Policy-Server. Die Policy landet über die Catalyst-Center-ISE-Integration in ISE; die Edges laden die benötigten SGACLs von ISE herunter und setzen sie durch."
+    },
+    {
+        "id":  "slg-sd-082",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A fabric edge shows this output:\nEdge# show lisp instance-id 4099 ipv4 map-cache\n0.0.0.0/0, via static-send-map-request\n  Negative cache entry, action: send-map-request\n10.10.20.15/32, via map-reply, complete\n  Locator 10.255.0.22 up 10/10\nWhere is a packet to 10.10.20.15 sent?",
+        "optionen":  [
+                         "To the CP node, which forwards the data packet",
+                         "VXLAN-encapsulated to RLOC 10.255.0.22",
+                         "Flooded to all edges in instance ID 4099",
+                         "Routed natively in the underlay to 10.10.20.15"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Map-Cache enthält für 10.10.20.15/32 den Locator 10.255.0.22. Die Edge kapselt das Paket daher in VXLAN mit äußerer Ziel-IP 10.255.0.22; der CP Node transportiert nie Nutzdaten."
+    },
+    {
+        "id":  "slg-sd-083",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The same edge (map-cache with only 0.0.0.0/0 \u0027send-map-request\u0027 and 10.10.20.15/32) receives a packet for 10.30.1.1 in the same VN. What does it do to find the destination?",
+        "optionen":  [
+                         "It forwards the packet to every RLOC it knows",
+                         "It floods an ARP request into the underlay",
+                         "It drops the packet because the entry is negative",
+                         "It sends a Map-Request to the map-resolver"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Für Ziele ohne spezifischen Eintrag greift der negative Default-Eintrag mit der Aktion send-map-request: Die Edge fragt beim Map-Resolver nach. Ohne Treffer im HTDB geht der Verkehr anschließend zum External Border."
+    },
+    {
+        "id":  "slg-sd-084",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A fabric edge shows:\nEdge# show lisp session\nPeer               State  Up/Down\n10.255.0.1:4342    Up     1w2d\n10.255.0.2:4342    Up     1w2d\nWhat do these two peers most likely represent?",
+        "optionen":  [
+                         "IS-IS neighbors of the edge node in the underlay",
+                         "Fabric access points connected to this edge node",
+                         "Neighboring edges with established VXLAN tunnels",
+                         "The control plane nodes that the edge registers with"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "show lisp session zeigt die LISP-Control-Sessions (Port 4342) zu den Map-Servern/Resolvern, also den Control Plane Nodes. Zwei Peers passen zu zwei redundanten CP Nodes."
+    },
+    {
+        "id":  "slg-sd-085",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A fabric edge shows:\nEdge# show lisp instance-id 4099 ipv4 database\n10.10.20.37/32, dynamic-eid CAMPUS-IPV4\n  Locator 10.255.0.21 10/10 cfg-intf site-self, reachable\nWhat does this entry mean?",
+        "optionen":  [
+                         "The edge has host 10.10.20.37 as a local EID with RLOC 10.255.0.21",
+                         "The edge learned 10.10.20.37 from a Map-Reply for a remote edge",
+                         "10.255.0.21 is the EID of a host located behind the border node",
+                         "The CP node rejected 10.10.20.37 because it is a /32 host entry"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die LISP-Database einer Edge enthält die lokal angeschlossenen EIDs, die sie beim CP registriert. site-self zeigt, dass der Locator 10.255.0.21 die eigene RLOC-Loopback ist; entfernte Ziele stehen dagegen im Map-Cache."
+    },
+    {
+        "id":  "slg-sd-086",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An internet host 198.51.100.7 sends traffic to server 10.10.30.5 in the fabric. What does the external border do with the packet?",
+        "optionen":  [
+                         "Routes it natively via an IS-IS host route toward the server",
+                         "Forwards it to the CP node, which encapsulates it for the border",
+                         "Floods it to all edges that host the 10.10.30.0/24 pool",
+                         "Resolves the server EID and VXLAN-encapsulates it to the edge RLOC"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Border verhält sich wie eine Edge in Gegenrichtung: Er löst die Ziel-EID über Map-Cache bzw. Map-Request auf und kapselt das Paket in VXLAN zum RLOC der Edge, an der der Server hängt."
+    },
+    {
+        "id":  "slg-sd-087",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Internet host 198.51.100.7 sends a packet to server 10.10.30.5. The border RLOC is 10.255.0.1; the server sits behind the edge with RLOC 10.255.0.22. Which addresses does the packet carry between border and edge?",
+        "optionen":  [
+                         "Outer 10.255.0.22 -\u003e 10.255.0.1, inner 10.10.30.5 -\u003e 198.51.100.7",
+                         "Outer 10.255.0.1 -\u003e 10.10.30.5, inner 198.51.100.7 -\u003e 10.255.0.22",
+                         "Outer 10.255.0.1 -\u003e 10.255.0.22, inner 198.51.100.7 -\u003e 10.10.30.5",
+                         "Outer 198.51.100.7 -\u003e 10.255.0.22, inner 10.255.0.1 -\u003e 10.10.30.5"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der äußere Header verbindet die RLOCs von kapselndem Border und Ziel-Edge, der innere Header bleibt unverändert (Original-Quelle und -Ziel). Die Ziel-Edge entfernt den VXLAN-Header und stellt zu."
+    },
+    {
+        "id":  "slg-sd-088",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "What is a main benefit of resolving EIDs through the control plane node instead of carrying all host routes in every switch?",
+        "optionen":  [
+                         "VXLAN no longer needs UDP to encapsulate the packets",
+                         "The underlay can run without any routing protocol at all",
+                         "Each edge keeps only mappings it needs, so its tables stay small",
+                         "Hosts no longer need IP addresses inside the fabric site"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Wie bei DNS werden Zielinformationen zentral gehalten und nur bei Bedarf abgefragt. Die Edges brauchen dadurch kleinere Tabellen und weniger CPU als bei voller Host-Routen-Verteilung."
+    },
+    {
+        "id":  "slg-sd-089",
+        "topic":  "ENCOR-2.3.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why can a VXLAN fabric use all redundant uplinks, while a traditional VLAN-based design often cannot?",
+        "optionen":  [
+                         "VXLAN frames bypass the underlay routing table and use all ports",
+                         "VXLAN runs Rapid PVST+ per VNI, which unblocks every redundant link",
+                         "Encapsulated frames are routed over Layer 3 with ECMP, so STP blocks nothing",
+                         "VXLAN hashes only the VNI on EtherChannels to spread the traffic"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "VXLAN-Pakete werden anhand des äußeren IP-Headers geroutet und nutzen ECMP über alle Pfade. In L2-Designs blockiert STP redundante Links, sodass oft die Hälfte der Kapazität ungenutzt bleibt."
+    },
+    {
+        "id":  "slg-sd-090",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An employee authenticates with 802.1X and must be placed into host pool EMPLOYEES in VN CAMPUS. What does ISE return in the authorization result?",
+        "optionen":  [
+                         "The host pool (VLAN) name and an SGT",
+                         "The RLOC of the edge and the LISP instance ID",
+                         "The VXLAN source port for the client session",
+                         "A dACL with the IP addresses of allowed servers"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die Edge ordnet den Endpunkt über das VLAN des Host Pools einem VN zu; ISE liefert dazu VLAN/Pool-Namen und das SGT. RLOC und Instance-ID kennt die Edge selbst."
+    },
+    {
+        "id":  "slg-sd-091",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Why is spanning tree not needed between the access and distribution switches of an SD-Access fabric?",
+        "optionen":  [
+                         "VXLAN tunnels detect and block redundant links automatically",
+                         "The underlay is fully routed, so no Layer 2 loops exist between switches",
+                         "The control plane node elects one forwarding uplink per edge node",
+                         "Every edge runs MST with a single instance that never blocks a port"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Das Underlay ist Routed Access: Zwischen den Fabric-Knoten gibt es nur Layer-3-Links, also keine L2-Schleifen. Redundanz und Lastverteilung übernimmt ECMP im IGP."
+    },
+    {
+        "id":  "slg-sd-092",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An engineer adds a provisioned WLC to the fabric in Catalyst Center. What does the WLC establish as a result?",
+        "optionen":  [
+                         "An eBGP session with the fusion router",
+                         "VXLAN tunnels to every fabric edge switch",
+                         "A CAPWAP tunnel to the external border node",
+                         "A secure connection to the control plane node"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Beim Hinzufügen zur Fabric erhält der WLC Konfiguration und Zugangsdaten für eine sichere Verbindung zum Control Plane Node, über die er Clients registriert. VXLAN-Tunnel gibt es nur zwischen APs, Edges und Borders."
+    },
+    {
+        "id":  "slg-sd-093",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An AP is plugged into a fabric edge port with closed 802.1X authentication. The port does not get the AP VLAN through the Catalyst Center AP macro. According to the AP onboarding workflow, why?",
+        "optionen":  [
+                         "The edge must learn the AP\u0027s MAC from the CP node beforehand",
+                         "The CDP-triggered macro applies only when port authentication is off",
+                         "The AP must first join the WLC before it can receive any VLAN",
+                         "APs can only be onboarded through an extended node in the fabric"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Edge erkennt den AP per CDP und weist ihn über ein vorbereitetes Macro/Autoconf dem AP-VLAN zu – nur wenn auf dem Port keine Authentifizierung konfiguriert ist. Mit Authentifizierung muss die VLAN-Zuweisung über ISE kommen."
+    },
+    {
+        "id":  "slg-sd-094",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Compared with a centralized Cisco Unified Wireless Network, what is the main data plane advantage of SD-Access Wireless?",
+        "optionen":  [
+                         "Wireless clients receive public IP addresses from the border",
+                         "Client traffic is encrypted end to end by the WLC for every SSID",
+                         "Client traffic is forwarded at the edge instead of through the WLC",
+                         "APs no longer need a controller for their RRM decisions at all"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Im zentralen Modell läuft aller Client-Verkehr per CAPWAP über den WLC (Hairpin). In der Fabric geht er per VXLAN zur Edge und wird dort lokal mit Anycast Gateway weitergeleitet; RRM bleibt am WLC."
+    },
+    {
+        "id":  "slg-sd-095",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "How does the fabric WLC find out whether a newly joined AP is attached to the fabric?",
+        "optionen":  [
+                         "It queries the control plane node for the AP\u0027s RLOC",
+                         "It learns the RLOC from CDP on the AP\u0027s edge port",
+                         "It reads the RLOC from the AP\u0027s CAPWAP discovery",
+                         "Catalyst Center pushes a static AP-to-edge table"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Nachdem der AP gejoint ist und fabric-fähig ist, fragt der WLC den CP Node. Liefert dieser einen RLOC, hängt der AP an einer Fabric Edge und wird als fabric-enabled geführt."
+    },
+    {
+        "id":  "slg-sd-096",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three devices act as VXLAN tunnel endpoints in an SD-Access fabric with fabric wireless? (Choose three.)",
+        "optionen":  [
+                         "Fabric border node",
+                         "Intermediate node",
+                         "Fabric WLC",
+                         "Fabric access point",
+                         "Fabric edge node"
+                     ],
+        "richtig":  [
+                        0,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Edges und Borders kapseln Verkehr zwischen den Fabric-Knoten; Fabric APs bilden VXLAN-Tunnel zu ihrer Edge. Intermediate Nodes routen nur, und der WLC ist nicht im Datenpfad."
+    },
+    {
+        "id":  "slg-sd-097",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about the SD-Access control plane node are true? (Choose two.)",
+        "optionen":  [
+                         "It forwards all data traffic between the fabric edges",
+                         "It combines the LISP map-server and map-resolver functions",
+                         "It can be collocated with a border node on one device",
+                         "It must be deployed as an intermediate node in the underlay",
+                         "It assigns SGTs to endpoints during authentication"
+                     ],
+        "richtig":  [
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Der CP Node ist MS/MR mit der HTDB und kann auf dem Border mitlaufen. Daten leitet er nicht weiter, und SGTs vergibt ISE."
+    },
+    {
+        "id":  "slg-sd-098",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about virtual networks in SD-Access are true? (Choose two.)",
+        "optionen":  [
+                         "Hosts in different VNs cannot communicate by default",
+                         "VNs are enforced by SGACLs on the egress edge",
+                         "Intermediate nodes keep a VRF for every VN",
+                         "In the data plane, the VN is identified by the VNI",
+                         "A VN is the same as one VLAN on every edge node"
+                     ],
+        "richtig":  [
+                        0,
+                        3
+                    ],
+        "erklaerung":  "Ein VN ist eine VRF mit eigener Routing-Tabelle; im VXLAN-Header steht dafür das VNI, im LISP-CP die Instance-ID. Ein VN kann viele Host Pools/VLANs enthalten, SGACLs wirken innerhalb eines VN, und das Underlay kennt keine VRFs."
+    },
+    {
+        "id":  "slg-sd-099",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "A client authenticates to a fabric-enabled SSID. Which two pieces of information does the WLC send to the fabric AP for this client? (Choose two.)",
+        "optionen":  [
+                         "The client\u0027s Layer 2 VNI",
+                         "The client\u0027s DHCP-assigned IP address",
+                         "The RLOC of the control plane node",
+                         "The VLAN of a WLC dynamic interface",
+                         "The client\u0027s SGT from ISE"
+                     ],
+        "richtig":  [
+                        0,
+                        4
+                    ],
+        "erklaerung":  "Nach erfolgreicher Authentifizierung programmiert der WLC den AP mit L2-VNI und SGT des Clients; damit kapselt der AP den Verkehr korrekt. Die IP gibt es zu diesem Zeitpunkt noch nicht, und Dynamic Interfaces gehören zum zentralen Modell."
+    },
+    {
+        "id":  "slg-sd-100",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Traffic leaves the fabric through an IP-based transit toward TrustSec-capable devices. Which two methods can carry SGT information beyond the border? (Choose two.)",
+        "optionen":  [
+                         "SGT values inside the LISP Map-Reply",
+                         "Inline tagging with Cisco metadata on the link",
+                         "The DSCP field of the inner IP header",
+                         "VXLAN-GPO toward the non-fabric router",
+                         "SXP sessions that share IP-to-SGT bindings"
+                     ],
+        "richtig":  [
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Am Border endet VXLAN-GPO; das SGT wird nach außen entweder als IP-zu-SGT-Binding per SXP übertragen oder inline im Cisco-Metadata-Feld des Frames mitgegeben."
+    },
+    {
+        "id":  "slg-sd-101",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two items are characteristics of a manual SD-Access underlay? (Choose two.)",
+        "optionen":  [
+                         "An existing IP network can be reused",
+                         "Devices must have a new or erased configuration",
+                         "Any IGP can be used, IS-IS is recommended",
+                         "It uses a global underlay address pool for PnP",
+                         "Its design is 100 percent prescriptive"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "Beim manuellen Underlay wird das bestehende IP-Netz weiterverwendet, mit beliebigem IGP (IS-IS empfohlen). Leere Geräte, globaler Underlay-Pool und ein fest vorgegebenes Design kennzeichnen die automatisierte Variante (LAN Automation)."
+    },
+    {
+        "id":  "slg-sd-102",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Technik der SD-Access-Ebene zu, die sie bildet.",
+        "paare":  [
+                      [
+                          "LISP",
+                          "Control Plane (Endpunkt-zu-Ort-Zuordnung)"
+                      ],
+                      [
+                          "VXLAN-GPO",
+                          "Data Plane (Kapselung des Benutzerverkehrs)"
+                      ],
+                      [
+                          "Cisco TrustSec",
+                          "Policy Plane (Gruppen-basierte Regeln)"
+                      ],
+                      [
+                          "IS-IS",
+                          "Underlay-Routing zwischen den RLOCs"
+                      ]
+                  ],
+        "erklaerung":  "SD-Access baut auf LISP (Control), VXLAN (Data) und TrustSec (Policy) auf. IS-IS ist das empfohlene IGP für das darunterliegende Underlay."
+    },
+    {
+        "id":  "slg-sd-103",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Komponente ihrer Aufgabe in SD-Access Wireless zu.",
+        "paare":  [
+                      [
+                          "Fabric WLC",
+                          "RRM, AP-Management und Registrierung der Client-MAC im CP"
+                      ],
+                      [
+                          "Fabric AP",
+                          "wandelt 802.11 in 802.3 und kapselt Clientdaten in VXLAN"
+                      ],
+                      [
+                          "Fabric Edge",
+                          "Anycast Gateway und Registrierung der Client-IP"
+                      ],
+                      [
+                          "Control Plane Node",
+                          "speichert die Zuordnung von Client-MAC und -IP zum RLOC"
+                      ]
+                  ],
+        "erklaerung":  "Die Wireless-Control-Plane bleibt am WLC, die Daten laufen AP → Edge per VXLAN. Die Edge stellt das Gateway und registriert die IP; der CP hält alle Mappings."
+    },
+    {
+        "id":  "slg-sd-104",
+        "topic":  "ENCOR-1.3.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Anbindungsvariante zwischen Fabric und klassischem Netz ihrer Beschreibung zu.",
+        "paare":  [
+                      [
+                          "IP-based Transit",
+                          "VRF-Lite und eBGP-Handoff zu klassischen Routern"
+                      ],
+                      [
+                          "SD-Access Transit",
+                          "LISP/VXLAN zwischen Fabric Sites, VN und SGT bleiben erhalten"
+                      ],
+                      [
+                          "Layer-2-Handoff",
+                          "verbindet einen Fabric Host Pool mit einem Legacy-VLAN"
+                      ],
+                      [
+                          "Fusion Router",
+                          "leakt Routen zwischen VN-VRFs und Shared Services"
+                      ]
+                  ],
+        "erklaerung":  "Der L3-Handoff (IP-Transit) übergibt VRFs per VRF-Lite/BGP, der SD-Access Transit hält Fabric-Kapselung über Sites hinweg. L2-Handoff dient der Migration ohne Re-IP, der Fusion Router dem kontrollierten Zugriff auf gemeinsame Dienste."
+    },
+    {
+        "id":  "slg-sd-105",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die LISP-Nachricht ihrem Zweck in SD-Access zu.",
+        "paare":  [
+                      [
+                          "Map-Register",
+                          "Edge meldet dem CP einen lokal angeschlossenen Endpunkt"
+                      ],
+                      [
+                          "Map-Request",
+                          "Edge fragt nach dem RLOC einer Ziel-EID"
+                      ],
+                      [
+                          "Map-Reply",
+                          "liefert den RLOC zur angefragten EID"
+                      ],
+                      [
+                          "Solicit-Map-Request",
+                          "fordert eine Edge auf, einen veralteten Cache-Eintrag zu erneuern"
+                      ]
+                  ],
+        "erklaerung":  "Registrieren (Map-Register), Auflösen (Map-Request/Map-Reply) und Korrigieren veralteter Caches nach einem Umzug (SMR) sind die Kernabläufe der SD-Access-Control-Plane."
+    },
+    {
+        "id":  "slg-sd-106",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Catalyst-Center-Workflow der SD-Access-Aufgabe zu.",
+        "paare":  [
+                      [
+                          "Design",
+                          "Standorthierarchie, IP-Pools sowie DHCP- und DNS-Server festlegen"
+                      ],
+                      [
+                          "Policy",
+                          "Virtual Networks und gruppenbasierte Zugriffsregeln anlegen"
+                      ],
+                      [
+                          "Provision",
+                          "Fabric Site bilden und Geräte als Border oder Edge einbinden"
+                      ],
+                      [
+                          "Assurance",
+                          "Health-Dashboards, 360-Grad-Sicht und Path Trace nutzen"
+                      ]
+                  ],
+        "erklaerung":  "Der SD-Access-Workflow folgt den vier Bereichen Design, Policy, Provision und Assurance; erst werden Grundlagen und Pools definiert, dann Segmentierung, dann die Fabric gebaut und schließlich überwacht."
+    },
+    {
+        "id":  "slg-sd-107",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The external border implements the LISP ___ function and is therefore the gateway of last resort for the fabric edges.",
+        "optionen":  [
+                         "alternative topology (ALT)",
+                         "map-resolver (MR)",
+                         "proxy tunnel router (PxTR)",
+                         "map-server (MS)"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der External Border ist PxTR (Proxy-ITR und Proxy-ETR): Er verbindet die LISP-Fabric mit Nicht-LISP-Netzen und nimmt allen Verkehr zu unbekannten Zielen auf."
+    },
+    {
+        "id":  "slg-sd-108",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Fabric APs send client data to their fabric edge in ___, while control traffic to the WLC uses CAPWAP.",
+        "optionen":  [
+                         "IPsec",
+                         "CAPWAP",
+                         "GRE",
+                         "VXLAN"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Zwischen Fabric AP und Edge besteht ein VXLAN-Tunnel für die Daten; CAPWAP zum WLC trägt nur noch Control-Verkehr."
+    },
+    {
+        "id":  "slg-sd-109",
+        "topic":  "ENCOR-2.3.a",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "A fabric edge combines the LISP ITR and ETR functions and is therefore called an ___.",
+        "optionen":  [
+                         "MS/MR",
+                         "xTR",
+                         "ALT",
+                         "PxTR"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein Gerät mit ITR- und ETR-Funktion heißt xTR und ermöglicht bidirektionale Flows. PxTR ist die Proxy-Variante für den Übergang zu Nicht-LISP-Netzen."
+    },
+    {
+        "id":  "slg-sd-110",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einer Fabric Edge: Prüfe, ob die LISP-Sessions zu den Control Plane Nodes aufgebaut sind.",
+        "bausteine":  [
+                          "show",
+                          "lisp",
+                          "session",
+                          "site",
+                          "bgp",
+                          "neighbors"
+                      ],
+        "loesung":  [
+                        "show",
+                        "lisp",
+                        "session"
+                    ],
+        "erklaerung":  "show lisp session listet die Control-Sessions (Port 4342) zu den Map-Servern/-Resolvern samt Zustand. show lisp site ist dagegen ein Befehl für den Map-Server selbst."
+    },
+    {
+        "id":  "slg-sd-111",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einer Fabric Edge: Zeige die aufgelösten Ziel-Mappings (EID → RLOC) für IPv4 in der LISP-Instanz 4099.",
+        "bausteine":  [
+                          "show",
+                          "lisp",
+                          "instance-id",
+                          "4099",
+                          "ipv4",
+                          "map-cache",
+                          "database",
+                          "vrf"
+                      ],
+        "loesung":  [
+                        "show",
+                        "lisp",
+                        "instance-id",
+                        "4099",
+                        "ipv4",
+                        "map-cache"
+                    ],
+        "erklaerung":  "Der Map-Cache enthält die per Map-Reply gelernten entfernten EIDs mit ihren Locators. Die lokal registrierten EIDs stehen dagegen in der database."
+    },
+    {
+        "id":  "slg-sd-112",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einer Fabric Edge: Zeige die lokal angeschlossenen und registrierten IPv4-EIDs der LISP-Instanz 4099.",
+        "bausteine":  [
+                          "show",
+                          "lisp",
+                          "instance-id",
+                          "4099",
+                          "ipv4",
+                          "database",
+                          "map-cache",
+                          "server"
+                      ],
+        "loesung":  [
+                        "show",
+                        "lisp",
+                        "instance-id",
+                        "4099",
+                        "ipv4",
+                        "database"
+                    ],
+        "erklaerung":  "Die LISP-Database einer Edge (ETR) enthält die EIDs hinter diesem Gerät, die per Map-Register beim Control Plane Node gemeldet werden."
+    },
+    {
+        "id":  "slg-sd-113",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf dem Control Plane Node: Zeige die LISP-Sites mit den registrierten EID-Präfixen und dem Zeitpunkt der letzten Registrierung.",
+        "bausteine":  [
+                          "show",
+                          "lisp",
+                          "site",
+                          "session",
+                          "map-cache",
+                          "ip"
+                      ],
+        "loesung":  [
+                        "show",
+                        "lisp",
+                        "site"
+                    ],
+        "erklaerung":  "Auf dem Map-Server zeigt show lisp site, welche EIDs registriert sind und von welchem RLOC die letzte Registrierung kam – der erste Prüfpunkt, wenn ein Endpunkt nicht auflösbar ist."
+    },
+    {
+        "id":  "slg-sd-114",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC auf einer Fabric Edge: Zeige in Kurzform die VXLAN-Access-Tunnel zu den angeschlossenen Fabric APs.",
+        "bausteine":  [
+                          "show",
+                          "access-tunnel",
+                          "summary",
+                          "capwap",
+                          "fabric",
+                          "detail"
+                      ],
+        "loesung":  [
+                        "show",
+                        "access-tunnel",
+                        "summary"
+                    ],
+        "erklaerung":  "Für jeden Fabric AP legt die Edge ein Access-Tunnel-Interface (VXLAN) an. Fehlt der Tunnel, ist der AP nicht fabric-enabled, z. B. weil er nicht direkt an der Edge hängt."
+    },
+    {
+        "id":  "slg-sd-115",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus auf einem Underlay-Switch (Catalyst 9000): Setze die System-MTU auf den Wert, den Catalyst Center für Fabric-Underlays verwendet.",
+        "bausteine":  [
+                          "system",
+                          "mtu",
+                          "9100",
+                          "1550",
+                          "ip",
+                          "jumbo"
+                      ],
+        "loesung":  [
+                        "system",
+                        "mtu",
+                        "9100"
+                    ],
+        "erklaerung":  "Catalyst Center bzw. LAN Automation setzen system mtu 9100, damit VXLAN-gekapselte Frames (rund 50 Byte Overhead) auch bei großen Client-Paketen nicht verworfen werden."
+    },
+    {
+        "id":  "slg-sd-116",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Router-Konfigurationsmodus (router isis) für ein manuelles Underlay: Setze den NET 49.0001.0102.5500.0011.00.",
+        "bausteine":  [
+                          "net",
+                          "49.0001.0102.5500.0011.00",
+                          "area",
+                          "is-type",
+                          "nsap"
+                      ],
+        "loesung":  [
+                        "net",
+                        "49.0001.0102.5500.0011.00"
+                    ],
+        "erklaerung":  "Mit net wird die IS-IS-Adresse (Area 49.0001, System-ID, NSEL 00) festgelegt; ohne NET startet der IS-IS-Prozess nicht. IS-IS ist das empfohlene IGP für das Underlay."
+    },
+    {
+        "id":  "slg-sd-117",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus (interface Loopback0, RLOC der Edge): Aktiviere IS-IS auf diesem Interface, damit die RLOC-Adresse im Underlay bekannt wird.",
+        "bausteine":  [
+                          "ip",
+                          "router",
+                          "isis",
+                          "ospf",
+                          "enable",
+                          "network"
+                      ],
+        "loesung":  [
+                        "ip",
+                        "router",
+                        "isis"
+                    ],
+        "erklaerung":  "ip router isis nimmt das Interface in den IS-IS-Prozess auf. Die Loopback0 ist der RLOC und muss im Underlay erreichbar sein, damit VXLAN-Tunnel zu dieser Edge funktionieren."
+    },
+    {
+        "id":  "slg-sd-118",
+        "topic":  "ENCOR-1.3.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus (interface Vlan3001) auf dem Border für einen VRF-Lite-Handoff: Ordne das Interface der VRF CAMPUS_VN zu.",
+        "bausteine":  [
+                          "vrf",
+                          "forwarding",
+                          "CAMPUS_VN",
+                          "ip",
+                          "member",
+                          "instance"
+                      ],
+        "loesung":  [
+                        "vrf",
+                        "forwarding",
+                        "CAMPUS_VN"
+                    ],
+        "erklaerung":  "Beim IP-based Transit erhält jedes VN ein eigenes Handoff-Interface in der zugehörigen VRF. vrf forwarding entfernt dabei eine vorhandene IP-Adresse, deshalb wird sie erst danach gesetzt."
+    },
+    {
+        "id":  "slg-sd-119",
+        "topic":  "ENCOR-1.3.b",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Router-BGP-Modus auf dem Border (router bgp 65001): Öffne die Address-Family für die VRF CAMPUS_VN, um anschließend den eBGP-Peer zum Fusion Router zu definieren.",
+        "bausteine":  [
+                          "address-family",
+                          "ipv4",
+                          "vrf",
+                          "CAMPUS_VN",
+                          "vpnv4",
+                          "unicast",
+                          "instance"
+                      ],
+        "loesung":  [
+                        "address-family",
+                        "ipv4",
+                        "vrf",
+                        "CAMPUS_VN"
+                    ],
+        "erklaerung":  "Pro VN wird im BGP eine eigene IPv4-VRF-Address-Family genutzt; darin stehen der eBGP-Nachbar und die annoncierten EID-Präfixe. Die VPNv4-Address-Family wäre für MP-BGP/MPLS-VPN gedacht."
+    },
+    {
+        "id":  "slg-sd-120",
+        "topic":  "ENCOR-1.3.b",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Address-Family-Modus (address-family ipv4 vrf CAMPUS_VN) auf dem Border in AS 65001: Definiere den Fusion Router 172.16.10.2 in AS 65002 als eBGP-Nachbarn.",
+        "bausteine":  [
+                          "neighbor",
+                          "172.16.10.2",
+                          "remote-as",
+                          "65002",
+                          "65001",
+                          "peer-as",
+                          "activate"
+                      ],
+        "loesung":  [
+                        "neighbor",
+                        "172.16.10.2",
+                        "remote-as",
+                        "65002"
+                    ],
+        "erklaerung":  "remote-as gibt das AS des Nachbarn an; weil es vom eigenen AS 65001 abweicht, entsteht eine eBGP-Session innerhalb der VRF. Der Fusion Router leakt anschließend Routen zwischen den VRFs und den Shared Services."
+    },
+    {
+        "id":  "slg-sd-121",
+        "topic":  "ENCOR-1.3.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Privileged EXEC am Border: Prüfe die Routing-Tabelle der VRF CAMPUS_VN, z. B. ob die Shared-Services-Präfixe vom Fusion Router gelernt wurden.",
+        "bausteine":  [
+                          "show",
+                          "ip",
+                          "route",
+                          "vrf",
+                          "CAMPUS_VN",
+                          "bgp",
+                          "instance"
+                      ],
+        "loesung":  [
+                        "show",
+                        "ip",
+                        "route",
+                        "vrf",
+                        "CAMPUS_VN"
+                    ],
+        "erklaerung":  "show ip route vrf zeigt die Routing-Tabelle eines VN. Fehlen dort die Shared-Services-Präfixe, leakt der Fusion Router sie nicht in die VRF – typische Ursache für fehlendes DHCP/DNS im VN."
+    },
+    {
+        "id":  "slg-sd-122",
+        "topic":  "ENCOR-1.3.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Users in VN CAMPUS can reach each other, but hosts connected to Edge 3 are unreachable from everywhere. Edge 3 shows its local hosts in \u0027show lisp instance-id 4099 ipv4 database\u0027, but \u0027show lisp site\u0027 on the control plane node lists no registrations from Edge 3\u0027s RLOC. What should be checked first?",
+        "optionen":  [
+                         "The Layer 2 flooding setting of the host pools behind Edge 3",
+                         "The SGACL matrix entries for the groups of the hosts on Edge 3",
+                         "The LISP session between Edge 3 and the CP nodes, e.g. RLOC reachability",
+                         "The anycast gateway MAC address configured on the Edge 3 SVIs"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Edge 3 kennt ihre Hosts lokal, doch die Registrierungen kommen nicht beim Map-Server an – also fehlt die Kommunikation zwischen Edge und CP (Session, Underlay-Erreichbarkeit der Loopbacks). Ohne Registrierung können andere Edges die EIDs nicht auflösen."
+    }
+]

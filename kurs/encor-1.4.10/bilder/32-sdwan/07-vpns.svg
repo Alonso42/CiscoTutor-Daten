@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>VPNs auf einer WAN Edge</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">VPNs (Segmente) auf einer WAN Edge</text>
+<rect x="300" y="60" width="200" height="300" rx="10" fill="#39c86a" fill-opacity="0.12" stroke="#222"/>
+<text x="400" y="85" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">WAN Edge</text>
+<rect x="320" y="100" width="160" height="60" rx="6" fill="#4a9cff" fill-opacity="0.3" stroke="#222"/>
+<text x="400" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">VPN 0</text>
+<text x="400" y="145" text-anchor="middle" font-size="11" fill="#222">Transport (global)</text>
+<rect x="320" y="175" width="160" height="60" rx="6" fill="#b08aff" fill-opacity="0.3" stroke="#222"/>
+<text x="400" y="200" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">VPN 10, 20 ...</text>
+<text x="400" y="220" text-anchor="middle" font-size="11" fill="#222">Service-VPNs (VRFs)</text>
+<rect x="320" y="250" width="160" height="60" rx="6" fill="#ffd23f" fill-opacity="0.4" stroke="#222"/>
+<text x="400" y="275" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">VPN 512</text>
+<text x="400" y="295" text-anchor="middle" font-size="11" fill="#222">OOB-Management</text>
+<g font-size="12" fill="#222">
+<text x="40" y="115" font-weight="bold">Transport-Seite</text>
+<text x="40" y="133">WAN-Interfaces + tunnel-interface</text>
+<text x="40" y="151">DTLS/TLS zu Controllern, IPsec</text>
+<line x1="230" y1="130" x2="320" y2="130" stroke="#4a9cff" stroke-width="3"/>
+<text x="560" y="190" font-weight="bold">Service-Seite (LAN)</text>
+<text x="560" y="208">OSPF, BGP, EIGRP, RIPv2, VRRP</text>
+<text x="560" y="226">Verkehr "as is", dann ins Overlay</text>
+<line x1="480" y1="205" x2="555" y2="205" stroke="#b08aff" stroke-width="3"/>
+<text x="560" y="275" font-weight="bold">Management-Netz</text>
+<text x="560" y="293">IOS XE: VRF Mgmt-intf</text>
+<line x1="480" y1="280" x2="555" y2="280" stroke="#ffd23f" stroke-width="3"/>
+</g>
+<rect x="40" y="375" width="720" height="62" rx="6" fill="#ffffff" stroke="#222"/>
+<text x="400" y="397" text-anchor="middle" font-size="12" fill="#222">Gültige Service-VPNs: 1–511 und 513–65530 · 65531–65535 intern reserviert</text>
+<text x="400" y="417" text-anchor="middle" font-size="12" fill="#222">Im Overlay trägt jedes Datenpaket ein VPN-Label – die Segmente bleiben Ende-zu-Ende getrennt.</text>
+<text x="400" y="433" text-anchor="middle" font-size="11" fill="#222">(Kurs schreibt vereinfacht "VPN 1–65535, 512 reserviert")</text>
+</svg>

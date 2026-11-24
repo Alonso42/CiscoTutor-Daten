@@ -32,9 +32,9 @@ Status: ✅ fertig · ⏳ in Arbeit · ☐ offen · ⚠ nicht mehr in ENCOR v1.2
 | 27 | Wireless Principles (RF) | 295–304 | 27-wlan-rf | ⚠ |
 | 28 | Wireless Roaming and Location | 305–312 | 28-wlan-roaming | ⚠ |
 | 29 | Enterprise Network Security Architecture | 313–332 | 29-security-arch | ✅ 140 Fragen + Wissen + 9 SVGs, geprüft (1 korr.) |
-| 30 | Cisco Catalyst Center | 333–347 | 30-catalyst-center | ⏳ Writer läuft |
-| 31 | Cisco SD-Access | 348–359 | 31-sda | ☐ |
-| 32 | Cisco Catalyst SD-WAN | 360–373 | 32-sdwan | ☐ |
+| 30 | Cisco Catalyst Center | 333–347 | 30-catalyst-center | ✅ 133 Fragen + Wissen + 10 SVGs, geprüft inkl. Web (14 korr., 2 entf.) |
+| 31 | Cisco SD-Access | 348–359 | 31-sda | ✅ 121 Fragen + Wissen + 9 SVGs, geprüft (7 korr., 1 entf.) |
+| 32 | Cisco Catalyst SD-WAN | 360–373 | 32-sdwan | ⏳ Writer läuft |
 | 33 | APIs in Cisco Platforms | 374–381 | 33-apis | ☐ |
 
 Regeln: Fragen in eigenen Worten (keine Übernahme der Kurs-Wissensfragen), Topic-IDs nach ENCOR v1.2,

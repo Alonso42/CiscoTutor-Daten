@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Colors: public vs. private und restrict</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Colors: welche Adresse, welche Tunnel?</text>
+<g font-size="12" fill="#222">
+<rect x="30" y="50" width="350" height="28" fill="#4a9cff" fill-opacity="0.2" stroke="#222"/>
+<text x="45" y="69" font-weight="bold">Color lokal / remote</text><text x="250" y="69" font-weight="bold">Tunnel nutzt</text>
+<rect x="30" y="78" width="350" height="28" fill="#fff" stroke="#222"/><text x="45" y="97">private / private</text><text x="250" y="97">private IP/Port</text>
+<rect x="30" y="106" width="350" height="28" fill="#fff" stroke="#222"/><text x="45" y="125">private / public</text><text x="250" y="125">public IP/Port</text>
+<rect x="30" y="134" width="350" height="28" fill="#fff" stroke="#222"/><text x="45" y="153">public / public</text><text x="250" y="153">public IP/Port</text>
+<text x="420" y="65" font-weight="bold">Private Colors:</text>
+<text x="420" y="85">mpls, metro-ethernet, private1 … private6</text>
+<text x="420" y="115" font-weight="bold">Public Colors (alle anderen):</text>
+<text x="420" y="135">biz-internet, public-internet, lte, 3g,</text>
+<text x="420" y="155">gold, silver, bronze, blue, red, custom1-3 …</text>
+</g>
+<!-- restrict comparison -->
+<text x="200" y="200" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">ohne restrict: 4 BFD-Sessions</text>
+<text x="600" y="200" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">color mpls restrict: 2 Sessions</text>
+<g font-size="11" fill="#222" text-anchor="middle">
+<rect x="50" y="230" width="90" height="34" rx="5" fill="#ffd23f" fill-opacity="0.4" stroke="#222"/><text x="95" y="251">A: mpls</text>
+<rect x="50" y="330" width="90" height="34" rx="5" fill="#4a9cff" fill-opacity="0.3" stroke="#222"/><text x="95" y="351">A: biz-inet</text>
+<rect x="260" y="230" width="90" height="34" rx="5" fill="#ffd23f" fill-opacity="0.4" stroke="#222"/><text x="305" y="251">B: mpls</text>
+<rect x="260" y="330" width="90" height="34" rx="5" fill="#4a9cff" fill-opacity="0.3" stroke="#222"/><text x="305" y="351">B: biz-inet</text>
+<rect x="450" y="230" width="90" height="34" rx="5" fill="#ffd23f" fill-opacity="0.4" stroke="#222"/><text x="495" y="251">A: mpls</text>
+<rect x="450" y="330" width="90" height="34" rx="5" fill="#4a9cff" fill-opacity="0.3" stroke="#222"/><text x="495" y="351">A: biz-inet</text>
+<rect x="660" y="230" width="90" height="34" rx="5" fill="#ffd23f" fill-opacity="0.4" stroke="#222"/><text x="705" y="251">B: mpls</text>
+<rect x="660" y="330" width="90" height="34" rx="5" fill="#4a9cff" fill-opacity="0.3" stroke="#222"/><text x="705" y="351">B: biz-inet</text>
+</g>
+<g stroke="#39c86a" stroke-width="3">
+<line x1="140" y1="247" x2="260" y2="247"/><line x1="140" y1="347" x2="260" y2="347"/><line x1="140" y1="252" x2="260" y2="342"/><line x1="140" y1="342" x2="260" y2="252"/>
+<line x1="540" y1="247" x2="660" y2="247"/><line x1="540" y1="347" x2="660" y2="347"/>
+</g>
+<g stroke="#ff6b6b" stroke-width="2" stroke-dasharray="5,4"><line x1="540" y1="252" x2="660" y2="342"/><line x1="540" y1="342" x2="660" y2="252"/></g>
+<text x="600" y="305" text-anchor="middle" font-size="22" font-weight="bold" fill="#ff6b6b">X</text>
+<text x="400" y="405" text-anchor="middle" font-size="12" fill="#222">Default: jede Edge versucht jeden Remote-TLOC über jeden Transport (IP-Erreichbarkeit vorausgesetzt).</text>
+<text x="400" y="425" text-anchor="middle" font-size="12" fill="#222">restrict: Tunnel/BFD nur zu TLOCs gleicher Color – typisch auf privaten Transporten wie MPLS.</text>
+</svg>

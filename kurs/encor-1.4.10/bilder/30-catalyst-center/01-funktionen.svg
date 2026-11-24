@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Catalyst Center: Funktionsbereiche und Personas</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="32" text-anchor="middle" font-size="21" font-weight="bold" fill="#222">Cisco Catalyst Center (ehem. DNA Center) – fünf Bereiche</text>
+<rect x="20" y="55" width="760" height="34" rx="8" fill="#eeeeee" stroke="#222"/>
+<text x="400" y="78" text-anchor="middle" font-size="16" fill="#222">Automation + Assurance aus einer Konsole (Appliance, ESXi oder AWS)</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="105" width="140" height="190" rx="8" fill="#4a9cff" fill-opacity="0.18" stroke="#4a9cff" stroke-width="2"/>
+<text x="90" y="130" text-anchor="middle" font-size="17" font-weight="bold">Design</text>
+<text x="30" y="156">Hierarchie</text><text x="30" y="176">Area/Building/Floor</text><text x="30" y="196">Network Settings</text><text x="30" y="216">Credentials</text><text x="30" y="236">Image Repository</text><text x="30" y="256">Templates</text><text x="30" y="276">Network Profiles</text>
+<rect x="175" y="105" width="140" height="190" rx="8" fill="#b08aff" fill-opacity="0.18" stroke="#b08aff" stroke-width="2"/>
+<text x="245" y="130" text-anchor="middle" font-size="17" font-weight="bold">Policy</text>
+<text x="185" y="156">User-/Geräteprofile</text><text x="185" y="176">Gruppen (SGT)</text><text x="185" y="196">Segmentierung</text><text x="185" y="216">Access Control</text><text x="185" y="236">Application (QoS)</text><text x="185" y="256">Traffic Copy (SPAN)</text>
+<rect x="330" y="105" width="140" height="190" rx="8" fill="#39c86a" fill-opacity="0.18" stroke="#39c86a" stroke-width="2"/>
+<text x="400" y="130" text-anchor="middle" font-size="17" font-weight="bold">Provision</text>
+<text x="340" y="156">Inventory</text><text x="340" y="176">Plug and Play</text><text x="340" y="196">Gerät → Site</text><text x="340" y="216">Templates pushen</text><text x="340" y="236">SWIM-Upgrade</text><text x="340" y="256">Fabric-Domänen</text>
+<rect x="485" y="105" width="140" height="190" rx="8" fill="#ffd23f" fill-opacity="0.3" stroke="#222" stroke-width="1.5"/>
+<text x="555" y="130" text-anchor="middle" font-size="17" font-weight="bold">Assurance</text>
+<text x="495" y="156">Health Scores</text><text x="495" y="176">Issues P1–P4</text><text x="495" y="196">Device/Client 360</text><text x="495" y="216">Path Trace</text><text x="495" y="236">Time Travel</text><text x="495" y="256">AI Analytics, MRE</text>
+<rect x="640" y="105" width="140" height="190" rx="8" fill="#ff6b6b" fill-opacity="0.15" stroke="#ff6b6b" stroke-width="2"/>
+<text x="710" y="130" text-anchor="middle" font-size="17" font-weight="bold">Platform</text>
+<text x="650" y="156">Intent API (REST)</text><text x="650" y="176">Process Adapter</text><text x="650" y="196">Domain Adapter</text><text x="650" y="216">Multivendor SDK</text><text x="650" y="236">Events/Webhooks</text>
+</g>
+<text x="400" y="325" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Personas / Einsatzsichten</text>
+<g font-size="13" fill="#222">
+<rect x="20" y="340" width="180" height="90" rx="8" fill="#39c86a" fill-opacity="0.15" stroke="#39c86a"/>
+<text x="110" y="362" text-anchor="middle" font-weight="bold" font-size="15">NetOps</text><text x="30" y="384">Netz bauen + pflegen</text><text x="30" y="404">manuell → AI-assistiert</text><text x="30" y="422">→ selektiv autonom</text>
+<rect x="213" y="340" width="180" height="90" rx="8" fill="#ff6b6b" fill-opacity="0.12" stroke="#ff6b6b"/>
+<text x="303" y="362" text-anchor="middle" font-weight="bold" font-size="15">SecOps</text><text x="223" y="384">Endpunkte klassifizieren</text><text x="223" y="404">Policy durchsetzen</text><text x="223" y="422">Zero Trust, PSIRT-Scans</text>
+<rect x="406" y="340" width="180" height="90" rx="8" fill="#ffd23f" fill-opacity="0.25" stroke="#222"/>
+<text x="496" y="362" text-anchor="middle" font-weight="bold" font-size="15">AIOps</text><text x="416" y="384">ML + Machine Reasoning</text><text x="416" y="404">+ Visual Analytics</text><text x="416" y="422">Health, Root Cause</text>
+<rect x="599" y="340" width="180" height="90" rx="8" fill="#4a9cff" fill-opacity="0.15" stroke="#4a9cff"/>
+<text x="689" y="362" text-anchor="middle" font-weight="bold" font-size="15">DevOps</text><text x="609" y="384">APIs und SDKs</text><text x="609" y="404">Closed-Loop-Integration</text><text x="609" y="422">ITSM, Splunk</text>
+</g>
+</svg>

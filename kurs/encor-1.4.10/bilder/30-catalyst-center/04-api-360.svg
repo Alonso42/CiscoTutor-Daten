@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>360-Grad-Erweiterbarkeit von Catalyst Center</title>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="21" font-weight="bold" fill="#222">Catalyst Center Platform: vier Richtungen</text>
+<g font-size="13" fill="#222">
+<rect x="230" y="45" width="340" height="95" rx="8" fill="#4a9cff" fill-opacity="0.18" stroke="#4a9cff" stroke-width="2"/>
+<text x="400" y="66" text-anchor="middle" font-size="15" font-weight="bold">Northbound: Intent API (REST/JSON)</text>
+<text x="245" y="88">Apps, Skripte, Ansible: GET /dna/intent/api/v1/…</text>
+<text x="245" y="108">Inventory, Discovery, Templates, PnP, SWIM,</text>
+<text x="245" y="128">Path Trace, Command Runner, Assurance</text>
+<rect x="320" y="185" width="160" height="80" rx="40" fill="#ffd23f" fill-opacity="0.35" stroke="#222" stroke-width="2"/>
+<text x="400" y="220" text-anchor="middle" font-size="16" font-weight="bold">Catalyst</text>
+<text x="400" y="240" text-anchor="middle" font-size="16" font-weight="bold">Center</text>
+<line x1="400" y1="183" x2="400" y2="142" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<line x1="400" y1="142" x2="400" y2="183" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<rect x="15" y="170" width="255" height="110" rx="8" fill="#b08aff" fill-opacity="0.18" stroke="#b08aff" stroke-width="2"/>
+<text x="142" y="192" text-anchor="middle" font-size="15" font-weight="bold">Westbound: Process Adapter</text>
+<text x="25" y="214">ITSM: ServiceNow (Tickets,</text>
+<text x="25" y="232">Auto-Resolve) · IPAM: Infoblox,</text>
+<text x="25" y="250">BlueCat · Reporting: Tableau</text>
+<text x="25" y="270">(Integration API)</text>
+<line x1="318" y1="225" x2="272" y2="225" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<rect x="530" y="170" width="255" height="110" rx="8" fill="#ff6b6b" fill-opacity="0.12" stroke="#ff6b6b" stroke-width="2"/>
+<text x="657" y="192" text-anchor="middle" font-size="15" font-weight="bold">Eastbound: Events</text>
+<text x="540" y="214">Notifications bei Issues/Events:</text>
+<text x="540" y="232">Webhook, E-Mail, Syslog, SNMP</text>
+<text x="540" y="252">Domain Adapter (Kursbild):</text>
+<text x="540" y="270">Meraki, Secure Network Analytics</text>
+<line x1="482" y1="225" x2="528" y2="225" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<rect x="150" y="320" width="500" height="115" rx="8" fill="#39c86a" fill-opacity="0.18" stroke="#39c86a" stroke-width="2"/>
+<text x="400" y="342" text-anchor="middle" font-size="15" font-weight="bold">Southbound: Zugriff auf Geräte</text>
+<text x="165" y="366">CLI über SSH/Telnet · SNMPv2c/v3 · NETCONF (WLC) · HTTPS (NFVIS)</text>
+<text x="165" y="386">Telemetrie zurück: Syslog, SNMP-Traps, NetFlow, Streaming Telemetry</text>
+<text x="165" y="406">Multivendor SDK: Device Packs für Fremdgeräte (Level 1:</text>
+<text x="165" y="424">Discovery, Inventory, Topology, Health)</text>
+<line x1="400" y1="267" x2="400" y2="318" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+</g>
+</svg>

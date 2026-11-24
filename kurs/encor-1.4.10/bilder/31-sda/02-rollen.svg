@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>SD-Access Fabric-Rollen</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Rollen in einer SD-Access-Fabric-Site</text>
+<!-- management -->
+<rect x="30" y="48" width="170" height="54" rx="8" fill="#ffd23f" fill-opacity="0.35" stroke="#222"/>
+<text x="115" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Catalyst Center</text>
+<text x="115" y="90" text-anchor="middle" font-size="11" fill="#222">Automation + Assurance</text>
+<rect x="215" y="48" width="150" height="54" rx="8" fill="#ffd23f" fill-opacity="0.35" stroke="#222"/>
+<text x="290" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">ISE</text>
+<text x="290" y="90" text-anchor="middle" font-size="11" fill="#222">AuthC/AuthZ, SGT, SGACL</text>
+<line x1="200" y1="75" x2="215" y2="75" stroke="#222" stroke-width="2"/>
+<text x="207" y="118" text-anchor="middle" font-size="10" fill="#222">pxGrid/REST</text>
+<rect x="590" y="48" width="180" height="54" rx="8" fill="#ffffff" stroke="#222"/>
+<text x="680" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Fabric WLC</text>
+<text x="680" y="90" text-anchor="middle" font-size="11" fill="#222">CAPWAP-Control, Client-Reg. im CP</text>
+<!-- fabric cloud -->
+<rect x="30" y="135" width="740" height="230" rx="20" fill="#4a9cff" fill-opacity="0.08" stroke="#4a9cff" stroke-width="2" stroke-dasharray="7,5"/>
+<text x="45" y="155" font-size="13" fill="#222">Fabric Site</text>
+<!-- border -->
+<rect x="80" y="165" width="150" height="50" rx="6" fill="#39c86a" fill-opacity="0.25" stroke="#222"/>
+<text x="155" y="186" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">Border Node</text>
+<text x="155" y="204" text-anchor="middle" font-size="11" fill="#222">Exit/Entry, VRF-Handoff, PxTR</text>
+<rect x="560" y="165" width="160" height="50" rx="6" fill="#b08aff" fill-opacity="0.25" stroke="#222"/>
+<text x="640" y="186" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">Control Plane Node</text>
+<text x="640" y="204" text-anchor="middle" font-size="11" fill="#222">LISP MS/MR, HTDB</text>
+<circle cx="250" cy="260" r="20" fill="#ffffff" stroke="#222"/><text x="250" y="265" text-anchor="middle" font-size="11" fill="#222">INT</text>
+<circle cx="550" cy="260" r="20" fill="#ffffff" stroke="#222"/><text x="550" y="265" text-anchor="middle" font-size="11" fill="#222">INT</text>
+<text x="400" y="255" text-anchor="middle" font-size="12" fill="#222">Intermediate Nodes: nur Underlay-Routing</text>
+<!-- edges -->
+<rect x="80" y="300" width="160" height="50" rx="6" fill="#ff6b6b" fill-opacity="0.2" stroke="#222"/>
+<text x="160" y="321" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">Edge Node 1</text>
+<text x="160" y="339" text-anchor="middle" font-size="11" fill="#222">xTR, VTEP, Anycast GW</text>
+<rect x="320" y="300" width="160" height="50" rx="6" fill="#ff6b6b" fill-opacity="0.2" stroke="#222"/>
+<text x="400" y="321" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">Edge Node 2</text>
+<text x="400" y="339" text-anchor="middle" font-size="11" fill="#222">802.1X/MAB, SGT</text>
+<rect x="560" y="300" width="160" height="50" rx="6" fill="#ff6b6b" fill-opacity="0.2" stroke="#222"/>
+<text x="640" y="321" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">Edge Node 3</text>
+<text x="640" y="339" text-anchor="middle" font-size="11" fill="#222">SGACL-Enforcement</text>
+<g stroke="#4a9cff" stroke-width="2.5">
+<line x1="155" y1="215" x2="240" y2="243"/><line x1="640" y1="215" x2="560" y2="243"/>
+<line x1="160" y1="300" x2="240" y2="278"/><line x1="400" y1="300" x2="265" y2="275"/><line x1="400" y1="300" x2="535" y2="275"/><line x1="640" y1="300" x2="560" y2="278"/>
+<line x1="270" y1="260" x2="530" y2="260"/>
+</g>
+<line x1="680" y1="102" x2="660" y2="165" stroke="#b08aff" stroke-width="2" stroke-dasharray="5,4"/>
+<!-- outside fabric -->
+<rect x="60" y="385" width="140" height="45" rx="6" fill="#ffffff" stroke="#222"/>
+<text x="130" y="405" text-anchor="middle" font-size="12" fill="#222">PC (wired EID)</text>
+<text x="130" y="421" text-anchor="middle" font-size="10" fill="#222">an Edge 1</text>
+<rect x="300" y="385" width="200" height="45" rx="6" fill="#ffffff" stroke="#222"/>
+<text x="400" y="404" text-anchor="middle" font-size="12" fill="#222">Fabric AP (Local Mode)</text>
+<text x="400" y="420" text-anchor="middle" font-size="10" fill="#222">direkt an Edge 2, Daten per VXLAN</text>
+<rect x="545" y="385" width="200" height="45" rx="6" fill="#ffffff" stroke="#222"/>
+<text x="645" y="404" text-anchor="middle" font-size="12" fill="#222">Extended Node (z. B. IE)</text>
+<text x="645" y="420" text-anchor="middle" font-size="10" fill="#222">802.1Q-Trunk, kein VXLAN</text>
+<line x1="130" y1="385" x2="140" y2="350" stroke="#222" stroke-width="2"/>
+<line x1="400" y1="385" x2="400" y2="350" stroke="#ffd23f" stroke-width="4"/>
+<line x1="645" y1="385" x2="640" y2="350" stroke="#222" stroke-width="2"/>
+<line x1="155" y1="165" x2="155" y2="135" stroke="#39c86a" stroke-width="3"/>
+<text x="165" y="130" font-size="11" fill="#222">zu externen Netzen</text>
+</svg>

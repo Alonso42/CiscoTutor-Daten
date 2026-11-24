@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Border-Handoff zum traditionellen Netz</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Fabric ↔ traditionelles Netz: L3-Handoff, Fusion, L2-Handoff</text>
+<rect x="20" y="55" width="250" height="300" rx="16" fill="#4a9cff" fill-opacity="0.1" stroke="#4a9cff" stroke-width="2" stroke-dasharray="7,5"/>
+<text x="145" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">SD-Access Fabric</text>
+<rect x="40" y="100" width="210" height="34" rx="6" fill="#ffffff" stroke="#4a9cff"/><text x="145" y="122" text-anchor="middle" font-size="12" fill="#222">VN CAMPUS (VRF)</text>
+<rect x="40" y="142" width="210" height="34" rx="6" fill="#ffffff" stroke="#39c86a"/><text x="145" y="164" text-anchor="middle" font-size="12" fill="#222">VN IOT (VRF)</text>
+<rect x="150" y="200" width="110" height="60" rx="8" fill="#39c86a" fill-opacity="0.3" stroke="#222"/>
+<text x="205" y="225" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">Border</text>
+<text x="205" y="243" text-anchor="middle" font-size="10" fill="#222">LISP IID ↔ VRF</text>
+<rect x="40" y="290" width="210" height="44" rx="6" fill="#ffffff" stroke="#b08aff"/>
+<text x="145" y="309" text-anchor="middle" font-size="12" fill="#222">Host Pool 10.50.0.0/24</text>
+<text x="145" y="325" text-anchor="middle" font-size="10" fill="#222">L2-VNI, Anycast GW 10.50.0.1</text>
+<!-- fusion -->
+<circle cx="470" cy="160" r="40" fill="#ffd23f" fill-opacity="0.35" stroke="#222"/>
+<text x="470" y="156" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">Fusion</text>
+<text x="470" y="173" text-anchor="middle" font-size="11" fill="#222">Router</text>
+<line x1="260" y1="215" x2="432" y2="170" stroke="#4a9cff" stroke-width="4"/>
+<line x1="260" y1="235" x2="434" y2="180" stroke="#39c86a" stroke-width="4"/>
+<text x="345" y="175" text-anchor="middle" font-size="11" fill="#222">VRF-Lite: 802.1Q-VLAN</text>
+<text x="345" y="190" text-anchor="middle" font-size="11" fill="#222">+ eBGP pro VN</text>
+<text x="345" y="232" text-anchor="middle" font-size="10" fill="#222">IP-Based Transit (L3-Handoff)</text>
+<rect x="580" y="60" width="200" height="90" rx="10" fill="#ffffff" stroke="#222"/>
+<text x="680" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">Shared Services (GRT)</text>
+<text x="680" y="102" text-anchor="middle" font-size="12" fill="#222">DHCP, DNS, ISE, WLC</text>
+<text x="680" y="120" text-anchor="middle" font-size="12" fill="#222">Internet / WAN</text>
+<line x1="510" y1="150" x2="580" y2="110" stroke="#222" stroke-width="3"/>
+<text x="580" y="185" font-size="11" fill="#222">Route Leaking VRF ↔ GRT</text>
+<text x="580" y="201" font-size="11" fill="#222">(und kontrolliert VRF ↔ VRF)</text>
+<text x="580" y="217" font-size="11" fill="#222">Gegenseite manuell konfiguriert</text>
+<!-- L2 handoff -->
+<rect x="420" y="280" width="170" height="60" rx="8" fill="#ffffff" stroke="#222"/>
+<text x="505" y="303" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">Legacy-Switch</text>
+<text x="505" y="321" text-anchor="middle" font-size="11" fill="#222">VLAN 50, kein eigenes GW</text>
+<rect x="640" y="285" width="130" height="50" rx="6" fill="#ffffff" stroke="#222"/>
+<text x="705" y="307" text-anchor="middle" font-size="12" fill="#222">Alt-Hosts</text>
+<text x="705" y="323" text-anchor="middle" font-size="10" fill="#222">10.50.0.0/24</text>
+<line x1="590" y1="310" x2="640" y2="310" stroke="#222" stroke-width="2"/>
+<line x1="260" y1="250" x2="420" y2="300" stroke="#b08aff" stroke-width="4" stroke-dasharray="8,4"/>
+<text x="340" y="300" text-anchor="middle" font-size="11" fill="#222">Layer-2-Handoff</text>
+<text x="340" y="315" text-anchor="middle" font-size="10" fill="#222">L2-VNI ↔ VLAN 50</text>
+<text x="400" y="385" text-anchor="middle" font-size="12" fill="#222">L3-Handoff: VN bleibt als VRF erhalten, SGT im Datenpfad nicht → SXP oder Inline-Tagging nötig</text>
+<text x="400" y="407" text-anchor="middle" font-size="12" fill="#222">L2-Handoff: gleiches Subnetz innen/außen für Migration ohne Re-IP; Gateway = Fabric Anycast GW</text>
+<text x="400" y="429" text-anchor="middle" font-size="12" fill="#222">SD-Access Transit (Site ↔ Site): LISP/VXLAN durchgehend, VN und SGT bleiben im Header</text>
+</svg>

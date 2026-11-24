@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Onboarding einer WAN Edge</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Onboarding einer WAN Edge (Zero Touch)</text>
+<!-- lifelines -->
+<g font-size="13" font-weight="bold" fill="#222" text-anchor="middle">
+<rect x="20" y="45" width="130" height="36" rx="6" fill="#39c86a" fill-opacity="0.3" stroke="#222"/><text x="85" y="68">WAN Edge</text>
+<rect x="175" y="45" width="130" height="36" rx="6" fill="#ffffff" stroke="#222"/><text x="240" y="68">PnP-Server</text>
+<rect x="330" y="45" width="140" height="36" rx="6" fill="#b08aff" fill-opacity="0.3" stroke="#222"/><text x="400" y="68">Validator</text>
+<rect x="495" y="45" width="130" height="36" rx="6" fill="#ffd23f" fill-opacity="0.35" stroke="#222"/><text x="560" y="68">Manager</text>
+<rect x="650" y="45" width="130" height="36" rx="6" fill="#4a9cff" fill-opacity="0.3" stroke="#222"/><text x="715" y="68">Controller</text>
+</g>
+<g stroke="#222" stroke-dasharray="3,4"><line x1="85" y1="81" x2="85" y2="430"/><line x1="240" y1="81" x2="240" y2="430"/><line x1="400" y1="81" x2="400" y2="430"/><line x1="560" y1="81" x2="560" y2="430"/><line x1="715" y1="81" x2="715" y2="430"/></g>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#222"/></marker></defs>
+<g stroke-width="2" marker-end="url(#a)">
+<line x1="85" y1="110" x2="236" y2="110" stroke="#222"/>
+<line x1="240" y1="135" x2="89" y2="135" stroke="#222"/>
+<line x1="85" y1="175" x2="396" y2="175" stroke="#b08aff"/>
+<line x1="400" y1="215" x2="89" y2="215" stroke="#b08aff"/>
+<line x1="85" y1="265" x2="556" y2="265" stroke="#ffd23f"/>
+<line x1="85" y1="315" x2="711" y2="315" stroke="#4a9cff"/>
+<line x1="715" y1="360" x2="89" y2="360" stroke="#4a9cff"/>
+</g>
+<g font-size="11" fill="#222">
+<text x="95" y="105">1 Anfrage mit Seriennummer (SUDI/TPM)</text>
+<text x="95" y="150">2 Antwort: Validator-Adresse, Org-Name</text>
+<text x="95" y="170">3 DTLS zum Validator, gegenseitige Zertifikatsprüfung + Allow-List</text>
+<text x="95" y="210">4 Liste Manager + Controller, eigene public IP/Port (STUN)</text>
+<text x="95" y="230">  Verbindung zum Validator wird danach abgebaut</text>
+<text x="95" y="260">5 DTLS/TLS zum Manager: Konfiguration (Template/Config Group)</text>
+<text x="95" y="310">6 DTLS/TLS zu den Controllern, OMP-Session über System-IP</text>
+<text x="95" y="355">7 OMP: Routen, TLOCs, IPsec-Keys, Policies anderer Sites</text>
+</g>
+<rect x="95" y="385" width="620" height="40" rx="6" fill="#39c86a" fill-opacity="0.2" stroke="#222"/>
+<text x="405" y="410" text-anchor="middle" font-size="13" fill="#222">8 IPsec-Tunnel + BFD direkt zu den anderen WAN Edges (kein IKE nötig)</text>
+</svg>

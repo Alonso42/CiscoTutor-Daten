@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>CLI Templates: Day-0 und Day-N</title>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="21" font-weight="bold" fill="#222">Template Editor: vom Projekt zum Gerät</text>
+<g font-size="13" fill="#222">
+<rect x="15" y="45" width="140" height="56" rx="8" fill="#eeeeee" stroke="#222"/><text x="85" y="68" text-anchor="middle" font-weight="bold">1 Projekt</text><text x="85" y="88" text-anchor="middle">Ordner</text>
+<rect x="172" y="45" width="140" height="56" rx="8" fill="#eeeeee" stroke="#222"/><text x="242" y="68" text-anchor="middle" font-weight="bold">2 Template</text><text x="242" y="88" text-anchor="middle">Device/SW-Typ</text>
+<rect x="329" y="45" width="140" height="56" rx="8" fill="#eeeeee" stroke="#222"/><text x="399" y="68" text-anchor="middle" font-weight="bold">3 Inhalt</text><text x="399" y="88" text-anchor="middle">Code-Editor</text>
+<rect x="486" y="45" width="140" height="56" rx="8" fill="#eeeeee" stroke="#222"/><text x="556" y="68" text-anchor="middle" font-weight="bold">4 Variablen</text><text x="556" y="88" text-anchor="middle">Form-Editor</text>
+<rect x="643" y="45" width="142" height="56" rx="8" fill="#39c86a" fill-opacity="0.25" stroke="#39c86a" stroke-width="2"/><text x="714" y="68" text-anchor="middle" font-weight="bold">5 Commit</text><text x="714" y="88" text-anchor="middle">neue Version</text>
+<line x1="155" y1="73" x2="170" y2="73" stroke="#222" marker-end="url(#a)"/>
+<line x1="312" y1="73" x2="327" y2="73" stroke="#222" marker-end="url(#a)"/>
+<line x1="469" y1="73" x2="484" y2="73" stroke="#222" marker-end="url(#a)"/>
+<line x1="626" y1="73" x2="641" y2="73" stroke="#222" marker-end="url(#a)"/>
+<rect x="15" y="120" width="380" height="170" rx="8" fill="#4a9cff" fill-opacity="0.15" stroke="#4a9cff" stroke-width="2"/>
+<text x="205" y="143" text-anchor="middle" font-size="16" font-weight="bold">Day-0 (Onboarding)</text>
+<text x="28" y="168">• nur beim ersten Kontakt per PnP</text>
+<text x="28" y="190">• Projekt „Onboarding Configuration“</text>
+<text x="28" y="212">• als eine Datei → Running-Config</text>
+<text x="28" y="234">• keine interaktiven Befehle</text>
+<text x="28" y="256">• Credentials/Site-Settings kommen</text>
+<text x="40" y="274">automatisch dazu</text>
+<rect x="405" y="120" width="380" height="170" rx="8" fill="#ffd23f" fill-opacity="0.25" stroke="#222" stroke-width="1.5"/>
+<text x="595" y="143" text-anchor="middle" font-size="16" font-weight="bold">Day-N (Provisioning)</text>
+<text x="418" y="168">• laufende Änderungen an Geräten</text>
+<text x="418" y="190">• zeilenweise gepusht</text>
+<text x="418" y="212">• interaktive Befehle möglich</text>
+<text x="418" y="234">• Regular oder Composite</text>
+<text x="430" y="252">(Composite = nur committete Regular,</text>
+<text x="430" y="270">feste Reihenfolge)</text>
+<rect x="15" y="305" width="770" height="130" rx="8" fill="#eeeeee" stroke="#222"/>
+<text x="28" y="327" font-weight="bold">Syntax (Befehle laufen sonst im Global Configuration Mode)</text>
+<g font-family="monospace" font-size="12">
+<text x="28" y="350">#MODE_ENABLE</text><text x="28" y="367">show running-config</text><text x="28" y="384">#MODE_END_ENABLE</text>
+<text x="250" y="350">#INTERACTIVE</text><text x="250" y="367" font-size="8.5">crypto key generate rsa general-keys&lt;IQ&gt;yes/no&lt;R&gt;no</text><text x="250" y="384" font-size="10" font-family="sans-serif">(&lt;IQ&gt;/&lt;R&gt; in derselben Zeile)</text><text x="250" y="401">#ENDS_INTERACTIVE</text>
+<text x="560" y="350">hostname $hostname</text><text x="560" y="367">#if( $role == "access" )</text><text x="560" y="384"> ...</text><text x="560" y="401">#end</text>
+</g>
+<text x="28" y="425">&lt;MLTCMD&gt;…&lt;/MLTCMD&gt; für mehrzeilige Befehle · Engine: Velocity (neuere Releases auch Jinja2)</text>
+</g>
+</svg>

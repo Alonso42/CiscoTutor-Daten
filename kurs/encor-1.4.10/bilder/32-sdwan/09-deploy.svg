@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Controller-Deployment-Modelle</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Wo laufen Manager, Controller und Validator?</text>
+<g font-size="12" fill="#222" text-anchor="middle">
+<rect x="30" y="55" width="230" height="300" rx="10" fill="#39c86a" fill-opacity="0.15" stroke="#222"/>
+<text x="145" y="82" font-size="15" font-weight="bold">Cisco-Cloud</text>
+<text x="145" y="100">(Cisco CloudOps, empfohlen)</text>
+<text x="145" y="130">AWS oder Azure</text>
+<text x="145" y="150">single/multi zone</text>
+<text x="145" y="185" font-weight="bold">Cisco verantwortet:</text>
+<text x="145" y="205">Provisionierung, Zertifikate,</text>
+<text x="145" y="223">Skalierung, Backups,</text>
+<text x="145" y="241">Snapshots, Disaster Recovery</text>
+<text x="145" y="275" font-weight="bold">Kunde:</text>
+<text x="145" y="295">Admin-Zugang zum Manager,</text>
+<text x="145" y="313">Templates und Policies</text>
+<rect x="285" y="55" width="230" height="300" rx="10" fill="#4a9cff" fill-opacity="0.15" stroke="#222"/>
+<text x="400" y="82" font-size="15" font-weight="bold">MSP / Partner</text>
+<text x="400" y="100">(partner-hosted cloud)</text>
+<text x="400" y="130">private Cloud des Partners</text>
+<text x="400" y="150">oder AWS/Azure</text>
+<text x="400" y="185" font-weight="bold">MSP/Partner verantwortet:</text>
+<text x="400" y="205">Provisionierung,</text>
+<text x="400" y="223">Backups, Disaster Recovery</text>
+<text x="400" y="275">Verschiedene Service-Level</text>
+<text x="400" y="293">je Kunde möglich</text>
+<rect x="540" y="55" width="230" height="300" rx="10" fill="#ffd23f" fill-opacity="0.25" stroke="#222"/>
+<text x="655" y="82" font-size="15" font-weight="bold">On-Premises</text>
+<text x="655" y="100">(eigenes RZ / Private Cloud)</text>
+<text x="655" y="130">typisch: Banken, Behörden</text>
+<text x="655" y="150">(Security, Compliance)</text>
+<text x="655" y="185" font-weight="bold">Kunde verantwortet:</text>
+<text x="655" y="205">Provisionierung, Backups,</text>
+<text x="655" y="223">DR und Resilienz</text>
+<text x="655" y="241">(Validator öffentlich erreichbar!)</text>
+</g>
+<rect x="30" y="375" width="740" height="60" rx="8" fill="#ffffff" stroke="#222"/>
+<text x="400" y="398" text-anchor="middle" font-size="12" fill="#222">Cisco-Cloud-Default: je 1 Manager, Validator, Controller in der Primärregion</text>
+<text x="400" y="418" text-anchor="middle" font-size="12" fill="#222">+ zusätzlicher Validator und Controller in einer Sekundär-/Backup-Region</text>
+</svg>

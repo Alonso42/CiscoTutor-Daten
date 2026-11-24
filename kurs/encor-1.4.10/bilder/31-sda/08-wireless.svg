@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>SD-Access Wireless und Over-the-Top im Vergleich</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="26" text-anchor="middle" font-size="19" font-weight="bold" fill="#222">Fabric Wireless vs. Over-the-Top (OTT)</text>
+<!-- left: fabric -->
+<text x="200" y="52" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">Fabric Wireless</text>
+<rect x="250" y="70" width="130" height="46" rx="6" fill="#ffffff" stroke="#222"/>
+<text x="315" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">Fabric WLC</text>
+<text x="315" y="106" text-anchor="middle" font-size="10" fill="#222">außerhalb, GRT</text>
+<rect x="20" y="70" width="130" height="46" rx="6" fill="#b08aff" fill-opacity="0.25" stroke="#222"/>
+<text x="85" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">CP Node</text>
+<text x="85" y="106" text-anchor="middle" font-size="10" fill="#222">HTDB</text>
+<line x1="250" y1="93" x2="150" y2="93" stroke="#b08aff" stroke-width="3" stroke-dasharray="6,4"/>
+<text x="200" y="86" text-anchor="middle" font-size="10" fill="#222">Client-MAC + SGT</text>
+<text x="200" y="128" text-anchor="middle" font-size="10" fill="#222">+ L2-VNI registrieren</text>
+<rect x="30" y="200" width="120" height="44" rx="6" fill="#ffffff" stroke="#222"/>
+<text x="90" y="226" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">Edge A</text>
+<rect x="250" y="200" width="120" height="44" rx="6" fill="#ffffff" stroke="#222"/>
+<text x="310" y="226" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">Edge B</text>
+<rect x="30" y="300" width="120" height="40" rx="6" fill="#ffd23f" fill-opacity="0.35" stroke="#222"/>
+<text x="90" y="324" text-anchor="middle" font-size="12" fill="#222">Fabric AP</text>
+<rect x="30" y="370" width="120" height="34" rx="6" fill="#ffffff" stroke="#222"/>
+<text x="90" y="392" text-anchor="middle" font-size="11" fill="#222">Client</text>
+<line x1="90" y1="300" x2="90" y2="244" stroke="#ffd23f" stroke-width="6"/>
+<text x="100" y="275" font-size="10" fill="#222">VXLAN (Daten)</text>
+<path d="M150 315 Q300 300 315 116" fill="none" stroke="#4a9cff" stroke-width="2.5" stroke-dasharray="6,4"/>
+<text x="230" y="290" font-size="10" fill="#222">CAPWAP nur Control</text>
+<line x1="150" y1="222" x2="250" y2="222" stroke="#ff6b6b" stroke-width="5"/>
+<text x="200" y="214" text-anchor="middle" font-size="10" fill="#222">VXLAN Edge↔Edge</text>
+<line x1="90" y1="370" x2="90" y2="340" stroke="#222" stroke-width="1.5" stroke-dasharray="3,3"/>
+<text x="200" y="425" text-anchor="middle" font-size="11" fill="#222">Daten bleiben in der Fabric, Anycast GW an der Edge,</text>
+<text x="200" y="441" text-anchor="middle" font-size="11" fill="#222">SGT + VN im VXLAN; AP direkt an Edge, Local Mode</text>
+<line x1="400" y1="45" x2="400" y2="445" stroke="#222" stroke-dasharray="4,4"/>
+<!-- right: OTT -->
+<text x="600" y="52" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">Over-the-Top (CUWN über Fabric)</text>
+<rect x="640" y="70" width="140" height="46" rx="6" fill="#ffffff" stroke="#222"/>
+<text x="710" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">WLC</text>
+<text x="710" y="106" text-anchor="middle" font-size="10" fill="#222">Non-Fabric, bestehend</text>
+<rect x="640" y="200" width="140" height="44" rx="6" fill="#39c86a" fill-opacity="0.25" stroke="#222"/>
+<text x="710" y="226" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">Border</text>
+<rect x="430" y="200" width="120" height="44" rx="6" fill="#ffffff" stroke="#222"/>
+<text x="490" y="226" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">Edge</text>
+<rect x="430" y="300" width="120" height="40" rx="6" fill="#ffffff" stroke="#222"/>
+<text x="490" y="324" text-anchor="middle" font-size="12" fill="#222">AP (Local Mode)</text>
+<line x1="490" y1="300" x2="490" y2="244" stroke="#4a9cff" stroke-width="5"/>
+<text x="500" y="275" font-size="10" fill="#222">CAPWAP (Control + Daten)</text>
+<line x1="550" y1="222" x2="640" y2="222" stroke="#ffd23f" stroke-width="6"/>
+<text x="595" y="214" text-anchor="middle" font-size="10" fill="#222">CAPWAP in VXLAN</text>
+<line x1="710" y1="200" x2="710" y2="116" stroke="#4a9cff" stroke-width="5"/>
+<text x="718" y="160" font-size="10" fill="#222">CAPWAP</text>
+<text x="600" y="380" text-anchor="middle" font-size="11" fill="#222">Fabric ist nur Transport; APs als wired Hosts</text>
+<text x="600" y="396" text-anchor="middle" font-size="11" fill="#222">im HTDB; Wireless-Clients liegen außerhalb</text>
+<text x="600" y="425" text-anchor="middle" font-size="11" fill="#222">der Fabric → Verkehr zu Fabric-Hosts über Border;</text>
+<text x="600" y="441" text-anchor="middle" font-size="11" fill="#222">Migrationsschritt oder Dauerlösung</text>
+</svg>
