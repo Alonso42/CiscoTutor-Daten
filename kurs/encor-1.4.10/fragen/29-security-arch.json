@@ -1,0 +1,2450 @@
+[
+    {
+        "id":  "slg-sa-001",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which term describes the likelihood that a particular threat will exploit a particular vulnerability of an asset and cause an undesirable consequence?",
+        "optionen":  [
+                         "Risk",
+                         "Threat",
+                         "Vulnerability",
+                         "Exploit"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Risiko ist die Wahrscheinlichkeit, dass eine bestimmte Bedrohung mit einem bestimmten Angriff eine Schwachstelle ausnutzt und Schaden entsteht. Exploit ist das Werkzeug, Threat das mögliche Schadensereignis, Vulnerability die Schwäche selbst."
+    },
+    {
+        "id":  "slg-sa-002",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den Sicherheitsbegriff der passenden Beschreibung zu.",
+        "paare":  [
+                      [
+                          "Vulnerability",
+                          "Schwäche eines Systems, z. B. ein leicht zu ratendes Passwort"
+                      ],
+                      [
+                          "Exploit",
+                          "Mechanismus oder Tool, das eine Schwäche ausnutzt"
+                      ],
+                      [
+                          "Threat",
+                          "Ereignis mit dem Potenzial, einem Asset zu schaden"
+                      ],
+                      [
+                          "Risk",
+                          "Wahrscheinlichkeit, dass tatsächlich Schaden entsteht"
+                      ]
+                  ],
+        "erklaerung":  "Die vier Begriffe bauen aufeinander auf: Eine Schwachstelle wird von einem Exploit ausgenutzt, eine Bedrohung beschreibt das mögliche Schadensereignis, das Risiko dessen Eintrittswahrscheinlichkeit."
+    },
+    {
+        "id":  "slg-sa-003",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An attacker sends thousands of small DNS queries to many open resolvers on the internet. Every query carries the IP address of a company\u0027s web server as its source address. The web server is flooded with large DNS responses. Which type of attack is this?",
+        "optionen":  [
+                         "Reconnaissance attack using DNS lookups",
+                         "Buffer overflow attack on the resolvers",
+                         "Man-in-the-middle attack via rogue DNS",
+                         "Reflection and amplification DoS attack"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Resolver werden zu Reflektoren: Sie antworten an die gefälschte Quelladresse, also an das Opfer. Da die DNS-Antworten größer sind als die Anfragen, wird der Angriff zusätzlich verstärkt (Amplification)."
+    },
+    {
+        "id":  "slg-sa-004",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Before an attack, an intruder uses nslookup, dig and whois to collect public information about a company\u0027s domains and name servers. How is this activity classified?",
+        "optionen":  [
+                         "Buffer overflow attack",
+                         "Password attack",
+                         "Reconnaissance attack",
+                         "Reflection attack"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Reconnaissance ist das Sammeln von Informationen über das Ziel vor einem intrusiveren Angriff. Die genannten Kommandozeilen-Tools fragen öffentliche DNS- und Registry-Daten ab."
+    },
+    {
+        "id":  "slg-sa-005",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A network service copies user input into a fixed-size memory buffer without checking the input length. What is the worst-case result if an attacker exploits this flaw?",
+        "optionen":  [
+                         "Mass delivery of phishing mails to all users",
+                         "Reflection of traffic to a spoofed IP address",
+                         "Exposure of the DNS zone data to the attacker",
+                         "Execution of attacker-injected code on the system"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bei einem Buffer Overflow überschreibt die zu lange Eingabe benachbarten Speicher. Im harmloseren Fall stürzt der Dienst ab (DoS), im schlimmsten Fall wird eingeschleuster Code ausgeführt und das System kompromittiert."
+    },
+    {
+        "id":  "slg-sa-006",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "A man-in-the-middle attack requires the attacker to insert itself into the traffic path. Which two protocols are typical targets for misdirecting traffic in a LAN? (Choose two.)",
+        "optionen":  [
+                         "SNMP, through modified trap destinations",
+                         "LLDP, through changed system description strings",
+                         "ARP, for example through ARP cache poisoning",
+                         "Syslog, through changed message formats",
+                         "DHCP, for example through a rogue DHCP server"
+                     ],
+        "richtig":  [
+                        2,
+                        4
+                    ],
+        "erklaerung":  "MITM-Angriffe benötigen erfolgreiche Angriffe auf Routing oder auf Protokolle wie ARP, DNS oder DHCP. Ein gefälschter ARP-Eintrag oder ein Rogue-DHCP-Server mit falschem Gateway lenkt den Verkehr über den Angreifer."
+    },
+    {
+        "id":  "slg-sa-007",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Phishing-Variante ihrem Kennzeichen zu.",
+        "paare":  [
+                      [
+                          "Spear phishing",
+                          "gezielt auf eine bestimmte Person oder Gruppe zugeschnitten"
+                      ],
+                      [
+                          "Whaling",
+                          "richtet sich gegen Führungskräfte"
+                      ],
+                      [
+                          "Vishing",
+                          "nutzt Telefonanrufe"
+                      ],
+                      [
+                          "Smishing",
+                          "nutzt SMS-Textnachrichten"
+                      ]
+                  ],
+        "erklaerung":  "Alle Varianten sind Social Engineering. Sie unterscheiden sich im Ziel (gezielt, Führungsebene) oder im Kanal (Sprache, SMS) gegenüber dem klassischen Massen-Phishing per E-Mail."
+    },
+    {
+        "id":  "slg-sa-008",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which change to the password policy has the greatest effect on making brute-force attacks infeasible?",
+        "optionen":  [
+                         "Allowing dictionary words but forbidding numeric digits",
+                         "Storing the password file in a different server directory",
+                         "A longer minimum length and a larger required character set",
+                         "Showing a password hint after each failed login attempt"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Zahl möglicher Kombinationen wächst exponentiell mit der Länge und mit der Größe des Zeichensatzes (Groß-, Kleinbuchstaben, Ziffern, Sonderzeichen). Das macht Brute Force praktisch undurchführbar."
+    },
+    {
+        "id":  "slg-sa-009",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Malware-Art ihrem typischen Verhalten zu.",
+        "paare":  [
+                      [
+                          "Virus",
+                          "fügt sich in ein anderes Programm ein und verbreitet sich, wenn es ausgeführt wird"
+                      ],
+                      [
+                          "Worm",
+                          "verbreitet sich selbstständig über das Netzwerk"
+                      ],
+                      [
+                          "Trojan horse",
+                          "tarnt sich als nützliche Software"
+                      ],
+                      [
+                          "Ransomware",
+                          "verschlüsselt Daten und fordert Lösegeld"
+                      ]
+                  ],
+        "erklaerung":  "Gemeinsam ist allen, dass Software auf dem Opfersystem installiert wird. Ein Virus braucht ein Wirtsprogramm, ein Wurm verbreitet sich ohne Zutun, ein Trojaner täuscht Nutzen vor, Ransomware erpresst."
+    },
+    {
+        "id":  "slg-sa-010",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which three are common vectors of data loss and exfiltration in an enterprise? (Choose three.)",
+        "optionen":  [
+                         "Cloud storage services",
+                         "Spanning Tree BPDUs",
+                         "OSPF hello packets",
+                         "Removable USB storage devices",
+                         "Email attachments"
+                     ],
+        "richtig":  [
+                        0,
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Datenabfluss erfolgt typischerweise über E-Mail-Anhänge, unverschlüsselte Geräte, Cloud-Speicher, Wechseldatenträger und schlechte Zugriffskontrollen. BPDUs und OSPF-Hellos sind Steuerprotokolle ohne Nutzdaten."
+    },
+    {
+        "id":  "slg-sa-011",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Management argues that the new perimeter firewall makes the network secure. Why is this a misconception?",
+        "optionen":  [
+                         "Firewalls cannot filter traffic based on TCP or UDP port numbers at all",
+                         "Internal threats and client-side attacks are hard for a perimeter firewall to stop",
+                         "Firewalls are only effective when installed on every end-user laptop",
+                         "Firewalls only work correctly when the network uses IPv6 addressing"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Reine Perimeter-Sicherheit reicht nicht: Firewalls können falsch konfiguriert sein, Client-seitige Angriffe schwer erkennen und schützen nicht innerhalb einer Zone. Keine einzelne Technologie genügt."
+    },
+    {
+        "id":  "slg-sa-012",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Several infected laptops try to reach command-and-control servers using changing ports and protocols. Which Cisco solution can block these callbacks at the moment the domain name is resolved?",
+        "optionen":  [
+                         "Cisco Umbrella",
+                         "Cisco Secure Client VPN module",
+                         "Cisco Secure Email Gateway",
+                         "Cisco TrustSec SXP"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Umbrella arbeitet auf DNS-Ebene: Die Auflösung bösartiger Domains wird verweigert, bevor überhaupt eine Verbindung entsteht – unabhängig von Port und Protokoll."
+    },
+    {
+        "id":  "slg-sa-013",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A firewall decides based on where packets come from and where they go. Which question does an IPS add to this inspection?",
+        "optionen":  [
+                         "What is inside the packet payload?",
+                         "Which VLAN does the source host use?",
+                         "Which NAT rule applies to the packet?",
+                         "Which interface does the packet leave on?"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Das IPS ergänzt die Firewall durch Deep Packet Inspection: Es untersucht den Inhalt nach Angriffsmustern und kann so Angriffe blockieren, die eine klassische Firewall passieren lässt."
+    },
+    {
+        "id":  "slg-sa-014",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A sensor receives a copy of all traffic from a SPAN port on the core switch. Which statement about this deployment is true?",
+        "optionen":  [
+                         "It adds latency to every packet that it inspects in the data path",
+                         "It cannot stop the first malicious packet from reaching the target",
+                         "A sensor failure interrupts all traffic between the hosts",
+                         "It drops malicious packets before the switch forwards them"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein Sensor an einem SPAN-Port arbeitet promiscuous (IDS): Er sieht nur eine Kopie. Das Original ist schon unterwegs, daher kann er nur alarmieren oder nachträglich reagieren, beeinflusst aber weder Latenz noch Verfügbarkeit."
+    },
+    {
+        "id":  "slg-sa-015",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements describe an IPS that is deployed inline? (Choose two.)",
+        "optionen":  [
+                         "It adds some latency to the forwarded traffic",
+                         "It can only generate alerts and never block traffic",
+                         "It can drop the packet that triggered a signature",
+                         "It receives only a copy of the traffic from a SPAN port",
+                         "It never affects traffic if the sensor fails without bypass"
+                     ],
+        "richtig":  [
+                        0,
+                        2
+                    ],
+        "erklaerung":  "Inline liegt der Sensor im Datenpfad: Er kann das auslösende Paket verwerfen, verursacht aber Latenz. Fällt er ohne Bypass/fail-open aus, ist der Datenpfad unterbrochen."
+    },
+    {
+        "id":  "slg-sa-016",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An inline IPS appliance without hardware bypass is configured to fail closed. The appliance loses power. What is the effect?",
+        "optionen":  [
+                         "The firewall automatically takes over the IPS signatures",
+                         "Traffic continues uninspected through the SPAN session",
+                         "Traffic through the sensor is interrupted until it recovers",
+                         "Only alerting stops, while all traffic keeps flowing"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Fail-closed bedeutet: Lieber kein Verkehr als unkontrollierter Verkehr. Ohne Bypass ist der Inline-Sensor ein Single Point of Failure im Datenpfad."
+    },
+    {
+        "id":  "slg-sa-017",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne das Ergebnis einer IPS-Bewertung der passenden Situation zu.",
+        "paare":  [
+                      [
+                          "True positive",
+                          "Alarm bei einem echten Angriff"
+                      ],
+                      [
+                          "False positive",
+                          "Alarm bei legitimem Traffic"
+                      ],
+                      [
+                          "False negative",
+                          "echter Angriff bleibt unerkannt"
+                      ],
+                      [
+                          "True negative",
+                          "legitimer Traffic wird korrekt ignoriert"
+                      ]
+                  ],
+        "erklaerung":  "Positive/Negative beschreibt, ob alarmiert wurde, True/False, ob die Bewertung stimmt. False Negatives sind am gefährlichsten, False Positives stören den Betrieb – bei einem IPS werden dann legitime Pakete verworfen."
+    },
+    {
+        "id":  "slg-sa-018",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "After an inline IPS is installed, a legitimate business application breaks intermittently. The IPS logs show its sessions being dropped because they match an attack signature. What does this situation represent?",
+        "optionen":  [
+                         "False negative",
+                         "True positive",
+                         "False positive",
+                         "True negative"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das IPS hat alarmiert und blockiert (positive), obwohl der Verkehr harmlos war (false). Abhilfe ist das Tunen bzw. Ausnehmen der Signatur für diesen Verkehr."
+    },
+    {
+        "id":  "slg-sa-019",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die IPS-Inspektionsmethode ihrer Arbeitsweise zu.",
+        "paare":  [
+                      [
+                          "Signature-based",
+                          "vergleicht mit einer Datenbank bekannter Angriffsmuster"
+                      ],
+                      [
+                          "Statistical anomaly detection",
+                          "lernt ein Normalprofil und meldet Abweichungen"
+                      ],
+                      [
+                          "Protocol verification",
+                          "prüft die Einhaltung der Protokollstandards"
+                      ],
+                      [
+                          "Policy-based",
+                          "reagiert auf Ereignisse außerhalb einer konfigurierten Policy"
+                      ]
+                  ],
+        "erklaerung":  "Signaturen (Pattern Matching) erkennen Bekanntes, statistische Anomalieerkennung (Network Behavior Analysis) auch Unbekanntes, Protocol Verification z. B. malformed Packets, Policy-based Abweichungen von einer definierten Traffic-Policy."
+    },
+    {
+        "id":  "slg-sa-020",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An IPS raises an alert because a workstation suddenly sends fifty times its usual volume of DNS traffic at 3 a.m. No signature matched. Which inspection method detected the event?",
+        "optionen":  [
+                         "Statistical anomaly detection",
+                         "Signature-based inspection",
+                         "Policy-based inspection",
+                         "Protocol verification"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Statistische Anomalieerkennung baut über die Zeit ein Profil aus Kommunikationsmustern, Rate, Protokollmix und Volumen auf und reagiert auf Abweichungen – ohne dass eine Signatur existieren muss."
+    },
+    {
+        "id":  "slg-sa-021",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An IPS flags packets that contain invalid TCP flag combinations and overlapping IP fragments, even though no attack signature matches. Which inspection method is at work?",
+        "optionen":  [
+                         "Protocol verification",
+                         "Statistical anomaly detection",
+                         "Reputation-based filtering",
+                         "Signature-based inspection"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Protocol Verification vergleicht die Nutzung von L3-, L4- und L7-Protokollen mit den Standards. Ungültige Flag-Kombinationen und fehlerhafte Fragmente sind Abweichungen vom Standard."
+    },
+    {
+        "id":  "slg-sa-022",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Attackers fragment and obfuscate their payloads so that byte patterns no longer match IPS signatures. Which NGIPS capability primarily counters this evasion technique?",
+        "optionen":  [
+                         "Traffic normalization and protocol decoding",
+                         "Static NAT for all protected servers",
+                         "Larger TCAM tables for ACL entries",
+                         "Longer syslog retention on the sensor"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Next-Generation-IPS normalisieren den Verkehr (z. B. Reassemblierung von Fragmenten) und dekodieren Protokolle, bevor sie Signaturen anwenden. So greifen Signaturen auch bei verschleierten Angriffen."
+    },
+    {
+        "id":  "slg-sa-023",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which statement correctly describes a host-based IPS?",
+        "optionen":  [
+                         "It must be installed as a hardware module inside a router",
+                         "It detects only attacks against the host on which it is installed",
+                         "It inspects traffic for all hosts in its VLAN through SPAN",
+                         "It is deployed as a sensor at a central network choke point"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Ein HIPS ist Software auf dem Endgerät und schützt nur dieses. Ein Network-based IPS sitzt als Sensor (Appliance oder Modul) an definierten Punkten und schützt unabhängig vom Ziel."
+    },
+    {
+        "id":  "slg-sa-024",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which Cisco product, formerly known as the Email Security Appliance (ESA), acts as a mail transfer agent that filters spam and malware in SMTP traffic?",
+        "optionen":  [
+                         "Cisco Secure Endpoint",
+                         "Cisco Secure Web Appliance",
+                         "Cisco Secure Client",
+                         "Cisco Secure Email Gateway"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die ESA heißt heute Cisco Secure Email Gateway. Die Secure Web Appliance ist die frühere WSA (Web-Proxy), Secure Endpoint das frühere AMP for Endpoints, Secure Client das frühere AnyConnect."
+    },
+    {
+        "id":  "slg-sa-025",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two capabilities are provided by the Cisco Secure Email Gateway? (Choose two.)",
+        "optionen":  [
+                         "Zero-hour antivirus protection against new outbreaks",
+                         "Control or encryption of sensitive outbound email",
+                         "Transparent redirection of web traffic with WCCP",
+                         "Device trajectory for files on managed laptops",
+                         "Inline SGT tagging on the uplink interfaces"
+                     ],
+        "richtig":  [
+                        0,
+                        1
+                    ],
+        "erklaerung":  "Das E-Mail-Gateway blockt neue Blended Attacks, erkennt Spam mit wenigen False Positives, bietet Zero-Hour-Antivirus und kontrolliert/verschlüsselt ausgehende sensible Mails. WCCP gehört zum Web-Proxy, Device Trajectory zu Secure Endpoint."
+    },
+    {
+        "id":  "slg-sa-026",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A user requests a website that belongs to a blocked URL category. How does the Cisco Secure Web Appliance (formerly WSA) respond?",
+        "optionen":  [
+                         "It sends a RADIUS CoA to quarantine the user\u0027s switch port",
+                         "It returns a page that informs the user of the policy violation",
+                         "It rewrites the DNS reply to point to the user\u0027s own address",
+                         "It forwards the request and only writes a warning to the log"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Die Web Appliance blockiert die Anfrage und liefert eine Block-Seite mit Hinweis auf die Richtlinie zurück. Erlaubte Anfragen werden dagegen geproxyt und die Antwort auf Malware geprüft."
+    },
+    {
+        "id":  "slg-sa-027",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A user requests a permitted website through the Secure Web Appliance. What does the appliance do with the web server\u0027s response?",
+        "optionen":  [
+                         "It encrypts it with MACsec toward the user\u0027s access switch",
+                         "It caches it without inspection to speed up later requests",
+                         "It scans the content for malware before forwarding it to the user",
+                         "It forwards it unchanged because only requests are inspected"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die Appliance arbeitet als Proxy: Sie holt die Seite im Auftrag des Clients, prüft den zurückgelieferten Inhalt auf Malware und gibt nur verifizierten Inhalt weiter."
+    },
+    {
+        "id":  "slg-sa-028",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why can DNS-layer security such as Cisco Umbrella block a threat earlier than a firewall rule that matches the destination IP and port?",
+        "optionen":  [
+                         "It drops all traffic that is not using the standard DNS port",
+                         "It assigns an SGT to the client before the DNS reply is sent",
+                         "It blocks during name resolution, before any connection is opened",
+                         "It inspects the decrypted payload of every TLS session it sees"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Wird schon die Auflösung einer bösartigen Domain verweigert, entsteht gar keine IP-/TCP-Verbindung. Das wirkt unabhängig von Port und Protokoll der späteren Verbindung."
+    },
+    {
+        "id":  "slg-sa-029",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An analyst sees this message: %ASA-6-302016: Teardown UDP connection 806353 for outside:172.18.123.243/24057 to identity:172.18.124.136/161 duration 0:02:01 bytes 313. What does the digit 6 indicate?",
+        "optionen":  [
+                         "Syslog facility local6 on the server",
+                         "The sixth message since the last boot",
+                         "Interface number 6 (outside)",
+                         "Severity level 6 (informational)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Das Format ist %Plattform-Severity-MessageID. 6 bedeutet informational, 302016 ist die Meldungs-ID für das Beenden einer UDP-Verbindung (hier SNMP-Port 161)."
+    },
+    {
+        "id":  "slg-sa-030",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which three are possible destinations for log messages on Cisco devices? (Choose three.)",
+        "optionen":  [
+                         "External syslog server",
+                         "Console",
+                         "Internal memory buffer",
+                         "Cisco Meta Data header",
+                         "EAPOL frames to the supplicant"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        2
+                    ],
+        "erklaerung":  "Logmeldungen können an Console, Monitor (vty), Memory Buffer, Syslog-Server, als SNMP-Trap oder in den Flash gehen. Ein zentraler Syslog-Server bietet Aggregation und geschützte Langzeitspeicherung."
+    },
+    {
+        "id":  "slg-sa-031",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A security team receives millions of log messages per day from firewalls, IPS sensors and VPN gateways. Which technology collects and correlates these events and analyzes security alerts in real time?",
+        "optionen":  [
+                         "MKA",
+                         "SIEM",
+                         "SXP",
+                         "SNMP"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Security Information and Event Management sammelt Logs vieler Quellen, korreliert sie und analysiert Security-Alerts in Echtzeit. SXP gehört zu TrustSec, MKA zu MACsec."
+    },
+    {
+        "id":  "slg-sa-032",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The SIEM shows a firewall deny event several minutes before the IPS alert that actually triggered it, which makes correlation unreliable. What is the most likely cause?",
+        "optionen":  [
+                         "The device clocks are not synchronized with NTP",
+                         "The SIEM is located in a different VLAN than the devices",
+                         "Syslog is transported over UDP instead of TCP",
+                         "The local logging buffer on the devices is too small"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Korrelation hängt an den Zeitstempeln. Laufen die Uhren der Geräte auseinander, stimmt die Reihenfolge der Ereignisse nicht. Alle Geräte sollten per NTP synchronisiert sein und Zeitstempel senden."
+    },
+    {
+        "id":  "slg-sa-033",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A team used Cisco SecureX to correlate telemetry from several Cisco security products. SecureX reached end of life in 2024. Which product is its successor?",
+        "optionen":  [
+                         "Cisco Secure Network Analytics",
+                         "Cisco XDR",
+                         "Cisco Umbrella",
+                         "Cisco Secure Client"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "SecureX wurde zum 31. Juli 2024 abgekündigt. Cisco XDR (Extended Detection and Response) übernimmt die produktübergreifende Korrelation und Reaktion."
+    },
+    {
+        "id":  "slg-sa-034",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which telemetry elements exported by Catalyst switches allow Encrypted Traffic Analytics to identify malware in TLS sessions without decrypting them?",
+        "optionen":  [
+                         "SGT values and MACsec packet numbers of each frame",
+                         "Initial Data Packet and Sequence of Packet Lengths and Times",
+                         "Syslog messages from the TLS servers\u0027 operating systems",
+                         "Full decrypted payload copies sent by the switch to the SIEM"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "ETA erweitert NetFlow um das Initial Data Packet (z. B. TLS-Handshake-Daten) und die SPLT-Sequenz. Secure Network Analytics (früher Stealthwatch) erkennt daraus Malware-Muster ohne Entschlüsselung."
+    },
+    {
+        "id":  "slg-sa-035",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Secure Endpoint encounters a file with an unknown disposition. Which Cisco service can detonate the file in a sandbox and analyze its behavior?",
+        "optionen":  [
+                         "Cisco Secure Email Gateway (formerly ESA)",
+                         "Cisco Secure Client (formerly AnyConnect)",
+                         "Cisco Secure Malware Analytics (formerly Threat Grid)",
+                         "Cisco Secure Network Analytics (formerly Stealthwatch)"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Secure Malware Analytics führt unbekannte Dateien in einer Sandbox aus und bewertet ihr Verhalten. Secure Network Analytics analysiert Flow-Telemetrie, nicht Dateien."
+    },
+    {
+        "id":  "slg-sa-036",
+        "topic":  "ENCOR-5.4.a",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den alten Produktnamen dem aktuellen Cisco-Namen zu.",
+        "paare":  [
+                      [
+                          "AMP for Endpoints",
+                          "Cisco Secure Endpoint"
+                      ],
+                      [
+                          "Email Security Appliance (ESA)",
+                          "Cisco Secure Email Gateway"
+                      ],
+                      [
+                          "Web Security Appliance (WSA)",
+                          "Cisco Secure Web Appliance"
+                      ],
+                      [
+                          "Stealthwatch",
+                          "Cisco Secure Network Analytics"
+                      ]
+                  ],
+        "erklaerung":  "Cisco hat sein Security-Portfolio unter der Marke „Secure“ vereinheitlicht. Die Funktionen sind gleich geblieben, die Prüfung verwendet zunehmend die neuen Namen."
+    },
+    {
+        "id":  "slg-sa-037",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "All hosts in a network run personal firewalls that deny inbound HTTP. Their policies are defined and pushed by a central management system. What is this design called?",
+        "optionen":  [
+                         "Transparent firewall",
+                         "Zone-based firewall",
+                         "Distributed firewall",
+                         "Stateless firewall"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Eine Distributed Firewall besteht aus flächendeckenden Personal Firewalls mit zentral verwalteter Policy. Sie kann ähnlich wirken wie eine traditionelle Firewall, die HTTP ins Netz verbietet."
+    },
+    {
+        "id":  "slg-sa-038",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A remote user connects with a VPN client that uses split tunneling. The laptop has an unnoticed backdoor. Why is a properly configured personal firewall especially important here?",
+        "optionen":  [
+                         "The personal firewall is needed to negotiate the IKE proposals with the VPN headend",
+                         "Split tunneling disables the antivirus engine until the tunnel is torn down by the user",
+                         "The VPN headend cannot encrypt any traffic while split tunneling is enabled on the client",
+                         "Internet hosts could reach the backdoor and use the client\u0027s tunnel into the internal network"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Bei Split Tunneling ist der Client direkt aus dem Internet erreichbar. Ohne Personal Firewall könnte ein Angreifer die Backdoor nutzen und über den bestehenden VPN-Tunnel ins Firmennetz gelangen."
+    },
+    {
+        "id":  "slg-sa-039",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The first time a newly installed program tries to use the network, the personal firewall asks the user whether to place it in the allow list or the block list. Against which threat does this mainly protect?",
+        "optionen":  [
+                         "Tampering with MACsec frames on the uplink",
+                         "Malware running as an unknown executable program",
+                         "A DDoS flood against the company\u0027s web server",
+                         "ARP spoofing by another host in the same VLAN"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Anwendungsbasierte Regeln erlauben bzw. blockieren Verkehr je Programm, unabhängig von Ports. Unbekannte Executables – z. B. Malware – bekommen so nicht automatisch Netzzugang."
+    },
+    {
+        "id":  "slg-sa-040",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Erkennungstechnik von Antivirus-Software ihrer Arbeitsweise zu.",
+        "paare":  [
+                      [
+                          "Signature-based detection",
+                          "vergleicht mit katalogisierten Merkmalen bekannter Malware"
+                      ],
+                      [
+                          "Heuristics",
+                          "erkennt Varianten und Familien über unscharfe Treffer"
+                      ],
+                      [
+                          "Behavioral-based detection",
+                          "überwacht Prozesse auf schädliche Aktionen wie Keylogging"
+                      ],
+                      [
+                          "Real-time protection",
+                          "prüft Daten, sobald sie in den Arbeitsspeicher geladen werden"
+                      ]
+                  ],
+        "erklaerung":  "Signaturen versagen bei Zero-Days, Heuristik fängt mutierte Varianten, Verhaltensanalyse bietet gewissen Zero-Day-Schutz. Real-time Protection wirkt beim Öffnen/Ausführen statt nur bei geplanten Scans."
+    },
+    {
+        "id":  "slg-sa-041",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which antivirus detection technique can provide some protection against zero-day malware for which no signature exists yet?",
+        "optionen":  [
+                         "Signature-based detection",
+                         "Weekly signature database updates",
+                         "Hash comparison with a known-bad list",
+                         "Behavioral-based detection"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Verhaltensanalyse bewertet, was ein Prozess tut (z. B. andere Executables verändern, Tastatureingaben mitschneiden), und braucht daher keine bekannte Signatur. Hash- und Signaturvergleiche erkennen nur Bekanntes."
+    },
+    {
+        "id":  "slg-sa-042",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A free tool displays targeted ads, which users knowingly accepted during installation. A later version covertly sends its tracking data to sites that use it to design phishing attacks against those users. How should the later version be classified?",
+        "optionen":  [
+                         "Malware",
+                         "Legitimate adware",
+                         "Antispyware",
+                         "Harmless tracking cookie"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Adware ist legitim, solange der Benutzer weiß, was er eintauscht. Verdeckte Installation macht sie zu Spyware, die Weitergabe der Daten für Phishing überschreitet die Grenze zur Malware."
+    },
+    {
+        "id":  "slg-sa-043",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which statement describes how the Cisco ISE posture module of the Secure Client (formerly AnyConnect) evaluates compliance?",
+        "optionen":  [
+                         "The ASA evaluates the posture of internal wired and wireless clients",
+                         "The client evaluates the policy itself and reports the result to ISE",
+                         "The access switch evaluates the attributes and forwards a verdict to ISE",
+                         "ISE collects raw attributes from the client and evaluates them centrally"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Das ISE-Posture-Modul arbeitet mit Client-side Evaluation: Der Client erhält die Anforderungen, sammelt die Daten, vergleicht selbst und meldet das Ergebnis. ISE verlässt sich auf diese Bewertung."
+    },
+    {
+        "id":  "slg-sa-044",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A wired endpoint fails the ISE posture check because its antivirus definitions are outdated. What does ISE typically do?",
+        "optionen":  [
+                         "Grant limited quarantine access to the remediation servers",
+                         "Push a new antivirus engine to the client via the ASA",
+                         "Shut down the switch port into the err-disabled state",
+                         "Permit full access but send a syslog warning to the SIEM"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "ISE-Remediation basiert auf Quarantäne: Der Endpunkt erreicht nur Server, über die er die fehlende Software bzw. Updates beziehen kann. Danach wird der Posture-Check wiederholt."
+    },
+    {
+        "id":  "slg-sa-045",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An endpoint in quarantine installs the missing updates and is now compliant. How does ISE grant it full network access without the user reconnecting?",
+        "optionen":  [
+                         "It asks the user to unplug and reconnect the cable",
+                         "It sends a RADIUS CoA to the network access device",
+                         "It sends an SXP update to the client\u0027s supplicant",
+                         "It waits for the next DHCP lease renewal of the client"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Mit Change of Authorization ändert ISE eine laufende Session: Der Switch authentisiert neu bzw. übernimmt die neue Autorisierung (z. B. eine weitere dACL), ohne dass der Client etwas tun muss."
+    },
+    {
+        "id":  "slg-sa-046",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three functions are provided by modules of the Cisco Secure Client (formerly AnyConnect)? (Choose three.)",
+        "optionen":  [
+                         "SGACL enforcement on the access port",
+                         "ISE posture assessment",
+                         "Remote-access VPN",
+                         "802.1X supplicant (Network Access Manager)",
+                         "MKA key server for the uplink"
+                     ],
+        "richtig":  [
+                        1,
+                        2,
+                        3
+                    ],
+        "erklaerung":  "Secure Client ist modular: VPN, Network Access Manager als 802.1X-Supplicant, ISE Posture, Web Security u. a. SGACL-Enforcement und die Rolle des MKA-Key-Servers liegen beim Switch."
+    },
+    {
+        "id":  "slg-sa-047",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die Funktion von Cisco Secure Endpoint (früher AMP for Endpoints) ihrer Wirkung zu.",
+        "paare":  [
+                      [
+                          "File trajectory",
+                          "zeigt, auf welchen Hosts eine Datei gesehen wurde"
+                      ],
+                      [
+                          "Device trajectory",
+                          "zeigt, was Dateien auf einem bestimmten Host getan haben"
+                      ],
+                      [
+                          "Retrospective alerting",
+                          "meldet früher gesehene Dateien nach, wenn sie als bösartig eingestuft werden"
+                      ],
+                      [
+                          "Simple custom detection",
+                          "blockiert Dateien anhand einer vom Admin gepflegten Hash-Liste"
+                      ]
+                  ],
+        "erklaerung":  "Trajectories liefern die historische Sicht über Hosts bzw. einen Host. Retrospective Alerting (Cloud Recall) reagiert auf nachträglich geänderte Dispositionen, Custom Detections ergänzen eigene Signaturen."
+    },
+    {
+        "id":  "slg-sa-048",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Last week a file with an unknown disposition ran on 40 laptops. Today the cloud reclassifies the file as malicious. What does Cisco Secure Endpoint do?",
+        "optionen":  [
+                         "It only blocks new downloads but leaves existing copies untouched",
+                         "It waits until the file is executed again before raising an alert",
+                         "It alerts on and quarantines the file on all hosts where it was seen",
+                         "It reimages the affected laptops through the ISE posture module"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das ist Retrospective Alerting bzw. Cloud Recall: Ändert sich die Disposition von unknown zu malicious, kehrt Secure Endpoint zu allen Systemen zurück, auf denen die Datei gesehen wurde, meldet sie und stellt sie unter Quarantäne."
+    },
+    {
+        "id":  "slg-sa-049",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "An analyst wants to see on one laptop which process downloaded a file, what the file executed and which network connections it opened, in order to find the root cause. Which Secure Endpoint feature provides this view?",
+        "optionen":  [
+                         "Retrospective alerting",
+                         "File trajectory",
+                         "Outbreak control",
+                         "Device trajectory"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Device Trajectory zeigt die Aktionen von Dateien auf einem bestimmten Host über die Zeit. File Trajectory zeigt dagegen, auf welchen Hosts eine bestimmte Datei vorkam."
+    },
+    {
+        "id":  "slg-sa-050",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which Cisco Secure Endpoint cloud engine applies machine learning to a fingerprint of many file attributes that is sent together with the file\u0027s SHA-256 hash?",
+        "optionen":  [
+                         "Ethos",
+                         "Snort",
+                         "OpenAppID",
+                         "Spero"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Spero ist die Machine-Learning-Engine in der Cloud. Ethos arbeitet mit unscharfen Fingerprints (Fuzzy Fingerprinting) für Varianten. Snort und OpenAppID gehören zur Secure Firewall."
+    },
+    {
+        "id":  "slg-sa-051",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does the Secure Endpoint connector typically send to the cloud first when it encounters a new file?",
+        "optionen":  [
+                         "The file name and size to the local syslog server",
+                         "The complete file for sandbox detonation every time",
+                         "The file\u0027s SHA-256 hash for a disposition lookup",
+                         "An SGT for the file so switches can enforce SGACLs"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Connector fragt zuerst per Hash die Disposition (clean, malicious, unknown) ab. Weil die Signaturen in der Cloud liegen, bleibt der Connector klein und die Prüfung schnell."
+    },
+    {
+        "id":  "slg-sa-052",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "Cisco Secure Endpoint protects across the attack continuum: before, ___, and after an attack.",
+        "optionen":  [
+                         "detection",
+                         "containment",
+                         "exploitation",
+                         "during"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Da Malware realistisch irgendwann ins Netz gelangt, reicht eine Point-in-Time-Prüfung nicht. Secure Endpoint schützt vor, während und nach einem Angriff (u. a. durch Trajectories und Retrospective Alerting)."
+    },
+    {
+        "id":  "slg-sa-053",
+        "topic":  "ENCOR-5.4.c",
+        "schwierigkeit":  1,
+        "typ":  "multi",
+        "frage":  "Which three requirements should every firewall meet? (Choose three.)",
+        "optionen":  [
+                         "It must enforce the organization\u0027s access control policy",
+                         "It must itself be resistant to attacks",
+                         "It must translate the addresses of all traffic with NAT",
+                         "It must be installed on every endpoint in the network",
+                         "It must be the only transit point between the security zones"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        4
+                    ],
+        "erklaerung":  "Eine kompromittierte Firewall schützt nichts mehr, alternative Pfade umgehen sie, und die Regeln sollen aus der zentralen Security Policy stammen. NAT ist ein häufiger Zusatzdienst, aber keine Grundanforderung."
+    },
+    {
+        "id":  "slg-sa-054",
+        "topic":  "ENCOR-5.4.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A public web server in the DMZ has been compromised. Which firewall policy limits the damage the attacker can do from this server?",
+        "optionen":  [
+                         "Very restrictive rules for connections from the DMZ to the other zones",
+                         "Permitting all traffic from the DMZ toward the inside network",
+                         "Allowing any outside host to reach any port on the DMZ servers",
+                         "Placing the web server in the inside zone with security level 100"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Verbindungen aus der DMZ in andere Zonen werden üblicherweise stark eingeschränkt, damit ein kompromittierter Server nicht als Sprungbrett nach innen oder für Angriffe nach außen dient."
+    },
+    {
+        "id":  "slg-sa-055",
+        "topic":  "ENCOR-5.4.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Many attacks originate between hosts inside the same trusted zone and VLAN. Which measure can filter traffic within that zone?",
+        "optionen":  [
+                         "A larger perimeter firewall at the Internet edge",
+                         "A second default gateway configured with HSRP",
+                         "VLAN ACLs or centrally managed host-based firewalls",
+                         "Static NAT entries on the Internet edge router"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Firewalls schützen typischerweise zwischen, nicht innerhalb von Zonen. Ausnahmen sind VLAN ACLs im Switch und zentral verwaltete Host-Firewalls (Distributed Firewall). Auch TrustSec-SGACLs können innerhalb eines VLANs filtern."
+    },
+    {
+        "id":  "slg-sa-056",
+        "topic":  "ENCOR-5.4.c",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A stateful firewall permits TCP connections from inside to outside. An outside host sends a TCP segment with only the ACK flag set to an inside host. No matching session exists. What happens?",
+        "optionen":  [
+                         "It is dropped because no matching connection exists in the state table",
+                         "It is forwarded unchanged and only logged as a policy violation",
+                         "It is permitted because the ACK flag marks it as return traffic",
+                         "It is permitted because inside-to-outside traffic is allowed"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Eine Stateful Firewall erlaubt Rückverkehr nur, wenn er zu einer Verbindung in ihrer State Table gehört. Ein stateless Filter mit \u0027established\u0027 würde dagegen jedes Segment mit ACK-Flag durchlassen."
+    },
+    {
+        "id":  "slg-sa-057",
+        "topic":  "ENCOR-5.4.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An ASA has inside (security level 100), DMZ (50) and outside (0). No access lists are applied. Which connection is permitted by default?",
+        "optionen":  [
+                         "An outside host opening a connection to a DMZ server",
+                         "An outside host opening a connection to an inside host",
+                         "A DMZ host opening a connection to an inside server",
+                         "A DMZ host opening a connection to an outside server"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Ohne ACL erlaubt die ASA Verbindungen von einem höheren zu einem niedrigeren Security Level; der Rückverkehr wird stateful zugelassen. DMZ (50) nach outside (0) ist daher erlaubt, alle anderen genannten Richtungen nicht."
+    },
+    {
+        "id":  "slg-sa-058",
+        "topic":  "ENCOR-5.4.c",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "Which two statements describe the default behavior of the Cisco IOS Zone-Based Policy Firewall? (Choose two.)",
+        "optionen":  [
+                         "Traffic to and from the self zone is dropped by default",
+                         "Traffic between two zones is permitted unless a policy denies it",
+                         "An interface can be a member of two zones at the same time",
+                         "Traffic between a zone member and a non-zone interface is dropped",
+                         "Traffic between interfaces in the same zone is permitted"
+                     ],
+        "richtig":  [
+                        3,
+                        4
+                    ],
+        "erklaerung":  "Innerhalb einer Zone fließt Verkehr frei, zwischen Zonen nur mit Zone-Pair und Inspect-Policy, und zwischen Zonen- und Nicht-Zonen-Interfaces gar nicht. Die Self-Zone (der Router selbst) erlaubt standardmäßig alles; ein Interface gehört höchstens einer Zone an."
+    },
+    {
+        "id":  "slg-sa-059",
+        "topic":  "ENCOR-5.4.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege das Zone-Pair IN-OUT für Verkehr von der Zone INSIDE zur Zone OUTSIDE an.",
+        "bausteine":  [
+                          "zone-pair",
+                          "security",
+                          "IN-OUT",
+                          "source",
+                          "INSIDE",
+                          "destination",
+                          "OUTSIDE",
+                          "zone",
+                          "inspect",
+                          "from"
+                      ],
+        "loesung":  [
+                        "zone-pair",
+                        "security",
+                        "IN-OUT",
+                        "source",
+                        "INSIDE",
+                        "destination",
+                        "OUTSIDE"
+                    ],
+        "erklaerung":  "Ein Zone-Pair ist gerichtet (source → destination). Erst darauf wird mit \u0027service-policy type inspect\u0027 die Policy angewendet; für den Rückverkehr sorgt die Inspektion selbst."
+    },
+    {
+        "id":  "slg-sa-060",
+        "topic":  "ENCOR-5.4.c",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus: Mache das Interface zum Mitglied der Zone INSIDE.",
+        "bausteine":  [
+                          "zone-member",
+                          "security",
+                          "INSIDE",
+                          "zone",
+                          "ip",
+                          "inspect",
+                          "member"
+                      ],
+        "loesung":  [
+                        "zone-member",
+                        "security",
+                        "INSIDE"
+                    ],
+        "erklaerung":  "\u0027zone-member security \u003czone\u003e\u0027 ordnet das Interface einer zuvor mit \u0027zone security \u003cname\u003e\u0027 angelegten Zone zu. Ein Interface kann nur einer Zone angehören."
+    },
+    {
+        "id":  "slg-sa-061",
+        "topic":  "ENCOR-5.4.c",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Zone-Pair-Konfigurationsmodus (config-sec-zone-pair): Wende die Inspect-Policy-Map IN-OUT an.",
+        "bausteine":  [
+                          "service-policy",
+                          "type",
+                          "inspect",
+                          "IN-OUT",
+                          "input",
+                          "output",
+                          "policy-map"
+                      ],
+        "loesung":  [
+                        "service-policy",
+                        "type",
+                        "inspect",
+                        "IN-OUT"
+                    ],
+        "erklaerung":  "Beim ZBFW wird die Policy auf das Zone-Pair angewendet, nicht mit input/output auf ein Interface. Die Policy-Map vom Typ inspect enthält die Aktionen inspect, pass oder drop."
+    },
+    {
+        "id":  "slg-sa-062",
+        "topic":  "ENCOR-5.4.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "The marketing team may use Facebook for campaigns but must not play Facebook games; other departments may not use Facebook at all. Which Cisco Secure Firewall capabilities are needed?",
+        "optionen":  [
+                         "Reflexive ACLs on the Internet edge router interface",
+                         "Application Visibility and Control combined with user context",
+                         "Stateless ACL entries that match TCP port 443 traffic",
+                         "Static NAT entries for the Facebook IP address ranges"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "AVC erkennt Anwendungen und sogar Teilfunktionen (Spiele innerhalb von Facebook) am Datenstrom statt am Port. Context Awareness bindet die Regel an Benutzer bzw. Gruppen."
+    },
+    {
+        "id":  "slg-sa-063",
+        "topic":  "ENCOR-5.4.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which information does URL filtering on Cisco Secure Firewall use to decide whether a website is blocked?",
+        "optionen":  [
+                         "TCP window size and maximum segment size",
+                         "DSCP value in the HTTP request packets",
+                         "URL category and web reputation score",
+                         "Source MAC address of the requesting client"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "URL Filtering verlagert die typische Proxy-Funktion in die Firewall und entscheidet anhand von URL-Kategorien und Reputation-Scores der Websites."
+    },
+    {
+        "id":  "slg-sa-064",
+        "topic":  "ENCOR-5.4.c",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Several Cisco Secure Firewall Threat Defense (FTD) devices must be managed centrally with shared policies. Which product is used for this?",
+        "optionen":  [
+                         "Cisco ISE Policy Administration Node",
+                         "Secure Firewall Management Center (FMC)",
+                         "Catalyst Center Assurance",
+                         "Secure Endpoint management console"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "FTD wird zentral über das Secure Firewall Management Center (früher Firepower Management Center bzw. FireSIGHT) verwaltet, alternativ cloud-basiert (cdFMC) oder lokal über den Device Manager."
+    },
+    {
+        "id":  "slg-sa-065",
+        "topic":  "ENCOR-5.4.c",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "Before deep inspection, Cisco Secure Firewall can block connections to IP addresses, URLs and domains that appear on Talos reputation feeds. This feature is called ___.",
+        "optionen":  [
+                         "Prefilter policy",
+                         "TLS decryption policy",
+                         "Identity policy",
+                         "Security Intelligence"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Security Intelligence nutzt von Talos gepflegte Block-Listen (IP, URL, DNS) und verwirft bekannte bösartige Ziele früh und ressourcenschonend. Die Prefilter Policy arbeitet dagegen mit klassischen L3/L4-Kriterien."
+    },
+    {
+        "id":  "slg-sa-066",
+        "topic":  "ENCOR-5.4.c",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Malware is downloaded over HTTPS, and the IPS and file policies on the Secure Firewall never see it. What allows the firewall to inspect the transferred content?",
+        "optionen":  [
+                         "A larger IPS rule set loaded into Snort",
+                         "Inline SGT tagging on the internal link",
+                         "A TLS decryption policy on the firewall",
+                         "MACsec between firewall and core switch"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Verschlüsselter Inhalt ist für IPS- und Malware-Prüfung unsichtbar. Erst eine Decryption-Policy macht ihn inspizierbar. ETA kann zwar Muster ohne Entschlüsselung erkennen, aber keine Dateien prüfen."
+    },
+    {
+        "id":  "slg-sa-067",
+        "topic":  "ENCOR-5.4.c",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "A company replaces a traditional stateful firewall with Cisco Secure Firewall. Which three capabilities are gained? (Choose three.)",
+        "optionen":  [
+                         "URL filtering based on categories and reputation",
+                         "Static NAT for published servers",
+                         "Application Visibility and Control",
+                         "Stateful inspection of TCP sessions",
+                         "Integrated intrusion prevention"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "Stateful Inspection und NAT konnte schon die klassische Firewall. Neu sind u. a. URL Filtering, AVC, integriertes IPS, Malware Defense, Context Awareness und Indications of Compromise."
+    },
+    {
+        "id":  "slg-sa-068",
+        "topic":  "ENCOR-5.4.c",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "In the common three-zone firewall design, the zone that contains servers accessible from the public internet is called the ___.",
+        "optionen":  [
+                         "outside zone",
+                         "self zone",
+                         "inside zone",
+                         "DMZ"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Demilitarized Zone enthält öffentlich erreichbare Server und ist weniger vertrauenswürdig als inside. Die Self-Zone ist ein ZBFW-Begriff für den Router selbst."
+    },
+    {
+        "id":  "slg-sa-069",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  1,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den TrustSec-Funktionsbereich seiner Aufgabe zu.",
+        "paare":  [
+                      [
+                          "Classification",
+                          "einem Endpunkt bzw. seiner IP ein SGT zuweisen"
+                      ],
+                      [
+                          "Transport",
+                          "das SGT inline oder per SXP durchs Netz tragen"
+                      ],
+                      [
+                          "Enforcement",
+                          "anhand von Source- und Destination-SGT erlauben oder verwerfen"
+                      ]
+                  ],
+        "erklaerung":  "TrustSec gliedert sich in Klassifizierung (dynamisch über 802.1X/MAB/WebAuth oder statisch), Propagation (Inline-Tagging oder SXP) und Durchsetzung (SGACL auf Switches, SGFW auf Routern/Firewalls)."
+    },
+    {
+        "id":  "slg-sa-070",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Which of the following is a dynamic TrustSec classification method?",
+        "optionen":  [
+                         "SGT returned by ISE as part of an 802.1X authorization",
+                         "IP-to-SGT mapping configured on a data center switch",
+                         "Subnet-to-SGT mapping downloaded from the ISE server",
+                         "VLAN-to-SGT mapping configured on the access switch"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Dynamisch heißt: ISE weist das SGT bei der Authentisierung (802.1X, MAB, WebAuth) als Permission im Autorisierungsergebnis zu. IP-, Subnetz- und VLAN-Mappings sind statische Klassifizierung – auch wenn sie von ISE heruntergeladen werden."
+    },
+    {
+        "id":  "slg-sa-071",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which SGT information is carried in a frame that is tagged inline between two TrustSec-capable switches?",
+        "optionen":  [
+                         "Only the destination SGT that the egress switch has to enforce",
+                         "Both source and destination SGT in two separate 16-bit fields",
+                         "Only the source SGT; the destination group is derived at enforcement",
+                         "The name of the SGACL that the egress switch has to apply"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Das Tag enthält nur die Gruppe der Quelle. Die Destination-Gruppe (DGT) ermittelt der Enforcement-Punkt aus der Zieladresse – deshalb findet Enforcement typischerweise am Egress statt."
+    },
+    {
+        "id":  "slg-sa-072",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den EtherType dem Protokoll zu.",
+        "paare":  [
+                      [
+                          "0x888E",
+                          "EAPOL (802.1X)"
+                      ],
+                      [
+                          "0x88E5",
+                          "MACsec SecTAG (802.1AE)"
+                      ],
+                      [
+                          "0x8909",
+                          "Cisco Meta Data mit Inline-SGT"
+                      ],
+                      [
+                          "0x8100",
+                          "802.1Q-VLAN-Tag"
+                      ]
+                  ],
+        "erklaerung":  "EAPOL transportiert 802.1X und MKA, 0x88E5 kennzeichnet den MACsec-Header, 0x8909 das CMD-Feld mit dem 16-Bit-SGT, 0x8100 den VLAN-Tag."
+    },
+    {
+        "id":  "slg-sa-073",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An access switch without inline tagging hardware learns IP-to-SGT bindings through 802.1X. It must share them with a firewall in the data center using SXP. Which SXP role does the access switch take?",
+        "optionen":  [
+                         "Key server",
+                         "Speaker",
+                         "Authenticator",
+                         "Listener"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Speaker sendet seine IP-SGT-Bindings, der Listener (hier die Firewall bzw. ein Aggregations-Switch) empfängt sie. Key Server und Authenticator sind Rollen aus MKA bzw. 802.1X."
+    },
+    {
+        "id":  "slg-sa-074",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "The SGT Exchange Protocol (SXP) runs over TCP port ___.",
+        "optionen":  [
+                         "3799",
+                         "1812",
+                         "64999",
+                         "49"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "SXP nutzt TCP 64999. 1812 ist RADIUS-Authentisierung, 3799 der RFC-Port für RADIUS Dynamic Authorization (CoA), 49 TACACS+."
+    },
+    {
+        "id":  "slg-sa-075",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which line is a valid SGACL entry as it is defined in ISE and applied to a cell of the TrustSec policy matrix?",
+        "optionen":  [
+                         "deny tcp dst eq 21",
+                         "deny tcp vlan 10 any eq 21",
+                         "deny tcp host 10.1.1.5 any eq 21",
+                         "deny tcp sgt 10 dgt 20 eq 21"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Eine SGACL enthält weder IP-Adressen noch Gruppen. Quelle und Ziel ergeben sich aus der Zelle der Matrix, in der die SGACL steht – deshalb lässt sie sich in vielen Zellen wiederverwenden."
+    },
+    {
+        "id":  "slg-sa-076",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A TrustSec domain uses a policy matrix with 10 security groups. A new group for contractors is added. How does the matrix change?",
+        "optionen":  [
+                         "Only one single new cell is added for the new group",
+                         "It must be rebuilt because every IP-based ACL changes",
+                         "It grows by ten new SGACLs on every enforcing switch",
+                         "It grows by one row and one column, to 11 x 11 cells"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Jede Gruppe ist sowohl Quelle (Zeile) als auch Ziel (Spalte). Die Policy für die neuen Zellen wird zentral in ISE definiert und an alle Enforcement-Punkte verteilt."
+    },
+    {
+        "id":  "slg-sa-077",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "How is Security Group Firewall (SGFW) policy on an ASA managed compared with SGACL policy on switches?",
+        "optionen":  [
+                         "SGFW rules are configured locally on the ASA; SGACLs come centrally from ISE",
+                         "SGFW rules are downloaded from ISE; SGACLs are configured on each switch",
+                         "Both are pushed from ISE through SXP to every enforcing device",
+                         "Both are configured only locally on each enforcing device in the network"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "SGACL-Policy wird zentral in ISE gepflegt und dynamisch verteilt. SGFW (ASA, IOS ZBFW, Secure Firewall) nutzt Security-Group-Informationen in den lokalen Regeln des Geräts, kombinierbar mit IP, Protokoll und Port."
+    },
+    {
+        "id":  "slg-sa-078",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  3,
+        "typ":  "multi",
+        "frage":  "An ASA access rule uses security group names instead of IP addresses. Which two prerequisites must be met for the ASA to enforce it? (Choose two.)",
+        "optionen":  [
+                         "An IP-to-SGT mapping for the traffic",
+                         "A security group table that maps names to SGT values",
+                         "Inline SGT tags on frames arriving at the outside interface",
+                         "A RADIUS CoA client entry for ISE",
+                         "A MACsec session with the upstream switch"
+                     ],
+        "richtig":  [
+                        0,
+                        1
+                    ],
+        "erklaerung":  "Die ASA muss Gruppennamen in SGT-Werte übersetzen können (Security Group Table) und die IP-Adressen des Verkehrs einem SGT zuordnen (z. B. per SXP gelernte IP-SGT-Mappings)."
+    },
+    {
+        "id":  "slg-sa-079",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Aktiviere die rollenbasierte Durchsetzung (SGACL-Enforcement) auf dem Switch.",
+        "bausteine":  [
+                          "cts",
+                          "role-based",
+                          "enforcement",
+                          "sgt-map",
+                          "sxp",
+                          "enable",
+                          "dot1x"
+                      ],
+        "loesung":  [
+                        "cts",
+                        "role-based",
+                        "enforcement"
+                    ],
+        "erklaerung":  "\u0027cts role-based enforcement\u0027 schaltet SGACL-Enforcement global ein. Ohne diesen Befehl werden heruntergeladene SGACLs nicht angewendet."
+    },
+    {
+        "id":  "slg-sa-080",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Ordne dem Server 10.1.50.10 statisch das SGT 100 zu.",
+        "bausteine":  [
+                          "cts",
+                          "role-based",
+                          "sgt-map",
+                          "10.1.50.10",
+                          "sgt",
+                          "100",
+                          "tag",
+                          "security-group",
+                          "enforcement"
+                      ],
+        "loesung":  [
+                        "cts",
+                        "role-based",
+                        "sgt-map",
+                        "10.1.50.10",
+                        "sgt",
+                        "100"
+                    ],
+        "erklaerung":  "Statische IP-SGT-Mappings sind typisch für Server im Data Center, die sich nicht per 802.1X/MAB anmelden. Prüfen mit \u0027show cts role-based sgt-map all\u0027."
+    },
+    {
+        "id":  "slg-sa-081",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which command displays the IP-to-SGT bindings that a switch has learned or configured?",
+        "optionen":  [
+                         "show authentication sessions",
+                         "show cts role-based permissions",
+                         "show mka sessions",
+                         "show cts role-based sgt-map all"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "\u0027show cts role-based sgt-map all\u0027 listet die Bindings mit ihrer Quelle (z. B. LOCAL, CLI, SXP). \u0027show cts role-based permissions\u0027 zeigt die heruntergeladene Policy-Matrix bzw. SGACLs."
+    },
+    {
+        "id":  "slg-sa-082",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "After MACsec and inline SGT tagging are enabled on the uplinks, large packets between two sites are dropped while small packets pass. What is the most likely cause?",
+        "optionen":  [
+                         "SXP blocks frames that are larger than its TCP window",
+                         "The combined 802.1AE and CMD overhead exceeds the link MTU",
+                         "MKA limits frames to 1,000 bytes by default on uplinks",
+                         "SGACLs deny all fragmented packets by default on uplinks"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "SecTAG, ICV und Cisco Meta Data vergrößern jeden Frame (laut Kurs zusammen rund 40 Byte). Ist die MTU der Links nicht entsprechend erhöht, werden große Frames verworfen."
+    },
+    {
+        "id":  "slg-sa-083",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Traffic between two PCs crosses three switches. MACsec is enabled on every link. Where is the traffic present in cleartext?",
+        "optionen":  [
+                         "Only on the access links between the PCs and their switches",
+                         "Nowhere, because MACsec encrypts end to end between the two PCs",
+                         "Inside each switch, which decrypts and re-encrypts it hop by hop",
+                         "Only on the uplinks, because host links cannot use MACsec"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "MACsec ist Layer-2-hop-by-hop: Jeder Link hat eigene Schlüssel, jedes Gerät entschlüsselt, verarbeitet (z. B. für QoS oder SGACL) und verschlüsselt für den nächsten Link neu."
+    },
+    {
+        "id":  "slg-sa-084",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den MACsec/MKA-Schlüssel seiner Rolle zu.",
+        "paare":  [
+                      [
+                          "MSK",
+                          "entsteht bei der 802.1X-EAP-Authentisierung"
+                      ],
+                      [
+                          "CAK",
+                          "langlebiger Schlüssel, aus dem MKA weitere Schlüssel ableitet"
+                      ],
+                      [
+                          "CKN",
+                          "Name, der den CAK identifiziert"
+                      ],
+                      [
+                          "SAK",
+                          "verschlüsselt die Datenframes, vom Key Server erzeugt"
+                      ]
+                  ],
+        "erklaerung":  "Aus der MSK (oder einem PSK) entsteht der CAK samt Namen CKN. Der Key Server erzeugt die zufällige SAK und verteilt sie mit CAK-abgeleiteten Schlüsseln geschützt."
+    },
+    {
+        "id":  "slg-sa-085",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The default MACsec cipher suite supported by all Cisco MACsec components is ___.",
+        "optionen":  [
+                         "AES-256-CBC",
+                         "AES-128-CMAC",
+                         "3DES-CBC",
+                         "GCM-AES-128"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Standard ist Galois/Counter Mode AES mit 128 Bit, das Verschlüsselung und Integrität kombiniert. GCM-AES-256 ist optional; AES-128-CMAC ist ein Key-Chain-Algorithmus für MKA-PSKs, keine Datenverschlüsselung."
+    },
+    {
+        "id":  "slg-sa-086",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "By default, MKA peers send MKPDUs every ___ seconds, and a session is considered lost after 6 seconds without MKPDUs.",
+        "optionen":  [
+                         "10",
+                         "2",
+                         "1",
+                         "30"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Das MKA-Hello-Intervall beträgt 2 s, die Lebensdauer 6 s. So erkennt der Switch auch ohne Link-down, dass der MACsec-Partner verschwunden ist."
+    },
+    {
+        "id":  "slg-sa-087",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A MACsec-secured PC is connected behind an IP phone. The PC is unplugged from the phone, the switch port stays up, and no logoff notification reaches the switch. When does the switch consider the PC\u0027s MKA session ended?",
+        "optionen":  [
+                         "After 6 seconds without receiving MKPDUs",
+                         "After the 3600-second reauthentication timer",
+                         "Only after the MAC address table entry ages out",
+                         "Immediately, because the switch port goes down"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Link zum Telefon bleibt oben, daher erfährt der Switch nichts vom Abziehen. Er betreibt MKA weiter, bis 6 s lang keine MKPDUs mehr eingetroffen sind."
+    },
+    {
+        "id":  "slg-sa-088",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A host-facing port is configured for MACsec with 802.1X. Which EAP method cannot be used because it produces no keying material for MKA?",
+        "optionen":  [
+                         "EAP-TLS",
+                         "EAP-FAST",
+                         "EAP-MD5",
+                         "PEAP-MSCHAPv2"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "MKA leitet den CAK aus der MSK der EAP-Session ab. EAP-MD5 erzeugt keine Schlüssel (und bietet keine gegenseitige Authentisierung), die tunnel- bzw. zertifikatsbasierten Methoden schon."
+    },
+    {
+        "id":  "slg-sa-089",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The MACsec Key Agreement protocol (MKA) is defined in IEEE ___.",
+        "optionen":  [
+                         "802.1AE",
+                         "802.1X-2010",
+                         "802.1Q",
+                         "802.11i"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "802.1AE definiert MACsec selbst (Frame-Format, Verschlüsselung). Die Schlüsselverwaltung MKA wurde mit der Revision 802.1X-2010 eingeführt und nutzt EAPOL-Frames."
+    },
+    {
+        "id":  "slg-sa-090",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A switch receives a MACsec frame from a client. The ICV it calculates with the SAK does not match the ICV in the frame. What happens, and what does the ICV provide?",
+        "optionen":  [
+                         "The frame is logged; the ICV only provides replay protection",
+                         "The frame is forwarded; the ICV only provides payload encryption",
+                         "The frame is dropped; the ICV provides integrity and authenticity",
+                         "The frame is re-encrypted; the ICV identifies the secure channel"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Die ICV ist eine kryptografische Prüfsumme über den Frame. Stimmt sie nicht, wurde der Frame verändert oder stammt nicht vom berechtigten Partner und wird verworfen. Verschlüsselung leistet GCM-AES, Replay-Schutz die Packet Number."
+    },
+    {
+        "id":  "slg-sa-091",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A packet sniffer is connected to a MACsec-protected link with default settings. Which information can it still read in cleartext?",
+        "optionen":  [
+                         "The source and destination IP addresses",
+                         "The SGT carried in the Cisco Meta Data",
+                         "The 802.1Q VLAN tag of each frame",
+                         "The destination and source MAC addresses"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Verschlüsselt wird alles nach dem SecTAG – also auch 802.1Q-Tag, CMD/SGT und der IP-Header. Die MAC-Adressen und der SecTAG bleiben lesbar, sind aber durch die ICV gegen Veränderung geschützt."
+    },
+    {
+        "id":  "slg-sa-092",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "An access port must encrypt traffic with MACsec-capable clients, but clients without MACsec support must still get access. Which link security policy is required?",
+        "optionen":  [
+                         "cts manual",
+                         "should-secure",
+                         "must-not-secure",
+                         "must-secure"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027authentication linksec policy should-secure\u0027 verschlüsselt, wenn möglich, und lässt sonst unverschlüsselten Verkehr zu. must-secure erzwingt MACsec, must-not-secure verbietet es."
+    },
+    {
+        "id":  "slg-sa-093",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus (Switch-zu-Switch-Link): Lass MKA den Pre-shared Key aus der Key Chain KC verwenden.",
+        "bausteine":  [
+                          "mka",
+                          "pre-shared-key",
+                          "key-chain",
+                          "KC",
+                          "macsec",
+                          "key-string",
+                          "psk",
+                          "policy"
+                      ],
+        "loesung":  [
+                        "mka",
+                        "pre-shared-key",
+                        "key-chain",
+                        "KC"
+                    ],
+        "erklaerung":  "Bei MKA mit PSK liefert die Key Chain (angelegt mit \u0027key chain KC macsec\u0027) den CAK und den CKN. Zusätzlich braucht das Interface \u0027macsec network-link\u0027 und optional \u0027mka policy\u0027."
+    },
+    {
+        "id":  "slg-sa-094",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus: Aktiviere MACsec auf einem Switch-zu-Switch-Uplink.",
+        "bausteine":  [
+                          "macsec",
+                          "network-link",
+                          "mka",
+                          "enable",
+                          "link-security",
+                          "access-control"
+                      ],
+        "loesung":  [
+                        "macsec",
+                        "network-link"
+                    ],
+        "erklaerung":  "\u0027macsec network-link\u0027 aktiviert MACsec für Netzwerk-Links zwischen Switches (z. B. mit MKA-PSK). Auf Host-Ports wird dagegen \u0027macsec\u0027 zusammen mit 802.1X verwendet."
+    },
+    {
+        "id":  "slg-sa-095",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which command verifies that an MKA session to the peer is established and in the Secured state?",
+        "optionen":  [
+                         "show cts sxp connections",
+                         "show mka sessions",
+                         "show dot1x statistics",
+                         "show cts interface brief"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "\u0027show mka sessions\u0027 listet Interface, Peer, Policy, Key-Server-Rolle und Status (z. B. Secured). Bleibt der Status aus, passen oft CAK/CKN oder die MKA-Policy nicht."
+    },
+    {
+        "id":  "slg-sa-096",
+        "topic":  "ENCOR-5.4.d",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "SW1 and SW2 use MKA with a pre-shared key, and both have the default key-server priority. SW1 should become the key server. What should you configure?",
+        "optionen":  [
+                         "key-server priority 10 in SW2\u0027s MKA policy",
+                         "a shorter MKA hello timer on the SW1 uplink",
+                         "key-server priority 10 in SW1\u0027s MKA policy",
+                         "dot1x pae authenticator on the SW1 uplink"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bei MKA gewinnt der niedrigste Priority-Wert; der Default 0 ist bereits der bevorzugte Wert. Damit SW1 sicher Key Server wird, erhöht man den Wert auf SW2. Bei Gleichstand entscheidet die niedrigere SCI."
+    },
+    {
+        "id":  "slg-sa-097",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den 802.1X-Einführungsmodus seinem Verhalten vor bzw. ohne erfolgreiche Authentisierung zu.",
+        "paare":  [
+                      [
+                          "Monitor (open) mode",
+                          "voller Zugang, alle Ergebnisse werden protokolliert"
+                      ],
+                      [
+                          "Low-impact mode",
+                          "statische Port-ACL erlaubt nur z. B. DHCP und DNS"
+                      ],
+                      [
+                          "High-security (closed) mode",
+                          "kein Verkehr außer EAPOL"
+                      ]
+                  ],
+        "erklaerung":  "Die Modi erlauben eine schrittweise Einführung: erst beobachten, dann selektiv einschränken, zuletzt vollständig schließen. Nach erfolgreicher Authentisierung wird in allen Modi die Autorisierung (VLAN, dACL) angewendet."
+    },
+    {
+        "id":  "slg-sa-098",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A port runs in low-impact mode with a static port ACL that permits only DHCP and DNS. A user authenticates successfully, and ISE returns a dACL. What happens?",
+        "optionen":  [
+                         "Both ACLs are ignored until the next reauthentication",
+                         "The port is moved into the guest VLAN automatically",
+                         "The static port ACL is deleted from the running config",
+                         "The downloaded dACL overrides the static port ACL"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Im Low-Impact Mode regelt die Port-ACL den Zugang vor der Authentisierung. Nach Erfolg gewährt die per RADIUS heruntergeladene dACL zusätzlichen Zugang und hat Vorrang vor der statischen ACL."
+    },
+    {
+        "id":  "slg-sa-099",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus (Monitor Mode): Erlaube Verkehr auch vor bzw. ohne erfolgreiche Authentisierung.",
+        "bausteine":  [
+                          "authentication",
+                          "open",
+                          "dot1x",
+                          "port-control",
+                          "auto",
+                          "access-session"
+                      ],
+        "loesung":  [
+                        "authentication",
+                        "open"
+                    ],
+        "erklaerung":  "\u0027authentication open\u0027 lässt den Port vor der Authentisierung offen. Das ist die Grundlage für Monitor und Low-Impact Mode."
+    },
+    {
+        "id":  "slg-sa-100",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "luecke",
+        "frage":  "The Cisco ISE persona that answers RADIUS requests from network access devices and hosts the guest portals is the ___.",
+        "optionen":  [
+                         "Monitoring and Troubleshooting node (MnT)",
+                         "pxGrid controller",
+                         "Policy Administration Node (PAN)",
+                         "Policy Service Node (PSN)"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der PSN trifft die Policy-Entscheidungen in Echtzeit (RADIUS, Portale, Profiling). Der PAN dient der Administration, der MnT sammelt Logs und Reports, pxGrid tauscht Kontext mit anderen Systemen."
+    },
+    {
+        "id":  "slg-sa-101",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "ISE must recognize newly connected IP cameras automatically so that a MAB authorization rule can place them into the camera VLAN. Which ISE function provides this?",
+        "optionen":  [
+                         "SXP propagation of the cameras\u0027 IP-SGT bindings",
+                         "Local web authentication on the access switch",
+                         "Profiling based on probes such as DHCP and RADIUS",
+                         "Posture assessment through the Secure Client"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Profiling erkennt den Gerätetyp anhand von Attributen aus Probes (RADIUS, DHCP, HTTP, SNMP, NetFlow u. a.). Das Ergebnis (Endpoint Identity Group bzw. Profil) kann in Autorisierungsregeln verwendet werden."
+    },
+    {
+        "id":  "slg-sa-102",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "In an 802.1X deployment with Cisco ISE, which role does the access switch play toward ISE?",
+        "optionen":  [
+                         "RADIUS server",
+                         "Supplicant",
+                         "Identity store",
+                         "RADIUS client"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Switch ist Authenticator: Gegenüber dem Endgerät spricht er EAPOL, gegenüber ISE ist er RADIUS-Client. ISE ist der Authentication Server, AD/LDAP kann der Identity Store sein."
+    },
+    {
+        "id":  "slg-sa-103",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "How are the EAP messages of the supplicant carried between the authenticator and Cisco ISE?",
+        "optionen":  [
+                         "Translated into PAP credentials by the switch",
+                         "Forwarded as routed EAPOL frames to the server",
+                         "Encapsulated unchanged inside RADIUS attributes",
+                         "Converted to TACACS+ packets by the authenticator"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Der Switch entfernt den Ethernet-Header des EAPOL-Frames und packt die EAP-Nachricht unverändert in RADIUS (EAP-Message). Deshalb muss der Server die EAP-Methode selbst beherrschen."
+    },
+    {
+        "id":  "slg-sa-104",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die 802.1X-/RADIUS-Nachricht ihrer Funktion zu.",
+        "paare":  [
+                      [
+                          "EAPOL-Start",
+                          "Supplicant stößt die Authentisierung selbst an"
+                      ],
+                      [
+                          "EAP-Request/Identity",
+                          "Authenticator fragt nach der Identität"
+                      ],
+                      [
+                          "RADIUS Access-Challenge",
+                          "Server verlangt einen weiteren EAP-Austausch"
+                      ],
+                      [
+                          "EAPOL-Logoff",
+                          "Supplicant beendet die Session"
+                      ]
+                  ],
+        "erklaerung":  "Normalerweise beginnt der Authenticator bei Link-up mit EAP-Request/Identity; ein Supplicant, der nichts empfängt, sendet EAPOL-Start. Access-Challenges tragen die methodenspezifischen Runden, EAPOL-Logoff setzt den Port auf unauthorized."
+    },
+    {
+        "id":  "slg-sa-105",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A laptop with an active 802.1X supplicant is connected to a switch port on which 802.1X is not configured. What happens?",
+        "optionen":  [
+                         "The supplicant keeps the link down until an authenticator answers it",
+                         "The switch automatically falls back to MAB for the laptop\u0027s MAC address",
+                         "The switch drops EAPOL; after three attempts the supplicant sends normally",
+                         "The switch forwards the EAPOL frames to ISE using its default RADIUS key"
+                     ],
+        "richtig":  2,
+        "erklaerung":  "Ohne 802.1X am Port werden EAPOL-Frames verworfen. Erhält der Supplicant nach drei Versuchen keine Antwort, verhält er sich so, als sei der Port autorisiert, und sendet normal."
+    },
+    {
+        "id":  "slg-sa-106",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  3,
+        "typ":  "luecke",
+        "frage":  "EAPOL frames are sent to the PAE group MAC address ___.",
+        "optionen":  [
+                         "01:80:C2:00:00:03",
+                         "01:00:0C:CC:CC:CC",
+                         "01:80:C2:00:00:00",
+                         "FF:FF:FF:FF:FF:FF"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Die PAE-Gruppenadresse 01:80:C2:00:00:03 wird von 802.1D-Bridges nicht weitergeleitet, EAPOL bleibt also auf dem Link. 01:80:C2:00:00:00 ist STP, 01:00:0C:CC:CC:CC u. a. CDP."
+    },
+    {
+        "id":  "slg-sa-107",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  3,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die EAP-Methode ihrem Merkmal zu.",
+        "paare":  [
+                      [
+                          "EAP-TLS",
+                          "Zertifikate auf Client und Server"
+                      ],
+                      [
+                          "PEAP",
+                          "Server-Zertifikat, Benutzerpasswort im TLS-Tunnel"
+                      ],
+                      [
+                          "EAP-FAST",
+                          "Cisco-Methode mit Protected Access Credential (PAC)"
+                      ],
+                      [
+                          "EAP-MD5",
+                          "keine gegenseitige Authentisierung, kein Schlüsselmaterial"
+                      ]
+                  ],
+        "erklaerung":  "EAP-TLS gilt als stärkste Methode, PEAP (meist mit MSCHAPv2) ist sehr verbreitet, EAP-FAST nutzt eine PAC für den Tunnelaufbau. EAP-MD5 ist für WLAN und MACsec ungeeignet."
+    },
+    {
+        "id":  "slg-sa-108",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A company wants to authenticate both the domain computer and the logged-in user within one 802.1X session (EAP chaining), using a standards-based method. Which EAP method fits?",
+        "optionen":  [
+                         "LEAP",
+                         "TEAP",
+                         "EAP-GTC",
+                         "EAP-MD5"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "TEAP (RFC 7170) ist eine tunnelbasierte Methode, die mehrere innere Authentisierungen verketten kann, z. B. Maschine und Benutzer. LEAP und EAP-MD5 gelten als unsicher, EAP-GTC ist nur eine innere Methode."
+    },
+    {
+        "id":  "slg-sa-109",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "ISE assigns a dynamic VLAN after successful 802.1X authentication. Which RADIUS attribute in the Access-Accept carries the VLAN ID or name?",
+        "optionen":  [
+                         "Session-Timeout",
+                         "Framed-IP-Address",
+                         "Filter-Id",
+                         "Tunnel-Private-Group-ID"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Dynamische VLAN-Zuweisung nutzt Tunnel-Type=VLAN, Tunnel-Medium-Type=802 und Tunnel-Private-Group-ID mit dem VLAN. Filter-Id verweist auf eine lokal definierte (Named) ACL."
+    },
+    {
+        "id":  "slg-sa-110",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Both 802.1X and MAB fail for a visitor\u0027s laptop. What is the advantage of ISE assigning the guest VLAN in an Access-Accept instead of the switch using its locally configured guest VLAN after an Access-Reject?",
+        "optionen":  [
+                         "The guest access is centrally recorded in the AAA system",
+                         "The switch no longer needs any RADIUS configuration",
+                         "The guest VLAN can then be routed without any gateway",
+                         "The client receives a MACsec key for the guest VLAN"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Weist ISE das Gast-VLAN zu, ist der Zugriff zentral protokolliert. Bei einem Access-Reject nutzt der Switch sein lokales Guest-/Restricted-VLAN, und es gibt keinen zentralen Audit Trail."
+    },
+    {
+        "id":  "slg-sa-111",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An ISE authorization profile for wireless users references the named ACL GUEST-ACL. Users authenticate successfully, but no ACL is applied on the WLC. What is the most likely cause?",
+        "optionen":  [
+                         "An ACL with exactly this name is not defined on the WLC",
+                         "Named ACLs can only be used on wired switch ports",
+                         "ISE failed to download the ACL entries to the WLC",
+                         "The WLC accepts ACLs only in the form of SGT tags"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Named ACLs werden lokal auf dem WLC angelegt; ISE übermittelt nur den Namen. Fehlt die ACL oder weicht die Schreibweise ab, greift sie nicht. Herunterladen (dACL) gibt es nur bei Downloadable ACLs."
+    },
+    {
+        "id":  "slg-sa-112",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "A user is authorized with a downloadable ACL from ISE. The engineer cannot find this ACL in the switch\u0027s running configuration. Why?",
+        "optionen":  [
+                         "The switch requires \u0027write memory\u0027 after every new session",
+                         "dACLs are only stored in the startup config of the switch",
+                         "The dACL failed and the port was moved to the guest VLAN instead",
+                         "dACLs are applied per session and never written to the running config"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "RADIUS-gelieferte ACLs gelten nur für die Session und werden bei Session-Ende, Auth-Fehler oder Link-down wieder entfernt. Sie erscheinen z. B. in \u0027show authentication sessions ... details\u0027 bzw. \u0027show ip access-lists\u0027."
+    },
+    {
+        "id":  "slg-sa-113",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne den 802.1X-Host-Mode seinem Verhalten zu.",
+        "paare":  [
+                      [
+                          "single-host",
+                          "nur eine MAC-Adresse, eine zweite löst eine Violation aus"
+                      ],
+                      [
+                          "multi-host",
+                          "der erste authentisierte Client öffnet den Port für alle"
+                      ],
+                      [
+                          "multi-domain",
+                          "je ein Gerät in Voice- und Data-Domain, beide authentisiert"
+                      ],
+                      [
+                          "multi-auth",
+                          "ein Voice-Gerät und viele einzeln authentisierte Data-Clients"
+                      ]
+                  ],
+        "erklaerung":  "multi-host ist am schwächsten, weil nur der erste Client geprüft wird. multi-domain passt für Telefon plus PC, multi-auth verlangt von jedem Data-Client eine eigene Authentisierung."
+    },
+    {
+        "id":  "slg-sa-114",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "An IP phone and three PCs behind an unmanaged switch share one access port. Every PC must authenticate individually via 802.1X or MAB. Which host mode is required?",
+        "optionen":  [
+                         "single-host",
+                         "multi-auth",
+                         "multi-domain",
+                         "multi-host"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "multi-auth erlaubt ein Gerät in der Voice-Domain und mehrere jeweils einzeln authentisierte Clients in der Data-Domain. multi-domain lässt nur einen Data-Client zu, multi-host prüft nur den ersten."
+    },
+    {
+        "id":  "slg-sa-115",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A port is in multi-host mode. The first PC authenticated and four more PCs behind a hub are using the port. The first PC now fails reauthentication. What happens?",
+        "optionen":  [
+                         "All attached clients lose network access",
+                         "The other PCs are moved into the guest VLAN",
+                         "Only the first PC loses network access",
+                         "The other PCs fall back to MAB individually"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Im Multi-Host-Modus hängt der Zugang aller Clients an der Authentisierung des ersten. Wird der Port unautorisiert (Reauth-Fehler oder EAPOL-Logoff), verlieren alle den Zugang."
+    },
+    {
+        "id":  "slg-sa-116",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus: Setze den Host-Modus für einen Port mit IP-Telefon und genau einem PC dahinter, die beide authentisiert werden.",
+        "bausteine":  [
+                          "authentication",
+                          "host-mode",
+                          "multi-domain",
+                          "multi-auth",
+                          "multi-host",
+                          "dot1x",
+                          "voice"
+                      ],
+        "loesung":  [
+                        "authentication",
+                        "host-mode",
+                        "multi-domain"
+                    ],
+        "erklaerung":  "multi-domain (MDA) erlaubt je ein Gerät in Voice- und Data-Domain. Das Telefon wird über das AV-Pair device-traffic-class=voice der Voice-Domain zugeordnet."
+    },
+    {
+        "id":  "slg-sa-117",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Aktiviere 802.1X global auf dem Switch.",
+        "bausteine":  [
+                          "dot1x",
+                          "system-auth-control",
+                          "authentication",
+                          "enable",
+                          "aaa",
+                          "pae"
+                      ],
+        "loesung":  [
+                        "dot1x",
+                        "system-auth-control"
+                    ],
+        "erklaerung":  "Ohne \u0027dot1x system-auth-control\u0027 bleibt 802.1X trotz Interface-Konfiguration global deaktiviert. Voraussetzung ist \u0027aaa new-model\u0027 mit passenden Methodenlisten."
+    },
+    {
+        "id":  "slg-sa-118",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Lege fest, dass 802.1X-Authentisierungen per Default die Servergruppe RADIUS verwenden.",
+        "bausteine":  [
+                          "aaa",
+                          "authentication",
+                          "dot1x",
+                          "default",
+                          "group",
+                          "radius",
+                          "login",
+                          "local",
+                          "tacacs+"
+                      ],
+        "loesung":  [
+                        "aaa",
+                        "authentication",
+                        "dot1x",
+                        "default",
+                        "group",
+                        "radius"
+                    ],
+        "erklaerung":  "802.1X braucht RADIUS, da EAP in RADIUS gekapselt wird – TACACS+ kann kein EAP transportieren. \u0027login\u0027 wäre die Methodenliste für den CLI-Zugang."
+    },
+    {
+        "id":  "slg-sa-119",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Erlaube, dass RADIUS per Default-Methodenliste Netzwerkzugänge autorisiert (z. B. dynamisches VLAN oder dACL).",
+        "bausteine":  [
+                          "aaa",
+                          "authorization",
+                          "network",
+                          "default",
+                          "group",
+                          "radius",
+                          "exec",
+                          "commands",
+                          "local"
+                      ],
+        "loesung":  [
+                        "aaa",
+                        "authorization",
+                        "network",
+                        "default",
+                        "group",
+                        "radius"
+                    ],
+        "erklaerung":  "Ohne \u0027aaa authorization network\u0027 ignoriert der Switch Autorisierungsattribute wie VLAN oder dACL im Access-Accept. \u0027exec\u0027 und \u0027commands\u0027 betreffen den Gerätezugang."
+    },
+    {
+        "id":  "slg-sa-120",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus: Schalte die portbasierte Zugangskontrolle ein, sodass der Port bis zur erfolgreichen Authentisierung unautorisiert bleibt.",
+        "bausteine":  [
+                          "authentication",
+                          "port-control",
+                          "auto",
+                          "force-authorized",
+                          "force-unauthorized",
+                          "dot1x"
+                      ],
+        "loesung":  [
+                        "authentication",
+                        "port-control",
+                        "auto"
+                    ],
+        "erklaerung":  "\u0027auto\u0027 aktiviert die Authentisierung. force-authorized schaltet sie faktisch ab (Port immer offen), force-unauthorized sperrt den Port dauerhaft."
+    },
+    {
+        "id":  "slg-sa-121",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "On which three port types is 802.1X not supported on Catalyst switches? (Choose three.)",
+        "optionen":  [
+                         "Active or not-yet-active EtherChannel members",
+                         "Trunk ports",
+                         "Access ports with a voice VLAN",
+                         "Static access ports",
+                         "Dynamic ports negotiating with DTP"
+                     ],
+        "richtig":  [
+                        0,
+                        1,
+                        4
+                    ],
+        "erklaerung":  "802.1X ist für statische Access-Ports (auch mit Voice-VLAN) gedacht. Auf Trunks, DTP-Ports, Dynamic-Access-Ports (VQP) und EtherChannel-Mitgliedern lässt es sich nicht aktivieren."
+    },
+    {
+        "id":  "slg-sa-122",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "\u0027show authentication sessions interface Gi1/0/5 details\u0027 shows: Status: Authorized, Domain: DATA, and in the method status list \u0027dot1x Failed over\u0027 and \u0027mab Authc Success\u0027. What happened?",
+        "optionen":  [
+                         "802.1X did not succeed, and the device was authorized by MAB",
+                         "Both methods failed, and the port is in monitor mode only",
+                         "802.1X succeeded first, and MAB then reauthorized the user",
+                         "MAB failed, and the device is using the guest VLAN instead"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "\u0027Failed over\u0027 bedeutet, dass 802.1X nicht erfolgreich war (z. B. kein Supplicant) und der Switch zur nächsten Methode übergegangen ist. MAB war erfolgreich, das Gerät ist in der Data-Domain autorisiert."
+    },
+    {
+        "id":  "slg-sa-123",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "On Gi1/0/7, \u0027show authentication sessions\u0027 lists two sessions: MAC 0011.2233.4455 with Method mab, Domain VOICE, Status Auth; and MAC 0050.56aa.bbcc with Method dot1x, Domain DATA, Status Auth. Which statement is correct?",
+        "optionen":  [
+                         "The port runs single-host mode, so the second session will be blocked",
+                         "The phone was authorized via MAB in voice, the PC via 802.1X in data",
+                         "The PC was authorized via MAB in voice, the phone via 802.1X in data",
+                         "Both devices share one session because the port is in multi-host mode"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Zwei getrennte Sessions in VOICE und DATA zeigen multi-domain bzw. multi-auth. Das Telefon (Voice-Domain) hat sich per MAB, der PC (Data-Domain) per 802.1X authentisiert."
+    },
+    {
+        "id":  "slg-sa-124",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  3,
+        "typ":  "cli",
+        "frage":  "Globaler Konfigurationsmodus: Aktiviere auf dem Switch den Empfang von RADIUS Change-of-Authorization-Nachrichten (Dynamic Authorization).",
+        "bausteine":  [
+                          "aaa",
+                          "server",
+                          "radius",
+                          "dynamic-author",
+                          "coa",
+                          "client",
+                          "enable"
+                      ],
+        "loesung":  [
+                        "aaa",
+                        "server",
+                        "radius",
+                        "dynamic-author"
+                    ],
+        "erklaerung":  "Im darauf folgenden Untermodus wird mit \u0027client \u003cISE-IP\u003e server-key \u003ckey\u003e\u0027 festgelegt, von wem CoA-Nachrichten akzeptiert werden. Ohne diese Konfiguration scheitern Posture- und CWA-Abläufe."
+    },
+    {
+        "id":  "slg-sa-125",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "A printer authenticates via MAB. An attacker unplugs the printer and connects a laptop configured with the printer\u0027s MAC address. What is the result?",
+        "optionen":  [
+                         "The laptop receives the printer\u0027s network access",
+                         "ISE rejects the laptop because its password differs",
+                         "The port is shut down because the MAC is already known",
+                         "The switch detects the spoofing via EAPOL checks"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "MAB nutzt die MAC-Adresse als Benutzername und Passwort – eine echte Authentisierung findet nicht statt. Deshalb ist MAB leicht zu spoofen; Profiling und restriktive Autorisierung mindern das Risiko."
+    },
+    {
+        "id":  "slg-sa-126",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which three are limitations of MAC Authentication Bypass? (Choose three.)",
+        "optionen":  [
+                         "Only devices are authenticated, not the users who log in",
+                         "Dynamic VLAN or dACL assignment is not possible",
+                         "A database of allowed MAC addresses must be created and maintained",
+                         "A supplicant must be installed on every endpoint",
+                         "Network access is delayed when MAB is a fallback for 802.1X"
+                     ],
+        "richtig":  [
+                        0,
+                        2,
+                        4
+                    ],
+        "erklaerung":  "MAB braucht eine gepflegte MAC-Datenbank, wartet als Fallback auf den 802.1X-Timeout, kennt keine Benutzer und ist leicht zu spoofen. Dynamische Autorisierung funktioniert dagegen genauso wie bei 802.1X, und ein Supplicant ist gerade nicht nötig."
+    },
+    {
+        "id":  "slg-sa-127",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A port is configured with 802.1X first and MAB as fallback, using default timers (tx-period 30 seconds, max-reauth-req 2). A printer without a supplicant is connected. About how long does it take until MAB starts?",
+        "optionen":  [
+                         "180 seconds",
+                         "60 seconds",
+                         "30 seconds",
+                         "90 seconds"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Switch sendet das erste EAP-Request/Identity und wiederholt es max-reauth-req-mal, jeweils mit tx-period Abstand: (2 + 1) × 30 s = 90 s. In dieser Zeit hat der Drucker standardmäßig keinen Netzzugang."
+    },
+    {
+        "id":  "slg-sa-128",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "To speed up MAB fallback, an engineer sets \u0027dot1x timeout tx-period 10\u0027 and leaves max-reauth-req at its default of 2. After about how many seconds does MAB start for a device without a supplicant?",
+        "optionen":  [
+                         "20 seconds",
+                         "60 seconds",
+                         "10 seconds",
+                         "30 seconds"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die Wartezeit ist (max-reauth-req + 1) × tx-period = (2 + 1) × 10 s = 30 s. Ein zu kleiner tx-period kann aber langsame Supplicants stören."
+    },
+    {
+        "id":  "slg-sa-129",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "A port is configured with \u0027authentication order mab dot1x\u0027 and \u0027authentication priority dot1x mab\u0027. What is the effect?",
+        "optionen":  [
+                         "MAB is tried first, but a later 802.1X attempt can preempt it",
+                         "802.1X is used exclusively, and MAB is only used for logging",
+                         "MAB is used exclusively, and all EAPOL frames are dropped",
+                         "802.1X is tried first, and MAB can preempt it at any time"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "order legt die Reihenfolge der Versuche fest, priority, welche Methode eine laufende oder erfolgreiche niedrigere unterbrechen darf. So erhalten Geräte ohne Supplicant schnell Zugang per MAB, 802.1X-Clients werden trotzdem stark authentisiert."
+    },
+    {
+        "id":  "slg-sa-130",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  1,
+        "typ":  "cli",
+        "frage":  "Interface-Konfigurationsmodus: Lege fest, dass zuerst 802.1X und danach MAB versucht wird.",
+        "bausteine":  [
+                          "authentication",
+                          "order",
+                          "dot1x",
+                          "mab",
+                          "priority",
+                          "webauth",
+                          "fallback"
+                      ],
+        "loesung":  [
+                        "authentication",
+                        "order",
+                        "dot1x",
+                        "mab"
+                    ],
+        "erklaerung":  "\u0027authentication order\u0027 bestimmt die Reihenfolge der Methoden. Zusätzlich müssen am Interface \u0027mab\u0027 und \u0027dot1x pae authenticator\u0027 konfiguriert sein."
+    },
+    {
+        "id":  "slg-sa-131",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Which RADIUS attribute value allows ISE to recognize that an Access-Request was generated by MAB rather than by 802.1X?",
+        "optionen":  [
+                         "Service-Type = Framed",
+                         "NAS-Port-Type = Virtual",
+                         "Framed-MTU = 1500",
+                         "Service-Type = Call-Check"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Der Switch markiert MAB-Anfragen mit Service-Type Call-Check und sendet die MAC als Benutzername und Passwort. 802.1X-Anfragen tragen Service-Type Framed."
+    },
+    {
+        "id":  "slg-sa-132",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "What does the switch need from an endpoint to start MAB for it?",
+        "optionen":  [
+                         "A CDP packet in which the device announces its type",
+                         "Any frame from which it can learn the source MAC address",
+                         "An EAPOL-Start frame sent by the endpoint\u0027s supplicant",
+                         "An HTTP request that triggers the web portal redirect"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Der Switch lernt die Quell-MAC aus einem einzigen beliebigen Frame (z. B. DHCP oder ARP) und schickt sie an den RADIUS-Server. Nach Erfolg lässt er per Source-MAC-Filterung nur diese MAC zu."
+    },
+    {
+        "id":  "slg-sa-133",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  1,
+        "typ":  "single",
+        "frage":  "Which web authentication variant supports a RADIUS CoA after login and provides a central audit trail in ISE?",
+        "optionen":  [
+                         "Central WebAuth (CWA)",
+                         "Static guest VLAN on the switch",
+                         "Local WebAuth on the switch",
+                         "Local WebAuth on the WLC"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Bei CWA liegt das Portal auf ISE, die Authentisierung erfolgt auf dem PSN, danach folgt ein CoA. Local WebAuth hat keinen CoA, keinen zentralen Audit Trail und erfordert Portal-Konfiguration auf jedem Gerät."
+    },
+    {
+        "id":  "slg-sa-134",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "zuordnung",
+        "frage":  "Ordne die WebAuth-Variante ihrem Merkmal zu.",
+        "paare":  [
+                      [
+                          "Central WebAuth",
+                          "Portal auf ISE, danach CoA an den NAD"
+                      ],
+                      [
+                          "Local WebAuth",
+                          "Portal bzw. Login am NAD, kein CoA"
+                      ],
+                      [
+                          "Device Registration WebAuth",
+                          "MAB plus AUP-Seite, keine Benutzer-Credentials"
+                      ]
+                  ],
+        "erklaerung":  "CWA zentralisiert Portal und Protokollierung, LWA arbeitet näher am Client, aber dezentral. Device Registration (Hotspot) nutzt MAB und verlangt nur die Annahme einer Acceptable Use Policy."
+    },
+    {
+        "id":  "slg-sa-135",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "In a Central WebAuth flow on a Catalyst switch, which authentication method does the switch use for the initial request and again after ISE sends the CoA?",
+        "optionen":  [
+                         "MAB",
+                         "802.1X with PEAP",
+                         "EAP-TLS",
+                         "Local WebAuth"
+                     ],
+        "richtig":  0,
+        "erklaerung":  "Der Gast hat keinen Supplicant: Die erste MAB-Anfrage liefert Redirect-URL und Redirect-ACL. Nach dem Portal-Login löst ISE per CoA eine erneute MAB-Anfrage aus, die jetzt als Guest-Flow erkannt und voll autorisiert wird."
+    },
+    {
+        "id":  "slg-sa-136",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "The url-redirect-acl on a Catalyst switch used for Central WebAuth contains the entry \u0027deny udp any any eq domain\u0027. What is the effect of this entry?",
+        "optionen":  [
+                         "DNS traffic is dropped by the switch for the client",
+                         "DNS traffic is not redirected to the ISE portal",
+                         "DNS traffic is forwarded only after the CoA arrives",
+                         "DNS traffic is redirected to the ISE portal first"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "In der Redirect-ACL bedeutet permit „umleiten“ und deny „nicht umleiten“. Ob nicht umgeleiteter Verkehr erlaubt ist, entscheidet die zugewiesene dACL. DNS muss funktionieren, damit der Browser eine Seite aufrufen kann, die umgeleitet wird."
+    },
+    {
+        "id":  "slg-sa-137",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  3,
+        "typ":  "single",
+        "frage":  "Guests on a switch port are not redirected to the ISE portal, although ISE returns the correct url-redirect and url-redirect-acl attributes. What is most likely missing on the switch?",
+        "optionen":  [
+                         "dot1x system-auth-control in global mode",
+                         "ip http server / ip http secure-server",
+                         "aaa accounting dot1x default start-stop",
+                         "cts role-based enforcement in global mode"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Für das Abfangen und Umleiten von HTTP(S) braucht der Switch seinen eigenen HTTP(S)-Serverprozess. Ohne ihn kommen die Redirect-Attribute an, aber der Browser wird nie umgeleitet."
+    },
+    {
+        "id":  "slg-sa-138",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "single",
+        "frage":  "Why must DNS be permitted for a guest before WebAuth when the guest is expected to open a website such as www.example.com?",
+        "optionen":  [
+                         "The ISE portal certificate can only be validated through a DNS TXT record lookup",
+                         "The browser must resolve the name so it sends an HTTP request that can be redirected",
+                         "The guest VLAN is assigned through a DNS response sent by the ISE server",
+                         "The switch uses DNS to look up the guest\u0027s MAC address in the identity store"
+                     ],
+        "richtig":  1,
+        "erklaerung":  "Erst wenn der Name aufgelöst ist, sendet der Browser den HTTP(S)-Request, den der NAD abfangen und zum Portal umleiten kann. Ohne DNS kommt der Benutzer nie auf die Login-Seite."
+    },
+    {
+        "id":  "slg-sa-139",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  2,
+        "typ":  "multi",
+        "frage":  "Which two statements about web authentication are true? (Choose two.)",
+        "optionen":  [
+                         "It can be used as a fallback after 802.1X and MAB",
+                         "It can be used in both wired and wireless networks",
+                         "It is only available in wireless environments",
+                         "It uses the endpoint\u0027s MAC address as the password",
+                         "It requires an 802.1X supplicant on the endpoint"
+                     ],
+        "richtig":  [
+                        0,
+                        1
+                    ],
+        "erklaerung":  "WebAuth ist die letzte Rückfallebene für Endgeräte ohne bzw. mit nicht funktionierendem Supplicant oder ohne Konto im Identity Store, wired wie wireless. Die MAC als Credential ist das Prinzip von MAB."
+    },
+    {
+        "id":  "slg-sa-140",
+        "topic":  "ENCOR-5.4.b",
+        "schwierigkeit":  1,
+        "typ":  "luecke",
+        "frage":  "On an access port that serves employees, printers and guests, the typical authentication order is 802.1X, then MAB, then ___.",
+        "optionen":  [
+                         "Kerberos",
+                         "SXP",
+                         "MKA",
+                         "WebAuth"
+                     ],
+        "richtig":  3,
+        "erklaerung":  "Die stärkste Methode kommt zuerst: 802.1X für Geräte mit Supplicant, MAB für Geräte ohne, WebAuth als letzte Möglichkeit für Gäste oder Geräte mit defektem Supplicant."
+    }
+]

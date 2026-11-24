@@ -280,7 +280,7 @@ show cts role-based permissions
 key chain KC macsec
  key 01
   cryptographic-algorithm aes-128-cmac
-  key-string <64 Hex-Zeichen bzw. 32 für 128 Bit>
+  key-string <32 Hex-Zeichen bei aes-128-cmac, 64 bei aes-256-cmac>
 mka policy MKA-POL
  macsec-cipher-suite gcm-aes-128
 interface Te1/0/1
@@ -388,6 +388,7 @@ Method status list:
    Method    State
    dot1x     Authc Success
 ```
+*(Ergänzung)* Bei MAB-Fallback zeigt die Method status list `dot1x Failed over` und `mab Authc Success` („Failed over“ = Methode lief, scheiterte und übergab an die nächste Methode).
 
 ---
 

@@ -31,8 +31,8 @@ Status: ✅ fertig · ⏳ in Arbeit · ☐ offen · ⚠ nicht mehr in ENCOR v1.2
 | 26 | Network Programmability (JSON, YANG, NETCONF, RESTCONF) | 278–294 | 26-programmability | ✅ 146 Fragen + Wissen + 10 SVGs, geprüft (7 korr.) |
 | 27 | Wireless Principles (RF) | 295–304 | 27-wlan-rf | ⚠ |
 | 28 | Wireless Roaming and Location | 305–312 | 28-wlan-roaming | ⚠ |
-| 29 | Enterprise Network Security Architecture | 313–332 | 29-security-arch | ⏳ Writer läuft |
-| 30 | Cisco Catalyst Center | 333–347 | 30-catalyst-center | ☐ |
+| 29 | Enterprise Network Security Architecture | 313–332 | 29-security-arch | ✅ 140 Fragen + Wissen + 9 SVGs, geprüft (1 korr.) |
+| 30 | Cisco Catalyst Center | 333–347 | 30-catalyst-center | ⏳ Writer läuft |
 | 31 | Cisco SD-Access | 348–359 | 31-sda | ☐ |
 | 32 | Cisco Catalyst SD-WAN | 360–373 | 32-sdwan | ☐ |
 | 33 | APIs in Cisco Platforms | 374–381 | 33-apis | ☐ |

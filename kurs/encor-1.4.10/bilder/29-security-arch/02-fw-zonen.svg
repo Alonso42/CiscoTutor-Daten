@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Drei-Zonen-Modell: Inside, Outside, DMZ</title>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Firewall mit drei Security Zones</text>
+<rect x="30" y="170" width="180" height="120" rx="12" fill="#ff6b6b" fill-opacity="0.15" stroke="#ff6b6b" stroke-width="2"/>
+<text x="120" y="200" text-anchor="middle" font-size="17" font-weight="bold" fill="#222">OUTSIDE</text>
+<text x="120" y="225" text-anchor="middle" font-size="13" fill="#222">Internet</text>
+<text x="120" y="245" text-anchor="middle" font-size="13" fill="#222">nicht vertrauenswürdig</text>
+<rect x="590" y="170" width="180" height="120" rx="12" fill="#39c86a" fill-opacity="0.15" stroke="#39c86a" stroke-width="2"/>
+<text x="680" y="200" text-anchor="middle" font-size="17" font-weight="bold" fill="#222">INSIDE</text>
+<text x="680" y="225" text-anchor="middle" font-size="13" fill="#222">privat</text>
+<text x="680" y="245" text-anchor="middle" font-size="13" fill="#222">vertrauenswürdig</text>
+<rect x="310" y="60" width="180" height="90" rx="12" fill="#ffd23f" fill-opacity="0.25" stroke="#222" stroke-width="1.5"/>
+<text x="400" y="90" text-anchor="middle" font-size="17" font-weight="bold" fill="#222">DMZ</text>
+<text x="400" y="113" text-anchor="middle" font-size="13" fill="#222">öffentlich erreichbare</text>
+<text x="400" y="131" text-anchor="middle" font-size="13" fill="#222">Server (Web, Mail)</text>
+<rect x="355" y="200" width="90" height="60" rx="6" fill="#4a9cff" fill-opacity="0.3" stroke="#4a9cff" stroke-width="2"/>
+<text x="400" y="236" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">FW</text>
+<line x1="212" y1="230" x2="353" y2="230" stroke="#222" stroke-width="2"/>
+<line x1="447" y1="230" x2="588" y2="230" stroke="#222" stroke-width="2"/>
+<line x1="400" y1="198" x2="400" y2="152" stroke="#222" stroke-width="2"/>
+<text x="30" y="330" font-size="15" font-weight="bold" fill="#222">Typische Policy</text>
+<text x="30" y="355" font-size="14" fill="#39c86a" font-weight="bold">✓</text><text x="50" y="355" font-size="14" fill="#222">Inside → Outside: meist erlaubt (Rückverkehr stateful), ggf. Protokolle eingeschränkt</text>
+<text x="30" y="378" font-size="14" fill="#ff6b6b" font-weight="bold">✕</text><text x="50" y="378" font-size="14" fill="#222">Outside → Inside: verboten (neue Verbindungen)</text>
+<text x="30" y="401" font-size="14" fill="#ffb300" font-weight="bold">!</text><text x="50" y="401" font-size="14" fill="#222">Outside → DMZ: nur definierte Ports auf definierten Servern</text>
+<text x="30" y="424" font-size="14" fill="#ff6b6b" font-weight="bold">✕</text><text x="50" y="424" font-size="14" fill="#222">DMZ → Inside: sehr restriktiv – kompromittierter Server darf kein Sprungbrett werden</text>
+</svg>

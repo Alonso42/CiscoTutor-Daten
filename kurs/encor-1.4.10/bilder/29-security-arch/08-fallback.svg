@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>Fallback-Kette 802.1X, MAB, WebAuth</title>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="34" text-anchor="middle" font-size="21" font-weight="bold" fill="#222">Reihenfolge am Access-Port: stärkste Methode zuerst</text>
+<rect x="30" y="80" width="210" height="130" rx="10" fill="#39c86a" fill-opacity="0.2" stroke="#39c86a" stroke-width="2"/>
+<text x="135" y="108" text-anchor="middle" font-size="18" font-weight="bold" fill="#222">1 · 802.1X</text>
+<text x="45" y="134" font-size="13" fill="#222">Supplicant + EAP</text>
+<text x="45" y="154" font-size="13" fill="#222">Benutzer oder Maschine</text>
+<text x="45" y="174" font-size="13" fill="#222">stark (z. B. EAP-TLS)</text>
+<text x="45" y="194" font-size="13" fill="#222">Laptops, Telefone</text>
+<rect x="295" y="80" width="210" height="130" rx="10" fill="#ffd23f" fill-opacity="0.3" stroke="#222" stroke-width="1.5"/>
+<text x="400" y="108" text-anchor="middle" font-size="18" font-weight="bold" fill="#222">2 · MAB</text>
+<text x="310" y="134" font-size="13" fill="#222">MAC = Username + Passwort</text>
+<text x="310" y="154" font-size="13" fill="#222">nur Gerät, spoofbar</text>
+<text x="310" y="174" font-size="13" fill="#222">braucht MAC-Datenbank</text>
+<text x="310" y="194" font-size="13" fill="#222">Drucker, Kameras, IoT</text>
+<rect x="560" y="80" width="210" height="130" rx="10" fill="#4a9cff" fill-opacity="0.2" stroke="#4a9cff" stroke-width="2"/>
+<text x="665" y="108" text-anchor="middle" font-size="18" font-weight="bold" fill="#222">3 · WebAuth</text>
+<text x="575" y="134" font-size="13" fill="#222">Login im Browser-Portal</text>
+<text x="575" y="154" font-size="13" fill="#222">HTTP(S)-Redirect</text>
+<text x="575" y="174" font-size="13" fill="#222">lokal (LWA) / zentral (CWA)</text>
+<text x="575" y="194" font-size="13" fill="#222">Gäste, defekter Supplicant</text>
+<line x1="242" y1="145" x2="291" y2="145" stroke="#222" stroke-width="2.5" marker-end="url(#a)"/>
+<line x1="507" y1="145" x2="556" y2="145" stroke="#222" stroke-width="2.5" marker-end="url(#a)"/>
+<text x="266" y="235" text-anchor="middle" font-size="12" fill="#222">kein EAPOL-Partner</text>
+<text x="531" y="235" text-anchor="middle" font-size="12" fill="#222">MAC unbekannt</text>
+<rect x="30" y="265" width="740" height="165" rx="10" fill="#ffffff" stroke="#222"/>
+<text x="50" y="292" font-size="15" font-weight="bold" fill="#222">Wartezeit bis MAB (Default-Timer)</text>
+<text x="50" y="318" font-size="14" fill="#222">dot1x timeout tx-period = 30 s · dot1x max-reauth-req = 2</text>
+<text x="50" y="342" font-size="14" fill="#222">→ (2 + 1) × 30 s = 90 s ohne Netzzugang, bevor MAB startet</text>
+<rect x="50" y="358" width="270" height="22" fill="#ff6b6b" fill-opacity="0.3"/><text x="185" y="374" text-anchor="middle" font-size="12" fill="#222">802.1X-Versuche (90 s)</text>
+<rect x="320" y="358" width="90" height="22" fill="#ffd23f" fill-opacity="0.6"/><text x="365" y="374" text-anchor="middle" font-size="12" fill="#222">MAB</text>
+<text x="50" y="405" font-size="13" fill="#222">Abhilfe: tx-period verkürzen oder „authentication order mab dot1x“ + „authentication priority dot1x mab“</text>
+<text x="50" y="424" font-size="13" fill="#222">order = Reihenfolge der Versuche · priority = welche Methode eine niedrigere unterbrechen darf</text>
+</svg>

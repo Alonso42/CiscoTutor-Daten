@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>SGACL-Policy-Matrix</title>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="32" text-anchor="middle" font-size="21" font-weight="bold" fill="#222">Policy-Matrix: Source-SGT × Destination-SGT</text>
+<text x="500" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">Destination (DGT)</text>
+<text x="30" y="250" font-size="14" font-weight="bold" fill="#222" transform="rotate(-90 30 250)">Source (SGT)</text>
+<rect x="60" y="80" width="200" height="44" fill="#eeeeee" stroke="#999"/>
+<rect x="260" y="80" width="160" height="44" fill="#eeeeee" stroke="#999"/><text x="340" y="107" text-anchor="middle" font-size="13" fill="#222">Prod-Server (20)</text>
+<rect x="420" y="80" width="160" height="44" fill="#eeeeee" stroke="#999"/><text x="500" y="107" text-anchor="middle" font-size="13" fill="#222">Dev-Server (30)</text>
+<rect x="580" y="80" width="160" height="44" fill="#eeeeee" stroke="#999"/><text x="660" y="107" text-anchor="middle" font-size="13" fill="#222">Drucker (40)</text>
+<rect x="60" y="124" width="200" height="44" fill="#eeeeee" stroke="#999"/><text x="160" y="151" text-anchor="middle" font-size="13" fill="#222">Mitarbeiter (10)</text>
+<rect x="260" y="124" width="160" height="44" fill="#39c86a" fill-opacity="0.3" stroke="#999"/><text x="340" y="151" text-anchor="middle" font-size="13" fill="#222">WEB-ONLY</text>
+<rect x="420" y="124" width="160" height="44" fill="#ff6b6b" fill-opacity="0.35" stroke="#999"/><text x="500" y="151" text-anchor="middle" font-size="13" fill="#222">DENY</text>
+<rect x="580" y="124" width="160" height="44" fill="#39c86a" fill-opacity="0.3" stroke="#999"/><text x="660" y="151" text-anchor="middle" font-size="13" fill="#222">PRINT</text>
+<rect x="60" y="168" width="200" height="44" fill="#eeeeee" stroke="#999"/><text x="160" y="195" text-anchor="middle" font-size="13" fill="#222">Entwickler (11)</text>
+<rect x="260" y="168" width="160" height="44" fill="#39c86a" fill-opacity="0.3" stroke="#999"/><text x="340" y="195" text-anchor="middle" font-size="13" fill="#222">WEB-ONLY</text>
+<rect x="420" y="168" width="160" height="44" fill="#39c86a" fill-opacity="0.3" stroke="#999"/><text x="500" y="195" text-anchor="middle" font-size="13" fill="#222">PERMIT</text>
+<rect x="580" y="168" width="160" height="44" fill="#39c86a" fill-opacity="0.3" stroke="#999"/><text x="660" y="195" text-anchor="middle" font-size="13" fill="#222">PRINT</text>
+<rect x="60" y="212" width="200" height="44" fill="#eeeeee" stroke="#999"/><text x="160" y="239" text-anchor="middle" font-size="13" fill="#222">Gast (50)</text>
+<rect x="260" y="212" width="160" height="44" fill="#ff6b6b" fill-opacity="0.35" stroke="#999"/><text x="340" y="239" text-anchor="middle" font-size="13" fill="#222">DENY</text>
+<rect x="420" y="212" width="160" height="44" fill="#ff6b6b" fill-opacity="0.35" stroke="#999"/><text x="500" y="239" text-anchor="middle" font-size="13" fill="#222">DENY</text>
+<rect x="580" y="212" width="160" height="44" fill="#ff6b6b" fill-opacity="0.35" stroke="#999"/><text x="660" y="239" text-anchor="middle" font-size="13" fill="#222">DENY</text>
+<rect x="60" y="280" width="680" height="150" rx="8" fill="#ffd23f" fill-opacity="0.15" stroke="#222"/>
+<text x="80" y="305" font-size="14" font-weight="bold" fill="#222">SGACL „WEB-ONLY“ (wird in zwei Zellen wiederverwendet):</text>
+<text x="100" y="328" font-size="13" font-family="monospace" fill="#222">permit tcp dst eq 443</text>
+<text x="100" y="346" font-size="13" font-family="monospace" fill="#222">deny ip</text>
+<text x="80" y="372" font-size="13" fill="#222">• keine IP-Adressen und keine Gruppen in der SGACL – Quelle/Ziel ergeben sich aus der Zelle</text>
+<text x="80" y="394" font-size="13" fill="#222">• neue Gruppe = eine Zeile + eine Spalte mehr; Policy zentral in ISE, verteilt an alle Switches</text>
+<text x="80" y="416" font-size="13" fill="#222">• nur eine Kopie je SGACL im TCAM → deutlich weniger ACEs als IP-basierte ACLs</text>
+</svg>

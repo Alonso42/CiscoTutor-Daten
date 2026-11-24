@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+<title>IDS (promiscuous) vs. IPS (inline)</title>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker></defs>
+<rect width="800" height="450" fill="#ffffff"/>
+<text x="400" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">IDS vs. IPS: wo sitzt der Sensor?</text>
+<text x="40" y="80" font-size="17" font-weight="bold" fill="#222">IDS – promiscuous (Kopie)</text>
+<rect x="40" y="100" width="80" height="44" rx="6" fill="#ff6b6b" fill-opacity="0.25" stroke="#ff6b6b" stroke-width="2"/>
+<text x="80" y="127" text-anchor="middle" font-size="14" fill="#222">Angreifer</text>
+<rect x="300" y="100" width="80" height="44" rx="4" fill="#4a9cff" fill-opacity="0.25" stroke="#4a9cff" stroke-width="2"/>
+<text x="340" y="127" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">SW</text>
+<rect x="620" y="100" width="100" height="44" rx="6" fill="#39c86a" fill-opacity="0.25" stroke="#39c86a" stroke-width="2"/>
+<text x="670" y="127" text-anchor="middle" font-size="14" fill="#222">Server</text>
+<line x1="122" y1="122" x2="296" y2="122" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<line x1="382" y1="122" x2="616" y2="122" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<text x="500" y="112" text-anchor="middle" font-size="13" fill="#222">Original erreicht das Ziel</text>
+<rect x="300" y="190" width="80" height="40" rx="4" fill="#b08aff" fill-opacity="0.3" stroke="#b08aff" stroke-width="2"/>
+<text x="340" y="215" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">IDS</text>
+<line x1="340" y1="146" x2="340" y2="186" stroke="#b08aff" stroke-width="3" stroke-dasharray="6,4" marker-end="url(#a)"/>
+<text x="350" y="172" font-size="12" fill="#222">SPAN/TAP-Kopie</text>
+<text x="400" y="212" font-size="13" fill="#222">nur Alarm (ggf. TCP-Reset/Shun) · keine Latenz · Ausfall stört Traffic nicht</text>
+<line x1="20" y1="255" x2="780" y2="255" stroke="#ccc" stroke-width="1"/>
+<text x="40" y="290" font-size="17" font-weight="bold" fill="#222">IPS – inline (im Datenpfad)</text>
+<rect x="40" y="310" width="80" height="44" rx="6" fill="#ff6b6b" fill-opacity="0.25" stroke="#ff6b6b" stroke-width="2"/>
+<text x="80" y="337" text-anchor="middle" font-size="14" fill="#222">Angreifer</text>
+<rect x="300" y="310" width="80" height="44" rx="4" fill="#ffd23f" fill-opacity="0.4" stroke="#222" stroke-width="2"/>
+<text x="340" y="337" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">IPS</text>
+<rect x="620" y="310" width="100" height="44" rx="6" fill="#39c86a" fill-opacity="0.25" stroke="#39c86a" stroke-width="2"/>
+<text x="670" y="337" text-anchor="middle" font-size="14" fill="#222">Server</text>
+<line x1="122" y1="332" x2="296" y2="332" stroke="#222" stroke-width="2" marker-end="url(#a)"/>
+<line x1="382" y1="332" x2="500" y2="332" stroke="#ff6b6b" stroke-width="2"/>
+<text x="510" y="340" font-size="24" font-weight="bold" fill="#ff6b6b">✕</text>
+<text x="420" y="322" font-size="13" fill="#222">Drop</text>
+<text x="40" y="395" font-size="13" fill="#222">erstes bösartiges Paket kann verworfen werden · fügt Latenz hinzu · Ausfall unterbricht Traffic (außer fail-open/Bypass)</text>
+<text x="40" y="425" font-size="13" fill="#222">False Positive = Alarm/Drop bei harmlosem Traffic · False Negative = Angriff bleibt unerkannt</text>
+</svg>
